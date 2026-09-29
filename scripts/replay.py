@@ -22,10 +22,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=10000)
     parser.add_argument("--out", default="artifacts/replay")
+    parser.add_argument("--program", default=str(ROOT / "initial.py"))
+    parser.add_argument("--label", default="Predictive seed")
     args = parser.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    result = run_episode(ROOT / "initial.py", args.seed, replay=True)
+    result = run_episode(args.program, args.seed, replay=True)
+    from dreamer.provenance import sha256
+    result["program_sha256"] = sha256(args.program)
     trace = result.pop("trace")
     (out / "replay.json").write_text(json.dumps({"episode": result, "frames": trace}, separators=(",", ":")))
     cmap = ListedColormap(["#c4cdd5", "#1b2934", "#f3efe5", "#243846", "#f2bc39", "#8862a8", "#53a477"])
@@ -66,9 +70,12 @@ def main():
             axis.set(title=titles[j], xticks=[], yticks=[], xlim=(-.5, 14.5), ylim=(14.5, -.5))
         learning = model.get("learning", {})
         rates = learning.get("rates", {})
-        fig.suptitle(f"Predictive seed · maze {args.seed} · step {world['step']} → {world['step']+1} · keys {world['keys']}/2", fontsize=13)
+        fig.suptitle(f"{args.label} · maze {args.seed} · step {world['step']} → {world['step']+1} · keys {world['keys']}/2", fontsize=13)
+        diagnostic = (f"parameter update steps {learning['parameter_updates']}"
+                      if "parameter_updates" in learning else
+                      f"P(enemy next | nearby) {rates.get('near',0):.3f}")
         caption = (f"Action {frame['action']['move']}  |  predictive updates {learning.get('updates',0)}  |  "
-                   f"P(enemy next | nearby) {rates.get('near',0):.3f}\n"
+                   f"{diagnostic}\n"
                    "Blue: agent/view/action · red: enemy · yellow: key · purple: door · green: exit\n"
                    "Forecast scale: pale=0, red≥0.4 · hollow rings: next enemies (shown for retrospective audit)")
         if len(fig.texts) > 1:
