@@ -1,0 +1,350 @@
+{
+  "protocol": {
+    "protocol": "namazu-repair-predictive-v1",
+    "objective": "task06-forecast04-v1",
+    "split": "development",
+    "episodes": 64,
+    "variants": [
+      "reactive",
+      "memory",
+      "predictive",
+      "frozen",
+      "no_planning"
+    ],
+    "program_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+  },
+  "agents": {
+    "frozen": {
+      "episodes": 64,
+      "escape": 0.828125,
+      "death": 0.171875,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8435859374999999,
+      "keys": 1.90625,
+      "door": 0.828125,
+      "steps": 45.1875,
+      "model_score": 0.9887775879729755,
+      "base_audit": 0.016776210235131536,
+      "base_near": 0.00803485477178422,
+      "brier_audit": 0.01649030875403424,
+      "brier_near": 0.006795227255263553,
+      "brier_threat": 0.025739264362787978,
+      "coverage": 0.5833909635776856,
+      "map_age": 13.297589647337746,
+      "persistence_audit": 0.016990237436606846,
+      "persistence_near": 0.01094974642692485,
+      "persistence_threat": 0.0415573053368329,
+      "prevalence_audit": 0.01705855232826187,
+      "prevalence_near": 0.007952973720608575,
+      "reconstruction": 0.5768499308437067,
+      "reconstruction_stale": 0.9860006167129202,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 46.075471698113205,
+      "escape_ci95": [
+        0.7178678827866934,
+        0.9012225774212527
+      ],
+      "total_seconds": 12.441425613127649,
+      "mean_predictive_updates": 0.0
+    },
+    "frozen_no_planning": {
+      "episodes": 64,
+      "escape": 0.890625,
+      "death": 0.109375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8870390624999998,
+      "keys": 1.875,
+      "door": 0.890625,
+      "steps": 56.71875,
+      "model_score": 0.9885863919708181,
+      "base_audit": 0.016950964187327968,
+      "base_near": 0.008010651974288345,
+      "brier_audit": 0.016246954775023092,
+      "brier_near": 0.006818674625038263,
+      "brier_threat": 0.023197143974960886,
+      "coverage": 0.6017906336088155,
+      "map_age": 17.282482642862593,
+      "persistence_audit": 0.016621882460973503,
+      "persistence_near": 0.010529537802265076,
+      "persistence_threat": 0.03588941053729786,
+      "prevalence_audit": 0.01724058769513315,
+      "prevalence_near": 0.007927762473217019,
+      "reconstruction": 0.5941000918273646,
+      "reconstruction_stale": 0.984105897423732,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 58.21052631578947,
+      "escape_ci95": [
+        0.7910135857782373,
+        0.94599886685027
+      ],
+      "total_seconds": 17.108789078891277,
+      "mean_predictive_updates": 0.0
+    },
+    "memory": {
+      "episodes": 64,
+      "escape": 0.890625,
+      "death": 0.109375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8870390624999998,
+      "keys": 1.875,
+      "door": 0.890625,
+      "steps": 56.71875,
+      "model_score": 0.9864265329344812,
+      "base_audit": 0.016950964187327968,
+      "base_near": 0.008010651974288345,
+      "brier_audit": 0.016621882460973503,
+      "brier_near": 0.010529537802265076,
+      "brier_threat": 0.03588941053729786,
+      "coverage": 0.6017906336088155,
+      "map_age": 17.282482642862593,
+      "persistence_audit": 0.016621882460973503,
+      "persistence_near": 0.010529537802265076,
+      "persistence_threat": 0.03588941053729786,
+      "prevalence_audit": 0.01724058769513315,
+      "prevalence_near": 0.007927762473217019,
+      "reconstruction": 0.5941000918273646,
+      "reconstruction_stale": 0.984105897423732,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 58.21052631578947,
+      "escape_ci95": [
+        0.7910135857782373,
+        0.94599886685027
+      ],
+      "total_seconds": 14.59603447210975,
+      "mean_predictive_updates": 0.0
+    },
+    "no_planning": {
+      "episodes": 64,
+      "escape": 0.890625,
+      "death": 0.109375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8870390624999998,
+      "keys": 1.875,
+      "door": 0.890625,
+      "steps": 56.71875,
+      "model_score": 0.9885647843570265,
+      "base_audit": 0.016950964187327968,
+      "base_near": 0.008010651974288345,
+      "brier_audit": 0.016242809619482525,
+      "brier_near": 0.006864083423397729,
+      "brier_threat": 0.02339351877044246,
+      "coverage": 0.6017906336088155,
+      "map_age": 17.282482642862593,
+      "persistence_audit": 0.016621882460973503,
+      "persistence_near": 0.010529537802265076,
+      "persistence_threat": 0.03588941053729786,
+      "prevalence_audit": 0.01724058769513315,
+      "prevalence_near": 0.007927762473217019,
+      "reconstruction": 0.5941000918273646,
+      "reconstruction_stale": 0.984105897423732,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 58.21052631578947,
+      "escape_ci95": [
+        0.7910135857782373,
+        0.94599886685027
+      ],
+      "total_seconds": 14.436175782000646,
+      "mean_predictive_updates": 376.796875
+    },
+    "predictive": {
+      "episodes": 64,
+      "escape": 0.875,
+      "death": 0.125,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.87891015625,
+      "keys": 1.90625,
+      "door": 0.875,
+      "steps": 52.6875,
+      "model_score": 0.9886505897272645,
+      "base_audit": 0.01700735468564666,
+      "base_near": 0.008244998022933952,
+      "brier_audit": 0.01647142874380604,
+      "brier_near": 0.006989333426007946,
+      "brier_threat": 0.026125838782251814,
+      "coverage": 0.593218663503361,
+      "map_age": 15.154349275120813,
+      "persistence_audit": 0.016866211941478974,
+      "persistence_near": 0.011005667589297483,
+      "persistence_threat": 0.04114313870411431,
+      "prevalence_audit": 0.017299327797548437,
+      "prevalence_near": 0.008171872940556215,
+      "reconstruction": 0.5861259391063661,
+      "reconstruction_stale": 0.9850722979298866,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 53.55357142857143,
+      "escape_ci95": [
+        0.7722543808249782,
+        0.9352775736983887
+      ],
+      "total_seconds": 13.94919092883356,
+      "mean_predictive_updates": 350.0625
+    },
+    "reactive": {
+      "episodes": 64,
+      "escape": 0.015625,
+      "death": 0.71875,
+      "timeout": 0.265625,
+      "invalid": 0,
+      "task": 0.06231250000000002,
+      "keys": 0.5,
+      "door": 0.015625,
+      "steps": 112.859375,
+      "model_score": 0.75,
+      "base_audit": 0.017523079053024835,
+      "base_near": 0.009009534357838408,
+      "brier_audit": 0.25,
+      "brier_near": 0.25,
+      "brier_threat": 0.25,
+      "coverage": 0.0,
+      "map_age": 21.849396650369293,
+      "persistence_audit": 0.017885047764086743,
+      "persistence_near": 0.011152645099758487,
+      "persistence_threat": 0.04546024579884625,
+      "prevalence_audit": 0.017836540680234436,
+      "prevalence_near": 0.008968264956081653,
+      "reconstruction": 0.0,
+      "reconstruction_stale": 0.0,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 0.0,
+      "escape_steps": 48.0,
+      "escape_ci95": [
+        0.0027635418927853816,
+        0.08334101684786545
+      ],
+      "total_seconds": 5.127542436006479,
+      "mean_predictive_updates": 0.0
+    }
+  },
+  "paired": {
+    "predictive minus memory": {
+      "escape": {
+        "difference": -0.015625,
+        "ci95": [
+          -0.109375,
+          0.09375
+        ]
+      },
+      "task": {
+        "difference": -0.008128906249999956,
+        "ci95": [
+          -0.09443935546875,
+          0.08079091796874996
+        ]
+      },
+      "brier_near": {
+        "difference": -0.0035402043762571295,
+        "ci95": [
+          -0.005267641169898564,
+          -0.0018343656847720127
+        ]
+      },
+      "brier_threat": {
+        "difference": -0.009763571755046049,
+        "ci95": [
+          -0.01601014062689195,
+          -0.004404241268708893
+        ]
+      }
+    },
+    "predictive minus frozen": {
+      "escape": {
+        "difference": 0.046875,
+        "ci95": [
+          -0.078125,
+          0.171875
+        ]
+      },
+      "task": {
+        "difference": 0.035324218749999914,
+        "ci95": [
+          -0.06953857421875007,
+          0.14153144531249992
+        ]
+      },
+      "brier_near": {
+        "difference": 0.0001941061707443929,
+        "ci95": [
+          -0.0013336167523095314,
+          0.0016492644233490712
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.00038657441946383583,
+        "ci95": [
+          -0.003742088560822347,
+          0.004381550899599959
+        ]
+      }
+    },
+    "predictive minus no_planning": {
+      "escape": {
+        "difference": -0.015625,
+        "ci95": [
+          -0.109375,
+          0.09375
+        ]
+      },
+      "task": {
+        "difference": -0.008128906249999956,
+        "ci95": [
+          -0.09443935546875,
+          0.08079091796874996
+        ]
+      },
+      "brier_near": {
+        "difference": 0.0001252500026102171,
+        "ci95": [
+          -0.0010163023465106073,
+          0.0012712533198795052
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.0027323200118093555,
+        "ci95": [
+          -0.0008135709404402738,
+          0.005966387895286107
+        ]
+      }
+    },
+    "no_planning minus frozen_no_planning": {
+      "escape": {
+        "difference": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "task": {
+        "difference": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "brier_near": {
+        "difference": 4.5408798359466464e-05,
+        "ci95": [
+          -1.6168390722351478e-05,
+          0.00010027626251482876
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.00019637479548157213,
+        "ci95": [
+          -1.2581623516647734e-05,
+          0.0003778502078922918
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "protocol": {
+    "protocol": "namazu-repair-predictive-v1",
+    "objective": "task06-forecast04-v1",
+    "split": "validation",
+    "episodes": 64,
+    "variants": [
+      "memory",
+      "predictive",
+      "frozen",
+      "no_planning",
+      "frozen_no_planning"
+    ],
+    "program_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+  },
+  "agents": {
+    "frozen": {
+      "episodes": 64,
+      "escape": 0.875,
+      "death": 0.125,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8812539062500001,
+      "keys": 1.921875,
+      "door": 0.875,
+      "steps": 49.84375,
+      "model_score": 0.9878367561995302,
+      "base_audit": 0.01690156739811924,
+      "base_near": 0.009528526645768037,
+      "brier_audit": 0.01646324386102413,
+      "brier_near": 0.00773559386973181,
+      "brier_threat": 0.028845722742648988,
+      "coverage": 0.609012539184953,
+      "map_age": 14.325440741217346,
+      "persistence_audit": 0.017304879832810954,
+      "persistence_near": 0.01180773249738767,
+      "persistence_threat": 0.04410616705698673,
+      "prevalence_audit": 0.017189132706374087,
+      "prevalence_near": 0.009508881922675027,
+      "reconstruction": 0.6012016718913271,
+      "reconstruction_stale": 0.9841882601797991,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 49.982142857142854,
+      "escape_ci95": [
+        0.7722543808249782,
+        0.9352775736983887
+      ],
+      "total_seconds": 15.878900643088855,
+      "mean_predictive_updates": 0.0
+    },
+    "frozen_no_planning": {
+      "episodes": 64,
+      "escape": 0.90625,
+      "death": 0.09375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.9103281249999999,
+      "keys": 1.984375,
+      "door": 0.90625,
+      "steps": 59.03125,
+      "model_score": 0.9883703461305621,
+      "base_audit": 0.016980201164637488,
+      "base_near": 0.00841835186165521,
+      "brier_audit": 0.016367218656255636,
+      "brier_near": 0.006951072731015824,
+      "brier_threat": 0.023938231861999,
+      "coverage": 0.5764734427386624,
+      "map_age": 16.7976277023149,
+      "persistence_audit": 0.016926248455973292,
+      "persistence_near": 0.010381742250455855,
+      "persistence_threat": 0.03581938102486048,
+      "prevalence_audit": 0.017271042879830598,
+      "prevalence_near": 0.00835244985589083,
+      "reconstruction": 0.5683783306864302,
+      "reconstruction_stale": 0.9822876447876447,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 57.86206896551724,
+      "escape_ci95": [
+        0.8101712030635407,
+        0.9563217476701068
+      ],
+      "total_seconds": 18.306719443178736,
+      "mean_predictive_updates": 0.0
+    },
+    "memory": {
+      "episodes": 64,
+      "escape": 0.90625,
+      "death": 0.09375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.9103281249999999,
+      "keys": 1.984375,
+      "door": 0.90625,
+      "steps": 59.03125,
+      "model_score": 0.9863771308199919,
+      "base_audit": 0.016980201164637488,
+      "base_near": 0.00841835186165521,
+      "brier_audit": 0.016926248455973292,
+      "brier_near": 0.010381742250455855,
+      "brier_threat": 0.03581938102486048,
+      "coverage": 0.5764734427386624,
+      "map_age": 16.7976277023149,
+      "persistence_audit": 0.016926248455973292,
+      "persistence_near": 0.010381742250455855,
+      "persistence_threat": 0.03581938102486048,
+      "prevalence_audit": 0.017271042879830598,
+      "prevalence_near": 0.00835244985589083,
+      "reconstruction": 0.5683783306864302,
+      "reconstruction_stale": 0.9822876447876447,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 57.86206896551724,
+      "escape_ci95": [
+        0.8101712030635407,
+        0.9563217476701068
+      ],
+      "total_seconds": 18.155228723073378,
+      "mean_predictive_updates": 0.0
+    },
+    "no_planning": {
+      "episodes": 64,
+      "escape": 0.90625,
+      "death": 0.09375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.9103281249999999,
+      "keys": 1.984375,
+      "door": 0.90625,
+      "steps": 59.03125,
+      "model_score": 0.9883532986138759,
+      "base_audit": 0.016980201164637488,
+      "base_near": 0.00841835186165521,
+      "brier_audit": 0.016347393989016454,
+      "brier_near": 0.007003928219525052,
+      "brier_threat": 0.024162797482478463,
+      "coverage": 0.5764734427386624,
+      "map_age": 16.7976277023149,
+      "persistence_audit": 0.016926248455973292,
+      "persistence_near": 0.010381742250455855,
+      "persistence_threat": 0.03581938102486048,
+      "prevalence_audit": 0.017271042879830598,
+      "prevalence_near": 0.00835244985589083,
+      "reconstruction": 0.5683783306864302,
+      "reconstruction_stale": 0.9822876447876447,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 57.86206896551724,
+      "escape_ci95": [
+        0.8101712030635407,
+        0.9563217476701068
+      ],
+      "total_seconds": 17.27629541303031,
+      "mean_predictive_updates": 391.0
+    },
+    "predictive": {
+      "episodes": 64,
+      "escape": 0.640625,
+      "death": 0.359375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.671546875,
+      "keys": 1.671875,
+      "door": 0.640625,
+      "steps": 45.390625,
+      "model_score": 0.9874904174710954,
+      "base_audit": 0.016950774526678234,
+      "base_near": 0.00932254733218588,
+      "brier_audit": 0.016329902487217704,
+      "brier_near": 0.007750755479387656,
+      "brier_threat": 0.02920021012646115,
+      "coverage": 0.5429432013769363,
+      "map_age": 14.490357690072383,
+      "persistence_audit": 0.017075674125071813,
+      "persistence_near": 0.011627462229871868,
+      "persistence_threat": 0.04381034731229284,
+      "prevalence_audit": 0.0172403901319564,
+      "prevalence_near": 0.00929432013769363,
+      "reconstruction": 0.5357142857142857,
+      "reconstruction_stale": 0.9829867674858223,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 50.829268292682926,
+      "escape_ci95": [
+        0.5182085051234868,
+        0.7471159778227758
+      ],
+      "total_seconds": 15.443681852892041,
+      "mean_predictive_updates": 300.578125
+    }
+  },
+  "paired": {
+    "predictive minus memory": {
+      "escape": {
+        "difference": -0.265625,
+        "ci95": [
+          -0.390625,
+          -0.15625
+        ]
+      },
+      "task": {
+        "difference": -0.23878124999999994,
+        "ci95": [
+          -0.34206328124999985,
+          -0.14200361328125005
+        ]
+      },
+      "brier_near": {
+        "difference": -0.002630986771068199,
+        "ci95": [
+          -0.004426902598170474,
+          -0.000854390024163996
+        ]
+      },
+      "brier_threat": {
+        "difference": -0.006619170898399328,
+        "ci95": [
+          -0.011513362936347023,
+          -0.0019633834747419987
+        ]
+      }
+    },
+    "predictive minus frozen": {
+      "escape": {
+        "difference": -0.234375,
+        "ci95": [
+          -0.375,
+          -0.09375
+        ]
+      },
+      "task": {
+        "difference": -0.20970703125,
+        "ci95": [
+          -0.32580820312500003,
+          -0.09661816406249996
+        ]
+      },
+      "brier_near": {
+        "difference": 1.5161609655846287e-05,
+        "ci95": [
+          -0.0016256802248315772,
+          0.0016765673801791654
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.00035448738381216316,
+        "ci95": [
+          -0.004144975098330188,
+          0.005184195002873603
+        ]
+      }
+    },
+    "predictive minus no_planning": {
+      "escape": {
+        "difference": -0.265625,
+        "ci95": [
+          -0.390625,
+          -0.15625
+        ]
+      },
+      "task": {
+        "difference": -0.23878124999999994,
+        "ci95": [
+          -0.34206328124999985,
+          -0.14200361328125005
+        ]
+      },
+      "brier_near": {
+        "difference": 0.0007468272598626039,
+        "ci95": [
+          -0.0006676576139960384,
+          0.0021738244712039643
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.005037412643982688,
+        "ci95": [
+          0.0013720229880031629,
+          0.008764804463276266
+        ]
+      }
+    },
+    "no_planning minus frozen_no_planning": {
+      "escape": {
+        "difference": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "task": {
+        "difference": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "brier_near": {
+        "difference": 5.285548850922795e-05,
+        "ci95": [
+          -2.4501278969442437e-05,
+          0.00011490758472097748
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.00022456562047946244,
+        "ci95": [
+          -4.233045202269147e-05,
+          0.00044587294922862625
+        ]
+      }
+    }
+  }
+}

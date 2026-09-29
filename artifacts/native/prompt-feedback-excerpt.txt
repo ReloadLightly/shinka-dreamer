@@ -1,0 +1,20 @@
+Excerpt from actual native prompt (development only). Full prompt SHA256: b084584e8ea31cde9372b47b0d7a4ac23ab6713d572b73f0148c7949e543def3
+
+nal text feedback about the current program:
+
+namazu-repair-predictive-v1; task06-forecast04-v1. 64 paired development episodes. Outcomes and pre-outcome horizon-1 enemy occupancy errors: {"episodes": 64, "escape": 0.875, "death": 0.125, "timeout": 0.0, "invalid": 0, "task": 0.87891015625, "keys": 1.90625, "door": 0.875, "steps": 52.6875, "model_score": 0.9886505897272645, "base_audit": 0.01700735468564666, "base_near": 0.008244998022933952, "brier_audit": 0.01647142874380604, "brier_near": 0.006989333426007946, "brier_threat": 0.026125838782251814, "coverage": 0.593218663503361, "map_age": 15.154349275120813, "persistence_audit": 0.016866211941478974, "persistence_near": 0.011005667589297483, "persistence_threat": 0.04114313870411431, "prevalence_audit": 0.017299327797548437, "prevalence_near": 0.008171872940556215, "reconstruction": 0.5861259391063661, "reconstruction_stale": 0.9850722979298866, "reconstruction_unseen": 0.0, "reconstruction_visible": 1.0, "escape_steps": 53.55357142857143}. Improve both representation/learning and planning; all helpers may evolve. Do not infer learning from map accumulation or scalar fitness alone.
+
+
+# Instructions
+
+Make sure that the changes you propose are consistent with each other. For example, if you refer to a new config variable somewhere, you should also propose a change to add that variable.
+
+Note that the changes you propose will be applied sequentially, so you should assume that the previous changes have already been applied when writing the SEARCH block.
+
+# Task
+
+Suggest a new idea to improve the performance of the code that is inspired by your expert knowledge of the considered subject.
+Your goal is to maximize the `combined_score` of the program.
+Describe each change with a SEARCH/REPLACE block.
+
+IMPORTANT: Do not rewrite the entire program - focus on targeted improvements.

@@ -1,0 +1,114 @@
+[
+  {
+    "agent": "no_planning",
+    "start_step": 0,
+    "end_step_exclusive": 25,
+    "loss_sum": 76.60449485878621,
+    "target_count": 14202,
+    "episodes_present": 64
+  },
+  {
+    "agent": "no_planning",
+    "start_step": 25,
+    "end_step_exclusive": 50,
+    "loss_sum": 83.61459613058813,
+    "target_count": 11196,
+    "episodes_present": 60
+  },
+  {
+    "agent": "no_planning",
+    "start_step": 50,
+    "end_step_exclusive": 75,
+    "loss_sum": 60.47871235813537,
+    "target_count": 5742,
+    "episodes_present": 37
+  },
+  {
+    "agent": "no_planning",
+    "start_step": 75,
+    "end_step_exclusive": 100,
+    "loss_sum": 14.06140102320748,
+    "target_count": 2151,
+    "episodes_present": 16
+  },
+  {
+    "agent": "no_planning",
+    "start_step": 100,
+    "end_step_exclusive": 125,
+    "loss_sum": 2.4421104017096185,
+    "target_count": 423,
+    "episodes_present": 5
+  },
+  {
+    "agent": "no_planning",
+    "start_step": 125,
+    "end_step_exclusive": 150,
+    "loss_sum": 0.9462523836067498,
+    "target_count": 225,
+    "episodes_present": 1
+  },
+  {
+    "agent": "no_planning",
+    "start_step": 150,
+    "end_step_exclusive": 175,
+    "loss_sum": 1.6425724479939753e-07,
+    "target_count": 63,
+    "episodes_present": 1
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 0,
+    "end_step_exclusive": 25,
+    "loss_sum": 76.86339999999998,
+    "target_count": 14202,
+    "episodes_present": 64
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 25,
+    "end_step_exclusive": 50,
+    "loss_sum": 82.97809999999987,
+    "target_count": 11196,
+    "episodes_present": 60
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 50,
+    "end_step_exclusive": 75,
+    "loss_sum": 59.35829999999996,
+    "target_count": 5742,
+    "episodes_present": 37
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 75,
+    "end_step_exclusive": 100,
+    "loss_sum": 13.74652499999999,
+    "target_count": 2151,
+    "episodes_present": 16
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 100,
+    "end_step_exclusive": 125,
+    "loss_sum": 2.5013499999999995,
+    "target_count": 423,
+    "episodes_present": 5
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 125,
+    "end_step_exclusive": 150,
+    "loss_sum": 0.9017750000000041,
+    "target_count": 225,
+    "episodes_present": 1
+  },
+  {
+    "agent": "frozen_no_planning",
+    "start_step": 150,
+    "end_step_exclusive": 175,
+    "loss_sum": 0.0009249999999999994,
+    "target_count": 63,
+    "episodes_present": 1
+  }
+]

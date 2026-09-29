@@ -75,7 +75,7 @@ def main():
             summary["paired"][left+" minus "+right] = {metric: paired(data[left], data[right], metric)
                 for metric in ("escape", "task", "brier_near", "brier_threat")}
     with (out / "episodes.csv").open("w") as file:
-        writer = csv.DictWriter(file, fieldnames=list(compact[0]))
+        writer = csv.DictWriter(file, fieldnames=list(compact[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(compact)
     (out / "summary.json").write_text(json.dumps(summary, indent=2))
