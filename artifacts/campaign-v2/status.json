@@ -1,0 +1,33 @@
+{
+  "campaign": "campaign-v2",
+  "target_generation_slots": 100,
+  "islands": 4,
+  "native_checkpointed_programs": 0,
+  "native_database_rows": 0,
+  "evaluated_descendants": 0,
+  "generated_descendants": 0,
+  "subscription_startup_probes": 1,
+  "failure_stage": "Outer Codex app-server initialization, before inference",
+  "blocker": "Read-only file system (os error 30)",
+  "probe_log_sha256": "8e3330eeb312ddb37b9da73c3ece4a8aa7e2ade4b7bb255573aa487bc89f0f58",
+  "state": "Manifest and explicit development pool prepared; native runner not entered after failed probe. campaign-v1 preserved.",
+  "local_native_evaluator_contract": {
+    "episodes": 64,
+    "correct": true,
+    "score": 0.9228063296409055,
+    "note": "Repeat evaluation of original seed, outside native search database; not a descendant"
+  },
+  "control_condition_episodes": 320,
+  "exact_v1_scientific_row_matches": 320,
+  "v1_artifacts_database_and_pool_unchanged": true,
+  "fresh_final_assessment": "Not reserved: no descendant exists to select. Reserved path is in campaign-manifest.json; hashes will be in assessment-manifest.json and assessment output manifest.",
+  "billing": "Subscription only; no paid fallback; mutation and meta same headless route; embeddings/novelty/prompt-evolution disabled; evaluator local only",
+  "resume_first_descendant": "HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py --results results/campaign-v2 --generations 2",
+  "resume_campaign": "HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py --results results/campaign-v2 --generations 100",
+  "historical_campaign_v1": {
+    "unique_evaluated_programs": 1,
+    "native_rows": 4,
+    "evaluated_descendants": 0,
+    "assessment_pool_sha256": "8e05f239e7067822fb200bb2fa9ad27f4c034b3dc62c52cb18cf00488a2f06d6"
+  }
+}

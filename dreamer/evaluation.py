@@ -11,14 +11,14 @@ import time
 from .world import DynamicMaze, stream_seed, valid_action
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = "namazu-repair-predictive-v1"
+PROTOCOL = "namazu-repair-predictive-v2"
 OBJECTIVE = "task06-forecast04-v1"
 
 
 class Candidate:
     def __init__(self, path):
         self.process = subprocess.Popen(
-            ["/usr/bin/python3", "-I", str(ROOT / "dreamer/worker.py"), str(Path(path).resolve())],
+            ["/usr/bin/python3", "-s", "-S", str(ROOT / "dreamer/worker.py"), str(Path(path).resolve())],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
             env={"PATH": "/usr/bin:/bin", "PYTHONHASHSEED": "0"}, cwd="/tmp", bufsize=0)
         self.selector = selectors.DefaultSelector()
@@ -82,14 +82,17 @@ def decode(model):
 
 
 def run_episode(program_path, seed, variant="predictive", replay=False, interval=25):
+    # These controls are original programs, never flags applied to a descendant.
+    if variant in ("memory", "original_predictive"):
+        from .provenance import control_path
+        program_path = control_path("memory" if variant == "memory" else "predictive")
     env = DynamicMaze(seed, interval=interval)
     audit = random.Random(stream_seed(seed, "audit"))
     trace, bins, stats = [], {}, {}
     latest_model = {}
     error = None
     started = time.monotonic()
-    # Separate agent RNG: index is assigned by the experiment, not world state.
-    # Its constant reproducible stream cannot reveal an environment seed.
+    # The worker initializes its independent stream before executing the program.
     with Candidate(program_path) as candidate:
         while not env.done:
             obs = env.observe()
@@ -97,8 +100,6 @@ def run_episode(program_path, seed, variant="predictive", replay=False, interval
             obs["predictive_planning"] = variant not in ("no_planning", "memory", "frozen_no_planning")
             try:
                 request = {"obs": obs}
-                if env.steps == 0:
-                    request["seed"] = 712934
                 reply = candidate.query(request)
                 latest_model = reply.get("model", {})
                 forecast, terrain, default = decode(latest_model)

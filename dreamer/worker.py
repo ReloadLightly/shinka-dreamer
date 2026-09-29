@@ -1,11 +1,14 @@
 """JSON-lines worker; source loaded as text before restricting execution."""
+import sys
+# -s -S honors the explicit hash seed but loads neither user nor system sites.
+# Remove script/cwd/import environment paths before importing anything else.
+sys.path[:] = ["/usr/lib/python3.10", "/usr/lib/python3.10/lib-dynload"]
 import contextlib
 import json
 import os
 import random
-import sys
 
-# Script launched via system Python -I; explicitly import only trusted boundary.
+# Explicitly import only the trusted boundary, then remove its path.
 sys.path.insert(0, os.path.dirname(__file__))
 from isolation import restrict
 sys.path.pop(0)
@@ -17,14 +20,15 @@ def main():
     if len(source) > 512 * 1024:
         raise ValueError("Candidate exceeds 512 KiB")
     restrict()
+    # Independent agent stream, initialized BEFORE any candidate top-level code.
+    # This constant conveys no information about the evaluator's world seed.
+    random.seed(712934)
     namespace = {"__name__": "candidate"}
     with contextlib.redirect_stdout(sys.stderr):
         exec(compile(source, "candidate.py", "exec"), namespace)
     memory, last = None, None
     for line in sys.stdin:
         request = json.loads(line)
-        if "seed" in request:
-            random.seed(request["seed"])
         with contextlib.redirect_stdout(sys.stderr):
             obs = request["obs"]
             memory = namespace["world_model_step"](memory, obs, last)

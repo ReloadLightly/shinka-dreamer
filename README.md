@@ -7,11 +7,13 @@ The first experiment is implemented and measured. Its negative result matters: o
 competent memory/pathfinding baseline. Online updates changed the model but did
 not improve its predictions over the frozen prior on matched experience.
 
-Native ShinkaEvolve evaluated and checkpointed the seed. **One unique native
-candidate was evaluated; zero descendants evolved.** Subscription-backed Codex
-could not initialize its app-server inside this session's read-only filesystem
-boundary. The planned 100-generation, four-island campaign remains resumable.
-No paid model or embedding calls were used.
+**Evolution remains blocked: zero descendants generated or evaluated.** The v2
+follow-up repaired control preservation, candidate initialization and campaign
+provenance, then made exactly one subscription-runtime probe. Codex still failed
+before inference in its outer app-server with `Read-only file system (os error 30)`.
+The original v1 checkpoint contains one unique evaluated seed and four island rows;
+v2 has a frozen configuration and development pool, but no native database yet.
+No paid model or embedding calls were used. Exact WSL commands appear below.
 
 The starting proposal was supplied by Roland Löchli and attributed by him to
 Sakana AI's Namazu model. Its full text is preserved unchanged in
@@ -44,7 +46,48 @@ feedback, generation and action-order choices are documented separately from bug
 repairs in the [executed protocol](docs/protocol.md). The seed predicts one-step
 enemy occupancy; it does not yet learn wall schedules or simulate multi-step futures.
 
-## Measured results
+## Campaign v2: controls and execution
+
+The maze, objective and freely evolvable agent are unchanged. The original programs
+from `1ce4fb7` are now preserved under [controls/v1](controls/v1/manifest.json), with
+hash checks before use. `memory` always executes the original memory/pathfinding
+program; `original_predictive` always executes the original predictive seed.
+Neither comparison can silently become a flag applied to an evolved program.
+
+Python now starts with `-s -S`, an explicit standard-library import path and
+`PYTHONHASHSEED=0`. The independent agent RNG is seeded **before candidate source
+executes**. Landlock, seccomp and resource limits are unchanged. A stochastic
+candidate using import-time random draws, string hashes/set traversal and later
+random actions produced identical traces across six fresh processes
+([probe and trace hashes](artifacts/campaign-v2/reproducibility.json)).
+
+The v2 check ran **320 condition-episodes** on the original 64 development mazes:
+predictive **56/64**, memory **57/64**, frozen learning **53/64**, both fixed-risk
+planning variants **57/64**. Every scientific episode field matched v1 exactly,
+excluding timings and renamed labels. The native evaluator separately repeated
+the seed's 64 episodes and **0.922806** score. These are replication checks, not
+new evidence of generalization or evolution.
+
+![v2 original-control replication](artifacts/campaign-v2/controls/outcomes.png)
+
+On matched fixed-risk experience, learned versus frozen near-cell Brier was
+**0.006864 vs 0.006819**; threat-conditioned Brier was **0.023394 vs 0.023197**.
+The paired near-loss difference was +0.0000454 [−0.0000162, +0.0001003]. There is
+no demonstrated learning benefit here. The predictive seed made 350.1 updates per
+episode; freezing left mapping and localization working and made zero predictive
+updates. [Full task/forecast results and uncertainty](artifacts/campaign-v2/controls/summary.json)
+and the [matched learning curve](artifacts/campaign-v2/controls/learning.png) are retained.
+
+[Campaign manifest](artifacts/campaign-v2/campaign-manifest.json),
+[resolved settings](artifacts/campaign-v2/dreamer-resolved.json),
+[single failed probe](artifacts/campaign-v2/subscription-probe.log) and
+[counts/status](artifacts/campaign-v2/status.json) record the exact inputs and blocker.
+The driver rejects configuration drift and refuses to append repaired scores to
+`campaign-v1`. All original result artifacts, its database and its final seed pool
+remain byte-identical. Fresh v2 assessment cases have **not** been drawn: selection
+and evolved-mechanism ablation checks require a real descendant first.
+
+## Published v1 results (preserved)
 
 The seed was fixed before validation and final assessment. Development used 64
 paired mazes; validation used a separate 64; assessment used 256 fresh mazes
@@ -119,7 +162,7 @@ changing learned rates. The [failure replay](artifacts/replay-failure/replay.gif
 shows validation maze 20000: the seed dies on step 7 while the memory baseline
 escapes. Both visualizations were inspected. No withheld maze states are published.
 
-## Native evolution and blocker
+## Native integration and the historical v1 checkpoint
 
 The installed upstream revision is
 [`9912af1`](https://github.com/SakanaAI/ShinkaEvolve/tree/9912af12d423504b8d580f4179fd15f5f88b8c50).
@@ -161,16 +204,23 @@ subscription login is required. Evaluation needs no network or GPU.
 # Fresh local dependency installation; no global configuration changes.
 bash scripts/bootstrap.sh
 
-# Local paired experiment and native evaluator contract.
+# Local paired experiment and native evaluator contract (new output paths).
 .venv/bin/python -m pytest -q
-python3 scripts/experiment.py --episodes 64 --out results/development-v1
-.venv/bin/python evaluate.py --program_path initial.py --results_dir results/native-seed
+python3 scripts/experiment.py --episodes 64 --out results/development-v2
+.venv/bin/python evaluate.py --program_path controls/v1/predictive.py --results_dir results/native-seed-v2
 
-# Exact resume command in a terminal where existing Codex can start.
+# Ordinary WSL terminal: first obtain a generated, evaluated descendant.
+cd /home/roland/projects/shinka-dreamer
 HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py \
-  --results results/campaign-v1 --generations 100
+  --results results/campaign-v2 --generations 2
+
+# After confirming an evaluated descendant, continue the same native campaign.
+HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py \
+  --results results/campaign-v2 --generations 100
 ```
 
+Generation-stop requests are recorded separately from the immutable 100-slot
+campaign configuration, so the two commands share the same evaluation identity.
 The campaign uses one evaluation worker, four islands and native SQLite persistence
 after every candidate. The target counts the seed slot plus 99 subsequent slots;
 failed slots and accepted/evaluated descendants are distinct. On this host the
@@ -179,9 +229,29 @@ model latency remain separate. The native database, logs and raw private seeds a
 kept locally under ignored `results/`. Compact evidence is committed under
 `artifacts/`; credentials, virtual environments and runtime caches are excluded.
 
-After further evolution, reserve **fresh** final assessment cases: this published
-assessment is now part of the project's scientific history, not a reusable hidden
-selection set. See [CODEX_TASK.md](CODEX_TASK.md) and [AGENTS.md](AGENTS.md) for the
+After evolution, inspect the selected descendant's updating and planning code.
+Verify that freezing removes its predictive updates without disabling mapping and
+that disabling predictive planning removes its actual use of predictions. Compare
+learned/frozen forecasts on identical observations and executed actions; flags and
+better on-policy Brier alone are insufficient. Improved fixed rules are a valid
+result, but do not demonstrate improved online learning. These descendant checks
+remain pending because no descendant was generated.
+
+Then reserve **fresh** final cases, using the selected native program's exact path
+(the example assumes `best/main.py` is a descendant). The command freezes its hash
+and native ID before generating the private pool:
+
+```bash
+.venv/bin/python scripts/experiment.py --split assessment --episodes 256 \
+  --campaign results/campaign-v2 --program results/campaign-v2/best/main.py \
+  --assessment-seeds results/private/campaign-v2-assessment-seeds.json \
+  --reserve-assessment --out results/campaign-v2-assessment
+```
+
+The pool hash is recorded in both campaign assessment and experiment manifests.
+Resume with the same command; selection, pool and evaluation hashes must agree.
+The published v1 pool is preserved and cannot be silently reused. See
+[CODEX_TASK.md](CODEX_TASK.md) and [AGENTS.md](AGENTS.md) for the
 durable handoff; these instructions do not automatically exist in another Codex
 installation.
 

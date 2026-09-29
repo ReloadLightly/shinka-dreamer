@@ -1,0 +1,67 @@
+{
+  "campaign": "campaign-v2",
+  "target_generation_slots": 100,
+  "evaluation": {
+    "protocol": "namazu-repair-predictive-v2",
+    "objective": "task06-forecast04-v1",
+    "objective_formula": ".6*(.65*escape+.10*keys+.10*door+.05*escape*(1-steps/200))+.4*(1-(near_Brier+audit_Brier)/2)",
+    "source_sha256": {
+      "evaluate.py": "73cdf6e12dc39526d26bf2be8865e0c5743728a02fe5f7942f446af22604eaee",
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/worker.py": "e767c6f2308d1e1be7d1dc45ee00923a49cfea07bf8c2a9463f12675ba7c953e",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/bridge.py": "7cb6d0e80592f21f7d1812b68cafc9061fbe40a0d50ee391ac969014484b9094",
+      "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e"
+    },
+    "controls": {
+      "predictive": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "runtime": {
+      "evaluator_python": "3.10.12",
+      "candidate_executable": "/usr/bin/python3",
+      "candidate_executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "candidate_args": [
+        "-s",
+        "-S"
+      ],
+      "hash_seed": 0,
+      "agent_random_seed_before_exec": 712934,
+      "stdlib_paths": [
+        "/usr/lib/python3.10",
+        "/usr/lib/python3.10/lib-dynload"
+      ],
+      "limits": {
+        "address_space_mib": 192,
+        "cpu_seconds": 10,
+        "reply_seconds": 3,
+        "source_kib": 512,
+        "reply_mib": 2,
+        "file_descriptors": 64
+      },
+      "isolation": "Landlock + seccomp, unchanged from v1"
+    }
+  },
+  "development_pool": {
+    "path": "/home/roland/projects/shinka-dreamer/results/campaign-v2/development-seeds.json",
+    "sha256": "d287d65e65f78d1673ba9413fec51d82be23d13961fa91fc92130f619b473e4f",
+    "episodes": 64
+  },
+  "seed_program_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+  "assessment_pool_path": "/home/roland/projects/shinka-dreamer/results/private/campaign-v2-assessment-seeds.json",
+  "assessment_policy": "reserve only after native descendant selection; hash in assessment-manifest.json",
+  "resolved_sha256": "dfe75eb2cb74265afa3e5238f3c4fdef5abe9388682c2ce0346d8211d645b384",
+  "driver_sha256": {
+    "scripts/evolve.py": "5ffaf48cbb896f9bb2460b4eece1884ef7cebf0279b180d83f37e97cff6cc8e2",
+    "dreamer/native.py": "4e457b8781a099482b7a497312a11812e069467b41a875805d7ea2e68f1f8cc0",
+    "scripts/subscription_headless.sh": "caedeafe87fcf0774838af0e9e8dfb965fcdfba9ce47a16b2b659359a1f0a04d",
+    "docs/mutation-prompt.md": "66c496b113cc685f0586f575871018349b30c11ad37657588fc2b15b8cb20ae4"
+  },
+  "installed": {
+    "shinka_version": "0.0.7",
+    "shinka_python_sha256": "1dcc5fb99df0ca7957d0e0f74803e64ab1bf8c80a5c31abe78070444a5139ff4",
+    "headless_js_sha256": "61fcadcb61d04661aecffb84ef24480c3ca0e3d44fbc693ecd0035bcb9fde0ab",
+    "codex": "codex-cli 0.159.0"
+  }
+}

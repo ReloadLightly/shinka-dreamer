@@ -109,15 +109,43 @@ Integration checks against installed code:
   A 50 ms event-loop timer allows completed futures to be drained without changing
   permissions. This resolved the native file-read stall; no upstream source was edited.
 
-The exact resume command from the repository root is:
+## Follow-up: campaign v2
+
+The installed upstream and Headless revisions are unchanged. The mutation and
+independent recommendation clients remain subscription-only; embeddings, novelty
+LLMs and prompt evolution remain disabled, with no evaluator LLM. The v2 resolved
+configuration and installed source fingerprints are recorded in
+`artifacts/campaign-v2/`. No authentication, permission policy or global settings
+were changed. Exactly one v2 subscription startup probe produced the same
+app-server read-only-filesystem error before inference; no native mutation or meta
+retry was entered. Its complete output is `artifacts/campaign-v2/subscription-probe.log`.
+
+The repaired initializer honors Python's hash seed and seeds module randomness
+before candidate source executes. Native evaluation now takes an explicit
+`--seed_file` and `--campaign_manifest`; all 64 runs passed the actual installed
+`run_shinka_eval` with the same original-seed score, 0.9228063296409055. This repeat
+contract check is not a newly evolved candidate and did not create native rows.
+V2 has zero evaluated descendants and no native database yet. V1 remains intact.
+
+The v2 manifest freezes the original seed, controls, evaluator/environment,
+objective, development pool and execution configuration. The driver rejects the
+old directory and checks hashes before any probe. Stop limits are recorded per
+invocation, allowing 2 slots then 100 with the same native campaign settings. Probe
+logs have unique names and survive failure. No automatic startup retry is made.
+
+Exact commands in the user's ordinary WSL terminal:
 
 ```bash
+cd /home/roland/projects/shinka-dreamer
 HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py \
-  --results results/campaign-v1 --generations 100
+  --results results/campaign-v2 --generations 2
+# After a real evaluated descendant exists, resume the same campaign:
+HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py \
+  --results results/campaign-v2 --generations 100
 ```
 
 Run it in an authorized normal terminal where the existing Codex login can start.
-The driver now performs a fail-fast subscription probe before native resampling.
+The driver performs a fail-fast subscription probe before native resampling.
 It does not relocate auth or weaken sandbox settings. For a fresh installation,
 `bash scripts/bootstrap.sh` installs both pinned dependencies locally. The first
 assessment is now published; reserve fresh final cases after further evolution.

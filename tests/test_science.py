@@ -130,3 +130,68 @@ def export_model(m,o): return {'default_enemy':0.25}
     b = run_episode(ROOT / "initial.py", 10000, "frozen_no_planning")
     assert (a["reason"], a["steps"], a["keys"]) == (b["reason"], b["steps"], b["keys"])
     assert a["stats"]["prevalence_near"] == b["stats"]["prevalence_near"]
+
+
+def test_import_time_randomness_and_hashes_repeat(tmp_path):
+    candidate = tmp_path / "stochastic.py"
+    candidate.write_text('''
+import random, sys
+INITIAL = [random.random() for _ in range(8)]
+ORDER = list({'alpha', 'bravo', 'charlie', 'delta', 'echo', 'foxtrot', 'golf'})
+HASH = hash('candidate import time')
+def world_model_step(m,o,a): return (m or 0) + 1
+def planner(m,o): return {'move':[random.choice([-1,0,1]),0], 'interact':False}
+def export_model(m,o):
+    return {'initial':INITIAL, 'order':ORDER, 'hash':HASH,
+            'later':random.random(), 'paths':sys.path, 'steps':m}
+''')
+    repetitions = []
+    for _ in range(6):
+        with Candidate(candidate) as worker:
+            repetitions.append([worker.query({"obs": {}}) for _ in range(5)])
+    assert all(r == repetitions[0] for r in repetitions)
+    assert len({r["model"]["later"] for r in repetitions[0]}) == 5
+    assert repetitions[0][0]["model"]["paths"] == ["/usr/lib/python3.10", "/usr/lib/python3.10/lib-dynload"]
+
+
+def test_original_controls_do_not_run_selected_program(tmp_path):
+    bad = tmp_path / "bad.py"
+    bad.write_text("raise RuntimeError('an evolved program is not the baseline')")
+    memory = run_episode(bad, 10000, "memory", replay=True)
+    original = run_episode(bad, 10000, "original_predictive")
+    learned = run_episode(ROOT / "initial.py", 10000, "no_planning", replay=True)
+    frozen = run_episode(ROOT / "initial.py", 10000, "frozen_no_planning", replay=True)
+    assert memory["error"] is None and original["error"] is None
+    for other in (learned, frozen):
+        assert [(t["world"], t["action"]) for t in memory["trace"]] == [(t["world"], t["action"]) for t in other["trace"]]
+    assert learned["learning"]["updates"] > 0
+    assert frozen["learning"]["updates"] == memory["learning"]["updates"] == 0
+
+
+def test_pool_reserved_after_selection_and_manifest_drift_rejected(tmp_path):
+    import hashlib
+    import json
+    import sqlite3
+    import pytest
+    from dreamer.provenance import assessment_pool, evaluation_identity, record
+    campaign = tmp_path / "campaign-test"
+    seed_file = tmp_path / "campaign-test-assessment-seeds.json"
+    program = tmp_path / "descendant.py"
+    program.write_text("# test fixture, not an experiment\n")
+    manifest = {"evaluation": evaluation_identity(), "assessment_pool_path": str(seed_file)}
+    record(campaign / "campaign-manifest.json", manifest)
+    with pytest.raises(ValueError, match="Select/inspect"):
+        assessment_pool(campaign, seed_file, program, 8)
+    assert not seed_file.exists()
+    with sqlite3.connect(campaign / "programs.sqlite") as db:
+        db.execute("create table programs (id text, generation integer, code text, correct integer)")
+        db.execute("insert into programs values ('test-only',1,?,1)", (program.read_text(),))
+    seeds, info = assessment_pool(campaign, seed_file, program, 8, True)
+    assert len(seeds) == len(set(seeds)) == 8
+    assert info["sha256"] == hashlib.sha256(seed_file.read_bytes()).hexdigest()
+    assert assessment_pool(campaign, seed_file, program, 8)[0] == seeds
+    with pytest.raises(ValueError, match="Configuration changed"):
+        record(campaign / "campaign-manifest.json", dict(manifest, altered=True))
+    program.write_text("# changed after selection\n")
+    with pytest.raises(ValueError, match="Selection is frozen"):
+        assessment_pool(campaign, seed_file, program, 8)

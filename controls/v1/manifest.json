@@ -1,0 +1,13 @@
+{
+  "source_commit": "1ce4fb7",
+  "source_path": "initial.py",
+  "predictive": {
+    "path": "controls/v1/predictive.py",
+    "sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+  },
+  "memory": {
+    "path": "controls/v1/memory.py",
+    "sha256": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+  },
+  "memory_derivation": "Exact original program plus wrappers binding learn=False and predictive_planning=False; persistence forecast remains evaluator-owned."
+}

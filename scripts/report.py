@@ -46,7 +46,7 @@ def main():
     parser.add_argument("--input", required=True)
     parser.add_argument("--extra-input")
     parser.add_argument("--out", required=True)
-    parser.add_argument("--campaign", default="results/campaign-v1")
+    parser.add_argument("--campaign", default="results/campaign-v2")
     args = parser.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -70,7 +70,9 @@ def main():
                 record[key+"_sum"], record[key+"_n"] = total, count
             record["updates"] = row["learning"].get("updates", 0)
             compact.append(record)
-    for left, right in (("predictive", "memory"), ("predictive", "frozen"), ("predictive", "no_planning"), ("no_planning", "frozen_no_planning")):
+    candidate = "predictive" if "predictive" in data else "original_predictive"
+    for left, right in ((candidate, "memory"), (candidate, "frozen"), (candidate, "no_planning"),
+                        ("predictive", "original_predictive"), ("no_planning", "frozen_no_planning")):
         if left in data and right in data:
             summary["paired"][left+" minus "+right] = {metric: paired(data[left], data[right], metric)
                 for metric in ("escape", "task", "brier_near", "brier_threat")}
@@ -84,12 +86,12 @@ def main():
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     plt.rcParams.update({"font.family": "DejaVu Sans", "axes.spines.top": False, "axes.spines.right": False})
-    order = [v for v in ("reactive", "memory", "predictive", "frozen", "no_planning") if v in data]
-    names = {"reactive": "Reactive", "memory": "Memory + paths", "predictive": "Learn + predict", "frozen": "Frozen learning", "no_planning": "Fixed-risk planning"}
+    order = [v for v in ("reactive", "memory", "original_predictive", "predictive", "frozen", "no_planning") if v in data]
+    names = {"reactive": "Reactive", "memory": "Original memory + paths", "original_predictive": "Original predictive seed", "predictive": "Selected candidate", "frozen": "Frozen learning", "no_planning": "Fixed-risk planning"}
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.3))
     means = [summary["agents"][v]["escape"] for v in order]
     intervals = np.array([summary["agents"][v]["escape_ci95"] for v in order]).T
-    colors = {"reactive": "#8a98a5", "memory": "#2a6976", "predictive": "#d77c3e", "frozen": "#bbad88", "no_planning": "#6c8b68"}
+    colors = {"reactive": "#8a98a5", "memory": "#2a6976", "original_predictive": "#d77c3e", "predictive": "#96548c", "frozen": "#bbad88", "no_planning": "#6c8b68"}
     axes[0].barh([names[v] for v in order], means, color=[colors[v] for v in order])
     axes[0].errorbar(means, range(len(order)), xerr=[np.array(means)-intervals[0], intervals[1]-means], fmt="none", color="#252d36", capsize=3)
     axes[0].set(xlim=(0, 1), xlabel="Escape fraction · 95% Wilson interval")
@@ -103,7 +105,12 @@ def main():
     fig.savefig(out / "outcomes.png", dpi=160)
     plt.close(fig)
 
-    if "frozen_no_planning" in data and "no_planning" in data:
+    # Identical fixed-risk trajectories were established for the original seed.
+    # Evolved code needs an actual intervention/trajectory audit; flags alone do
+    # not justify labelling its on-policy losses a matched-experience curve.
+    original_hash = "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+    if ("frozen_no_planning" in data and "no_planning" in data and
+            summary["protocol"].get("program_sha256") == original_hash):
         fig, ax = plt.subplots(figsize=(8.5, 4))
         curve = []
         for name, key, style in [("Learned", "no_planning", "-o"), ("Frozen prior", "frozen_no_planning", "-s")]:

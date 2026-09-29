@@ -1,4 +1,4 @@
-# Executed protocol v1
+# Executed protocol: v1 mechanics, v2 initialization and controls
 
 This describes implemented mechanics. The Namazu text remains unchanged in
 `namazu-proposal.md`. The primary regime is 15×15, 5×5 square visibility, three
@@ -38,8 +38,14 @@ moving enemies, two keys, a locked door, 25-step changes and a 200-step horizon.
 The seed maintains a terrain map, seen times, visits, localization and inventory.
 Its Dijkstra search chooses visible objectives or frontiers with information gain.
 The competent memory control uses the same mapping, goals, path search and local
-enemy avoidance, with fixed conservative risk penalties. It is selected with
-`--variants memory`, rather than maintained as a diverging copy of the same code.
+enemy avoidance, with fixed conservative risk penalties. In v1 it was selected by
+flags on `initial.py`. In v2 `--variants memory` always resolves to the immutable
+original program in `controls/v1/memory.py`, regardless of `--program`. This is
+the exact original source plus wrappers binding its original two interventions.
+`original_predictive` resolves to the unchanged original predictive snapshot.
+Both hashes and their `1ce4fb7` provenance are in `controls/v1/manifest.json`;
+loading a changed control fails. Only selected-candidate ablations use the
+selected candidate's code. All v1 result files remain unchanged.
 
 The predictive agent also estimates binary enemy-occupancy transition frequencies
 with Beta-style success/opportunity counts. Features distinguish currently occupied
@@ -110,9 +116,15 @@ conditions use the same episode pool and reset memory and process globals.
 Layout, enemy transitions and audit targets have independently hashed RNG streams.
 Enemy draw count is fixed at three per tick, independent of audit and policy;
 policies can still change realized enemy paths by opening the door or preventing
-wall closure. Agent randomness has a reproducible independent constant seed and
-cannot reveal a world seed. Search's own stochastic ordering has not been studied
-because no descendant was generated.
+wall closure. V1 incorrectly used `-I` (which ignores `PYTHONHASHSEED`) and seeded
+`random` after module execution. V2 uses hash seed 0 and seeds module `random` with
+712934 before candidate compilation/execution, independent of world state. Six
+fresh workers executing the same stochastic program gave identical import-time
+draws, string-set order/hashes and five subsequent decisions each; see
+`artifacts/campaign-v2/reproducibility.json`. Newly created `random.Random` objects
+must be explicitly seeded for reproducibility; OS entropy and clocks are not
+virtualized. Descendant repeatability must still be checked if it uses these.
+Search's own stochastic ordering has not been studied because no descendant was generated.
 
 Report Wilson 95% escape intervals and 5,000 paired episode-bootstrap replicates
 for differences. Brier intervals resample whole episodes and recompute ratios of
@@ -125,7 +137,11 @@ data: a resumed scientific campaign requires a newly reserved final pool.
 ## Execution boundary
 
 The evaluator loads a **trusted bridge**, never the candidate module. Each episode
-starts `/usr/bin/python3 -I` with a minimal environment and JSON pipes. The worker
+starts `/usr/bin/python3 -s -S` with a minimal environment and JSON pipes. System
+and user site loading are disabled; the worker replaces `sys.path` with the two
+explicit system-standard-library paths before importing its dependencies. The
+temporary trusted isolation-module path is removed before candidate execution.
+This replaces v1's `-I` while retaining the same OS boundary. The worker
 reads source text, then installs `no_new_privs`, Landlock rules allowing only the
 Python 3.10 standard-library tree, and a seccomp syscall allowlist **before** compiling
 or executing the source. Repository files, credentials, `/proc`, network, process
@@ -145,3 +161,42 @@ The tests execute file/proc/socket/fork probes as real candidate code.
 Raw episode logs and private seeds stay under ignored `results/`; compact paired
 CSV rows omit withheld seeds. Replay world states are restricted to development
 and validation examples. Native SQLite/WAL, prompts and detailed run logs stay local.
+
+## Campaign v2 provenance and assessment point
+
+`results/campaign-v1` and the published assessment pool are historical and remain
+untouched. Initialization changes can affect stochastic programs, so all new search
+uses `namazu-repair-predictive-v2` in `results/campaign-v2`. The maze and objective
+remain exactly v1. Native evaluation rejects an evaluator or episode-pool mismatch.
+The campaign manifest records source hashes for the evaluator, world, worker,
+OS restrictions, bridge, original seed/controls and driver, plus the exact objective,
+runtime limits, interpreter, installed Shinka/Headless fingerprints and resolved
+native settings. Development has an explicit 64-seed file and byte hash.
+
+The v2 launch made exactly one failed subscription probe before entering native
+search. No v2 native rows or descendants exist. Its manifest, development pool and
+probe survive for an ordinary-terminal launch; v1's four native seed rows survive
+separately. Local replication ran 320 control condition-episodes and a separate
+64-episode native evaluator check. All scientific control fields matched v1.
+
+Final assessment requires an explicit campaign-specific path, recorded up front as
+`results/private/campaign-v2-assessment-seeds.json`. After selecting and inspecting
+an evaluated native descendant, `--reserve-assessment` locks its native ID and source
+hash in `selection.json` **before** generating 256 fresh cases. No v2 final cases
+have been generated yet. The new pool excludes the published v1 seeds and any prior
+campaign pools available locally. `assessment-manifest.json` and the experiment's
+manifest record the pool's exact byte hash; resume checks selection and evaluation
+identity and refuses replacing/reusing an existing unregistered pool. Never put
+these private files or observations into mutation prompts. The original v1 pool
+hash is `8e05f239e7067822fb200bb2fa9ad27f4c034b3dc62c52cb18cf00488a2f06d6`.
+
+Inspect a descendant before interpreting its ablations: locate the actual learned
+state and update sites, verify unchanged mapping/localization under freezing, and
+verify that planning no longer depends on predictions under the planning ablation.
+For prediction comparisons replay identical observations and executed actions to
+the learned/frozen models, or demonstrate exact trajectory equality. The original
+seed's fixed-risk branch supplies matched experience; that fact cannot be assumed
+for new code. The report script consequently emits its matched learning curve only
+for the hash-verified original seed. Descendant intervention and matched-experience
+checks are pending, not claimed complete. Report fixed-rule improvements separately
+from benefits of online learning.

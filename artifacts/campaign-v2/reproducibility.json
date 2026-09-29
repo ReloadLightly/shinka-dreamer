@@ -1,0 +1,201 @@
+{
+  "source_sha256": "000a3fd7aaf292e163137f86efa188a5206e2312f4561511a9cac05da843db7e",
+  "repetitions": 6,
+  "decisions_each": 5,
+  "trace_sha256": [
+    "0a703bcd186cd10ad0868dd4cccb963643462f19eae4150445d7269c1b37c371",
+    "0a703bcd186cd10ad0868dd4cccb963643462f19eae4150445d7269c1b37c371",
+    "0a703bcd186cd10ad0868dd4cccb963643462f19eae4150445d7269c1b37c371",
+    "0a703bcd186cd10ad0868dd4cccb963643462f19eae4150445d7269c1b37c371",
+    "0a703bcd186cd10ad0868dd4cccb963643462f19eae4150445d7269c1b37c371",
+    "0a703bcd186cd10ad0868dd4cccb963643462f19eae4150445d7269c1b37c371"
+  ],
+  "includes": "Import-time random draws, string-set ordering/hash, subsequent stochastic actions and forecasts; explicit stdlib-only import paths",
+  "trace": [
+    {
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": false
+      },
+      "model": {
+        "initial": [
+          0.7415114110692321,
+          0.36417419738450685,
+          0.22614343381241853,
+          0.9659960198365941,
+          0.12114341698441311,
+          0.13036811138908067,
+          0.8797578416950653,
+          0.7987044155545072
+        ],
+        "order": [
+          "bravo",
+          "charlie",
+          "delta",
+          "golf",
+          "alpha",
+          "echo",
+          "foxtrot"
+        ],
+        "hash": -6594526648515712150,
+        "later": 0.6294463152266994,
+        "paths": [
+          "/usr/lib/python3.10",
+          "/usr/lib/python3.10/lib-dynload"
+        ],
+        "steps": 1
+      }
+    },
+    {
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": false
+      },
+      "model": {
+        "initial": [
+          0.7415114110692321,
+          0.36417419738450685,
+          0.22614343381241853,
+          0.9659960198365941,
+          0.12114341698441311,
+          0.13036811138908067,
+          0.8797578416950653,
+          0.7987044155545072
+        ],
+        "order": [
+          "bravo",
+          "charlie",
+          "delta",
+          "golf",
+          "alpha",
+          "echo",
+          "foxtrot"
+        ],
+        "hash": -6594526648515712150,
+        "later": 0.19660867234391488,
+        "paths": [
+          "/usr/lib/python3.10",
+          "/usr/lib/python3.10/lib-dynload"
+        ],
+        "steps": 2
+      }
+    },
+    {
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": false
+      },
+      "model": {
+        "initial": [
+          0.7415114110692321,
+          0.36417419738450685,
+          0.22614343381241853,
+          0.9659960198365941,
+          0.12114341698441311,
+          0.13036811138908067,
+          0.8797578416950653,
+          0.7987044155545072
+        ],
+        "order": [
+          "bravo",
+          "charlie",
+          "delta",
+          "golf",
+          "alpha",
+          "echo",
+          "foxtrot"
+        ],
+        "hash": -6594526648515712150,
+        "later": 0.10815994064905288,
+        "paths": [
+          "/usr/lib/python3.10",
+          "/usr/lib/python3.10/lib-dynload"
+        ],
+        "steps": 3
+      }
+    },
+    {
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": false
+      },
+      "model": {
+        "initial": [
+          0.7415114110692321,
+          0.36417419738450685,
+          0.22614343381241853,
+          0.9659960198365941,
+          0.12114341698441311,
+          0.13036811138908067,
+          0.8797578416950653,
+          0.7987044155545072
+        ],
+        "order": [
+          "bravo",
+          "charlie",
+          "delta",
+          "golf",
+          "alpha",
+          "echo",
+          "foxtrot"
+        ],
+        "hash": -6594526648515712150,
+        "later": 0.8860040280272542,
+        "paths": [
+          "/usr/lib/python3.10",
+          "/usr/lib/python3.10/lib-dynload"
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": false
+      },
+      "model": {
+        "initial": [
+          0.7415114110692321,
+          0.36417419738450685,
+          0.22614343381241853,
+          0.9659960198365941,
+          0.12114341698441311,
+          0.13036811138908067,
+          0.8797578416950653,
+          0.7987044155545072
+        ],
+        "order": [
+          "bravo",
+          "charlie",
+          "delta",
+          "golf",
+          "alpha",
+          "echo",
+          "foxtrot"
+        ],
+        "hash": -6594526648515712150,
+        "later": 0.7219598673741187,
+        "paths": [
+          "/usr/lib/python3.10",
+          "/usr/lib/python3.10/lib-dynload"
+        ],
+        "steps": 5
+      }
+    }
+  ]
+}

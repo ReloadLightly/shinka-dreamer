@@ -1,0 +1,7 @@
+WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)
+Traceback (most recent call last):
+  File "/home/roland/projects/shinka-dreamer/scripts/evolve.py", line 133, in <module>
+    main()
+  File "/home/roland/projects/shinka-dreamer/scripts/evolve.py", line 114, in main
+    raise RuntimeError("Subscription Codex unavailable; no native retry. See " + str(log))
+RuntimeError: Subscription Codex unavailable; no native retry. See /home/roland/projects/shinka-dreamer/results/campaign-v2/subscription-probe-20260929T173618687333Z.log

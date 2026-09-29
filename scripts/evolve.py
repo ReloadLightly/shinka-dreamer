@@ -2,6 +2,9 @@
 import argparse
 import asyncio
 from dataclasses import asdict
+from datetime import datetime, timezone
+import hashlib
+import importlib.metadata
 import json
 import os
 from pathlib import Path
@@ -14,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--results", default="results/campaign-v1")
+    parser.add_argument("--results", default="results/campaign-v2")
     parser.add_argument("--generations", type=int, default=100)
     parser.add_argument("--model", default="headless/codex@gpt-6-astra?effort=high")
     parser.add_argument("--episodes", type=int, default=64)
@@ -33,25 +36,23 @@ def main():
     from shinka.database import DatabaseConfig
     from shinka.launch import LocalJobConfig
     from dreamer.native import CheckpointRunner
+    from dreamer.provenance import control_path, evaluation_identity, pool, record, sha256
     from shinka.llm.providers.headless import parse_headless_model
     route = parse_headless_model(args.model)
 
     results = Path(args.results).resolve()
+    if results.name == "campaign-v1" or ((results / "programs.sqlite").exists() and
+                                       not (results / "campaign-manifest.json").exists()):
+        raise ValueError("Preserve v1: repaired evaluation requires a new campaign directory")
+    if not 2 <= args.generations <= 100:
+        raise ValueError("Use 2 slots for the first descendant, then up to the planned 100")
     results.mkdir(parents=True, exist_ok=True)
-    if args.generations > 1:
-        # A real, subscription-only probe prevents native resampling from retrying
-        # a host startup failure indefinitely. Nothing modifies login or policy.
-        probe = subprocess.run([str(ROOT / "scripts/subscription_headless.sh"), "codex",
-                "--allow", "read-only", "--model", route.agent_model,
-                "--reasoning-effort", route.effort or "high",
-                "--timeout", "60", "--usage", "--prompt", "Reply only READY. Do not call tools."],
-                capture_output=True, text=True, timeout=75)
-        (results / "subscription-probe.log").write_text(probe.stdout+probe.stderr)
-        if probe.returncode != 0:
-            raise RuntimeError("Subscription Codex unavailable. See " + str(results / "subscription-probe.log"))
+    seed_file = results / "development-seeds.json"
+    record(seed_file, list(range(10000, 10000 + args.episodes)))
+    _, pool_info = pool(seed_file, args.episodes)
     evo = EvolutionConfig(
         task_sys_msg=(ROOT / "docs/mutation-prompt.md").read_text(),
-        num_generations=args.generations, init_program_path=str(ROOT / "initial.py"),
+        num_generations=args.generations, init_program_path=str(control_path("predictive")),
         results_dir=str(results), llm_models=[args.model], llm_dynamic_selection=None,
         llm_kwargs={"temperatures": [1.0], "max_tokens": 24000},
         meta_rec_interval=10, meta_llm_models=[args.model], meta_llm_kwargs={},
@@ -66,13 +67,54 @@ def main():
                         archive_size=40, num_archive_inspirations=1, num_top_k_inspirations=1)
     job = LocalJobConfig(eval_program_path=str(ROOT / "evaluate.py"),
                          python_executable=str(ROOT / ".venv/bin/python"),
-                         extra_cmd_args={"episodes": args.episodes},
+                         extra_cmd_args={"episodes": args.episodes, "seed_file": str(seed_file),
+                                         "campaign_manifest": str(results / "campaign-manifest.json")},
                          time="00:15:00", numeric_threads_per_job=1)
     resolved = {"evolution": asdict(evo), "database": asdict(db), "job": asdict(job),
                 "max_evaluation_jobs": 1, "max_proposal_jobs": 1, "max_db_workers": 1,
                 "billing": "subscription", "upstream": "9912af12d423504b8d580f4179fd15f5f88b8c50",
                 "headless": "93cd9b06b85f848af1308c41e018991b33907c5e"}
-    (results / "dreamer-resolved.json").write_text(json.dumps(resolved, indent=2))
+    # The campaign target is fixed; a first 2-slot execution resumes to 100 using
+    # identical settings. Each invocation's actual stopping point is recorded.
+    resolved["evolution"]["num_generations"] = 100
+    record(results / "dreamer-resolved.json", resolved)
+    import shinka
+    def tree_hash(directory, suffix):
+        digest = hashlib.sha256()
+        for path in sorted(Path(directory).rglob("*" + suffix)):
+            digest.update(str(path.relative_to(directory)).encode() + b"\0" + path.read_bytes())
+        return digest.hexdigest()
+    headless_dist = Path(os.environ.get("SHINKADREAMER_HEADLESS_CLI", str(ROOT / ".runtime/headless/dist/cli.js"))).parent
+    manifest = {"campaign": results.name, "target_generation_slots": 100,
+                "evaluation": evaluation_identity(), "development_pool": pool_info,
+                "seed_program_sha256": sha256(control_path("predictive")),
+                "assessment_pool_path": str(ROOT / f"results/private/{results.name}-assessment-seeds.json"),
+                "assessment_policy": "reserve only after native descendant selection; hash in assessment-manifest.json",
+                "resolved_sha256": sha256(results / "dreamer-resolved.json"),
+                "driver_sha256": {p: sha256(ROOT / p) for p in
+                                  ("scripts/evolve.py", "dreamer/native.py", "scripts/subscription_headless.sh", "docs/mutation-prompt.md")},
+                "installed": {"shinka_version": importlib.metadata.version("shinka-evolve"),
+                              "shinka_python_sha256": tree_hash(Path(shinka.__file__).parent, ".py"),
+                              "headless_js_sha256": tree_hash(headless_dist, ".js"),
+                              "codex": subprocess.check_output(["codex", "--version"], text=True).strip()}}
+    record(results / "campaign-manifest.json", manifest)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    record(results / f"execution-{stamp}.json", {"generation_stop": args.generations,
+                                               "campaign_sha256": sha256(results / "campaign-manifest.json")})
+    # Exactly one subscription probe per launch; fail before native retries when
+    # startup is unavailable. Preserve every probe instead of overwriting history.
+    log = results / f"subscription-probe-{stamp}.log"
+    command = [str(ROOT / "scripts/subscription_headless.sh"), "codex", "--allow", "read-only",
+               "--model", route.agent_model, "--reasoning-effort", route.effort or "high",
+               "--timeout", "60", "--usage", "--prompt", "Reply only READY. Do not call tools."]
+    try:
+        probe = subprocess.run(command, capture_output=True, text=True, timeout=75)
+        log.write_text(probe.stdout + probe.stderr)
+        if probe.returncode != 0:
+            raise RuntimeError("Subscription Codex unavailable; no native retry. See " + str(log))
+    except subprocess.TimeoutExpired as exc:
+        log.write_bytes((exc.stdout or b"") + (exc.stderr or b"") + b"\nSubscription probe timed out; no retry.\n")
+        raise RuntimeError("Subscription Codex probe timed out. See " + str(log)) from exc
     async def run():
         # On this restricted host socketpair.send is denied, so asyncio's
         # cross-thread wakeup silently fails. A timer lets the native event loop
