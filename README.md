@@ -2,6 +2,10 @@
 
 ## Abstract
 
+How can evolution produce agents that learn how their world works and use that knowledge to act? ShinkaDreamer investigates this question in a changing maze where an agent must collect keys, unlock an exit and avoid moving enemies while seeing only its immediate surroundings. ShinkaEvolve evolves the agent’s code, jointly modifying its world model, learning rules and planner. Within each episode, the resulting agent learns from experience to predict enemy movement and uses those predictions when choosing actions.
+
+The evolved agent performed better than the original agents on unfamiliar mazes, and its online learning improved predictive accuracy. However, controlled interventions did not establish that learning or using those predictions caused the improvement in escape success. The study therefore identifies two distinct achievements—evolving better behavior and evolving a model that learns—while leaving their connection unresolved. This motivates the next research question: when environmental dynamics are unknown or change, can evolution discover learning procedures whose predictions make a demonstrable difference to the agent’s decisions?
+
 We assessed a program selected by one 50-slot LLM-guided evolutionary search
 on **1,024 fresh paired mazes**, with six conditions and **6,144 episodes**.
 Generation 14 escaped in **93.95%** of cases, compared with **91.11%** for the
