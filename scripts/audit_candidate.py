@@ -15,6 +15,47 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
+def compact_trace(row, parameter_key="transition_weights"):
+    """Hash a single evaluator replay, then discard its hidden-state trace.
+
+    Shared by the original development audit and the fresh assessment. The
+    evaluator kernel and the candidate program are not modified for auditing.
+    """
+    trace = row.pop("trace")
+    parameters = [f["model"].get("learning", {}).get(parameter_key) for f in trace]
+    positions = [f["model"].get("position") for f in trace]
+    terrain = [sorted(f["model"].get("terrain", [])) for f in trace]
+    localization_errors = 0
+    visible_terrain_errors = 0
+    visible_terrain_checks = 0
+    for frame in trace:
+        world, model = frame["world"], frame["model"]
+        ox, oy = world["origin"]
+        ax, ay = world["agent"]
+        position = model.get("position")
+        localization_errors += position is None or [position[0]+ox, position[1]+oy] != [ax, ay]
+        cells = {(x+ox, y+oy): cell for x, y, cell, _ in model.get("terrain", [])}
+        for y in range(max(0, ay-2), min(15, ay+3)):
+            for x in range(max(0, ax-2), min(15, ax+3)):
+                visible_terrain_checks += 1
+                visible_terrain_errors += cells.get((x, y)) != world["grid"][y][x]
+    row["audit"] = {
+        "trajectory_sha256": digest([{k: f[k] for k in ("world", "action", "next_enemies")} for f in trace]),
+        "map_position_sha256": digest([{"position": p, "terrain": t} for p, t in zip(positions, terrain)]),
+        "parameters_exported": bool(parameters) and all(p is not None for p in parameters),
+        "parameters_constant": bool(parameters) and all(p == parameters[0] for p in parameters),
+        "first_parameters": parameters[0] if parameters else None,
+        "final_parameters": parameters[-1] if parameters else None,
+        "frames": len(trace), "localization_errors": localization_errors,
+        "visible_terrain_checks": visible_terrain_checks, "visible_terrain_errors": visible_terrain_errors,
+        "distinct_positions": len({tuple(p) for p in positions if p is not None}),
+        "distinct_terrain_states": len({digest([[x, y, c] for x, y, c, _ in t]) for t in terrain}),
+        "first_map_cells": len(terrain[0]) if terrain else 0,
+        "last_map_cells": len(terrain[-1]) if terrain else 0,
+    }
+    return row
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--program", required=True)
@@ -37,17 +78,7 @@ def main():
         assert [r["seed"] for r in rows] == list(range(10000, 10000 + len(rows)))
         for seed in range(10000 + len(rows), 10064):
             row = run_episode(args.program, seed, variant, replay=True)
-            trace = row.pop("trace")
-            parameters = [f["model"].get("learning", {}).get(args.parameter_key) for f in trace]
-            row["audit"] = {
-                "trajectory_sha256": digest([{k: f[k] for k in ("world", "action", "next_enemies")} for f in trace]),
-                "map_position_sha256": digest([{
-                    "position": f["model"].get("position"),
-                    "terrain": sorted(f["model"].get("terrain", []))} for f in trace]),
-                "parameters_exported": bool(parameters) and all(p is not None for p in parameters),
-                "parameters_constant": bool(parameters) and all(p == parameters[0] for p in parameters),
-                "first_parameters": parameters[0] if parameters else None,
-                "final_parameters": parameters[-1] if parameters else None}
+            compact_trace(row, args.parameter_key)
             if row["error"]:
                 raise RuntimeError(f"{variant} / {seed}: {row['error']}")
             with path.open("a") as handle:
