@@ -1,0 +1,328 @@
+{
+  "sources": {
+    "artifacts/campaign-v2/completed-50/generation-metrics.json": "860f7733e7bfc85f933c38c66ab086481debb6ff4848a4e6d38229eab8ee0d19",
+    "artifacts/campaign-v2/completed-50/summary.json": "4d5918eae16a698d1267d31641e93adec73c07ba89ee8f74669a62d18b9064fd",
+    "artifacts/campaign-v2/completed-50/episodes.csv": "ca3db26bcc15c3c5c50b7be6ddacd040d67609ff2a170fd553f33993c09170b7",
+    "artifacts/campaign-v2/controls/episodes.csv": "b249585e3eb43336c41279da41f0877443922568826702400747b1db9648433c",
+    "artifacts/campaign-v2/mechanism-gen14/episodes.csv": "06eedc7e33d6657aedc437dc0ccde26d3fc58054fe9705b5948995fd57036faf",
+    "artifacts/campaign-v2/mechanism-gen14/summary.json": "b53c0e7053d2c000d9fc7ef21927af2d6296674cd895b8941a6ba9279504ec79",
+    "artifacts/campaign-v2/mechanism-gen14/audit-summary.json": "9743adc1a5cedb61440b533bd78680fea9f6e964148d2986b477b69e14ae0cbd"
+  },
+  "scope": {
+    "split": "development",
+    "paired_cases": 64,
+    "campaigns": 1,
+    "interval": "95% paired percentile bootstrap; 5000 episode resamples; NumPy default_rng seed 382940",
+    "brier_aggregation": "sum of squared errors / target count; resampling paired episodes, not individual cells",
+    "boundaries": [
+      "Development cases were reused in selection; intervals do not account for selection bias.",
+      "No new evaluation or model call is performed by this analysis.",
+      "Between-candidate prediction scores are measured on different policy-induced trajectories.",
+      "Matched learning contrasts use identical fixed-risk trajectories with mapping/localization retained.",
+      "Forecast improvement does not establish an escape benefit, held-out generalization or search repeatability."
+    ]
+  },
+  "milestones": [
+    {
+      "generation": 0,
+      "combined_score": 0.9228063296409055,
+      "task": 0.87891015625,
+      "model_score": 0.9886505897272645,
+      "escape": 0.875,
+      "brier_near": 0.006989333426007946,
+      "brier_threat": 0.026125838782251814
+    },
+    {
+      "generation": 2,
+      "combined_score": 0.9633067995549395,
+      "task": 0.94673046875,
+      "model_score": 0.9881712957623483,
+      "escape": 0.953125,
+      "brier_near": 0.007892353557152025,
+      "brier_threat": 0.02729579569649844
+    },
+    {
+      "generation": 5,
+      "combined_score": 0.9700294116069619,
+      "task": 0.9580546875000006,
+      "model_score": 0.9879914977674046,
+      "escape": 0.96875,
+      "brier_near": 0.00958547077466474,
+      "brier_threat": 0.02759506233863701
+    },
+    {
+      "generation": 14,
+      "combined_score": 0.9700497740674794,
+      "task": 0.9581210937500003,
+      "model_score": 0.9879427945436984,
+      "escape": 0.96875,
+      "brier_near": 0.00956545672960636,
+      "brier_threat": 0.027741576431010384
+    }
+  ],
+  "seed_to_selected_score_decomposition": {
+    "combined_gain": 0.04724344442657391,
+    "task_gain": 0.0792109375000003,
+    "model_gain": -0.0007077951835661178,
+    "weighted_task_contribution": 0.04752656250000018,
+    "weighted_model_contribution": -0.0002831180734264471
+  },
+  "generation_5_to_14": {
+    "combined_gain": 2.0362460517509007e-05,
+    "fraction_of_final_score_gain_already_at_generation_5": 0.9995689886551529,
+    "weighted_task_contribution": 3.984374999985718e-05,
+    "weighted_model_contribution": -1.94812894824814e-05
+  },
+  "best_model_score_candidate": {
+    "generation": 20,
+    "combined_score": 0.9177009033837257,
+    "task": 0.8698789062500003,
+    "model_score": 0.9894338990843133,
+    "escape": 0.859375,
+    "brier_near": 0.005312092175840582,
+    "brier_threat": 0.025207636046645884
+  },
+  "best_task_score_candidate": {
+    "generation": 14,
+    "combined_score": 0.9700497740674794,
+    "task": 0.9581210937500003,
+    "model_score": 0.9879427945436984,
+    "escape": 0.96875,
+    "brier_near": 0.00956545672960636,
+    "brier_threat": 0.027741576431010384
+  },
+  "paired_outcomes": {
+    "generation_14_minus_seed": {
+      "counts": {
+        "both_escape": 54,
+        "left_only_escape": 8,
+        "right_only_escape": 2,
+        "neither_escape": 0
+      },
+      "episode_ids": {
+        "both_escape": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          20,
+          21,
+          23,
+          24,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          34,
+          35,
+          36,
+          38,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          53,
+          54,
+          55,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "left_only_escape": [
+          1,
+          19,
+          22,
+          26,
+          37,
+          40,
+          52,
+          56
+        ],
+        "right_only_escape": [
+          33,
+          39
+        ],
+        "neither_escape": []
+      },
+      "total_steps_left_minus_right": -205,
+      "escape_effect": {
+        "left": 0.96875,
+        "right": 0.875,
+        "difference": 0.09375,
+        "ci95": [
+          0.0,
+          0.1875
+        ]
+      }
+    },
+    "generation_14_minus_generation_5": {
+      "counts": {
+        "both_escape": 62,
+        "left_only_escape": 0,
+        "right_only_escape": 0,
+        "neither_escape": 2
+      },
+      "episode_ids": {
+        "both_escape": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "left_only_escape": [],
+        "right_only_escape": [],
+        "neither_escape": [
+          33,
+          39
+        ]
+      },
+      "total_steps_left_minus_right": -17,
+      "escape_effect": {
+        "left": 0.96875,
+        "right": 0.96875,
+        "difference": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "escape_effects": {
+    "selected_minus_memory": {
+      "left": 0.96875,
+      "right": 0.890625,
+      "difference": 0.078125,
+      "ci95": [
+        -0.015625,
+        0.171875
+      ]
+    },
+    "predictive_minus_frozen": {
+      "left": 0.96875,
+      "right": 0.9375,
+      "difference": 0.03125,
+      "ci95": [
+        0.0,
+        0.078125
+      ]
+    },
+    "predictive_minus_fixed_risk": {
+      "left": 0.96875,
+      "right": 0.953125,
+      "difference": 0.015625,
+      "ci95": [
+        -0.046875,
+        0.078125
+      ]
+    }
+  },
+  "matched_learning_effects": {
+    "brier_near": {
+      "left": 0.00996048859430691,
+      "right": 0.01032039829427722,
+      "difference": -0.00035990969997031115,
+      "ci95": [
+        -0.0005313256286364351,
+        -0.00019906114736064465
+      ],
+      "relative_loss_reduction": 0.0348736250004891
+    },
+    "brier_threat": {
+      "left": 0.028139260180736307,
+      "right": 0.02915603687729554,
+      "difference": -0.0010167766965592344,
+      "ci95": [
+        -0.0015006579564730044,
+        -0.0005691526359454098
+      ],
+      "relative_loss_reduction": 0.034873625000489045
+    }
+  }
+}

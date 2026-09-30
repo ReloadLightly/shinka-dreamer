@@ -1,284 +1,231 @@
 # ShinkaDreamer
 
-**Joint evolution of learned prediction and planning in partially observed, changing mazes.**
+**Evolving the code of agents that learn to predict and plan.**
 
-The recovered native ShinkaEvolve campaign has completed **50 total generation
-slots (0–49)**: one seed, 45 valid descendants and four failed descendant slots.
-Generation 14 remains the best; the resumed search did not beat the saved leader.
-It escapes **62/64 development mazes (96.9%)**, versus **57/64 (89.1%)** for the
-original memory/pathfinding baseline. The paired advantage is **+7.8 percentage
-points [−1.6, +17.2]**. These are reused search cases, not a generalization result.
+An agent sees only a small patch of a changing maze. It must find two keys,
+open a door and reach the exit while avoiding moving enemies. ShinkaDreamer
+asks whether evolutionary program search can discover **both a better world
+model and a better way to use it**.
 
-The evolved model does show a narrower, measurable benefit: on identical
-trajectories, updating its transition weights reduces near-cell forecast Brier
-loss by **3.5%** relative to frozen weights. Whether that learning improves escape
-on fresh mazes remains unresolved. **The final held-out assessment is untouched:**
-the published v1 assessment and its private pool are preserved, and no v2 final
-pool has been reserved or evaluated.
+There are two learning timescales: ShinkaEvolve changes the agent's Python
+representation, learning rule and planner across candidates; the resulting
+agent updates its predictive parameters from experience within each episode.
+The first campaign evolved a spatial enemy-motion model and a planner that
+reasons about survival over two actions.
 
-The starting proposal was supplied by Roland Löchli and attributed by him to
-Sakana AI's Namazu model. Its full text is preserved unchanged in
-[docs/namazu-proposal.md](docs/namazu-proposal.md). This independent project does
-not imply endorsement by Sakana AI or implement neural DreamerV3.
+The project began with a proposal from **Sakana AI's Namazu**, supplied by
+Roland Löchli. The [complete original proposal](docs/namazu-proposal.md) is
+preserved. This independent experiment currently uses symbolic and statistical
+world models rather than the neural Dreamer architecture.
 
-## The experiment
+[Findings](docs/campaign-findings.md) · [Inside the evolved agent](docs/evolved-agent.md) ·
+[Protocol](docs/protocol.md) · [Selected program](artifacts/campaign-v2/completed-50/selected.py) ·
+[Reproduce](docs/reproduction.md)
 
-Can program evolution discover world-model updates and planners whose
-experience-derived predictions improve decisions in unfamiliar changing mazes?
+## Watch the evolved agent
 
-The environment retains a 15×15 world, 5×5 local square view, two keys, a door
-that physically gates the exit, three moving enemies, changing walls every
-25 steps and a 200-step horizon. Repairs prevent diagonal corner cutting and
-occupied wall closures, preserve objective reachability in every wall phase,
-and provide actual movement feedback. Prediction learning is an explicit
-extension to the original proposal; [the protocol](docs/protocol.md) separates
-that extension and observable-interface choices from correctness repairs.
+![Generation 14: hidden maze, remembered terrain and predicted enemy occupancy](artifacts/campaign-v2/mechanism-gen14/replay/replay.gif)
 
-Both `world_model_step()` and `planner()`, their representations, update rules
-and helpers are freely evolvable Python in [initial.py](initial.py). The evaluator
-owns hidden state, independent layout/enemy/audit RNG streams and forecast
-scoring. Each episode runs candidate code in a separate Landlock/seccomp worker
-with 192 MiB memory, 10 CPU seconds and a three-second response limit. Resource
-limits constrain execution, not the permitted algorithms. Parameters and memory
-reset each episode.
+In this development episode, the agent collects keys at steps **13** and **39**,
+experiences wall changes at **25** and **50**, opens the door at **58**, and
+escapes on action **59**. By step 50 it has performed 19 parameter-update steps.
+The panels expose the hidden world, the agent's remembered terrain and its
+enemy-occupancy forecast. Hollow circles on the forecast panel show subsequent
+enemy positions for retrospective comparison; the agent never receives them.
+[Replay data](artifacts/campaign-v2/mechanism-gen14/replay/replay.json).
 
-The selection score is `.6 * task + .4 * model`, versioned
-`task06-forecast04-v1`. Task measures escape, keys, door opening and successful
-escape time. Model quality measures one-step enemy-occupancy forecasts made
-before the world advances. Outcomes, near-cell Brier, uniform-audit Brier and
-threat-conditioned Brier are reported separately. Most cells are empty, so a
-high model score alone says little about useful prediction. The score averages
-per-episode losses; published Brier diagnostics pool prediction targets.
+## What the first campaign found
 
-## Completed native campaign
+**Evolution improved development performance, and the evolved model benefits
+from online learning. Whether that learning reliably improves decisions on
+fresh mazes remains the central open question.**
 
-![Native evolution across 50 slots](artifacts/campaign-v2/completed-50/evolution.png)
+| Research question | Evidence | Interpretation |
+|---|---|---|
+| Did program evolution improve the agent? | Selected program: **62/64 escapes**, seed: **56/64**, memory/pathfinding baseline: **57/64** | Better performance on reused development cases; fresh-case performance is unmeasured. |
+| Does the evolved model learn from experience? | With identical actions and observations, learned weights reduce near-cell Brier loss by **3.49%** relative to frozen weights. | A measurable predictive benefit from within-episode updates. |
+| Does learned prediction improve control? | Freezing weights changes escapes from 62 to 60; substituting fixed-risk planning changes them from 62 to 61. | The differences are too uncertain to establish a reliable escape benefit. |
 
-The campaign contains 49 generated descendant programs, 45 valid descendants,
-and 53 database rows: the seed has four native island copies. Failed slots count
-toward the requested 50. There are 48 saved 64-episode evaluations, including two
-invalid candidates, for **3,072 native condition-episodes**. The figure shows valid
-candidates and marks failed slots with gray lines. Its forecast losses are on
-each policy's own trajectories and do not isolate learning.
+![Evolution, paired escape effects and matched prediction-learning effects on 64 development mazes](artifacts/campaign-v2/research-review/research-overview.svg)
 
-The best selection score rises from **0.922806** at the seed to **0.970050** at
-generation 14, then plateaus. Most of the gain was already present by generation 5.
-Its parent chain is **0 → 2 → 5 → 14**. The mutations
-introduce learned motion mixtures, a spatial softmax transport model and two-step
-planning that conditions future enemy occupancy on surviving the first move.
-These are substantive program and representation changes, not a parameter grid.
-Exact [selected code](artifacts/campaign-v2/completed-50/selected.py),
-[ancestor programs](artifacts/campaign-v2/completed-50/lineage-programs),
-[lineage and inspirations](artifacts/campaign-v2/completed-50/lineage.json),
-[per-generation metrics](artifacts/campaign-v2/completed-50/generation-metrics.json)
-and [paired results](artifacts/campaign-v2/completed-50/summary.json) are committed.
+All positive results above use the same **64 development mazes**, including a
+post-selection intervention audit. Confidence intervals describe variation
+across those cases; they do not remove selection bias. The evolved agent has
+not undergone a fresh final assessment. One campaign also cannot establish
+the repeatability of the search method.
 
-| Program / intervention | Escapes /64 | Escape rate [95% interval] | Near-cell Brier ↓ | Threat Brier ↓ |
-|---|---:|---:|---:|---:|
-| Original memory + paths | 57 | 89.1% [79.1, 94.6] | 0.01053 | 0.03589 |
-| Original predictive seed | 56 | 87.5% [77.2, 93.5] | 0.00699 | 0.02613 |
-| Evolved generation 14 | 62 | 96.9% [89.3, 99.1] | 0.00957 | 0.02774 |
-| Generation 14, frozen weights | 60 | 93.8% [85.0, 97.5] | 0.01033 | 0.02872 |
-| Generation 14, fixed-risk planning | 61 | 95.3% [87.1, 98.4] | 0.00996 | 0.02814 |
-| Generation 14, frozen + fixed-risk | 61 | 95.3% [87.1, 98.4] | 0.01032 | 0.02916 |
+## How evolution and learning fit together
 
-All rows use the same 64 development cases. Original controls are immutable
-[versioned programs](controls/v1/manifest.json), not flags applied to evolved code.
-The seed's lower on-policy Brier does not establish a better learner: its actions
-and visited states differ. Escape intervals use Wilson's method; difference
-intervals use 5,000 paired whole-episode bootstrap samples. They describe case
-variability, do not correct for search/selection bias and do not measure
-repeatability across independent campaigns. Only one search campaign was run.
-
-## What the evolved agent learns
-
-Generation 14 predicts anonymous enemy occupancy by transporting probability mass
-through local terrain. Ten learned softmax weights combine geometry, proximity,
-approach and inferred motion features. Brier gradients with regularization and
-AdaGrad updates learn from consecutive local observations. Its planner evaluates
-two-step continuations using survival-conditioned enemy alternatives. Mapping,
-localization and occupancy filtering continue when predictive weights are frozen;
-the agent does not learn a wall-change clock.
-
-A separate **256-condition-episode development audit** checked the executable
-interventions. With fixed-risk planning, learned and frozen variants have exactly
-matching world/action/enemy trajectories and map/localization hashes on all 64
-cases. Learned weights change in 61 episodes; frozen weights change in none and
-perform zero parameter updates. The [predictive replay check](artifacts/campaign-v2/mechanism-gen14/repeatability.json)
-reproduces every original scientific episode field for generation 14, apart from
-timing and audit fields.
-
-On that matched experience, near-cell Brier is **0.009960 learned versus 0.010320
-frozen**, a difference of **−0.000360 [−0.000531, −0.000199]**. Threat-conditioned
-Brier improves by **−0.001017 [−0.001501, −0.000569]**. This is evidence of useful
-within-episode predictive updating on development cases. The predictive agent
-makes 351.3 label updates through 14.0 parameter-update steps per episode on average.
-
-![Matched learned versus frozen forecast loss](artifacts/campaign-v2/mechanism-gen14/matched-learning.png)
-
-Late bins contain fewer, longer-surviving episodes; they do not establish an
-unconditional learning trend. See the [audit and intervals](artifacts/campaign-v2/mechanism-gen14/audit-summary.json),
-[trajectory checks](artifacts/campaign-v2/mechanism-gen14/trajectory-audit.json)
-and [paired episode rows](artifacts/campaign-v2/mechanism-gen14/episodes.csv).
-
-Learning versus frozen weights changes escape by **+3.1 points [0.0, +7.8]**;
-predictive versus fixed-risk planning changes it by **+1.6 points [−4.7, +7.8]**.
-Neither establishes an escape benefit. The broader gain over the original program
-also includes representation and planning changes; it cannot all be attributed
-to online learning.
-
-![Evolved development replay](artifacts/campaign-v2/mechanism-gen14/replay/replay.gif)
-
-This development example escapes in 59 steps and crosses two scheduled wall
-changes. [Recorded frames](artifacts/campaign-v2/mechanism-gen14/replay/replay.json)
-show the hidden world, exported memory, forecast and chosen action before each
-transition. Hollow forecast-panel circles show subsequent enemy locations for
-retrospective auditing; the agent never sees them. No withheld world states are
-published.
-
-## Recovery, provenance and subscription route
-
-Recovery inspected the earlier tasks and host processes before starting one
-controller. A SQLite backup and complete campaign-file snapshot preserve the
-pre-recovery state. Saved slots 0–26 and interrupted slot 27's source were retained.
-The saved proposal was evaluated into a new directory and inserted through native
-Shinka processing, preserving its parent and inspirations. The recovery wrapper
-also restores saved native recommendations and pending summaries, which the pinned
-async runner did not reload itself. An exclusive lock prevents duplicate recovery
-controllers. The controller completed slots 0–49 and flushed recommendations.
-
-Failed slots remain visible: **21 and 42** were killed by the native 15-minute
-wall-time check without complete metrics. Slot 21 was killed immediately after
-its logged evaluation submission; the underlying timing cause is unresolved.
-Slot 42 includes a large clock gap of unknown cause, so its elapsed time is not
-candidate CPU time. **30 and 41** each contain one worker kill near the 10-second
-per-episode CPU cap.
-No failed slot was replaced to improve the reported results. The original native
-scores, saved generation files, assessment artifacts and Namazu proposal are
-preserved; the native log was only appended. Native startup refreshed the pricing
-snapshot, whose original is retained in the backup.
-
-Actual upstream ShinkaEvolve is pinned to
-[`9912af1`](https://github.com/SakanaAI/ShinkaEvolve/tree/9912af12d423504b8d580f4179fd15f5f88b8c50)
-and installed Python sources match that revision. Four islands, weighted parent
-sampling, archive/top-k inspirations, lineage, migration and interval/final
-recommendations remain native. The immutable historical manifest records 100
-slots; per-invocation execution records enforce the requested **50-slot stop**.
-The evaluator, development pool, objective and original driver hashes did not change.
-
-Mutation/fix and the separate recommendation client both use only
-`headless/codex@gpt-6-astra?effort=high` with `HEADLESS_BILLING=subscription` and
-Headless revision [`93cd9b0`](https://github.com/RobertTLange/headless-cli/tree/93cd9b06b85f848af1308c41e018991b33907c5e).
-API credentials are stripped from child environments. The evaluator uses local
-Python without an LLM; embeddings, novelty LLM and prompt evolution are disabled.
-Embedding-based novelty and bandit model selection are therefore not demonstrated.
-Native dollar displays are API-list-price estimates, not subscription charges.
-The pinned provider forwards model and reasoning effort; stored temperature and
-`max_tokens` values are metadata, not enforced Codex CLI controls on this route.
-
-The original read-only app-server failure remains documented as a historical
-blocker. Recovery used tool-approved host execution through the existing login;
-authentication, global Codex settings, approval policies and candidate isolation
-were unchanged. [Runtime audit](docs/upstream.md),
-[preservation checks](artifacts/campaign-v2/completed-50/preservation.json),
-[completed execution](artifacts/campaign-v2/completed-50/execution-audit.json),
-[resolved settings](artifacts/campaign-v2/completed-50/dreamer-resolved.json) and
-[native recommendations](artifacts/campaign-v2/completed-50/recommendations)
-record the recovery. Earlier blocked-state artifacts are historical, not current status.
-
-## Published v1 results (preserved)
-
-
-The seed was fixed before validation and final assessment. Development used 64
-paired mazes; validation used a separate 64; assessment used 256 fresh mazes
-reserved after mutation attempts stopped. There were **2,240 condition-episodes**
-across these comparisons, excluding integration checks and replays. This is one
-handwritten seed experiment, not evidence of evolutionary improvement.
-
-| Agent / intervention | Escapes, /256 | Escape rate [95% interval] | Death rate | Steps per escape | Near-cell Brier ↓ |
-|---|---:|---:|---:|---:|---:|
-| Reactive local movement | 0 | 0.0% [0.0, 1.5] | 78.5% | — | 0.25000¹ |
-| Memory + paths | 231 | 90.2% [86.0, 93.3] | 9.8% | 61.8 | 0.01167² |
-| Learned prediction + planning | 214 | 83.6% [78.6, 87.6] | 16.4% | 55.7 | 0.00737 |
-| Freeze predictive updates | 213 | 83.2% [78.1, 87.3] | 16.8% | 50.7 | 0.00696 |
-| Learn, use fixed-risk planning | 231 | 90.2% [86.0, 93.3] | 9.8% | 61.8 | 0.00767 |
-
-¹ Missing forecasts receive the declared 0.5 default, hence 0.25 loss.
-² The memory control reports the evaluator's persistence forecast.
-Only the reactive agent timed out (21.5%); all other episodes ended in death or
-escape. Brier losses in this table are on each policy's own trajectory, so their
-comparison alone does not isolate learning. Successful-escape times are conditional
-on success and should not be interpreted as an unconditional efficiency advantage.
-
-![Withheld outcomes and prediction errors](artifacts/assessment/outcomes.png)
-
-Using learned predictions in planning reduced escape by **6.6 percentage points**
-versus the competent baseline / no-prediction-planning control (paired 95% bootstrap
-interval **−12.5 to −0.8 points**). Learning versus frozen updates changed escape
-by **+0.4 points [−5.5, +6.3]**: no demonstrated benefit. Freezing leaves localization,
-map integration, inventory and ordinary memory functioning.
-
-On **identical baseline actions and observations**, learned forecasts had near-cell
-Brier **0.007673**, versus **0.007635** for frozen priors: a small deterioration of
-**0.0000375 [0.0000102, 0.0000625]**. Both beat persistence (**0.011669**) and the
-fixed 0.02 base forecast (**0.008867**). Thus beating persistence is attributable
-to the predictive representation/prior here; it does not demonstrate useful online
-learning. The matched threat-conditioned losses were 0.026867 learned, 0.026692
-frozen and 0.040866 persistence. Uniform-audit loss was 0.017113 learned versus
-0.017103 frozen; the full assessment components are retained.
-
-![Matched-experience forecast loss by episode step](artifacts/assessment/learning.png)
-
-The predictive seed made **356.7 observation-based parameter updates per episode**
-on average; the fixed-planning learner made 400.0. Later curve bins contain fewer,
-longer surviving episodes. They do not establish an unconditional learning trend.
-
-Development escapes were 56/64 predictive versus 57/64 baseline. Validation was
-41/64 versus 58/64. We retained that regression and did not tune on validation or
-assessment. Escape intervals use Wilson's method; difference intervals use 5,000
-paired episode-bootstrap samples. These intervals describe case variability, not
-repeatability across evolutionary campaigns.
-
-Compact evidence: [assessment](artifacts/assessment/summary.json),
-[paired episode rows](artifacts/assessment/episodes.csv),
-[development](artifacts/development/summary.json),
-[validation](artifacts/validation/summary.json).
-Task, model, coverage, reconstruction, keys, door, timing and ablation metrics remain
-separate. The scalar selection objective is versioned `task06-forecast04-v1`:
-`.6 * task + .4 * (1 − mean(near Brier, audit Brier))`; it replaces the draft's
-post-observation reconstruction term. High model scores mostly reflect empty cells.
-
-## Reproduce and resume
-
-Linux with Python 3.10, Landlock, libseccomp, Node 22+ and an existing authorized
-subscription login is required. Evaluation needs no network or GPU.
-
-```bash
-bash scripts/bootstrap.sh
-.venv/bin/python -m pytest -q
-
-# Export the completed native campaign without reading assessment cases.
-.venv/bin/python scripts/campaign_report.py --out results/report-50
-
-# Repeat the selected agent's development-only intervention audit.
-.venv/bin/python scripts/audit_candidate.py \
-  --program artifacts/campaign-v2/completed-50/selected.py \
-  --out results/development-audit-repeat
-
-# Recovery entry point, if interrupted before its declared stop.
-HEADLESS_BILLING=subscription .venv/bin/python scripts/recover_campaign.py \
-  --results results/campaign-v2 --generations 50
+```mermaid
+flowchart TD
+    subgraph Search["Across candidates: evolutionary program search"]
+        P["Population of model + planner programs"] --> E["Evaluate task and forecast quality"]
+        E --> S["Select parents and inspirations; mutate code"]
+        S --> P
+    end
+    P -->|"one executable agent"| O
+    subgraph Episode["Within each episode: learning and control"]
+        O["Local observation + remembered state"] --> M["Update model and transition weights"]
+        M --> F["Predict enemy occupancy"]
+        F --> A["Plan and act"]
+        A -->|"next observation"| O
+    end
+    A -->|"episode outcomes and forecast errors"| E
 ```
 
-The last command resumes the same database and does not add generation slots once
-0–49 are complete. Raw databases, logs, private seeds, backups, credentials,
-environment files and runtime caches stay out of Git. Compact results, exact
-selected/ancestor programs, configurations, recommendations and representative
-replays are committed under `artifacts/`.
+The evolutionary unit is a **program**, not a vector of fixed hyperparameters.
+Both `world_model_step(memory, local_obs, last_action)` and
+`planner(memory, local_obs)`, along with their helpers and representations,
+can change. Native ShinkaEvolve supplies four islands, parent and inspiration
+sampling, an archive, migration and recommendations. LLM-generated code
+mutations propose the changes; local simulation measures them.
 
-Final assessment is deliberately outside this recovery. No reservation or final
-assessment command was run. The next scientific question is whether the evolved
-agent's measured prediction gain improves decisions on fresh cases. The
-[protocol](docs/protocol.md), [design](docs/design.md), [CODEX_TASK.md](CODEX_TASK.md)
-and [AGENTS.md](AGENTS.md) provide the durable handoff; they do not automatically
-exist in another Codex installation.
+Inside an episode, the selected agent maintains terrain, observation ages,
+position and uncertain enemy occupancy. Ten learned weights determine how
+enemy probability mass moves between nearby cells. New observations supply
+training labels, and Brier-loss gradients update those weights using AdaGrad.
+Memory and weights reset at the next episode.
+
+The planner combines risk-weighted paths with two-action lookahead. Its most
+interesting refinement is to ask: **if I survived the first move, which enemy
+locations have just been ruled out?** Generation 14 preserves alternative
+destinations for each anonymous source and conditions the next risk estimate
+on that survival event. The resulting forecast is an approximation, with
+heuristic risk costs, rather than an exact simulator of the entire world.
+
+[The agent walkthrough](docs/evolved-agent.md) explains the transition model,
+learning equations, planning intervention and source functions in detail.
+
+## What actually evolved
+
+The selected program descends through **0 → 2 → 5 → 14**.
+
+| Candidate | Change in representation or behavior | Escapes /64 | Selection score |
+|---|---|---:|---:|
+| [Seed](artifacts/campaign-v2/completed-50/lineage-programs/gen_0.py) | Categorical occupancy estimates and risk-weighted pathfinding | 56 | 0.922806 |
+| [Generation 2](artifacts/campaign-v2/completed-50/lineage-programs/gen_2.py) | Learned mixture of stationary, cardinal and diagonal motion fields; revised hazard and waiting behavior | 61 | 0.963307 |
+| [Generation 5](artifacts/campaign-v2/completed-50/lineage-programs/gen_5.py) | Spatial softmax learner, hidden occupancy propagation, inferred motion, two-step planning and revised exploration | 62 | 0.970029 |
+| [Generation 14](artifacts/campaign-v2/completed-50/lineage-programs/gen_14.py) | Preserved source alternatives and survival-conditioned continuation risk | 62 | 0.970050 |
+
+These changes show that the search explored learning algorithms and planning
+structure. They do not isolate the contribution of each individual code change.
+
+**The plateau is part of the result.** Generation 5 already accounts for more
+than 99.9% of the eventual best-score gain. Generation 14 solves exactly the
+same 62 cases and uses 17 fewer total steps across the 64 episodes. No later
+candidate beats it. The completed campaign contains 50 slots: the seed,
+45 valid descendants and four failed descendants. Failed slots remain in the
+record and are not replaced to improve the results.
+
+There is also a useful tension between the objectives. From the seed to the
+selected program, the score increases by **0.047243**: the weighted task term
+contributes **+0.047527**, while the model term contributes **−0.000283**.
+The highest model-score candidate, generation 20, escapes only **55/64** mazes.
+A high forecast score and a strong policy are different achievements.
+Because candidates visit different states, their on-policy forecast losses
+cannot identify which model learns better.
+
+[Full campaign analysis](docs/campaign-findings.md) ·
+[Every candidate's metrics](artifacts/campaign-v2/completed-50/generation-metrics.json) ·
+[Lineage and inspirations](artifacts/campaign-v2/completed-50/lineage.json) ·
+[Episode rows](artifacts/campaign-v2/completed-50/episodes.csv)
+
+## Separating learning from behavior
+
+A useful forecast must be made before the outcome. A useful learning
+comparison must also control what the agent experiences. Otherwise a lower
+prediction loss might simply mean that the agent took an easier route.
+
+The selected program was evaluated under a **2 × 2 intervention**: update or
+freeze its predictive weights, and use learned forecasts or a fixed local-risk
+heuristic for planning. Mapping and localization remain active in every
+condition. Fixed-risk planning still performs pathfinding and lookahead; it
+substitutes the hazard estimate rather than removing the planner.
+
+| Selected program / intervention | Escapes /64 | Near-cell Brier ↓ | Threat-conditioned Brier ↓ |
+|---|---:|---:|---:|
+| Learn + predictive planning | 62 | 0.009565 | 0.027742 |
+| Freeze weights + predictive planning | 60 | 0.010328 | 0.028723 |
+| Learn + fixed-risk planning | 61 | 0.009960 | 0.028139 |
+| Freeze weights + fixed-risk planning | 61 | 0.010320 | 0.029156 |
+
+The last two conditions produce **identical world/action trajectories and
+map/localization hashes on all 64 cases**. Their loss difference isolates
+predictive updating under that fixed policy: near-cell Brier changes by
+**−0.000360**, with a paired 95% bootstrap interval of
+**[−0.000531, −0.000199]**. Learned weights change in 61 episodes; frozen
+weights never change. The aggregate gain is not universal: episode-level near
+loss improves in 39 cases, ties in four and worsens in 21.
+
+The escape evidence is less decisive. Learning versus frozen weights changes
+escape by **+3.1 percentage points [0.0, +7.8]**; predictive versus fixed-risk
+planning changes it by **+1.6 points [−4.7, +7.8]**. The full evolved program's
+advantage over the original memory baseline is **+7.8 points [−1.6, +17.2]**.
+These comparisons leave room for both useful effects and little or no benefit.
+
+[Intervention audit](artifacts/campaign-v2/mechanism-gen14/audit-summary.json) ·
+[Trajectory checks](artifacts/campaign-v2/mechanism-gen14/trajectory-audit.json) ·
+[Paired data](artifacts/campaign-v2/mechanism-gen14/episodes.csv)
+
+## The world and the measurement
+
+The environment is a **15 × 15 maze** observed through a **5 × 5 local square**.
+There are two keys, one locked exit door, three moving enemies, wall changes
+every 25 steps and a 200-step horizon. Nine actions include waiting; diagonal
+corner cutting is forbidden. The door physically gates the exit, and every
+wall phase retains connected routes. The evaluator owns hidden state and
+independent layout, enemy and audit random streams.
+
+Enemy movement draws from a fixed uniform distribution over the nine attempted
+displacements; blocked moves become waits. Thus the current agent learns
+terrain-dependent occupancy dynamics, not pursuit or changing enemy behavior.
+It remembers and refreshes walls but **does not learn their change schedule**.
+These properties delimit what this first environment can demonstrate about
+adaptive world models.
+
+The selection objective is `0.6 × task + 0.4 × model`. Task combines escape,
+keys, door opening and successful-escape time. Model quality is one minus the
+mean of near-cell and uniform-audit Brier losses for one-step enemy occupancy.
+Empty cells are common, so the model score alone is easy to overinterpret;
+task outcomes and threat-conditioned losses are retained separately.
+
+This forecast objective and online transition learning are explicit extensions
+to Namazu's original reconstruction-based proposal. The
+[protocol](docs/protocol.md) records the exact formula, observation contract,
+environment repairs and evaluation boundaries. Candidate code runs in a
+restricted worker; it receives observations, not a live environment or hidden
+assessment seeds.
+
+## The next scientific question
+
+**Does the selected model's predictive improvement produce safer decisions on
+fresh mazes?** The next assessment should compare the frozen selected program
+with its audited interventions and the original competent baseline on the same
+fresh cases, with escape as the primary outcome. This tests the agent already
+discovered; more search on the same development set would not answer it.
+
+After that assessment, a separately labeled dynamics-shift experiment could
+test adaptation to changes in enemy motion. A wall-prediction experiment could
+test anticipation rather than map refresh. Both would preserve the original
+maze and unrestricted joint program search while putting more direct pressure
+on the world-model hypothesis. They are research directions, not completed
+results. The evolved agent's final held-out pool remains unreserved and unevaluated.
+
+## Explore and reproduce
+
+The compact evidence is committed, so the curves and analysis can be regenerated
+without a model call or a new maze evaluation:
+
+```bash
+python scripts/research_figure.py
+```
+
+This requires NumPy and Matplotlib. Local candidate evaluation needs Linux,
+Python 3.10, Landlock and libseccomp; it needs neither a GPU nor a model API.
+The [reproduction guide](docs/reproduction.md) covers installation, development
+evaluation and full-run exports. The [execution record](docs/execution-history.md)
+holds upstream revisions, subscription routing, failed-slot details and recovery
+provenance. The earlier [seed study](docs/seed-study.md) preserves its negative
+held-out result as a separate experiment.
+
+The current research state and scope are recorded in [CODEX_TASK.md](CODEX_TASK.md).

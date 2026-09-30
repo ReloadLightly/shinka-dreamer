@@ -1,16 +1,55 @@
-# First implementation task for Codex in WSL
+# Current research state and next scientific task
 
-Build ShinkaDreamer in this repository from the full Namazu proposal and the accompanying review. This is a sustained agent-learning research project. Preserve the dynamic partially observed maze and joint evolution of the world model and planner. Use the stronger predictive-learning design in docs/design.md; document that extension separately from corrections to the original draft.
+Read [AGENTS.md](AGENTS.md), [the findings](docs/campaign-findings.md),
+[the evolved-agent walkthrough](docs/evolved-agent.md) and
+[the protocol](docs/protocol.md) before further implementation. Preserve
+[Namazu's proposal](docs/namazu-proposal.md) unchanged. The
+[initial implementation task](docs/initial-implementation-task.md) is historical.
 
-Work autonomously on ordinary reversible implementation, debugging, committing and pushing to the verified intended origin. Do not alter global permissions or authentication to bypass a blocker. No paid API calls are authorized. Do not spend the session building general infrastructure instead of the agent and experiment.
+## Completed experiment
 
-1. Read AGENTS.md, docs/namazu-proposal.md, docs/audit.md and docs/design.md fully. Inspect the actual WSL environment and the installed or available upstream ShinkaEvolve revision. Verify the origin is ReloadLightly/shinka-dreamer. Preserve any work already present.
-2. Implement the dynamic maze and observable interface correctly. Repair coordinate handling, action validation, door mechanics, world generation, wall closures, reset state, inventory, and enemy representation. The trusted evaluator owns all hidden state and metrics. Candidate code must not receive a live environment or private assessment seeds. Use a real, appropriate execution boundary; do not pretend a separate Python dictionary is a sandbox.
-3. Implement a competent memory/pathfinding baseline and a seed with a world model that updates predictive estimates from experience and uses forecasts in planning. Keep both original agent entry points and allow freely evolved helpers and representations. Do not substitute a fixed candidate catalog or parameter-only optimization. Actual prediction/learning traces are required; map accumulation alone is insufficient for the stronger claim.
-4. Implement before-outcome forecast recording, fixed evaluator-selected targets, proper prediction scoring, separate task metrics, controlled randomness, paired development episodes, withheld assessment and focused update/planning ablations. For the no-learning ablation, freeze predictive parameter updates while keeping localization and ordinary map updates active; avoid confounding failed memory with absent learning. Version the scalar objective and explain any replacement of the source's reconstruction term. Write a small number of meaningful checks for the concrete defects that could invalidate the experiment.
-5. Wire the task to native upstream ShinkaEvolve. Verify evaluate.py flags, callback expansion, serialization and output schemas against the exact installed code. Use native islands, parent/inspiration sampling, archive/lineage and text feedback; verify the subscription route for recommendations and other auxiliary work. Do not silently enable paid embedding or model defaults. Record resolved features and explicit limitations.
-6. Measure one substantive development evaluation and compare the competent baseline with the predictive seed; fix concrete failures promptly. Then proceed to the native evolution campaign from the original plan: target 100 generations, four islands, resumable results. Concurrency should fit measured host resources. Do not replace it with an invented manual mutation loop. If authenticated subscription-backed mutation is unavailable, finish all feasible local execution, save the working experiment, and give the exact blocker and resume command. Do not fall back to paid APIs.
-7. Checkpoint through native persistence after every completed candidate and provide an exact resume command. The 100 generations are a campaign target, not a prerequisite for committing useful experimental results. Use an available, small execution boundary and document its guarantees; do not spend the session developing a general sandbox or provisioning new infrastructure before any substantive local evaluation. Generate a representative replay comparing the hidden world, internal map, forecasts and selected actions. Save learning and evolution curves when corresponding data exists. Inspect the visualizations. Keep the SQLite/native lineage and resumable state locally; commit compact evidence and scripts without credentials or huge databases.
-8. Assess selected agents on withheld instances only at the defined assessment point. Report uncertainty, negative findings and whether prediction use actually helped. Update README as a concise research document explaining the question, mechanisms, protocol, measured results and limitations. Commit and push the completed work to the verified origin.
+The authorized campaign is complete at **50 total slots, 0–49**: one seed,
+45 valid descendants and four failed descendants. Generation 14 is selected;
+its source SHA-256 is
+`588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0`.
+Do not extend this completed campaign because an old manifest or archived task
+mentions 100 generations.
 
-Finish with: what learns within an episode; what evolved across candidates; actual evaluated candidate count; task and prediction results versus the competent baseline; ablation results if available; exact resume command and next unresolved scientific question. Do not call setup, tests or successful API integration a completed learning experiment.
+Development evidence establishes improved selected-program performance and
+better matched-trajectory prediction from online learning. It does not establish
+an escape benefit caused by learning or generalization to fresh cases.
+The repository contains a completed 2 × 2 intervention audit and a saved-data
+research analysis. Use those results before proposing new execution.
+
+## Next scientific question
+
+Test whether the selected agent's learned predictions improve decisions on
+fresh mazes. At the user-authorized assessment point, freeze the candidate,
+evaluator, objective, baseline and interventions before opening fresh cases.
+Use paired cases for the selected agent, frozen predictive weights, fixed-risk
+planning, the joint intervention and original competent memory baseline.
+Report paired escape differences as the primary outcome, then forecast losses,
+intervention validity and interpretable failure cases. Preserve a separate
+development record; do not select or revise the agent on final-assessment results.
+
+The current instruction leaves the evolved agent's final held-out pool
+**unreserved and unevaluated**. Do not allocate or evaluate it as part of
+documentation work. New search campaigns or dynamics-shift studies are separate
+experiments and require a concrete scientific hypothesis and user direction.
+
+## Working rules
+
+- Keep the full dynamic maze and joint evolution of world-model updating and
+  planning. Do not replace program evolution with a fixed algorithm catalog.
+- Keep code and raw experimental evidence intact when improving presentation.
+  Derive figures from committed data; distinguish inference from measured results.
+- Put mechanisms, experiments and findings in the README. Put execution history,
+  billing and recovery details in supporting documentation.
+- No paid model API calls or silent billing fallback are authorized.
+- Work autonomously on ordinary reversible analysis, implementation and fixes.
+  Commit coherent changes and push completed work to the verified
+  `ReloadLightly/shinka-dreamer` origin. Do not force-push.
+- For any future authorized run, report useful checkpoints while it proceeds:
+  best-program changes, component metrics, mechanism changes, remaining uncertainty
+  and a readable evolution curve. The user should not have to extract manual logs
+  to understand what an experiment is discovering.
