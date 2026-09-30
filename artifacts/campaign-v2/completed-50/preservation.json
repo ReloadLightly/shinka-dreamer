@@ -1,0 +1,106 @@
+{
+  "checked_utc": "2026-09-30T03:32:11.664262+00:00",
+  "snapshot_directory": "results/recovery/20260929T213439Z",
+  "snapshot_inventory_sha256": "8f3564e17cd2607cf78e39b75faab4ee18caa507766f5cc95bcb044ac2fc1d11",
+  "audit_script_sha256": "41833f2f91795b032de3c34279d5e1e4724bc6107fdba8da6e384e0ecb6c6d5f",
+  "original_generation_files_checked": 378,
+  "original_generation_files_unchanged": true,
+  "original_native_rows_checked": 30,
+  "all_original_native_fields_unchanged_except": {
+    "migration_history": [
+      2,
+      3,
+      11,
+      17
+    ],
+    "island_idx": [
+      2,
+      3,
+      17
+    ],
+    "children_count": [
+      7,
+      8,
+      10,
+      15,
+      17,
+      22,
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  "native_slots": 50,
+  "native_database_rows": 53,
+  "original_log_is_exact_prefix": true,
+  "changed_non_generation_files": {
+    "results/campaign-v2/evolution_run.log": {
+      "before_sha256": "da5061924dba83f1bb2bce888a2886a8108aeb5492cdf49d1232ef21c5f13d90",
+      "after_sha256": "b55e3a20eae8adbe13cb40b189885afba3b1f7c72e33063085d19f92ee6bd3c6",
+      "reason": "Native append-only log"
+    },
+    "results/campaign-v2/pricing_snapshot.json": {
+      "before_sha256": "d5a72c38877f73c9c87906eedbe4c64a12a24772af7aae60846616a9dc6c6886",
+      "after_sha256": "5d0b7738c2124a76967006c9f84b3f340be9726c6c1fbbdef07d818127f8e3f5",
+      "reason": "Native startup pricing snapshot refresh; original retained in backup"
+    }
+  },
+  "protected_file_sha256": {
+    "results/private/assessment-seeds.json": "8e05f239e7067822fb200bb2fa9ad27f4c034b3dc62c52cb18cf00488a2f06d6",
+    "results/assessment-v1/frozen-summary.json": "e6da8b9fb5ddcfbaf22374c5926c292275081cd21dd071e00648bd049ea65094",
+    "results/assessment-v1/predictive-summary.json": "1e649e1dec8ec59c7448d21d98df1526d17d99820add67fdb61bfe30c983b28c",
+    "results/assessment-v1/frozen.jsonl": "72cb0d66fc531d49c7b13f4730a4095e54902e9282105e264c40c18f76b0a44e",
+    "results/assessment-v1/no_planning-summary.json": "e9916611c66986bdc6de631b2fb0999916a57b094c732c5f538ba0af59f643a8",
+    "results/assessment-v1/frozen_no_planning.jsonl": "7067bde146b7ead4cedb40c80d1bfbdc5490e214f696184283518a22d5e56162",
+    "results/assessment-v1/reactive-summary.json": "7fe3bcac12774f097a49440cc570cb70fa3cd5ea8aa157c1d6ad0063b778b6f4",
+    "results/assessment-v1/memory-summary.json": "1ab3ea13757dc2db68d3c86ac807776a67bdde04ca4919b7cd509e447d352ef0",
+    "results/assessment-v1/memory.jsonl": "0f841de03a138c19cd1bdb64c710c0ac172eac3fa689b4bcffb34aa18f3c140d",
+    "results/assessment-v1/predictive.jsonl": "941074ff482d17bdeb5696c4a3369ba4c584f4a74502ded3c30ed433ceb32452",
+    "results/assessment-v1/no_planning.jsonl": "8d80b6456b7443ef9f9cc1d6bc2a6061d4693e40cf434c5e7cd18df17e335ca2",
+    "results/assessment-v1/manifest.json": "6d055b637b5ac7ae3f144b3cd1c6862114ac0b0a9f753412705f909c40840073",
+    "results/assessment-v1/reactive.jsonl": "a12e5246787e242308185376c80b0f95fe722c368da8364ce12b5667ebb82f4b",
+    "results/assessment-v1/frozen_no_planning-summary.json": "4b895ea5d8bedc4831f906c270390a9d5cbdc2ec308e72398f25159c0c76c174",
+    "artifacts/assessment/lineage.json": "d9ce210fc19036a6964141dc79fcc4622687a5f92a9c856c109eab9202fc2593",
+    "artifacts/assessment/learning.png": "2165886627dbf073a62c06678fad682e3643cecdce6b023a41337fa8c2057db3",
+    "artifacts/assessment/summary.json": "cca5f24d03a56dbaffed14ec0ac8a337b2ebfa245f4ca420f5944400f66e43bd",
+    "artifacts/assessment/episodes.csv": "3f1f0782eac74b3a00ffd4b3b812d17fef45a28b2c18a723528a6ce721ae236a",
+    "artifacts/assessment/learning-curve.json": "67a96dee2bfa80e0cc4be006f2521759b7a909a8c070b4ad910ea89746682f17",
+    "artifacts/assessment/outcomes.png": "ab5d9df27f898e7c8b7bbcab9cd2b12af5dedca6dfa49e29880dfd09fc37de86",
+    "docs/namazu-proposal.md": "501d02b0fea91caf472760688407b61751e7042baa896a34452bc6aa0ddcfa3d"
+  },
+  "protected_files_unchanged": true,
+  "new_assessment_paths_still_absent": [
+    "results/private/campaign-v2-assessment-seeds.json",
+    "results/campaign-v2/selection.json",
+    "results/campaign-v2/assessment-manifest.json",
+    "results/campaign-v2-assessment"
+  ],
+  "frozen_driver_and_evaluator_files_checked": 11,
+  "frozen_driver_and_evaluator_unchanged": true,
+  "development_pool_unchanged": true,
+  "recovery_driver_versions": {
+    "recovery-driver-first-launch.py": "24dea0b835845f91137652dbf6408ef7a5302e4ab9476e75735d6fca0c51d117",
+    "recovery-driver-resume.py": "094b9fb88e2a0b1ce6d77dbeae697f401f66ee1b535f189d08b2b3597d005afd"
+  },
+  "recovery_executions": [
+    {
+      "generation_stop": 50,
+      "includes_seed": true,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554",
+      "recovery_driver_sha256": "24dea0b835845f91137652dbf6408ef7a5302e4ab9476e75735d6fca0c51d117",
+      "billing": "subscription",
+      "assessment": "untouched"
+    },
+    {
+      "generation_stop": 50,
+      "includes_seed": true,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554",
+      "recovery_driver_sha256": "094b9fb88e2a0b1ce6d77dbeae697f401f66ee1b535f189d08b2b3597d005afd",
+      "billing": "subscription",
+      "assessment": "untouched"
+    }
+  ],
+  "assessment_used_for_new_work": false,
+  "raw_credentials_or_private_seeds_exported": false
+}

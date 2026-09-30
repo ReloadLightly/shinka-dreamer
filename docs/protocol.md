@@ -124,7 +124,9 @@ draws, string-set order/hashes and five subsequent decisions each; see
 `artifacts/campaign-v2/reproducibility.json`. Newly created `random.Random` objects
 must be explicitly seeded for reproducibility; OS entropy and clocks are not
 virtualized. Descendant repeatability must still be checked if it uses these.
-Search's own stochastic ordering has not been studied because no descendant was generated.
+There is one native search campaign, with no independent search repeat. Native
+sampling after a restart is not claimed to reproduce an uninterrupted proposal
+sequence. This does not change the independently controlled evaluation streams.
 
 Report Wilson 95% escape intervals and 5,000 paired episode-bootstrap replicates
 for differences. Brier intervals resample whole episodes and recompute ratios of
@@ -173,11 +175,21 @@ OS restrictions, bridge, original seed/controls and driver, plus the exact objec
 runtime limits, interpreter, installed Shinka/Headless fingerprints and resolved
 native settings. Development has an explicit 64-seed file and byte hash.
 
-The v2 launch made exactly one failed subscription probe before entering native
-search. No v2 native rows or descendants exist. Its manifest, development pool and
-probe survive for an ordinary-terminal launch; v1's four native seed rows survive
-separately. Local replication ran 320 control condition-episodes and a separate
-64-episode native evaluator check. All scientific control fields matched v1.
+The first v2 launch made one failed subscription probe before entering native
+search. Later execution through the existing subscription login generated native
+descendants. The early blocked-state artifacts remain historical records; the
+current campaign report distinguishes slots, valid descendants, failed slots and
+island seed copies. Local replication ran 320 control condition-episodes and a
+separate 64-episode native evaluator check. All scientific control fields matched v1.
+
+Recovery preserves the immutable original 100-slot manifest and records the
+user's revised **50-total-slot** stopping point in separate execution records.
+The evaluator, objective, cases and native search settings are unchanged. The
+additive `scripts/recover_campaign.py` holds one controller lock, restores saved
+unpersisted proposal lineage, and reloads native recommendation text and pending
+programs. New recovery evaluation outputs use a separate directory. It delegates
+proposal sampling, evaluation submission, database insertion, archive maintenance,
+migration and subsequent evolution to the pinned upstream runner.
 
 Final assessment requires an explicit campaign-specific path, recorded up front as
 `results/private/campaign-v2-assessment-seeds.json`. After selecting and inspecting
@@ -197,6 +209,13 @@ For prediction comparisons replay identical observations and executed actions to
 the learned/frozen models, or demonstrate exact trajectory equality. The original
 seed's fixed-risk branch supplies matched experience; that fact cannot be assumed
 for new code. The report script consequently emits its matched learning curve only
-for the hash-verified original seed. Descendant intervention and matched-experience
-checks are pending, not claimed complete. Report fixed-rule improvements separately
-from benefits of online learning.
+for the hash-verified original seed. `scripts/audit_candidate.py` now audits
+development interventions using complete action/world trajectory hashes and
+exported map/localization hashes. It checks exported parameter constancy under
+freezing, records update diagnostics, and only plots a matched-experience learning
+comparison when every trajectory matches. The generation-14 audit and its source
+inspection satisfy these checks; this is development evidence, not a held-out
+result or a guarantee for arbitrary future descendants. Report fixed-rule
+improvements separately from benefits of online learning. The user's recovery
+request expressly leaves the final assessment untouched: no v2 assessment pool
+is reserved and no assessment command is run.

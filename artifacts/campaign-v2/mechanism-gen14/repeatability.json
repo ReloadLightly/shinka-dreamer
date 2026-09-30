@@ -1,0 +1,31 @@
+{
+  "native_generation": 14,
+  "episodes_compared": 64,
+  "all_scientific_fields_identical": true,
+  "compared_fields": [
+    "seed",
+    "variant",
+    "reason",
+    "steps",
+    "keys",
+    "door",
+    "task",
+    "model_score",
+    "combined_score",
+    "stats",
+    "bins",
+    "error",
+    "learning"
+  ],
+  "excluded_native_fields": [
+    "seconds"
+  ],
+  "audit_only_fields": [
+    "audit"
+  ],
+  "source_sha256": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+  "native_episode_file_sha256": "c3d46554c781adec003d223759154a576eca5a13aff7ab3a0705ac7b47cbf756",
+  "audit_episode_file_sha256": "6d4a112e13e1ddaac39c5417f6e79c04a83e07c508fa1d1b5ff9c0876df95ba8",
+  "split": "development",
+  "assessment_used": false
+}

@@ -1,0 +1,299 @@
+[
+  {
+    "id": "729380cc-e0e1-4a5c-ba1a-02c17d45ffd8",
+    "parent_id": null,
+    "generation": 0,
+    "island_idx": 0,
+    "combined_score": 0.9228063296409055,
+    "correct": 1,
+    "timestamp": 1790707218.16627
+  },
+  {
+    "id": "485b4204-13f0-48ee-9a61-878c6c3c91af",
+    "parent_id": null,
+    "generation": 0,
+    "island_idx": 1,
+    "combined_score": 0.9228063296409055,
+    "correct": 1,
+    "timestamp": 1790707218.16627
+  },
+  {
+    "id": "d0693394-a049-419a-9d5a-74f6385016e5",
+    "parent_id": null,
+    "generation": 0,
+    "island_idx": 2,
+    "combined_score": 0.9228063296409055,
+    "correct": 1,
+    "timestamp": 1790707218.16627
+  },
+  {
+    "id": "5411065f-6c82-4945-b6bc-1d170100c720",
+    "parent_id": null,
+    "generation": 0,
+    "island_idx": 3,
+    "combined_score": 0.9228063296409055,
+    "correct": 1,
+    "timestamp": 1790707218.16627
+  },
+  {
+    "id": "cfba6aa4-cf72-4568-9457-78bb4934d9c0",
+    "parent_id": "485b4204-13f0-48ee-9a61-878c6c3c91af",
+    "generation": 1,
+    "island_idx": 1,
+    "combined_score": 0.9155427583761473,
+    "correct": 1,
+    "timestamp": 1790707824.349484
+  },
+  {
+    "id": "971ddbf3-2071-4f4f-8913-2dd18080c0a7",
+    "parent_id": "d0693394-a049-419a-9d5a-74f6385016e5",
+    "generation": 2,
+    "island_idx": 2,
+    "combined_score": 0.9633067995549395,
+    "correct": 1,
+    "timestamp": 1790707963.800549
+  },
+  {
+    "id": "cb0e3bb6-3c55-4ac1-9516-ddf245f748b8",
+    "parent_id": "5411065f-6c82-4945-b6bc-1d170100c720",
+    "generation": 3,
+    "island_idx": 3,
+    "combined_score": 0.8632238065189507,
+    "correct": 1,
+    "timestamp": 1790708124.160728
+  },
+  {
+    "id": "76f1145f-7d48-4bcd-a3f4-150ef150d5da",
+    "parent_id": "729380cc-e0e1-4a5c-ba1a-02c17d45ffd8",
+    "generation": 4,
+    "island_idx": 0,
+    "combined_score": 0.9452681700141838,
+    "correct": 1,
+    "timestamp": 1790708511.446086
+  },
+  {
+    "id": "84b1e776-15de-4567-bd64-f525e987d9d6",
+    "parent_id": "971ddbf3-2071-4f4f-8913-2dd18080c0a7",
+    "generation": 5,
+    "island_idx": 1,
+    "combined_score": 0.9700294116069619,
+    "correct": 1,
+    "timestamp": 1790708904.884466
+  },
+  {
+    "id": "1dac7b7c-b642-4344-8230-e81478076b94",
+    "parent_id": "5411065f-6c82-4945-b6bc-1d170100c720",
+    "generation": 6,
+    "island_idx": 2,
+    "combined_score": 0.9197049768907382,
+    "correct": 1,
+    "timestamp": 1790709211.702781
+  },
+  {
+    "id": "daecdf4e-c395-438b-b2d4-d01cb9aba3f7",
+    "parent_id": "76f1145f-7d48-4bcd-a3f4-150ef150d5da",
+    "generation": 7,
+    "island_idx": 3,
+    "combined_score": 0.9375895764269512,
+    "correct": 1,
+    "timestamp": 1790709502.858408
+  },
+  {
+    "id": "5480321b-d956-4417-b792-53766573be94",
+    "parent_id": "84b1e776-15de-4567-bd64-f525e987d9d6",
+    "generation": 8,
+    "island_idx": 2,
+    "combined_score": 0.9443517464263603,
+    "correct": 1,
+    "timestamp": 1790709893.973869
+  },
+  {
+    "id": "64213b7f-74de-4be9-b9b0-be774599dfb1",
+    "parent_id": "971ddbf3-2071-4f4f-8913-2dd18080c0a7",
+    "generation": 9,
+    "island_idx": 2,
+    "combined_score": 0.9615783483851653,
+    "correct": 1,
+    "timestamp": 1790710285.68847
+  },
+  {
+    "id": "a21386ce-2539-4438-816f-8257c9a7b31d",
+    "parent_id": "64213b7f-74de-4be9-b9b0-be774599dfb1",
+    "generation": 10,
+    "island_idx": 1,
+    "combined_score": 0.9639769618821646,
+    "correct": 1,
+    "timestamp": 1790710784.580837
+  },
+  {
+    "id": "33b8c89d-fd3f-4c0d-93e0-d5eff6af8ada",
+    "parent_id": "5411065f-6c82-4945-b6bc-1d170100c720",
+    "generation": 11,
+    "island_idx": 1,
+    "combined_score": 0.9468706549085671,
+    "correct": 1,
+    "timestamp": 1790710925.863693
+  },
+  {
+    "id": "ef45e009-b681-4a89-901a-9696a3f9c8e3",
+    "parent_id": "64213b7f-74de-4be9-b9b0-be774599dfb1",
+    "generation": 12,
+    "island_idx": 2,
+    "combined_score": 0.9288108460378892,
+    "correct": 1,
+    "timestamp": 1790711256.180209
+  },
+  {
+    "id": "b3c19798-9c2c-480c-8fc5-66f4ec31d3c1",
+    "parent_id": "daecdf4e-c395-438b-b2d4-d01cb9aba3f7",
+    "generation": 13,
+    "island_idx": 3,
+    "combined_score": 0.8635999952464842,
+    "correct": 1,
+    "timestamp": 1790711409.97673
+  },
+  {
+    "id": "3fcf23df-a521-4ecb-98db-fa67490453ad",
+    "parent_id": "84b1e776-15de-4567-bd64-f525e987d9d6",
+    "generation": 14,
+    "island_idx": 2,
+    "combined_score": 0.9700497740674794,
+    "correct": 1,
+    "timestamp": 1790711591.005658
+  },
+  {
+    "id": "05e6e341-3043-4acf-91c2-2cd77be10158",
+    "parent_id": "3fcf23df-a521-4ecb-98db-fa67490453ad",
+    "generation": 15,
+    "island_idx": 2,
+    "combined_score": 0.960748910476303,
+    "correct": 1,
+    "timestamp": 1790711759.408943
+  },
+  {
+    "id": "3861d10d-d58d-45a4-bc3d-85dc933d6864",
+    "parent_id": "daecdf4e-c395-438b-b2d4-d01cb9aba3f7",
+    "generation": 16,
+    "island_idx": 3,
+    "combined_score": 0.9289604934274965,
+    "correct": 1,
+    "timestamp": 1790711893.770623
+  },
+  {
+    "id": "17fc5d25-82f5-406e-9fd3-af2882728d8c",
+    "parent_id": "76f1145f-7d48-4bcd-a3f4-150ef150d5da",
+    "generation": 17,
+    "island_idx": 0,
+    "combined_score": 0.9379559329661679,
+    "correct": 1,
+    "timestamp": 1790712007.253976
+  },
+  {
+    "id": "0ff13b1b-75c6-48f8-9717-e70e91ed1b7b",
+    "parent_id": "485b4204-13f0-48ee-9a61-878c6c3c91af",
+    "generation": 18,
+    "island_idx": 3,
+    "combined_score": 0.9542683725774306,
+    "correct": 1,
+    "timestamp": 1790712595.068272
+  },
+  {
+    "id": "9b5d306a-2e00-444b-8547-ada7a40a09b0",
+    "parent_id": "17fc5d25-82f5-406e-9fd3-af2882728d8c",
+    "generation": 19,
+    "island_idx": 1,
+    "combined_score": 0.8357207131558546,
+    "correct": 1,
+    "timestamp": 1790712743.876656
+  },
+  {
+    "id": "bcaea569-0369-4bdf-a0c6-448c2ba28140",
+    "parent_id": "971ddbf3-2071-4f4f-8913-2dd18080c0a7",
+    "generation": 20,
+    "island_idx": 2,
+    "combined_score": 0.9177009033837257,
+    "correct": 1,
+    "timestamp": 1790713309.671048
+  },
+  {
+    "id": "5b9d7500-9065-4a40-ac0b-d6fb5b9dca1e",
+    "parent_id": "daecdf4e-c395-438b-b2d4-d01cb9aba3f7",
+    "generation": 21,
+    "island_idx": 3,
+    "combined_score": 0.0,
+    "correct": 0,
+    "timestamp": 1790714269.623948
+  },
+  {
+    "id": "3c2d2bb8-1155-48c8-a7c6-9f5b86756d85",
+    "parent_id": "3861d10d-d58d-45a4-bc3d-85dc933d6864",
+    "generation": 22,
+    "island_idx": 3,
+    "combined_score": 0.9640304987542262,
+    "correct": 1,
+    "timestamp": 1790714791.811334
+  },
+  {
+    "id": "7e8e4ac8-819a-4ee3-bd10-72c369b911f9",
+    "parent_id": "0ff13b1b-75c6-48f8-9717-e70e91ed1b7b",
+    "generation": 23,
+    "island_idx": 3,
+    "combined_score": 0.9488731898066219,
+    "correct": 1,
+    "timestamp": 1790715434.371098
+  },
+  {
+    "id": "936cc8fc-69ce-415e-b0d7-2043fb34cc84",
+    "parent_id": "76f1145f-7d48-4bcd-a3f4-150ef150d5da",
+    "generation": 24,
+    "island_idx": 0,
+    "combined_score": 0.9546804308628131,
+    "correct": 1,
+    "timestamp": 1790715768.725506
+  },
+  {
+    "id": "63df07ad-73c4-4e92-8988-b1c9ce33a689",
+    "parent_id": "a21386ce-2539-4438-816f-8257c9a7b31d",
+    "generation": 25,
+    "island_idx": 1,
+    "combined_score": 0.9618792094845898,
+    "correct": 1,
+    "timestamp": 1790716085.616101
+  },
+  {
+    "id": "8e544d59-d337-4486-a011-70b6dbc015cf",
+    "parent_id": "936cc8fc-69ce-415e-b0d7-2043fb34cc84",
+    "generation": 26,
+    "island_idx": 0,
+    "combined_score": 0.946359101538613,
+    "correct": 1,
+    "timestamp": 1790716208.683433
+  },
+  {
+    "id": "5a0eb045-3c1f-46bc-8d16-18689d316999",
+    "parent_id": "63df07ad-73c4-4e92-8988-b1c9ce33a689",
+    "generation": 27,
+    "island_idx": 1,
+    "combined_score": 0.9454208893312663,
+    "correct": 1,
+    "timestamp": 1790718030.194003
+  },
+  {
+    "id": "81937ae3-1402-4308-82c3-6824e127cade",
+    "parent_id": "936cc8fc-69ce-415e-b0d7-2043fb34cc84",
+    "generation": 28,
+    "island_idx": 0,
+    "combined_score": 0.8888552943981662,
+    "correct": 1,
+    "timestamp": 1790718504.693439
+  },
+  {
+    "id": "d89607ec-825e-4afe-8b04-6f03ced36c71",
+    "parent_id": "daecdf4e-c395-438b-b2d4-d01cb9aba3f7",
+    "generation": 29,
+    "island_idx": 3,
+    "combined_score": 0.9375792449290993,
+    "correct": 1,
+    "timestamp": 1790718637.656878
+  }
+]

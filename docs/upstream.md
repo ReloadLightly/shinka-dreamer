@@ -30,7 +30,7 @@ At this revision, the Headless effort parser accepts `low`, `medium`, `high`, an
 
 Reference: [configuration](https://sakanaai.github.io/ShinkaEvolve/configuration/), [async runner](https://github.com/SakanaAI/ShinkaEvolve/blob/9912af12d423504b8d580f4179fd15f5f88b8c50/shinka/core/async_runner.py).
 
-## Executed integration, 29 September 2026
+## Historical initial integration, 29 September 2026
 
 Installed actual upstream `9912af12d423504b8d580f4179fd15f5f88b8c50` (package
 version 0.0.7) into the repository-local `.venv`. The older unrelated checkout
@@ -48,8 +48,8 @@ No global authentication files, Codex configuration or permission policy was edi
 
 Actual native execution evaluated `initial.py` on all 64 development episodes and
 persisted four generation-0 rows: one evaluated seed and three native island copies.
-There is **one unique evaluated native program, zero evaluated descendants and zero
-accepted mutations**. Native parent selection sampled across those islands. Saved
+At that checkpoint there was **one unique evaluated native program, zero evaluated
+descendants and zero accepted mutations**. Native parent selection sampled across those islands. Saved
 native prompts contain the evaluator's string `text_feedback`; an actual excerpt
 and source hash are committed in `artifacts/native/`. No evolution curve is justified
 by these data.
@@ -60,8 +60,8 @@ The live subscription probe and native mutation attempts failed before inference
 Error: failed to initialize in-process app-server client: Read-only file system (os error 30)
 ```
 
-Codex CLI 0.159.0 reports a ChatGPT login, but this session's filesystem boundary
-prevents its app-server startup. This is an execution blocker, not evidence that
+Codex CLI 0.159.0 reported a ChatGPT login, but that execution context's filesystem
+boundary prevented its app-server startup. This is an execution blocker, not evidence that
 the account lacks subscription access. DNS/network restrictions also prevent the
 optional models.dev price-catalog refresh; upstream uses its bundled pricing snapshot.
 Those estimates are not subscription charges. No paid model or embedding route was
@@ -109,7 +109,7 @@ Integration checks against installed code:
   A 50 ms event-loop timer allows completed futures to be drained without changing
   permissions. This resolved the native file-read stall; no upstream source was edited.
 
-## Follow-up: campaign v2
+## Historical initial v2 probe
 
 The installed upstream and Headless revisions are unchanged. The mutation and
 independent recommendation clients remain subscription-only; embeddings, novelty
@@ -125,7 +125,8 @@ before candidate source executes. Native evaluation now takes an explicit
 `--seed_file` and `--campaign_manifest`; all 64 runs passed the actual installed
 `run_shinka_eval` with the same original-seed score, 0.9228063296409055. This repeat
 contract check is not a newly evolved candidate and did not create native rows.
-V2 has zero evaluated descendants and no native database yet. V1 remains intact.
+At this initial probe, v2 had zero evaluated descendants and no native database.
+V1 remained intact. The recovery section below records the subsequent campaign.
 
 The v2 manifest freezes the original seed, controls, evaluator/environment,
 objective, development pool and execution configuration. The driver rejects the
@@ -133,7 +134,7 @@ old directory and checks hashes before any probe. Stop limits are recorded per
 invocation, allowing 2 slots then 100 with the same native campaign settings. Probe
 logs have unique names and survive failure. No automatic startup retry is made.
 
-Exact commands in the user's ordinary WSL terminal:
+The initial handoff proposed these commands (superseded by the 50-slot recovery below):
 
 ```bash
 cd /home/roland/projects/shinka-dreamer
@@ -144,8 +145,84 @@ HEADLESS_BILLING=subscription .venv/bin/python scripts/evolve.py \
   --results results/campaign-v2 --generations 100
 ```
 
-Run it in an authorized normal terminal where the existing Codex login can start.
+That initial handoff required a context where the existing Codex login could start.
 The driver performs a fail-fast subscription probe before native resampling.
 It does not relocate auth or weaken sandbox settings. For a fresh installation,
 `bash scripts/bootstrap.sh` installs both pinned dependencies locally. The first
 assessment is now published; reserve fresh final cases after further evolution.
+
+## Recovery to 50 total slots
+
+The subsequent campaign ran through the existing subscription login and saved
+slots 0–26. Slot 27's code and sampling context survived an interrupted evaluator.
+The recovery task verified that the earlier Codex task was interrupted and that
+no ShinkaDreamer controller or evaluator remained on the host. It backed up the
+SQLite database through SQLite's backup API and copied the original campaign
+files before resuming. An unrelated stopped process in another project was left
+alone.
+
+The successful probe and controller used tool-approved host execution. The
+earlier outer read-only mount policy was not edited or weakened; candidate
+evaluation still installs the same Landlock/seccomp boundary and resource limits.
+
+`scripts/recover_campaign.py` is an additive, recorded extension; the original
+hash-pinned driver, evaluator and installed upstream source remain unchanged.
+It holds an exclusive campaign lock, verifies saved code and parent/inspiration
+evidence, and completes an interrupted evaluation through the native scheduler
+and database processing methods. The old evaluation directory is preserved; the
+new result directory is recorded in native metadata. Persisted generations are
+never regenerated by this recovery route.
+
+Source inspection found that the pinned async runner writes cumulative native
+recommendation text but does not restore it on resume. Recovery reloads the latest
+saved summary, scratchpad, recommendations and recommendation history. It matches
+the processed generation identifiers to that output and rehydrates only the
+remaining programs from the native database. In this recovery, meta output 20
+covered slots 0–19 and slots 20–27 were restored as pending. The next mutation
+prompt demonstrably contains a sampled restored recommendation. Native interval
+updates and final flushing continue through the separate subscription client.
+
+The resumed stop is **50 total slots, including seed and failed slots**, recorded
+per invocation. The historical immutable manifest's 100-slot target is provenance,
+not the new runtime stopping point. The native log reports `target=50`.
+
+The preserved original log also records a native 15-minute timeout for slot 21
+at 22:37:49 on 29 September, immediately after its logged evaluation submission.
+No evaluator correctness/metrics file survived. The underlying timing cause is
+unresolved; this is not evidence that the candidate consumed 15 minutes of CPU.
+The final report includes the exact timeout log entries for both slots 21 and 42.
+
+During slot 42, the recorded timeline jumps from 01:06:14 to 04:50:44 on
+30 September (host local time). The native scheduler then kills the evaluator
+for exceeding its unchanged 15-minute wall-time limit. Its recorded elapsed time
+includes that gap and must not be interpreted as candidate CPU time. No complete
+metrics or episode file was produced; the failed native slot and its source are
+retained. The cause of the clock gap was not established. This differs from the
+single-episode worker kills near the 10-second CPU cap in slots 30 and 41.
+
+```bash
+HEADLESS_BILLING=subscription .venv/bin/python scripts/recover_campaign.py \
+  --results results/campaign-v2 --generations 50
+```
+
+The successful live probes report `billing.attempts[].route = subscription` and
+`costBasis = api-list-price-estimate`. Native dollar displays are those estimates,
+not subscription charges. Mutation/fix and recommendations use the existing pinned
+Headless route; evaluator calls are local Python; embeddings, novelty LLM and
+prompt evolution remain disabled. No paid fallback, authentication changes,
+global setting changes or permission-policy changes were made.
+
+The effective proposer is `gpt-6-astra` at `high` reasoning effort, with the
+existing 600-second outer Headless command timeout. Inspection of the pinned
+provider's command builder confirms that Shinka's `temperature` and `max_tokens`
+kwargs are retained in result/configuration metadata but are not forwarded as
+Codex CLI controls. Thus the stored `max_tokens=24000` is not an enforced output
+limit on this route. Candidate execution limits remain independently enforced by
+the evaluator's OS boundary.
+
+The installed Shinka Python files were compared byte-for-byte to the clean
+`/tmp/shinkadreamer-upstream` checkout at `9912af12d423504b8d580f4179fd15f5f88b8c50`;
+there were no differences. The local Headless checkout still resolves to
+`93cd9b06b85f848af1308c41e018991b33907c5e`. The new tools are tested against native
+slot persistence and actual development episodes. Final assessment is expressly
+excluded from this recovery task and remains untouched.

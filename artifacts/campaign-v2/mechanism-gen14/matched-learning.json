@@ -1,0 +1,86 @@
+[
+  {
+    "variant": "no_planning",
+    "start_step": 0,
+    "loss_sum": 117.17761583555911,
+    "targets": 13752,
+    "episodes": 64
+  },
+  {
+    "variant": "no_planning",
+    "start_step": 25,
+    "loss_sum": 100.37378533452544,
+    "targets": 9774,
+    "episodes": 53
+  },
+  {
+    "variant": "no_planning",
+    "start_step": 50,
+    "loss_sum": 55.71346729751476,
+    "targets": 3780,
+    "episodes": 27
+  },
+  {
+    "variant": "no_planning",
+    "start_step": 75,
+    "loss_sum": 10.575898027699152,
+    "targets": 1188,
+    "episodes": 11
+  },
+  {
+    "variant": "no_planning",
+    "start_step": 100,
+    "loss_sum": 0.9009868772109602,
+    "targets": 234,
+    "episodes": 2
+  },
+  {
+    "variant": "no_planning",
+    "start_step": 125,
+    "loss_sum": 1.9410293488321313,
+    "targets": 54,
+    "episodes": 1
+  },
+  {
+    "variant": "frozen_no_planning",
+    "start_step": 0,
+    "loss_sum": 119.42146819391488,
+    "targets": 13752,
+    "episodes": 64
+  },
+  {
+    "variant": "frozen_no_planning",
+    "start_step": 25,
+    "loss_sum": 104.73402238183445,
+    "targets": 9774,
+    "episodes": 53
+  },
+  {
+    "variant": "frozen_no_planning",
+    "start_step": 50,
+    "loss_sum": 58.82070471461674,
+    "targets": 3780,
+    "episodes": 27
+  },
+  {
+    "variant": "frozen_no_planning",
+    "start_step": 75,
+    "loss_sum": 10.991924276595912,
+    "targets": 1188,
+    "episodes": 11
+  },
+  {
+    "variant": "frozen_no_planning",
+    "start_step": 100,
+    "loss_sum": 0.8771592357274537,
+    "targets": 234,
+    "episodes": 2
+  },
+  {
+    "variant": "frozen_no_planning",
+    "start_step": 125,
+    "loss_sum": 2.196424903197513,
+    "targets": 54,
+    "episodes": 1
+  }
+]

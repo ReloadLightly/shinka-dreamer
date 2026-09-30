@@ -1,0 +1,7874 @@
+[
+  {
+    "episode": 0,
+    "frozen": {
+      "trajectory_sha256": "e827b1e5898bb21152b1944f51224329db73e6c0c73db89c4c8aeb02897cd705",
+      "map_position_sha256": "cd17367d4a7eff17a5e08af5ec19c0997541a9bdbb3a6204afe9e01b66a229a9",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "5cd1cb71706b90ee7bc87b18a905f29bd69665670a2e5059a296abe8d960b815",
+      "map_position_sha256": "fa73d00a644a458fbcb5dc59f983a11d218206748e813bf8fa879e714c41461c",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "b437a16fb6448b82e012c512ddd2597070dedf6de3d91396d181025f2e86d0b2",
+      "map_position_sha256": "63b4bee564be264ed8b060c6f1eff4107a50e44288e30a08bb66dac897945078",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6264943672266645,
+        -1.2628308921524656,
+        0.02659340127470012,
+        0.06912576383432671,
+        -0.23290609864395032,
+        -0.02511053387828839,
+        -0.15748375326347144,
+        -0.05134989835922467,
+        -0.2512257797107737,
+        0.048351775420447676
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "5cd1cb71706b90ee7bc87b18a905f29bd69665670a2e5059a296abe8d960b815",
+      "map_position_sha256": "fa73d00a644a458fbcb5dc59f983a11d218206748e813bf8fa879e714c41461c",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4597760099559018,
+        -1.2903713087516264,
+        0.22243159470068127,
+        0.19121396637589574,
+        -0.3604055292481244,
+        -0.04075525213981637,
+        -0.11567612651619592,
+        -0.029157090321323534,
+        -0.30715053554366184,
+        0.07345269037376487
+      ]
+    }
+  },
+  {
+    "episode": 1,
+    "frozen": {
+      "trajectory_sha256": "ff9202b924020db45f03ccc2ad04be39b4184f54a44111d006f633ac2d22b443",
+      "map_position_sha256": "3aff29d9a71c131061d2edad57137818578cd7ae6180bee5ac5e0143bdeb8df2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "7b8ea76bd4ab6e1d788957eb183daa6d594a88688bae08de0415684d025df5cb",
+      "map_position_sha256": "f3c64b4618065fdbafa05b67412992cf0e70c50cf1779c471181ab9dae2493fc",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "ca496a229aa0b4978a9ddc106a9d0c61f893df3640436e894030c7f0ac177bb0",
+      "map_position_sha256": "079148b17dea23d6d55bde2f94ef4a493f2c7fe49bc3114b07b666709c24b2be",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5182730011681336,
+        -1.1509561363628842,
+        0.31394318811225763,
+        0.07919586407734082,
+        -0.18724672921056223,
+        0.33817972693031845,
+        0.031120509224287083,
+        0.21429290441982873,
+        -0.4559692586211329,
+        -0.13424114647299523
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "7b8ea76bd4ab6e1d788957eb183daa6d594a88688bae08de0415684d025df5cb",
+      "map_position_sha256": "f3c64b4618065fdbafa05b67412992cf0e70c50cf1779c471181ab9dae2493fc",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.500498119054348,
+        -1.107720916788951,
+        -0.08819798075565029,
+        -0.05596686858718545,
+        -0.349946903517598,
+        0.02848492391613197,
+        -0.021315183328443624,
+        0.11073607075530498,
+        -0.19709923078494096,
+        -0.042790077799027715
+      ]
+    }
+  },
+  {
+    "episode": 2,
+    "frozen": {
+      "trajectory_sha256": "2597f4e714643ce52d81d31caf996d674406e18db086cbf58fbd43b10963489a",
+      "map_position_sha256": "9fe92f5bbf36196b3b8249106fde9225c4d506512c8b40e16c1f0d869ea96fef",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "d6bb7c5dba7e7cd442c63772011052eb433f0324e0b61ef52e225075c037eea8",
+      "map_position_sha256": "2659ddec38cfa5d841dbae01936021b59e37069a1337dda2cd5d858428fcf619",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "df558ce2262d864b3a813a32b44a277851e0db7a7ca9ef9cd556cae924632fb3",
+      "map_position_sha256": "b2566f783d478f08efde24489b67a3a135f872efa8f1a872fcdc4d34ef95b743",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5967470266636052,
+        -1.0596124644874423,
+        0.06709148847750745,
+        -0.058969600882032326,
+        -0.20046009162502607,
+        0.1,
+        -0.0048347976563745095,
+        0.17579459505187442,
+        -0.29785199591556233,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "d6bb7c5dba7e7cd442c63772011052eb433f0324e0b61ef52e225075c037eea8",
+      "map_position_sha256": "2659ddec38cfa5d841dbae01936021b59e37069a1337dda2cd5d858428fcf619",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6752865922712008,
+        -1.2172980135230091,
+        0.12892835503044256,
+        0.1299497359454872,
+        -0.15685425976020576,
+        0.1,
+        -0.0015609554068832868,
+        0.0730587789447069,
+        -0.11270476963874997,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 3,
+    "frozen": {
+      "trajectory_sha256": "d7e2b758579aa2f4b3fceca53552ca43611a2d7fc1438f1790544064270465de",
+      "map_position_sha256": "1b01d8a782e0bef4ce2753c75e17c7b071d85e0cf6eb33eaadbb3b4b52d948e6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "54e3349c23ddfa4a06fd596d1e35b3de2ac1aaf59e376395e82dfc86ff13bb73",
+      "map_position_sha256": "fd32f73fd99715ba7a41271e410e38dccc63fbe2d0bb0b66512d508874b34b8d",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "0aefe85714fa8693bf89eaa4b6c75b5be5ffe105e406735b23fefc654e581aea",
+      "map_position_sha256": "e343da2e114c4e1cad1aaff176c69722a0b4656e95f4d1307b2bd0029474e11e",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6642035416846355,
+        -1.163810402617247,
+        -0.0016447700359673665,
+        -0.010202964055026235,
+        -0.16687670826297343,
+        0.1,
+        -0.010774571911903601,
+        -0.01188119314420257,
+        -0.17593410233131757,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "54e3349c23ddfa4a06fd596d1e35b3de2ac1aaf59e376395e82dfc86ff13bb73",
+      "map_position_sha256": "fd32f73fd99715ba7a41271e410e38dccc63fbe2d0bb0b66512d508874b34b8d",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5051259935049714,
+        -1.0841337048647066,
+        0.148380291599543,
+        0.161660665365423,
+        -0.3326859486228335,
+        0.1,
+        -0.021255358701423123,
+        -0.08377682595819551,
+        -0.35194351160877374,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 4,
+    "frozen": {
+      "trajectory_sha256": "804e2c23a4131879ef4fa0141cb370d6f972064fea3e63bdcc7f68da780b1033",
+      "map_position_sha256": "5f90c469870203a4eded2d93e80fb76856bd6f263fc9ea1a316bda4eb60294fd",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "804e2c23a4131879ef4fa0141cb370d6f972064fea3e63bdcc7f68da780b1033",
+      "map_position_sha256": "5f90c469870203a4eded2d93e80fb76856bd6f263fc9ea1a316bda4eb60294fd",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "804e2c23a4131879ef4fa0141cb370d6f972064fea3e63bdcc7f68da780b1033",
+      "map_position_sha256": "5f90c469870203a4eded2d93e80fb76856bd6f263fc9ea1a316bda4eb60294fd",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.462944609684303,
+        -1.1261490738344773,
+        0.16925231408336774,
+        0.16925231408336774,
+        -0.37533487517864506,
+        0.1,
+        -0.017098184075438692,
+        0.1050031199414747,
+        -0.2103096999363983,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "804e2c23a4131879ef4fa0141cb370d6f972064fea3e63bdcc7f68da780b1033",
+      "map_position_sha256": "5f90c469870203a4eded2d93e80fb76856bd6f263fc9ea1a316bda4eb60294fd",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.462944609684303,
+        -1.1261490738344773,
+        0.16925231408336774,
+        0.16925231408336774,
+        -0.37533487517864506,
+        0.1,
+        -0.017098184075438692,
+        0.1050031199414747,
+        -0.2103096999363983,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 5,
+    "frozen": {
+      "trajectory_sha256": "33f306ada6b02ac5757e36b3c3278eda3840c4109c364b9f95ea0364f3f55f26",
+      "map_position_sha256": "7c107fc4f5497c0a9813249836e56e4e518102fc8b78daaa7d8decb43cfdbd37",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "a35957333854bb763109d7d8d15bd79bfe380e61b45b9b8adada9b3122f62e75",
+      "map_position_sha256": "c5cba18fb2d78bf42104e8166935c309c263a1112a04b37a583e164147a6a503",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "adfe7ab54c65489378f00e2fd99577c1abbc148dadb57e4fda0226ac1dc4530f",
+      "map_position_sha256": "a52e12d90f8783d2c0768cc730b9c9e60c9eb475bd105dfca317d15c59193213",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7505369176842258,
+        -1.1882011689094116,
+        -0.07892272315199939,
+        -0.030117445134422303,
+        -0.11355196361951639,
+        0.1,
+        -0.0074946900271559294,
+        -0.1436370400113093,
+        -0.18936745481481176,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "a35957333854bb763109d7d8d15bd79bfe380e61b45b9b8adada9b3122f62e75",
+      "map_position_sha256": "c5cba18fb2d78bf42104e8166935c309c263a1112a04b37a583e164147a6a503",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.578225371765107,
+        -1.1851237013229539,
+        0.10531776210649128,
+        0.13829878661124043,
+        -0.27501207767822644,
+        0.11971479904002613,
+        -0.021452663296958722,
+        -0.1139092666884115,
+        -0.2596945305351898,
+        -0.015200373245146066
+      ]
+    }
+  },
+  {
+    "episode": 6,
+    "frozen": {
+      "trajectory_sha256": "b3e3862c5333c99cf14c42e548946efde1c84027068855411f8d2bf360c5fb1f",
+      "map_position_sha256": "8d744d98edc8ba6bcc28a8ef52796ddc9faa0a79208bfb50870b0811bf37c297",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "2aab84b4468285bb3256f441d219bdec69f56bce149d88834fbc35404ce282bc",
+      "map_position_sha256": "9f89312c4b44ba16ceeda0f79f33e6a37e98de016f728180fbe9811b227f3c84",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "9b6b4aa23a1c94ff1a58d56db9a715cd15540aedc3153d667dc48acafdd0f67a",
+      "map_position_sha256": "7e1248fa886b16645ed619216f63bbc579b4e6c8cdbe34460b3994ef2f0d0580",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7238257347320158,
+        -1.1988653316575775,
+        0.059689036037183806,
+        0.05851138263680498,
+        -0.11272006342900415,
+        0.08455046782589824,
+        -0.019918864867797904,
+        -0.11302819099783953,
+        -0.13778000981233676,
+        -0.012422701512274318
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "2aab84b4468285bb3256f441d219bdec69f56bce149d88834fbc35404ce282bc",
+      "map_position_sha256": "9f89312c4b44ba16ceeda0f79f33e6a37e98de016f728180fbe9811b227f3c84",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.3255372460477723,
+        -1.1536222433095016,
+        0.09835204440875761,
+        0.039004256039172916,
+        -0.4882449441059765,
+        -0.013119877072696627,
+        -0.12667632313089458,
+        -0.02525121569558182,
+        -0.35274473030327663,
+        0.0742178732500417
+      ]
+    }
+  },
+  {
+    "episode": 7,
+    "frozen": {
+      "trajectory_sha256": "a12f7e1ac4afbe38bb199205de95acac17479ca77792aa85869e00ee8b7f07b3",
+      "map_position_sha256": "64db48b88d54833bc4dbee10ade5484825e9593a8c8d2e884688999331d689ff",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "a12f7e1ac4afbe38bb199205de95acac17479ca77792aa85869e00ee8b7f07b3",
+      "map_position_sha256": "64db48b88d54833bc4dbee10ade5484825e9593a8c8d2e884688999331d689ff",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "a12f7e1ac4afbe38bb199205de95acac17479ca77792aa85869e00ee8b7f07b3",
+      "map_position_sha256": "64db48b88d54833bc4dbee10ade5484825e9593a8c8d2e884688999331d689ff",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8385869438465485,
+        -1.2532660821984245,
+        -0.0004999984375073244,
+        0.0,
+        0.0,
+        0.1,
+        -2.4456993321043746e-05,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "a12f7e1ac4afbe38bb199205de95acac17479ca77792aa85869e00ee8b7f07b3",
+      "map_position_sha256": "64db48b88d54833bc4dbee10ade5484825e9593a8c8d2e884688999331d689ff",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8385869438465485,
+        -1.2532660821984245,
+        -0.0004999984375073244,
+        0.0,
+        0.0,
+        0.1,
+        -2.4456993321043746e-05,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 8,
+    "frozen": {
+      "trajectory_sha256": "4b954c1edac536277a9f292b10a31a47f2eac6b1ebea9ce816a4e26dfba1ad8d",
+      "map_position_sha256": "d60cc84adb00ff2a1252584dd7f1a884f4549e28c3cee16667f7e9135d4d6575",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "24193bca81292425c369cf94af2ac7128d4225ffcb899978c1fe8ec481c257b4",
+      "map_position_sha256": "acb6a71e7580be0c66e54dd56698d6cb524bb60b7f1f81e3a162f2a0a36c27f6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "7c02d288b386ae69a45e68eca9192bfea2fda59bb9e6eb1b357942fda827d1b9",
+      "map_position_sha256": "4408aeb501dc773c02424bb8d085257e7a92b87594b323aedf966e0b1a8e76a9",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5229050999239602,
+        -1.161416097915103,
+        0.12628195637670125,
+        0.15065808178979578,
+        -0.3323252819676117,
+        0.1,
+        -0.07632597527164642,
+        0.05807082702268423,
+        -0.3623413887667756,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "24193bca81292425c369cf94af2ac7128d4225ffcb899978c1fe8ec481c257b4",
+      "map_position_sha256": "acb6a71e7580be0c66e54dd56698d6cb524bb60b7f1f81e3a162f2a0a36c27f6",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8456778804798473,
+        -1.2439515026152623,
+        0.008567351119613528,
+        -0.04933745080238468,
+        0.04165894624914155,
+        0.1,
+        0.008276600591335209,
+        -0.009182255235915347,
+        -0.024006727437917402,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 9,
+    "frozen": {
+      "trajectory_sha256": "31dbd48a5457638400bd149f138e78bfe72ef46a1daea46c5914de70a7a33b06",
+      "map_position_sha256": "b1dcb8323877b997ce82fb92c70d122ce2aa2ad9b6f1c0e3792061285f288606",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "9c4e7e53eb90a9c5568004d2138971e1eb0077266a0430d4b29f307ff5416c8e",
+      "map_position_sha256": "a26e10394d548b4496d8f33c3c03253e2128295f459165a41f9f3dc047a29c3f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "ab373d82d1db0a368ef21d769b4ad6bf45c97d89a4a745b4787f177f9bd182dc",
+      "map_position_sha256": "e00fe856a526ed21df5a32b279b1ef63b9d6c9a84bb95f37c0d741a135fde214",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4644753089752063,
+        -1.094005307669323,
+        -0.018933919589563634,
+        -0.09932759359131758,
+        -0.3341474987823537,
+        -0.0035357893056363813,
+        -0.05074500232032,
+        0.09028557042168968,
+        -0.25623617636120083,
+        0.05059264882403698
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "9c4e7e53eb90a9c5568004d2138971e1eb0077266a0430d4b29f307ff5416c8e",
+      "map_position_sha256": "a26e10394d548b4496d8f33c3c03253e2128295f459165a41f9f3dc047a29c3f",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5610828122160245,
+        -1.1848736205738797,
+        0.07801832360830681,
+        0.06429167654947421,
+        -0.2575808582507741,
+        0.11376051706478978,
+        0.03480824275227413,
+        -0.12512812889179953,
+        -0.10743983802916685,
+        -0.016165073995442328
+      ]
+    }
+  },
+  {
+    "episode": 10,
+    "frozen": {
+      "trajectory_sha256": "55addae45e75af5de7fa18d4b87cee3780d618812a67d12ad2b1d50a56cde31e",
+      "map_position_sha256": "422e46cc9175f6951e459702ff9cdd753f6ca09a78371ca6b8256ba44e7277d2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "d5df4e6deaa7b662aa86eda6edcd0a1eb71b0123087db29ee2942d56a74ad361",
+      "map_position_sha256": "a30fa9445b74b8e4f042be2aedec6018156411824b26109cd7799fdf60f83f5f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "2edf06b939f89ee474ddf347a2c86a1d70ea2d5f5a51617d57f2744a7ab55e74",
+      "map_position_sha256": "51a80300bb10d777de41fda91d48a93d14f19092fa650ae544b781669081de5c",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7065261655122912,
+        -1.160483359209573,
+        0.02504098204357839,
+        0.020214098847455102,
+        -0.13004613237484566,
+        0.1,
+        -0.016949415645343878,
+        0.031872539957331865,
+        0.11026844974660287,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "d5df4e6deaa7b662aa86eda6edcd0a1eb71b0123087db29ee2942d56a74ad361",
+      "map_position_sha256": "a30fa9445b74b8e4f042be2aedec6018156411824b26109cd7799fdf60f83f5f",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6579883049644866,
+        -1.1823500250760504,
+        -0.01727132933293686,
+        -0.010261817848267943,
+        -0.18383796855556175,
+        0.1,
+        0.0017803443039555167,
+        0.04166485943535312,
+        0.10060217322880584,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 11,
+    "frozen": {
+      "trajectory_sha256": "775537a59c932897d4a6decee4b64928085b849bb9d190f5a140d68b9f9ab785",
+      "map_position_sha256": "52af9a04671c6a9ceada2c73b88cf44c31dbd35922b4725d201a44469d8ebc24",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "775537a59c932897d4a6decee4b64928085b849bb9d190f5a140d68b9f9ab785",
+      "map_position_sha256": "52af9a04671c6a9ceada2c73b88cf44c31dbd35922b4725d201a44469d8ebc24",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "775537a59c932897d4a6decee4b64928085b849bb9d190f5a140d68b9f9ab785",
+      "map_position_sha256": "52af9a04671c6a9ceada2c73b88cf44c31dbd35922b4725d201a44469d8ebc24",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8549190345963025,
+        -1.2518074727156876,
+        -0.02399472055866613,
+        -0.017476659141702863,
+        0.012262391760389464,
+        0.1,
+        0.01095858429425888,
+        1.0501903298077285e-19,
+        0.004380083621669783,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "775537a59c932897d4a6decee4b64928085b849bb9d190f5a140d68b9f9ab785",
+      "map_position_sha256": "52af9a04671c6a9ceada2c73b88cf44c31dbd35922b4725d201a44469d8ebc24",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8549190345963025,
+        -1.2518074727156876,
+        -0.02399472055866613,
+        -0.017476659141702863,
+        0.012262391760389464,
+        0.1,
+        0.01095858429425888,
+        1.0501903298077285e-19,
+        0.004380083621669783,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 12,
+    "frozen": {
+      "trajectory_sha256": "90227cdcebab602d1fb6eba72f8db0cbda13647e0b80aa284ba9e3eba4e2ce27",
+      "map_position_sha256": "cb87bfdd06e79d1ddf77b8d0f49c3262e26eff70c546798915cf5829f7f6b1f2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "90227cdcebab602d1fb6eba72f8db0cbda13647e0b80aa284ba9e3eba4e2ce27",
+      "map_position_sha256": "cb87bfdd06e79d1ddf77b8d0f49c3262e26eff70c546798915cf5829f7f6b1f2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "90227cdcebab602d1fb6eba72f8db0cbda13647e0b80aa284ba9e3eba4e2ce27",
+      "map_position_sha256": "cb87bfdd06e79d1ddf77b8d0f49c3262e26eff70c546798915cf5829f7f6b1f2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "90227cdcebab602d1fb6eba72f8db0cbda13647e0b80aa284ba9e3eba4e2ce27",
+      "map_position_sha256": "cb87bfdd06e79d1ddf77b8d0f49c3262e26eff70c546798915cf5829f7f6b1f2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 13,
+    "frozen": {
+      "trajectory_sha256": "919dad968c604b9fea40906dedce44df2643d694499784e77c655aeefd6e5903",
+      "map_position_sha256": "6950a2be04e54db024f5b99b0185499abf1bab8c5ac639fd7139f18708dee617",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "9555ae0449c0b7459a366adea4854dbfe3361db7143623798f743268126a369f",
+      "map_position_sha256": "bc051cb64c9067ed444d9fbf9ea05e4840333faf33f7c0180c6210b5dce2a85c",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "d385cfed3ab8b2663d072cbf0e5aeb82ad39a813f8a7e0a5a6a8fc1b130caa46",
+      "map_position_sha256": "723f425703aeafcb6437a94e29bb55d4a488d963086991f9cad2c18190657966",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4407994099649912,
+        -1.083507100916885,
+        0.09627729374824744,
+        0.045554174333203024,
+        -0.3798357570405092,
+        0.1,
+        -0.07198288754178804,
+        -0.1536581189152924,
+        -0.3550815497007732,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "9555ae0449c0b7459a366adea4854dbfe3361db7143623798f743268126a369f",
+      "map_position_sha256": "bc051cb64c9067ed444d9fbf9ea05e4840333faf33f7c0180c6210b5dce2a85c",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5783597400451645,
+        -1.2005668373871616,
+        0.1576402268154908,
+        -0.027713341162036522,
+        -0.18267762915187105,
+        0.1,
+        -0.023438624180636497,
+        -0.021031805079179625,
+        -0.23762037837234515,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 14,
+    "frozen": {
+      "trajectory_sha256": "6dc4f01a4461a2341da5c0a823b4414425e7d46fc361c8fac14a36bd61d40b96",
+      "map_position_sha256": "7385a47a33df8c85f3a57531bebe2ba5cf2495e8d1b4ab30ce2b4d6c3bc4ed80",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "e620471fc0c763ec9e7fccf3265d955af17f2477560a7f7c3c8aa7f4c029357a",
+      "map_position_sha256": "b08bb5ceb693ff587d25d8f7ec0d977bb007281b34731d53d8483accf7c7fd4f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "0fb6fa0f3f1492a8ee6e820ca2c0d6814ab29ca156f782f2b779b3425b1df131",
+      "map_position_sha256": "ccbdc2c737b618ff35d5645da287c5a27e2d0c1b1d30c4bd6488712517fa91a5",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6697673174500858,
+        -1.1928859307215822,
+        -0.03223269271051721,
+        -0.09376649377656344,
+        -0.1486337366265348,
+        0.10888663206489495,
+        0.00015174226868006806,
+        0.008058969640881984,
+        -0.1376613612083683,
+        -0.08011296397198454
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "e620471fc0c763ec9e7fccf3265d955af17f2477560a7f7c3c8aa7f4c029357a",
+      "map_position_sha256": "b08bb5ceb693ff587d25d8f7ec0d977bb007281b34731d53d8483accf7c7fd4f",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6094028651833843,
+        -1.1725471512610703,
+        -0.0014908771980148804,
+        -0.042080493292820584,
+        -0.2287947164180959,
+        0.2286674703416417,
+        -0.01908525783961676,
+        -0.0406402304168495,
+        -0.11432590578689834,
+        -0.08361790965897917
+      ]
+    }
+  },
+  {
+    "episode": 15,
+    "frozen": {
+      "trajectory_sha256": "62d394d3aa9beba551380dcd4e7b45b6586d20d0c0621bfe42bd0d00bc72e7f9",
+      "map_position_sha256": "298652fccd6ee11a19158707afc6509e8be0c87909d4f00e4810fd394681dc85",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "1e72b16471f14a8eccdf869bb2284c9602fbaa15d7ee57e53373c64db3228128",
+      "map_position_sha256": "07b74d3eabd6502cda9de7d822c28adccfb5fa41c1585ad874958b56abc3c686",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "5d6838c40d9d05e19cb8273c0df1e4a9857c48e9568865fca802275ec770ab25",
+      "map_position_sha256": "822c64c641b1fb118f80f7b42b642ede79fecbb724a65ae1a5d692df707bfa71",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.448632581536896,
+        -1.055420562522867,
+        0.05065222497193158,
+        0.029554089820587645,
+        -0.39538800803569923,
+        0.04297839155359271,
+        -0.06997896940355655,
+        -0.05537256264780149,
+        -0.2589201906159034,
+        0.02992715227596946
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "1e72b16471f14a8eccdf869bb2284c9602fbaa15d7ee57e53373c64db3228128",
+      "map_position_sha256": "07b74d3eabd6502cda9de7d822c28adccfb5fa41c1585ad874958b56abc3c686",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5386137447795896,
+        -1.0858671722434479,
+        0.19547046839264906,
+        0.07267396109694296,
+        -0.24318466784038603,
+        0.1,
+        -0.0031162112310321012,
+        -0.2048894864333191,
+        -0.16404188674976253,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 16,
+    "frozen": {
+      "trajectory_sha256": "300fd71ca4125e68176d8aae483993e4dec1936eb8f1fd86f43b17f4ba5dc249",
+      "map_position_sha256": "81ed94582f8a3d75f4cec0ca1f85019b7ae2c7e5d010ed1384a807636c4230a5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "300fd71ca4125e68176d8aae483993e4dec1936eb8f1fd86f43b17f4ba5dc249",
+      "map_position_sha256": "81ed94582f8a3d75f4cec0ca1f85019b7ae2c7e5d010ed1384a807636c4230a5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "300fd71ca4125e68176d8aae483993e4dec1936eb8f1fd86f43b17f4ba5dc249",
+      "map_position_sha256": "81ed94582f8a3d75f4cec0ca1f85019b7ae2c7e5d010ed1384a807636c4230a5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "300fd71ca4125e68176d8aae483993e4dec1936eb8f1fd86f43b17f4ba5dc249",
+      "map_position_sha256": "81ed94582f8a3d75f4cec0ca1f85019b7ae2c7e5d010ed1384a807636c4230a5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 17,
+    "frozen": {
+      "trajectory_sha256": "3f502f92a542e514ee9fb540ca501b3060aa22c3a1f33b385dd149765924b1e6",
+      "map_position_sha256": "fa2bef14201d99435a810da10d1e6ac3d86e621c0933ccf3e563dfc6752a2e42",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "dd623533cf7e8fd33bb0c94aa3d4fda43bd059f1964afded70b20611b91481bb",
+      "map_position_sha256": "992ecec09a6dbf88e7c1e7e51ddf21ea1dc63c9061f5d46f4e8884a3affea0d8",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "3f502f92a542e514ee9fb540ca501b3060aa22c3a1f33b385dd149765924b1e6",
+      "map_position_sha256": "fa2bef14201d99435a810da10d1e6ac3d86e621c0933ccf3e563dfc6752a2e42",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7354365164712091,
+        -1.2447741154100256,
+        0.1567554486650975,
+        0.06289134440292321,
+        -0.052559300718544935,
+        0.03821471575614646,
+        -0.029112658809117974,
+        0.061258795443914764,
+        0.08773265576920145,
+        -0.029872296959612153
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "dd623533cf7e8fd33bb0c94aa3d4fda43bd059f1964afded70b20611b91481bb",
+      "map_position_sha256": "992ecec09a6dbf88e7c1e7e51ddf21ea1dc63c9061f5d46f4e8884a3affea0d8",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.466945339898246,
+        -1.204319059495881,
+        -0.02239922374624295,
+        -0.026640803168540405,
+        -0.3778257245744052,
+        0.05906292581627001,
+        -0.11548578433593086,
+        0.13428121386010652,
+        -0.34134500163795517,
+        0.012064573349498429
+      ]
+    }
+  },
+  {
+    "episode": 18,
+    "frozen": {
+      "trajectory_sha256": "294d940fcebdf6f722c17884141d823bcb81063690e74b57364ecc893787b68c",
+      "map_position_sha256": "4d3fd25f0d6a84df2eb4fa381d89cf020d38723f18dfa0443479d16018811e32",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "283185c531e11de554321ca0077349bb141932dc4eac1f164d5c1e3910969b16",
+      "map_position_sha256": "d72abd96ae20e483a5ecf1f0ec1da7cbe26ed275da4609dc9f78bce47b270b20",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "c794a1b3e9f3720b3896e10eaa65d973adc5e9b15f870ef2dc7034aefb74f286",
+      "map_position_sha256": "bb9ac6c60d85cbb34669073982559df78e910bd898e5fe8fdd651887510a281c",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6155418856518942,
+        -1.1788951517926196,
+        0.15081161837628773,
+        0.16686495283513064,
+        -0.2334105195462,
+        -0.0626010042413086,
+        0.014838048794677526,
+        -0.03956553342078248,
+        -0.23047603128332186,
+        0.24887745528851013
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "283185c531e11de554321ca0077349bb141932dc4eac1f164d5c1e3910969b16",
+      "map_position_sha256": "d72abd96ae20e483a5ecf1f0ec1da7cbe26ed275da4609dc9f78bce47b270b20",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4848723516099314,
+        -1.1491422508538522,
+        0.1285658796297441,
+        0.10850147956274497,
+        -0.33339467887099583,
+        0.03441163422887527,
+        -0.08430835359768563,
+        0.0016960202562812344,
+        -0.21148914314356385,
+        0.09299041341316135
+      ]
+    }
+  },
+  {
+    "episode": 19,
+    "frozen": {
+      "trajectory_sha256": "c37161f1a4e1cc4516a47cd1688551b333cc70086c56f065aed3aa58c4f7f875",
+      "map_position_sha256": "4e14f5d5178bffe4f0071404448b1e01022ecfa8862105b4818ab448ac2312a9",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "27542b67e67243c504baffaab7325261c983f912c886f2cf2f89a0335b0bbd4b",
+      "map_position_sha256": "ddce3f5bbf63d598c2e4cfc27616842d9a8bd60bd194347a59e6107bfcec3d2d",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "c37161f1a4e1cc4516a47cd1688551b333cc70086c56f065aed3aa58c4f7f875",
+      "map_position_sha256": "4e14f5d5178bffe4f0071404448b1e01022ecfa8862105b4818ab448ac2312a9",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8895371645180146,
+        -1.270283110526947,
+        0.0013505439112527365,
+        0.008526273274443955,
+        0.04585635129540369,
+        0.1,
+        -0.011344411835629113,
+        -0.004934290399834011,
+        0.09273525681810664,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "27542b67e67243c504baffaab7325261c983f912c886f2cf2f89a0335b0bbd4b",
+      "map_position_sha256": "ddce3f5bbf63d598c2e4cfc27616842d9a8bd60bd194347a59e6107bfcec3d2d",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8848935761983259,
+        -1.2720247044206099,
+        0.010095526026579465,
+        0.018030224159588007,
+        0.040730615837946786,
+        0.1,
+        -0.013302254606036401,
+        -0.01048707547841374,
+        0.0883923806522245,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 20,
+    "frozen": {
+      "trajectory_sha256": "0027ba791c61da098e060cd262970aa4eae25829051d5b70ccf6f7f259214942",
+      "map_position_sha256": "ebfd3bb879683442cd2a6060affffc85e12850c433fa099f3b1aaf5ec7970e21",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "0933210c0817b90e41fae720e22d71d41aeba3e8f2f3630bdced115343f3ad55",
+      "map_position_sha256": "583a0ae06a1c11b7a03d2e6fef106bfa6d34aa6e8b5b8196fb6468eb4a8d97c4",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "084550c0fb49729f48cb1041b50cdbb546e3a4de170b6cd3762edabc98cb2d5e",
+      "map_position_sha256": "04fcbdc447f11c69913654b9a12e7476e08b1d35a06a006b628090f982be1b57",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.9996561469857395,
+        -1.2783038604242574,
+        -0.033590629405587435,
+        -0.05808917882449886,
+        0.1861700364113195,
+        0.1,
+        0.04618328843450356,
+        -0.006620189156938277,
+        0.008060844197385984,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "0933210c0817b90e41fae720e22d71d41aeba3e8f2f3630bdced115343f3ad55",
+      "map_position_sha256": "583a0ae06a1c11b7a03d2e6fef106bfa6d34aa6e8b5b8196fb6468eb4a8d97c4",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6419943012614673,
+        -1.1721224958674201,
+        0.05807608069660346,
+        0.06141590082297709,
+        -0.19485324498557532,
+        0.1,
+        0.007377935881868282,
+        -0.02764840169702077,
+        -0.16606480377658067,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 21,
+    "frozen": {
+      "trajectory_sha256": "b2e7d068c0e39a0a2f4e21155b84aa396615ce9bdf127b904ccebb341130874e",
+      "map_position_sha256": "ed695052039f331bf594c9f2884fe90e05e25d5f4eedb5c6b255c68d059c725c",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "54ee87573c0c132a3ab1847dff13a112ec7e6ed2a97405ffee5d832428fe7ffd",
+      "map_position_sha256": "1640de0fa8ccbdaaf13f9ac1acea82ac6e88c0eb22a8a4953a7ff43f67fb23f5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "b2e7d068c0e39a0a2f4e21155b84aa396615ce9bdf127b904ccebb341130874e",
+      "map_position_sha256": "ed695052039f331bf594c9f2884fe90e05e25d5f4eedb5c6b255c68d059c725c",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5525993928162949,
+        -1.1767609872104934,
+        -0.10194597465034724,
+        -0.08804646858265988,
+        -0.2922083729660405,
+        -0.10201026066368526,
+        -0.03032884776840581,
+        -0.06877115540979788,
+        -0.10898386128522361,
+        -0.03306523720720052
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "54ee87573c0c132a3ab1847dff13a112ec7e6ed2a97405ffee5d832428fe7ffd",
+      "map_position_sha256": "1640de0fa8ccbdaaf13f9ac1acea82ac6e88c0eb22a8a4953a7ff43f67fb23f5",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7258930599814157,
+        -1.2118821643009021,
+        -0.08589260448098057,
+        -0.08463532033311015,
+        -0.11304057479932937,
+        0.1,
+        -0.011068565883641008,
+        -0.0672935213972046,
+        -0.11579658792481762,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 22,
+    "frozen": {
+      "trajectory_sha256": "87d8f4f66c88fa702812cdfeed9abe9ef7c266c9c28a041cc56d28422b191c10",
+      "map_position_sha256": "472a8bb1c7effba7629600f276289c2a331783b0d357d460973a39b81e1496d1",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "1ce89481fc756d60f6145d78b72de0a275295a1216d1685e37281a7d53cbb00d",
+      "map_position_sha256": "93f1989e3f47a02c70e390f9218115623ea0b4f52289a04a6d1fc9b723d71e5e",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "87d8f4f66c88fa702812cdfeed9abe9ef7c266c9c28a041cc56d28422b191c10",
+      "map_position_sha256": "472a8bb1c7effba7629600f276289c2a331783b0d357d460973a39b81e1496d1",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8590011099178105,
+        -1.25362104270437,
+        -0.031130778355619063,
+        -0.02156686653268099,
+        0.012334444692242189,
+        0.10868391445548298,
+        0.002992288776429054,
+        0.00038180048828640866,
+        0.003915203315173251,
+        -0.009701825783681488
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "1ce89481fc756d60f6145d78b72de0a275295a1216d1685e37281a7d53cbb00d",
+      "map_position_sha256": "93f1989e3f47a02c70e390f9218115623ea0b4f52289a04a6d1fc9b723d71e5e",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8504099449336586,
+        -1.2523570899996768,
+        -0.019872688239865384,
+        -0.019388536296674072,
+        0.011832499372722615,
+        0.1,
+        0.0011204378452759388,
+        0.0003828270300236091,
+        0.0039257280449322566,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 23,
+    "frozen": {
+      "trajectory_sha256": "26136614286440d77f5914995856d04b1702694078e07c56e0348aa00b73249e",
+      "map_position_sha256": "e612ad6a2a5d6ea438ede3eca11d8a1976960c44bae65a5d2031c2f53f5e0037",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "2c7742f89b1cdc4effbb426a6aaccb4d2bf279f5744b31652c8fabf408b6a7dc",
+      "map_position_sha256": "60ad82d192326c2245dc85fde1d6f9e95895a846e1c55ed1b828f01b890effd0",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "26136614286440d77f5914995856d04b1702694078e07c56e0348aa00b73249e",
+      "map_position_sha256": "e612ad6a2a5d6ea438ede3eca11d8a1976960c44bae65a5d2031c2f53f5e0037",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.507398626964552,
+        -1.1567782800402164,
+        0.045622678552658544,
+        0.045622678552658544,
+        -0.33088085789839594,
+        0.05048389287517367,
+        -0.10708257579818975,
+        -0.08681739243154561,
+        -0.2649553479004858,
+        -0.09875963300918733
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "2c7742f89b1cdc4effbb426a6aaccb4d2bf279f5744b31652c8fabf408b6a7dc",
+      "map_position_sha256": "60ad82d192326c2245dc85fde1d6f9e95895a846e1c55ed1b828f01b890effd0",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.722096355850564,
+        -1.1808484768520129,
+        -0.03548819742219122,
+        -0.016628413306164117,
+        -0.1246918890851821,
+        0.08680699450465709,
+        -0.01250884893427756,
+        -0.04821158396028715,
+        -0.09657018543301263,
+        -0.0031673989127923427
+      ]
+    }
+  },
+  {
+    "episode": 24,
+    "frozen": {
+      "trajectory_sha256": "0c3162b18dc051dfc1989148bfeda7ae46b1fdaed7c91c57186487fa4ccd77e9",
+      "map_position_sha256": "43fc0ad57a9d6747f2f71ddeb529f3015234d3769e1e6363cb9ff3076553d5c6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "0c3162b18dc051dfc1989148bfeda7ae46b1fdaed7c91c57186487fa4ccd77e9",
+      "map_position_sha256": "43fc0ad57a9d6747f2f71ddeb529f3015234d3769e1e6363cb9ff3076553d5c6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "0c3162b18dc051dfc1989148bfeda7ae46b1fdaed7c91c57186487fa4ccd77e9",
+      "map_position_sha256": "43fc0ad57a9d6747f2f71ddeb529f3015234d3769e1e6363cb9ff3076553d5c6",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.804303576526212,
+        -1.2313262063137742,
+        0.007260713215051875,
+        0.01705225485024357,
+        -0.040953275384256305,
+        0.1,
+        -0.008118375328120648,
+        -0.023781974415132034,
+        -0.007293168107188523,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "0c3162b18dc051dfc1989148bfeda7ae46b1fdaed7c91c57186487fa4ccd77e9",
+      "map_position_sha256": "43fc0ad57a9d6747f2f71ddeb529f3015234d3769e1e6363cb9ff3076553d5c6",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.804303576526212,
+        -1.2313262063137742,
+        0.007260713215051875,
+        0.01705225485024357,
+        -0.040953275384256305,
+        0.1,
+        -0.008118375328120648,
+        -0.023781974415132034,
+        -0.007293168107188523,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 25,
+    "frozen": {
+      "trajectory_sha256": "a926973b7e0830b161a3af8c1beb599174e4f8b094217a0f2de286a31b49c6bb",
+      "map_position_sha256": "9042564d43650447bad5e5fcfeb51af33b2aa0c67a67dfa873800f5fc0768830",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "8b350af34280a437570df1eb2d01c8d0ed9c6b0e767fef84a7bf7694a29a914e",
+      "map_position_sha256": "c5ed6f582e991d41b5b85aaa7482ca1bba65367476bb6c194ba5a667c46032fb",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "213e2fb143e70ef1c797db74e27f2f8855f424fbb9a946b25bafeab2ea73a41f",
+      "map_position_sha256": "8a2ae7c9e07982ec1cd170e25000947215c07cef5b024a0108aba3fde7ce0bfa",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5587359313229683,
+        -1.0131769953755974,
+        0.06630200340097925,
+        0.09607994165792978,
+        -0.2873419563725181,
+        0.12820867443520445,
+        -0.03880208164959196,
+        -0.01419098991167225,
+        -0.29429856879789845,
+        -0.046207190307648985
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "8b350af34280a437570df1eb2d01c8d0ed9c6b0e767fef84a7bf7694a29a914e",
+      "map_position_sha256": "c5ed6f582e991d41b5b85aaa7482ca1bba65367476bb6c194ba5a667c46032fb",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.420083589922448,
+        -0.9583087642154925,
+        0.23967428412812658,
+        0.21220621961858602,
+        -0.4128542123687104,
+        0.1,
+        -0.05903453700771629,
+        0.036146294966371784,
+        -0.15863459265386542,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 26,
+    "frozen": {
+      "trajectory_sha256": "612aaba819d37a1ca2eec2d5f7e7c1b7994b17f471ec917c46f0eca810429ec0",
+      "map_position_sha256": "c9216119152f4dab4763e330e563bd4f0f45d0b77339fac473ec27551c0b8094",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "985a314876c59547525ef649928886545e35d2c658494e4f1cc8e6ebb01800ef",
+      "map_position_sha256": "667f23f37c74b93262f4c80da4aa8f3385eb188497e8675e257d56a29c5123bf",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "612aaba819d37a1ca2eec2d5f7e7c1b7994b17f471ec917c46f0eca810429ec0",
+      "map_position_sha256": "c9216119152f4dab4763e330e563bd4f0f45d0b77339fac473ec27551c0b8094",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7727280249218993,
+        -1.160578817385683,
+        -0.034011916627440075,
+        -0.05613234231258742,
+        -0.046579023947132966,
+        0.1,
+        0.022061492893289205,
+        0.020911953512577214,
+        -0.1383946366889452,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "985a314876c59547525ef649928886545e35d2c658494e4f1cc8e6ebb01800ef",
+      "map_position_sha256": "667f23f37c74b93262f4c80da4aa8f3385eb188497e8675e257d56a29c5123bf",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6198016310121215,
+        -1.1525146645457134,
+        0.010572231801455457,
+        -0.009617976324614995,
+        -0.20367032229450768,
+        0.1,
+        0.013254850113973081,
+        -0.0030970176092369427,
+        -0.08710400270906209,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 27,
+    "frozen": {
+      "trajectory_sha256": "c9de89e938d1a2ffc198f0069a043a2df2474fc2ab22aad406cb32dea7a8285a",
+      "map_position_sha256": "59a4286eac43d32aeca48bd8c153ccfee55aaa5c49216d54337e5de7920b4ee8",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "52dec397826bec6d760f2e77059d6e9b71f498f80cae48dbf27fcc57ebc320fa",
+      "map_position_sha256": "d93d97c6e929d0f38fc6766aa1834659b0b31bc8459955aeadfe526932e83774",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "9706d3b1e7c7ec6d580956c06d189834c3eded69cc72f27c13063956042abfee",
+      "map_position_sha256": "5adfbb1e53f183098981e6173250f151a0dcfc663a6dc481b6b677eb5dd27857",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8933557035515214,
+        -1.2563724062170285,
+        -0.13192073731494797,
+        -0.1130041216098462,
+        0.04217211453457834,
+        0.11694904833639226,
+        0.018821714246222435,
+        -0.0002719525594923343,
+        0.005079757907291711,
+        -0.01574460578388028
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "52dec397826bec6d760f2e77059d6e9b71f498f80cae48dbf27fcc57ebc320fa",
+      "map_position_sha256": "d93d97c6e929d0f38fc6766aa1834659b0b31bc8459955aeadfe526932e83774",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8728298002157935,
+        -1.2563711870878909,
+        -0.12504402070769957,
+        -0.1107388551010784,
+        0.024636662768198026,
+        0.1,
+        0.017923953950942602,
+        -0.0048717372761042065,
+        0.0033230291180741224,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 28,
+    "frozen": {
+      "trajectory_sha256": "f96bc4982248055d52b6b4b2feea0ef1c38dc06ab099ecbfced45a699be617e2",
+      "map_position_sha256": "a7f05bbf8b9fafb725b0581003575e0dbaf085fec830e7c9f33b0c0cb1dad3e2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "e0d2750f829b7a33cf8acf79d664652d02fb36556b97c0944022f6d622991e6e",
+      "map_position_sha256": "d814e74dc89ed48b2985a2956bc8e763aa881b6cbf45835f4aafec7844c739a7",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "9f1e2b532c0a751a8eb5c0b233c10d2535b0ddbd75a94f40f36d906359a07b64",
+      "map_position_sha256": "07a9cecfcd8c08cdc4d72b9daf94c0e0a03cd0c74f610231770adca90fc13cd8",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5448100570534606,
+        -1.175547022431167,
+        0.0349400111685467,
+        0.05094481865751195,
+        -0.2946078541267076,
+        0.1,
+        -0.03566704781573437,
+        0.12375944160400841,
+        -0.09380015556900125,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "e0d2750f829b7a33cf8acf79d664652d02fb36556b97c0944022f6d622991e6e",
+      "map_position_sha256": "d814e74dc89ed48b2985a2956bc8e763aa881b6cbf45835f4aafec7844c739a7",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.512892749824688,
+        -1.2035258883791304,
+        0.16223779066694896,
+        0.09560964847322956,
+        -0.2956016478833723,
+        0.05492412573129854,
+        -0.023321674488713275,
+        0.04010791985622491,
+        -0.07557303711116348,
+        0.05576610417278459
+      ]
+    }
+  },
+  {
+    "episode": 29,
+    "frozen": {
+      "trajectory_sha256": "6465fde078f1a79547710c9c19bbac96876301f1035bb63fc035d9ec4af25b82",
+      "map_position_sha256": "3894a4b9b73135e4b89f3d4db31a2b1683cf5cada8ae70de48dbc076bb317ce3",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "c23190962165a3188e88aad363ad8f0f92ccc69838e93023721f654fe21053ed",
+      "map_position_sha256": "95187db1e2db70811288cc5f2b60e122a4ed75d007f92c2120fbfec88880152e",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "6465fde078f1a79547710c9c19bbac96876301f1035bb63fc035d9ec4af25b82",
+      "map_position_sha256": "3894a4b9b73135e4b89f3d4db31a2b1683cf5cada8ae70de48dbc076bb317ce3",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.9446570654117956,
+        -1.2728430933070218,
+        -0.025542615448574515,
+        -0.01897606088599107,
+        0.10289908073265212,
+        0.1,
+        0.004063665620042063,
+        -0.0061877543278728514,
+        0.09886647653816773,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "c23190962165a3188e88aad363ad8f0f92ccc69838e93023721f654fe21053ed",
+      "map_position_sha256": "95187db1e2db70811288cc5f2b60e122a4ed75d007f92c2120fbfec88880152e",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8334570735164397,
+        -1.2655220133661294,
+        -0.02335572772263499,
+        -0.015873539734260957,
+        -0.008002002747160572,
+        0.1,
+        -0.010970292734546083,
+        -0.000574066084554775,
+        -0.012058247255012906,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 30,
+    "frozen": {
+      "trajectory_sha256": "e10655920c8f91e213d3ed59594d024bb21765fbaffa06bb714aeb5021a08b7f",
+      "map_position_sha256": "a3b5057c8f134167a06c313333ec3f5962e57bbab180da87da1217f9125e3c37",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "e10655920c8f91e213d3ed59594d024bb21765fbaffa06bb714aeb5021a08b7f",
+      "map_position_sha256": "a3b5057c8f134167a06c313333ec3f5962e57bbab180da87da1217f9125e3c37",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "e10655920c8f91e213d3ed59594d024bb21765fbaffa06bb714aeb5021a08b7f",
+      "map_position_sha256": "a3b5057c8f134167a06c313333ec3f5962e57bbab180da87da1217f9125e3c37",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "e10655920c8f91e213d3ed59594d024bb21765fbaffa06bb714aeb5021a08b7f",
+      "map_position_sha256": "a3b5057c8f134167a06c313333ec3f5962e57bbab180da87da1217f9125e3c37",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 31,
+    "frozen": {
+      "trajectory_sha256": "cea8c7ef85d4c15db0fa07e150a3fd461f93329f9e78db41d93e4881eefc4b3f",
+      "map_position_sha256": "a6dee128fd265a1eb76b51d7453441bcda39302d8e5b26cc03716dc49b40f131",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "55266d2627e4396b07194c14a7b1230a4894d14d0ee17eb1853eb8dd06bceb39",
+      "map_position_sha256": "3eeaf3c8df0549cd3fa71ebf164cc0fb45926e925158b630810cfacc31ab924d",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "cea8c7ef85d4c15db0fa07e150a3fd461f93329f9e78db41d93e4881eefc4b3f",
+      "map_position_sha256": "a6dee128fd265a1eb76b51d7453441bcda39302d8e5b26cc03716dc49b40f131",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7583710176591725,
+        -1.230288431654892,
+        -0.02977706427486091,
+        -0.019321499718689,
+        -0.08560525308497399,
+        0.1,
+        -0.012196567458444888,
+        0.008609791594534648,
+        0.008740719306109179,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "55266d2627e4396b07194c14a7b1230a4894d14d0ee17eb1853eb8dd06bceb39",
+      "map_position_sha256": "3eeaf3c8df0549cd3fa71ebf164cc0fb45926e925158b630810cfacc31ab924d",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7545896757364359,
+        -1.230548941603213,
+        -0.02488605504964597,
+        -0.014285030871489657,
+        -0.0894633089572301,
+        0.1,
+        -0.011940166726125552,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 32,
+    "frozen": {
+      "trajectory_sha256": "21717ceea51bded506f7a81786a57dc78ca594b7b7dc4be786ec3055dece5ed2",
+      "map_position_sha256": "389c0d6c35f930940cbfe1a9a8e6424533c3fcc9e26d94fddffc48b3c0819275",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "adeae3b4f4a31f05f1a31111b013e0fe9623a74a40ca26656945924c0105a32a",
+      "map_position_sha256": "33a55eeabb91a05fd7fa61f5f14fa38acc925deb08adddf9b111aac07db48e3e",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "21717ceea51bded506f7a81786a57dc78ca594b7b7dc4be786ec3055dece5ed2",
+      "map_position_sha256": "389c0d6c35f930940cbfe1a9a8e6424533c3fcc9e26d94fddffc48b3c0819275",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5593936878689665,
+        -1.2115398751603987,
+        -0.025663883503020603,
+        -0.025663883503020603,
+        -0.2788857969939815,
+        0.11169520547722404,
+        -0.1070099853150683,
+        -0.0915750726103975,
+        -0.10124724040010373,
+        -0.008394111423131631
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "adeae3b4f4a31f05f1a31111b013e0fe9623a74a40ca26656945924c0105a32a",
+      "map_position_sha256": "33a55eeabb91a05fd7fa61f5f14fa38acc925deb08adddf9b111aac07db48e3e",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5832601024726851,
+        -1.2058039471647135,
+        0.012099169949551241,
+        0.012099169949551241,
+        -0.255019382390263,
+        0.11169520547722404,
+        -0.0990064885629206,
+        -0.01329803302706762,
+        -0.0738979414453173,
+        -0.008394111423131631
+      ]
+    }
+  },
+  {
+    "episode": 33,
+    "frozen": {
+      "trajectory_sha256": "fe3d3bd1ffb866e7ed2a3409590f9ef4c5d6296cac9fc236596956ac23d4ce0d",
+      "map_position_sha256": "3206a0159f5a249e68b1c35d7987df32602ba4ce3d13e02bfef30f60cdeadf35",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "47db7d6c76bbcb6ebd48b975e0996dc035160acc6566e788522ab984fcfdd983",
+      "map_position_sha256": "d8cb70e4b037d0f653c777201e8922563f4cf8943dbeb77e673fffe8df722ea5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "fe3d3bd1ffb866e7ed2a3409590f9ef4c5d6296cac9fc236596956ac23d4ce0d",
+      "map_position_sha256": "3206a0159f5a249e68b1c35d7987df32602ba4ce3d13e02bfef30f60cdeadf35",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.741686790793695,
+        -1.2523377620030152,
+        0.17096200800450753,
+        0.11789457421610954,
+        -0.05709303387450804,
+        0.1,
+        0.07130953622227124,
+        -0.09361247335898909,
+        -0.0743714626458599,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "47db7d6c76bbcb6ebd48b975e0996dc035160acc6566e788522ab984fcfdd983",
+      "map_position_sha256": "d8cb70e4b037d0f653c777201e8922563f4cf8943dbeb77e673fffe8df722ea5",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.9442515970294227,
+        -1.2352165990985358,
+        0.02565660525971376,
+        0.024316395868235006,
+        0.10959056949099899,
+        0.15420217325635174,
+        -0.014745432747709458,
+        -0.027389770317343007,
+        0.13200957214386208,
+        -0.03151617095550435
+      ]
+    }
+  },
+  {
+    "episode": 34,
+    "frozen": {
+      "trajectory_sha256": "1784f67258513b110c1323d75c9abaa13eb16f3838d9455b2be4f4117974ef27",
+      "map_position_sha256": "accdf2eed7c91bd5efa9ff16fb16a7ad302e06b600e50dd462031dc12e71371b",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "1784f67258513b110c1323d75c9abaa13eb16f3838d9455b2be4f4117974ef27",
+      "map_position_sha256": "accdf2eed7c91bd5efa9ff16fb16a7ad302e06b600e50dd462031dc12e71371b",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "1784f67258513b110c1323d75c9abaa13eb16f3838d9455b2be4f4117974ef27",
+      "map_position_sha256": "accdf2eed7c91bd5efa9ff16fb16a7ad302e06b600e50dd462031dc12e71371b",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8466003325129001,
+        -1.2528918994181757,
+        -0.013001292536382297,
+        -0.012469787501840083,
+        0.008022341797974156,
+        0.1,
+        5.595448745236267e-05,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "1784f67258513b110c1323d75c9abaa13eb16f3838d9455b2be4f4117974ef27",
+      "map_position_sha256": "accdf2eed7c91bd5efa9ff16fb16a7ad302e06b600e50dd462031dc12e71371b",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8466003325129001,
+        -1.2528918994181757,
+        -0.013001292536382297,
+        -0.012469787501840083,
+        0.008022341797974156,
+        0.1,
+        5.595448745236267e-05,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 35,
+    "frozen": {
+      "trajectory_sha256": "b3626b3b87472e3e26d0c6fec1a1747c39a93b199a88bd0804fd8959763af814",
+      "map_position_sha256": "5809011d3017f1ab797807d92921d875212388fffd9ed9ae3d4e48fc9591f7b1",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "b3626b3b87472e3e26d0c6fec1a1747c39a93b199a88bd0804fd8959763af814",
+      "map_position_sha256": "5809011d3017f1ab797807d92921d875212388fffd9ed9ae3d4e48fc9591f7b1",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "b3626b3b87472e3e26d0c6fec1a1747c39a93b199a88bd0804fd8959763af814",
+      "map_position_sha256": "5809011d3017f1ab797807d92921d875212388fffd9ed9ae3d4e48fc9591f7b1",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.836935054567274,
+        -1.2329693850118564,
+        0.002226118525625844,
+        0.0,
+        0.0,
+        0.1,
+        -0.004501529855324126,
+        -0.010933587015928998,
+        0.006540426496537733,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "b3626b3b87472e3e26d0c6fec1a1747c39a93b199a88bd0804fd8959763af814",
+      "map_position_sha256": "5809011d3017f1ab797807d92921d875212388fffd9ed9ae3d4e48fc9591f7b1",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.836935054567274,
+        -1.2329693850118564,
+        0.002226118525625844,
+        0.0,
+        0.0,
+        0.1,
+        -0.004501529855324126,
+        -0.010933587015928998,
+        0.006540426496537733,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 36,
+    "frozen": {
+      "trajectory_sha256": "7cb94dd536ea5a3797a817cd0321fb735bd04937b09519be7a979bfbc26028fd",
+      "map_position_sha256": "ed50983958ba575dda7de695192bc16f24d026295c07f475be90fc28aa49bd13",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "0951a13a6fd70dffaa110340cef2c9893903f36641a7e30a08f6faa30c406165",
+      "map_position_sha256": "aa91f041ee722d288fd3d3d7bdc436fad81393e3fb315406b6946bb31526d19d",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "7cb94dd536ea5a3797a817cd0321fb735bd04937b09519be7a979bfbc26028fd",
+      "map_position_sha256": "ed50983958ba575dda7de695192bc16f24d026295c07f475be90fc28aa49bd13",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7845215615839543,
+        -1.2221676801312766,
+        -0.0703754906826626,
+        -0.043585371427139016,
+        -0.07506946449918742,
+        0.10797293124234468,
+        -0.0039057079704780786,
+        0.005971789484556473,
+        0.032507010645197947,
+        -0.00879862056372947
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "0951a13a6fd70dffaa110340cef2c9893903f36641a7e30a08f6faa30c406165",
+      "map_position_sha256": "aa91f041ee722d288fd3d3d7bdc436fad81393e3fb315406b6946bb31526d19d",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8894698127803276,
+        -1.255189489294136,
+        -0.06128582320636653,
+        -0.04611793213933194,
+        0.04068372609798129,
+        0.1,
+        0.006560492266556814,
+        0.0008531229658371777,
+        0.0008712047425010907,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 37,
+    "frozen": {
+      "trajectory_sha256": "9e18c65e6c7c54226729f5c97d1bbfa0814cc5760837434936862d086750a9ec",
+      "map_position_sha256": "7acda6d9cc61f8aecbcef15ed8cdc2141738f1b464ff07d2e5c694f78916e2c9",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "5f6a75e55a2f8d7561426350ed871310f7ab21eaa741a9b02b58a97b6c06e15a",
+      "map_position_sha256": "e1ffe5307bb3fa222b27cfaa15c6a15a59395a6f5332a5f31aca5d58f0df88d0",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "745d3f1418c2b518d01eda7e94c568795dc2f1d14d08018e002f517369038098",
+      "map_position_sha256": "af61e38baba8511dedeaf923e5af7c620c008c8dbaea597e61985c70922e6c24",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.771194239507519,
+        -1.2295702076613222,
+        0.02493292757687021,
+        -0.0004815118965191703,
+        -0.034400352302813415,
+        0.257963381822445,
+        -0.1355956184671128,
+        0.15760730717490642,
+        -0.23743834523954463,
+        0.024927521557480053
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "5f6a75e55a2f8d7561426350ed871310f7ab21eaa741a9b02b58a97b6c06e15a",
+      "map_position_sha256": "e1ffe5307bb3fa222b27cfaa15c6a15a59395a6f5332a5f31aca5d58f0df88d0",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.952378352150902,
+        -1.2465111170501668,
+        0.024345359949306658,
+        0.07933619241634535,
+        0.08280035713486428,
+        0.1542267809040431,
+        0.04514977520581606,
+        -0.019695115208865882,
+        -0.0859492277538929,
+        -0.026513261991032447
+      ]
+    }
+  },
+  {
+    "episode": 38,
+    "frozen": {
+      "trajectory_sha256": "d3ea7940cef8f98212ebc12a644da2c2abc598201f62c29e85e68b1eefc44916",
+      "map_position_sha256": "5cfb0bcee01fd57d2df8c02eaf3562a57aa09c8c60ba9f886b6f8a7fe77706ab",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "c3da0a38a3dfd22f8687387ea7be9205aff02503473016c6c9a46851667c2d9a",
+      "map_position_sha256": "920d9b186f8d56bf3a459101631e18840f52b63118e80b11cc06bf6554385491",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "e8c698cd104cc0fa3c8ac40b94c9037df1a999dbf83a236ddb175cb5b89a14fb",
+      "map_position_sha256": "e12c90efa2dcf4e51886b585da2c43217a34142158479ebeed13ab673051e17b",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6001906360303104,
+        -1.1707683746271038,
+        -0.1723939537088298,
+        -0.09929242991594914,
+        -0.2661867998707808,
+        0.13785846413420233,
+        -0.01331325034145119,
+        -0.030793127970196153,
+        0.04295711065534146,
+        -0.05143261716071569
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "c3da0a38a3dfd22f8687387ea7be9205aff02503473016c6c9a46851667c2d9a",
+      "map_position_sha256": "920d9b186f8d56bf3a459101631e18840f52b63118e80b11cc06bf6554385491",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.735323155891545,
+        -1.1981559139285054,
+        -0.06675951707491162,
+        -0.008501346643779606,
+        -0.12757829009222194,
+        0.017469604301308228,
+        -0.0727458400169595,
+        -0.025074754187166856,
+        0.13539963090711724,
+        0.04389868012609135
+      ]
+    }
+  },
+  {
+    "episode": 39,
+    "frozen": {
+      "trajectory_sha256": "b88cd62517dbaed4c6b7e36c40b5c6e00ac98560797183d7b4b756c712bda017",
+      "map_position_sha256": "228a78795fbf6416787e1df3b173349e862ffc7de3bc91797acca187d65b140c",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "379a4bfc26cfd502da20f80848d06f076a2e0199f59a26333256c8e2caf8d499",
+      "map_position_sha256": "92db48374d00c64d860fee8e71b87c21136d7135a15527b45bd4a108e694122e",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "b88cd62517dbaed4c6b7e36c40b5c6e00ac98560797183d7b4b756c712bda017",
+      "map_position_sha256": "228a78795fbf6416787e1df3b173349e862ffc7de3bc91797acca187d65b140c",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.830368602442798,
+        -1.2330561600515952,
+        0.014344062204379048,
+        0.014344062204379048,
+        -0.007910882420149945,
+        0.1,
+        0.0002297208945913088,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "379a4bfc26cfd502da20f80848d06f076a2e0199f59a26333256c8e2caf8d499",
+      "map_position_sha256": "92db48374d00c64d860fee8e71b87c21136d7135a15527b45bd4a108e694122e",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.339691020157007,
+        -0.9958160095223032,
+        0.1710518088259803,
+        0.056244898120476165,
+        -0.449389203876231,
+        0.09716330498745299,
+        -0.06950492607851647,
+        -0.08065222938582534,
+        -0.19265762136003942,
+        0.0028647455223748714
+      ]
+    }
+  },
+  {
+    "episode": 40,
+    "frozen": {
+      "trajectory_sha256": "4a68d8ea99287339b6c73238b9718ffb15ff8933978fc0af8201dfdd22ba5aff",
+      "map_position_sha256": "215e202d00af641494202edecac0162ddc141ed02ecd4702bfc7b8f016bbcc6c",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "3d797438a601e080b4a3e80dc85c5472c2f5e6aed8a05cfbe92ff15a615a6812",
+      "map_position_sha256": "6480e71053e202e2da483f5d1c6c06ccff99b16828baa04ab82e7b724a62bb85",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "6d4f0a62daa58387bb6f8bc395846b0be0290bef2f1e647252bfc19328a066cd",
+      "map_position_sha256": "23fabacb53d48f6986beda917edc3c29f464dd6811577938d84c2902c6187c94",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8215104502088957,
+        -1.2382251031101497,
+        -0.04744761646874858,
+        -0.014640686949785035,
+        -0.03827606216409803,
+        0.11125163359467093,
+        -0.04085375975056163,
+        0.060750013258381835,
+        -0.11870375230050967,
+        -0.008343947653331367
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "3d797438a601e080b4a3e80dc85c5472c2f5e6aed8a05cfbe92ff15a615a6812",
+      "map_position_sha256": "6480e71053e202e2da483f5d1c6c06ccff99b16828baa04ab82e7b724a62bb85",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.9418140097169978,
+        -1.2492934425206754,
+        -0.056709846918199566,
+        -0.03611069950834855,
+        0.08715494667600102,
+        0.1069512775394957,
+        0.01769680387691016,
+        -0.005615150937168092,
+        0.004122893451601378,
+        -0.007246203899329971
+      ]
+    }
+  },
+  {
+    "episode": 41,
+    "frozen": {
+      "trajectory_sha256": "2a28430c71534ce28579dd7bc16f8e889af73d1b473aedd1e604a8b45bfbf304",
+      "map_position_sha256": "4d1a3ea51b31298933fc77f83d7b749345e458ea25602d4f81fe50b7888ac158",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "2a28430c71534ce28579dd7bc16f8e889af73d1b473aedd1e604a8b45bfbf304",
+      "map_position_sha256": "4d1a3ea51b31298933fc77f83d7b749345e458ea25602d4f81fe50b7888ac158",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "2a28430c71534ce28579dd7bc16f8e889af73d1b473aedd1e604a8b45bfbf304",
+      "map_position_sha256": "4d1a3ea51b31298933fc77f83d7b749345e458ea25602d4f81fe50b7888ac158",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7945028543700632,
+        -1.221649151907947,
+        0.08566256343965621,
+        -0.024624874656142045,
+        0.019624158666416567,
+        0.12298687558419348,
+        -0.007298315634277255,
+        0.05718404560773239,
+        -0.03349350890103549,
+        -0.022986875584193465
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "2a28430c71534ce28579dd7bc16f8e889af73d1b473aedd1e604a8b45bfbf304",
+      "map_position_sha256": "4d1a3ea51b31298933fc77f83d7b749345e458ea25602d4f81fe50b7888ac158",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7945028543700632,
+        -1.221649151907947,
+        0.08566256343965621,
+        -0.024624874656142045,
+        0.019624158666416567,
+        0.12298687558419348,
+        -0.007298315634277255,
+        0.05718404560773239,
+        -0.03349350890103549,
+        -0.022986875584193465
+      ]
+    }
+  },
+  {
+    "episode": 42,
+    "frozen": {
+      "trajectory_sha256": "6dd8b69a88f5c214ae42d1bad701583bb49a0abfc19c508c5d4eca3fe795d938",
+      "map_position_sha256": "e1aaf5cb325222c44d5aa94696e2738753c93c6ad4c4203af37d5493181b29a3",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "2d8ee0e2d950a7ef01dd3b07bb4cffbca8f1a7ed3f469c8b1773366731fc895f",
+      "map_position_sha256": "855f36f6583045b79480d0f209c7f5ab2df3844cfdf60590bac534b985b68d62",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "6dd8b69a88f5c214ae42d1bad701583bb49a0abfc19c508c5d4eca3fe795d938",
+      "map_position_sha256": "e1aaf5cb325222c44d5aa94696e2738753c93c6ad4c4203af37d5493181b29a3",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.9077276989941123,
+        -1.2548271908326831,
+        -0.04819691470031107,
+        -0.023107058485492236,
+        0.0522081192225211,
+        0.1557181352090402,
+        0.0012757033881741833,
+        -0.008351993148673124,
+        0.005526031842561059,
+        -0.025662566493964586
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "2d8ee0e2d950a7ef01dd3b07bb4cffbca8f1a7ed3f469c8b1773366731fc895f",
+      "map_position_sha256": "855f36f6583045b79480d0f209c7f5ab2df3844cfdf60590bac534b985b68d62",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.671757510521233,
+        -1.074310904490844,
+        -0.1352561410596387,
+        -0.03272224961040155,
+        -0.20939771148917233,
+        0.12310039882668974,
+        -0.014699533197845895,
+        0.03076194098442061,
+        0.030349928918634618,
+        -0.028239751301764548
+      ]
+    }
+  },
+  {
+    "episode": 43,
+    "frozen": {
+      "trajectory_sha256": "cbdb85b1d321b5940186072676ad89d918e144445e67d20d738515c1c1f3467b",
+      "map_position_sha256": "c6228871b737e3ee6f49f56e5b0d9dbea5ef786768da2e83387d15a207a3f6e2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "bcfe14fa12842b932174040a6802bd611af5db5e4ec362b0866cb84e5a4fef8c",
+      "map_position_sha256": "8c61222befa4e8b42bcbe3a5f01d5ae521e0dfaf9a613916b0358adcdf45f5a9",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "cbdb85b1d321b5940186072676ad89d918e144445e67d20d738515c1c1f3467b",
+      "map_position_sha256": "c6228871b737e3ee6f49f56e5b0d9dbea5ef786768da2e83387d15a207a3f6e2",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7256101377355726,
+        -1.2170885452953104,
+        -0.13061227210234405,
+        -0.09940436752566843,
+        -0.13176390306998406,
+        0.1,
+        0.002671344797978697,
+        0.012863902028235742,
+        0.0071377186205174754,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "bcfe14fa12842b932174040a6802bd611af5db5e4ec362b0866cb84e5a4fef8c",
+      "map_position_sha256": "8c61222befa4e8b42bcbe3a5f01d5ae521e0dfaf9a613916b0358adcdf45f5a9",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8304274134313483,
+        -1.2257539312905645,
+        -0.09166187846113527,
+        -0.07736767670371539,
+        -0.01689801503649617,
+        0.1,
+        0.012302066173428905,
+        0.005144183049520295,
+        0.0032630208571186687,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 44,
+    "frozen": {
+      "trajectory_sha256": "959956a4fc56618d2fc14a87df8dfad6ccd9e591abce2b752d58c7671e0688f2",
+      "map_position_sha256": "940a160948d26e5a9a4c14ceecc0ec8c0c9cb1b200a0b7200c34eb8e0054251f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "8a9f83691586a872886bf653eabf3f34078ffa1f96d6a645bbeb0576b13bde92",
+      "map_position_sha256": "9e097961c401133e004e2dff6eae17c0d46e7ea0f158c752263f33384e66a05f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "440d83e6aa36d97651b6fb96238db8a8f596b9995873d2551a037e856a28f60f",
+      "map_position_sha256": "260cdad280a74f10d297954ba9eacd5ec6ad3dc6880ab2eb071401d7b4723330",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.834803710903152,
+        -1.1641693965528708,
+        -0.1532524533665296,
+        -0.13289136231657644,
+        -0.015183935467199898,
+        0.23821923439678014,
+        0.04523809179813873,
+        0.014042656720903598,
+        -0.059860012966410296,
+        -0.00929720007324757
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "8a9f83691586a872886bf653eabf3f34078ffa1f96d6a645bbeb0576b13bde92",
+      "map_position_sha256": "9e097961c401133e004e2dff6eae17c0d46e7ea0f158c752263f33384e66a05f",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7391289307269955,
+        -1.2029843558771227,
+        0.0036248398621975576,
+        0.0036248398621975576,
+        -0.0991505541359524,
+        0.1,
+        -0.0017069950565258723,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 45,
+    "frozen": {
+      "trajectory_sha256": "be0b9316db8be3462206ea3783a24c1aec322e96f7c83a61cfd80a39b288f368",
+      "map_position_sha256": "4f1c59d896997f556f886628c5892a9d7069ece6cd2fac12258dce6990081bea",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "be0b9316db8be3462206ea3783a24c1aec322e96f7c83a61cfd80a39b288f368",
+      "map_position_sha256": "4f1c59d896997f556f886628c5892a9d7069ece6cd2fac12258dce6990081bea",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "be0b9316db8be3462206ea3783a24c1aec322e96f7c83a61cfd80a39b288f368",
+      "map_position_sha256": "4f1c59d896997f556f886628c5892a9d7069ece6cd2fac12258dce6990081bea",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8358727014145106,
+        -1.2344605406301452,
+        -0.0056393512687726,
+        -0.007186685528084096,
+        0.004787042150843408,
+        0.1,
+        0.0012690225788728208,
+        0.00038147589245922473,
+        0.0006896728817837319,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "be0b9316db8be3462206ea3783a24c1aec322e96f7c83a61cfd80a39b288f368",
+      "map_position_sha256": "4f1c59d896997f556f886628c5892a9d7069ece6cd2fac12258dce6990081bea",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8358727014145106,
+        -1.2344605406301452,
+        -0.0056393512687726,
+        -0.007186685528084096,
+        0.004787042150843408,
+        0.1,
+        0.0012690225788728208,
+        0.00038147589245922473,
+        0.0006896728817837319,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 46,
+    "frozen": {
+      "trajectory_sha256": "5c47b861c605126c281e28e7b8d87a2c68c08b9e82cb62afcf1a54d0ed5ea3b3",
+      "map_position_sha256": "38e39cbdefcbab5a79f5baa308e5e34bb614b2bda8c10de468923cb1b55c91ee",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "29b93e8ac665ade8af4db6dcedb32e7ef5c9426cb00a573c9fc1bff4a5b4e90c",
+      "map_position_sha256": "bc041e427172cdb52520911bd0e28f4c94471de7bc25909e5d0bd83ee703c0f2",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "5c47b861c605126c281e28e7b8d87a2c68c08b9e82cb62afcf1a54d0ed5ea3b3",
+      "map_position_sha256": "38e39cbdefcbab5a79f5baa308e5e34bb614b2bda8c10de468923cb1b55c91ee",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.654279294892035,
+        -1.2262388332247827,
+        -0.043561767347288116,
+        -0.02585569005974023,
+        -0.19339362627063708,
+        -0.03804603774314742,
+        -0.03286470702000539,
+        -0.0006386553860303649,
+        -0.09397672019248908,
+        0.05176131642565574
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "29b93e8ac665ade8af4db6dcedb32e7ef5c9426cb00a573c9fc1bff4a5b4e90c",
+      "map_position_sha256": "bc041e427172cdb52520911bd0e28f4c94471de7bc25909e5d0bd83ee703c0f2",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5323315992137827,
+        -1.174734916865916,
+        0.0615026991643467,
+        0.029062834620568904,
+        -0.3023559259416122,
+        0.1,
+        -0.0324430958554722,
+        0.06770167770287143,
+        -0.059317690502532786,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 47,
+    "frozen": {
+      "trajectory_sha256": "632c20b614753c7b6f5f7acd858bc7daae95a715b0c4455e277130044d92f946",
+      "map_position_sha256": "af89ffc40ef4d7322e00c2c1b3f9a994ec14231c0902f00bbce0d1b0f5d07286",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "f5f66f9044826471e4366a1aae82febf08a2b998a73f761e3db4d043201b921b",
+      "map_position_sha256": "116f236bbac42f07e5da3951357b58faaf0493187099fd0792eddd9e0a45d17f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "2885def401bc5e95095f62ad1e3c56694a0e7c3f7d3e9805a11e79fd73d19703",
+      "map_position_sha256": "c94fc105a7188be951f9b7d674738c7ed25b637b54e2802bdeb53a096bd09cce",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4491046942909178,
+        -1.1144369842214092,
+        -0.005467586062768174,
+        -0.05205149141877851,
+        -0.3505868307024333,
+        0.053013113132058115,
+        -0.04723827506994417,
+        0.002006581438300916,
+        -0.39285107078897297,
+        0.03453530198558046
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "f5f66f9044826471e4366a1aae82febf08a2b998a73f761e3db4d043201b921b",
+      "map_position_sha256": "116f236bbac42f07e5da3951357b58faaf0493187099fd0792eddd9e0a45d17f",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4977454377032824,
+        -1.1038670463089795,
+        0.04269348818606791,
+        -0.0270150854214698,
+        -0.29185763307277635,
+        0.03692312721685703,
+        -0.05368429490733113,
+        0.020988696920863074,
+        -0.3780410851858097,
+        0.05505902904882872
+      ]
+    }
+  },
+  {
+    "episode": 48,
+    "frozen": {
+      "trajectory_sha256": "5282cb41b61d1f3b091d68e8b93be5c2dadcf04ad4daccce0e4a7c1b64623345",
+      "map_position_sha256": "697b20b541c118f5ff20928a6f30f158246df59a59686b2dc5eec24616d954af",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "ef0c381bb691a90df8bdd33e0c0e76fc3eaf820e58b78281ed7b126926ffe4c8",
+      "map_position_sha256": "4adb0ba523886358b147acbe5d2235d047a3def3d162bc34bfb9579e25df9f3b",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "5282cb41b61d1f3b091d68e8b93be5c2dadcf04ad4daccce0e4a7c1b64623345",
+      "map_position_sha256": "697b20b541c118f5ff20928a6f30f158246df59a59686b2dc5eec24616d954af",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6430724915347645,
+        -1.1752138505800012,
+        0.010354945628639513,
+        0.010354945628639513,
+        -0.19520699332818336,
+        0.1,
+        -0.0221007295728263,
+        -0.028031098731483302,
+        0.006016219711918501,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "ef0c381bb691a90df8bdd33e0c0e76fc3eaf820e58b78281ed7b126926ffe4c8",
+      "map_position_sha256": "4adb0ba523886358b147acbe5d2235d047a3def3d162bc34bfb9579e25df9f3b",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.694732521445806,
+        -1.2070939526054805,
+        0.04453144917340696,
+        -0.12432116048408717,
+        -0.05388788179386547,
+        0.1,
+        -0.003661796811512559,
+        0.0565088916577992,
+        -0.02680149662132866,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 49,
+    "frozen": {
+      "trajectory_sha256": "95797fb7fb49d5034f9af00174a5974324cd28b970506525ed411ae469fcabd5",
+      "map_position_sha256": "efe9382f63bfbdcbaa655a0a0c3bdd006404386998ed91310f037332635f6890",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "9ee659f841f776bf6626803dd1b6ca0918f3773bf6bb8d04eb806422e11c5620",
+      "map_position_sha256": "3c95013c6938c2ceab375b0b97122653a21ec742c9c82dae56b6e04d3f93c4bb",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "95797fb7fb49d5034f9af00174a5974324cd28b970506525ed411ae469fcabd5",
+      "map_position_sha256": "efe9382f63bfbdcbaa655a0a0c3bdd006404386998ed91310f037332635f6890",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6621364884202252,
+        -1.185849589568919,
+        -0.019168765486433134,
+        -0.07386718143922706,
+        -0.14707653815354454,
+        0.1,
+        0.0065941943542841466,
+        0.10181211723848813,
+        -0.2353397614622966,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "9ee659f841f776bf6626803dd1b6ca0918f3773bf6bb8d04eb806422e11c5620",
+      "map_position_sha256": "3c95013c6938c2ceab375b0b97122653a21ec742c9c82dae56b6e04d3f93c4bb",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7317553996766935,
+        -1.1395303524227935,
+        0.005762285404611392,
+        0.018777849364677267,
+        -0.11203354287955503,
+        0.1,
+        0.01576413957516948,
+        0.01460214210784066,
+        0.060363213469967286,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 50,
+    "frozen": {
+      "trajectory_sha256": "4b03d79a7ebde5cb20449803a59ae1f9284d7287e3a040f63e309605e6cfb7d2",
+      "map_position_sha256": "788042127276fe81810540c0a6d140eef939c8b36f93f9c022ba4f0f889bd041",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "4ffcae6a3d2ffbfa69b00fa6d6ecf0b3dcc024730b079ac48ba7329264c435fe",
+      "map_position_sha256": "5013e1fd66e909f0d1041953024266401646cdf22e6caa183e920dfc438b3847",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "b10ba081ebdce32de7d963479a5b22f1174f09a516761ebd6c48cf2a591c9413",
+      "map_position_sha256": "521fe85600811eaa86ea2b6709c6f334388973669a70850f25a36dc1a2142208",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4959435609764924,
+        -1.1619789648769734,
+        -0.03438138965169198,
+        -0.02471321973100246,
+        -0.34925442685637886,
+        0.10126370094952782,
+        -0.029341744985993057,
+        0.10068298145840425,
+        -0.2640719329493444,
+        -0.001294378462429287
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "4ffcae6a3d2ffbfa69b00fa6d6ecf0b3dcc024730b079ac48ba7329264c435fe",
+      "map_position_sha256": "5013e1fd66e909f0d1041953024266401646cdf22e6caa183e920dfc438b3847",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5302493045508865,
+        -1.089867203386757,
+        -0.05037795972575696,
+        -0.041853517749548104,
+        -0.3153405251575988,
+        0.1,
+        0.011654266484580027,
+        0.1808859099394324,
+        -0.23300966662090658,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 51,
+    "frozen": {
+      "trajectory_sha256": "d4af4d9713bc728b61e5e4b4276a8c7d54e5dce1b22b37b2933dad3f5fa73bce",
+      "map_position_sha256": "27de3822f12a0e6b2afb80b657460e9865f71d665f772b0647898b8b6dbb75f1",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "2d1298e9a8e3ca456a069f5d5d4198a9d31d95608620e3e884f2c8c55fafd714",
+      "map_position_sha256": "475fbe4356d44594b3b70bb4985e9bf5ee71468d16b4eb79b3d01ec330ccd1eb",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "755044eb0f45ada0d3b90425f6570fd6eced746c0fbfeb42cbf7ffa5897ebb05",
+      "map_position_sha256": "42cb21993a3b726d077adc957bbf01fa7389931e4368c4e10833eda7d1a8c51d",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.4451529019236788,
+        -1.1152913364630346,
+        -0.11498742777116223,
+        -0.1315951982440809,
+        -0.3848046532233239,
+        0.1488097449117981,
+        -0.10225560532429828,
+        -0.21341168061324622,
+        -0.2538091295010001,
+        0.009623555952632708
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "2d1298e9a8e3ca456a069f5d5d4198a9d31d95608620e3e884f2c8c55fafd714",
+      "map_position_sha256": "475fbe4356d44594b3b70bb4985e9bf5ee71468d16b4eb79b3d01ec330ccd1eb",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.642539815705088,
+        -1.1728343863144521,
+        -0.16224434066487814,
+        -0.12196672307106851,
+        -0.2182022692411153,
+        0.18000723943566588,
+        -0.0612296681373451,
+        -0.1937099943344047,
+        -0.09627772061032927,
+        -0.03950129851084364
+      ]
+    }
+  },
+  {
+    "episode": 52,
+    "frozen": {
+      "trajectory_sha256": "173128a060562c2d1125909d2ec7511453fc7384e86509d1e33fcf3568a696b6",
+      "map_position_sha256": "6551b0787a231905ca379f1370fdd2e97a0ff1eff08870b3427475c277f42c0f",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "b0cdd2447fb556509f9628b4edc318cadfc027b12f9199bf8898b656fb75ba35",
+      "map_position_sha256": "b102691f5edeb9af35224eecc42bd81f3ebd73187f1d98096ce22ca84c2f242b",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "6d14e1ae4368df0606e7840a08e4c4d7bbd43a6941e5b6954141d3592399d7a2",
+      "map_position_sha256": "a7637e4835d462ae6cb6f05a196f01e463bfd54cda13416bfa4957d01ce7b49f",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5592264525807464,
+        -1.1406915943108222,
+        0.048477124093314464,
+        0.0010388943524031087,
+        -0.2397465603786667,
+        0.04710487290533052,
+        -0.11766771442384369,
+        -0.16001521015093895,
+        -0.2172216315388813,
+        0.006442153114282172
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "b0cdd2447fb556509f9628b4edc318cadfc027b12f9199bf8898b656fb75ba35",
+      "map_position_sha256": "b102691f5edeb9af35224eecc42bd81f3ebd73187f1d98096ce22ca84c2f242b",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7263996638054464,
+        -1.182523862591276,
+        -0.07453716090318369,
+        -0.05281379306396674,
+        -0.12293947165946179,
+        0.11150885414655595,
+        0.005026536656953619,
+        -0.007652345167610647,
+        -0.12232489128634036,
+        -0.01314102741822298
+      ]
+    }
+  },
+  {
+    "episode": 53,
+    "frozen": {
+      "trajectory_sha256": "c41387b4994abb6ccd25021bb1b9345308759ad9c8444990edbc55c2f32843b9",
+      "map_position_sha256": "72a0de780f0dba92849a8b345c031109f8880f79223069a86300817394d73f83",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "0337f44c9f5f621224cc5cec63bb6cf12d45932bad8ab3ab372deb34f158a496",
+      "map_position_sha256": "8adca20243491a4ffae3e4235ea708eabfe229b37c1647799ed69bac2a3cb4e9",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "c41387b4994abb6ccd25021bb1b9345308759ad9c8444990edbc55c2f32843b9",
+      "map_position_sha256": "72a0de780f0dba92849a8b345c031109f8880f79223069a86300817394d73f83",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.914003121916605,
+        -1.2419304847517587,
+        0.006679558619298006,
+        0.007468530834576741,
+        0.08513453067372534,
+        0.1,
+        0.00040509414910676117,
+        0.0,
+        0.00032052197298358697,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "0337f44c9f5f621224cc5cec63bb6cf12d45932bad8ab3ab372deb34f158a496",
+      "map_position_sha256": "8adca20243491a4ffae3e4235ea708eabfe229b37c1647799ed69bac2a3cb4e9",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8352016552228696,
+        -1.206759344322582,
+        -0.012615005723470423,
+        -0.01581453302878725,
+        0.01061731671984299,
+        0.1,
+        0.0006737351273266978,
+        -0.0070391702575381765,
+        0.004914610693015882,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 54,
+    "frozen": {
+      "trajectory_sha256": "054823b3afd06e37ae33239e7628c42c93057016b47f19c1a4e9a463bef547df",
+      "map_position_sha256": "4de89fbd726d6f38333bb5cdf4f9bf36ef04547bf095f7b0500d478276aff491",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "b5a1b6bfb781f28a22939f4605c46eb8819add18abe2711417fe87aa14f3caa3",
+      "map_position_sha256": "6c584e46a07e8b5c050a081a3f865cf19c04fd767f5063270905fca784e531e6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "054823b3afd06e37ae33239e7628c42c93057016b47f19c1a4e9a463bef547df",
+      "map_position_sha256": "4de89fbd726d6f38333bb5cdf4f9bf36ef04547bf095f7b0500d478276aff491",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.507478560816519,
+        -1.017578723270672,
+        -0.015165496465768502,
+        0.03167479863108649,
+        -0.3504741753178144,
+        0.04048691307376458,
+        -0.032108353255676736,
+        0.0026496540418457486,
+        -0.2632093405071982,
+        0.022135732015994388
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "b5a1b6bfb781f28a22939f4605c46eb8819add18abe2711417fe87aa14f3caa3",
+      "map_position_sha256": "6c584e46a07e8b5c050a081a3f865cf19c04fd767f5063270905fca784e531e6",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8359984497134842,
+        -1.2324717021647082,
+        -0.007465405250279533,
+        0.008818301845844865,
+        -0.0042782257166911804,
+        0.03995194678327158,
+        0.00798815687183742,
+        0.0039521503573333614,
+        0.005552193161415912,
+        0.022343377594710827
+      ]
+    }
+  },
+  {
+    "episode": 55,
+    "frozen": {
+      "trajectory_sha256": "193bc0a1d1e3add4de20776fb041ef2ead124e8d20d0a452379e9baef06bc743",
+      "map_position_sha256": "6ddaff989df3d8fbf974e2b7ec924cd4ce95093cb8f19a20f8e4502571cc47ba",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "66915ff37bbcb119895fc4d8a68df0d57bac1e27fb96731409649746b96e58a4",
+      "map_position_sha256": "0cdade3478ce98000b9550e95ece3d45d95959bb8a08d223b8715c6cf01059b6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "193bc0a1d1e3add4de20776fb041ef2ead124e8d20d0a452379e9baef06bc743",
+      "map_position_sha256": "6ddaff989df3d8fbf974e2b7ec924cd4ce95093cb8f19a20f8e4502571cc47ba",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.715333166716218,
+        -1.183598870335336,
+        0.028302876530184998,
+        -0.015721670900083702,
+        -0.09622094208625616,
+        0.1,
+        -0.011527736516552521,
+        -0.01871281798487416,
+        -0.07837925799549682,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "66915ff37bbcb119895fc4d8a68df0d57bac1e27fb96731409649746b96e58a4",
+      "map_position_sha256": "0cdade3478ce98000b9550e95ece3d45d95959bb8a08d223b8715c6cf01059b6",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7194799228664692,
+        -1.1832235512116986,
+        0.01807968480430397,
+        -0.03584327293503976,
+        -0.08739918585408937,
+        0.1,
+        -0.012036009257537842,
+        -0.020362449744553604,
+        -0.07826677676354671,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 56,
+    "frozen": {
+      "trajectory_sha256": "623d8132536b2f410375781abc71f9a2e9a596a3e79d920168e79c35e2ba5ab6",
+      "map_position_sha256": "b5ad65bffc02161c5d54ca761bbe92cae12e60bd7daffb1d77db89c012dfc4ce",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "c6ead8e47614220c5c6c229b8e061bfef53024544185f7bd65dd89814dd1b27b",
+      "map_position_sha256": "ad61ce2907335f6bff03b37af40370db41ad63e22643eb1c97ae4f9388d23401",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "f28c003d032895732d14e42a860b12d4e9306ff36080fc853657077daca98b86",
+      "map_position_sha256": "6bcab8102f8a048258a59c0a4cd248bae967f88f4fccd2b3f4afd23a015f620e",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8332612662373324,
+        -1.1902764922910225,
+        -0.01871659731394671,
+        -0.004580159643548373,
+        -0.011926027727502512,
+        0.10778406644047148,
+        0.020961771806164698,
+        0.041691659505779854,
+        -0.029310673996662883,
+        -0.008996041691782423
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "c6ead8e47614220c5c6c229b8e061bfef53024544185f7bd65dd89814dd1b27b",
+      "map_position_sha256": "ad61ce2907335f6bff03b37af40370db41ad63e22643eb1c97ae4f9388d23401",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7724167083421112,
+        -1.1687276864213219,
+        -0.10027317570899524,
+        -0.07408955083260839,
+        -0.07726263714854995,
+        0.10773202968436596,
+        0.0022240332457647977,
+        0.041416680974095774,
+        -0.029186992937985212,
+        -0.008935918526901005
+      ]
+    }
+  },
+  {
+    "episode": 57,
+    "frozen": {
+      "trajectory_sha256": "293021d168f7494d6bc1b38a1b06f2df018733a440eba4bd6049f0641f1e377b",
+      "map_position_sha256": "fb2874617106c5a5001a111177b30b7dda20e0609737bd82d50e249c39c374fb",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "1c478909775f2429100c16c41dc64eab1f4229e5031f9c7cab853f5ef353c1f2",
+      "map_position_sha256": "3f89fb12e0b352decedff6f19fa51ca9f6fd71124dae0a73879951e834e03c70",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "293021d168f7494d6bc1b38a1b06f2df018733a440eba4bd6049f0641f1e377b",
+      "map_position_sha256": "fb2874617106c5a5001a111177b30b7dda20e0609737bd82d50e249c39c374fb",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7450470300044107,
+        -1.1815005261827876,
+        -0.027877318028692696,
+        0.01887013865721497,
+        -0.1172455079678459,
+        0.10361609659298633,
+        -0.05726773052288104,
+        -0.02105511823943047,
+        -0.19226407996740982,
+        -0.003173371526623357
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "1c478909775f2429100c16c41dc64eab1f4229e5031f9c7cab853f5ef353c1f2",
+      "map_position_sha256": "3f89fb12e0b352decedff6f19fa51ca9f6fd71124dae0a73879951e834e03c70",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.7467207799376896,
+        -1.1749795076174214,
+        -0.054040268297148614,
+        -0.023632881383586126,
+        -0.11139872800078307,
+        0.10332060168751761,
+        -0.04822593366545785,
+        -0.04032590206183156,
+        -0.10632331533604272,
+        -0.00011621388303448414
+      ]
+    }
+  },
+  {
+    "episode": 58,
+    "frozen": {
+      "trajectory_sha256": "c66b32e2eade2c23e5829dc5ff8be1048d3261b023e2054fcf6b5c2e6d73ddcc",
+      "map_position_sha256": "c12389c23d07693ee182be5f35e4bbbfb9d76345ad5a02078edc861b21dc5854",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "5c858efbdbad6ce685c8be59e095ed75c9128427b1fb87013baa8d6ea49293eb",
+      "map_position_sha256": "d5485d013661cc9ee64a2f233ccb7b5243cbc763e11eb64099fe87c109c191e4",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "c66b32e2eade2c23e5829dc5ff8be1048d3261b023e2054fcf6b5c2e6d73ddcc",
+      "map_position_sha256": "c12389c23d07693ee182be5f35e4bbbfb9d76345ad5a02078edc861b21dc5854",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.591099807851294,
+        -1.1984211403818046,
+        0.09971869499209446,
+        0.04390032413632409,
+        -0.2229257205049054,
+        0.1,
+        -0.02264673948838282,
+        -0.09349308671290066,
+        -0.13555558852553512,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "5c858efbdbad6ce685c8be59e095ed75c9128427b1fb87013baa8d6ea49293eb",
+      "map_position_sha256": "d5485d013661cc9ee64a2f233ccb7b5243cbc763e11eb64099fe87c109c191e4",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5541373557833318,
+        -1.1735781241074708,
+        0.02665843422008266,
+        -0.033562938171651895,
+        -0.26017814927975474,
+        0.1,
+        -0.021704413947469272,
+        -0.01150543348372479,
+        -0.08496990894813929,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 59,
+    "frozen": {
+      "trajectory_sha256": "63028013925f6b43d4a72da9a2dd2d477e6c6661ca5707cde4c60684eb2bd2b4",
+      "map_position_sha256": "61a7e927bcdb42d88bb5887da905de2587d11686b47ffdd5c25de6e62bfedca6",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "9ccd751eb94004e75923136dea84cea394a4ba9aae4f1836c7745b4cfdae4467",
+      "map_position_sha256": "5dc3c4ce3f2cfc3caf3e5a09afca7fa2b58d1330acb3cc12005e14fab3b178da",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "63028013925f6b43d4a72da9a2dd2d477e6c6661ca5707cde4c60684eb2bd2b4",
+      "map_position_sha256": "61a7e927bcdb42d88bb5887da905de2587d11686b47ffdd5c25de6e62bfedca6",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5879351172219849,
+        -1.1416214350592486,
+        0.02136249325487593,
+        0.03137639226539864,
+        -0.2552435746620415,
+        0.1174793311121177,
+        -0.045944444814877694,
+        0.03737963049476187,
+        -0.1876773136697398,
+        -0.01158784332156249
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "9ccd751eb94004e75923136dea84cea394a4ba9aae4f1836c7745b4cfdae4467",
+      "map_position_sha256": "5dc3c4ce3f2cfc3caf3e5a09afca7fa2b58d1330acb3cc12005e14fab3b178da",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8651369743996429,
+        -1.2326216884212324,
+        -0.03854900819193345,
+        -0.008816665193109405,
+        0.01054423020487907,
+        0.10815619643476264,
+        0.0023287974057777817,
+        0.00014336467772427402,
+        0.003934580882260775,
+        -0.00875852287774632
+      ]
+    }
+  },
+  {
+    "episode": 60,
+    "frozen": {
+      "trajectory_sha256": "1f8806e96116cb5858b75aba237b53f21d6dfdbca3253e253250956372610b7b",
+      "map_position_sha256": "60b25f2b70becf2141e95c09391b705cf28e9576b410c39f21839148e7b47632",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "1f8806e96116cb5858b75aba237b53f21d6dfdbca3253e253250956372610b7b",
+      "map_position_sha256": "60b25f2b70becf2141e95c09391b705cf28e9576b410c39f21839148e7b47632",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "1f8806e96116cb5858b75aba237b53f21d6dfdbca3253e253250956372610b7b",
+      "map_position_sha256": "60b25f2b70becf2141e95c09391b705cf28e9576b410c39f21839148e7b47632",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8429556253789694,
+        -1.2535770588696566,
+        -0.00816035114980497,
+        0.0,
+        0.0,
+        0.1,
+        0.00022338590829665546,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "1f8806e96116cb5858b75aba237b53f21d6dfdbca3253e253250956372610b7b",
+      "map_position_sha256": "60b25f2b70becf2141e95c09391b705cf28e9576b410c39f21839148e7b47632",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.8429556253789694,
+        -1.2535770588696566,
+        -0.00816035114980497,
+        0.0,
+        0.0,
+        0.1,
+        0.00022338590829665546,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "episode": 61,
+    "frozen": {
+      "trajectory_sha256": "3b81afbc941e2258896d86c8dd6947ab8782b1dd1aba96d533a82844f1b99f73",
+      "map_position_sha256": "62c1602498fa338bd67212ee0184b88cfc065790d3de8932275edc120a400119",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "73af0c3b8a0f4f69580720efffcc555d963df24b49dd44b2049de219b7751209",
+      "map_position_sha256": "5317c42c36a4901374a77d5a6594afd29c0cd736bd2028c51b17ed89506b0275",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "3b81afbc941e2258896d86c8dd6947ab8782b1dd1aba96d533a82844f1b99f73",
+      "map_position_sha256": "62c1602498fa338bd67212ee0184b88cfc065790d3de8932275edc120a400119",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6941639143377765,
+        -1.2056244869965895,
+        -0.12077122123142035,
+        -0.07511465935611836,
+        -0.17563356234431887,
+        0.10742938238140333,
+        -0.0008410863994410519,
+        0.059474258414676386,
+        -0.08712433640657112,
+        -0.008536143060177024
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "73af0c3b8a0f4f69580720efffcc555d963df24b49dd44b2049de219b7751209",
+      "map_position_sha256": "5317c42c36a4901374a77d5a6594afd29c0cd736bd2028c51b17ed89506b0275",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6374567136111327,
+        -1.1858925573233858,
+        0.07561070135276653,
+        0.1082933907648688,
+        -0.22471568694130417,
+        0.1074293391548508,
+        -0.017851502851752226,
+        0.041143695817004895,
+        -0.2599071055965348,
+        -0.008537144975082227
+      ]
+    }
+  },
+  {
+    "episode": 62,
+    "frozen": {
+      "trajectory_sha256": "6089df68f8fec3d845f75e391aad509864a1f3c2c5c1628e68b12b55f2b899a2",
+      "map_position_sha256": "5cafe98006198eee5294455843bad7ecdef9717fcdd3c649bdda4c28d9003ef5",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "d803746819182584e524deb8c2506c5405136aefe6399a2f50c69d12270f986c",
+      "map_position_sha256": "21c6dee87dd5290716e7f842b66ce853c8c00460c9102a79cc4925da5d6f07ab",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "6089df68f8fec3d845f75e391aad509864a1f3c2c5c1628e68b12b55f2b899a2",
+      "map_position_sha256": "5cafe98006198eee5294455843bad7ecdef9717fcdd3c649bdda4c28d9003ef5",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.6468023699691392,
+        -1.1505207192795905,
+        -0.019463068091387016,
+        -0.026980165057481888,
+        -0.18466428394578802,
+        0.10775280251190895,
+        -0.03405392200875639,
+        0.0788182508069271,
+        -0.1968650660841348,
+        -0.008200403445256561
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "d803746819182584e524deb8c2506c5405136aefe6399a2f50c69d12270f986c",
+      "map_position_sha256": "21c6dee87dd5290716e7f842b66ce853c8c00460c9102a79cc4925da5d6f07ab",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.650980329173873,
+        -1.1707447108971814,
+        -0.036012994363948954,
+        -0.015595921956625115,
+        -0.19211226100734222,
+        0.10778406644047148,
+        -0.029814474749852937,
+        0.07977668453133539,
+        -0.19809456425403615,
+        -0.008233469298479333
+      ]
+    }
+  },
+  {
+    "episode": 63,
+    "frozen": {
+      "trajectory_sha256": "8fca3ff3d58dca316e1c5d82777f7ec49694e1f1649435c31454c6fef3d852a2",
+      "map_position_sha256": "db9b320bdf65d2ec343ac5960ece7fbe589aea7b5c0ae29b7bb9fa3ca6c1ffc9",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "frozen_no_planning": {
+      "trajectory_sha256": "bfd842b912c9c8df8200ca5427970407605b5597056b2a39a8429b0629b79e81",
+      "map_position_sha256": "35913c5058834bd24386494d1a0aac436705b87b877d4a36f1068a3c2093f543",
+      "parameters_exported": true,
+      "parameters_constant": true,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "predictive": {
+      "trajectory_sha256": "2ab9d7bab35bafa5a1f9a61daa9684cf7e97beb715bc603de1dab9e7f5546bc7",
+      "map_position_sha256": "dc019658bf10a6f9b7d8dfb65d0c0a8e1b909feb6b1f6662eb815d295b13faa9",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5481885556229062,
+        -1.1371082702521809,
+        -0.11972565854735986,
+        -0.0791034061042169,
+        -0.3016152378554139,
+        0.3781723718368321,
+        -0.0488680305064173,
+        -0.053245649678156835,
+        -0.2060416210113334,
+        0.022084055362625934
+      ]
+    },
+    "no_planning": {
+      "trajectory_sha256": "bfd842b912c9c8df8200ca5427970407605b5597056b2a39a8429b0629b79e81",
+      "map_position_sha256": "35913c5058834bd24386494d1a0aac436705b87b877d4a36f1068a3c2093f543",
+      "parameters_exported": true,
+      "parameters_constant": false,
+      "first_parameters": [
+        1.838279484862948,
+        -1.2527629684953678,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_parameters": [
+        1.5043430613974058,
+        -1.1073546291532137,
+        -0.029937331792538553,
+        -0.044055325187654544,
+        -0.31692660126188754,
+        0.07566702913270001,
+        -0.04721175752661338,
+        0.015274390357690744,
+        -0.11510541156261914,
+        0.018132325095539394
+      ]
+    }
+  }
+]

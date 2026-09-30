@@ -35,9 +35,10 @@ def main():
         db.row_factory = sqlite3.Row
         rows = [dict(r) for r in db.execute("select * from programs order by generation,timestamp,id")]
     generations = sorted({r["generation"] for r in rows})
+    native_log = (campaign / "evolution_run.log").read_text().splitlines()
     unique = [next(r for r in rows if r["generation"] == g) for g in generations]
     best = max((r for r in unique if r["correct"]), key=lambda r: r["combined_score"])
-    lineage, metrics, episode_rows = [], [], []
+    lineage, metrics, episode_rows, failures = [], [], [], []
     for row in rows:
         metadata, public = json.loads(row["metadata"]), json.loads(row["public_metrics"])
         lineage.append({
@@ -54,6 +55,19 @@ def main():
     for row in unique:
         public = json.loads(row["public_metrics"])
         episodes = load_episodes(campaign, row)
+        if not row["correct"]:
+            metadata = json.loads(row["metadata"])
+            directory = Path(metadata.get("recovery_results_dir", campaign / f"gen_{row['generation']}/results"))
+            correct_path = directory / "correct.json"
+            failures.append({
+                "generation": row["generation"],
+                "evaluator_status": json.loads(correct_path.read_text()) if correct_path.exists() else
+                    {"correct": False, "error": "No saved evaluator correctness file; see native timeout evidence when available"},
+                "saved_episodes": len(episodes),
+                "native_timeout_evidence": [line for line in native_log
+                                            if "exceeded timeout" in line and line.rstrip().endswith(f"=> Gen. {row['generation']}")],
+                "invalid_episodes": [{"episode": i, "steps": e["steps"], "error": e["error"], "seconds": e["seconds"]}
+                                     for i, e in enumerate(episodes) if e["error"]]})
         metrics.append({"generation": row["generation"], "correct": bool(row["correct"]),
                         "combined_score": row["combined_score"], "saved_episode_count": len(episodes), **public})
         for index, episode in enumerate(episodes):
@@ -77,8 +91,10 @@ def main():
         "complete": generations == list(range(args.slots)),
         "seed_slots": 1, "seed_island_rows": sum(r["generation"] == 0 for r in rows),
         "descendant_slots": sum(r["generation"] > 0 for r in unique),
+        "descendants_with_generated_code": sum(r["generation"] > 0 and bool(r["code"].strip()) for r in unique),
         "valid_descendants": sum(r["generation"] > 0 and r["correct"] for r in unique),
         "failed_slots": [r["generation"] for r in unique if not r["correct"]],
+        "failure_details": failures,
         "unique_source_hashes": len({r["source_sha256"] for r in lineage}),
         "candidates_with_saved_64_episode_evaluations": sum(m["saved_episode_count"] == 64 for m in metrics),
         "saved_native_condition_episodes": len(episode_rows),
@@ -101,6 +117,18 @@ def main():
             for key in ("escape", "task", "brier_near", "brier_threat")}
     (out / "selected.py").write_text(best["code"])
     summary["best"]["source_sha256"] = sha256(out / "selected.py")
+    by_id = {r["id"]: r for r in rows}
+    ancestor = best
+    ancestry = []
+    source_dir = out / "lineage-programs"
+    source_dir.mkdir(exist_ok=True)
+    while ancestor is not None:
+        source_path = source_dir / f"gen_{ancestor['generation']}.py"
+        source_path.write_text(ancestor["code"])
+        ancestry.append({"id": ancestor["id"], "generation": ancestor["generation"],
+                         "source_sha256": sha256(source_path)})
+        ancestor = by_id.get(ancestor["parent_id"])
+    summary["best"]["parent_chain"] = ancestry[::-1]
     for filename, data in (("summary.json", summary), ("lineage.json", lineage), ("generation-metrics.json", metrics)):
         (out / filename).write_text(json.dumps(data, indent=2) + "\n")
     for name in ("campaign-manifest.json", "dreamer-resolved.json", "recovery-jobs.json"):

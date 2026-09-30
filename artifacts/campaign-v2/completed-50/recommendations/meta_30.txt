@@ -1,0 +1,220 @@
+# INDIVIDUAL PROGRAM SUMMARIES
+
+The following are summaries of individual programs evaluated since the last meta update:
+
+The following are summaries of individual programs evaluated since the last meta update:
+
+**Program Name: Online Occupancy Learning with Risk-Aware Dijkstra Planning**
+- **Implementation**: Maintains a displacement-localized terrain map and learns prior-smoothed enemy occupancy probabilities from six local feature categories using successive observations. Eight-direction Dijkstra planning combines predicted risk, movement cost, and visit penalties with key/exit targeting, frontier exploration, corner constraints, and risk-triggered waiting.
+- **Performance**: Scored 0.92 across 64 development episodes, achieving 87.5% escape, 12.5% death, no timeouts or invalid actions, and a 0.9887 model score.
+- **Feedback**: Threat occupancy Brier error improved over persistence (0.0261 versus 0.0411), while map coverage reached 59.3%; all validation tests passed. These results support forecast quality, but controlled learning and planning ablations are needed to establish whether online updates improve escape performance.
+**Program Identifier:** Generation 0 - Patch Name initial_program - Correct Program: True
+
+**Program Name: Online Enemy Belief Learning with Risk-Aware Planning**
+- **Implementation**: Maintains a terrain map, infers 15×15 board boundaries, and tracks anonymous enemy occupancy using probabilistic transport and observation conditioning. Learns an eight-feature softmax motion model from marginalized enemy matchings and censored disappearances, then combines risk-weighted Dijkstra routing with three-step planning and action-conditioned forecasts.
+- **Performance**: Achieved a 0.92 combined score across 64 development episodes, with 85.94% escape, 14.06% death, no timeouts or invalid actions, 0.9874 model score, and 0.9216 terrain reconstruction accuracy.
+- **Feedback**: Passed all validation tests; forecasts beat persistence on near-cell Brier error (0.00891 versus 0.01243) and threat-cell error (0.02752 versus 0.03841). Remaining deaths and weaker unseen-terrain reconstruction (0.7974) suggest opportunities in planning and representation, while these aggregate results alone do not establish that online learning caused the gains.
+**Program Identifier:** Generation 1 - Patch Name anonymous_flow_navigation - Correct Program: True
+
+**Program Name: Online Motion Mixture with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and predicts anonymous enemy occupancy by blending stationary, cardinal, and diagonal motion kernels, updated through Brier-loss mirror descent, with learned feature-conditioned occupancy rates. Dijkstra planning combines predicted risk, movement costs, and visit penalties to pursue keys, doors, exits, or exploration frontiers, with bounded waiting for safer movement.
+- **Performance**: Achieved a combined score of 0.96 across 64 development episodes, with 95.3% escapes, 4.7% deaths, no timeouts or invalid actions, 59.28 mean steps, and 0.01670 audit Brier error.
+- **Feedback**: All validation tests passed; occupancy forecasts improved over reported baseline and persistence errors, particularly near threats, supporting the predictive approach without establishing that learning caused the strong escape rate. Coverage remained 61.1%, and unseen terrain reconstruction was zero, leaving exploration and representation as improvement opportunities; frozen-learning and fixed-planning comparisons would help isolate learning benefits.
+**Program Identifier:** Generation 2 - Patch Name learned_motion_and_safer_progress - Correct Program: True
+
+**Program Name: Adaptive Occupancy Flow with Risk-Aware Frontier Planning**
+- **Implementation**: Maintains a persistent terrain map and learns anonymous enemy occupancy using feature-conditioned counts and a stay/cardinal/diagonal motion mixture updated by multiplicative gradient steps. Dijkstra planning combines movement, visitation, one-step collision risk, and two-step refuge risk, prioritizing keys and escape while exploring frontiers and waiting when safer.
+- **Performance**: Achieved a combined score of 0.86 across 64 development episodes, with 75% escapes, 25% deaths, no timeouts or invalid actions, a 0.988 model score, and 46.54 steps per successful escape.
+- **Feedback**: Occupancy forecasts outperform persistence, particularly on threatened cells (Brier error 0.0272 versus 0.0407), but overall audit improvement is modest and deaths remain substantial. Validation passes; the results support further learning and planning improvements, while map accumulation and aggregate fitness alone do not establish a learning benefit.
+**Program Identifier:** Generation 3 - Patch Name anonymous_flow_and_escape_routes - Correct Program: True
+
+**Program Name: Anonymous Enemy Motion Learning with Risk-Aware Planning**
+- **Implementation**: Maintains a persistent terrain map and learns a geometry-constrained enemy motion kernel through probabilistic anonymous matching, with occupancy calibration from observed transitions. Risk-weighted Dijkstra routing selects keys, doors, exits, or exploration frontiers; action selection uses candidate-conditioned forecasts and two-step escape risk.
+- **Performance**: Achieved a combined score of 0.95 across 64 development episodes, with 92.19% escape, 7.81% death, no timeouts or invalid actions, and a model score of 0.9879.
+- **Feedback**: Passed all validation tests; occupancy Brier errors beat persistence baselines, particularly near enemies (0.0103 versus 0.0154) and on threat cases (0.0287 versus 0.0429). Coverage remained 64.13%, and these results do not isolate the benefit of online learning from prior assumptions and planning without ablation evidence.
+**Program Identifier:** Generation 4 - Patch Name anonymous_flow_router - Correct Program: True
+
+**Program Name: Online Occupancy Learning with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and probabilistic enemy occupancy, learning a ten-feature softmax motion model through anonymous occupancy gradients with adaptive updates. Combines risk-weighted Dijkstra routing, exploration targets, and two-step hazard scoring, then records an action-conditioned forecast.
+- **Performance**: Scored 0.97 across 64 development episodes, with 96.875% escapes, 3.125% deaths, no timeouts or invalid actions, and 50.61 steps per escape.
+- **Feedback**: Threat Brier error was 0.0276 versus persistence’s 0.0403, supporting predictive accuracy, though these results alone do not isolate online learning’s contribution. Validation passed; map coverage was 62.7%, with perfect visible reconstruction but no unseen reconstruction, leaving room to improve representation and planning.
+**Program Identifier:** Generation 5 - Patch Name anonymous_transport_lookahead - Correct Program: True
+
+**Program Name: Bayesian Occupancy Learning with Risk-Aware Dijkstra Planning**
+- **Implementation**: Learns enemy occupancy from local configurations using empirical-Bayes shrinkage, estimates motion from unambiguous observed correspondences, and propagates occupancy beliefs beyond visibility. Risk-weighted Dijkstra planning combines key/exit priorities, frontier exploration, uncertainty penalties, retreat safety, and adaptive waiting.
+- **Performance**: Achieved a 0.92 combined score across 64 development episodes, with 87.5% escapes, 12.5% deaths, no timeouts or invalid actions, and threat Brier error of 0.0292 versus persistence’s 0.0447.
+- **Feedback**: All validation tests passed, and pre-outcome forecasts outperformed persistence, especially around threats. Coverage remained 62.8%; these development results support predictive accuracy but do not isolate the causal benefits of online learning or predictive planning.
+**Program Identifier:** Generation 6 - Patch Name hierarchical_safe_frontier - Correct Program: True
+
+**Program Name: Adaptive Enemy Transport with Survival-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and learns enemy motion through probabilistic anonymous matching, a five-feature movement model, and bucket-specific occupancy calibration with adaptive mixture weights. Risk-weighted Dijkstra navigation selects keys, exits, or exploration frontiers; action selection combines immediate collision risk with a second-step forecast conditioned on survival.
+- **Performance**: Scored 0.94 across 64 development episodes, with 90.6% escapes, 9.4% deaths, no timeouts or invalid actions, and threat Brier error of 0.0305 versus 0.0457 for persistence.
+- **Feedback**: All validation tests passed, and forecasts improved on persistence, particularly near enemies and in threat cases, supporting the predictive approach. These results do not isolate the benefit of online learning; controlled ablations and withheld assessment are needed, while 64.0% map coverage and zero unseen-terrain reconstruction indicate limited spatial knowledge.
+**Program Identifier:** Generation 7 - Patch Name snapshot_flow_controller - Correct Program: True
+
+**Program Name: Contextual Bayesian Motion Learning with Risk-Aware Planning**
+- **Implementation**: Learns nine agent-relative enemy motion attempts using censored set likelihoods, fractional assignment credit, and context-specific counts, retaining blocked attempts as stationary outcomes. Combines persistent terrain mapping and hidden-enemy beliefs with risk-weighted Dijkstra routing, exploration targets, and action-conditioned two-step hazard forecasts.
+- **Performance**: Achieved a 0.94 combined score, escaping in 60 of 64 development episodes with four deaths, no timeouts or invalid actions, and 107.02 average steps per escape.
+- **Feedback**: Passed all validation tests; threat-region Brier error was 0.0262 versus 0.0384 for persistence, supporting predictive usefulness near hazards. Map coverage remained 60.6%, and these development results alone do not establish that online learning caused the strong escape rate; controlled ablations and withheld evaluation remain necessary.
+**Program Identifier:** Generation 8 - Patch Name censored_transport - Correct Program: True
+
+**Program Name: Adaptive Enemy Diffusion with Risk-Aware Receding-Horizon Planning**
+- **Implementation**: Tracks terrain and hidden enemy mass, forecasts occupancy using obstacle-aware diffusion, and learns gated log-odds corrections through an online residual tree. Risk-weighted Dijkstra routing selects keys, exits, or exploration targets, while a three-step planner balances collision risk, progress, and waiting.
+- **Performance**: Achieved a combined score of 0.96 across 64 development episodes, with 95.31% escapes, 4.69% deaths, no timeouts or invalid actions, and 56.43 steps per successful escape.
+- **Feedback**: Passed all validation tests; corrected forecasts modestly improved Brier error over diffusion alone, and threat-region error was 0.0304 versus persistence’s 0.0429. These predictive gains support the approach, but aggregate results do not isolate learning’s contribution to escape success; map coverage remained 63%.
+**Program Identifier:** Generation 9 - Patch Name adaptive_occupancy_tree - Correct Program: True
+
+**Program Name: Adaptive Enemy Transport with Risk-Aware Receding-Horizon Planning**
+- **Implementation**: Maintains a persistent terrain map and anonymous enemy beliefs, learning motion transport weights online and growing a residual tree to correct occupancy forecasts from subsequently observed labels. Risk-weighted Dijkstra routing selects keys, exits, and exploration targets, while a three-step planner anticipates hazards and future action availability.
+- **Performance**: Scored 0.96 across 64 development episodes, with 61 escapes, 3 deaths, no timeouts or invalid actions, 53.84 average steps, and a 0.988 model score.
+- **Feedback**: Passed all validation tests; corrected forecasts improved audit Brier error over uncorrected transport (0.01647 versus 0.01709), and threat Brier error beat persistence (0.02663 versus 0.03884). These results support predictive accuracy, but without learning and planning ablations they do not isolate the contribution of online adaptation to escape performance.
+**Program Identifier:** Generation 10 - Patch Name anonymous_momentum_and_contingent_planning - Correct Program: True
+
+**Program Name: Online Occupancy Transport Learning with Risk-Aware Planning**
+- **Implementation**: Maintains a persistent terrain map and learns enemy occupancy by blending feature-bucket frequencies with stay/cardinal/diagonal transport predictions, updating transport weights and blend coefficients from unchanged, jointly observed cells. Dijkstra planning combines predicted risk, two-step refuge safety, revisit penalties, frontier exploration, and safety-based waiting while pursuing keys and the exit.
+- **Performance**: Achieved a combined score of 0.95 across 64 development episodes, with 92.19% escapes, 7.81% deaths, no timeouts or invalid actions, and 52.64 average steps.
+- **Feedback**: Passed all validation tests; threat-region Brier error was 0.0260 versus persistence’s 0.0414, although the overall audit improvement was modest (0.01592 versus 0.01640). These results support predictive accuracy, but do not isolate online learning’s contribution to escapes; map coverage was 60.35%, with no unseen-terrain reconstruction.
+**Program Identifier:** Generation 11 - Patch Name overlap_transport_refuge - Correct Program: True
+
+**Program Name: Online Enemy Transport Learning with Counterfactual Risk Planning**
+- **Implementation**: Maintains a persistent terrain map and anonymous enemy occupancy beliefs, learning a ten-feature softmax movement model through regularized AdaGrad updates on observed forecast errors. Combines independent enemy contributions into occupancy probabilities and uses risk-weighted Dijkstra navigation with two-step, action-conditioned forecasts, door/key interactions, and exploration targets.
+- **Performance**: Achieved a combined score of 0.93 across 64 development episodes, with 89.1% escapes, 10.9% deaths, no timeouts or invalid actions, 48.21 steps per escape, and a model score of 0.988.
+- **Feedback**: Passed all validation tests; threat occupancy Brier error was 0.0275 versus 0.0409 for persistence, supporting forecast quality, though these results alone do not establish the benefit of online learning. Map coverage was 60.3%, with no unseen-terrain reconstruction credit; remaining deaths and incomplete coverage motivate improvements to representation, learning, and planning.
+**Program Identifier:** Generation 12 - Patch Name counterfactual_flow_planner - Correct Program: True
+
+**Program Name: Adaptive Enemy Transport with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and learns enemy motion through probabilistic anonymous matching, combining softmax movement forecasts with occupancy rates using regularized Brier-optimal mixing. Risk-weighted Dijkstra routing selects keys, doors, exits, or exploration frontiers, while action selection considers immediate collision risk and survival-conditioned two-step continuation.
+- **Performance**: Scored 0.86 across 64 development episodes, with 75% escapes, 4.69% deaths, 20.31% timeouts, no invalid actions, and 86.17 steps per successful escape.
+- **Feedback**: Passed all validation tests; threat-region Brier error was 0.0256 versus 0.0385 for persistence, supporting predictive accuracy but not independently establishing an online-learning benefit. Timeouts and 70.88% map coverage suggest room to improve exploration and progress, while controlled learning ablations remain necessary to isolate adaptation gains.
+**Program Identifier:** Generation 13 - Patch Name route_consistent_escape_and_brier_mixing - Correct Program: True
+
+**Program Name: Online Occupancy Learning with Survival-Conditioned Planning**
+- **Implementation**: Maintains a terrain map and anonymous enemy occupancy beliefs, learning a ten-feature softmax motion model through regularized AdaGrad updates on occupancy prediction error. Risk-weighted Dijkstra routing selects goals and exploration targets, while two-step planning preserves each source’s categorical movement alternatives and conditions continuation hazards on surviving the first action.
+- **Performance**: Achieved a 0.97 combined score across 64 development episodes, with 96.875% escapes, 3.125% deaths, no timeouts or invalid actions, and 50.34 steps per successful escape.
+- **Feedback**: Passed all validation tests; threat-region Brier error was 0.02774 versus persistence’s 0.04111, supporting improved predictive accuracy, although these results alone do not isolate online learning’s contribution. Map coverage remained 62.84%, with zero unseen-terrain reconstruction, indicating incomplete spatial representation despite strong task performance.
+**Program Identifier:** Generation 14 - Patch Name categorical_survival_lookahead - Correct Program: True
+
+**Program Name: Anonymous Occupancy Learning with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a terrain map and anonymous enemy occupancy beliefs, learning a ten-feature softmax movement model online through Brier-loss gradients with adaptive updates. Combines risk-weighted Dijkstra routing, exploration targets, and two-step survival-conditioned collision forecasts to collect keys, open doors, and reach the exit.
+- **Performance**: Scored 0.96 across 64 development episodes, achieving 95.3% escape, 4.7% death, zero timeouts or invalid actions, and 50.46 steps per successful escape.
+- **Feedback**: Passed all validation tests; threat-region Brier error was 0.0274 versus persistence’s 0.0404, while overall audit improvement was smaller. Map coverage remained 64.1%; these development results support forecast usefulness but do not isolate online learning’s contribution without ablations.
+**Program Identifier:** Generation 15 - Patch Name condition_hidden_beliefs_and_price_target_escape - Correct Program: True
+
+**Program Name: Survival-Aware Planning with Online Enemy Transport Learning**
+- **Implementation**: Maintains a persistent terrain map and learns a softmax enemy-motion model through probabilistic matching of anonymous enemies, including departures from view; forecasts blend transport predictions with learned occupancy rates and adaptive mixture weights. Risk-weighted Dijkstra navigation targets keys, doors, exits, or exploration frontiers, while action selection considers immediate collision risk and survival-conditioned second-step danger.
+- **Performance**: Achieved a combined score of 0.93 across 64 development episodes, with 89.1% escapes, 10.9% deaths, no timeouts or invalid actions, and threat Brier error of 0.0312 versus persistence’s 0.0476.
+- **Feedback**: All validation tests passed, and occupancy forecasts outperformed persistence on audit, nearby, and threat metrics, supporting predictive usefulness without isolating the contribution of online learning. Remaining deaths and 64.2% map coverage suggest room to improve safety and exploration; controlled ablations are needed to establish learning benefits beyond map accumulation or aggregate fitness.
+**Program Identifier:** Generation 16 - Patch Name action_conditioned_survival_rollouts - Correct Program: True
+
+**Program Name: Online Enemy Transport Learning with Survival-Aware Planning**
+- **Implementation**: Maintains a persistent terrain atlas and learns a geometry-constrained enemy motion model through probabilistic anonymous matching, with empirical occupancy calibration. Risk-weighted Dijkstra routing selects objectives and exploration targets, while action selection penalizes immediate collision risk and estimates next-step escape risk conditional on survival.
+- **Performance**: Achieved a combined score of 0.94 across 64 development episodes, with 90.6% escapes, 9.4% deaths, no timeouts or invalid actions, and a model score of 0.988.
+- **Feedback**: All validation tests passed; occupancy Brier errors beat persistence near the agent (0.0105 versus 0.0157) and in threat cases (0.0297 versus 0.0446). These support forecast quality, but do not isolate online learning’s contribution; 63.7% map coverage and zero unseen-terrain reconstruction indicate incomplete spatial knowledge.
+**Program Identifier:** Generation 17 - Patch Name survival_conditioned_continuations - Correct Program: True
+
+**Program Name: Hierarchical Enemy Learning with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and board-boundary hypotheses, learning enemy motion through hierarchical Dirichlet updates with probabilistic identity matching and hidden-enemy tracking. Combines risk-weighted shortest paths with three-step planning, action-conditioned forecasts, and exploration targeting to collect keys and escape.
+- **Performance**: Scored 0.95 across 64 development episodes, achieving 93.75% escapes, 6.25% deaths, no timeouts or invalid actions, and 51.27 steps per successful escape.
+- **Feedback**: Passed all validation tests; threat occupancy Brier error was 0.026 versus persistence’s 0.038, while terrain reconstruction reached 92.43%. Prediction results support forecast quality, but establishing the contribution of learning requires controlled comparisons beyond map accumulation or aggregate fitness; evaluation calls for improving both learning and planning.
+**Program Identifier:** Generation 18 - Patch Name bayesian_motion_survival - Correct Program: True
+
+**Program Name: Online Enemy Transport Learning with Survival-Aware Planning**
+- **Implementation**: Maintains a persistent terrain atlas and learns geometry-constrained enemy motion through probabilistic anonymous matching, blending transport forecasts with online occupancy calibration. Risk-weighted Dijkstra routing selects objectives, while two-action lookahead conditions enemy distributions on surviving the first action.
+- **Performance**: Achieved a combined score of 0.84 across 64 development episodes, with 71.9% escapes, 28.1% deaths, no timeouts or invalid actions, and a model score of 0.988.
+- **Feedback**: All validation tests passed; threat occupancy Brier error was 0.0277 versus 0.0419 for persistence, supporting improved prediction around threats. Coverage remained 62%, and these results alone do not establish that online learning caused the predictive or task gains.
+**Program Identifier:** Generation 19 - Patch Name calibrated_goal_aware_rollout - Correct Program: True
+
+**Program Name: Hierarchical Enemy Forecasting with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and enemy occupancy belief, learning hierarchical displacement distributions conditioned on proximity, geometry, relative direction, and inferred flow through probabilistic movement association with censored observations. Four-step risk-aware planning selects keys, doors, exits, or exploration targets, using action-conditioned immediate forecasts and penalties for waiting and revisiting.
+- **Performance**: Scored 0.92 across 64 development episodes, with 85.94% escapes, 4.69% deaths, 9.38% timeouts, zero invalid actions, and 74.75 mean steps per escape.
+- **Feedback**: All validation tests passed; threat-region Brier error was 0.0252 versus persistence’s 0.0359, supporting forecast quality, though aggregate results alone do not establish benefits from online learning. Coverage of 72.18% and remaining timeouts suggest room to improve exploration and planning; learning and planning ablations are needed to isolate their contributions.
+**Program Identifier:** Generation 20 - Patch Name anonymous_transport_mpc - Correct Program: 1
+
+**Program Name: Online Occupancy Learning with Risk-Aware Maze Planning**
+- **Implementation**: Infers board boundaries and maintains an enemy occupancy belief assuming three enemies, using obstacle-aware propagation and online logistic corrections trained on subsequent observations. Plans over position, collected keys, and door state with Dijkstra search and three-step hazard-aware lookahead, balancing exploration, survival, and exit access.
+- **Performance**: Received a combined score of 0.0 and failed validation, so successful navigation and predictive-learning benefits are not established.
+- **Feedback**: Evaluation identifies the program as incorrect but supplies no failing tests or specific cause. Its exported Brier scores and baseline comparisons support assessing prediction quality, but no measured diagnostic results were provided.
+**Program Identifier:** Generation 21 - Patch Name cellular_recourse - Correct Program: 0
+
+**Program Name: Joint Particle Learning with Risk-Aware Recourse Planning**
+- **Implementation**: Maintains 64 joint enemy-state particles, infers board geometry, and learns hierarchical motion distributions from observation-conditioned transitions while accounting for stale terrain. Risk-weighted pathfinding selects objectives, while action-conditioned forecasts and 16 survival-conditioned scenarios evaluate two-step evasive recourse.
+- **Performance**: Achieved a 0.96 combined score, 95.31% escape rate across 64 development episodes, 4.69% deaths, no timeouts or invalid actions, and 45.72 steps per successful escape.
+- **Feedback**: Passed all validation tests; near-cell and threat Brier errors were 0.01086 and 0.02827, outperforming persistence baselines of 0.01519 and 0.03953. These results support predictive accuracy and effective planning, but do not isolate the benefit of online learning without ablation evidence.
+**Program Identifier:** Generation 22 - Patch Name joint_belief_recourse - Correct Program: 1
+
+**Program Name: Hierarchical Motion Learning with Joint Enemy Belief Planning**
+- **Implementation**: Learns enemy motion through hierarchical Dirichlet counts in agent-relative contexts, marginalizing ambiguous movements and censored observations while tracking sampled three-enemy configurations. Combines board-boundary inference and persistent terrain memory with risk-weighted pathfinding and three-step planning that conditions forecasts on candidate actions and anticipates future observations.
+- **Performance**: Achieved a combined score of 0.95 across 64 development episodes, with 92.19% escapes, 7.81% deaths, no timeouts or invalid actions, and a model score of 0.9874.
+- **Feedback**: Validation passed; near-agent and threat Brier errors improved by approximately 31% over persistence, while audit-wide improvement was small. These results support local predictive usefulness, but establishing learning’s contribution to escape performance requires controlled ablations rather than map accumulation or aggregate fitness alone.
+**Program Identifier:** Generation 23 - Patch Name persistent_configuration_filter - Correct Program: 1
+
+**Program Name: Online Residual Enemy Forecasting with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a terrain atlas and learns enemy transitions using softmax motion features, probabilistic enemy matching, a bounded adaptive residual tree, and occupancy calibration. Risk-weighted Dijkstra routing selects keys, doors, exits, or exploration frontiers; action selection adds immediate collision penalties and survival-conditioned two-step escape risk.
+- **Performance**: Achieved a combined score of 0.95 across 64 development episodes, with 93.75% escapes, 6.25% deaths, no timeouts or invalid actions, and 53.03 mean steps.
+- **Feedback**: Passed all validation tests; near-cell Brier error was 0.01057 versus 0.01288 without residual correction and 0.01611 for persistence, supporting improved predictive accuracy. Coverage remained 63.9%, and the supplied development results do not isolate learning’s causal contribution to escape success or establish held-out generalization.
+**Program Identifier:** Generation 24 - Patch Name context_residual_survival - Correct Program: 1
+
+**Program Name: Adaptive Enemy Transport with Survival-Aware Maze Planning**
+- **Implementation**: Maintains terrain memory and anonymous enemy beliefs, learning motion through seven adaptive transport weights and a growing residual tree that corrects occupancy probabilities using subsequent observations. Risk-weighted Dijkstra routing coordinates keys, doors, exits, and exploration, while two-step planning conditions enemy trajectories on survival and anticipated occupancy.
+- **Performance**: Achieved a combined score of 0.96 across 64 development episodes, with 61 escapes, three deaths, no timeouts or invalid actions, and 48.66 average steps.
+- **Feedback**: All validation tests passed; near-agent Brier error improved from 0.01098 for uncorrected transport to 0.00898, and threat Brier error beat persistence, 0.02553 versus 0.03680. Map coverage remained partial at 61.9%, and these development results lack ablation evidence isolating learning’s contribution to escape performance.
+**Program Identifier:** Generation 25 - Patch Name action_conditioned_categorical_continuation - Correct Program: 1
+
+**Program Name: Online Residual Enemy Forecasting with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and learns enemy transitions through probabilistic motion association, occupancy-error weight updates, an adaptive residual tree, and calibrated occupancy rates. Risk-weighted Dijkstra routing compares key collection orders and exploration targets, while action selection combines immediate collision risk with survival-conditioned two-step escape risk.
+- **Performance**: Achieved a combined score of 0.95 across 64 development episodes, with 92.19% escapes, 7.81% deaths, no timeouts or invalid actions, 52.30 mean steps, and a 0.988 model score.
+- **Feedback**: Forecast Brier error improved over persistence near the agent (0.0108 versus 0.0166) and on threat cases (0.0302 versus 0.0466); residual corrections also improved near-agent error over the residual-free model (0.0131). Validation passed, but paired development results alone do not establish causal learning benefits or withheld generalization, and remaining deaths motivate further forecasting and planning improvements.
+**Program Identifier:** Generation 26 - Patch Name overlap_brier_learning_and_key_tours - Correct Program: 1
+
+**Program Name: Adaptive Enemy Transport with Survival-Aware Planning**
+- **Implementation**: Learns anonymous enemy motion through a momentum-conditioned transport model with adaptive gradient updates and an online residual tree correcting occupancy probabilities. Combines risk-weighted Dijkstra routing, key ordering, and frontier exploration with two-step survival planning that preserves categorical visible-enemy branches.
+- **Performance**: Achieved a 0.95 combined score across 64 development episodes, with 92.19% escapes, 7.81% deaths, no timeouts or invalid actions, and 49.03 average steps.
+- **Feedback**: Passed all validation tests; corrected forecasts reduced audit Brier error from 0.01672 to 0.01595 and nearby error from 0.01073 to 0.00894, supporting improved predictive accuracy. Coverage remained 62%, with no unseen-terrain reconstruction; these development results alone do not establish that learning caused the escape performance.
+**Program Identifier:** Generation 27 - Patch Name overlap_learning_joint_escape_options - Correct Program: 1
+
+**Program Name: Bayesian Enemy Tracking with Risk-Aware Beam Planning**
+- **Implementation**: Maintains a terrain atlas and learns hierarchical Dirichlet enemy-motion models conditioned on geometry, relative player position, and inferred heading, using exact anonymous-association marginals for weighted updates. Risk-weighted Dijkstra routing selects keys, doors, exits, or exploration targets; a three-step beam planner propagates survival-conditioned enemy distributions.
+- **Performance**: Scored 0.89 across 64 development episodes, with 81.25% escapes, 18.75% deaths, no timeouts or invalid actions, and enemy-occupancy Brier errors of 0.01647 overall, 0.00921 nearby, and 0.02758 on threats.
+- **Feedback**: Passed all validation tests; forecasts outperform persistence, especially nearby and on threats, supporting the predictive approach. Overall improvements over the reported baseline are modest, and development results alone do not establish learning’s causal contribution; remaining deaths motivate stronger representation, learning, and planning.
+**Program Identifier:** Generation 28 - Patch Name context_transport_beam - Correct Program: True
+
+**Program Name: Online Enemy Transport Learning with Survival-Aware Planning**
+- **Implementation**: Learns a softmax enemy-motion model through probabilistic anonymous matching with censored departures, blending transport forecasts with online occupancy calibration. Maintains a persistent terrain map and combines risk-weighted Dijkstra navigation, frontier exploration, and action-conditioned two-step survival planning with simulated key collection and door opening.
+- **Performance**: Achieved a combined score of 0.94 across 64 development episodes, with 90.6% escapes, 9.4% deaths, no timeouts or invalid actions, and 56.57 steps per successful escape.
+- **Feedback**: Passed all validation tests; occupancy Brier errors improved over persistence near the agent (0.0116 versus 0.0174) and in threat regions (0.0306 versus 0.0458), while overall audit improvement was modest. These results support predictive accuracy, but do not isolate the benefit of online learning; reconstruction remained limited to 63.5%, with no unseen-terrain reconstruction.
+**Program Identifier:** Generation 29 - Patch Name action_conditioned_survival - Correct Program: True
+
+# GLOBAL INSIGHTS SCRATCHPAD
+
+The following are global insights about optimization approaches and their effectiveness:
+
+## Successful Algorithmic Patterns
+- **The current best remains the strongest outcome benchmark: 0.97, 62/64 escapes, two deaths, and no timeouts or invalid actions.** Its anonymous occupancy learning, persistent terrain memory, risk-weighted Dijkstra routing, and survival-conditioned two-step planning match the previously reported Generation 14 result and Generation 5’s escape count. None of Generations 20–29 exceeds it.
+- **Joint enemy-state tracking with short recourse planning is competitive.** Generation 22, `joint_belief_recourse`, combines 64 joint particles, hierarchical motion learning, and 16 survival-conditioned scenarios. It achieves **0.96 and 61/64 escapes**, with **45.72 steps per escape versus the best’s 50.34**—approximately 9.2% fewer steps among successful episodes, although with one additional death.
+- **Adaptive residual corrections repeatedly improve local predictions.** Generation 25 achieves **0.96 and 61/64 escapes**, reducing near-agent Brier error from **0.01098 to 0.00898** through its residual correction. Generation 24 reduces nearby error from **0.01288 to 0.01057**, while Generation 27 reduces it from **0.01073 to 0.00894**. These extend the earlier Generation 10 evidence for residual learning’s predictive usefulness; they do not establish additional escapes caused by adaptation.
+- **Strong results span multiple representations.** Generation 22’s joint particles, Generation 25’s adaptive transport and residual tree, and the best program’s direct union-occupancy learner all reach **0.96–0.97**. Together with Generation 18’s **0.95** hierarchical Dirichlet result, this supports several viable representation–planner combinations rather than a uniquely superior learner.
+## Ineffective Approaches
+- **Deeper planning and elaborate association do not consistently improve survival.** Generation 28, `context_transport_beam`, combines exact anonymous-association marginals with three-step beam planning but scores **0.89**, with **52 escapes and 12 deaths**. Its threat Brier error, **0.02758**, is slightly lower than the best’s **0.02774**, despite ten additional deaths. The summaries do not isolate which implementation difference causes this regression.
+- **Low mortality can coexist with poor completion.** Generation 20’s hierarchical forecasting and four-step planner achieves **0.92**, with **55 escapes, three deaths, and six timeouts**; successful escapes require **74.75 steps**. Its **72.18% coverage** and **0.0252 threat Brier error** exceed the best on exploration extent and threat prediction, respectively, without matching task performance. This repeats Generation 13’s earlier timeout-heavy pattern.
+- **Additional learning and routing machinery does not reliably surpass the best.** Generations 26 and 27 introduce overlap-oriented learning, key ordering, and survival planning, yet both score **0.95**, with **59 escapes and five deaths**. Generation 29’s action-conditioned transport planner reaches **0.94**, with **58 escapes and six deaths**. These complete designs underperform the best; the available comparisons cannot attribute the losses to individual mechanisms.
+- **Generation 21 provides no usable evidence of algorithmic effectiveness.** Its occupancy propagation, logistic corrections, and state-expanded Dijkstra planner receive **0.0 and fail validation**. Because no failing test or diagnostic is supplied, the failure cannot be assigned to its representation, learning rule, or navigation logic.
+## Implementation Insights
+- **The best directly optimizes anonymous union occupancy.** `_predict` aggregates source contributions as `1 − product(1 − contribution)`. `_learn` differentiates observed occupancy error through visible-source spatial softmaxes using ten motion features, prior shrinkage, gradient clipping, accumulated-gradient scaling, and bounded weights. This avoids explicit identity matching while supporting **0.00957 nearby Brier error**, versus **0.01417 for persistence**.
+- **Its continuation calculation preserves mutually exclusive alternatives within each source.** `_continuation_risk` excludes occupancy at the survived first destination and renormalizes by `1 − branch[survived]`. It combines discounted entry hazard with subsequent movement risk before aggregating across sources. This is a concrete strength of the best’s short-horizon planner, although independence between belief-cell sources still approximates hidden-enemy uncertainty; Generation 22 instead represents joint configurations explicitly.
+- **Progress incentives accompany strong hazard avoidance.** The best’s Dijkstra costs weight nearby risk by **12** and farther risk by **4**; action selection adds **180× immediate risk** and **75× continuation hazard**. Frontier information gain, **12% target-retention tolerance**, visitation penalties, and escalating waiting costs coexist with zero timeouts and approximately **50 steps per escape**. Their individual contributions are not isolated.
+- **The best retains two consequential planning approximations.** Candidate first actions share a forecast centered on the current position; only after selection does `_record_forecast` recompute the forecast around the chosen destination. Also, reaching **any selected target** sets continuation cost to zero, including keys and frontiers. These qualify the interpretation of its action conditioning and survival horizon despite its leading outcomes.
+## Performance Analysis
+- **The latest evaluations approach but do not improve the outcome leader.** Against the best’s **62/64 escapes**, Generations 22 and 25 achieve **61**, Generation 24 achieves **60**, and Generations 23, 26, and 27 achieve **59**. These small development-set differences lack paired disagreement counts and uncertainty estimates establishing reliable superiority.
+- **Forecast rankings do not determine escape rankings.** Generation 27’s nearby Brier error of **0.00894** beats the best’s **0.00957**, but it has three more deaths. Generation 20 has lower threat error yet six timeouts; Generation 28 has nearly identical threat error yet substantially more deaths. This reinforces the earlier Generation 19 result: predictive accuracy and controller effectiveness are distinct measurements, also influenced by the states each policy visits.
+- **The best’s predictive gains are concentrated near danger.** Relative to persistence, its Brier reductions are approximately **6.7% overall, 32.5% nearby, and 32.5% on threats**. Against the reported base forecast, improvements are smaller: **4.6% overall and 11.8% nearby**. These support forecast quality without establishing the causal effect of online updates on escape success.
+- **Map completeness remains separate from task success and predictive learning.** The best escapes in **96.875%** of episodes with **62.84% coverage**, perfect visible reconstruction, **98.60% stale reconstruction**, and zero unseen reconstruction. Generation 20 explores more but finishes less often; Generation 25 reaches **61 escapes with 61.9% coverage**. Higher coverage alone is therefore not evidence of a better controller or stronger learned dynamics.
+
+# META RECOMMENDATIONS
+
+The following are actionable recommendations for the next program generations:
+
+1. **Score each first action with its own action-conditioned forecast.** For every legal destination `q`, call `_predict(m, m["belief"], q)` and pass the returned source branches explicitly into `_continuation_risk`, using a separate continuation cache for each candidate. Preserve the best program’s categorical survival conditioning and two-step horizon; this removes the mismatch between the forecast used to choose an action and the forecast subsequently exported and trained.
+2. **Continue survival planning beyond keys and frontiers.** Replace the `q == target` continuation exemption with a verified terminal-exit condition, and evaluate second moves using the inventory and door state produced by the simulated action. Retain frontier hysteresis, visitation penalties, and escalating waiting costs, which accompany the best’s zero timeouts; intermediate progress should still account for the danger immediately afterward.
+3. **Use joint enemy hypotheses beneath the existing short-horizon planner.** Maintain approximately 64 weighted particles over anonymous enemy configurations, propagate legal motion, and filter against observed occupied and empty cells; condition whole configurations on survival before evaluating second-step recourse. Generation 22’s 61 escapes and shorter successful routes justify this variation: export marginal occupancy for the existing Dijkstra costs while preserving joint uncertainty for local action selection.
+4. **Add a confidence-shrunk residual tree to the successful transition learner.** Keep the ten-feature softmax baseline and learn additive logit corrections from anonymous occupancy-loss gradients, with contextual splits on proximity, corridor geometry, and inferred motion. Require sustained gradient evidence before splitting and shrink low-support leaves toward zero; Generations 24, 25, and 27 support residual adaptation’s predictive potential, while spatial softmax normalization preserves categorical movement alternatives.
+5. **Expand reliable supervision while preserving the anonymous union-occupancy objective.** Train on unchanged traversable cells visible in both consecutive observations, rather than only the previous center’s 3×3 neighborhood, and compute gradients through the saved pre-observation forecast without labeling unseen cells as empty. Average data gradients over usable labels before applying separately scaled prior shrinkage and AdaGrad, retaining bounded weights; this extends the best’s successful learning mechanism, although Generations 26–27 caution that broader supervision alone need not improve escapes.

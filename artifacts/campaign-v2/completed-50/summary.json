@@ -1,0 +1,308 @@
+{
+  "split": "development",
+  "selection_warning": "64 reused search cases; intervals do not correct selection bias",
+  "target_slots": 50,
+  "persisted_slots": 50,
+  "database_rows": 53,
+  "complete": true,
+  "seed_slots": 1,
+  "seed_island_rows": 4,
+  "descendant_slots": 49,
+  "descendants_with_generated_code": 49,
+  "valid_descendants": 45,
+  "failed_slots": [
+    21,
+    30,
+    41,
+    42
+  ],
+  "failure_details": [
+    {
+      "generation": 21,
+      "evaluator_status": {
+        "correct": false,
+        "error": "No saved evaluator correctness file; see native timeout evidence when available"
+      },
+      "saved_episodes": 0,
+      "native_timeout_evidence": [
+        "2026-09-29 22:37:49 - shinka.launch.scheduler - WARNING - Process 1358036 exceeded timeout of 00:15:00. Killing. => Gen. 21"
+      ],
+      "invalid_episodes": []
+    },
+    {
+      "generation": 30,
+      "evaluator_status": {
+        "correct": false,
+        "error": "Validation failed: RuntimeError: Candidate worker exited (-9)"
+      },
+      "saved_episodes": 64,
+      "native_timeout_evidence": [],
+      "invalid_episodes": [
+        {
+          "episode": 1,
+          "steps": 146,
+          "error": "RuntimeError: Candidate worker exited (-9)",
+          "seconds": 10.380595786031336
+        }
+      ]
+    },
+    {
+      "generation": 41,
+      "evaluator_status": {
+        "correct": false,
+        "error": "Validation failed: RuntimeError: Candidate worker exited (-9)"
+      },
+      "saved_episodes": 64,
+      "native_timeout_evidence": [],
+      "invalid_episodes": [
+        {
+          "episode": 1,
+          "steps": 116,
+          "error": "RuntimeError: Candidate worker exited (-9)",
+          "seconds": 10.252057204023004
+        }
+      ]
+    },
+    {
+      "generation": 42,
+      "evaluator_status": {
+        "correct": false,
+        "error": "No saved evaluator correctness file; see native timeout evidence when available"
+      },
+      "saved_episodes": 0,
+      "native_timeout_evidence": [
+        "2026-09-30 04:50:44 - shinka.launch.scheduler - WARNING - Process 1407769 exceeded timeout of 00:15:00. Killing. => Gen. 42"
+      ],
+      "invalid_episodes": []
+    }
+  ],
+  "unique_source_hashes": 50,
+  "candidates_with_saved_64_episode_evaluations": 48,
+  "saved_native_condition_episodes": 3072,
+  "best": {
+    "id": "3fcf23df-a521-4ecb-98db-fa67490453ad",
+    "generation": 14,
+    "combined_score": 0.9700497740674794,
+    "source_sha256": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+    "parent_chain": [
+      {
+        "id": "d0693394-a049-419a-9d5a-74f6385016e5",
+        "generation": 0,
+        "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+      },
+      {
+        "id": "971ddbf3-2071-4f4f-8913-2dd18080c0a7",
+        "generation": 2,
+        "source_sha256": "a0e36ba6e3bf5ad3303fac2a171bc27e944b84fc09a36cec6ed2cbda8e59ad5a"
+      },
+      {
+        "id": "84b1e776-15de-4567-bd64-f525e987d9d6",
+        "generation": 5,
+        "source_sha256": "d65b99458ab66f499a9fbc7e110362f4def174c3dcab7baafbfc768f9cec895b"
+      },
+      {
+        "id": "3fcf23df-a521-4ecb-98db-fa67490453ad",
+        "generation": 14,
+        "source_sha256": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0"
+      }
+    ]
+  },
+  "agents": {
+    "selected": {
+      "episodes": 64,
+      "escape": 0.96875,
+      "death": 0.03125,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.9581210937500003,
+      "keys": 1.953125,
+      "door": 0.96875,
+      "steps": 49.484375,
+      "model_score": 0.9879427945436984,
+      "base_audit": 0.016667761288285537,
+      "base_near": 0.010841006209872685,
+      "brier_audit": 0.015899919176360182,
+      "brier_near": 0.00956545672960636,
+      "brier_threat": 0.027741576431010384,
+      "coverage": 0.6283812230291548,
+      "map_age": 14.510950127716594,
+      "persistence_audit": 0.01704776339332711,
+      "persistence_near": 0.014173946602112058,
+      "persistence_threat": 0.04110704110704111,
+      "prevalence_audit": 0.01694558467529734,
+      "prevalence_near": 0.010876048135284005,
+      "reconstruction": 0.6213556467740238,
+      "reconstruction_stale": 0.986009955462405,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 50.33870967741935,
+      "escapes": 62,
+      "escape_ci95": [
+        0.8930270814228412,
+        0.9913878617313676
+      ]
+    },
+    "memory": {
+      "episodes": 64,
+      "escape": 0.890625,
+      "death": 0.109375,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8870390624999998,
+      "keys": 1.875,
+      "door": 0.890625,
+      "steps": 56.71875,
+      "model_score": 0.9864265329344812,
+      "base_audit": 0.016950964187327968,
+      "base_near": 0.008010651974288345,
+      "brier_audit": 0.016621882460973503,
+      "brier_near": 0.010529537802265076,
+      "brier_threat": 0.03588941053729786,
+      "coverage": 0.6017906336088155,
+      "map_age": 17.282482642862593,
+      "persistence_audit": 0.016621882460973503,
+      "persistence_near": 0.010529537802265076,
+      "persistence_threat": 0.03588941053729786,
+      "prevalence_audit": 0.01724058769513315,
+      "prevalence_near": 0.007927762473217019,
+      "reconstruction": 0.5941000918273646,
+      "reconstruction_stale": 0.984105897423732,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 58.21052631578947,
+      "escapes": 57,
+      "escape_ci95": [
+        0.7910135857782373,
+        0.94599886685027
+      ]
+    },
+    "original_predictive": {
+      "episodes": 64,
+      "escape": 0.875,
+      "death": 0.125,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.87891015625,
+      "keys": 1.90625,
+      "door": 0.875,
+      "steps": 52.6875,
+      "model_score": 0.9886505897272645,
+      "base_audit": 0.01700735468564666,
+      "base_near": 0.008244998022933952,
+      "brier_audit": 0.01647142874380604,
+      "brier_near": 0.006989333426007946,
+      "brier_threat": 0.026125838782251814,
+      "coverage": 0.593218663503361,
+      "map_age": 15.154349275120813,
+      "persistence_audit": 0.016866211941478974,
+      "persistence_near": 0.011005667589297483,
+      "persistence_threat": 0.04114313870411431,
+      "prevalence_audit": 0.017299327797548437,
+      "prevalence_near": 0.008171872940556215,
+      "reconstruction": 0.5861259391063661,
+      "reconstruction_stale": 0.9850722979298866,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 53.55357142857143,
+      "escapes": 56,
+      "escape_ci95": [
+        0.7722543808249782,
+        0.9352775736983887
+      ]
+    }
+  },
+  "paired": {
+    "selected minus memory": {
+      "escape": {
+        "difference": 0.078125,
+        "ci95": [
+          -0.015625,
+          0.171875
+        ]
+      },
+      "task": {
+        "difference": 0.07108203125000001,
+        "ci95": [
+          -0.008067675781250127,
+          0.15492373046875008
+        ]
+      },
+      "brier_near": {
+        "difference": -0.0009640810726587162,
+        "ci95": [
+          -0.003028798299466223,
+          0.0009926375557448468
+        ]
+      },
+      "brier_threat": {
+        "difference": -0.008147834106287478,
+        "ci95": [
+          -0.015594879498380796,
+          -0.0015617964113728948
+        ]
+      }
+    },
+    "selected minus original_predictive": {
+      "escape": {
+        "difference": 0.09375,
+        "ci95": [
+          0.0,
+          0.1875
+        ]
+      },
+      "task": {
+        "difference": 0.07921093749999997,
+        "ci95": [
+          -0.0005969726562500364,
+          0.15944550781249994
+        ]
+      },
+      "brier_near": {
+        "difference": 0.0025761233035984134,
+        "ci95": [
+          0.001044901363320406,
+          0.004032180927851339
+        ]
+      },
+      "brier_threat": {
+        "difference": 0.0016157376487585702,
+        "ci95": [
+          -0.0023551893452746636,
+          0.0055238709257711014
+        ]
+      }
+    }
+  },
+  "billing": {
+    "mutation": "subscription",
+    "recommendations": "subscription",
+    "embeddings": null,
+    "novelty_llm": null,
+    "evaluator": "local Python, no LLM",
+    "model_bandit": "disabled; one configuration"
+  },
+  "assessment": "Not run or reserved; final assessment left untouched",
+  "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554",
+  "generation_stop_records": [
+    {
+      "generation_stop": 2,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554"
+    },
+    {
+      "generation_stop": 100,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554"
+    },
+    {
+      "generation_stop": 100,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554"
+    },
+    {
+      "generation_stop": 50,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554"
+    },
+    {
+      "generation_stop": 50,
+      "campaign_sha256": "5985b3e723e8f5a38ea93ad61cfe16bc98894eae7b0268c456ef6329c288e554"
+    }
+  ]
+}

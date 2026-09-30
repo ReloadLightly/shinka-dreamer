@@ -1,0 +1,131 @@
+{
+  "evolution": {
+    "task_sys_msg": "Evolve a Python agent for a partially observed dynamic maze. Jointly change\nworld_model_step(memory, local_obs, last_action) and planner(memory, local_obs).\nAll helpers, representations, predictive learning rules, search algorithms and\nexport_model are open to substantive program evolution inside the evolve block.\nDo not reduce this task to tuning constants or selecting from a fixed catalog.\n\nThe world is 15x15, observation a 5x5 square without occlusion. Two keys unlock\na cardinally adjacent door which gates the exit. Three anonymous enemies move;\nsome interior walls change every 25 steps. Borders never change. Horizon 200.\nActions have move=[dx,dy], integer components -1,0,1, and interact=bool. Diagonal\ncorner cutting is blocked. Interaction opens adjacent doors before movement and\ncollects keys after movement. Stepping onto an enemy kills before it can move.\nClosure of an occupied dynamic cell is skipped until the next scheduled tick.\n\nlocal_obs: grid (enemy overlay=5), terrain (0 empty,1 wall,2 key,3 locked door,\n4 exit,-1 outside), step, health, keys, door_open, feedback with actual\ndisplacement, collected and opened. Coordinates in your exported model use the\ninitial agent position as (0,0), not the hidden board coordinates. Memory starts\nNone each episode. No environment object, hidden identity, RNG or seed is exposed.\n\nThe evaluator records export_model(memory,local_obs) AFTER choosing the action\nand BEFORE the next transition. Export enemy as [[relative_x,relative_y,p],...]\nand default_enemy as p in [0,1]. These predict next-step anonymous occupancy at\nthe specified stationary cells. Export terrain as [[x,y,cell,last_seen_step],...]\nfor reconstruction diagnostics; export position and learning diagnostics if useful.\nThe evaluator privately scores every local 3x3 cell and 12 uniformly sampled\ninterior audit cells. Missing probabilities default to 0.5; missing terrain is\nincorrect. NaN, invalid actions and malformed exports fail evaluation.\n\nObjective task06-forecast04-v1: .6*task+.4*(1-.5*(near_Brier+audit_Brier)).\ntask=.65*escape+.10*keys+.10*door+.05*escape*(1-steps/200). Maximize efficient\nescape; expose component metrics and compare forecast errors to persistence.\nIf implementing predictive learning, respect local_obs['learn']=False by\nfreezing predictive parameter updates only, preserving mapping/localization.\nRespect predictive_planning=False by retaining mapping/pathfinding and using\na fixed observation-based risk heuristic instead of learned predictions.\n\nExecution: Python 3.10 standard library, 192 MiB address space, 10 CPU seconds\nper episode, 3 wall seconds per decision, 512 KiB source, 2 MiB reply. OS denies\nrepository/private-file access, network, new processes and evaluator inspection.\nThese are resource boundaries, not restrictions on permissible algorithms.\nUse only the parent/inspiration code and development feedback provided in this\nprompt. Do not use tools to read assessment files or other experiment outputs.\nReturn a patch or full evolved program in the format requested by ShinkaEvolve.\n",
+    "patch_types": [
+      "diff",
+      "full"
+    ],
+    "patch_type_probs": [
+      0.6,
+      0.4
+    ],
+    "num_generations": 100,
+    "max_patch_resamples": 2,
+    "max_patch_attempts": 2,
+    "job_type": "local",
+    "language": "python",
+    "llm_models": [
+      "headless/codex@gpt-6-astra?effort=high"
+    ],
+    "llm_dynamic_selection": null,
+    "llm_dynamic_selection_kwargs": {
+      "cost_aware_coef": 0.5
+    },
+    "llm_kwargs": {
+      "temperatures": [
+        1.0
+      ],
+      "max_tokens": 24000
+    },
+    "meta_rec_interval": 10,
+    "meta_llm_models": [
+      "headless/codex@gpt-6-astra?effort=high"
+    ],
+    "meta_llm_kwargs": {},
+    "meta_max_recommendations": 5,
+    "sample_single_meta_rec": true,
+    "embedding_model": null,
+    "init_program_path": "/home/roland/projects/shinka-dreamer/controls/v1/predictive.py",
+    "results_dir": "/home/roland/projects/shinka-dreamer/results/campaign-v2",
+    "enable_wandb_logging": false,
+    "wandb_project": "shinka-evolve",
+    "wandb_entity": null,
+    "wandb_group": null,
+    "wandb_name": null,
+    "wandb_mode": null,
+    "wandb_tags": [],
+    "wandb_notes": null,
+    "wandb_dir": null,
+    "wandb_run_id": null,
+    "wandb_resume": "allow",
+    "wandb_config": {},
+    "max_novelty_attempts": 1,
+    "code_embed_sim_threshold": 0.99,
+    "novelty_llm_models": null,
+    "novelty_llm_kwargs": {},
+    "use_text_feedback": true,
+    "max_api_costs": null,
+    "inspiration_sort_order": "ascending",
+    "enable_controlled_oversubscription": false,
+    "proposal_target_mode": "adaptive",
+    "proposal_target_min_samples": 5,
+    "proposal_target_ratio_cap": 2.0,
+    "proposal_buffer_max": 2,
+    "proposal_target_hard_cap": null,
+    "proposal_target_ewma_alpha": 0.3,
+    "evolve_prompts": false,
+    "prompt_patch_types": [
+      "diff",
+      "full"
+    ],
+    "prompt_patch_type_probs": [
+      0.7,
+      0.3
+    ],
+    "prompt_evolution_interval": null,
+    "prompt_archive_size": 10,
+    "prompt_llm_models": null,
+    "prompt_llm_kwargs": {},
+    "prompt_ucb_exploration_constant": 1.0,
+    "prompt_epsilon": 0.1,
+    "prompt_evo_top_k_programs": 3,
+    "prompt_percentile_recompute_interval": 20
+  },
+  "database": {
+    "db_path": null,
+    "num_islands": 4,
+    "archive_size": 40,
+    "max_stdout_log_chars": null,
+    "elite_selection_ratio": 0.3,
+    "num_archive_inspirations": 1,
+    "num_top_k_inspirations": 1,
+    "migration_interval": 10,
+    "migration_rate": 0.1,
+    "island_elitism": true,
+    "enforce_island_separation": true,
+    "island_selection_strategy": "uniform",
+    "enable_dynamic_islands": false,
+    "stagnation_threshold": 100,
+    "island_spawn_strategy": "initial",
+    "island_spawn_subtree_size": 1,
+    "parent_selection_strategy": "weighted",
+    "exploitation_alpha": 1.0,
+    "exploitation_ratio": 0.2,
+    "parent_selection_lambda": 10.0,
+    "num_beams": 5,
+    "archive_selection_strategy": "fitness",
+    "archive_criteria": {
+      "combined_score": 1.0
+    }
+  },
+  "job": {
+    "eval_program_path": "/home/roland/projects/shinka-dreamer/evaluate.py",
+    "extra_cmd_args": {
+      "episodes": 64,
+      "seed_file": "/home/roland/projects/shinka-dreamer/results/campaign-v2/development-seeds.json",
+      "campaign_manifest": "/home/roland/projects/shinka-dreamer/results/campaign-v2/campaign-manifest.json"
+    },
+    "eval_verbose": true,
+    "numeric_threads_per_job": 1,
+    "time": "00:15:00",
+    "conda_env": null,
+    "activate_script": null,
+    "python_executable": "/home/roland/projects/shinka-dreamer/.venv/bin/python"
+  },
+  "max_evaluation_jobs": 1,
+  "max_proposal_jobs": 1,
+  "max_db_workers": 1,
+  "billing": "subscription",
+  "upstream": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+  "headless": "93cd9b06b85f848af1308c41e018991b33907c5e"
+}

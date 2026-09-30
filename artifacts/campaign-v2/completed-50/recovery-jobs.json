@@ -1,0 +1,30 @@
+[
+  {
+    "generation": 27,
+    "source_sha256": "5f1451d3c8fc7c7561ecb8cce1fba19ded8f90ec25ebccb73846d4e4c202c5c4",
+    "parent_id": "63df07ad-73c4-4e92-8988-b1c9ce33a689",
+    "archive_inspiration_ids": [
+      "33b8c89d-fd3f-4c0d-93e0-d5eff6af8ada"
+    ],
+    "top_k_inspiration_ids": [
+      "84b1e776-15de-4567-bd64-f525e987d9d6"
+    ],
+    "lineage_evidence": "evolution_run.log 2026-09-29 23:10:09 parent/inspiration sampling; pre-recovery copy under results/recovery/20260929T213439Z",
+    "evidence_sha256": {
+      "gen_27/original.py": "1cc2fc03df38e8db4cfca489faae888f0660e5670af5427c3f0fcf3686eb396d",
+      "gen_27/edit.diff": "9fbb5c0e273adb9d942ae6155adc594b56fea87a15cf478d2cbf64ef10ae6fe3",
+      "gen_27/attempts/novelty_1/resample_1/patch_1/metadata.json": "0bdb81e88aa55a664aa93d4bc04254b6f344030e13cf45541195b5b5c2b6cb20",
+      "gen_27/attempts/novelty_1/resample_1/patch_1/headless_prompt.md": "95a31abc1c6b13f6f07c691be0bef3976f851f8a8ef8e5a2beb7cc29cb006142"
+    },
+    "patch_metadata": {
+      "patch_type": "diff",
+      "patch_name": "overlap_learning_joint_escape_options",
+      "patch_description": "Train on the full unchanged, traversable observation overlap, averaging the transport gradient before regularization and AdaGrad. Preserve anonymous occupancy derivatives, bounded weights, and frozen predictive updates.\nImprove planning by accounting for dependence between future escape options: one visible enemy cannot occupy several alternative destinations simultaneously. Compute their joint availability from the existing categorical motion branches, retaining the approximation for hidden enemies. This should reduce unnecessary waiting and detours without weakening immediate collision avoidance. Performance improvement requires evaluation; no new results are claimed.",
+      "num_applied": 5,
+      "api_costs": 0.385828,
+      "model_name": "headless/codex@gpt-6-astra?effort=high",
+      "cost_basis": "api-list-price-estimate, subscription billing",
+      "interrupted_at": "2026-09-29T23:12:42+02:00"
+    }
+  }
+]

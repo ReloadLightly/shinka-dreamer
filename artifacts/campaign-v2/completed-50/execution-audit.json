@@ -1,0 +1,96 @@
+{
+  "controller_exit_code": 0,
+  "controller_lock_released": true,
+  "native_completed_generations": 50,
+  "native_target": 50,
+  "running_evaluations_at_stop": 0,
+  "active_proposals_at_stop": 0,
+  "immutable_manifest_target": 100,
+  "final_native_meta_processed_generations": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "final_native_meta_sha256": "eed84bd6aa42c5c26ae41fed17e7a7acbbe4308b5b557272161246c41f32f9ee",
+  "upstream_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+  "headless_revision": "93cd9b06b85f848af1308c41e018991b33907c5e",
+  "llm_roles": {
+    "mutation_and_fix": [
+      "headless/codex@gpt-6-astra?effort=high"
+    ],
+    "recommendations": [
+      "headless/codex@gpt-6-astra?effort=high"
+    ],
+    "embeddings": null,
+    "novelty": null,
+    "evaluator": "local Python; no LLM"
+  },
+  "billing": "subscription",
+  "probe_routes": [
+    "subscription"
+  ],
+  "cost_basis": "api-list-price-estimate",
+  "cost_note": "Native dollar amounts are API list-price estimates, not subscription charges.",
+  "effective_codex_controls": {
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "outer_headless_timeout_seconds": 600
+  },
+  "not_forwarded_to_codex_cli": [
+    "temperature",
+    "max_tokens"
+  ],
+  "candidate_limits_unchanged": true,
+  "tests": {
+    "passed": 11,
+    "purpose": "Recovery, isolation and evaluator checks; empirical evidence is reported separately."
+  },
+  "assessment_reserved_or_run": false
+}
