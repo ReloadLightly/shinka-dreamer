@@ -51,7 +51,10 @@ def main():
                 "original": {k: original[k] for k in ("reason", "steps", "keys", "door", "error")},
                 "replay": {k: result[k] for k in ("reason", "steps", "keys", "door", "error")},
                 "reproduces_original": not mismatches, "mismatched_fields": mismatches,
+                "original_trajectory_sha256": original["audit"]["trajectory_sha256"],
+                "original_map_position_sha256": original["audit"]["map_position_sha256"],
                 "trajectory_sha256": result["audit"]["trajectory_sha256"],
+                "map_position_sha256": result["audit"]["map_position_sha256"],
                 "path": [f["world"]["agent"] for f in trace]}
         common = min(len(t) for t in traces.values())
         divergence = next((i for i in range(common) if traces["predictive"][i]["action"] != traces["frozen"][i]["action"]), None)
@@ -63,6 +66,7 @@ def main():
                          "display_step": frame_index, "agents": agents})
     result = {"published_after_analysis_closed": True, "analysis_closed_sha256": sha256(data / "analysis-closed.json"),
               "created_utc": datetime.now(timezone.utc).isoformat(),
+              "example_script_sha256": sha256(__file__),
               "selection_rule": "Lowest case index in each prespecified selected/frozen escape stratum",
               "display_rule": "First differing action; last shared frame if actions never differ",
               "exposure_warning": "These cases are now exposed and must never be reused as a future fresh test.",

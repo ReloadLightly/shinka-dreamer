@@ -1,0 +1,27 @@
+{
+  "closed_utc": "2026-09-30T19:12:48.518413+00:00",
+  "preregistration_sha256": "959708b8bb5cd089dfb81fa0cba0ff92b84be7a4cf41a2c2f44b459c5479f98a",
+  "episodes_sha256": "1aa7931ae53bc4e6394bb4b981e3bba5ef3460101f47dfc47ee6d60bd7dd2225",
+  "analysis_sha256": "ed6f2cd34be043e1e97e75a74d4966d5900a7156033caf6220fc3ef891374233",
+  "analysis_script_sha256": "10bee6f0c78cb005650bf079b5c24f4abe7090da0771d37997461a45dad6a6e8",
+  "cases": 1024,
+  "condition_episodes": 6144,
+  "example_case_indices": {
+    "selected_only": {
+      "eligible_cases": 11,
+      "case": 0
+    },
+    "frozen_only": {
+      "eligible_cases": 15,
+      "case": 73
+    },
+    "both_fail": {
+      "eligible_cases": 47,
+      "case": 9
+    },
+    "both_escape": {
+      "eligible_cases": 951,
+      "case": 1
+    }
+  }
+}

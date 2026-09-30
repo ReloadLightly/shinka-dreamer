@@ -56,7 +56,7 @@ def render(summary):
                 f"{result['both']} | {result['neither']} | "
                 f"{estimate(result['difference'], result['ci95'], 100, 3)} | "
                 f"{result['mcnemar_exact_p']:.6g} | "
-                f"{number(result.get('holm_adjusted_p'), 6)} |")
+                f"{format(result['holm_adjusted_p'], '.6g') if 'holm_adjusted_p' in result else '—'} |")
         escape = metrics["escape"]
         if "holm_adjusted_p" in escape:
             lines += ["", "Secondary simultaneous interval (Bonferroni, three contrasts): "

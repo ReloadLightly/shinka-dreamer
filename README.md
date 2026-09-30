@@ -1,231 +1,490 @@
-# ShinkaDreamer
+# ShinkaDreamer: prediction learning and control after evolutionary program search
 
-**Evolving the code of agents that learn to predict and plan.**
+## Abstract
 
-An agent sees only a small patch of a changing maze. It must find two keys,
-open a door and reach the exit while avoiding moving enemies. ShinkaDreamer
-asks whether evolutionary program search can discover **both a better world
-model and a better way to use it**.
+We assessed a program selected by one 50-slot LLM-guided evolutionary search
+on **1,024 fresh paired mazes**, with six conditions and **6,144 episodes**.
+Generation 14 escaped in **93.95%** of cases, compared with **91.11%** for the
+immutable memory baseline and **80.08%** for the original predictive seed.
+Paired improvements were **+2.83 percentage points** (95% interval +0.15 to +6.35)
+and **+13.87 points** (+9.51 to +18.62), respectively; both secondary tests passed
+the prespecified Holm correction. On verified identical fixed-risk trajectories,
+online updates reduced pooled near-cell Brier loss by **3.31%** (95% interval
+2.91–3.71%). This prediction gain did **not establish a control gain**: selected
+minus frozen-weight escape was **−0.39 points** (−2.23 to +1.21; exact McNemar
+p=0.557), and selected minus fixed-risk escape was **−0.20 points** (−3.09 to +2.63;
+Holm p=0.923). The experiment supports generalization of this evolved program and
+its predictive learner under the existing maze generator, while leaving the
+escape benefit of updating or using predictions unestablished.
 
-There are two learning timescales: ShinkaEvolve changes the agent's Python
-representation, learning rule and planner across candidates; the resulting
-agent updates its predictive parameters from experience within each episode.
-The first campaign evolved a spatial enemy-motion model and a planner that
-reasons about survival over two actions.
+## Research questions
 
-The project began with a proposal from **Sakana AI's Namazu**, supplied by
-Roland Löchli. The [complete original proposal](docs/namazu-proposal.md) is
-preserved. This independent experiment currently uses symbolic and statistical
-world models rather than the neural Dreamer architecture.
+A partially observed agent can predict more accurately without choosing better
+actions. We distinguish three questions: **(1)** does the selected evolved
+controller outperform its starting program and a competent memory baseline on
+fresh mazes; **(2)** do within-episode updates improve prediction on identical
+experience; and **(3)** do updating or using those predictions increase escape?
+The distinction matters because the search jointly changed representations,
+learning and planning, while its selection score mixed task and model components.
 
-[Findings](docs/campaign-findings.md) · [Inside the evolved agent](docs/evolved-agent.md) ·
-[Protocol](docs/protocol.md) · [Selected program](artifacts/campaign-v2/completed-50/selected.py) ·
-[Reproduce](docs/reproduction.md)
+The project originates in [Namazu's proposal](docs/namazu-proposal.md), supplied
+by Roland Löchli and attributed to Sakana AI's Namazu model. The original text is
+preserved unchanged. Predictive learning and before-outcome forecast scoring are
+explicit extensions to its reconstruction-based objective; coordinate, door,
+movement and generation repairs are documented separately in the
+[protocol](docs/protocol.md). This is an independent implementation.
 
-## Watch the evolved agent
+## Related work
+
+LLM-guided program search combines generative proposals with executable tests.
+FunSearch demonstrates this arrangement for mathematical constructions and
+algorithmic heuristics [1]. ShinkaEvolve adds native population management,
+parent sampling, novelty mechanisms and model selection [2]. Our experiment uses
+its actual program database, four islands, parent/inspiration sampling, archive,
+migration and recommendations. The authorized route used a single mutation-model
+configuration and disabled embeddings and novelty LLM calls; it therefore does
+not test a model bandit or embedding-based novelty. Candidate indices identify
+individual proposal slots. The evolving object is Python source with editable
+representations and helpers, rather than a fixed vector of hyperparameters.
+
+Predictive world models can support control, but prediction accuracy is not itself
+a control outcome. Dreamer learns neural latent dynamics and trains an actor and
+critic through imagined trajectories [3]. ShinkaDreamer instead assesses an
+interpretable spatial probability model and short heuristic lookahead; it does
+not implement neural Dreamer. Its online optimizer follows AdaGrad's accumulated
+squared-gradient idea [4], and its forecast loss is binary Brier error [5]. The
+experiment tests this discovered learner's behavior rather than claiming a new
+optimizer or a new proper scoring rule.
+
+## Methods
+
+### Environment and independent evaluation
+
+The world is a **15×15 dynamic maze**, observed through a **5×5 local square**.
+The agent must collect two keys, open a door physically gating the exit and escape
+within 200 actions while avoiding three moving enemies. Actions are the eight
+neighboring displacements and waiting. Diagonal corner cutting is prohibited;
+wall changes occur every 25 steps, skip occupied closures and retain objective
+reachability in every phase. Feedback supplies actual displacement and inventory.
+The evaluator owns the hidden map, enemy states and independent layout, enemy and
+forecast-target RNG streams. Candidate code receives observations and feedback
+through a restricted worker, never the hidden environment or case seeds.
+
+Enemies draw uniformly from the nine attempted displacements at every step;
+blocked attempts become waits. The transition law is common across mazes and
+has neither pursuit nor momentum. The present assessment tests new layouts and
+trajectories under this same law, not generalization to unknown or changing laws.
+The agent refreshes remembered walls but does not learn their change schedule.
+
+Forecasts are exported after action selection and **before** the world advances.
+The evaluator scores stationary target cells at the next step: nine cells around
+the old position and twelve independently sampled interior cells. Terminal steps
+are included. We report pooled near-cell, uniform-audit and threat-conditioned
+Brier losses, with loss `(p − y)²`. Threat conditioning selects steps with a visible
+nearby enemy; it is a related diagnostic, not another independent experiment.
+Missing probabilities use the declared default; omitted defaults receive 0.5.
+Memory's forecast comparator is visible-occupancy persistence with 0.02 elsewhere.
+
+The unchanged selection objective for valid episodes is
+
+$$
+T=0.65E+0.10K+0.10D+0.05E(1-s/200),\qquad
+M=1-\tfrac12(L_{\rm near}+L_{\rm audit}),\qquad F=0.6T+0.4M,
+$$
+
+where E indicates escape, K is the number of keys (0–2), D indicates an open door
+and s is the episode length. Selection averages episode scores equally; displayed
+Brier diagnostics pool target sums and counts. These weightings differ. Invalid
+execution receives zero selection score and remains a recorded non-escape.
+The assessment changes neither this kernel nor its resource limits.
+
+### The evolved world model and planner
+
+There are two adaptation timescales. Across candidate slots, LLM proposals changed
+`world_model_step`, `planner`, representations and helpers. Within an episode,
+generation 14 localizes using movement feedback, integrates terrain and observation
+ages, filters anonymous enemy occupancy and updates **ten transition weights**.
+Memory and weights reset between mazes.
+
+The model distributes occupancy mass from each possible source e over legal
+neighboring destinations q using a spatial softmax,
+
+$$
+P_\theta(q\mid e,c)=\frac{\exp(\theta^\top\phi(e,q,c))}
+{\sum_{r\in L(e)}\exp(\theta^\top\phi(e,r,c))},\qquad
+\widehat p(q)=1-\prod_e[1-b(e)P_\theta(q\mid e,c)].
+$$
+
+Features describe staying, diagonal movement, approach, proximity, corridor
+geometry, connectivity and inferred flow. They are hypotheses available to the
+model, not evidence that enemies actually pursue the agent. The anonymous union
+approximation does not represent a full joint distribution over enemy identities.
+
+New observations label the previous view's inner 3×3 cells. Brier gradients through
+the saved visible-source softmax rows update the weights, with regularization
+`0.003(θ − θ₀)`, gradient clipping at ±3 and accumulated squared gradients G:
+
+$$
+G_i\leftarrow G_i+g_i^2,\qquad
+\theta_i\leftarrow\operatorname{clip}_{[-6,6]}
+\left(\theta_i-\frac{0.20g_i}{\sqrt{0.20+G_i}}\right).
+$$
+
+Map updates and occupancy filtering continue when these predictive weights are
+frozen. Planning combines risk-weighted paths with two-action lookahead.
+Generation 14's continuation model retains mutually exclusive destinations for
+each anonymous source: surviving the first move rules out the destination just
+occupied by the agent, and remaining alternatives are renormalized before the
+second risk estimate. Costs and the 0.65 discount on entry hazard are heuristic.
+The final exported forecast is recomputed around the chosen destination, whereas
+first-move comparison uses the current position. Scored and planning forecasts
+are consequently not perfectly identical. The
+[walkthrough](docs/evolved-agent.md) documents the exact source functions.
+
+## Experimental design
+
+### Frozen selection and fresh cases
+
+The completed search has **50 total slots**, including one seed, 45 valid
+descendants and four failed descendants. It was not extended. Generation 14 was
+fixed before this assessment at SHA-256
+`588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0`.
+The reviewed repository state was `02d1579`; no newer remote work or pre-existing
+v2 assessment was found. The [preregistration](artifacts/campaign-v2/assessment-1024/preregistration.json)
+was committed at `38e437a` **before** reserving 1,024 new paired cases, excluding
+prior pools. The fixed sample was completed regardless of intermediate outcomes.
+No agent tuning, new search slots or model calls occurred.
+
+| Condition | Program | Predictive updates | Planning risk |
+|---|---|---|---|
+| Original memory | Immutable original memory/pathfinding control | None | Fixed heuristic |
+| Original seed | Immutable original predictive program | Original count updates | Original predictive planner |
+| Selected | Generation 14 | Softmax weight updates | Predictive |
+| Frozen | Generation 14 | Frozen weights | Predictive |
+| Fixed-risk | Generation 14 | Softmax weight updates | Fixed heuristic |
+| Frozen + fixed-risk | Generation 14 | Frozen weights | Fixed heuristic |
+
+All six conditions use the same **1,024 cases: 6,144 condition-episodes**.
+Fixed-risk planning retains pathfinding and lookahead; it substitutes the hazard
+estimate. Original controls resolve to hash-verified original programs rather
+than flags applied to the evolved source. Condition order rotates by case index.
+
+The primary mechanistic outcome is the paired **selected-minus-frozen escape
+probability**. Prespecified secondary escape contrasts compare selected with
+memory, original seed and fixed-risk planning. Secondary two-sided exact McNemar
+p-values receive Holm correction across those three tests at familywise alpha
+0.05 [6], independently of the primary outcome. This is a separate secondary
+family, not global correction over every reported metric. All directions are
+reported. Other binary outcomes and forecast intervals are explicitly exploratory
+or estimation results, without additional confirmatory p-value claims.
+
+### Paired inference and intervention verification
+
+Binary results report per-condition Wilson 95% intervals, paired wins/losses and
+exact McNemar tests. Paired difference intervals use a conservative exact-binomial
+construction, avoiding the zero-width intervals a percentile bootstrap can give
+with few discordances. For discordance probability q and conditional win
+probability θ, the effect is q(2θ−1). Separate 97.5% Clopper–Pearson intervals give
+a rectangle with at least 95% joint coverage; its transformed extrema bound the
+effect. With zero discordances, θ spans [0,1]. The
+[design](docs/assessment-design.md) gives the derivation. These intervals are
+conservative and need not invert McNemar's test. Simultaneous Bonferroni intervals
+for the three secondary differences are also in the analysis data [7].
+
+During the **actual assessment**, the shared development-audit logic hashed full
+action/world/enemy trajectories and map/localization histories, then discarded
+traces after each episode. It recorded parameter constancy and changes, update
+counts, visible-map correctness, localization correctness and memory activity.
+Only verified identical fixed-risk histories qualify as matched experience.
+
+For forecast differences and relative reductions, 10,000 bootstrap draws resample
+whole paired episodes and recompute pooled error sums divided by target counts.
+The RNG seed is fixed at 20260930. Learning-curve intervals are pointwise; late
+bins condition on survival and show their sample sizes. On-policy forecast losses
+under different actions are reported separately. Successful-escape steps and
+runtime condition on success and are not unconditional efficiency measures.
+
+## Results
+
+The three research questions have different answers. **Evolutionary performance
+generalizes for this selected program:** it wins 189 and loses 47 escape pairs
+against its original seed, and wins 83 and loses 54 against memory. **Within-episode
+predictive learning generalizes on matched experience:** updating improves pooled
+forecast loss under an unchanged fixed-risk policy. **A control advantage from
+updating or using predictions is not established:** both corresponding escape
+estimates are slightly negative, with intervals spanning meaningful benefit and
+harm.
+
+The memory comparison is modest and imprecise: Holm-adjusted p=0.0329, with the
+pointwise interval shown below. Its more conservative simultaneous interval is
+−0.34 to +7.03 percentage points. That interval and the Holm test use different
+constructions; they are not inversions of one another. The larger improvement
+over the original seed is much clearer (Holm p=6.87×10⁻²¹).
+
+### Fresh-assessment outcomes and effects
+
+| Condition | Escapes; rate % [95% CI] | Deaths | Timeouts | Invalid |
+| --- | --- | --- | --- | --- |
+| Original memory | 933/1024; 91.11 [89.21, 92.71] | 89 | 2 | 0 |
+| Original predictive seed | 820/1024; 80.08 [77.52, 82.41] | 204 | 0 | 0 |
+| Selected generation 14 | 962/1024; 93.95 [92.31, 95.25] | 59 | 0 | 3 |
+| Selected, frozen weights | 966/1024; 94.34 [92.75, 95.59] | 56 | 1 | 1 |
+| Selected, fixed-risk | 964/1024; 94.14 [92.53, 95.42] | 58 | 2 | 0 |
+| Selected, frozen + fixed-risk | 964/1024; 94.14 [92.53, 95.42] | 58 | 2 | 0 |
+
+| Comparator to selected | Paired escape wins / losses | Difference, pp [95% CI] | Exact p | Holm p |
+| --- | --- | --- | --- | --- |
+| Frozen weights (primary) | 11 / 15 | -0.391 [-2.230, 1.212] | 0.5572 | — |
+| Original memory | 83 / 54 | 2.832 [0.150, 6.347] | 0.01643 | 0.03286 |
+| Original seed | 189 / 47 | 13.867 [9.506, 18.615] | 2.29e-21 | 6.869e-21 |
+| Fixed-risk | 53 / 55 | -0.195 [-3.087, 2.627] | 0.9234 | 0.9234 |
+
+Positive effects favor the selected program. The [complete numerical report](docs/assessment-results.md) provides rate intervals and paired counts/tests for death, timeout, door completion and both keys, plus simultaneous secondary intervals. No direction is omitted.
+
+![Fresh outcomes and paired escape effects](artifacts/campaign-v2/assessment-1024/figures/assessment-outcomes-effects.svg)
+
+*Figure 1. All 1,024 paired cases per condition. Outcome bars distinguish escape,
+death, timeout and invalid execution; whiskers show Wilson escape intervals.
+The forest plot shows conservative 95% paired difference intervals. The primary
+p-value is exact McNemar; secondary p-values are Holm-adjusted. Marginal intervals
+are not simultaneous secondary intervals; those are supplied in the analysis.*
+
+| Condition | Mean keys | Door open / 1024 | Mean task [95% CI] | Steps, all episodes | Steps, successful escapes | Seconds / episode |
+| --- | --- | --- | --- | --- | --- | --- |
+| Original memory | 1.934 | 933 | 0.9078 [0.8923, 0.9226] | 62.2 | 63.6 | 0.425 |
+| Original predictive seed | 1.855 | 820 | 0.8147 [0.7936, 0.8352] | 54.2 | 57.3 | 0.358 |
+| Selected generation 14 | 1.952 | 962 | 0.9336 [0.9209, 0.9460] | 55.0 | 55.9 | 2.540 |
+| Selected, frozen weights | 1.954 | 966 | 0.9370 [0.9244, 0.9493] | 54.5 | 55.4 | 2.325 |
+| Selected, fixed-risk | 1.956 | 964 | 0.9356 [0.9227, 0.9479] | 54.9 | 55.6 | 1.241 |
+| Selected, frozen + fixed-risk | 1.956 | 964 | 0.9356 [0.9227, 0.9479] | 54.9 | 55.6 | 1.251 |
+
+Successful-escape time conditions on each agent’s own successful cases; it is not an unconditional performance measure. Unconditional episode length includes early deaths and execution failures. Host runtime includes startup, evaluation, IPC and temporary trace collection under four-case concurrency. Runtime intervals, medians, tails and success-conditioned seconds are in the complete report.
+
+Selected task score exceeds memory by 0.02587 (paired 95% interval
+0.00699–0.04531) and the original seed by 0.11895 (0.09515–0.14306). Its successful
+escapes average 55.92 actions, compared with memory's 63.63, but those means use
+different successful subsets. Computation is more expensive: selected episodes
+average 2.540 host seconds versus 0.425 for memory and 1.241 for fixed-risk.
+The paired selected-minus-fixed-risk runtime difference is 1.299 seconds
+(1.213–1.389). These are measurements of this audited local runtime, not portable
+CPU benchmarks or evidence that shorter failed episodes are better.
+
+### Prediction learning on identical experience
+
+The fixed-risk learned and frozen conditions have identical action/world/enemy
+and map/localization hashes on **all 1,024 cases**. Neither condition has an invalid
+execution. Their near-cell losses are 0.009263 and 0.009580 over **506,250 targets
+per condition**: difference **−0.000318**, paired 95% interval
+**[−0.000363, −0.000273]**. The relative reduction is **3.31% [2.91%, 3.71%]**.
+Uniform-audit loss also decreases, by a smaller **0.265% [0.195%, 0.336%]**.
+
+Learning is not uniformly helpful episode by episode: near loss improves in
+571 cases, worsens in 399 and is tied in 54 (numerical tolerance 10⁻¹²). Near and
+threat-conditioned loss have the same error sums here: near targets outside
+threatening steps incur zero error. Their identical relative reductions therefore
+are not independent corroboration. The learning curve contains 1,024, 944, 529,
+164, 47, 15, 6 and 4 contributing episodes in successive bins. Its sparse late
+bins have wide uncertainty and cannot establish a population-wide temporal trend.
+
+These are the **verified matched-experience** comparisons (learned minus frozen, both using fixed-risk planning):
+
+| Forecast | Learned loss | Frozen loss | Difference [95% CI] | Relative reduction, % [95% CI] | Episodes; targets per condition |
+| --- | --- | --- | --- | --- | --- |
+| Near | 0.009263 | 0.009580 | -0.000318 [-0.000363, -0.000273] | 3.31 [2.91, 3.71] | 1,024; 506,250 |
+| Uniform audit | 0.016856 | 0.016901 | -0.000045 [-0.000057, -0.000033] | 0.26 [0.19, 0.34] | 1,024; 675,000 |
+| Threat-conditioned | 0.027125 | 0.028055 | -0.000930 [-0.001059, -0.000802] | 3.31 [2.91, 3.71] | 1,003; 172,881 |
+
+For context, the following losses are **on-policy** and can reflect different trajectories. They are not substitutes for the matched learning contrast. Memory forecasts use the evaluator’s persistence comparator.
+
+| Condition | Near Brier [95% CI] | Audit Brier [95% CI] | Threat Brier [95% CI] |
+| --- | --- | --- | --- |
+| Original memory | 0.01125 [0.01078, 0.01173] | 0.01783 [0.01754, 0.01813] | 0.03832 [0.03692, 0.03975] |
+| Original predictive seed | 0.00739 [0.00708, 0.00771] | 0.01712 [0.01683, 0.01742] | 0.02747 [0.02661, 0.02833] |
+| Selected generation 14 | 0.00940 [0.00902, 0.00977] | 0.01678 [0.01649, 0.01707] | 0.02795 [0.02710, 0.02878] |
+| Selected, frozen weights | 0.00957 [0.00918, 0.00994] | 0.01684 [0.01655, 0.01713] | 0.02838 [0.02751, 0.02925] |
+| Selected, fixed-risk | 0.00926 [0.00890, 0.00962] | 0.01686 [0.01657, 0.01714] | 0.02712 [0.02628, 0.02796] |
+| Selected, frozen + fixed-risk | 0.00958 [0.00919, 0.00997] | 0.01690 [0.01661, 0.01719] | 0.02805 [0.02714, 0.02896] |
+
+![Matched learning with uncertainty and sample sizes](artifacts/campaign-v2/assessment-1024/figures/matched-learning.svg)
+
+*Figure 2. Online and frozen predictions under the same fixed-risk actions and
+observations. Shading and error bars are pointwise 95% paired-episode bootstrap
+intervals; ratios are recomputed on every resample. The right panel counts
+contributing episodes, and exact prediction-target counts are in the analysis.
+Later bins select longer-surviving episodes and do not establish an unconditional
+learning trend. Near and threat losses are related views of the same forecasts.*
+
+### Reused development evidence and the historical seed study
+
+The lineage **0 → 2 → 5 → 14** introduces motion mixtures, a spatial softmax
+learner with occupancy propagation and two-step planning, then survival-conditioned
+continuation risk. Development escapes rise from 56/64 at the original seed to
+62/64 at generations 5 and 14. Generation 5 accounts for **99.96%** of the final
+best-score gain; generation 14 adds only 0.00002036, with the same escape outcomes
+and 17 fewer total steps. No subsequent candidate improves the selected score.
+
+![Evolutionary progress separated into task and model components](artifacts/campaign-v2/assessment-1024/figures/evolution-components.svg)
+
+*Figure 3. One search on 64 reused development mazes. Stars identify generation
+14; gray vertical lines mark failed slots. From seed to selected program, the
+weighted task contribution is +0.047527 and the model contribution −0.000283.
+Most progress is task-driven despite the nominal 40% model weight. Candidate
+model scores use different trajectories and cannot isolate learning quality.*
+
+The development audit found a 3.49% matched near-loss reduction and only two extra
+escapes from updating. These observations motivated the fresh assessment; they
+are not additional independent test cases. The earlier, separate
+[handwritten-seed study](docs/seed-study.md) remains unchanged: on 256 historical
+withheld cases, seed escape was 83.6% versus memory's 90.2%, and matched updates
+slightly worsened forecast loss. Those exposed historical results are not pooled
+with the present fresh assessment.
+
+## Mechanism analysis
+
+The intervention checks show that freezing did what the comparison requires.
+Transition weights stayed constant in **1,024/1,024** episodes of each frozen
+condition. They changed in **991/1,024** selected episodes and **993/1,024** learned
+fixed-risk episodes; the remaining episodes need not provide an informative
+parameter-update opportunity. Mapping changed and localized movement occurred
+in every episode of all six conditions. There were **zero localization errors**
+and **zero visible-terrain errors across 8,116,112 checks**. All four selected-code
+conditions started from the same ten-weight prior.
+
+These checks support a learning effect on predictions, but not a claim that
+prediction improvement caused better control. The primary comparison has **11
+escape wins and 15 losses**; 951 pairs both escape and 47 pairs both fail. Using
+predictive rather than fixed-risk planning gives **53 wins and 55 losses**.
+Action choices can change substantially without increasing average escape.
+The unchanged fixed-risk branch still escapes in 94.14% of cases. This is
+consistent with much of the evolved controller's competence residing in its
+navigation and planning structure rather than requiring online weight adaptation;
+the experiment does not separately identify every evolved code change.
+
+The model-score result also cautions against treating the selection scalar as a
+learning measure. Selected task performance improves markedly over the seed,
+while its mean model score is lower by 0.000509 (paired interval −0.000782 to
+−0.000236). Those programs follow different trajectories. The matched intervention,
+not that on-policy score difference, isolates the benefit of the online learner.
+
+### Paired behavioral examples
+
+Examples follow the rule fixed before case generation: choose the lowest case
+index in each selected/frozen escape stratum, without selecting for effect size
+or visual appeal. All eight replayed episodes reproduce their original outcomes,
+scientific metrics and trajectory/map hashes exactly; runtime is excluded from
+that deterministic comparison.
+
+| Exposed case | First differing action at step | Selected outcome | Frozen outcome |
+|---|---|---|---|
+| 0000, selected-only | 53 | Escape, 153 actions | Death, 73 actions |
+| 0073, frozen-only | 68 | Death, 84 actions | Escape, 87 actions |
+| 0009, both fail | 14 | Death, 29 actions; both keys | Death, 29 actions; both keys |
+| 0001, both escape | 69 | Escape, 128 actions | Escape, 128 actions |
+
+In case 0000, the first branch is southwest versus west; in case 0073 it is
+southeast versus east. These branches precede opposite eventual outcomes rather
+than proving a one-action rescue or mistake. The displayed chosen-cell one-step
+forecasts round to zero in every example; action costs also depend on path and
+continuation risks elsewhere. In case 0009, both agents collect the keys and
+still die before opening the door. In case 0001, different choices leave the
+same terminal outcome and duration. The compact
+[example records](artifacts/campaign-v2/assessment-1024/behavior-examples.json)
+and [exposure manifest](artifacts/campaign-v2/assessment-1024/exposed-cases.json)
+make this selection and verification inspectable.
+
+![Prespecified paired behavioral examples](artifacts/campaign-v2/assessment-1024/figures/paired-behavior.svg)
+
+*Figure 4. The lowest case index in each available selected/frozen escape stratum:
+selected-only, frozen-only, both fail and both escape. Frames show the first
+choice of different actions, or the last shared frame when actions agree. Paths
+show preceding movement; filled red markers are current enemies and hollow
+markers are next-step enemies, revealed only for retrospective inspection.
+Outcomes describe the complete episodes. A displayed decision need not be the
+sole cause of a later outcome. Dark cells are walls, yellow cells are keys,
+purple cells are the door and green cells are the exit. These examples were exposed only after numerical
+analysis closed and are ineligible as future fresh tests.*
+
+### Retained development replay
 
 ![Generation 14: hidden maze, remembered terrain and predicted enemy occupancy](artifacts/campaign-v2/mechanism-gen14/replay/replay.gif)
 
-In this development episode, the agent collects keys at steps **13** and **39**,
-experiences wall changes at **25** and **50**, opens the door at **58**, and
-escapes on action **59**. By step 50 it has performed 19 parameter-update steps.
-The panels expose the hidden world, the agent's remembered terrain and its
-enemy-occupancy forecast. Hollow circles on the forecast panel show subsequent
+In this preserved **development** episode, keys arrive at steps 13 and 39, walls
+change at 25 and 50, the door opens at 58 and escape follows on action 59. By step
+50, 19 parameter-update steps have occurred. The panels show hidden world,
+remembered terrain and enemy-occupancy forecast. Hollow circles show subsequent
 enemy positions for retrospective comparison; the agent never receives them.
-[Replay data](artifacts/campaign-v2/mechanism-gen14/replay/replay.json).
+[Original replay data](artifacts/campaign-v2/mechanism-gen14/replay/replay.json)
+and [mechanism explanation](docs/evolved-agent.md) remain intact.
 
-## What the first campaign found
+## Limitations and subsequent research
 
-**Evolution improved development performance, and the evolved model benefits
-from online learning. Whether that learning reliably improves decisions on
-fresh mazes remains the central open question.**
+The primary interval permits approximately **2.23 percentage points of escape
+harm or 1.21 points of benefit** from updating. The planning comparison permits
+roughly **3.09 points of harm or 2.63 points of benefit** from using predictions.
+Neither is an equivalence result or proof of zero effect. Four executions ended
+with worker exit −9: three selected episodes and one frozen episode. They remain
+non-escapes, and all four are discordant escape pairs in the primary comparison.
+Their 10.5–11.6-second host durations are consistent with the existing 10-CPU-second
+limit, but the exit code alone does not identify who sent the signal. No case was
+replaced or rerun for the inferential analysis. The control endpoint therefore
+includes computational reliability under the original limits.
 
-| Research question | Evidence | Interpretation |
-|---|---|---|
-| Did program evolution improve the agent? | Selected program: **62/64 escapes**, seed: **56/64**, memory/pathfinding baseline: **57/64** | Better performance on reused development cases; fresh-case performance is unmeasured. |
-| Does the evolved model learn from experience? | With identical actions and observations, learned weights reduce near-cell Brier loss by **3.49%** relative to frozen weights. | A measurable predictive benefit from within-episode updates. |
-| Does learned prediction improve control? | Freezing weights changes escapes from 62 to 60; substituting fixed-risk planning changes them from 62 to 61. | The differences are too uncertain to establish a reliable escape benefit. |
+Most cell-time targets are empty, so model scores near one are not sufficient
+evidence of useful learning. Forecast improvements here are modest, concern
+one-step occupancy, and are measured causally on the verified fixed-risk
+experience. On-policy losses under different trajectories are not equivalent
+learning comparisons. Bootstrap time-bin intervals are pointwise and can be
+unstable in the final bins with only six or four contributing episodes.
 
-![Evolution, paired escape effects and matched prediction-learning effects on 64 development mazes](artifacts/campaign-v2/research-review/research-overview.svg)
+This is **one evolutionary search**, not independent search replication. Fresh
+paired mazes test this selected program under the same generator; they do not
+establish that the search method reliably finds it, or that it transfers to new
+transition laws, maze sizes or objectives. The fixed enemy law is memoryless;
+geometry and partial observability make occupancy prediction harder, but the
+current experiment does not identify changing dynamics. The model still uses
+hand/evolution-supplied priors and heuristic costs, with an approximate belief
+representation. Its update comparison does not show an advantage over a predictor
+well fitted on training data and then frozen.
 
-All positive results above use the same **64 development mazes**, including a
-post-selection intervention audit. Confidence intervals describe variation
-across those cases; they do not remove selection bias. The evolved agent has
-not undergone a fresh final assessment. One campaign also cannot establish
-the repeatability of the search method.
+The [next-study design](CODEX_TASK.md) therefore specifies separately versioned
+stationary hidden laws and unannounced changes, a training-fitted frozen predictor,
+a known-law reference retaining partial observability, and eight independent
+searches for each joint, model-only and planner-only edit arm. The principal joint
+arm retains unrestricted representation and program evolution in the original
+maze. This is a design deliverable; that campaign has not been launched.
 
-## How evolution and learning fit together
+## Reproducibility
 
-```mermaid
-flowchart TD
-    subgraph Search["Across candidates: evolutionary program search"]
-        P["Population of model + planner programs"] --> E["Evaluate task and forecast quality"]
-        E --> S["Select parents and inspirations; mutate code"]
-        S --> P
-    end
-    P -->|"one executable agent"| O
-    subgraph Episode["Within each episode: learning and control"]
-        O["Local observation + remembered state"] --> M["Update model and transition weights"]
-        M --> F["Predict enemy occupancy"]
-        F --> A["Plan and act"]
-        A -->|"next observation"| O
-    end
-    A -->|"episode outcomes and forecast errors"| E
-```
+The [assessment package](artifacts/campaign-v2/assessment-1024/) contains the
+preregistration, source and pool hashes, compact episode data, analysis, closure
+record and vector figures. Normal episode records contain no hidden traces or
+private seeds. Only the rule-selected examples are published as exposed cases.
+The historical evidence, original controls, Namazu proposal, selected source and
+completed campaign are preserved and verified by the
+[preservation record](artifacts/campaign-v2/assessment-1024/preservation.json).
 
-The evolutionary unit is a **program**, not a vector of fixed hyperparameters.
-Both `world_model_step(memory, local_obs, last_action)` and
-`planner(memory, local_obs)`, along with their helpers and representations,
-can change. Native ShinkaEvolve supplies four islands, parent and inspiration
-sampling, an archive, migration and recommendations. LLM-generated code
-mutations propose the changes; local simulation measures them.
-
-Inside an episode, the selected agent maintains terrain, observation ages,
-position and uncertain enemy occupancy. Ten learned weights determine how
-enemy probability mass moves between nearby cells. New observations supply
-training labels, and Brier-loss gradients update those weights using AdaGrad.
-Memory and weights reset at the next episode.
-
-The planner combines risk-weighted paths with two-action lookahead. Its most
-interesting refinement is to ask: **if I survived the first move, which enemy
-locations have just been ruled out?** Generation 14 preserves alternative
-destinations for each anonymous source and conditions the next risk estimate
-on that survival event. The resulting forecast is an approximation, with
-heuristic risk costs, rather than an exact simulator of the entire world.
-
-[The agent walkthrough](docs/evolved-agent.md) explains the transition model,
-learning equations, planning intervention and source functions in detail.
-
-## What actually evolved
-
-The selected program descends through **0 → 2 → 5 → 14**.
-
-| Candidate | Change in representation or behavior | Escapes /64 | Selection score |
-|---|---|---:|---:|
-| [Seed](artifacts/campaign-v2/completed-50/lineage-programs/gen_0.py) | Categorical occupancy estimates and risk-weighted pathfinding | 56 | 0.922806 |
-| [Generation 2](artifacts/campaign-v2/completed-50/lineage-programs/gen_2.py) | Learned mixture of stationary, cardinal and diagonal motion fields; revised hazard and waiting behavior | 61 | 0.963307 |
-| [Generation 5](artifacts/campaign-v2/completed-50/lineage-programs/gen_5.py) | Spatial softmax learner, hidden occupancy propagation, inferred motion, two-step planning and revised exploration | 62 | 0.970029 |
-| [Generation 14](artifacts/campaign-v2/completed-50/lineage-programs/gen_14.py) | Preserved source alternatives and survival-conditioned continuation risk | 62 | 0.970050 |
-
-These changes show that the search explored learning algorithms and planning
-structure. They do not isolate the contribution of each individual code change.
-
-**The plateau is part of the result.** Generation 5 already accounts for more
-than 99.9% of the eventual best-score gain. Generation 14 solves exactly the
-same 62 cases and uses 17 fewer total steps across the 64 episodes. No later
-candidate beats it. The completed campaign contains 50 slots: the seed,
-45 valid descendants and four failed descendants. Failed slots remain in the
-record and are not replaced to improve the results.
-
-There is also a useful tension between the objectives. From the seed to the
-selected program, the score increases by **0.047243**: the weighted task term
-contributes **+0.047527**, while the model term contributes **−0.000283**.
-The highest model-score candidate, generation 20, escapes only **55/64** mazes.
-A high forecast score and a strong policy are different achievements.
-Because candidates visit different states, their on-policy forecast losses
-cannot identify which model learns better.
-
-[Full campaign analysis](docs/campaign-findings.md) ·
-[Every candidate's metrics](artifacts/campaign-v2/completed-50/generation-metrics.json) ·
-[Lineage and inspirations](artifacts/campaign-v2/completed-50/lineage.json) ·
-[Episode rows](artifacts/campaign-v2/completed-50/episodes.csv)
-
-## Separating learning from behavior
-
-A useful forecast must be made before the outcome. A useful learning
-comparison must also control what the agent experiences. Otherwise a lower
-prediction loss might simply mean that the agent took an easier route.
-
-The selected program was evaluated under a **2 × 2 intervention**: update or
-freeze its predictive weights, and use learned forecasts or a fixed local-risk
-heuristic for planning. Mapping and localization remain active in every
-condition. Fixed-risk planning still performs pathfinding and lookahead; it
-substitutes the hazard estimate rather than removing the planner.
-
-| Selected program / intervention | Escapes /64 | Near-cell Brier ↓ | Threat-conditioned Brier ↓ |
-|---|---:|---:|---:|
-| Learn + predictive planning | 62 | 0.009565 | 0.027742 |
-| Freeze weights + predictive planning | 60 | 0.010328 | 0.028723 |
-| Learn + fixed-risk planning | 61 | 0.009960 | 0.028139 |
-| Freeze weights + fixed-risk planning | 61 | 0.010320 | 0.029156 |
-
-The last two conditions produce **identical world/action trajectories and
-map/localization hashes on all 64 cases**. Their loss difference isolates
-predictive updating under that fixed policy: near-cell Brier changes by
-**−0.000360**, with a paired 95% bootstrap interval of
-**[−0.000531, −0.000199]**. Learned weights change in 61 episodes; frozen
-weights never change. The aggregate gain is not universal: episode-level near
-loss improves in 39 cases, ties in four and worsens in 21.
-
-The escape evidence is less decisive. Learning versus frozen weights changes
-escape by **+3.1 percentage points [0.0, +7.8]**; predictive versus fixed-risk
-planning changes it by **+1.6 points [−4.7, +7.8]**. The full evolved program's
-advantage over the original memory baseline is **+7.8 points [−1.6, +17.2]**.
-These comparisons leave room for both useful effects and little or no benefit.
-
-[Intervention audit](artifacts/campaign-v2/mechanism-gen14/audit-summary.json) ·
-[Trajectory checks](artifacts/campaign-v2/mechanism-gen14/trajectory-audit.json) ·
-[Paired data](artifacts/campaign-v2/mechanism-gen14/episodes.csv)
-
-## The world and the measurement
-
-The environment is a **15 × 15 maze** observed through a **5 × 5 local square**.
-There are two keys, one locked exit door, three moving enemies, wall changes
-every 25 steps and a 200-step horizon. Nine actions include waiting; diagonal
-corner cutting is forbidden. The door physically gates the exit, and every
-wall phase retains connected routes. The evaluator owns hidden state and
-independent layout, enemy and audit random streams.
-
-Enemy movement draws from a fixed uniform distribution over the nine attempted
-displacements; blocked moves become waits. Thus the current agent learns
-terrain-dependent occupancy dynamics, not pursuit or changing enemy behavior.
-It remembers and refreshes walls but **does not learn their change schedule**.
-These properties delimit what this first environment can demonstrate about
-adaptive world models.
-
-The selection objective is `0.6 × task + 0.4 × model`. Task combines escape,
-keys, door opening and successful-escape time. Model quality is one minus the
-mean of near-cell and uniform-audit Brier losses for one-step enemy occupancy.
-Empty cells are common, so the model score alone is easy to overinterpret;
-task outcomes and threat-conditioned losses are retained separately.
-
-This forecast objective and online transition learning are explicit extensions
-to Namazu's original reconstruction-based proposal. The
-[protocol](docs/protocol.md) records the exact formula, observation contract,
-environment repairs and evaluation boundaries. Candidate code runs in a
-restricted worker; it receives observations, not a live environment or hidden
-assessment seeds.
-
-## The next scientific question
-
-**Does the selected model's predictive improvement produce safer decisions on
-fresh mazes?** The next assessment should compare the frozen selected program
-with its audited interventions and the original competent baseline on the same
-fresh cases, with escape as the primary outcome. This tests the agent already
-discovered; more search on the same development set would not answer it.
-
-After that assessment, a separately labeled dynamics-shift experiment could
-test adaptation to changes in enemy motion. A wall-prediction experiment could
-test anticipation rather than map refresh. Both would preserve the original
-maze and unrestricted joint program search while putting more direct pressure
-on the world-model hypothesis. They are research directions, not completed
-results. The evolved agent's final held-out pool remains unreserved and unevaluated.
-
-## Explore and reproduce
-
-The compact evidence is committed, so the curves and analysis can be regenerated
-without a model call or a new maze evaluation:
+Statistics and figures can be reproduced entirely from committed data:
 
 ```bash
-python scripts/research_figure.py
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/assessment_analysis.py
+.venv/bin/python scripts/assessment_tables.py
+.venv/bin/python scripts/assessment_figures.py
 ```
 
-This requires NumPy and Matplotlib. Local candidate evaluation needs Linux,
-Python 3.10, Landlock and libseccomp; it needs neither a GPU nor a model API.
-The [reproduction guide](docs/reproduction.md) covers installation, development
-evaluation and full-run exports. The [execution record](docs/execution-history.md)
-holds upstream revisions, subscription routing, failed-slot details and recovery
-provenance. The earlier [seed study](docs/seed-study.md) preserves its negative
-held-out result as a separate experiment.
+These commands require NumPy, SciPy and Matplotlib and make no model calls. Actual
+candidate execution uses the existing Linux/Python runtime with Landlock, seccomp
+and the original limits. The assessment driver resumes only its registered pool
+and matching records. Installation, measured runtime, failure accounting and
+checkpoint details belong to the [execution record](docs/assessment-execution.md),
+with historical instructions in [reproduction](docs/reproduction.md) and
+[execution history](docs/execution-history.md).
 
-The current research state and scope are recorded in [CODEX_TASK.md](CODEX_TASK.md).
+## References
+
+1. Romera-Paredes, B. et al. (2024). [Mathematical discoveries from program search with large language models](https://www.nature.com/articles/s41586-023-06924-6). *Nature* 625, 468–475.
+2. Lange, R. T., Imajuku, Y. and Cetin, E. (2025). [ShinkaEvolve: Towards Open-Ended and Sample-Efficient Program Evolution](https://arxiv.org/abs/2509.19349). Actual upstream revision: [`9912af1`](https://github.com/SakanaAI/ShinkaEvolve/tree/9912af12d423504b8d580f4179fd15f5f88b8c50).
+3. Hafner, D., Pasukonis, J., Ba, J. and Lillicrap, T. (2025). [Mastering diverse control tasks through world models](https://www.nature.com/articles/s41586-025-08744-2). *Nature* 640, 647–653.
+4. Duchi, J., Hazan, E. and Singer, Y. (2011). [Adaptive Subgradient Methods for Online Learning and Stochastic Optimization](https://www.jmlr.org/papers/v12/duchi11a.html). *JMLR* 12, 2121–2159.
+5. Brier, G. W. (1950). [Verification of forecasts expressed in terms of probability](https://journals.ametsoc.org/doi/abs/10.1175/1520-0493%281950%29078%3C0001%3AVOFEIT%3E2.0.CO%3B2). *Monthly Weather Review* 78, 1–3.
+6. Holm, S. (1979). [A simple sequentially rejective multiple test procedure](https://www.jstor.org/stable/4615733). *Scandinavian Journal of Statistics* 6, 65–70.
+7. SciPy documentation. [Exact binomial tests and proportion intervals](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binomtest.html). Exact McNemar uses the binomial test on discordant pairs; [implementation reference](https://www.statsmodels.org/v0.10.2/generated/statsmodels.stats.contingency_tables.mcnemar.html).

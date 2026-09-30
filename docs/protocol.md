@@ -106,9 +106,9 @@ Published Brier diagnostics pool targets; the scalar averages episode means.
 
 ## Splits, randomness and uncertainty
 
-Development uses seeds 10000–10063. Validation uses 20000–20063. The first seed
+Development uses seeds 10000–10063. Validation uses 20000–20063. The original seed
 was held fixed after development; validation exposed a planning regression and
-was not used to tune it away. Final assessment contains 256 fresh random 63-bit
+was not used to tune it away. The historical v1 assessment contains 256 random 63-bit
 world seeds generated **after** the campaign's mutation process was stopped and
 the seed source was frozen. They reside only in ignored local results. All six
 conditions use the same episode pool and reset memory and process globals.
@@ -128,13 +128,15 @@ There is one native search campaign, with no independent search repeat. Native
 sampling after a restart is not claimed to reproduce an uninterrupted proposal
 sequence. This does not change the independently controlled evaluation streams.
 
-Report Wilson 95% escape intervals and 5,000 paired episode-bootstrap replicates
+The historical v1 report uses Wilson 95% escape intervals and 5,000 paired episode-bootstrap replicates
 for differences. Brier intervals resample whole episodes and recompute ratios of
 pooled sums/counts. Step bins compare matched experience but late bins contain
 fewer/longer surviving episodes; they are not an unconditional learning curve.
 On-policy Brier differences can reflect different visited states. Reusing the
 published assessment results to improve later agents makes these cases development
-data: a resumed scientific campaign requires a newly reserved final pool.
+data: a resumed scientific campaign requires a newly reserved final pool. The
+subsequent generation-14 assessment has a separately prespecified 1,024-case
+design and sparse-discordance inference, described below.
 
 ## Execution boundary
 
@@ -161,8 +163,10 @@ boundary, not a claim against kernel exploits, side channels or all hostile code
 The tests execute file/proc/socket/fork probes as real candidate code.
 
 Raw episode logs and private seeds stay under ignored `results/`; compact paired
-CSV rows omit withheld seeds. Replay world states are restricted to development
-and validation examples. Native SQLite/WAL, prompts and detailed run logs stay local.
+CSV rows omit withheld seeds. Development and validation replays remain available.
+The new assessment permits only rule-selected examples to be exposed after
+analysis closes; those cases are explicitly ineligible for future fresh tests.
+Native SQLite/WAL, prompts and detailed run logs stay local.
 
 ## Campaign v2 provenance and assessment point
 
@@ -194,8 +198,9 @@ migration and subsequent evolution to the pinned upstream runner.
 Final assessment requires an explicit campaign-specific path, recorded up front as
 `results/private/campaign-v2-assessment-seeds.json`. After selecting and inspecting
 an evaluated native descendant, `--reserve-assessment` locks its native ID and source
-hash in `selection.json` **before** generating 256 fresh cases. No v2 final cases
-have been generated yet. The new pool excludes the published v1 seeds and any prior
+hash in `selection.json` **before** generating fresh cases. The original suggested
+default was 256; the subsequent assessment fixed 1,024 before reservation. The
+new pool excludes the published v1 seeds and any prior
 campaign pools available locally. `assessment-manifest.json` and the experiment's
 manifest record the pool's exact byte hash; resume checks selection and evaluation
 identity and refuses replacing/reusing an existing unregistered pool. Never put
@@ -216,6 +221,38 @@ freezing, records update diagnostics, and only plots a matched-experience learni
 comparison when every trajectory matches. The generation-14 audit and its source
 inspection satisfy these checks; this is development evidence, not a held-out
 result or a guarantee for arbitrary future descendants. Report fixed-rule
-improvements separately from benefits of online learning. The user's recovery
-request expressly leaves the final assessment untouched: no v2 assessment pool
-is reserved and no assessment command is run.
+improvements separately from benefits of online learning. The earlier recovery
+handoff at `02d1579` left the v2 pool unreserved. The subsequent explicit assessment
+request authorized its execution under the following fixed design.
+
+## Fresh generation-14 assessment
+
+[assessment-design.md](assessment-design.md) and the committed
+[preregistration](../artifacts/campaign-v2/assessment-1024/preregistration.json)
+fix 1,024 paired mazes, six conditions and 6,144 condition-episodes. Commit
+`38e437a` precedes case generation. Selection, controls, maze, evaluator kernel,
+objective and resource limits are unchanged; the 50-slot search stays closed.
+The original 256-case study is preserved separately and never pooled with this
+assessment.
+
+`scripts/assess_selected.py` uses the existing reservation and evaluator logic,
+with atomic per-case checkpoints and one controller lock. It calls the shared
+`compact_trace` helper from `scripts/audit_candidate.py` on every actual episode.
+Full traces are hashed and discarded; compact records retain parameter,
+localization, visible-map and trajectory checks. Identical fixed-risk action/world
+and map histories are required for a matched-experience claim.
+
+The primary test compares selected and frozen-weight escape. Three secondary
+escape comparisons (memory, original seed and fixed-risk) receive Holm correction
+as a separate family. Binary outcomes use exact McNemar tests, Wilson rate
+intervals and conservative exact-binomial paired difference intervals. Forecast
+intervals use 10,000 paired whole-episode bootstrap draws and pooled ratios.
+Invalid executions remain non-escapes; no outcome-based case replacement or
+sample extension is allowed. Inferential analysis begins only after the fixed
+sample completes. No model calls are needed.
+
+`scripts/assessment_analysis.py` closes the numerical analysis before
+`scripts/assessment_examples.py` exposes the lowest-index case in each prespecified
+selected/frozen escape stratum. Compact published examples are marked exposed;
+the rest of the private pool and all normal hidden traces remain unpublished.
+See the manuscript, complete numerical report and execution record for results.

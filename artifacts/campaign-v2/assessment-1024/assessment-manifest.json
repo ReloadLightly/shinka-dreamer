@@ -1,0 +1,8 @@
+{
+  "pool": {
+    "path": "/home/roland/projects/shinka-dreamer/results/private/campaign-v2-assessment-seeds.json",
+    "sha256": "5b8445bc5c93af93b1954932a33696999df26f9861848fabb8272337b8082f70",
+    "episodes": 1024
+  },
+  "selection_sha256": "a6bc4c06d99a33dac7c1947a72ad551bf919e218ef29bcf4cb179bc8bdbb8c43"
+}

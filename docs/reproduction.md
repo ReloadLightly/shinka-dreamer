@@ -2,6 +2,27 @@
 
 ## Recompute the published analysis
 
+The central generation-14 assessment has 1,024 paired mazes and six conditions.
+Its compact records, inferential analysis and exposed behavioral examples are
+committed under [`assessment-1024/`](../artifacts/campaign-v2/assessment-1024/).
+Install the versions in `requirements-analysis.txt` into a local environment,
+then run from the repository root:
+
+```bash
+OPENBLAS_NUM_THREADS=1 python scripts/assessment_analysis.py
+python scripts/assessment_tables.py
+python scripts/assessment_figures.py
+```
+
+The analysis command checks that recomputed statistics exactly match the closed
+analysis and leaves that original record intact. Tables and SVG/PDF/PNG figures
+use committed data. These commands make no model calls, need no login and do not
+execute or reserve new assessment episodes. The normal episode records omit
+private seeds and hidden traces. Four rule-selected examples are separately
+marked as exposed cases, unsuitable for a future fresh test.
+
+### Historical development analysis
+
 A fresh checkout contains the episode CSVs, summaries, selected and ancestor
 programs, intervention checks and representative replay. With Python, NumPy
 and Matplotlib installed, run from the repository root:
@@ -71,7 +92,9 @@ that stop. See [execution history](execution-history.md) for preserved failures,
 upstream versions and the subscription route.
 
 Raw databases, private seeds, backups, credentials and runtime caches remain
-outside Git. No fresh final assessment of the evolved agent has been reserved
-or run. The [protocol](protocol.md), [design](design.md),
+outside Git. The subsequent generation-14 assessment is described in the
+[assessment design](assessment-design.md) and [execution record](assessment-execution.md).
+Do not reserve a replacement pool or treat the existing pool as fresh again.
+The [protocol](protocol.md), [design](design.md),
 [current task](../CODEX_TASK.md) and [working instructions](../AGENTS.md)
 record the experimental contract and current scope.

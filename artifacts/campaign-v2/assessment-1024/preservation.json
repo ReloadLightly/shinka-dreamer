@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-09-30T19:17:51.635415+00:00",
+  "reviewed_commit": "02d15793637b30a653c1e5c7c113cd33dfc2d576",
+  "before_inventory_sha256": "5182c42864a58613f7aac158601d7d756bb9cb60ceeeb51ddf77c9ad8ed792b2",
+  "published_inventory_sha256": "83a73eeb524cf51b4f6ef75afda92964ebf475219ef200387c1806ad7c12b03a",
+  "historical_files_checked": 950,
+  "changed_or_missing": [],
+  "critical_preserved_sha256": {
+    "docs/namazu-proposal.md": "501d02b0fea91caf472760688407b61751e7042baa896a34452bc6aa0ddcfa3d",
+    "controls/v1/memory.py": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e",
+    "controls/v1/predictive.py": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+    "artifacts/campaign-v2/completed-50/selected.py": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+    "results/private/assessment-seeds.json": "8e05f239e7067822fb200bb2fa9ad27f4c034b3dc62c52cb18cf00488a2f06d6"
+  },
+  "campaign": {
+    "rows": 53,
+    "distinct_slots": 50,
+    "first_slot": 0,
+    "last_slot": 49,
+    "extended": false
+  },
+  "scope": "Existing scientific artifacts, historical assessment, native campaign, original controls, proposal, seed and evaluator code. Transient SQLite WAL/SHM files excluded."
+}

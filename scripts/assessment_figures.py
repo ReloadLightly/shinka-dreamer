@@ -19,14 +19,20 @@ NAMES = {"memory": "Original memory", "original_predictive": "Original predictiv
          "no_planning": "Selected · fixed-risk", "frozen_no_planning": "Selected · frozen + fixed-risk"}
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10, "axes.titlesize": 11,
                      "axes.spines.top": False, "axes.spines.right": False,
-                     "svg.fonttype": "none", "pdf.fonttype": 42,
+                     "svg.fonttype": "none", "svg.hashsalt": "shinkadreamer-assessment-1024", "pdf.fonttype": 42,
                      "savefig.facecolor": "white", "axes.labelcolor": "#222222",
                      "text.color": "#222222", "axes.edgecolor": "#666666"})
 
 
 def save(fig, out, name):
     for extension in ("svg", "pdf", "png"):
-        fig.savefig(out / f"{name}.{extension}", dpi=240, bbox_inches="tight")
+        metadata = ({"Date": None} if extension == "svg" else
+                    {"CreationDate": None, "ModDate": None} if extension == "pdf" else
+                    {"Software": "ShinkaDreamer assessment figures"})
+        path = out / f"{name}.{extension}"
+        fig.savefig(path, dpi=240, bbox_inches="tight", metadata=metadata)
+        if extension == "svg":
+            path.write_text("\n".join(line.rstrip() for line in path.read_text().splitlines())+"\n")
     plt.close(fig)
 
 
@@ -38,15 +44,15 @@ def evolution(out):
     for ax, key, label in zip(axes, ("combined_score", "task", "model_score"),
                               ("Selection score", "Mean task score", "Mean model score")):
         values = [m[key] for m in valid]
-        ax.scatter(x, values, c=BLUE, s=23, alpha=.7, zorder=3)
+        ax.scatter(x, values, c=GRAY, s=23, alpha=.65, zorder=3)
         selected = next(m for m in valid if m["generation"] == 14)
-        ax.scatter([14], [selected[key]], marker="*", s=155, color=ORANGE, edgecolor="white", linewidth=.6, zorder=5)
+        ax.scatter([14], [selected[key]], marker="*", s=155, color=BLUE, edgecolor="white", linewidth=.6, zorder=5)
         for m in metrics:
             if not m["correct"]:
                 ax.axvline(m["generation"], color="#dddddd", lw=1, zorder=0)
         ax.set(xlabel="Candidate slot (seed = 0)", ylabel=label, xlim=(-1, 50))
         ax.grid(axis="y", alpha=.18)
-    axes[0].step(x, np.maximum.accumulate([m["combined_score"] for m in valid]), where="post", color=ORANGE, lw=1.6, label="Best so far")
+    axes[0].step(x, np.maximum.accumulate([m["combined_score"] for m in valid]), where="post", color=BLUE, lw=1.6, label="Best so far")
     axes[0].legend(frameon=False, loc="lower right")
     axes[0].set_title("a  Joint selection objective")
     axes[1].set_title("b  Task component (weight 0.6)")

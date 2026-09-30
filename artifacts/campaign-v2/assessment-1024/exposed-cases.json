@@ -1,0 +1,22 @@
+{
+  "analysis_closed_sha256": "d7d6130f180575be22de3e14e40dee7fa53d62f6cd68d360fbe0cc35b27182de",
+  "cases": [
+    {
+      "case": 0,
+      "seed": 3308092036254732909
+    },
+    {
+      "case": 73,
+      "seed": 4046633549869820640
+    },
+    {
+      "case": 9,
+      "seed": 5841235280625482243
+    },
+    {
+      "case": 1,
+      "seed": 6552683601390396945
+    }
+  ],
+  "status": "Exposed after analysis; exclude from all future fresh assessments"
+}

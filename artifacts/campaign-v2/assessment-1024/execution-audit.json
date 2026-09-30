@@ -1,0 +1,81 @@
+{
+  "utc_recorded": "2026-09-30T19:17:51.635415+00:00",
+  "preregistration_commit": "38e437a",
+  "analysis_code_commit_before_completion": "f3279e4",
+  "launch_records": [
+    "execution-20260930T182112655919Z.json"
+  ],
+  "launch_settings": [
+    {
+      "workers": 4,
+      "existing_cases": 0,
+      "sample_size": 1024
+    }
+  ],
+  "completed_cases": 1024,
+  "condition_episodes": 6144,
+  "evaluation_wall_seconds": 2873.1,
+  "summed_episode_seconds": 8334.744038098841,
+  "model_calls": {
+    "mutation": 0,
+    "meta_recommendation": 0,
+    "novelty": 0,
+    "embeddings": 0,
+    "evaluator": 0
+  },
+  "invalid_episodes": [
+    {
+      "case": 36,
+      "variant": "frozen",
+      "steps": 76,
+      "seconds": 11.616073544020765,
+      "error": "RuntimeError: Candidate worker exited (-9)"
+    },
+    {
+      "case": 509,
+      "variant": "predictive",
+      "steps": 130,
+      "seconds": 10.599226842052303,
+      "error": "RuntimeError: Candidate worker exited (-9)"
+    },
+    {
+      "case": 588,
+      "variant": "predictive",
+      "steps": 142,
+      "seconds": 10.52233939699363,
+      "error": "RuntimeError: Candidate worker exited (-9)"
+    },
+    {
+      "case": 589,
+      "variant": "predictive",
+      "steps": 122,
+      "seconds": 10.597368182032369,
+      "error": "RuntimeError: Candidate worker exited (-9)"
+    }
+  ],
+  "invalid_policy": "Retain as nonescape; no replacement or inferential rerun. Exit -9 is SIGKILL; the sender was not identified. Durations are consistent with the existing CPU limit.",
+  "matched_fixed_risk_cases": 1024,
+  "example_replay_episodes": 8,
+  "example_replays_reproduced": 8,
+  "tests": "16 passed in 3.48 seconds",
+  "analysis_recomputed_identically": true,
+  "figure_review": "All four figures visually inspected; SVG/PDF vector outputs and PNG previews retained",
+  "analysis_closed_sha256": "d7d6130f180575be22de3e14e40dee7fa53d62f6cd68d360fbe0cc35b27182de",
+  "preservation_record_sha256": "914958aef17485dcc1747965894b29d50ab77c412e588d033f1694cbe21c448e",
+  "no_global_authentication_or_policy_changes": true,
+  "unknown_dynamics_study_launched": false,
+  "runtime": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9"
+  },
+  "pool_exclusion_check": {
+    "unique_cases": 1024,
+    "overlap_with_v1": 0,
+    "overlap_with_development_validation_range": 0,
+    "registered_hash_matches": true
+  },
+  "figure_files_regenerated_byte_identically": 12
+}
