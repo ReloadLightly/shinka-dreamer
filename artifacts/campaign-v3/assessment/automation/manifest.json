@@ -10,8 +10,14 @@
       "archive_path": "artifacts/campaign-v3/assessment/automation/shinka-v3-follow-through.py",
       "original_path": "/tmp/shinka-v3-follow-through.py",
       "sha256": "664a9028b2f614b8368b116a306674dad9d36f4811ecb5101c1d0590159bed50"
+    },
+    {
+      "archive_path": "artifacts/campaign-v3/assessment/automation/shinka-v3-close-checkpoint.py",
+      "original_path": "/tmp/shinka-v3-close-checkpoint.py",
+      "sha256": "0647c94cd2adc8eb8f698abaff20885061b6f0ef99e7abed11b1ef1c426fe2c3"
     }
   ],
   "resume_assessment": ".venv/bin/python scripts/v3_assessment.py --plan artifacts/campaign-v3/assessment/preregistration.json --out results/campaign-v3-assessment --workers 4",
-  "reporting_note": "The follow-through wrapper waits for completion and runs frozen saved-data analysis, figures, original retained examples and execution accounting. On partial reporting failure, preserve records and resume the specific failed stage after review instead of rerunning its immutable bookkeeping."
+  "reporting_note": "The follow-through wrapper waits for completion and runs frozen saved-data analysis, figures, original retained examples and execution accounting. On partial reporting failure, preserve records and resume the specific failed stage after review instead of rerunning its immutable bookkeeping.",
+  "checkpoint_note": "User requested pause on2026-10-08UTC. Four drained cases were assembled from existing episode checkpoints without executions or effect aggregation. Assessment and automatic follow-through are stopped; do not resume without the user deciding scope."
 }

@@ -1,6 +1,6 @@
 {
-  "updated_utc": "2026-10-08T21:46:18.826440+00:00",
-  "report_script_sha256": "f59d6ab5a3e48c46f319f1efb0dc129b79317ae492501fddf58d373b905a52d1",
+  "updated_utc": "2026-10-08T22:18:32.278662+00:00",
+  "report_script_sha256": "8897a8774afb410c7f92f230e079c4daca23254d30002ab2d866a7443990ceaf",
   "scope": "Execution accounting only; no treatment effects. One v3 search, separate from preserved v2 science.",
   "development": {
     "units": {
@@ -293,21 +293,110 @@
   "assessment": {
     "planned_world_episodes": 46080,
     "planned_shadow_passes": 23040,
+    "full_assessment_complete": false,
     "model_calls": 0,
     "new_worlds_from_shadows": 0,
-    "individual_shadow_errors": null,
-    "individual_shadow_error_status": "Unavailable until execution and hash-verified matched-analysis closure.",
-    "status": "pending",
-    "completed_world_episodes": null,
-    "completed_shadow_passes": null,
-    "durable_world_checkpoint_files": 2068,
-    "durable_paired_case_files": 68,
-    "recorded_policy_episode_files": 207,
-    "resource_status": "Pending durable execution completion; no treatment aggregates read."
+    "individual_shadow_errors": 0,
+    "individual_shadow_error_status": "Operational error count from the plan-bound paused checkpoint closure; no matched treatment analysis read.",
+    "status": "paused-by-user",
+    "evidence": {
+      "path": "artifacts/campaign-v3/assessment/operator-checkpoint-complete.json",
+      "sha256": "5848858abf35c6ef76e7c7dd56580a7301124a846cf7d10d3918c0250c55eedd"
+    },
+    "plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+    "completed_paired_cases": 140,
+    "completed_world_episodes": 4200,
+    "completed_world_attempts": 4200,
+    "invalid_world_episodes": 27,
+    "completed_shadow_passes": 2100,
+    "completed_shadow_attempts": 2100,
+    "failed_recorded_episode_shadow_analyses": 0,
+    "interrupted_world_attempts_unmeasured": 0,
+    "interrupted_shadow_attempt_groups_unmeasured": 0,
+    "unknown_interrupted_world_executions": 0,
+    "unknown_interrupted_shadow_passes": 0,
+    "cpu_unavailable_world_attempts": 0,
+    "resources": {
+      "cpu_components_seconds": {
+        "world_candidate_cpu_seconds": 7877.642558,
+        "world_assessment_worker_cpu_seconds": 1172.5592894130018,
+        "shadow_candidate_cpu_seconds": 1417.9749350000009,
+        "shadow_evaluator_cpu_seconds": 240.48620473000057,
+        "controller_cpu_seconds": 6.147533104,
+        "unknown_world_attempt_cpu_seconds": 0,
+        "unknown_shadow_attempt_cpu_seconds": 0
+      },
+      "measured_nonoverlapping_cpu_seconds": 10714.810520247003,
+      "missing_cpu_components": [],
+      "evaluator_cpu_seconds_subset_not_added": 766.4827785020044,
+      "driver_monotonic_seconds": 3174.8479482149996,
+      "wrapper_monotonic_seconds": 3175.396740439988,
+      "coverage": "Disjoint world candidate/worker, shadow candidate/evaluator and parent-controller CPU. World worker includes evaluator; whole-command GNU CPU is an alternative, not added."
+    },
+    "gnu_time_invocations_alternative_not_added": [
+      {
+        "elapsed_seconds": 3499.36,
+        "elapsed_text": "58:19.36",
+        "evidence": {
+          "path": "artifacts/campaign-v3/assessment/host-time-20261008T211345274339Z.txt",
+          "sha256": "bbf623b674de8498716e8e06ebe16eb41a98b449b18dd33431e4ca7c9c24e4b9"
+        },
+        "exit_status": 0.0,
+        "status": "complete",
+        "system_cpu_seconds": 219.79,
+        "user_cpu_seconds": 10531.77
+      }
+    ],
+    "driver_sessions": [
+      {
+        "completed_cases": 136,
+        "controller_cpu_seconds": 6.147533104,
+        "existing_cases": 0,
+        "model_calls": 0,
+        "requested_cases": 1536,
+        "started_utc": "20261008T211345420961Z",
+        "wall_seconds": 3174.8479482149996,
+        "workers": 4
+      }
+    ],
+    "launch_finished": {
+      "command": [
+        ".venv/bin/python",
+        "-u",
+        "scripts/v3_assessment.py",
+        "--plan",
+        "artifacts/campaign-v3/assessment/preregistration.json",
+        "--out",
+        "results/campaign-v3-assessment",
+        "--workers",
+        "4",
+        "--reserve-pool"
+      ],
+      "commit": "2cd1d2759da55cc848f15e814b90ad9236343e36",
+      "exit_code": 130,
+      "finished_utc": "2026-10-08T22:12:04.677638+00:00",
+      "host_time_file": "host-time-20261008T211345274339Z.txt",
+      "log_file": "controller-20261008T211345274339Z.log",
+      "model_calls": 0,
+      "plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+      "started_utc": "2026-10-08T21:13:45.274408+00:00",
+      "timed_process_pid": 1371472,
+      "wrapper_monotonic_elapsed_seconds": 3175.396740439988,
+      "wrapper_pid": 1371469
+    },
+    "resource_status": "Checkpointed operational resources; full assessment and treatment analysis unfinished.",
+    "clock_note": "GNU time terminated-by-signal2 is authoritative alongside launcher exit130; its printed Exit status0 is not a successful experimental completion. Whole-command CPU overlaps measured components; evaluator is included in workerCPU. Monotonic and UTC/GNU elapsed differ and remain separate.",
+    "resume_status": "Do not run until the user decides the remaining scope. No automatic resume.",
+    "treatment_effects_aggregated": false
   },
   "counts": {
     "pre_assessment_world_episodes": 5390,
+    "full_wave_complete": false,
     "planned_full_wave_world_episodes": 51470,
+    "executed_to_date_world_episodes": 9590,
+    "observed_completed_to_date_world_attempts": 9590,
+    "executed_to_date_isolated_shadow_passes": 2132,
+    "observed_completed_to_date_isolated_shadow_passes": 2132,
     "completed_full_wave_outcome_episodes": null,
     "observed_completed_full_wave_world_attempts": null,
     "completed_full_wave_world_episodes": null,
@@ -318,7 +407,7 @@
     "observed_completed_full_wave_isolated_shadow_passes": null,
     "completed_full_wave_isolated_shadow_passes": null,
     "new_worlds_from_all_replays": 0,
-    "note": "World outcome counts retain invalids. Completed attempts are counted separately; interrupted execution/pass counts remain unknown and are never promoted to completed counts. Cases shared across regimes/conditions are dependent, not independent replicates."
+    "note": "World outcome counts retain invalids. Executed-to-date counts do not imply full-wave completion. Completed attempts are counted separately; interrupted execution/pass counts remain unknown and are never promoted to completed counts. Cases shared across regimes/conditions are dependent, not independent replicates."
   },
   "model_requests": {
     "native": 112,

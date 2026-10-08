@@ -1,0 +1,15 @@
+{
+  "status": "paused-by-user",
+  "protected_historical_files_checked": 85,
+  "historical_files_changed": [],
+  "frozen_plan_verification": "passed after checkpoint and administrative documentation updates",
+  "frozen_plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+  "checkpoint_sha256": "5848858abf35c6ef76e7c7dd56580a7301124a846cf7d10d3918c0250c55eedd",
+  "original_preservation_snapshot_sha256": "b1ea60ab187139e65f7064e1e535528868ba1a8f5bec5cbcb73339299e04a390",
+  "assessment_controller_and_four_workers_exited": true,
+  "automatic_reporting_watcher_stopped": true,
+  "scientific_effects_aggregated": false,
+  "new_world_episodes_from_review": 0,
+  "new_model_calls_to_experiment_route_from_review": 0,
+  "assistant_conversation_usage": "Not included in the experiment-route call ledger."
+}

@@ -1,0 +1,195 @@
+{
+  "status": "resource-only audit; assessment subsequently checkpointed at user request; no automatic resumption",
+  "created_utc": "2026-10-08T22:15:09.208647+00:00",
+  "scope": {
+    "case_indices_inclusive": [
+      0,
+      135
+    ],
+    "completed_cases": 136,
+    "world_episodes": 4080,
+    "shadow_episode_passes": 2040,
+    "matched_groups": 408,
+    "world_steps": 226679,
+    "zero_task_escape_or_prediction_effects_inspected_or_aggregated": true,
+    "new_world_episodes": 0,
+    "new_model_calls": 0,
+    "assessment_methods_or_programs_changed": false,
+    "note": "The first 136 complete cases define this timing audit. Four later cases drained after the checkpoint request and belong to the separate operational checkpoint inventory; they are not mixed into this snapshot."
+  },
+  "host": {
+    "model": "Intel Core i5-1035G1 @1.00GHz",
+    "physical_cores": 4,
+    "logical_cpus": 8,
+    "threads_per_core": 2,
+    "hypervisor": "Microsoft",
+    "assessment_workers": 4,
+    "cluster_provisioned": false,
+    "evidence_command": "lscpu; nproc",
+    "cpu_scope_note": "Eight logical CPUs share four physical cores. An 8-vCPU linear-scaling estimate is deliberately optimistic; it does not establish the throughput of eight physical cores."
+  },
+  "measured": {
+    "driver_monotonic_elapsed_seconds": 3112.08,
+    "disjoint_cpu_components_seconds": {
+      "world_candidate_cpu_seconds": 7723.568095999999,
+      "world_assessment_worker_cpu_seconds": 1151.1443780300037,
+      "shadow_candidate_cpu_seconds": 1383.6518229999995,
+      "shadow_evaluator_cpu_seconds": 234.8023986680003
+    },
+    "total_disjoint_cpu_seconds": 10493.166695698003,
+    "world_evaluator_cpu_seconds_subset_not_added": 751.4902609870052,
+    "cpu_measurement_unavailable_world_attempts": 0,
+    "duplicate_world_attempts": 0,
+    "timed_world_wall_seconds": 8146.603051557089,
+    "timed_shadow_wall_seconds": 1473.4436097691068,
+    "mean_cpu_seconds_per_case": 77.15563746836767,
+    "mean_monotonic_seconds_per_completed_case": 22.882941176470588,
+    "cpu_seconds_per_driver_monotonic_second": 3.371753520378012,
+    "candidate_share_of_measured_cpu": 0.8679191118476928,
+    "excluded_cpu_scope": "Controller and untimed dispatch/checkpoint overhead outside per-world/per-shadow intervals; CPU on any other process or remote host is not included. Assessment-worker CPU includes evaluator CPU and is added once."
+  },
+  "scheduling": {
+    "implementation": "ProcessPoolExecutor(max_workers=4), exactly 4 cases per executor.map batch, barrier before next batch",
+    "source": {
+      "path": "scripts/v3_assessment.py",
+      "sha256": "1892972346f178af599e579a8db730ea740c0def05701ebc58384a1024bbf6a6"
+    },
+    "source_lines": [
+      590,
+      598
+    ],
+    "sum_per_batch_maximum_timed_case_seconds": 3054.45689592688,
+    "sum_timed_case_seconds": 9620.046661326196,
+    "estimated_idle_worker_seconds_due_to_batch_imbalance": 2597.7809223813238,
+    "estimated_idle_fraction_of_timed_four_worker_capacity": 0.2126221625393917,
+    "driver_elapsed_minus_summed_batch_maxima_seconds": 57.623104073119976,
+    "interpretation": "This 21.3% is inferred from timed case durations and the observed scheduling rule, not a direct CPU-idle measurement or a guaranteed acceleration. Dynamic dispatch could recover part of the imbalance, not an order-of-magnitude speedup."
+  },
+  "recent_window_resource_checks": {
+    "32": {
+      "cases": 32,
+      "monotonic_elapsed_seconds": 630.7199999999998,
+      "measured_cpu_seconds": 2243.3184957280014,
+      "cpu_seconds_per_monotonic_second": 3.5567581426433317,
+      "remaining_cpu_hours_at_this_mix": 27.262551163361127,
+      "remaining_monotonic_hours_at_this_throughput": 7.664999999999998
+    },
+    "64": {
+      "cases": 64,
+      "monotonic_elapsed_seconds": 1260.1499999999999,
+      "measured_cpu_seconds": 4385.557093762001,
+      "cpu_seconds_per_monotonic_second": 3.4801865601412545,
+      "remaining_cpu_hours_at_this_mix": 26.648350396123273,
+      "remaining_monotonic_hours_at_this_throughput": 7.6571614583333325
+    }
+  },
+  "original_sample_size_plan": {
+    "precision_record": {
+      "path": "artifacts/campaign-v3/assessment/precision.json",
+      "sha256": "dae05a3bbc8a3c98a7a2799047ecd8f432f17926d4d1c1e884ca0e341e7b4065"
+    },
+    "plan": {
+      "path": "artifacts/campaign-v3/assessment/preregistration.json",
+      "sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d"
+    },
+    "shared_layout_cases": 1536,
+    "regimes": 3,
+    "on_policy_conditions": 10,
+    "planned_world_episodes": 46080,
+    "matched_shadow_conditions": 5,
+    "planned_shadow_episode_passes": 23040,
+    "meaningful_absolute_escape_difference": 0.03,
+    "target_power": 0.8,
+    "per_test_alpha": 0.025,
+    "planning_discordance": 0.11734615615494873,
+    "exact_conditional_planning_power": 0.8739121108010671,
+    "primary_comparisons": "Selected online versus coherently frozen learning in stationary and switching regimes; Holm family of two tests. Planning uses alpha .025 per test.",
+    "sample_rule": {
+      "minimum_cases": 1024,
+      "round_up_increment": 256,
+      "discordance_floor": 0.08,
+      "planning_discordance": "maximum one-sided 95% development upper bound across stationary/switch, or floor"
+    },
+    "limitation": "Conditional planning power is not guaranteed: only 24 reused development cases per regime; the selected program was searched on them. Individual 95% discordance bounds are neither a simultaneous two-regime guarantee nor selection-adjusted intervals. Conservative planning bounds and the 1024-case floor reduce, but do not eliminate, this uncertainty. Final n is frozen regardless of assessment significance.",
+    "resource_note": "Sample size was chosen from development precision, before final cases were drawn. It was not a 15\u201320 minute runtime budget. No cluster was provisioned."
+  },
+  "remaining_at_136_case_snapshot": {
+    "cases": 1400,
+    "world_episodes": 42000,
+    "shadow_episode_passes": 21000,
+    "cpu_hours_recent64_to_whole_prefix": [
+      26.648350396123273,
+      30.004970126587423
+    ],
+    "monotonic_hours_recent64_to_whole_prefix": [
+      7.6571614583333325,
+      8.898921568627452
+    ],
+    "ideal_8_logical_cpu_hours_at_perfect_linear_scaling": [
+      3.331043799515409,
+      3.750621265823428
+    ],
+    "ideal_4_cpu_hours_at_perfect_linear_scaling": [
+      6.662087599030818,
+      7.501242531646856
+    ],
+    "cpu_cores_required_for_20_minutes": [
+      79.94505118836982,
+      90.01491037976227
+    ],
+    "cpu_cores_required_for_15_minutes": [
+      106.5934015844931,
+      120.0198805063497
+    ],
+    "interpretation": "Bounds on scenarios extrapolated from measured completed work, not confidence intervals, guaranteed lower bounds, or completion promises. They assume the unexecuted cases have comparable computational work and per-core execution cost. Eight SMT threads cannot be assumed to scale linearly. Provisioning, scheduling, IO, contention and clock behavior may worsen wall time."
+  },
+  "clock_caveat": {
+    "stop_record": {
+      "path": "results/campaign-v3-assessment/launch-20261008T211345274339Z.finished.json",
+      "sha256": "8c72b17358be04805fd5b9f2d2d8688c098ba91353b8d711a1937812d2f7f923"
+    },
+    "wrapper_monotonic_elapsed_seconds": 3175.396740439988,
+    "wrapper_utc_elapsed_seconds": 3499.40323,
+    "gnu_elapsed_seconds": 3499.36,
+    "utc_to_monotonic_ratio": 1.1020365378075927,
+    "gnu_time_record": {
+      "path": "results/campaign-v3-assessment/host-time-20261008T211345274339Z.txt",
+      "sha256": "bbf623b674de8498716e8e06ebe16eb41a98b449b18dd33431e4ca7c9c24e4b9"
+    },
+    "illustrative_remaining_utc_hours_if_same_clock_ratio": [
+      8.438471702975404,
+      9.80693671571151
+    ],
+    "note": "The stop-record clocks cover the whole launch, including shutdown, not precisely the 136-case prefix. UTC/GNU elapsed is about 10.2% longer than recorded wrapper monotonic elapsed; cause unresolved. Estimates above retain monotonic units. The UTC conversion is an illustrative sensitivity only; GNU totals are not added to per-episode CPU."
+  },
+  "provenance": {
+    "controller_log": {
+      "path": "results/campaign-v3-assessment/controller-20261008T211345274339Z.log",
+      "sha256": "5b61829d548ef6e5be0e57fa0834c7e9f6e810b528b90d53ed463552b755e19b"
+    },
+    "snapshot_log_line_sha256": "9d8b997ab0535db1f565c25ec93d377c8e8c51e8e5a3d22ffd6c96450b34cfc6",
+    "attempt_resource_manifests": {
+      "attempts": {
+        "included_files": 4080,
+        "sorted_relative_path_and_sha256_manifest_sha256": "16e0f2c0dc044c481a123c9170db4075343e6ab5228d98af474a6aa9aba19c3d"
+      },
+      "matched-attempts": {
+        "included_files": 408,
+        "sorted_relative_path_and_sha256_manifest_sha256": "47758bdf40a46538c66b5adce1d91f876c7b70204e7f78403349bcf3f9601a7e"
+      }
+    },
+    "resource_only_json_fields": [
+      "case",
+      "condition",
+      "regime",
+      "wall_seconds",
+      "assessment_cpu_seconds",
+      "candidate_cpu_seconds",
+      "evaluator_cpu_seconds",
+      "seconds",
+      "condition_episodes",
+      "cpu_measurement_unavailable"
+    ],
+    "step_count_note": "226679 steps were summed from checkpoint steps fields during the original resource audit. No task, escape, prediction loss, or treatment-effect fields were inspected."
+  }
+}

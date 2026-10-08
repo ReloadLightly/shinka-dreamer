@@ -1,8 +1,9 @@
 """Read-only accounting of v3 executions, separate from scientific outcomes.
 
 No candidate, model, world, private pool or treatment-effect analysis is run.
-While assessment is pending, only checkpoint filenames are inspected. Completed
-assessment resources are read after its durable completion marker exists.
+While assessment is pending, only checkpoint filenames are inspected. A paused
+assessment uses its plan-bound operational closure for counts and costs only;
+full completion and scientific analysis remain separate.
 """
 import argparse
 from datetime import datetime, timezone
@@ -202,15 +203,80 @@ def closed_shadow_errors(directory, expected_plan_sha256):
     return result
 
 
+def paused_assessment_account(path, plan, expected_plan_sha256):
+    """Read operational counts, never private outcomes, from a paused closure."""
+    checkpoint = read(path)
+    if (expected_plan_sha256 is None or
+            checkpoint.get("plan_sha256") != expected_plan_sha256 or
+            checkpoint.get("status") != "paused-by-user" or
+            checkpoint.get("full_assessment_complete") is not False or
+            checkpoint.get("automatic_follow_through_stopped") is not True or
+            checkpoint.get("treatment_effects_aggregated") is not False or
+            checkpoint.get("new_world_episodes_from_checkpoint_closure") != 0 or
+            checkpoint.get("new_model_calls_from_checkpoint_closure") != 0):
+        raise ValueError("Paused checkpoint identity/status verification failed")
+    cases = checkpoint["fully_evaluated_cases"]
+    expected = plan["counts"]
+    if (checkpoint["planned_cases"] != plan["sample_size"] or
+            not 0 <= cases < plan["sample_size"] or
+            len(checkpoint["case_file_sha256"]) != cases or
+            checkpoint["world_episodes"] * plan["sample_size"] != cases * expected["condition_episodes"] or
+            checkpoint["shadow_episode_passes"] * plan["sample_size"] != cases * expected["passive_shadow_episode_passes"]):
+        raise ValueError("Paused checkpoint counts do not match the frozen plan")
+    costs = checkpoint["resources"]
+    parts = {key: costs[key] for key in ("world_candidate_cpu_seconds",
+        "world_assessment_worker_cpu_seconds", "shadow_candidate_cpu_seconds",
+        "shadow_evaluator_cpu_seconds", "controller_cpu_seconds")}
+    if abs(sum(parts.values()) - costs["measured_nonoverlapping_cpu_seconds"]) > 1e-6:
+        raise ValueError("Paused checkpoint CPU scope sum mismatch")
+    interrupted_worlds = checkpoint["unfinished_world_attempts"]
+    interrupted_shadows = checkpoint["unfinished_matched_attempt_groups"]
+    parts.update(unknown_world_attempt_cpu_seconds=None if interrupted_worlds or checkpoint["unavailable_world_cpu_measurements"] else 0,
+                 unknown_shadow_attempt_cpu_seconds=None if interrupted_shadows or checkpoint["outer_matched_failures"] else 0)
+    return {"status": "paused-by-user", "full_assessment_complete": False,
+        "evidence": evidence(path), "plan_sha256": expected_plan_sha256,
+        "completed_paired_cases": cases,
+        "completed_world_episodes": checkpoint["world_episodes"],
+        "completed_world_attempts": checkpoint["world_episodes"],
+        "invalid_world_episodes": checkpoint["invalid_world_episodes"],
+        "completed_shadow_passes": checkpoint["shadow_episode_passes"],
+        "completed_shadow_attempts": checkpoint["shadow_episode_passes"],
+        "individual_shadow_errors": checkpoint["individual_shadow_errors"],
+        "individual_shadow_error_status": "Operational error count from the plan-bound paused checkpoint closure; no matched treatment analysis read.",
+        "failed_recorded_episode_shadow_analyses": checkpoint["outer_matched_failures"],
+        "interrupted_world_attempts_unmeasured": interrupted_worlds,
+        "interrupted_shadow_attempt_groups_unmeasured": interrupted_shadows,
+        "unknown_interrupted_world_executions": None if interrupted_worlds else 0,
+        "unknown_interrupted_shadow_passes": None if interrupted_shadows else 0,
+        "cpu_unavailable_world_attempts": checkpoint["unavailable_world_cpu_measurements"],
+        "resources": resources(parts,
+            evaluator_cpu_seconds_subset_not_added=costs["world_evaluator_cpu_seconds_subset_not_added"],
+            driver_monotonic_seconds=costs["driver_monotonic_seconds"],
+            wrapper_monotonic_seconds=costs["wrapper_monotonic_seconds"],
+            coverage="Disjoint world candidate/worker, shadow candidate/evaluator and parent-controller CPU. World worker includes evaluator; whole-command GNU CPU is an alternative, not added."),
+        "gnu_time_invocations_alternative_not_added": [costs["gnu_time_alternative_not_added"]],
+        "driver_sessions": [checkpoint["driver_session_finished"]],
+        "launch_finished": checkpoint["launch_finished"],
+        "resource_status": "Checkpointed operational resources; full assessment and treatment analysis unfinished.",
+        "clock_note": checkpoint["resource_note"],
+        "resume_status": checkpoint["resume_status"],
+        "treatment_effects_aggregated": False}
+
+
 def assessment_account(raw, plan, analysis_directory=None, plan_sha256=None):
     expected = plan["counts"]
     result = {"planned_world_episodes": expected["condition_episodes"],
               "planned_shadow_passes": expected["passive_shadow_episode_passes"],
+              "full_assessment_complete": False,
               "model_calls": 0, "new_worlds_from_shadows": 0,
               "individual_shadow_errors": None,
               "individual_shadow_error_status": "Unavailable until execution and hash-verified matched-analysis closure."}
     complete_path = raw / "execution-complete.json"
     if not complete_path.exists():
+        checkpoint_path = (analysis_directory or raw) / "operator-checkpoint-complete.json"
+        if checkpoint_path.exists():
+            result.update(paused_assessment_account(checkpoint_path, plan, plan_sha256))
+            return result
         # Filename-only progress, with no outcome or treatment-cost inspection.
         result.update(status="pending", completed_world_episodes=None, completed_shadow_passes=None,
             durable_world_checkpoint_files=sum(1 for _ in (raw / "episode-checkpoints").glob("*/*.json")),
@@ -222,7 +288,7 @@ def assessment_account(raw, plan, analysis_directory=None, plan_sha256=None):
     if complete["cases"] != plan["sample_size"] or complete["condition_episodes"] != expected["condition_episodes"]:
         raise ValueError("Assessment completion count does not match the frozen plan")
     matched = complete["matched"]
-    result.update(status="execution-complete", evidence=evidence(complete_path),
+    result.update(status="execution-complete", full_assessment_complete=True, evidence=evidence(complete_path),
         completed_world_episodes=complete["condition_episodes"],
         completed_world_attempts=complete["completed_episode_attempts"],
         interrupted_world_attempts_unmeasured=len(complete["interrupted_attempts_unmeasured"]),
@@ -263,6 +329,34 @@ def assessment_account(raw, plan, analysis_directory=None, plan_sha256=None):
     return result
 
 
+def execution_counts(pre, development, plan, assessment):
+    complete = assessment["status"] == "execution-complete"
+    accounted = assessment["status"] in ("execution-complete", "paused-by-user")
+    worlds = pre + assessment["completed_world_attempts"] if accounted else None
+    shadows = (development["isolated_shadow_episode_passes"] + assessment["completed_shadow_attempts"]
+               if accounted else None)
+    worlds_known = accounted and assessment["unknown_interrupted_world_executions"] == 0
+    shadows_known = accounted and assessment["unknown_interrupted_shadow_passes"] == 0
+    return {"pre_assessment_world_episodes": pre,
+        "full_wave_complete": complete,
+        "planned_full_wave_world_episodes": pre + plan["counts"]["condition_episodes"],
+        "executed_to_date_world_episodes": worlds if worlds_known else None,
+        "observed_completed_to_date_world_attempts": worlds,
+        "executed_to_date_isolated_shadow_passes": shadows if shadows_known else None,
+        "observed_completed_to_date_isolated_shadow_passes": shadows,
+        "completed_full_wave_outcome_episodes": pre + assessment["completed_world_episodes"] if complete else None,
+        "observed_completed_full_wave_world_attempts": worlds if complete else None,
+        "completed_full_wave_world_episodes": worlds if complete and worlds_known else None,
+        "development_in_process_prediction_passes": development["in_process_prediction_episode_passes"],
+        "development_feature_construction_passes": development["feature_construction_episode_passes"],
+        "development_isolated_shadow_passes": development["isolated_shadow_episode_passes"],
+        "planned_full_wave_isolated_shadow_passes": development["isolated_shadow_episode_passes"] + plan["counts"]["passive_shadow_episode_passes"],
+        "observed_completed_full_wave_isolated_shadow_passes": shadows if complete else None,
+        "completed_full_wave_isolated_shadow_passes": shadows if complete and shadows_known else None,
+        "new_worlds_from_all_replays": 0,
+        "note": "World outcome counts retain invalids. Executed-to-date counts do not imply full-wave completion. Completed attempts are counted separately; interrupted execution/pass counts remain unknown and are never promoted to completed counts. Cases shared across regimes/conditions are dependent, not independent replicates."}
+
+
 def build_report(raw):
     development = read(SUPPLEMENT)
     native_path = ART / "native-audit.json"
@@ -296,22 +390,7 @@ def build_report(raw):
             "gnu_elapsed_seconds": elapsed_value(selection["host_time"]["elapsed"]),
             "scope": selection["cpu_note"], "clock_note": selection["elapsed_note"], "evidence": evidence(selection_path)},
         "assessment": assessment,
-        "counts": {"pre_assessment_world_episodes": pre,
-            "planned_full_wave_world_episodes": pre + plan["counts"]["condition_episodes"],
-            "completed_full_wave_outcome_episodes": pre + assessment["completed_world_episodes"] if assessment["completed_world_episodes"] is not None else None,
-            "observed_completed_full_wave_world_attempts": pre + assessment["completed_world_attempts"] if assessment["status"] == "execution-complete" else None,
-            "completed_full_wave_world_episodes": (pre + assessment["completed_world_attempts"]
-                if assessment["status"] == "execution-complete" and assessment["unknown_interrupted_world_executions"] == 0 else None),
-            "development_in_process_prediction_passes": development["in_process_prediction_episode_passes"],
-            "development_feature_construction_passes": development["feature_construction_episode_passes"],
-            "development_isolated_shadow_passes": development["isolated_shadow_episode_passes"],
-            "planned_full_wave_isolated_shadow_passes": development["isolated_shadow_episode_passes"] + plan["counts"]["passive_shadow_episode_passes"],
-            "observed_completed_full_wave_isolated_shadow_passes": (development["isolated_shadow_episode_passes"] + assessment["completed_shadow_attempts"]
-                if assessment["status"] == "execution-complete" else None),
-            "completed_full_wave_isolated_shadow_passes": (development["isolated_shadow_episode_passes"] + assessment["completed_shadow_attempts"]
-                if assessment["status"] == "execution-complete" and assessment["unknown_interrupted_shadow_passes"] == 0 else None),
-            "new_worlds_from_all_replays": 0,
-            "note": "World outcome counts retain invalids. Completed attempts are counted separately; interrupted execution/pass counts remain unknown and are never promoted to completed counts. Cases shared across regimes/conditions are dependent, not independent replicates."},
+        "counts": execution_counts(pre, development, plan, assessment),
         "model_requests": {"native": native["native_model_requests"], "readiness_probes": len(native["probe_calls"]),
             "all_including_probes": native["all_model_requests_including_probes"],
             "native_by_role": native["model_requests_by_role"], "tokens": native["reported_tokens"],

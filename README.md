@@ -2,6 +2,13 @@
 
 ## Unknown dynamics: current experiment
 
+**Paused at the user's request.** The 50-slot search is complete; the final
+assessment stopped after 140 paired cases (4,200 world episodes and 2,100 passive
+prediction passes). All workers have exited and no automatic resumption is
+scheduled. Read the [checkpoint and decision report](docs/v3-checkpoint-report.md)
+for the early search plateau, current evidence, exact costs, design weaknesses
+and options for discussion. Fresh assessment effects have not been aggregated.
+
 A separate **v3 wave completed one 50-slot native ShinkaEvolve search**. Enemies
 retain nine attempted moves, including waiting; blocked moves become stays. The
 three equally weighted regimes are the original uniform law, a privately drawn
@@ -34,7 +41,7 @@ The [frozen assessment design](docs/v3-assessment-design.md) specifies **1,536
 paired layout cases shared across all three regimes**, ten on-policy conditions and five passive predictors
 on identical recorded experience. The program, comparators, interventions,
 precision and analysis were frozen before drawing fresh cases. That assessment
-is the remaining inferential evidence; development results do not establish
+is incomplete and remains paused; development results do not establish
 generalization or a control benefit. One search cannot establish reliable
 discovery across independent runs.
 

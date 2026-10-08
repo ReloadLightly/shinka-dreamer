@@ -1,6 +1,19 @@
 # Current research state and unknown-dynamics experiment
 
-## Authorized active work: v3 wave 1
+## Paused by the user: v3 wave 1
+
+On 8 October 2026 UTC / 9 October Europe/Berlin, the user requested a checkpoint
+and a full report before deciding direction. **Do not resume assessment, start
+another search, or launch automatic analysis until that scope is decided.** All
+assessment workers and its controller have exited; the reporting watcher is
+stopped. The completed checkpoint preserves 140 cases, 4,200 world episodes and
+2,100 passive prediction passes, with no unfinished attempts. No fresh treatment
+effects have been aggregated. See [the decision report](docs/v3-checkpoint-report.md)
+and [operator checkpoint](artifacts/campaign-v3/assessment/operator-checkpoint-complete.json).
+The full 1,536-case plan remains preserved but incomplete. Commands below are
+recovery documentation, not instructions to resume now.
+
+## Previously authorized execution: v3 wave 1
 
 The 8 October 2026 instruction authorizes **one 50-total-slot native search**,
 followed by selection validation, frozen-program assessment and scientific
