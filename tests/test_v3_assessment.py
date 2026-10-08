@@ -11,6 +11,28 @@ from scripts import v3_assessment as assessment
 from scripts.v3_select import candidates_after_completion, immutable_source
 
 
+def test_selection_exact_task_units_preserve_arithmetic_and_order_independent_ties():
+    from scripts.v3_select import exact_task_units, rank_selection
+    rows = [{'reason': 'escaped', 'keys': 2, 'door': True, 'steps': 51,
+             'combined_score': .65+.2+.1+.05*(1-51/200), 'error': None},
+            {'reason': 'timeout', 'keys': 1, 'door': False, 'steps': 200,
+             'combined_score': .1, 'error': None},
+            {'reason': 'invalid', 'keys': 2, 'door': True, 'steps': 30,
+             'combined_score': 0., 'error': 'failed after progress'}]
+    assert [exact_task_units(row) for row in rows] == [3949, 400, 0]
+    assert sum(map(exact_task_units, rows)) == sum(map(exact_task_units, reversed(rows)))
+    total = sum(map(exact_task_units, rows))
+    # Deliberately differing floating means cannot override true integer ties.
+    rankings = [{'slot': 9, 'selection_task_units': total, 'selection_escapes': 1, 'selection_task': .9},
+                {'slot': 4, 'selection_task_units': total, 'selection_escapes': 1, 'selection_task': .1},
+                {'slot': 7, 'selection_task_units': total, 'selection_escapes': 2, 'selection_task': .1}]
+    assert [row['slot'] for row in rank_selection(rankings)] == [7, 4, 9]
+    assert rank_selection(rankings) == rank_selection(list(reversed(rankings)))
+    rows[0]['combined_score'] += .001
+    with pytest.raises(ValueError, match='Recorded task disagrees'):
+        exact_task_units(rows[0])
+
+
 def database(path, rows):
     with sqlite3.connect(path) as db:
         db.execute('create table programs (id text, generation integer, code text, correct integer, combined_score real)')

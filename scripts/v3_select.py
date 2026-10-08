@@ -23,6 +23,27 @@ from scripts.recover_campaign import campaign_lock
 from scripts.v3_assessment import atomic_create, digest, run_cases
 
 
+TASK_UNIT_DENOMINATOR = 4000
+
+
+def exact_task_units(row):
+    """Exact frozen task arithmetic so summation order cannot break true ties."""
+    if row.get('error') is not None or row['reason'] == 'invalid':
+        units = 0
+    else:
+        escaped = int(row['reason'] == 'escaped')
+        units = (2600*escaped + 400*row['keys'] + 400*int(row['door'])
+                 + escaped*(200-row['steps']))
+    if type(units) is not int or not math.isfinite(row['combined_score']) or abs(
+            units/TASK_UNIT_DENOMINATOR-row['combined_score']) > 1e-12:
+        raise ValueError('Recorded task disagrees with the frozen exact 1/4000-unit formula')
+    return units
+
+
+def rank_selection(rows):
+    return sorted(rows, key=lambda p: (-p['selection_task_units'], -p['selection_escapes'], p['slot']))
+
+
 def candidates_after_completion(database, total_slots=50, limit=5):
     with sqlite3.connect(f'file:{Path(database).resolve()}?mode=ro', uri=True) as db:
         db.row_factory = sqlite3.Row
@@ -115,7 +136,8 @@ def main():
                     'campaign_sha256': sha256(campaign / 'campaign-manifest.json'), 'inventory': inventory,
                     'evaluation': evaluation_identity(), 'pool': info, 'regimes': list(REGIMES),
                     'candidates': [{k: p[k] for k in ('id', 'generation', 'combined_score', 'program_sha256')} for p in candidates],
-                    'selection_rule': 'mean absolute task, then escape count, then lower candidate slot',
+                    'selection_rule': 'mean absolute task using exact 1/4000 units, then escape count, then lower candidate slot',
+                    'rounding_note': 'Exact task arithmetic prevents summation-order roundoff from overriding the prespecified tiebreaks; frozen evaluator and development scores are unchanged.',
                     'driver_sha256': sha256(__file__), 'checkpoint_driver_sha256': sha256(ROOT / 'scripts/v3_assessment.py'),
                     'splits_sha256': sha256(splits_path), 'model_calls': 0}
         atomic_create(out / 'manifest.json', manifest)
@@ -124,13 +146,16 @@ def main():
         for candidate, condition in zip(candidates, conditions):
             subset = [row for row in rows if row['condition'] == condition['name']]
             metrics = aggregate(subset)
+            task_units = sum(exact_task_units(row) for row in subset)
             rankings.append({'slot': candidate['generation'], 'native_id': candidate['id'],
                 'program_sha256': candidate['program_sha256'], 'development_task': candidate['combined_score'],
-                'selection_task': metrics['combined_score'],
+                'selection_task': task_units/(TASK_UNIT_DENOMINATOR*len(subset)),
+                'selection_task_units': task_units, 'task_unit_denominator': TASK_UNIT_DENOMINATOR,
+                'selection_task_float_aggregate': metrics['combined_score'],
                 'selection_escapes': sum(row['reason'] == 'escaped' for row in subset),
                 'episodes': len(subset), 'invalid': sum(row['error'] is not None for row in subset),
                 'public': metrics['public']})
-        rankings.sort(key=lambda p: (-p['selection_task'], -p['selection_escapes'], p['slot']))
+        rankings = rank_selection(rankings)
         winner = rankings[0]
         source = next(p['code'] for p in candidates if p['program_sha256'] == winner['program_sha256'])
         selection = {'selected': winner, 'ranking': rankings,
