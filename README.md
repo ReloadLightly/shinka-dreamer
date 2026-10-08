@@ -13,21 +13,24 @@ predictive seed, separately from the manually fitted directional comparator.
 
 The [completed search report](docs/v3-search-results.md),
 [every-candidate table](artifacts/campaign-v3/search.csv),
+[interactive Chromatic Field explorer](artifacts/campaign-v3/search-explorer.html),
 [native execution audit](artifacts/campaign-v3/native-audit.json) and
 [methods](docs/v3-methods.md) distinguish completed work from planned assessment.
 The [source review](docs/v3-program-changes.md) records substantive changes,
-actual ancestry and intervention caveats for the initial branches.
+actual ancestry and intervention caveats. Download and open the explorer HTML
+locally to inspect all candidates, linked plots, ancestry and patch rejections;
+it needs no server or external assets.
 Selection validation chose **generation 4** (180/192 escapes), a direct descendant
 of the original seed with uniform, slow and fast directional movement experts.
 This score is selection-biased. Its development audit verifies that freezing
-predictive parameters preserves mapping and that substituting a uniform law
+predictive parameters leaves mapping active and that substituting a uniform law
 changes the predictions used by its existing planner. Learning changed action
 sequences in 50/72 development cases without changing escape outcomes.
 
 The [frozen assessment design](docs/v3-assessment-design.md) specifies **1,536
-paired cases per regime**, ten on-policy conditions and five passive predictors
+paired layout cases shared across all three regimes**, ten on-policy conditions and five passive predictors
 on identical recorded experience. The program, comparators, interventions,
-precision and analysis are frozen before drawing fresh cases. That assessment
+precision and analysis were frozen before drawing fresh cases. That assessment
 is the remaining inferential evidence; development results do not establish
 generalization or a control benefit. One search cannot establish reliable
 discovery across independent runs.
@@ -58,7 +61,7 @@ Holm p=0.923). The experiment supports generalization of this evolved program an
 its predictive learner under the existing maze generator, while leaving the
 escape benefit of updating or using predictions unestablished.
 
-## Research questions
+## V2 research questions
 
 A partially observed agent can predict more accurately without choosing better
 actions. We distinguish three questions: **(1)** does the selected evolved
@@ -92,7 +95,7 @@ Predictive world models can support control, but prediction accuracy is not itse
 a control outcome. Dreamer learns neural latent dynamics and trains an actor and
 critic through imagined trajectories [3]. ShinkaDreamer instead assesses an
 interpretable spatial probability model and short heuristic lookahead; it does
-not implement neural Dreamer. Its online optimizer follows AdaGrad's accumulated
+not implement neural Dreamer. The v2 program's online optimizer follows AdaGrad's accumulated
 squared-gradient idea [4], and its forecast loss is binary Brier error [5]. The
 experiment tests this discovered learner's behavior rather than claiming a new
 optimizer or a new proper scoring rule.
@@ -106,7 +109,7 @@ an empirical test of evolved online adaptation and its control benefit in this
 particular partially observed maze. It makes no priority claim for executable
 world models, learned RL algorithms or program evolution.
 
-## Methods
+## V2 methods
 
 ### Environment and independent evaluation
 
@@ -191,7 +194,7 @@ first-move comparison uses the current position. Scored and planning forecasts
 are consequently not perfectly identical. The
 [walkthrough](docs/evolved-agent.md) documents the exact source functions.
 
-## Experimental design
+## V2 experimental design
 
 ### Frozen selection and fresh cases
 
@@ -254,7 +257,7 @@ bins condition on survival and show their sample sizes. On-policy forecast losse
 under different actions are reported separately. Successful-escape steps and
 runtime condition on success and are not unconditional efficiency measures.
 
-## Results
+## V2 results
 
 The three research questions have different answers. **Evolutionary performance
 generalizes for this selected program:** it wins 189 and loses 47 escape pairs
@@ -389,7 +392,7 @@ withheld cases, seed escape was 83.6% versus memory's 90.2%, and matched updates
 slightly worsened forecast loss. Those exposed historical results are not pooled
 with the present fresh assessment.
 
-## Mechanism analysis
+## V2 mechanism analysis
 
 The intervention checks show that freezing did what the comparison requires.
 Transition weights stayed constant in **1,024/1,024** episodes of each frozen
@@ -466,7 +469,7 @@ enemy positions for retrospective comparison; the agent never receives them.
 [Original replay data](artifacts/campaign-v2/mechanism-gen14/replay/replay.json)
 and [mechanism explanation](docs/evolved-agent.md) remain intact.
 
-## Limitations and subsequent research
+## V2 limitations and subsequent research
 
 The primary interval permits approximately **2.23 percentage points of escape
 harm or 1.21 points of benefit** from updating. The planning comparison permits
@@ -503,7 +506,7 @@ representations, updates and planning. The earlier proposed 24-search mechanism
 study remains separate, unexecuted work; it is not a prerequisite for this wave's
 fresh assessment and does not support a reliable-discovery claim.
 
-## Reproducibility
+## V2 reproducibility
 
 The [assessment package](artifacts/campaign-v2/assessment-1024/) contains the
 preregistration, source and pool hashes, compact episode data, analysis, closure
