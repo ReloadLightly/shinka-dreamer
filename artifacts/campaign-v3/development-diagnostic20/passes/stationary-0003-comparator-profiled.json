@@ -1,0 +1,1887 @@
+{
+  "case": 3,
+  "regime": "stationary",
+  "kind": "comparator",
+  "profiled": true,
+  "requested_frames": 80,
+  "source_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+  "status": "complete",
+  "returncode": 0,
+  "timeout": false,
+  "frames": [
+    {
+      "frame": 0,
+      "action_model_sha256": "27ba0f1bf6eeacc5943bd5ace5cf4141de8dea87b6e7dd17aa36f5c2609fc65e",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 1,
+      "action_model_sha256": "f26fc8d24a7719d7ac7f3ddcb6fac7e120c5b554d6006e09231461c0fba3a2bd",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 2,
+      "action_model_sha256": "729a222a669f6cd354a069f6e64074c712aefe1033119253ced6578fd11f8a83",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 3,
+      "action_model_sha256": "ee4a7ebd005aa934f4eb1812030927728060d18d91d1310dbe5ae9b4896af9a5",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 4,
+      "action_model_sha256": "2978ca546e486c5cd682e35474a8cb653d7db15c2a213bb77d1c4843268173bc",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 5,
+      "action_model_sha256": "b2a980690af340f17d36efea77f7bf3c1e2acae8379cfc26e1e6275df28b4863",
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 6,
+      "action_model_sha256": "3add5db9c5167eeb6af180eeba9a6cb4b2ed202178b93f89d55319f247f38e04",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 7,
+      "action_model_sha256": "4ecd425940d8dbb4dcc46ca177974559949aff7a58dcf7fc49911467e3828c19",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 8,
+      "action_model_sha256": "5398739230b6af505eee72446dac7069f245996d052fac1dcf441353bede0f86",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 9,
+      "action_model_sha256": "20adc602c8d792a9a39ea8415f6ebc8ace3f5064417b47067b7c6e27804cbeda",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 10,
+      "action_model_sha256": "92e4fbb2d26fbfe87f0f37f48b67ee5af215e20e568c46602b3f69dbea420e7a",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 11,
+      "action_model_sha256": "125017608a6f88eea054a89f5d0722fc8744046ba761203690b8524ec8ca8b84",
+      "action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 12,
+      "action_model_sha256": "0a20eb3330a1d1ac3efa56dc695b4305a1745f48c40a0d106bdc61bd357a7e45",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 13,
+      "action_model_sha256": "d5513dc2bc7c12c005ac994f1b35adbc7fbc7a4c39f528cbc8dcd7797bef8797",
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 14,
+      "action_model_sha256": "15c86838f7272a008db77aaf2598c64d97da4a4a79ef4bac89a3047fe727e778",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 15,
+      "action_model_sha256": "7e8e11213eb53d0c6ba31fb031de16f79c50f0a1e079e692c417da2b548c248e",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 16,
+      "action_model_sha256": "5f12b1eb9d938ac7d0d0dfff22245134010f5360c1fd31a91f93c31ee31322dc",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 17,
+      "action_model_sha256": "2970f82c33489524c61a815db17b865490e604b04cc10ba22eb111dd545a88bd",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 18,
+      "action_model_sha256": "ee88f2f1dc16f02188c5a6a05b4fb148e1731ad5cbc196b738de366017d97051",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 19,
+      "action_model_sha256": "ba4a60e8d8fd2ef391c58816a70e366594f7dc65cf843d3bb0d2c516e9fdce2b",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 20,
+      "action_model_sha256": "64bafa3193deda4c9f2e494bf5324878936735aa52b49f0bf9fa5a20f6e09600",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 21,
+      "action_model_sha256": "3aba462d2a8a8e5df32f74f4b209f5bd32194081a4f3d76c3c2924677d1c75b2",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 22,
+      "action_model_sha256": "6e0c044a7bea54a7a38716f28b19688d49bd21d810029bab1a497d2542cbb152",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 23,
+      "action_model_sha256": "4f1cd5fcdb890f39de264d840300c74677f6b9dabba2b738f0111f7373c6d03c",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 24,
+      "action_model_sha256": "29f928f68fd0dddb59b3479969bc1c0d03633ba961ba4b2462e61e5fbe1d7317",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 25,
+      "action_model_sha256": "4ba5621f461fe3bf8329867c4787e3a2365211259355c8bf05510ad02d920d1c",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 26,
+      "action_model_sha256": "90048dd3cf81bfb664d77d3d802d0a7d042596419b81b2201413540943078c43",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 27,
+      "action_model_sha256": "2f4fcd86fef1bce016a0528926dfd767f1e7aa7573896faaa717a0976f40e1f3",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 28,
+      "action_model_sha256": "89b77068338be67b25f30be5dbf36efc59a656409c14efb497ab8e2fb25ff63d",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 29,
+      "action_model_sha256": "6b41ac91e7f237ff5bbc0e2b0cd71e51e63181ee11305f0b20a50d418d80fe43",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 30,
+      "action_model_sha256": "86f0a15e37d4d88a3b8724b0ab831d9bc49555905375129a3b4c4ecdd623e191",
+      "action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 31,
+      "action_model_sha256": "0daaf1829f5741eec130a678ca0c21b54b2bb2b574e21498e3b46836ea78c4c9",
+      "action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 32,
+      "action_model_sha256": "209d9f4e59a1c6960a66c3b5e096bb43e1a64bb9f2553f7cc6b26823b8862f3f",
+      "action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 33,
+      "action_model_sha256": "d001e6f93ab74d647fc04fa777fe1f45e6e3e9e8456fb38c6ed58480c819f837",
+      "action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 34,
+      "action_model_sha256": "c767bf7e6987bd0b3b89dee4e7c334f248895ac968e0130acbdebf56462e71d9",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 35,
+      "action_model_sha256": "495dea1022c190cf337144bd06bcb989649d011d8a3dead31e7805011fdc50f5",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 36,
+      "action_model_sha256": "455a2ad49da717f9780451f85fc0d2d0bb369362592e0020b29c1af40cd3d397",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 37,
+      "action_model_sha256": "a342dbba14e7d1d10641004f3e79479f4a9f2b1589c46a35fc9be7c1b0d05b7a",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 38,
+      "action_model_sha256": "85841726e6c6533103c06b816c68267811ba902cf90c111421d0f7d5d715479c",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 39,
+      "action_model_sha256": "94173f586712cf952f8d955134c8b96058415d6f20f36e2ef11224c20447254a",
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 40,
+      "action_model_sha256": "cfab41d1da55702166ac06c6e63514a242bbe6a5eb5d4f699ff8cccd7089ba40",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 41,
+      "action_model_sha256": "1d60be9b9c7ebcfb4b3240d7f82630dcc651f3d6748e9f01cc7b88c65abb6c4e",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 42,
+      "action_model_sha256": "2844cdf4b32f4a43e665a3f06261e66153a1c8d5176ce4c6b8ff01bec2e9282c",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 43,
+      "action_model_sha256": "c178a5bf1d33e997375d75b52005870bf00975ba219599ef0b051c8d571d49e4",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 44,
+      "action_model_sha256": "d224cabdd5de41680b2d510511a64bc12718faf12421c5708d9552465929a53a",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 45,
+      "action_model_sha256": "00e5d6862037d89ef34bcaa8288735de19611880183432f5c9ee544ba9b7ecbb",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 46,
+      "action_model_sha256": "0e5c031a631c0dc1c8052fbe02c06c8cd75bacec3fe4f0f811ba210636a4176e",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 47,
+      "action_model_sha256": "aecfdfee556f177dd0d6694bca4e739c80fce06b9a7e91c9b64997bca7082068",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 48,
+      "action_model_sha256": "2bdef91b51f5c142264092afb53d74832c81b93a904d93f6d0f6c4f9736a0c12",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 49,
+      "action_model_sha256": "825278deb77c30fec270d3eecfae5f10371650ce8afac630d36fcea5691587c1",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 50,
+      "action_model_sha256": "576c0e5cf499f338afe169e87858e9395a5a04d5fe749a5862cf26ee1e255844",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 51,
+      "action_model_sha256": "efd2be3d767d9a1a83a46279b81eb838903160d7ea69cec74dc2b19cc2f0b0a5",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 52,
+      "action_model_sha256": "8a0aa2c0d4536671639250ad3fa939f388ca86b9320ec91fc5c5f8f975e74721",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 53,
+      "action_model_sha256": "eeb59289d0cc6f2bf03bee6187b89772f63640623899c06a43e9631aaf6a303d",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 54,
+      "action_model_sha256": "589f11d2d3f21d768e4106690cd1806b7c9bfd0f6fbb553e70e5ac35d484f559",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 55,
+      "action_model_sha256": "555687a15d0aedf0403cfe3381e574a8e386318a5ee3c5760987f221b00f0880",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 56,
+      "action_model_sha256": "0899f2112ebb525c214d186f46cb9f008e407f15b63d3d5599ca73ee7c6d94e7",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 57,
+      "action_model_sha256": "96afb2261d17c831cb8cd068a479fe185f04285851e49458b6c8ea56aea7cfc4",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 58,
+      "action_model_sha256": "f1c18f6cbb19afe951b2dd2ff74511c91a4f76539d2e2fac039eff890ac48980",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 59,
+      "action_model_sha256": "864e4e3fcde4efcc09f41157888e01db3ea2838f0e41c5bb570b0390fbd98f78",
+      "action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 60,
+      "action_model_sha256": "8b11204f1225b73bd35b4624eadb40346598bc7022e1edcfed3bbc4ae536b30f",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 61,
+      "action_model_sha256": "7cbf7dbd847868135c9cc66c507972903804ee775320d10e4d1e53738d6b50ad",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 62,
+      "action_model_sha256": "3e119a025eb2436e846c42bddb4e92b8b8eebd0edc2e45db5f8bce7160a165c3",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 63,
+      "action_model_sha256": "11aaa5a04aad10164cf6693a4242dec1fd181072d9b5e087cd06094fe5818661",
+      "action": {
+        "move": [
+          1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 64,
+      "action_model_sha256": "0f14992e829145734c8f6dc53b3979ef3d6ff8bb6e356a923bfd390dac269a46",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 65,
+      "action_model_sha256": "5839517a6ac2e85f3dd113d45282a9ef75c4d84297ff31fcfdf90bef46df423a",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 66,
+      "action_model_sha256": "3fad0af32cda9a2b743f3c2523e2d41b7c05df876d3a6cb4684d538e57349742",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 67,
+      "action_model_sha256": "fc9e3a6a4b94bcaa9bc49585ed35954209ae058289e0d6bc2fa4197e4694749d",
+      "action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 68,
+      "action_model_sha256": "e156d3e5df946ed107a9c84e52a19a7679250d01ad43f6fe2350ef6f29e6deb5",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 69,
+      "action_model_sha256": "9928421c277b6593b023a1129e3ad1948eb3c35d429e3fe695d22671bc5dc9ba",
+      "action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 70,
+      "action_model_sha256": "e308e1b582b633cbd20b173db13aa3f7e4b0a43ec0566b51db97eb58553f4150",
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 71,
+      "action_model_sha256": "bc85d83b52fe753226ab03bd4ac3e669f73b7f55c660aa66d34f1b87ac046b69",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 72,
+      "action_model_sha256": "4dc688fdaec1a528913ee0aceba9224b8ebe7b054cdbbb783054009de3df9cb7",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 73,
+      "action_model_sha256": "05198760d5499e18ac3d451623958250155aaf387a68412e8da47bad46a7b7c5",
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 74,
+      "action_model_sha256": "6d2436e71b9965e06130046b9a56e838e7ca6ec6c64b8ef381dd024232ab18c4",
+      "action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          -1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 75,
+      "action_model_sha256": "1e58ee82e2e5ee6c157ff394d43ca98b277b89332ecd0da08d1cae9236c029cf",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          0
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 76,
+      "action_model_sha256": "ac16ac59e8da2bb6226fce25224e3078a1c6c217282bb49b9218701dcbea3ac8",
+      "action": {
+        "move": [
+          -1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 77,
+      "action_model_sha256": "30b10b06de59f3315b36cf0e09f8d071a8dcaf90126d8636ef6a24b1eb19979e",
+      "action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          0,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 78,
+      "action_model_sha256": "f1927f2b0f12782ded09bafe25f6519a78d3f1562daaaadf1bef245f7d94cf43",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    },
+    {
+      "frame": 79,
+      "action_model_sha256": "e292c45c6fa8ef6c605e7269601f5d8804ab4958ce3dddbc12edcc73249e5cf3",
+      "action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      },
+      "known_action": {
+        "move": [
+          1,
+          -1
+        ],
+        "interact": true
+      }
+    }
+  ],
+  "finish": {
+    "finished": true,
+    "frames": 80,
+    "source_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+    "kind": "comparator",
+    "profiled": true,
+    "phase_totals": {
+      "world_model_step": {
+        "calls": 80,
+        "wall_seconds": 0.5932546399708372,
+        "process_seconds": 0.6666775120000037
+      },
+      "planner": {
+        "calls": 80,
+        "wall_seconds": 3.7863490119052585,
+        "process_seconds": 4.195453324000003
+      },
+      "export_model": {
+        "calls": 80,
+        "wall_seconds": 0.018323856929782778,
+        "process_seconds": 0.022277954999999405
+      }
+    },
+    "profiles": {
+      "world_model_step": [
+        {
+          "file": "candidate.py",
+          "line": 228,
+          "function": "world_model_step",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.015683492,
+          "cumulative_seconds": 0.591547912
+        },
+        {
+          "file": "candidate.py",
+          "line": 217,
+          "function": "_record_forecast",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.0024220630000000003,
+          "cumulative_seconds": 0.5574242690000001
+        },
+        {
+          "file": "candidate.py",
+          "line": 97,
+          "function": "_predict",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.050747144,
+          "cumulative_seconds": 0.555002206
+        },
+        {
+          "file": "candidate.py",
+          "line": 83,
+          "function": "_transition_rows",
+          "primitive_calls": 5636,
+          "calls": 5636,
+          "self_seconds": 0.108303907,
+          "cumulative_seconds": 0.473473083
+        },
+        {
+          "file": "candidate.py",
+          "line": 69,
+          "function": "_attempt_destinations",
+          "primitive_calls": 5636,
+          "calls": 5636,
+          "self_seconds": 0.050274671,
+          "cumulative_seconds": 0.15498319600000002
+        },
+        {
+          "file": "candidate.py",
+          "line": 57,
+          "function": "_enemy_open",
+          "primitive_calls": 99250,
+          "calls": 99250,
+          "self_seconds": 0.061068172000000004,
+          "cumulative_seconds": 0.12229295800000001
+        },
+        {
+          "file": "candidate.py",
+          "line": 91,
+          "function": "<genexpr>",
+          "primitive_calls": 347850,
+          "calls": 347850,
+          "self_seconds": 0.093673582,
+          "cumulative_seconds": 0.093673582
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "primitive_calls": 40421,
+          "calls": 40421,
+          "self_seconds": 0.023289508,
+          "cumulative_seconds": 0.062987214
+        },
+        {
+          "file": "candidate.py",
+          "line": 35,
+          "function": "_possible",
+          "primitive_calls": 99250,
+          "calls": 99250,
+          "self_seconds": 0.045846442,
+          "cumulative_seconds": 0.045846442
+        },
+        {
+          "file": "candidate.py",
+          "line": 22,
+          "function": "_probabilities",
+          "primitive_calls": 5636,
+          "calls": 5636,
+          "self_seconds": 0.012237605,
+          "cumulative_seconds": 0.043806215
+        },
+        {
+          "file": "candidate.py",
+          "line": 90,
+          "function": "<genexpr>",
+          "primitive_calls": 85509,
+          "calls": 85509,
+          "self_seconds": 0.039697706,
+          "cumulative_seconds": 0.039697706
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 146342,
+          "calls": 146342,
+          "self_seconds": 0.024404253,
+          "cumulative_seconds": 0.024404253
+        },
+        {
+          "file": "candidate.py",
+          "line": 26,
+          "function": "<listcomp>",
+          "primitive_calls": 5636,
+          "calls": 5636,
+          "self_seconds": 0.014885410000000002,
+          "cumulative_seconds": 0.02136422
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'append' of 'list' objects>",
+          "primitive_calls": 91167,
+          "calls": 91167,
+          "self_seconds": 0.010941644,
+          "cumulative_seconds": 0.010941644
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.min>",
+          "primitive_calls": 38481,
+          "calls": 38481,
+          "self_seconds": 0.009776332,
+          "cumulative_seconds": 0.009776332
+        }
+      ],
+      "planner": [
+        {
+          "file": "candidate.py",
+          "line": 370,
+          "function": "planner",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.018014546000000003,
+          "cumulative_seconds": 3.7838245510000004
+        },
+        {
+          "file": "candidate.py",
+          "line": 120,
+          "function": "_continuation_risk",
+          "primitive_calls": 2727,
+          "calls": 2727,
+          "self_seconds": 1.1697999920000002,
+          "cumulative_seconds": 2.317654268
+        },
+        {
+          "file": "candidate.py",
+          "line": 83,
+          "function": "_transition_rows",
+          "primitive_calls": 9563,
+          "calls": 9563,
+          "self_seconds": 0.205961359,
+          "cumulative_seconds": 0.872779862
+        },
+        {
+          "file": "candidate.py",
+          "line": 300,
+          "function": "_paths",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_seconds": 0.219384872,
+          "cumulative_seconds": 0.719363297
+        },
+        {
+          "file": "candidate.py",
+          "line": 217,
+          "function": "_record_forecast",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.0030343080000000003,
+          "cumulative_seconds": 0.564909517
+        },
+        {
+          "file": "candidate.py",
+          "line": 97,
+          "function": "_predict",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.051074032000000005,
+          "cumulative_seconds": 0.561875209
+        },
+        {
+          "file": "candidate.py",
+          "line": 31,
+          "function": "_add",
+          "primitive_calls": 2235288,
+          "calls": 2235288,
+          "self_seconds": 0.545099969,
+          "cumulative_seconds": 0.545099969
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 2779376,
+          "calls": 2779376,
+          "self_seconds": 0.348164126,
+          "cumulative_seconds": 0.348164126
+        },
+        {
+          "file": "candidate.py",
+          "line": 44,
+          "function": "_legal",
+          "primitive_calls": 104733,
+          "calls": 104733,
+          "self_seconds": 0.14266440600000002,
+          "cumulative_seconds": 0.30670793300000004
+        },
+        {
+          "file": "candidate.py",
+          "line": 69,
+          "function": "_attempt_destinations",
+          "primitive_calls": 9563,
+          "calls": 9563,
+          "self_seconds": 0.089727633,
+          "cumulative_seconds": 0.280326264
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "primitive_calls": 78212,
+          "calls": 78212,
+          "self_seconds": 0.061391837000000005,
+          "cumulative_seconds": 0.24672162600000003
+        },
+        {
+          "file": "candidate.py",
+          "line": 57,
+          "function": "_enemy_open",
+          "primitive_calls": 147356,
+          "calls": 147356,
+          "self_seconds": 0.09547372800000001,
+          "cumulative_seconds": 0.190482526
+        },
+        {
+          "file": "candidate.py",
+          "line": 91,
+          "function": "<genexpr>",
+          "primitive_calls": 629420,
+          "calls": 629420,
+          "self_seconds": 0.17038872400000002,
+          "cumulative_seconds": 0.17038872400000002
+        },
+        {
+          "file": "candidate.py",
+          "line": 328,
+          "function": "_choose_target",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.0073057,
+          "cumulative_seconds": 0.144021047
+        },
+        {
+          "file": "candidate.py",
+          "line": 40,
+          "function": "_blocked",
+          "primitive_calls": 248871,
+          "calls": 248871,
+          "self_seconds": 0.095836925,
+          "cumulative_seconds": 0.135159009
+        }
+      ],
+      "export_model": [
+        {
+          "file": "candidate.py",
+          "line": 429,
+          "function": "export_model",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.000990102,
+          "cumulative_seconds": 0.017159359000000002
+        },
+        {
+          "file": "candidate.py",
+          "line": 433,
+          "function": "<listcomp>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.005670497,
+          "cumulative_seconds": 0.010106154000000001
+        },
+        {
+          "file": "candidate.py",
+          "line": 436,
+          "function": "<listcomp>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.004500036000000001,
+          "cumulative_seconds": 0.004500036000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.max>",
+          "primitive_calls": 13951,
+          "calls": 13951,
+          "self_seconds": 0.002347772,
+          "cumulative_seconds": 0.002347772
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.min>",
+          "primitive_calls": 13791,
+          "calls": 13791,
+          "self_seconds": 0.002274209,
+          "cumulative_seconds": 0.002274209
+        },
+        {
+          "file": "candidate.py",
+          "line": 22,
+          "function": "_probabilities",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.00028959,
+          "cumulative_seconds": 0.00118604
+        },
+        {
+          "file": "candidate.py",
+          "line": 26,
+          "function": "<listcomp>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 0.00036072700000000003,
+          "cumulative_seconds": 0.000585096
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_seconds": 0.000246974,
+          "cumulative_seconds": 0.000246974
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.exp>",
+          "primitive_calls": 720,
+          "calls": 720,
+          "self_seconds": 0.000224369,
+          "cumulative_seconds": 0.000224369
+        },
+        {
+          "file": "candidate.py",
+          "line": 28,
+          "function": "<listcomp>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 9.5673e-05,
+          "cumulative_seconds": 9.5673e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'values' of 'dict' objects>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 8.478000000000001e-05,
+          "cumulative_seconds": 8.478000000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_seconds": 4.1843000000000006e-05,
+          "cumulative_seconds": 4.1843000000000006e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_seconds": 3.2787e-05,
+          "cumulative_seconds": 3.2787e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "self_seconds": 3.2696e-05,
+          "cumulative_seconds": 3.2696e-05
+        }
+      ]
+    },
+    "worker_wall_seconds": 6.722927377006272,
+    "worker_process_seconds": 7.470894405,
+    "timing_scope": "Main WM/planner/export only; excludes known-law clone and recorded-action alignment. Unprofiled comparator planner includes ranking trace overhead.",
+    "adapter": "Recorded public observations and preceding recorded actions; predictive_planning enabled for both sources. Comparator fitted parameters frozen, waits and forecast reset after export to the recorded action. Known-law clone discarded each frame; selected predictive learning enabled."
+  },
+  "elapsed_seconds": 6.790684103994863,
+  "post_switch_recorded_frames": 0
+}

@@ -1,0 +1,8 @@
+{
+  "case": 1,
+  "regime": "stationary",
+  "kind": "selected",
+  "profiled": false,
+  "requested_frames": 80,
+  "source_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c"
+}

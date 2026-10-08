@@ -24,8 +24,27 @@ nominal and descriptive, not the completed 1,536-case assessment. Preserve the
 original frozen sources and the checkpoint as a historical snapshot. The exact
 saved-data reproduction command is
 `OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/v3_interim_analysis.py --compact`.
-Any new experiment or resumed inference must disclose this interim look. No
-20-minute diagnostic or new independent search has yet been authorized or run.
+Any new experiment or resumed inference must disclose this interim look.
+
+## Completed bounded development diagnostic
+
+The user subsequently approved the proposed 20-minute development diagnostic.
+Protocol `5914034` set zero new worlds, 48 replay passes capped at 80 recorded
+frames each, and unchanged per-worker resource limits. Execution completed
+8 October at 23:02:22 UTC, before the 23:10:04 execution and 23:15:04 task
+deadlines: 42 passes complete, six traced comparator passes failed at the CPU
+boundary, no retries, 3,306 returned frame records. All 24 profiled passes
+completed. Existing fitting-subvalidation recordings only; no mutation or other
+experiment-model calls, no assessment resumption. See
+[the report](docs/v3-development-diagnostic20.md) and
+[evidence](artifacts/campaign-v3/development-diagnostic20/summary.json).
+
+Reproduce saved-data analysis with
+`.venv/bin/python scripts/v3_diagnostic20_report.py`. The execution driver is
+one-shot and deadline-bound; do not relaunch it or extend its closed budget.
+Source-specific local caching and duplicate forecast removal are proposals,
+not implemented or benchmarked changes. No further optimization experiment,
+independent search or assessment resumption has been authorized.
 
 ## Previously authorized execution: v3 wave 1
 

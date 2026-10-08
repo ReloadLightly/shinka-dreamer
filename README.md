@@ -17,11 +17,25 @@ The 50-slot search is complete. Generation 4 captured 98.97% of its eventual
 best development-task gain; 45 later slots added no development escapes and
 selection retained generation 4. The full 1,536-case assessment remains paused:
 all workers exited and no automatic resumption is scheduled. This interim
-analysis added no episodes or experiment model calls. The recommended next step
-is a bounded development diagnostic of decision relevance and runtime, subject
-to a new scope decision. See the [full result tables](artifacts/campaign-v3/assessment-interim140/tables.md),
+analysis added no episodes or experiment model calls. See the [full result tables](artifacts/campaign-v3/assessment-interim140/tables.md),
 [matched prediction tables](artifacts/campaign-v3/assessment-interim140/matched-tables.md)
 and [original checkpoint report](docs/v3-checkpoint-report.md).
+
+The subsequent user-authorized **20-minute development diagnostic is complete**:
+48 capped replay attempts used existing recordings, with zero new worlds or
+experiment-model calls. Execution took about two minutes. All 24 profiled passes
+completed; six additional traced comparator passes hit the unchanged CPU cap.
+All 1,622 comparable action/model hashes matched between instrumentation modes.
+Planning used 85.94% of the fitted comparator's measured main-phase CPU under
+profiling; selected cost split roughly equally between forecasting and planning.
+At identical fitted internal states, true laws changed choices in 2/281 uniform,
+14/287 stationary and 4/274 switching decisions. These recommendations were not
+executed, so they do not measure escape benefit. The
+[diagnostic report](docs/v3-development-diagnostic20.md) proposes a local
+transition-probability cache and removal of duplicate forecast work. Neither
+optimization has been applied or benchmarked; the large assessment stays paused.
+
+![Bounded development diagnostic: measured profiling costs and fixed-state choice changes](artifacts/campaign-v3/development-diagnostic20/summary-figure.svg)
 
 A separate **v3 wave completed one 50-slot native ShinkaEvolve search**. Enemies
 retain nine attempted moves, including waiting; blocked moves become stays. The

@@ -1,0 +1,31 @@
+{
+  "closed_utc": "2026-10-08T23:07:51.453477+00:00",
+  "task_hard_deadline_utc": "2026-10-08T23:15:04+00:00",
+  "execution_stopped": true,
+  "assessment_still_paused": true,
+  "new_world_episodes": 0,
+  "experiment_model_calls": 0,
+  "attempts": 48,
+  "complete": 42,
+  "failed": 6,
+  "retried": 0,
+  "independent_source_and_numerical_audit_passed": true,
+  "common_prefix_main_output_hashes_checked": 1622,
+  "common_prefix_known_actions_checked": 780,
+  "mismatches": 0,
+  "incomplete_pairs": 6,
+  "historical_files_checked": 85,
+  "historical_files_changed": 0,
+  "original_assessment_plan_and_frozen_sources_verified": true,
+  "public_seed_value_scan_passed": true,
+  "plots_visually_inspected": true,
+  "optimization_applied_or_benchmarked": false,
+  "files": {
+    "protocol.json": "7ff41e98fc6f9e1cca66b8d7c225ea8359756d930e82169f8d9ce431f97fb90d",
+    "execution-started.json": "fc9ea47a42748af8cb057026433626783083db4df39e201becb7c89409dd9314",
+    "execution-finished.json": "6a27b1db35914b7dd734c89b3805b45cecc684e91a1f0294fbbc04992cf61097",
+    "summary.json": "4e1b2923966def1bb0dbbcb0b0f124d11b5bb6da6f1a649ec9aca2031b7541cc",
+    "table.md": "bc913f52e0ce8ee00ba657002ad843eb3abe5517c0ed75ec01ab1948fb59040c"
+  },
+  "report_script_sha256": "cc456ab6e9057f089e1eb297dd566d27395adcbe26668a5eed900680fa5e6004"
+}

@@ -1,0 +1,8 @@
+{
+  "case": 0,
+  "regime": "stationary",
+  "kind": "comparator",
+  "profiled": false,
+  "requested_frames": 65,
+  "source_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78"
+}

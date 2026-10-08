@@ -1,0 +1,16 @@
+{
+  "started_utc": "2026-10-08T23:00:17.270516+00:00",
+  "protocol_sha256": "7ff41e98fc6f9e1cca66b8d7c225ea8359756d930e82169f8d9ce431f97fb90d",
+  "script_sha256": {
+    "v3_diagnostic20.py": "8c019fbbeaba20792a91cdd9eefdb51a0fdba6af4a9f266f562df3db4ecfeeb4",
+    "v3_diagnostic_worker.py": "d89ff423275c6fff4a0d2e63d11236eae932404f9ebcb242a0071c7e75009c39",
+    "v3_diagnostic_observer.py": "b09bf3f60a92729ff23a09d491848dd1f1a5e030a7adbd234a14fb3ffd239e57"
+  },
+  "attempt_slots": 48,
+  "requested_frames": 3368,
+  "remaining_execution_seconds": 586.729484,
+  "workers": 2,
+  "new_world_episodes": 0,
+  "experiment_model_calls": 0,
+  "original_assessment_resumed": false
+}
