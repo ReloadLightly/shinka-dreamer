@@ -11,14 +11,54 @@
     "cases_subvalidation": 24,
     "regimes": 3,
     "steps": 16872,
-    "fit_record_sha256": "648d42237d2ffc7912cdb794f23af395a98366d29f8d4dad9d54092abbb01d2d"
+    "fit_record_sha256": "648d42237d2ffc7912cdb794f23af395a98366d29f8d4dad9d54092abbb01d2d",
+    "train_recorded_episodes": 192,
+    "subvalidation_recorded_episodes": 72,
+    "in_process_feature_construction_episode_passes": 264,
+    "feature_construction_transitions": 16608,
+    "feature_construction_counts": {
+      "train_episode_passes": 192,
+      "subvalidation_episode_passes": 72,
+      "frozen_regularization_fits": 3,
+      "optimizer_note": "Optimizer evaluations reuse constructed arrays; optimizer function-call counts were not retained and are not episode replays."
+    },
+    "resources_whole_fit_run": {
+      "elapsed_seconds": 204.53816959701362,
+      "summed_corpus_episode_wall_seconds": 82.91420840332285,
+      "cpu_seconds": null,
+      "cpu_measurement_status": "Not retained by corpus collector or fit driver; unmeasured, not zero.",
+      "scope": "Elapsed run includes corpus collection, feature construction, three frozen fits and 288 online-rate prediction replay passes. No component-level fit/replay CPU or wall split was retained."
+    },
+    "driver_sha256": "54508faf8ed9c8ae7b6f309b9e8147f27120557e73c2566fe9b8e2981dc9a3fe",
+    "corpus_summary_sha256": "aab0057d4ab700cf136866efe27ba16836e02b2632b91f84cf95c3d839c84936",
+    "recorded_experience_episodes": 264,
+    "recorded_experience_uniqueness_audit": {
+      "train": {
+        "recorded_episode_files": 192,
+        "distinct_observation_action_trace_hashes": 157
+      },
+      "validation": {
+        "recorded_episode_files": 72,
+        "distinct_observation_action_trace_hashes": 58
+      }
+    },
+    "distinct_observation_action_traces": 215,
+    "uniqueness_note": "264 indexed world episode records, 215 distinct observed action/observation traces. Shared initial conditions across regimes can produce identical observed experience; this does not reduce actual execution counts."
   },
   "comparator_decision_diagnostic": {
     "condition_episodes": 72,
     "cases": 8,
     "regimes": 3,
     "conditions": 3,
-    "record_sha256": "eceb160e9491a249f10896a432f3f2a05679bbbdcfeb04760a8d003df7644046"
+    "record_sha256": "eceb160e9491a249f10896a432f3f2a05679bbbdcfeb04760a8d003df7644046",
+    "environment_steps": 3661,
+    "resources_whole_diagnostic_run": {
+      "elapsed_seconds": 86.5048841270036,
+      "controller_cpu_seconds": 33.176158193,
+      "children_cpu_seconds": 121.922319,
+      "scope": "Combined 72 world episodes, 72 new known-law in-process prediction passes, and 12 frame-level freeze-audit passes. Loading 144 saved prediction rows is not rerunning them; component-level replay costs were not retained."
+    },
+    "driver_sha256": "22ec4d56f7ee98deaf4511a071e12317121e4ee5aeaf0509cee4ae98e99a7594"
   },
   "non_test_smoke": {
     "condition_episodes": 4,
@@ -27,21 +67,55 @@
   "matched_fitting_subvalidation": {
     "recorded_experience_episodes": 72,
     "additional_environment_episodes": 0,
-    "scope": "Selection biased; fits/rates selected on this subvalidation."
+    "scope": "Selection-biased development: initial prior and online rate selected on this subvalidation. Rate0 is frozen; rates0.5,2,8 are online.",
+    "predictor_rate_settings": [
+      0.0,
+      0.5,
+      2.0,
+      8.0
+    ],
+    "in_process_prediction_episode_passes": 288,
+    "prediction_passes_per_setting": 72,
+    "nonterminal_transition_evaluations": 17656,
+    "forecast_target_evaluations": 158904,
+    "isolated_shadow_episode_passes": 0,
+    "matched_validation_sha256": "5874bd39b9d10367b18d8164e12313f39334036012ea3fa151a65eb82d470984",
+    "resource_accounting": "Included in comparator_fitting_corpus.resources_whole_fit_run; not independently timed.",
+    "distinct_observation_action_traces": 58
   },
   "search": "Use search-summary.json and native-audit.json for exact ongoing counts.",
   "matched_predictor_smoke": {
     "condition_episodes": 8,
     "shadow_predictor_episodes": 24,
     "pool": "eight development switching cases under original memory policy",
-    "record_sha256": "3b61f0e7b4f03572cc2fda4e1d377f607aa2623e3f2191fc2f0303069b6c016b"
+    "record_sha256": "3b61f0e7b4f03572cc2fda4e1d377f607aa2623e3f2191fc2f0303069b6c016b",
+    "isolated_shadow_episode_passes": 24,
+    "additional_environment_episodes_from_shadows": 0,
+    "unique_recorded_experience_episodes": 8,
+    "shadow_resources": {
+      "summed_wall_seconds": 8.239769902051194,
+      "candidate_cpu_seconds": 7.401699999999999,
+      "evaluator_cpu_seconds": 1.5681082760000005,
+      "scope": "Shadow replay only; excludes policy world generation."
+    }
   },
   "matched_driver_integration_smoke": {
     "condition_episodes": 1,
     "shadow_predictor_episodes": 3,
     "pool": "one development switching case under original memory policy",
     "location": "/tmp/shinka-v3-matched-integration-development",
-    "purpose": "assessment driver integration; not inference"
+    "purpose": "assessment driver integration; not inference",
+    "isolated_shadow_episode_passes": 3,
+    "additional_environment_episodes_from_shadows": 0,
+    "unique_recorded_experience_episodes": 1,
+    "shadow_resources": {
+      "summed_wall_seconds": 0.5420587499975227,
+      "candidate_cpu_seconds": 0.4917809999999999,
+      "evaluator_cpu_seconds": 0.091784378,
+      "scope": "Shadow replay only; excludes policy world generation."
+    },
+    "same_trajectory_as_matched_predictor_smoke_case0": true,
+    "record_sha256": "8d1f09976786007e3eb52c6e0214d5628cf2e2cb35ba39387ed4bb10401dd647"
   },
   "gen1_mechanism_smoke": {
     "condition_episodes": 48,
@@ -53,5 +127,69 @@
     "evaluator_cpu_seconds": 3.4408155380000003,
     "record_sha256": "e4806ffa86f9d0188cb861d229bdb43972b6a270b1bf3a9da46e5083e27392ae",
     "scope": "interface and source-specific risk smoke; not champion selection or final assessment"
+  },
+  "count_semantics": {
+    "condition_episodes": "Executed world episodes, including repeated executions of the same case. Replaying saved observations adds zero world episodes.",
+    "in_process_prediction_episode_passes": "One predictor reset followed by one recorded episode in the analysis process; terminal transitions excluded in fitting/diagnostic replay because no subsequent observation is recorded.",
+    "in_process_feature_construction_episode_passes": "One recorded episode traversed to construct immutable fitting arrays; kept separate from prediction comparison passes.",
+    "isolated_shadow_episode_passes": "One isolated predictor process over one recorded policy episode. Matched smoke includes terminal transitions and keeps its costs separate.",
+    "reported_prediction_records": "Saved result rows; reused rows do not imply another execution.",
+    "unique_recorded_experience": "Episode records are indexed by layout and regime. Distinct observable trajectories are separately counted by hashing recorded observations/actions; paired regimes can share identical experience and are not independent replicates."
+  },
+  "comparator_matched_diagnostic_replays": {
+    "record": "controls/v3/development-diagnostic.json",
+    "record_sha256": "eceb160e9491a249f10896a432f3f2a05679bbbdcfeb04760a8d003df7644046",
+    "additional_environment_episodes": 0,
+    "same_corpus_as": "matched_fitting_subvalidation",
+    "reported_prediction_records": 216,
+    "reused_prediction_records": {
+      "frozen": 72,
+      "selected_online_rate2": 72,
+      "total": 144
+    },
+    "reused_rows_equal_saved_fitting_records": true,
+    "new_main_prediction_passes": {
+      "known_law": 72
+    },
+    "known_law_reference_initializations": 72,
+    "known_law_reference_note": "Constructs trusted environment objects to recover current probabilities; does not execute world transitions or generate another trajectory.",
+    "extra_frame_level_audit_passes": {
+      "recorded_episodes": 6,
+      "predictors_per_episode": 2,
+      "episode_passes": 12,
+      "regime": "stationary",
+      "case_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nonterminal_transition_evaluations": 748
+    },
+    "in_process_prediction_episode_passes": 84,
+    "isolated_shadow_episode_passes": 0,
+    "resource_accounting": "Included in comparator_decision_diagnostic.resources_whole_diagnostic_run; no separately measured replay cost.",
+    "terminal_transitions_included": false,
+    "recorded_experience_episodes": 72,
+    "distinct_observation_action_traces": 58
+  },
+  "completed_comparator_replay_accounting": {
+    "scope": "Completed fitting, comparator diagnostic, eight-case isolated matched smoke and one-case isolated integration smoke; excludes later selected-program work and automated tests.",
+    "in_process_prediction_episode_passes": 372,
+    "in_process_feature_construction_episode_passes": 264,
+    "isolated_shadow_episode_passes": 27,
+    "isolated_smoke_unique_trajectories": 8,
+    "isolated_smoke_policy_world_executions": 9,
+    "isolated_smoke_unique_note": "Integration reran smoke case0: one additional policy world execution and three shadow passes, but an identical verified policy trajectory hash.",
+    "additional_environment_episodes_from_all_replays": 0,
+    "model_calls": 0,
+    "accounting_audit_new_environment_episodes": 0,
+    "accounting_audit_new_model_calls": 0,
+    "in_process_comparison_recorded_episode_records": 72,
+    "in_process_comparison_distinct_observable_trajectories": 58,
+    "in_process_unique_note": "72 indexed subvalidation episode records contain 58 distinct observation/action trace hashes. Private fitting corpus omits hidden world state, so this is observable-experience uniqueness; regime pairing does not create independent replicates.",
+    "feature_construction_scope": "The original v3_fit.py array-construction passes; subsequent array inspection or optimizer vector operations are not prediction comparison episodes."
   }
 }

@@ -161,6 +161,9 @@ def main():
     apply_theme()
     objective_figure(out)
     search_report(Path(args.campaign).resolve(),out,args.slots)
+    if (out/'lineage.json').exists():
+        from v3_source_changes import report
+        report(out)
 
 
 if __name__=='__main__': main()
