@@ -93,6 +93,13 @@ def write_tables(data,out):
         effect=row['outcomes']['escape'];lo,hi=np.array(effect['ci95'])*100
         hp=f"{effect['holm_p']:.4g}" if 'holm_p' in effect else '—'
         lines.append(f"| {row['regime']} | {display(row['left'])} − {display(row['right'])} | {100*effect['difference']:+.2f} [{lo:+.2f}, {hi:+.2f}] | {effect['left_only']} / {effect['right_only']} | {effect['mcnemar_exact_p']:.4g} | {hp} |")
+    if data.get('regime_interactions'):
+        lines+=['','Descriptive differences between regime-specific escape effects; conservative pointwise intervals preserve shared-case dependence.','',
+                '| Regime difference | Within-regime contrast | Difference of effects, pp [95% CI] |',
+                '|:--|:--|--:|']
+        for row in data['regime_interactions'].values():
+            lo,hi=np.array(row['ci95_conservative'])*100
+            lines.append(f"| {row['regime_a']} − {row['regime_b']} | {display(row['left'])} − {display(row['right'])} | {100*row['difference']:+.2f} [{lo:+.2f}, {hi:+.2f}] |")
     (out.parent/'tables.md').write_text('\n'.join(lines)+'\n')
 
 
@@ -140,6 +147,32 @@ def matched_figure(data,out,name='matched-learning'):
     save_figure(fig,out/name)
 
 
+def write_matched_tables(fitted,selected,out):
+    lines=['# Prediction on identical experience','',
+           'Each comparison uses the same recorded experience within its policy. Losses across different policies are not a head-to-head predictor comparison. Positive reductions favor the left condition; intervals resample whole paired episodes. Post-switch losses condition on the recorded policy reaching the switch.','',
+           '| Experience | Regime | Left − right | Target | Left / right Brier | Reduction, % [95% CI] | Left / right targets |',
+           '|:--|:--|:--|:--|--:|--:|--:|']
+    for experience,data in [('Original memory policy',fitted),('Selected fixed-planning policy',selected)]:
+        for regime,group in data.get('regimes',data).items():
+            if regime not in ('uniform','stationary','switch'):continue
+            if not group.get('available',True):
+                lines.append(f"| {experience} | {regime} | Unavailable | — | — | — | — |")
+                continue
+            pairs=group.get('pairs',{})
+            if not pairs and group.get('left'):
+                pairs={group['left']+'-minus-'+group['right']:{'forecasts':group['forecasts']}}
+            for key,pair in pairs.items():
+                for metric in ('brier_near','brier_destination','brier_near_post_switch'):
+                    if metric.endswith('post_switch') and regime!='switch':continue
+                    stat=pair.get('forecasts',{}).get(metric)
+                    if not stat:continue
+                    value,ci=stat['relative_reduction'],stat['relative_reduction_ci95']
+                    reduced=(f"{100*value:+.2f} [{100*ci[0]:+.2f}, {100*ci[1]:+.2f}]"
+                             if value is not None and ci else 'Unavailable')
+                    lines.append(f"| {experience} | {regime} | {key.replace('-minus-',' − ').replace('_',' ')} | {metric.replace('brier_','').replace('_',' ')} | {stat['left_loss']:.6f} / {stat['right_loss']:.6f} | {reduced} | {stat['left_targets']} / {stat['right_targets']} |")
+    (out.parent/'matched-tables.md').write_text('\n'.join(lines)+'\n')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--analysis',default='artifacts/campaign-v3/assessment/analysis.json')
@@ -148,8 +181,10 @@ def main():
     args=parser.parse_args()
     data=json.loads(Path(args.analysis).read_text());out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
     apply_theme();outcomes(data,out);forecast_cost(data,out);write_tables(data,out)
-    if Path(args.matched).exists(): matched_figure(json.loads(Path(args.matched).read_text()),out)
+    fitted=json.loads(Path(args.matched).read_text()) if Path(args.matched).exists() else {}
+    if fitted: matched_figure(fitted,out)
     if data.get('selected_matched'):matched_figure(data['selected_matched'],out,'selected-matched-learning')
+    write_matched_tables(fitted,data.get('selected_matched',{}),out)
 
 
 if __name__=='__main__':main()

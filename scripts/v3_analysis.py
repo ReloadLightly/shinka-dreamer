@@ -31,17 +31,65 @@ def clopper(k,n,alpha=.05):
             1. if k==n else float(beta.ppf(1-alpha/2,k+1,n-k))]
 
 
-def paired_binary(left,right):
+def paired_binary(left,right,alpha=.05):
     a,b=np.asarray(left,dtype=bool),np.asarray(right,dtype=bool)
     assert a.shape==b.shape and a.ndim==1
+    if not len(a) or not 0 < alpha < 1:
+        raise ValueError('Nonempty paired cases and alpha in (0, 1) required')
     wins,losses=int((a&~b).sum()),int((~a&b).sum())
     n,m=len(a),wins+losses
-    q=clopper(m,n,.025); theta=clopper(wins,m,.025)
+    # Union bound for discordance probability and conditional win probability.
+    q=clopper(m,n,alpha/2); theta=clopper(wins,m,alpha/2)
     bounds=[x*(2*y-1) for x in q for y in theta]
-    return {'left_only':wins,'right_only':losses,'both':int((a&b).sum()),
+    result={'left_only':wins,'right_only':losses,'both':int((a&b).sum()),
             'neither':int((~a&~b).sum()),'cases':n,'difference':(wins-losses)/n,
-            'ci95':[min(bounds),max(bounds)],
+            'confidence_interval':[min(bounds),max(bounds)], 'confidence_level':1-alpha,
             'mcnemar_exact_p':float(binomtest(wins,m,.5).pvalue) if m else 1.}
+    if alpha == .05:
+        result['ci95'] = result['confidence_interval']
+    return result
+
+
+def regime_interactions(data,plan,weights):
+    """Prespecified descriptive differences between paired escape effects.
+
+    Each component effect has a conservative 97.5% interval. Subtracting
+    their endpoints gives at least 95% coverage by a union bound regardless
+    of shared-case dependence. Shared-case bootstrap intervals are diagnostic.
+    """
+    result = {}
+    for contrast in plan.get('regime_interactions', []):
+        left,right=contrast['left'],contrast['right']
+        first,second=contrast['regime_a'],contrast['regime_b']
+        if left == right or first == second:
+            raise ValueError('Regime interactions require distinct conditions and regimes')
+        effects,case_effects = {}, {}
+        for regime in (first,second):
+            if (regime,left) not in data or (regime,right) not in data:
+                raise ValueError('Regime interaction names an undeclared condition or regime')
+            a=np.array([outcome(r,'escape') for r in data[regime,left]],dtype=int)
+            b=np.array([outcome(r,'escape') for r in data[regime,right]],dtype=int)
+            effects[regime]=paired_binary(a,b,alpha=.025)
+            case_effects[regime]=a-b
+        difference=case_effects[first]-case_effects[second]
+        a,b=effects[first]['confidence_interval'],effects[second]['confidence_interval']
+        sparse = any(effects[r]['left_only']+effects[r]['right_only'] < 10 for r in (first,second))
+        key=f'{first}-minus-{second}/{left}-minus-{right}'
+        if key in result:
+            raise ValueError('Duplicate prespecified regime interaction')
+        result[key]={'left':left,'right':right,'regime_a':first,'regime_b':second,
+            'cases':len(difference),'difference':float(difference.mean()),
+            'ci95_conservative':[a[0]-b[1],a[1]-b[0]],
+            'ci95_shared_case_bootstrap':interval(weights@difference/len(difference)),
+            'component_effects':effects,
+            'cases_with_nonzero_interaction':int(np.count_nonzero(difference)),
+            'sparse_discordance_warning':sparse,
+            'bootstrap_degenerate':bool(np.all(difference == difference[0])),
+            'scope':'Prespecified descriptive escape-effect interaction; no inference from differing within-regime significance.',
+            'interval_method':'Conservative 95% union-bound difference of two 97.5% paired-effect intervals; no independence assumption.',
+            'bootstrap_scope':'Diagnostic pointwise shared-case bootstrap; sparse discordance or constant observed interactions can give misleadingly narrow intervals.',
+            'multiplicity':'Pointwise descriptive intervals, not simultaneous coverage across all regime interactions.'}
+    return result
 
 
 def holm(values):
@@ -163,6 +211,7 @@ def analyze(rows,plan):
         keys=[k for k,v in result['pairs'].items() if v['family']==family]
         adjusted=holm([result['pairs'][k]['outcomes']['escape']['mcnemar_exact_p'] for k in keys])
         for key,p in zip(keys,adjusted): result['pairs'][key]['outcomes']['escape']['holm_p']=p
+    result['regime_interactions'] = regime_interactions(data, plan, weights)
     result['selected_matched'] = selected_matched(data, plan, weights)
     return result
 

@@ -22,6 +22,45 @@ def test_holm_preserves_original_order():
     assert holm([.04,.001])==[.04,.002]
 
 
+def test_paired_binary_confidence_level_is_explicit_and_widens():
+    left = [True]*4 + [False]*16
+    right = [False]*3 + [True]*2 + [False]*15
+    usual = paired_binary(left, right)
+    wider = paired_binary(left, right, alpha=.025)
+    assert usual['ci95'] == usual['confidence_interval']
+    assert wider['confidence_level'] == .975 and 'ci95' not in wider
+    assert wider['confidence_interval'][0] <= usual['ci95'][0]
+    assert wider['confidence_interval'][1] >= usual['ci95'][1]
+
+
+def test_regime_interaction_preserves_shared_cases_and_marks_degenerate_bootstrap():
+    from scripts.v3_analysis import regime_interactions
+    plan = {'regime_interactions': [{'left': 'selected', 'right': 'frozen',
+                                   'regime_a': 'switch', 'regime_b': 'uniform'}]}
+    def rows(values):
+        return [{'reason': 'escaped' if value else 'invalid'} for value in values]
+    data = {(regime, condition): rows(values)
+            for regime in ('switch', 'uniform')
+            for condition, values in [('selected', [1, 0, 0]), ('frozen', [0, 1, 0])]}
+    weights = np.array([[1, 1, 1], [3, 0, 0], [0, 3, 0]], float)
+    key = 'switch-minus-uniform/selected-minus-frozen'
+    result = regime_interactions(data, plan, weights)[key]
+    assert result['difference'] == 0. and result['cases'] == 3
+    assert result['ci95_shared_case_bootstrap'] == [0., 0.]
+    assert result['ci95_conservative'][0] < 0. < result['ci95_conservative'][1]
+    assert result['sparse_discordance_warning'] and result['bootstrap_degenerate']
+    assert result['cases_with_nonzero_interaction'] == 0
+    # A single switched-regime rescue changes the paired interaction by 1/3;
+    # the invalid case remains in both regimes' denominator.
+    data['switch', 'selected'][2]['reason'] = 'escaped'
+    changed = regime_interactions(data, plan, weights)[key]
+    assert changed['difference'] == 1/3 and changed['cases_with_nonzero_interaction'] == 1
+    assert not changed['bootstrap_degenerate']
+    first = changed['component_effects']['switch']['confidence_interval']
+    second = changed['component_effects']['uniform']['confidence_interval']
+    assert changed['ci95_conservative'] == [first[0]-second[1], first[1]-second[0]]
+
+
 def matched_fixture():
     import copy
     names = ('fitted_frozen', 'fitted_online', 'known_law')

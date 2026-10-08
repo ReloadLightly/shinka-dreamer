@@ -167,6 +167,18 @@ also reports sensitivity and paired intervals at rounded expected counts. Final
 sample size is fixed before drawing assessment cases and never depends on their
 significance.
 
+The two primary escape comparisons are selected versus frozen in the stationary
+and switching regimes, with Holm correction within that family. Fitted online
+versus fitted frozen uses a separate secondary two-regime family. Uniform-law
+and absolute-control comparisons are descriptive. Prespecified differences
+between regime-specific selected-versus-frozen effects use the same paired cases;
+conservative intervals subtract two 97.5% paired-effect intervals, giving at least
+95% coverage by a union bound without assuming independence. These descriptive
+intervals are pointwise, not simultaneous across all regime contrasts. A shared-case
+bootstrap is also reported as a diagnostic, with sparse-discordance and degenerate
+resampling warnings. Different within-regime significance results alone do not
+establish an interaction.
+
 The assessment passively retains selected/frozen traces only for the first 32
 registered case indices. After the numerical analysis closes, the example renderer
 uses the lowest available index in each escape-outcome stratum and regime. It
