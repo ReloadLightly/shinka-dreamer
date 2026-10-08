@@ -1,0 +1,6 @@
+{
+  "source": "execution-report-at-capture.py",
+  "sha256": "d2c76b518ed2f73ccc01f50e9fc986c1bbd15939c2810cb182f02dc43a5a0429",
+  "scope": "Exact helper version that produced execution-development-supplement.json; recovered by reversing subsequent reporting-only edits and verified against its previously recorded SHA256. No scientific source or results changed.",
+  "supplement_sha256": "eba5c70c18fc5795430f7b8788441716b0d4e3bfcedf8eddac6b6b21a22d0d67"
+}

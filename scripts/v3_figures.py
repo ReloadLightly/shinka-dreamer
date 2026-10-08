@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import textwrap
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
@@ -27,8 +28,9 @@ def display(name): return LABELS.get(name,name.replace('_',' '))
 def outcomes(data,out):
     regimes=('uniform','stationary','switch')
     names=[k.split('/',1)[1] for k in data['outcomes'] if k.startswith('uniform/')]
-    fig,axes=plt.subplots(3,2,figsize=(10,max(11,len(names)*1.25)),
-                         gridspec_kw={'width_ratios':[1.2,1],'wspace':.65,'hspace':.55})
+    fig,axes=plt.subplots(3,2,figsize=(11.6,max(15,len(names)*1.5)),
+                         gridspec_kw={'width_ratios':[1.3,1],'wspace':.22,'hspace':.60})
+    fig.subplots_adjust(left=.24,right=.78,top=.89,bottom=.06)
     for row,regime in enumerate(regimes):
         ax=axes[row,0]; y=np.arange(len(names)); left=np.zeros(len(names))
         for event,color,label in [('escape',COBALT,'Escape'),('death',MAGENTA,'Death'),
@@ -47,7 +49,9 @@ def outcomes(data,out):
             ax.errorbar(value,i,xerr=[[value-lo],[hi-value]],fmt='o',color=COBALT if p['family']=='primary' else MAGENTA,capsize=3)
         ax.axvline(0,c=SECONDARY,lw=.7)
         ax.set(yticks=range(len(pairs)),yticklabels=[f"{display(p['left'])}\n− {display(p['right'])}" for p in pairs],
-               xlabel='Escape difference (percentage points)',title='Paired effects · pointwise 95% intervals')
+               xlabel='Escape difference\n(percentage points)',title='Paired escape effects\nPointwise 95% intervals')
+        ax.yaxis.tick_right()
+        ax.tick_params(axis='y',labelsize=9,pad=7)
         ax.invert_yaxis()
     fig.suptitle('Unknown enemy dynamics · frozen-program assessment',fontsize=16,fontweight='bold',y=.995)
     save_figure(fig,out/'outcomes-effects')
@@ -74,7 +78,7 @@ def forecast_cost(data,out):
         ax.set(yticks=range(len(names)),yticklabels=[display(n) for n in names]);ax.invert_yaxis()
         ax.grid(axis='x',alpha=.5)
     axes[0].set(title='On-policy predictions',xlabel='Pooled near-cell Brier loss')
-    axes[1].set(title='Candidate computation',xlabel='CPU seconds per episode')
+    axes[1].set(title='Candidate computation',xlabel='CPU seconds per episode\n(measured executions only)')
     axes[0].legend(fontsize=9)
     fig.suptitle('Prediction quality and computation are separate endpoints',fontsize=16,fontweight='bold')
     save_figure(fig,out/'prediction-cost')
@@ -83,7 +87,7 @@ def forecast_cost(data,out):
 def write_tables(data,out):
     lines=['# Frozen v3 outcomes','','All outcome denominators include invalid executions. Forecast scores here are on-policy.','',
            'Paired 95% intervals are pointwise, not Holm-adjusted simultaneous intervals. Holm p-values apply only to the registered test families. CPU means use measured executions only; unavailable measurements are counted separately and never treated as zero.','',
-           '| Regime | Condition | Escape | Death | Timeout | Invalid | Mean task | Near Brier | CPU s/episode |',
+           '| Regime | Condition | Escape | Death | Timeout | Invalid | Mean task | Near Brier | CPU s/measured episode |',
            '|:--|:--|--:|--:|--:|--:|--:|--:|--:|']
     for key,row in data['outcomes'].items():
         regime,name=key.split('/',1)
@@ -109,19 +113,68 @@ def write_tables(data,out):
     (out.parent/'tables.md').write_text('\n'.join(lines)+'\n')
 
 
+def matched_available(group):
+    return bool(group.get('available',True) and group.get('complete_matched_prediction_evidence',True))
+
+
+def matched_unavailable_reason(group):
+    if group.get('reason'):
+        return group['reason']
+    audit=group.get('audits',{})
+    reasons=[]
+    if audit.get('missing_records'):
+        reasons.append(f"{len(audit['missing_records'])} required shadow records missing")
+    count=audit.get('physical_observation_matched_episodes')
+    if count is not None and count!=group.get('episodes'):
+        reasons.append(f"identical observations verified on {count}/{group.get('episodes','?')} episodes")
+    no_targets=[display(n) for n,k in group.get('episodes_with_forecast_targets',{}).items() if not k]
+    if no_targets:
+        reasons.append('no scored targets for '+', '.join(no_targets))
+    return '; '.join(reasons)+'.' if reasons else 'The required complete matched-experience audit did not pass.'
+
+
 def matched_figure(data,out,name='matched-learning'):
     regimes=data.get('regimes',data)
-    available=[r for r in ('uniform','stationary','switch') if r in regimes and regimes[r].get('available',True)]
-    if not available: return
-    fig,axes=plt.subplots(len(available),2,figsize=(10,max(4.8,3.7*len(available))),squeeze=False,
-                          gridspec_kw={'wspace':.48,'hspace':.62})
-    fig.subplots_adjust(top=.84 if len(available)==1 else .90,bottom=.19 if len(available)==1 else .08)
+    present=[r for r in ('uniform','stationary','switch') if r in regimes]
+    if not present:
+        fig,ax=plt.subplots(figsize=(10,3.4));ax.axis('off')
+        ax.text(.03,.65,'Matched prediction evidence unavailable',weight='bold',fontsize=14)
+        ax.text(.03,.4,textwrap.fill(matched_unavailable_reason(data),90),fontsize=11)
+        save_figure(fig,out/name)
+        return
+    if not any(matched_available(regimes[r]) for r in present):
+        fig,ax=plt.subplots(figsize=(10,max(3.8,1.4+1.1*len(present))));ax.axis('off')
+        fig.subplots_adjust(left=.04,right=.97,top=.75,bottom=.14)
+        fig.suptitle('Matched prediction estimates unavailable\n'+textwrap.fill(
+            data.get('study','Selected program · uniform-law planning'),72),fontsize=14,fontweight='bold')
+        for i,regime in enumerate(present):
+            y=.94-i/len(present)
+            ax.text(0,y,regime.title(),fontsize=11,fontweight='bold',va='top')
+            ax.text(.16,y,textwrap.fill(matched_unavailable_reason(regimes[regime]),86),
+                    fontsize=10,va='top',color=SECONDARY)
+        fig.text(.04,.055,'Estimates are withheld unless every registered matching and coverage check passes.',
+                 fontsize=9,color=SECONDARY)
+        save_figure(fig,out/name)
+        return
+    fig,axes=plt.subplots(len(present),2,figsize=(11.6,max(5.8,4.2*len(present))),squeeze=False,
+                          gridspec_kw={'width_ratios':[1.2,1],'wspace':.32,'hspace':.75})
+    fig.subplots_adjust(left=.09,right=.76,top=.73 if len(present)==1 else .85,
+                        bottom=.28 if len(present)==1 else .13)
     colors={'fitted_online':COBALT,'fitted_frozen':MAGENTA,'known_law':ORANGE,
             'selected_online':COBALT,'selected_frozen':MAGENTA,
             'selected_fixed_risk':COBALT,'selected_frozen_fixed_risk':MAGENTA,
             'no_planning':COBALT,'frozen_no_planning':MAGENTA}
-    for row,regime in enumerate(available):
+    legend_handles=legend_labels=None
+    for row,regime in enumerate(present):
         group=regimes[regime];ax=axes[row,0]
+        if not matched_available(group):
+            for panel in axes[row]:panel.axis('off')
+            ax.set_title(regime.title()+' · estimate unavailable',loc='left')
+            ax.text(0,.70,textwrap.fill(matched_unavailable_reason(group),53),
+                    transform=ax.transAxes,fontsize=10,va='top',color=SECONDARY)
+            axes[row,1].text(.1,.65,'Matched estimate withheld\nAll registered audit checks are required.',
+                            transform=axes[row,1].transAxes,fontsize=10,va='top',color=SECONDARY)
+            continue
         bins=group.get('bins',[])
         conditions=list(bins[0].get('conditions',{})) if bins else list(group.get('forecasts',{}))
         for i,condition in enumerate(conditions):
@@ -134,9 +187,9 @@ def matched_figure(data,out,name='matched-learning'):
             ax.fill_between(x,[s['ci95'][0] for s in stats],[s['ci95'][1] for s in stats],color=color,alpha=.1)
         if conditions:
             counts=[str((b.get('conditions',{}).get(conditions[0]) or {}).get('contributing_episodes',0)) for b in bins]
-            ax.text(0,-.27,'Contributing episodes: '+', '.join(counts),transform=ax.transAxes,fontsize=9,color=SECONDARY)
-        ax.set(title=regime.title()+' · identical recorded experience',xlabel='Episode step (later bins select survivors)',ylabel='Near-cell Brier loss')
-        if row==0:ax.legend(fontsize=8)
+            ax.text(0,-.36,'Episodes/bin: '+', '.join(counts),transform=ax.transAxes,fontsize=8,color=SECONDARY)
+        ax.set(title=regime.title()+' · recorded experience',xlabel='Episode step',ylabel='Near-cell Brier loss')
+        if legend_handles is None:legend_handles,legend_labels=ax.get_legend_handles_labels()
         ax=axes[row,1]
         pairs=group.get('pairs',{})
         if not pairs and group.get('left'):
@@ -148,23 +201,36 @@ def matched_figure(data,out,name='matched-learning'):
             ax.errorbar(value,i,xerr=[[value-lo],[hi-value]],fmt='o',color=COBALT if i==0 else ORANGE,capsize=3)
         ax.axvline(0,color=SECONDARY,lw=.8)
         ax.set(yticks=range(len(pairs)),yticklabels=['\n− '.join(display(p) for p in k.split('-minus-')) for k in pairs],
-               xlabel='Pooled Brier reduction (%)',title='Paired whole-episode uncertainty')
+               xlabel='Pooled Brier reduction (%)',title='Paired reductions\nWhole-episode 95% intervals')
+        ax.yaxis.tick_right()
+        ax.tick_params(axis='y',labelsize=9,pad=7)
         ax.invert_yaxis()
-    fig.suptitle('Predictive learning on matched experience\n'+data.get('study','Selected frozen program'),
+    if legend_handles:
+        fig.legend(legend_handles,legend_labels,loc='upper center',bbox_to_anchor=(.45,.89 if len(present)==1 else .945),
+                   ncol=3,fontsize=9)
+    fig.suptitle('Prediction on matched experience\n'+textwrap.fill(data.get('study','Selected frozen program'),72),
                  fontweight='bold',fontsize=14,y=.997)
+    fig.text(.09,.035,'Later bins select survivors. Online–frozen pairs test updating within a source.\n'
+             'Cross-source and known-law pairs compare absolute losses; positive reductions favor the left predictor.',
+             fontsize=9,color=SECONDARY)
     save_figure(fig,out/name)
 
 
 def write_matched_tables(fitted,selected,out):
     lines=['# Prediction on identical experience','',
-           'All five passive predictors share the original memory-policy recordings. The additional selected uniform-planning comparison has its own policy; losses across these policies are not a head-to-head predictor comparison. Positive reductions favor the left condition; intervals resample whole paired episodes. Post-switch losses condition on the recorded policy reaching the switch.','',
+           'All five passive predictors share the original memory-policy recordings. Online–frozen comparisons test updating within a source; cross-source and known-law comparisons measure absolute predictor losses and do not isolate learning. The additional selected uniform-planning comparison has its own policy; losses across these policies are not a head-to-head predictor comparison. Positive reductions favor the left condition; intervals resample whole paired episodes. Post-switch losses condition on the recorded policy reaching the switch.','',
            '| Experience | Regime | Left − right | Target | Left / right Brier | Reduction, % [95% CI] | Left / right targets |',
            '|:--|:--|:--|:--|--:|--:|--:|']
     for experience,data in [('Original memory policy',fitted),('Selected uniform-law planning policy',selected)]:
+        if data.get('available') is False and not any(r in data.get('regimes',data) for r in ('uniform','stationary','switch')):
+            reason=matched_unavailable_reason(data).replace('|','\\|').replace('\n',' ')
+            lines.append(f"| {experience} | All | Unavailable: {reason} | — | — | — | — |")
+            continue
         for regime,group in data.get('regimes',data).items():
             if regime not in ('uniform','stationary','switch'):continue
-            if not group.get('available',True):
-                lines.append(f"| {experience} | {regime} | Unavailable | — | — | — | — |")
+            if not matched_available(group):
+                reason=matched_unavailable_reason(group).replace('|','\\|').replace('\n',' ')
+                lines.append(f"| {experience} | {regime} | Unavailable: {reason} | — | — | — | — |")
                 continue
             pairs=group.get('pairs',{})
             if not pairs and group.get('left'):

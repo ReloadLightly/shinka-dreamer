@@ -1,0 +1,438 @@
+{
+  "updated_utc": "2026-10-08T21:46:18.826440+00:00",
+  "report_script_sha256": "f59d6ab5a3e48c46f319f1efb0dc129b79317ae492501fddf58d373b905a52d1",
+  "scope": "Execution accounting only; no treatment effects. One v3 search, separate from preserved v2 science.",
+  "development": {
+    "units": {
+      "objective_check": {
+        "world_episodes": 120,
+        "invalid_world_episodes": 0,
+        "environment_steps": 6463,
+        "resources": {
+          "cpu_components_seconds": {
+            "candidate_cpu_seconds": 160.9970770000001,
+            "evaluator_cpu_seconds": 13.159387340000002
+          },
+          "measured_nonoverlapping_cpu_seconds": 174.1564643400001,
+          "missing_cpu_components": [],
+          "summed_episode_wall_seconds": 160.4527601909358,
+          "coverage": "Episode candidate/evaluator CPU; surrounding analysis/controller overhead unmeasured."
+        },
+        "evidence": [
+          {
+            "path": "artifacts/campaign-v3/objective-check-episodes.json",
+            "sha256": "80997a6dd13754db22b42824b991e55c6b3698a9688fabcbabe9ed7c972b3ca4"
+          }
+        ]
+      },
+      "comparator_fitting_corpus": {
+        "world_episodes": 264,
+        "invalid_world_episodes": 0,
+        "environment_steps": 16872,
+        "resources": {
+          "cpu_components_seconds": {
+            "whole_fit_cpu_seconds": null
+          },
+          "measured_nonoverlapping_cpu_seconds": 0,
+          "missing_cpu_components": [
+            "whole_fit_cpu_seconds"
+          ],
+          "elapsed_seconds": 204.53816959701362,
+          "summed_corpus_episode_wall_seconds": 82.91420840332285,
+          "coverage": "264 corpus worlds, feature construction, fitting and 288 prediction passes. CPU unmeasured; corpus wall sum is a subset, not added to elapsed."
+        },
+        "evidence": [
+          {
+            "path": "results/v3-comparator-fit/corpus-summary.json",
+            "sha256": "aab0057d4ab700cf136866efe27ba16836e02b2632b91f84cf95c3d839c84936"
+          },
+          {
+            "path": "controls/v3/fit-results.json",
+            "sha256": "648d42237d2ffc7912cdb794f23af395a98366d29f8d4dad9d54092abbb01d2d"
+          }
+        ]
+      },
+      "comparator_decision_diagnostic": {
+        "world_episodes": 72,
+        "invalid_world_episodes": 0,
+        "environment_steps": 3661,
+        "resources": {
+          "cpu_components_seconds": {
+            "controller_cpu_seconds": 33.176158193,
+            "children_cpu_seconds": 121.922319
+          },
+          "measured_nonoverlapping_cpu_seconds": 155.098477193,
+          "missing_cpu_components": [],
+          "elapsed_seconds": 86.5048841270036,
+          "coverage": "Whole diagnostic: 72 worlds plus 84 new in-process prediction passes. Child CPU and controller CPU are disjoint; per-world counters are subsets and are not added."
+        },
+        "evidence": [
+          {
+            "path": "controls/v3/development-diagnostic.json",
+            "sha256": "eceb160e9491a249f10896a432f3f2a05679bbbdcfeb04760a8d003df7644046"
+          }
+        ]
+      },
+      "initial_non_test_smoke": {
+        "world_episodes": 4,
+        "invalid_world_episodes": null,
+        "environment_steps": null,
+        "resources": {
+          "cpu_components_seconds": {
+            "smoke_cpu_seconds": null
+          },
+          "measured_nonoverlapping_cpu_seconds": 0,
+          "missing_cpu_components": [
+            "smoke_cpu_seconds"
+          ],
+          "coverage": "Four declared initial smoke worlds; detailed cost/invalid records not retained in the compact ledger."
+        },
+        "evidence": [
+          {
+            "path": "artifacts/campaign-v3/development-ledger.json",
+            "sha256": "f2859b57d1ea5d96c45f67f29f4e3e8eb71bb3e3d8cabfb7b30501d3ba4d6f69"
+          }
+        ],
+        "description": "One initial.py switching case and three-regime native evaluator smoke; not search slots."
+      },
+      "matched_predictor_smoke": {
+        "world_episodes": 8,
+        "shadow_episode_passes": 24,
+        "invalid_world_episodes": 0,
+        "invalid_shadow_passes": 0,
+        "environment_steps": 494,
+        "resources": {
+          "cpu_components_seconds": {
+            "policy_candidate_cpu_seconds": 1.4869160000000008,
+            "policy_evaluator_cpu_seconds": 0.6299366669999998,
+            "shadow_candidate_cpu_seconds": 7.4017,
+            "shadow_evaluator_cpu_seconds": 1.5681082760000005
+          },
+          "measured_nonoverlapping_cpu_seconds": 11.086660943000002,
+          "missing_cpu_components": [],
+          "coverage": "Eight world runs and 24 isolated shadow passes; outer controller overhead excluded."
+        },
+        "evidence": [
+          {
+            "path": "results/v3-matched-smoke.json",
+            "sha256": "c5f5bfb5d1d613a63ba3c3c909caac0fc8b388874fe2b16a092720f2aef2dd45"
+          }
+        ]
+      },
+      "old_matched_driver_integration": {
+        "world_episodes": 1,
+        "invalid_world_episodes": 0,
+        "shadow_episode_passes": 3,
+        "resources": {
+          "cpu_components_seconds": {
+            "world_candidate_cpu_seconds": 0.113144,
+            "world_worker_cpu_seconds": 0.049043979,
+            "shadow_candidate_cpu_seconds": 0.4917809999999999,
+            "shadow_evaluator_cpu_seconds": 0.091784378
+          },
+          "measured_nonoverlapping_cpu_seconds": 0.7457533569999999,
+          "missing_cpu_components": [],
+          "world_worker_scope": "evaluator_cpu_seconds",
+          "coverage": "World and shadow intervals are disjoint. Assessment worker CPU includes evaluator CPU when present; evaluator is not added twice. Controller overhead excluded."
+        },
+        "evidence": [
+          {
+            "path": "/tmp/shinka-v3-matched-integration-development/execution-complete.json",
+            "sha256": "e14c1aa153ce251c465915bb6a6a7b5a70ac0d104970cc2b00149336a7e75e08"
+          }
+        ]
+      },
+      "five_shadow_integration": {
+        "world_episodes": 1,
+        "invalid_world_episodes": 0,
+        "shadow_episode_passes": 5,
+        "resources": {
+          "cpu_components_seconds": {
+            "world_candidate_cpu_seconds": 0.11724599999999999,
+            "world_worker_cpu_seconds": 0.12889169700000003,
+            "shadow_candidate_cpu_seconds": 1.136646,
+            "shadow_evaluator_cpu_seconds": 0.305613068
+          },
+          "measured_nonoverlapping_cpu_seconds": 1.688396765,
+          "missing_cpu_components": [],
+          "world_worker_scope": "assessment_worker_cpu_seconds",
+          "coverage": "World and shadow intervals are disjoint. Assessment worker CPU includes evaluator CPU when present; evaluator is not added twice. Controller overhead excluded."
+        },
+        "evidence": [
+          {
+            "path": "artifacts/campaign-v3/matched-integration-smoke/execution-complete.json",
+            "sha256": "45e1d311e64a70e91ffaf4c83b4ae9666a503ae8a398b0d7a5b8b79e357ad239"
+          }
+        ]
+      },
+      "gen1_mechanism_smoke": {
+        "world_episodes": 48,
+        "invalid_world_episodes": 0,
+        "environment_steps": 2694,
+        "resources": {
+          "cpu_components_seconds": {
+            "candidate_cpu_seconds": 14.502719000000003,
+            "evaluator_cpu_seconds": 3.4408155380000003
+          },
+          "measured_nonoverlapping_cpu_seconds": 17.943534538,
+          "missing_cpu_components": [],
+          "elapsed_seconds": 9.538018571998691,
+          "coverage": "World candidate/evaluator intervals; diagnostic compaction and surrounding driver CPU not measured."
+        },
+        "evidence": [
+          {
+            "path": "artifacts/campaign-v3/mechanism-gen1-smoke/summary.json",
+            "sha256": "e4806ffa86f9d0188cb861d229bdb43972b6a270b1bf3a9da46e5083e27392ae"
+          }
+        ]
+      },
+      "selected_transparency": {
+        "world_episodes": 24,
+        "invalid_world_episodes": 0,
+        "environment_steps": 1206,
+        "resources": {
+          "cpu_components_seconds": {
+            "candidate_cpu_seconds": 17.118802000000002,
+            "evaluator_cpu_seconds": 2.2303663789999995
+          },
+          "measured_nonoverlapping_cpu_seconds": 19.349168379,
+          "missing_cpu_components": [],
+          "elapsed_seconds": 9.665775814995868,
+          "coverage": "World candidate/evaluator intervals; diagnostic compaction and surrounding driver CPU not measured."
+        },
+        "evidence": [
+          {
+            "path": "artifacts/campaign-v3/selection/transparency.json",
+            "sha256": "d679866cd631c5a2f00079ea9237b5a65dc2db826f77745264a1ca37438a659e"
+          }
+        ]
+      },
+      "selected_mechanism": {
+        "world_episodes": 288,
+        "invalid_world_episodes": 0,
+        "environment_steps": 20958,
+        "resources": {
+          "cpu_components_seconds": {
+            "candidate_cpu_seconds": 388.447558,
+            "evaluator_cpu_seconds": 55.716637671
+          },
+          "measured_nonoverlapping_cpu_seconds": 444.164195671,
+          "missing_cpu_components": [],
+          "elapsed_seconds": 213.16935324197402,
+          "coverage": "World candidate/evaluator intervals; diagnostic compaction and surrounding driver CPU not measured."
+        },
+        "evidence": [
+          {
+            "path": "artifacts/campaign-v3/mechanism-selected/summary.json",
+            "sha256": "4ccbcd2482452272a47f2b748d3ad8f3793e4ff5daf74c7bed99b17cfedd1a9f"
+          }
+        ]
+      }
+    },
+    "development_world_episodes": 830,
+    "in_process_prediction_episode_passes": 372,
+    "feature_construction_episode_passes": 264,
+    "isolated_shadow_episode_passes": 32,
+    "arithmetic_correction": "Earlier conversational totals617/930 were arithmetic errors, not missing executions. Named earlier units sum517; adding24 transparency+288 selected audit+1 five-shadow integration gives830.",
+    "scope": "Scientific development runs only. Tests, source inspection, UI browsing and already-recorded replay rendering are not additional world episodes.",
+    "capture_script_sha256": "d2c76b518ed2f73ccc01f50e9fc986c1bbd15939c2810cb182f02dc43a5a0429",
+    "evidence": {
+      "path": "artifacts/campaign-v3/execution-development-supplement.json",
+      "sha256": "eba5c70c18fc5795430f7b8788441716b0d4e3bfcedf8eddac6b6b21a22d0d67"
+    }
+  },
+  "search": {
+    "target_slots": 50,
+    "persisted_slots": 50,
+    "complete": true,
+    "seed_slots": 1,
+    "seed_island_rows": 4,
+    "valid_descendants": 49,
+    "failed_slots": [],
+    "saved_evaluation_episodes": 3600,
+    "candidate_cpu_seconds": 4131.361668999999,
+    "evaluator_cpu_seconds": 248.84209458799998,
+    "episode_host_seconds": 4022.974580728973,
+    "scope": "One search; reused development results, no independent discovery replication.",
+    "invalid_world_episodes": 0,
+    "evidence": {
+      "path": "artifacts/campaign-v3/search-summary.json",
+      "sha256": "30e66ca279522726bfc197be2769516d0b63860d397029f169806f9317bda917"
+    }
+  },
+  "selection": {
+    "world_episodes": 960,
+    "invalid_world_episodes": 1,
+    "resources": {
+      "assessment_worker_cpu_seconds": 244.13251232200022,
+      "candidate_cpu_seconds": 1949.3486570000002,
+      "completed_episode_attempts": 960,
+      "cpu_unavailable_attempts": 0,
+      "episode_wall_seconds": 2010.9054837458243,
+      "evaluator_cpu_seconds": 191.2870467159997,
+      "interrupted_attempts_unmeasured": [],
+      "invalid_condition_episodes": 1
+    },
+    "gnu_time_alternative_not_added": {
+      "elapsed": "12:32.20",
+      "exit_status": 0,
+      "maximum_rss_kib": 51756,
+      "system_cpu_seconds": 34.92,
+      "user_cpu_seconds": 2164.4
+    },
+    "elapsed_monotonic_seconds": 685.6132020399964,
+    "utc_end_minus_start_seconds": 752.242827,
+    "gnu_elapsed_seconds": 752.2,
+    "scope": "Whole-command user/system CPU overlaps candidate, worker and controller counters. Per-episode assessment_worker_cpu_seconds includes evaluator_cpu_seconds; do not add evaluator again.",
+    "clock_note": "Monotonic elapsed and GNU time are runtime measures; UTC endpoint subtraction is separately retained because wall-clock adjustments may differ.",
+    "evidence": {
+      "path": "artifacts/campaign-v3/selection/execution-provenance.json",
+      "sha256": "6a250d2899ff036ee2cec7cc15d693a4a50df02ff4a49f49928543a2a1735df4"
+    }
+  },
+  "assessment": {
+    "planned_world_episodes": 46080,
+    "planned_shadow_passes": 23040,
+    "model_calls": 0,
+    "new_worlds_from_shadows": 0,
+    "individual_shadow_errors": null,
+    "individual_shadow_error_status": "Unavailable until execution and hash-verified matched-analysis closure.",
+    "status": "pending",
+    "completed_world_episodes": null,
+    "completed_shadow_passes": null,
+    "durable_world_checkpoint_files": 2068,
+    "durable_paired_case_files": 68,
+    "recorded_policy_episode_files": 207,
+    "resource_status": "Pending durable execution completion; no treatment aggregates read."
+  },
+  "counts": {
+    "pre_assessment_world_episodes": 5390,
+    "planned_full_wave_world_episodes": 51470,
+    "completed_full_wave_outcome_episodes": null,
+    "observed_completed_full_wave_world_attempts": null,
+    "completed_full_wave_world_episodes": null,
+    "development_in_process_prediction_passes": 372,
+    "development_feature_construction_passes": 264,
+    "development_isolated_shadow_passes": 32,
+    "planned_full_wave_isolated_shadow_passes": 23072,
+    "observed_completed_full_wave_isolated_shadow_passes": null,
+    "completed_full_wave_isolated_shadow_passes": null,
+    "new_worlds_from_all_replays": 0,
+    "note": "World outcome counts retain invalids. Completed attempts are counted separately; interrupted execution/pass counts remain unknown and are never promoted to completed counts. Cases shared across regimes/conditions are dependent, not independent replicates."
+  },
+  "model_requests": {
+    "native": 112,
+    "readiness_probes": 4,
+    "all_including_probes": 116,
+    "native_by_role": {
+      "mutation_or_repair": 50,
+      "meta_program_summary": 50,
+      "meta_global_insights": 6,
+      "meta_recommendations": 6
+    },
+    "tokens": {
+      "inputTokens": 1969941,
+      "cacheReadTokens": 1511168,
+      "cacheWriteTokens": 0,
+      "outputTokens": 330765,
+      "reasoningOutputTokens": 103212,
+      "totalTokens": 3811874
+    },
+    "token_scope": "Headless inputTokens excludes cached input; cacheReadTokens is reported separately. totalTokens includes both input categories and output; reasoningOutputTokens is a subset of output, not an additional token count. Totals include readiness probes where usage was reported.",
+    "routes": {
+      "subscription": 116
+    },
+    "patch_application_failures": 1,
+    "patch_retries": 1,
+    "model_nonzero_returncodes": 0,
+    "effective_model": "gpt-6-astra",
+    "effective_effort": "high",
+    "native_call_elapsed_seconds": 10972.704891077039,
+    "timing_scope": "Model elapsed seconds sum recorded native calls and exclude readiness probes, whose durations were not separately captured. CPU and episode wall totals cover saved search evaluations. Remote model CPU and complete controller-process CPU were not measured.",
+    "clock_records": {
+      "source_timezone": "Europe/Berlin",
+      "invocations": [
+        {
+          "log": "controller-20261008.log",
+          "first_native_timestamp_utc": "2026-10-08T16:03:43+00:00",
+          "last_native_timestamp_utc": "2026-10-08T16:14:10+00:00",
+          "native_normal_completion_logged": false,
+          "native_reported_runtime_seconds": null,
+          "timestamped_interval_seconds": 627.0
+        },
+        {
+          "log": "controller-amended-20261008.log",
+          "first_native_timestamp_utc": "2026-10-08T16:15:07+00:00",
+          "last_native_timestamp_utc": "2026-10-08T17:00:54+00:00",
+          "native_normal_completion_logged": true,
+          "native_reported_runtime_seconds": 2746.49,
+          "timestamped_interval_seconds": 2747.0
+        },
+        {
+          "log": "controller-transport-20261008.log",
+          "first_native_timestamp_utc": "2026-10-08T17:02:42+00:00",
+          "last_native_timestamp_utc": "2026-10-08T20:39:24+00:00",
+          "native_normal_completion_logged": true,
+          "native_reported_runtime_seconds": 13000.65,
+          "timestamped_interval_seconds": 13002.0
+        }
+      ],
+      "sum_timestamped_invocation_intervals_seconds": 16376.0,
+      "first_to_latest_native_log_span_seconds": 16541.0,
+      "span_coverage": "First-to-last timestamped native log across invocations, including restart gaps and resume startup/probes. Excludes startup/probe before the first native timestamp and shutdown after the last; while running, this ends at the latest logged progress rather than the current clock.",
+      "clock_scope_note": "Host ps elapsed time and recorded UTC spans differed during execution; no cause was established and ps elapsed is not used to infer absolute starts. UTC spans include inactive gaps and any host-clock discontinuities. Recorded model-call elapsed seconds use a separate monotonic timer.",
+      "native_runtime_definition": "Pinned Shinka final-summary runtime uses time.time() from run_async entry to final summary; it is a wall-clock difference and excludes the earlier configuration/probe. Missing values mean no final runtime summary was observed for that invocation.",
+      "interval_sum_coverage": "Sum of per-invocation first-to-last native log intervals; excludes restart gaps and startup/probe before each first native timestamp. One-second timestamp precision; not an exact complete process-wall measurement."
+    },
+    "upstream_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+    "cost_note": "All dollar figures in native logs are API-list-price estimates, not actual subscription charges.",
+    "evidence": {
+      "path": "artifacts/campaign-v3/native-audit.json",
+      "sha256": "603592e42d73fb8a3458a09af0a572ad96a006c30dfd89df73ac88a149e738dc"
+    }
+  },
+  "source_roles": {
+    "memory": {
+      "path": "controls/v1/memory.py",
+      "sha256": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "seed": {
+      "path": "controls/v1/predictive.py",
+      "sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+    },
+    "v2_gen14": {
+      "path": "artifacts/campaign-v2/mechanism-gen14/agent.py",
+      "sha256": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0"
+    },
+    "fitted_online": {
+      "path": "controls/v3/directional.py",
+      "sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78"
+    },
+    "evolution_start": {
+      "source": "immutable original predictive seed; no manually fitted comparator incorporated",
+      "sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+    },
+    "selected_instrumented": {
+      "path": "artifacts/campaign-v3/selection/selected-instrumented.py",
+      "sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c"
+    },
+    "selected_original": {
+      "path": "artifacts/campaign-v3/selection/selected.py",
+      "sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c"
+    }
+  },
+  "manual_engineering_note": "Directional comparator was manually engineered and fitted on development. Evolution began from the historical seed. Selected instrumentation adds diagnostics only and retains its separately archived original source.",
+  "resource_limitations": [
+    "No single total CPU or wall value is claimed: controller/whole-command and per-episode counters overlap.",
+    "Fit CPU, four initial-smoke costs, some driver/analysis overhead, remote model CPU and full search-controller CPU are unavailable; null is not zero.",
+    "Native model-call elapsed, summed episode wall, UTC spans and GNU/monotonic durations have different scopes. Selection GNU/UTC elapsed is about752.2s versus685.6s monotonic; cause unestablished.",
+    "Actual subscription charges are unmeasured. Native API-list-price estimates are not charges.",
+    "Original search parent-session exit code was lost; normal native finalization and released lock are recorded separately."
+  ],
+  "frozen_plan": {
+    "path": "artifacts/campaign-v3/assessment/preregistration.json",
+    "sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d"
+  },
+  "new_world_episodes_from_report": 0,
+  "new_model_calls_from_report": 0
+}

@@ -1,0 +1,17 @@
+{
+  "scope": "Execution wrappers captured while the registered assessment was running. These are provenance snapshots, not new experimental sources or additional controllers. The launcher reserves the original private pool; do not rerun it to resume.",
+  "files": [
+    {
+      "archive_path": "artifacts/campaign-v3/assessment/automation/shinka-v3-launch-assessment.py",
+      "original_path": "/tmp/shinka-v3-launch-assessment.py",
+      "sha256": "15b87aa150d57b21e03b7fd29e4fa6ee9108532d246da360478516b55912a4c2"
+    },
+    {
+      "archive_path": "artifacts/campaign-v3/assessment/automation/shinka-v3-follow-through.py",
+      "original_path": "/tmp/shinka-v3-follow-through.py",
+      "sha256": "664a9028b2f614b8368b116a306674dad9d36f4811ecb5101c1d0590159bed50"
+    }
+  ],
+  "resume_assessment": ".venv/bin/python scripts/v3_assessment.py --plan artifacts/campaign-v3/assessment/preregistration.json --out results/campaign-v3-assessment --workers 4",
+  "reporting_note": "The follow-through wrapper waits for completion and runs frozen saved-data analysis, figures, original retained examples and execution accounting. On partial reporting failure, preserve records and resume the specific failed stage after review instead of rerunning its immutable bookkeeping."
+}

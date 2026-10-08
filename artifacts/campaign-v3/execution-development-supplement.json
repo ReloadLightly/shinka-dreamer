@@ -1,0 +1,235 @@
+{
+  "units": {
+    "objective_check": {
+      "world_episodes": 120,
+      "invalid_world_episodes": 0,
+      "environment_steps": 6463,
+      "resources": {
+        "cpu_components_seconds": {
+          "candidate_cpu_seconds": 160.9970770000001,
+          "evaluator_cpu_seconds": 13.159387340000002
+        },
+        "measured_nonoverlapping_cpu_seconds": 174.1564643400001,
+        "missing_cpu_components": [],
+        "summed_episode_wall_seconds": 160.4527601909358,
+        "coverage": "Episode candidate/evaluator CPU; surrounding analysis/controller overhead unmeasured."
+      },
+      "evidence": [
+        {
+          "path": "artifacts/campaign-v3/objective-check-episodes.json",
+          "sha256": "80997a6dd13754db22b42824b991e55c6b3698a9688fabcbabe9ed7c972b3ca4"
+        }
+      ]
+    },
+    "comparator_fitting_corpus": {
+      "world_episodes": 264,
+      "invalid_world_episodes": 0,
+      "environment_steps": 16872,
+      "resources": {
+        "cpu_components_seconds": {
+          "whole_fit_cpu_seconds": null
+        },
+        "measured_nonoverlapping_cpu_seconds": 0,
+        "missing_cpu_components": [
+          "whole_fit_cpu_seconds"
+        ],
+        "elapsed_seconds": 204.53816959701362,
+        "summed_corpus_episode_wall_seconds": 82.91420840332285,
+        "coverage": "264 corpus worlds, feature construction, fitting and 288 prediction passes. CPU unmeasured; corpus wall sum is a subset, not added to elapsed."
+      },
+      "evidence": [
+        {
+          "path": "results/v3-comparator-fit/corpus-summary.json",
+          "sha256": "aab0057d4ab700cf136866efe27ba16836e02b2632b91f84cf95c3d839c84936"
+        },
+        {
+          "path": "controls/v3/fit-results.json",
+          "sha256": "648d42237d2ffc7912cdb794f23af395a98366d29f8d4dad9d54092abbb01d2d"
+        }
+      ]
+    },
+    "comparator_decision_diagnostic": {
+      "world_episodes": 72,
+      "invalid_world_episodes": 0,
+      "environment_steps": 3661,
+      "resources": {
+        "cpu_components_seconds": {
+          "controller_cpu_seconds": 33.176158193,
+          "children_cpu_seconds": 121.922319
+        },
+        "measured_nonoverlapping_cpu_seconds": 155.098477193,
+        "missing_cpu_components": [],
+        "elapsed_seconds": 86.5048841270036,
+        "coverage": "Whole diagnostic: 72 worlds plus 84 new in-process prediction passes. Child CPU and controller CPU are disjoint; per-world counters are subsets and are not added."
+      },
+      "evidence": [
+        {
+          "path": "controls/v3/development-diagnostic.json",
+          "sha256": "eceb160e9491a249f10896a432f3f2a05679bbbdcfeb04760a8d003df7644046"
+        }
+      ]
+    },
+    "initial_non_test_smoke": {
+      "world_episodes": 4,
+      "invalid_world_episodes": null,
+      "environment_steps": null,
+      "resources": {
+        "cpu_components_seconds": {
+          "smoke_cpu_seconds": null
+        },
+        "measured_nonoverlapping_cpu_seconds": 0,
+        "missing_cpu_components": [
+          "smoke_cpu_seconds"
+        ],
+        "coverage": "Four declared initial smoke worlds; detailed cost/invalid records not retained in the compact ledger."
+      },
+      "evidence": [
+        {
+          "path": "artifacts/campaign-v3/development-ledger.json",
+          "sha256": "f2859b57d1ea5d96c45f67f29f4e3e8eb71bb3e3d8cabfb7b30501d3ba4d6f69"
+        }
+      ],
+      "description": "One initial.py switching case and three-regime native evaluator smoke; not search slots."
+    },
+    "matched_predictor_smoke": {
+      "world_episodes": 8,
+      "shadow_episode_passes": 24,
+      "invalid_world_episodes": 0,
+      "invalid_shadow_passes": 0,
+      "environment_steps": 494,
+      "resources": {
+        "cpu_components_seconds": {
+          "policy_candidate_cpu_seconds": 1.4869160000000008,
+          "policy_evaluator_cpu_seconds": 0.6299366669999998,
+          "shadow_candidate_cpu_seconds": 7.4017,
+          "shadow_evaluator_cpu_seconds": 1.5681082760000005
+        },
+        "measured_nonoverlapping_cpu_seconds": 11.086660943000002,
+        "missing_cpu_components": [],
+        "coverage": "Eight world runs and 24 isolated shadow passes; outer controller overhead excluded."
+      },
+      "evidence": [
+        {
+          "path": "results/v3-matched-smoke.json",
+          "sha256": "c5f5bfb5d1d613a63ba3c3c909caac0fc8b388874fe2b16a092720f2aef2dd45"
+        }
+      ]
+    },
+    "old_matched_driver_integration": {
+      "world_episodes": 1,
+      "invalid_world_episodes": 0,
+      "shadow_episode_passes": 3,
+      "resources": {
+        "cpu_components_seconds": {
+          "world_candidate_cpu_seconds": 0.113144,
+          "world_worker_cpu_seconds": 0.049043979,
+          "shadow_candidate_cpu_seconds": 0.4917809999999999,
+          "shadow_evaluator_cpu_seconds": 0.091784378
+        },
+        "measured_nonoverlapping_cpu_seconds": 0.7457533569999999,
+        "missing_cpu_components": [],
+        "world_worker_scope": "evaluator_cpu_seconds",
+        "coverage": "World and shadow intervals are disjoint. Assessment worker CPU includes evaluator CPU when present; evaluator is not added twice. Controller overhead excluded."
+      },
+      "evidence": [
+        {
+          "path": "/tmp/shinka-v3-matched-integration-development/execution-complete.json",
+          "sha256": "e14c1aa153ce251c465915bb6a6a7b5a70ac0d104970cc2b00149336a7e75e08"
+        }
+      ]
+    },
+    "five_shadow_integration": {
+      "world_episodes": 1,
+      "invalid_world_episodes": 0,
+      "shadow_episode_passes": 5,
+      "resources": {
+        "cpu_components_seconds": {
+          "world_candidate_cpu_seconds": 0.11724599999999999,
+          "world_worker_cpu_seconds": 0.12889169700000003,
+          "shadow_candidate_cpu_seconds": 1.136646,
+          "shadow_evaluator_cpu_seconds": 0.305613068
+        },
+        "measured_nonoverlapping_cpu_seconds": 1.688396765,
+        "missing_cpu_components": [],
+        "world_worker_scope": "assessment_worker_cpu_seconds",
+        "coverage": "World and shadow intervals are disjoint. Assessment worker CPU includes evaluator CPU when present; evaluator is not added twice. Controller overhead excluded."
+      },
+      "evidence": [
+        {
+          "path": "artifacts/campaign-v3/matched-integration-smoke/execution-complete.json",
+          "sha256": "45e1d311e64a70e91ffaf4c83b4ae9666a503ae8a398b0d7a5b8b79e357ad239"
+        }
+      ]
+    },
+    "gen1_mechanism_smoke": {
+      "world_episodes": 48,
+      "invalid_world_episodes": 0,
+      "environment_steps": 2694,
+      "resources": {
+        "cpu_components_seconds": {
+          "candidate_cpu_seconds": 14.502719000000003,
+          "evaluator_cpu_seconds": 3.4408155380000003
+        },
+        "measured_nonoverlapping_cpu_seconds": 17.943534538,
+        "missing_cpu_components": [],
+        "elapsed_seconds": 9.538018571998691,
+        "coverage": "World candidate/evaluator intervals; diagnostic compaction and surrounding driver CPU not measured."
+      },
+      "evidence": [
+        {
+          "path": "artifacts/campaign-v3/mechanism-gen1-smoke/summary.json",
+          "sha256": "e4806ffa86f9d0188cb861d229bdb43972b6a270b1bf3a9da46e5083e27392ae"
+        }
+      ]
+    },
+    "selected_transparency": {
+      "world_episodes": 24,
+      "invalid_world_episodes": 0,
+      "environment_steps": 1206,
+      "resources": {
+        "cpu_components_seconds": {
+          "candidate_cpu_seconds": 17.118802000000002,
+          "evaluator_cpu_seconds": 2.2303663789999995
+        },
+        "measured_nonoverlapping_cpu_seconds": 19.349168379,
+        "missing_cpu_components": [],
+        "elapsed_seconds": 9.665775814995868,
+        "coverage": "World candidate/evaluator intervals; diagnostic compaction and surrounding driver CPU not measured."
+      },
+      "evidence": [
+        {
+          "path": "artifacts/campaign-v3/selection/transparency.json",
+          "sha256": "d679866cd631c5a2f00079ea9237b5a65dc2db826f77745264a1ca37438a659e"
+        }
+      ]
+    },
+    "selected_mechanism": {
+      "world_episodes": 288,
+      "invalid_world_episodes": 0,
+      "environment_steps": 20958,
+      "resources": {
+        "cpu_components_seconds": {
+          "candidate_cpu_seconds": 388.447558,
+          "evaluator_cpu_seconds": 55.716637671
+        },
+        "measured_nonoverlapping_cpu_seconds": 444.164195671,
+        "missing_cpu_components": [],
+        "elapsed_seconds": 213.16935324197402,
+        "coverage": "World candidate/evaluator intervals; diagnostic compaction and surrounding driver CPU not measured."
+      },
+      "evidence": [
+        {
+          "path": "artifacts/campaign-v3/mechanism-selected/summary.json",
+          "sha256": "4ccbcd2482452272a47f2b748d3ad8f3793e4ff5daf74c7bed99b17cfedd1a9f"
+        }
+      ]
+    }
+  },
+  "development_world_episodes": 830,
+  "in_process_prediction_episode_passes": 372,
+  "feature_construction_episode_passes": 264,
+  "isolated_shadow_episode_passes": 32,
+  "arithmetic_correction": "Earlier conversational totals617/930 were arithmetic errors, not missing executions. Named earlier units sum517; adding24 transparency+288 selected audit+1 five-shadow integration gives830.",
+  "scope": "Scientific development runs only. Tests, source inspection, UI browsing and already-recorded replay rendering are not additional world episodes.",
+  "capture_script_sha256": "d2c76b518ed2f73ccc01f50e9fc986c1bbd15939c2810cb182f02dc43a5a0429"
+}

@@ -1,0 +1,49 @@
+{
+  "status": "assessment-running",
+  "assessment_complete": false,
+  "launch": {
+    "started_utc": "2026-10-08T21:13:45.274408+00:00",
+    "wrapper_pid": 1371469,
+    "commit": "2cd1d2759da55cc848f15e814b90ad9236343e36",
+    "plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+    "command": [
+      ".venv/bin/python",
+      "-u",
+      "scripts/v3_assessment.py",
+      "--plan",
+      "artifacts/campaign-v3/assessment/preregistration.json",
+      "--out",
+      "results/campaign-v3-assessment",
+      "--workers",
+      "4",
+      "--reserve-pool"
+    ],
+    "host_time_file": "host-time-20261008T211345274339Z.txt",
+    "log_file": "controller-20261008T211345274339Z.log",
+    "model_calls": 0,
+    "timed_process_pid": 1371472
+  },
+  "launch_record_sha256": "079adc3fc093dbaebef9c2d09da9f49c01898c25fae3e902cbf20bde636cf572",
+  "pool_manifest": {
+    "excluded_seed_count": 10001456,
+    "excluded_seed_ranges": [
+      [
+        0,
+        10000000
+      ]
+    ],
+    "frozen_plan_sha256": "cf28a176a666ecc73145e03443b8361de25229c73f4356c3f6e25885d1f0c8eb",
+    "original_plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+    "pool": {
+      "episodes": 1536,
+      "path": "/home/roland/projects/shinka-dreamer/results/private/v3-wave1-assessment-seeds.json",
+      "sha256": "3aacfc9a0556cdfaede8cdfd18576493dd0f2bea7f897d6236b5505d429fc3ea"
+    }
+  },
+  "pool_manifest_sha256": "cd998ceb942e017ee9b03d7cc7d2bf8a7628a87a407433b55c3b83e78449eb06",
+  "freeze_commit": "2cd1d2759da55cc848f15e814b90ad9236343e36",
+  "freeze_pushed_before_pool_reservation": true,
+  "private_pool_values_published": false,
+  "continuation_command": ".venv/bin/python scripts/v3_assessment.py --plan artifacts/campaign-v3/assessment/preregistration.json --out results/campaign-v3-assessment --workers 4",
+  "note": "This immutable record describes launch, not final outcomes. Execution-complete and final provenance supersede running status after closure."
+}
