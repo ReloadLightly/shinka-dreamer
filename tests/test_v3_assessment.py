@@ -176,6 +176,33 @@ def test_pool_reservation_recovers_crash_after_pool_write(tmp_path, monkeypatch)
     assert assessment.reserve_pool(plan, plan_path, out)[0] == [23, 25, 27]
 
 
+def test_seed_exclusion_intervals_are_coalesced_and_apply_to_draw_and_resume(tmp_path, monkeypatch):
+    plan, plan_path, _ = plan_fixture(tmp_path, monkeypatch)
+    old = tmp_path / 'public-old-seeds.json'
+    old.write_text(json.dumps([9, 15, 15]))
+    plan.update(excluded_seed_ranges=[[20, 21], [8, 12], [0, 10]], excluded_pool_paths=[str(old)])
+    plan_path.write_text(json.dumps(plan))
+    merged, excluded, count = assessment.seed_exclusions(plan, Path(plan['pool_path']))
+    assert merged == [[0, 12], [20, 21]] and count == 14
+    assert excluded(11) and excluded(15) and excluded(20) and not excluded(12)
+    draws = iter([3, 11, 12, 15, 20, 21, 21, 22])
+    monkeypatch.setattr(assessment.secrets, 'randbits', lambda _: next(draws))
+    out = tmp_path / 'assessment'
+    assert assessment.reserve_pool(plan, plan_path, out, reserve=True)[0] == [12, 21, 22]
+    manifest = json.loads((out / 'pool-manifest.json').read_text())
+    assert manifest['excluded_seed_count'] == 14 and manifest['excluded_seed_ranges'] == merged
+    # A subsequently retired sparse case cannot silently pass the resume check.
+    old.write_text(json.dumps([9, 15, 21]))
+    with pytest.raises(ValueError, match='overlaps excluded'):
+        assessment.reserve_pool(plan, plan_path, out)
+    plan['excluded_seed_ranges'] = [[0, 10_000_000]]
+    merged, excluded, count = assessment.seed_exclusions(plan, Path(plan['pool_path']))
+    assert merged == [[0, 10_000_000]] and count == 10_000_000 and excluded(2014728)
+    plan['excluded_seed_ranges'] = [[-1, 5]]
+    with pytest.raises(ValueError, match='Excluded seed ranges'):
+        assessment.seed_exclusions(plan, Path(plan['pool_path']))
+
+
 def test_completed_condition_survives_partial_case_and_failed_run_counts(tmp_path, monkeypatch):
     source = tmp_path / 'source.py'
     source.write_text('#source')

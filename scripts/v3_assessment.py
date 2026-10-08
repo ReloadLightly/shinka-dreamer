@@ -460,12 +460,49 @@ def verify_plan(plan, check_driver=True):
     return [dict(c, program_path=str(resolve(c['program_path']))) for c in conditions]
 
 
+def seed_exclusions(plan, target):
+    """Coalesced half-open intervals and sparse seeds, without dense allocation."""
+    configured = plan.get('excluded_seed_ranges', [[10000, 100000]])
+    if not isinstance(configured, list):
+        raise ValueError('Excluded seed ranges must be a list of half-open intervals')
+    ranges = []
+    for pair in configured:
+        if (not isinstance(pair, (list, tuple)) or len(pair) != 2
+                or any(type(value) is not int for value in pair)
+                or not 0 <= pair[0] < pair[1] <= 2**63):
+            raise ValueError('Excluded seed ranges must satisfy 0 <= start < stop <= 2**63')
+        ranges.append(tuple(pair))
+    merged = []
+    for start, stop in sorted(ranges):
+        if merged and start <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], stop)
+        else:
+            merged.append([start, stop])
+    explicit = [resolve(p) for p in plan.get('excluded_pool_paths', [])]
+    private_pools = list((ROOT / 'results/private').rglob('*seed*.json'))
+    seeds = set()
+    for path in set(explicit + private_pools):
+        if path == target:
+            continue
+        values = json.loads(path.read_text())
+        if isinstance(values, list) and all(type(x) is int for x in values):
+            seeds.update(values)
+        elif path in explicit:
+            raise ValueError(f'Cannot parse explicit excluded pool: {path}')
+    def contains(value):
+        return value in seeds or any(start <= value < stop for start, stop in merged)
+    count = sum(stop-start for start, stop in merged) + sum(
+        not any(start <= value < stop for start, stop in merged) for value in seeds)
+    return merged, contains, count
+
+
 def reserve_pool(plan, plan_path, out, reserve=False):
     """Verify every frozen artifact BEFORE sampling and bind plan+pool immutably."""
     verify_plan(plan)
     out = Path(out)
     atomic_create(out / 'frozen-plan.json', plan)
     target = resolve(plan['pool_path'])
+    excluded_ranges, excluded, excluded_count = seed_exclusions(plan, target)
     pool_manifest = out / 'pool-manifest.json'
     recover_json_checkpoint(pool_manifest)
     recover_json_checkpoint(out / 'pool-reservation.json')
@@ -478,39 +515,29 @@ def reserve_pool(plan, plan_path, out, reserve=False):
                   'original_plan_sha256': sha256(plan_path), 'pool_path': str(target),
                   'sample_size': plan['sample_size']}
         atomic_create(intent_path, intent)
-        excluded = set(range(10000, 100000))
-        explicit = [resolve(p) for p in plan.get('excluded_pool_paths', [])]
-        # Retire every locally retained historical/development/selection pool.
-        private_pools = list((ROOT / 'results/private').rglob('*seed*.json'))
-        for path in set(explicit + private_pools):
-            if path == target:
-                continue
-            values = json.loads(path.read_text())
-            if isinstance(values, list) and all(type(x) is int for x in values):
-                excluded.update(values)
-            elif path in explicit:
-                raise ValueError(f'Cannot parse explicit excluded pool: {path}')
-        excluded_count = len(excluded)
         if target.exists():
             seeds, _ = pool(target, plan['sample_size'])
-            if set(seeds) & excluded:
+            if any(excluded(seed) for seed in seeds):
                 raise ValueError('Reserved pool overlaps excluded cases')
         else:
-            seeds = []
+            seeds, chosen = [], set()
             while len(seeds) < plan['sample_size']:
                 candidate = secrets.randbits(63)
-                if candidate not in excluded:
+                if not excluded(candidate) and candidate not in chosen:
                     seeds.append(candidate)
-                    excluded.add(candidate)
+                    chosen.add(candidate)
             atomic_create(target, seeds)
         _, info = pool(target, plan['sample_size'])
         atomic_create(pool_manifest, {'pool': info, 'frozen_plan_sha256': sha256(out / 'frozen-plan.json'),
-                              'original_plan_sha256': sha256(plan_path), 'excluded_seed_count': excluded_count})
+                              'original_plan_sha256': sha256(plan_path), 'excluded_seed_count': excluded_count,
+                              'excluded_seed_ranges': excluded_ranges})
     saved = json.loads(pool_manifest.read_text())
     seeds, info = pool(target, plan['sample_size'])
     if (saved['pool'] != info or saved['frozen_plan_sha256'] != sha256(out / 'frozen-plan.json')
             or saved['original_plan_sha256'] != sha256(plan_path)):
         raise ValueError('Assessment pool or frozen plan drift')
+    if any(excluded(seed) for seed in seeds):
+        raise ValueError('Reserved pool overlaps excluded cases')
     return seeds, info
 
 
