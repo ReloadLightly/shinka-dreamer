@@ -20,6 +20,9 @@ The [source review](docs/v3-program-changes.md) records substantive changes,
 actual ancestry and intervention caveats. Download and open the explorer HTML
 locally to inspect all candidates, linked plots, ancestry and patch rejections;
 it needs no server or external assets.
+The local [assessment progress page](http://localhost:8000/assessment.html)
+refreshes saved execution counts and links to the native Shinka dashboard.
+Start both with `.venv/bin/python scripts/v3_webui.py --port 8000`.
 Selection validation chose **generation 4** (180/192 escapes), a direct descendant
 of the original seed with uniform, slow and fast directional movement experts.
 This score is selection-biased. Its development audit verifies that freezing

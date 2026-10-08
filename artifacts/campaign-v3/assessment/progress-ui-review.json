@@ -1,0 +1,32 @@
+{
+  "scope": "Live counts-only local assessment UI; no interim scientific effects displayed.",
+  "url": "http://localhost:8000/assessment.html",
+  "source_sha256": {
+    "scripts/v3_webui.py": "74944ef2125f4ef2f6a2fa707506d2a2bf26ce8da4daa13e73e893716f81980c",
+    "scripts/assets/v3-assessment.html": "340c08eabbf604a1e07dc8eefcab477917c146e688ab2390a5933109e382adde",
+    "tests/test_v3_webui.py": "97642397d4874e516c39bd5ee58d2540a4a9f91fced9f90b520c01bf4bb39768"
+  },
+  "browser_checks": {
+    "desktop_viewport": [
+      1280,
+      1000
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "mobile_document_width": 390,
+    "frozen_plan_identity": "matched",
+    "manual_refresh": "counts updated",
+    "script_errors": 0,
+    "page_error_text": "",
+    "network_origins": [
+      "http://127.0.0.1:8000"
+    ],
+    "native_search_row_count": 53
+  },
+  "counts_read_from": "Registered checkpoint filenames and allowlisted launcher metadata only; no episode or shadow outcome bodies.",
+  "shadow_semantics": "Counts replay-group files, not successful or completed individual predictor passes.",
+  "new_world_episodes": 0,
+  "new_model_calls": 0
+}
