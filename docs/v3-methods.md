@@ -123,7 +123,8 @@ additional native summary/recommendation calls are counted separately.
 
 ## Reproduction and continuation
 
-For the existing local campaign, use exactly one controller:
+The native search is complete at 50 slots. Its exact historical checkpoint
+resume command is preserved for audit; it is not the next experimental action:
 
 ```bash
 HEADLESS_BILLING=subscription .venv/bin/python scripts/resume_v3_transport.py \
@@ -136,6 +137,18 @@ command restores saved proposals, native population state, random state and
 recommendation history. Total slots include seed and failures; seed island copies
 are not additional slots. The original `scripts/evolve_v3.py` is preserved as the
 initial-launch record; use the additive resume entrypoint for this amended run.
+
+Selection chose generation 4; the frozen-program assessment follows the
+[assessment design](v3-assessment-design.md). Resume its existing pool with:
+
+```bash
+.venv/bin/python scripts/v3_assessment.py \
+  --plan artifacts/campaign-v3/assessment/preregistration.json \
+  --out results/campaign-v3-assessment --workers 4
+```
+
+The first invocation alone adds `--reserve-pool`, after the complete
+preregistration is committed. Never use a new pool to replace failed outcomes.
 
 For the native live dashboard, run a separate read-only UI process:
 
@@ -159,7 +172,7 @@ Development pools can be recreated locally without drawing assessment cases:
   --out results/v3-comparator-refit \
   --source-out results/v3-comparator-refit.py
 .venv/bin/python scripts/v3_comparator_check.py --workers 2
-.venv/bin/python scripts/v3_report.py
+.venv/bin/python scripts/v3_report.py --saved
 .venv/bin/python scripts/native_v3_audit.py
 ```
 
@@ -172,6 +185,23 @@ then enforces those identities and preserves each completed condition episode.
 Private seeds and traces and large runtime databases remain outside Git. Committed
 compact outcomes and analysis scripts reproduce numerical reporting without model
 calls; execution on another host requires an explicitly recorded runtime identity.
+
+Before any validation outcomes, selection arithmetic was corrected to sum exact
+task units: `2600*escape + 400*keys + 400*door + escape*(200-steps)`, divided by
+4,000 per valid episode; invalid execution contributes zero. Each reconstructed
+score must agree with the evaluator within `1e-12`. This implements the existing
+mean-task criterion while preventing summation roundoff from bypassing its escape
+count and earlier-slot tie-breaks. Native development scores and their shortlist
+ordering remain unchanged. The [correction record](../artifacts/campaign-v3/selection-arithmetic-correction.json)
+predates validation.
+
+The [exposed-case audit](../artifacts/campaign-v3/exclusion-review.json) checked
+2,164 saved JSON and 267 gzip files before a final pool existed. Final reservation
+will exclude the six retained private seed pools, the public historical
+development pool, and the conservative small-integer range `[0, 10,000,000)`.
+The range covers identified synthetic and manual checks; it is not a count of
+episodes executed. Sparse pool membership and interval checks avoid allocating
+a set of ten million integers. The registered pool is also checked on resume.
 
 `scripts/v3_precision.py` uses the selected program's completed development
 freeze audit to plan for a three-percentage-point escape difference, near the

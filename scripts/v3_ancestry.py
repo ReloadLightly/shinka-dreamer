@@ -96,7 +96,7 @@ def render(directory):
     if selection:
         note += f"\nDark path leads to selection-validation winner, slot {selection['generation']}; this is not independent discovery evidence."
     fig.text(.12,.025,note,color=SECONDARY,fontsize=9)
-    fig.subplots_adjust(top=.87,bottom=.12,left=.10,right=.98)
+    fig.subplots_adjust(top=.87,bottom=.16,left=.10,right=.98)
     save_figure(fig,directory/'figures/ancestry')
 
 

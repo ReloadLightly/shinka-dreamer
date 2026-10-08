@@ -179,6 +179,32 @@ def state_audit_summary(rows):
         'scope':'Exported state only; absent exports are unavailable, not constant or correct. Invalid partial traces can contribute audits. Parameter change does not establish informative learning.'}
 
 
+def cpu_summary(rows,key,weights):
+    measured=np.array([not r.get('cpu_measurement_unavailable',False) and key in r
+                       and np.isfinite(r[key]) for r in rows],dtype=bool)
+    values=np.array([r[key] if present else 0. for r,present in zip(rows,measured)])
+    included=values[measured]
+    boot=ratio(weights,values,measured.astype(float))
+    return {'mean':float(included.mean()) if len(included) else None,'ci95':interval(boot),
+        'sum':float(included.sum()),'median':float(np.median(included)) if len(included) else None,
+        'p95':float(np.quantile(included,.95)) if len(included) else None,
+        'measured_episodes':int(measured.sum()),'unavailable_episodes':int((~measured).sum()),
+        'all_case_episodes':len(rows),'recorded_sum_is_lower_bound':not bool(measured.all()),
+        'bootstrap_retained':int(np.isfinite(boot).sum()),
+        'scope':'CPU mean/interval condition on measured episodes; missing CPU is not zero. Recorded sum is a lower bound if any measurements are unavailable. Outcome denominators remain all cases.'}
+
+
+def cpu_pair(left,right,key,weights):
+    measured=np.array([all(not r.get('cpu_measurement_unavailable',False) and key in r
+                          and np.isfinite(r[key]) for r in (a,b)) for a,b in zip(left,right)],dtype=bool)
+    differences=np.array([a[key]-b[key] if present else 0. for a,b,present in zip(left,right,measured)])
+    boot=ratio(weights,differences,measured.astype(float))
+    return {'difference':float(differences.sum()/measured.sum()) if measured.any() else None,
+        'ci95':interval(boot),'measured_pairs':int(measured.sum()),'unavailable_pairs':int((~measured).sum()),
+        'all_case_pairs':len(left),'bootstrap_retained':int(np.isfinite(boot).sum()),
+        'scope':'Conditional on jointly measured CPU; missing values are not zero. Shared-case bootstrap recomputes the measured-pair denominator.'}
+
+
 def analyze(rows,plan):
     n=plan['sample_size']
     conditions=[c['name'] for c in plan['conditions']]
@@ -206,10 +232,12 @@ def analyze(rows,plan):
         for event in ('escape','death','timeout','invalid','two_keys','door'):
             count=sum(outcome(r,event) for r in group)
             summary[event]={'count':count,'rate':count/n,'ci95':clopper(count,n)}
-        for key in ('task','combined_score','keys','steps','seconds','candidate_cpu_seconds','evaluator_cpu_seconds'):
+        for key in ('task','combined_score','keys','steps','seconds'):
             values=np.array([r.get(key,0.) for r in group])
             summary[key]={'mean':float(values.mean()),'ci95':interval(weights@values/n),
                           'sum':float(values.sum()),'median':float(np.median(values)),'p95':float(np.quantile(values,.95))}
+        for key in ('candidate_cpu_seconds','evaluator_cpu_seconds'):
+            summary[key] = cpu_summary(group,key,weights)
         success=[r['steps'] for r in group if r['reason']=='escaped']
         summary['successful_escape_steps']={'mean':float(np.mean(success)) if success else None,'episodes':len(success),'scope':'conditional on own success'}
         summary['forecasts']={key:pooled(group,key,weights) for key in FORECASTS}
@@ -244,9 +272,10 @@ def analyze(rows,plan):
             entry={'left':left,'right':right,'regime':regime,'family':contrast.get('family','descriptive')}
             entry['outcomes']={event:paired_binary([outcome(r,event) for r in a],[outcome(r,event) for r in b])
                                for event in ('escape','death','timeout','invalid','two_keys','door')}
-            for key in ('task','combined_score','seconds','candidate_cpu_seconds','steps'):
+            for key in ('task','combined_score','seconds','steps'):
                 difference=np.array([x.get(key,0)-y.get(key,0) for x,y in zip(a,b)])
                 entry[key]={'difference':float(difference.mean()),'ci95':interval(weights@difference/n)}
+            entry['candidate_cpu_seconds'] = cpu_pair(a,b,'candidate_cpu_seconds',weights)
             entry['on_policy_forecasts']={key:forecast_pair(a,b,key,weights) for key in FORECASTS}
             entry['behavior'] = behavior_pair(a,b)
             result['pairs'][f'{regime}/{left}-minus-{right}']=entry
@@ -333,6 +362,19 @@ def analyze_matched(rows, plan, policy_rows=None):
     """Pool shadow losses over whole recorded episodes with shared case resampling."""
     n = plan['sample_size']
     regimes = plan['regimes']
+    specification = plan.get('matched', {})
+    conditions = tuple(specification.get('shadow_conditions', MATCHED_CONDITIONS))
+    pairs = tuple((pair['left'], pair['right']) for pair in specification.get('shadow_pairs', [])) or MATCHED_PAIRS
+    allowed = set(MATCHED_CONDITIONS) | {'selected_online', 'selected_frozen'}
+    if (len(set(conditions)) != len(conditions) or not set(conditions) <= allowed
+            or not set(MATCHED_CONDITIONS) <= set(conditions)):
+        raise ValueError('Unknown or duplicate frozen shadow conditions')
+    if any(left not in conditions or right not in conditions or left == right for left, right in pairs) or len(set(pairs)) != len(pairs):
+        raise ValueError('Invalid or duplicate frozen shadow comparison')
+    if specification.get('selected') and set(conditions) != allowed:
+        raise ValueError('Selected passive replay requires all five frozen shadow conditions')
+    if any(name.startswith('selected_') for name in conditions) and not specification.get('selected'):
+        raise ValueError('Selected shadow conditions require a frozen selected-source specification')
     required = {(case, regime) for case in range(n) for regime in regimes}
     if n <= 0 or len(set(regimes)) != len(regimes):
         raise ValueError('Positive sample size and unique regimes required')
@@ -346,6 +388,7 @@ def analyze_matched(rows, plan, policy_rows=None):
     policy = {(r['case'], r['regime']): r for r in policy_rows or []
               if r['condition'] == plan.get('matched', {}).get('memory_condition')}
     result = {'study': plan['study'], 'cases_per_regime': n, 'recorded_policy_episodes': len(rows),
+        'shadow_conditions': list(conditions), 'shadow_pairs': [{'left':a,'right':b} for a,b in pairs],
         'scope': 'Passive predictors receive identical recorded public observations and preceding actions; no new policy rollouts.',
         'known_law_scope': 'Privileged current dynamics with the same partial observations; not an optimal-policy bound.',
         'post_switch_scope': 'Conditional on the recorded memory policy reaching the switch/window; no unconditional control inference.',
@@ -353,7 +396,7 @@ def analyze_matched(rows, plan, policy_rows=None):
                       'unit': 'whole case, same resamples for every regime and shadow; recompute pooled loss ratios'},
         'regimes': {}}
     for regime, group in data.items():
-        groups = {name: [] for name in MATCHED_CONDITIONS}
+        groups = {name: [] for name in conditions}
         missing, trajectory_verified = [], 0
         for record in group:
             if not record.get('policy_trajectory_sha256'):
@@ -363,7 +406,9 @@ def analyze_matched(rows, plan, policy_rows=None):
                 if reference is None or reference.get('audit', {}).get('trajectory_sha256') != record['policy_trajectory_sha256']:
                     raise ValueError('Matched source trace disagrees with the recorded policy outcome')
                 trajectory_verified += 1
-            for name in MATCHED_CONDITIONS:
+            if set(record.get('shadows', {}))-set(conditions):
+                raise ValueError('Undeclared shadow record')
+            for name in conditions:
                 shadow = record.get('shadows', {}).get(name)
                 if shadow is None:
                     missing.append({'case': record['case'], 'condition': name, 'error': record.get('error')})
@@ -371,8 +416,13 @@ def analyze_matched(rows, plan, policy_rows=None):
                               'error': 'Missing complete shadow record', 'frames': 0, 'missing_forecast_frames': 0}
                 if shadow['case'] != record['case'] or shadow['regime'] != regime:
                     raise ValueError('Shadow case/regime identity mismatch')
+                expected_hash = (specification.get('selected', {}).get('source_sha256') if name.startswith('selected_')
+                                 else specification.get('source_sha256'))
+                actual_hash = shadow.get('program_sha256', record.get('program_sha256') if name in MATCHED_CONDITIONS else None)
+                if expected_hash and name in record.get('shadows', {}) and actual_hash != expected_hash:
+                    raise ValueError('Matched shadow source differs from frozen plan')
                 groups[name].append(shadow)
-            available = [record.get('shadows', {}).get(name) for name in MATCHED_CONDITIONS]
+            available = [record.get('shadows', {}).get(name) for name in conditions]
             if all(shadow is not None for shadow in available):
                 for key in MATCHED_FORECASTS:
                     if len({shadow['stats'].get(key, [0, 0])[1] for shadow in available}) != 1:
@@ -381,15 +431,25 @@ def analyze_matched(rows, plan, policy_rows=None):
                     if len({shadow.get('bins', {}).get(str(index), {}).get('brier', [0, 0])[1] for shadow in available}) != 1:
                         raise ValueError('Matched shadows use different window target counts')
         frozen, online, known = (groups[name] for name in MATCHED_CONDITIONS)
-        def matching_hash(key):
-            return sum(bool(a.get('audit', {}).get(key)) and
-                       a['audit'][key] == b.get('audit', {}).get(key) == c.get('audit', {}).get(key)
-                       for a, b, c in zip(frozen, online, known))
+        def matching_hash(key, names=conditions):
+            return sum(all(row.get('audit', {}).get(key) for row in case_rows) and
+                       len({row['audit'][key] for row in case_rows}) == 1
+                       for case_rows in zip(*(groups[name] for name in names)))
+        def parameter_pair_audit(online_name, frozen_name):
+            a, b = groups[online_name], groups[frozen_name]
+            return {'online':online_name, 'frozen':frozen_name,
+                'map_position_matched_episodes':matching_hash('map_position_sha256', (online_name, frozen_name)),
+                'frozen_parameter_export_episodes':sum(r.get('audit', {}).get('parameters_exported', False) for r in b),
+                'frozen_parameters_constant_episodes':sum(r.get('audit', {}).get('parameters_constant') is True for r in b),
+                'identical_initial_parameter_episodes':sum(x.get('audit', {}).get('first_parameters') is not None and
+                    x['audit']['first_parameters'] == y.get('audit', {}).get('first_parameters') for x,y in zip(a,b)),
+                'online_parameter_change_episodes':sum((r.get('audit', {}).get('parameter_change_steps') or 0)>0 for r in a),
+                'scope':'Within-source predictive-parameter intervention; parameter changes need not imply informative updates.'}
         observation_matches = matching_hash('observations_sha256')
         audit = {'policy_trajectory_verified_against_outcomes': trajectory_verified,
             'policy_outcomes_supplied': policy_rows is not None,
             'physical_observation_matched_episodes': observation_matches,
-            'map_position_matched_episodes': matching_hash('map_position_sha256'),
+            'map_position_matched_episodes': matching_hash('map_position_sha256', MATCHED_CONDITIONS),
             'frozen_parameter_export_episodes': sum(r.get('audit', {}).get('parameters_exported', False) for r in frozen),
             'frozen_parameters_constant_episodes': sum(r.get('audit', {}).get('parameters_constant') is True for r in frozen),
             'identical_initial_parameter_episodes': sum(a.get('audit', {}).get('first_parameters') is not None and
@@ -398,6 +458,10 @@ def analyze_matched(rows, plan, policy_rows=None):
             'shadow_error_episodes': {name: sum(r.get('error') is not None for r in records) for name, records in groups.items()},
             'missing_forecast_frames': {name: sum(r.get('missing_forecast_frames', 0) for r in records) for name, records in groups.items()},
             'missing_records': missing}
+        audit['parameter_pairs'] = {'fitted_online-minus-fitted_frozen':parameter_pair_audit('fitted_online','fitted_frozen')}
+        if 'selected_online' in groups and 'selected_frozen' in groups:
+            audit['parameter_pairs']['selected_online-minus-selected_frozen'] = parameter_pair_audit('selected_online','selected_frozen')
+        audit['map_position_scope'] = 'The legacy map-match count covers the three fitted comparators. Evolved/fitted representations need not match; within-source audits are separate.'
         target_episodes = {name: sum(r['stats'].get('brier_near', [0, 0])[1] > 0 for r in records)
                            for name, records in groups.items()}
         usable = not missing and observation_matches == n and all(target_episodes.values())
@@ -415,8 +479,8 @@ def analyze_matched(rows, plan, policy_rows=None):
             entry['pairs'] = {left+'-minus-'+right: {
                 'left': left, 'right': right,
                 'forecasts': {key: forecast_pair(groups[left], groups[right], key, weights) for key in MATCHED_FORECASTS}}
-                for left, right in MATCHED_PAIRS}
-            entry['bins'] = binned_predictions(groups, MATCHED_PAIRS, weights)
+                for left, right in pairs}
+            entry['bins'] = binned_predictions(groups, pairs, weights)
         result['regimes'][regime] = entry
     return result
 
@@ -494,6 +558,8 @@ def export_compact(raw, plan_path, episode_path, matched_path):
         record = json.loads(path.read_text())
         if record.get('source_sha256') != plan.get('matched', {}).get('source_sha256'):
             raise ValueError('Matched comparator source mismatch')
+        if record.get('selected_source_sha256') != plan.get('matched', {}).get('selected', {}).get('source_sha256'):
+            raise ValueError('Matched selected source mismatch')
         matched.append(record)
     if plan.get('matched'):
         expected_matched = {(case, regime) for case in range(plan['sample_size']) for regime in plan['regimes']}

@@ -191,5 +191,37 @@
     "in_process_comparison_distinct_observable_trajectories": 58,
     "in_process_unique_note": "72 indexed subvalidation episode records contain 58 distinct observation/action trace hashes. Private fitting corpus omits hidden world state, so this is observable-experience uniqueness; regime pairing does not create independent replicates.",
     "feature_construction_scope": "The original v3_fit.py array-construction passes; subsequent array inspection or optimizer vector operations are not prediction comparison episodes."
+  },
+  "selected_instrumentation_transparency": {
+    "record": "artifacts/campaign-v3/selection/transparency.json",
+    "record_sha256": "d679866cd631c5a2f00079ea9237b5a65dc2db826f77745264a1ca37438a659e",
+    "condition_episodes": 24,
+    "layouts": 1,
+    "regimes": 3,
+    "conditions": 4,
+    "sources": 2,
+    "environment_steps": 1206,
+    "candidate_cpu_seconds": 17.118802000000002,
+    "evaluator_cpu_seconds": 2.2303663789999995,
+    "elapsed_seconds": 9.665775814995868,
+    "model_calls": 0,
+    "scope": "First registered development layout; paired original/instrumented selected source. All checks pass; not assessment, no performance inference."
+  },
+  "selected_mechanism_audit": {
+    "record": "artifacts/campaign-v3/mechanism-selected/summary.json",
+    "record_sha256": "4ccbcd2482452272a47f2b748d3ad8f3793e4ff5daf74c7bed99b17cfedd1a9f",
+    "condition_episodes": 288,
+    "layouts": 24,
+    "regimes": 3,
+    "conditions": 4,
+    "environment_steps": 20958,
+    "candidate_cpu_seconds": 388.447558,
+    "evaluator_cpu_seconds": 55.716637671,
+    "elapsed_seconds": 213.16935324197402,
+    "model_calls": 0,
+    "invalid_condition_episodes": 0,
+    "all_frozen_parameters_constant": true,
+    "matched_control_trajectory_pairs": 72,
+    "scope": "Registered development pool reused by search; source-specific mechanism and precision planning, not final assessment. All72 no_planning/frozen_no_planning pairs match physical experience and observations."
   }
 }

@@ -27,6 +27,24 @@ SHADOW_WORKER = ROOT / "dreamer/worker_v3_shadow.py"
 CONDITIONS = ("fitted_frozen", "fitted_online", "known_law")
 ADAPTER = "directional-v3-no-planner"
 APPROVED_COMPARATOR_SHA256 = "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78"
+SELECTED_ADAPTER = "selected-gen4-no-planner"
+APPROVED_SELECTED_SHA256 = "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c"
+
+
+def validate_selected_spec(selected):
+    if (selected.get('adapter') != SELECTED_ADAPTER or
+            selected.get('source_sha256') != APPROVED_SELECTED_SHA256 or
+            sha256(selected['source']) != APPROVED_SELECTED_SHA256):
+        raise ValueError('Selected passive adapter requires the reviewed gen4 instrumented source')
+    if selected.get('parameter_key') != ['learning', 'raw_predictive_state']:
+        raise ValueError('Selected passive adapter requires the reviewed raw adaptive state export')
+
+
+def exported_parameter(model, key):
+    value = model
+    for part in key:
+        value = value.get(part) if isinstance(value, dict) else None
+    return value
 
 
 def digest(value):
@@ -34,9 +52,9 @@ def digest(value):
 
 
 class Shadow(Candidate):
-    def __init__(self, path, candidate_seed):
+    def __init__(self, path, candidate_seed, adapter=ADAPTER):
         self.process = subprocess.Popen(
-            ["/usr/bin/python3", "-s", "-S", str(SHADOW_WORKER), str(Path(path).resolve()), str(candidate_seed)],
+            ["/usr/bin/python3", "-s", "-S", str(SHADOW_WORKER), str(Path(path).resolve()), str(candidate_seed), adapter, sha256(path)],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
             env={"PATH": "/usr/bin:/bin", "PYTHONHASHSEED": "0"}, cwd="/tmp", bufsize=0)
         self.selector = selectors.DefaultSelector()
@@ -44,8 +62,8 @@ class Shadow(Candidate):
         self.buffer = b""
 
 
-def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=None, adapter=ADAPTER, policy_reason=None):
-    """Score three isolated predictors on the exact supplied memory trajectory.
+def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=None, adapter=ADAPTER, policy_reason=None, selected=None):
+    """Score reviewed isolated predictors on the exact supplied memory trajectory.
 
     Score horizon-one union enemy occupancy in coordinates relative to the
     episode origin. Near targets are the PRE-action agent-centered 3x3; audit
@@ -69,6 +87,13 @@ def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=Non
     # planner. Check the precise already-reviewed comparator, even if copied.
     if source_sha != APPROVED_COMPARATOR_SHA256:
         raise ValueError("This adapter is only approved for the manually engineered directional comparator")
+    specifications = [{'condition': name, 'source': source, 'source_sha256': source_sha,
+                       'adapter': ADAPTER, 'parameter_key': ['learning', 'transition_weights'],
+                       'learn': name != 'fitted_frozen'} for name in CONDITIONS]
+    if selected is not None:
+        validate_selected_spec(selected)
+        specifications.extend(dict(selected, condition=name, learn=name == 'selected_online')
+                              for name in ('selected_online', 'selected_frozen'))
     if any(frame["action"].get("interact") is not True for frame in trace):
         raise ValueError("Comparator door conditioning requires the recorded policy to interact")
     started, cpu_started = time.monotonic(), time.process_time()
@@ -108,18 +133,19 @@ def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=Non
         post = law_reference.switch_step is not None and frame["obs"]["step"] + 1 >= law_reference.switch_step
         targets.append((near, audit, destination, danger, post))
     shadows = {}
-    for condition in CONDITIONS:
+    for specification in specifications:
+        condition = specification['condition']
         condition_started = time.monotonic()
         stats, bins, error, error_step = {}, {}, None, None
         parameters, map_positions, observations = [], [], []
         last_action, missing, processed = None, 0, 0
         worker = None
         try:
-            worker = Shadow(source, stream_seed(seed, "v3:candidate"))
+            worker = Shadow(specification['source'], stream_seed(seed, "v3:candidate"), specification['adapter'])
         except Exception as exc:
             error, error_step = f"{type(exc).__name__}: {exc}", 0
         for index, (frame, target) in enumerate(zip(trace, targets)):
-            observation = dict(frame["obs"], learn=condition != "fitted_frozen", predictive_planning=True)
+            observation = dict(frame["obs"], learn=specification['learn'], predictive_planning=True)
             observation.pop("known_law", None)
             if condition == "known_law":
                 observation["known_law"] = list(law_reference.law_for_transition(observation["step"] + 1))
@@ -140,7 +166,7 @@ def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=Non
             # No hidden or privileged content is included in public audit hashes
             # of ordinary-observation identity; strip known-law and control flags.
             observations.append({k: v for k, v in observation.items() if k not in ("known_law", "learn", "predictive_planning")})
-            parameters.append(model.get("learning", {}).get("transition_weights"))
+            parameters.append(exported_parameter(model, specification['parameter_key']))
             map_positions.append({"position": model.get("position"), "terrain": sorted(model.get("terrain", []))})
             near, audit, destination, danger, post = target
             enemies = {tuple(p) for p in frame["next_enemies"]}
@@ -169,10 +195,12 @@ def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=Non
         exported = bool(parameters) and all(p is not None for p in parameters)
         shadows[condition] = {
             "condition": condition, "case": case, "regime": regime,
+            "program_sha256": specification['source_sha256'], 'adapter': specification['adapter'],
             "stats": stats, "bins": bins, "error": error, "error_step": error_step,
             "frames": len(trace), "scored_frames": len(trace), "successful_forecast_frames": processed,
             "missing_forecast_frames": missing, "seconds": time.monotonic()-condition_started,
             "audit": {"observations_sha256": digest(observations), "map_position_sha256": digest(map_positions),
+                'parameter_key': specification['parameter_key'],
                 "parameters_exported": exported,
                 "parameters_constant": all(p == parameters[0] for p in parameters) if exported else None,
                 "parameter_change_steps": sum(a != b for a, b in zip(parameters, parameters[1:])) if exported else None,
@@ -180,8 +208,9 @@ def evaluate_trace(trace, seed, regime, case, source, expected_source_sha256=Non
                 "final_parameters": parameters[-1] if exported else None}}
     return {"case": case, "regime": regime, "adapter": adapter,
             "program_sha256": source_sha, "policy_frames": len(trace),
+            'selected_source_sha256': selected['source_sha256'] if selected else None,
             "policy_trajectory_sha256": digest([{k: f[k] for k in ("world", "action", "next_enemies")} for f in trace]),
-            "shadows": shadows, "condition_episodes": len(CONDITIONS), "new_environment_episodes": 0,
+            "shadows": shadows, "condition_episodes": len(specifications), "new_environment_episodes": 0,
             "model_calls": 0, "terminal_transition_included": policy_reason in ("escaped", "caught", "timeout"),
             "policy_reason": policy_reason, "missing_forecast_probability": .5,
             "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
@@ -201,23 +230,25 @@ def main():
     parser.add_argument("--limit", type=int, default=8)
     parser.add_argument("--regime", default="switch", choices=("uniform", "stationary", "switch"))
     parser.add_argument("--program", default="controls/v3/directional.py")
+    parser.add_argument('--selected-spec', help='JSON file binding the reviewed selected passive adapter')
     parser.add_argument("--out", default="results/v3-matched-smoke.json")
     args = parser.parse_args()
     if not 1 <= args.limit <= 8:
         raise ValueError("This CLI is only a development smoke test of at most eight episodes")
     seeds = json.loads(Path(args.seeds).read_text())[:args.limit]
+    selected = json.loads(Path(args.selected_spec).read_text()) if args.selected_spec else None
     records = []
     for case, seed in enumerate(seeds):
         policy = run_episode(ROOT / "controls/v1/memory.py", seed, "memory", replay=True, regime=args.regime)
-        result = evaluate_trace(policy.pop("trace"), seed, args.regime, case, args.program, policy_reason=policy["reason"])
+        result = evaluate_trace(policy.pop("trace"), seed, args.regime, case, args.program, policy_reason=policy["reason"], selected=selected)
         result["policy_result"] = {k: policy[k] for k in ("reason", "steps", "error", "seconds", "candidate_cpu_seconds", "evaluator_cpu_seconds")}
         records.append(result)
     output = {"development_only": True, "driver_sha256": sha256(__file__), "worker_sha256": sha256(SHADOW_WORKER),
               "pool_sha256": sha256(args.seeds), "memory_environment_episodes": len(records),
-              "shadow_condition_episodes": len(records)*3, "model_calls": 0, "records": records}
+              "shadow_condition_episodes": sum(r['condition_episodes'] for r in records), "model_calls": 0, "records": records}
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(output, indent=2, sort_keys=True, allow_nan=False)+"\n")
-    print(json.dumps({"memory_environment_episodes":len(records),"shadow_condition_episodes":len(records)*3,
+    print(json.dumps({"memory_environment_episodes":len(records),"shadow_condition_episodes":output['shadow_condition_episodes'],
                       "invalid_shadows":sum(r["error"] is not None for c in records for r in c["shadows"].values()),
                       "driver_sha256": output["driver_sha256"], "worker_sha256": output["worker_sha256"]}))
 

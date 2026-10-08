@@ -1,0 +1,422 @@
+{
+  "protocol": "namazu-unknown-dynamics-v3",
+  "study": "namazu-unknown-dynamics-v3-wave1-frozen-program-assessment",
+  "frozen_utc": "2026-10-08T21:10:35.605650+00:00",
+  "assessment_pool_drawn": false,
+  "evaluation": {
+    "protocol": "namazu-unknown-dynamics-v3",
+    "objective": "absolute-task-v1",
+    "objective_formula": ".65*escape+.10*keys+.10*door+.05*escape*(1-steps/200); invalid=0",
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "regime_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "law_distribution": {
+      "dirichlet_alpha": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "entropy_min_nats": 1.2,
+      "max_component": 0.6,
+      "switch_min_tv": 0.3,
+      "switch_first_transition_inclusive": [
+        25,
+        75
+      ]
+    },
+    "rng": {
+      "layout": "layout (unchanged v2 generation)",
+      "initial_law": "v3:law:initial",
+      "replacement_law": "v3:law:replacement",
+      "switch_time": "v3:switch-time",
+      "enemy_innovations": "v3:enemy-innovations",
+      "forecast_targets": "v3:forecast-targets",
+      "candidate": "v3:candidate",
+      "enemy_draws_per_tick": 3,
+      "sampler": "one uniform innovation, inverse CDF per enemy"
+    },
+    "source_sha256": {
+      "evaluate_v3.py": "474766796b48353627bdf60e1239a32df841c7625a5a070fd3ccc396bd1055e4",
+      "dreamer/evaluation_v3.py": "0c6753e60212b8b8d4c3f4cd7bb93d20629225f62965ab4ba567eea120b0f3aa",
+      "dreamer/world_v3.py": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/worker_v3.py": "7c8a71365fb4e2378a64e554e81624034c23e3bc41446ebce88ed735f7139f37",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/bridge_v3.py": "ec4558be11581df2139f2efb0247ddb12f15ebe674a51e04530a49b36c234341",
+      "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e"
+    },
+    "controls": {
+      "predictive": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "runtime": {
+      "evaluator_python": "3.10.12",
+      "candidate_executable": "/usr/bin/python3",
+      "candidate_executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "candidate_args": [
+        "-s",
+        "-S"
+      ],
+      "hash_seed": 0,
+      "agent_random_seed_before_exec": "stream_seed(case, 'v3:candidate')",
+      "limits": {
+        "address_space_mib": 192,
+        "cpu_seconds": 10,
+        "reply_seconds": 3,
+        "source_kib": 512,
+        "reply_mib": 2,
+        "file_descriptors": 64
+      },
+      "isolation": "Landlock + seccomp, unchanged from v2"
+    }
+  },
+  "sample_size": 1536,
+  "regimes": [
+    "uniform",
+    "stationary",
+    "switch"
+  ],
+  "regime_weights": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333
+  ],
+  "independent_searches": 1,
+  "conditions": [
+    {
+      "name": "memory",
+      "program_path": "controls/v1/memory.py",
+      "program_sha256": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e",
+      "variant": "memory"
+    },
+    {
+      "name": "seed",
+      "program_path": "controls/v1/predictive.py",
+      "program_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "variant": "original_predictive"
+    },
+    {
+      "name": "v2_gen14",
+      "program_path": "artifacts/campaign-v2/mechanism-gen14/agent.py",
+      "program_sha256": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+      "variant": "predictive",
+      "parameter_key": "transition_weights"
+    },
+    {
+      "name": "fitted_frozen",
+      "program_path": "controls/v3/directional.py",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "variant": "frozen",
+      "parameter_key": "transition_weights"
+    },
+    {
+      "name": "fitted_online",
+      "program_path": "controls/v3/directional.py",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "variant": "predictive",
+      "parameter_key": "transition_weights"
+    },
+    {
+      "name": "known_law",
+      "program_path": "controls/v3/directional.py",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "variant": "known_law",
+      "parameter_key": "transition_weights"
+    },
+    {
+      "name": "selected",
+      "program_path": "artifacts/campaign-v3/selection/selected-instrumented.py",
+      "program_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+      "variant": "predictive",
+      "parameter_key": "model.learning.raw_predictive_state"
+    },
+    {
+      "name": "selected_frozen",
+      "program_path": "artifacts/campaign-v3/selection/selected-instrumented.py",
+      "program_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+      "variant": "frozen",
+      "parameter_key": "model.learning.raw_predictive_state"
+    },
+    {
+      "name": "selected_fixed_risk",
+      "program_path": "artifacts/campaign-v3/selection/selected-instrumented.py",
+      "program_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+      "variant": "no_planning",
+      "parameter_key": "model.learning.raw_predictive_state"
+    },
+    {
+      "name": "selected_frozen_fixed_risk",
+      "program_path": "artifacts/campaign-v3/selection/selected-instrumented.py",
+      "program_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+      "variant": "frozen_no_planning",
+      "parameter_key": "model.learning.raw_predictive_state"
+    }
+  ],
+  "counts": {
+    "unique_paired_layout_cases": 1536,
+    "regime_instances": 4608,
+    "condition_episodes": 46080,
+    "passive_shadow_episode_passes": 23040,
+    "new_world_episodes_from_shadows": 0,
+    "assessment_model_calls": 0
+  },
+  "selection": {
+    "path": "artifacts/campaign-v3/selection/selection.json",
+    "sha256": "518a6a26432ad482dd08cbf26a943374cdae998996cbbefdf557f9c82fa4c451"
+  },
+  "sample_size_justification": {
+    "path": "artifacts/campaign-v3/assessment/precision.json",
+    "sha256": "dae05a3bbc8a3c98a7a2799047ecd8f432f17926d4d1c1e884ca0e341e7b4065"
+  },
+  "analysis_files": {
+    "scripts/v3_analysis.py": "7b2becc143310999ad60190718bbcaa4c693e6d93c1d76313907d2d4953a8a8e",
+    "scripts/v3_examples.py": "92145119e043e0277801e835b940619b7d6710ff0b8554b6a3b29f0c45da691d",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0",
+    "requirements-analysis.txt": "2a6bcb2e6900793960e36d606bef328b71cddc7f89010bfb180933e0af15c4f0"
+  },
+  "design_files": {
+    "docs/v3-assessment-design.md": "e8965e2986fdbfe8a8c82d2ca46a1f1fb445f359028bb7392819a15f72a09c95",
+    "docs/v3-protocol.md": "482b230cf73550e03df5d176b17bcd9aafc45562dc59ca1e45c7791a4dabf8b7",
+    "artifacts/campaign-v3/protocol.json": "690ca469b2506da82bfb6511757294a66ae616ec10662458e10d838b089c767e",
+    "artifacts/campaign-v3/native-completion.json": "5c7c87fc49fdf4733cbceca186103e8f95f7d6c9291117d7a7ab0ffed11db49f",
+    "artifacts/campaign-v3/selection/selected.py": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+    "artifacts/campaign-v3/selection/selection.json": "518a6a26432ad482dd08cbf26a943374cdae998996cbbefdf557f9c82fa4c451",
+    "artifacts/campaign-v3/selection/instrumentation.json": "61e911dbb7c8ef86718fd4db0df4c5deb9507a1a44c5f78a1cc2e667883918be",
+    "artifacts/campaign-v3/selection/transparency.json": "d679866cd631c5a2f00079ea9237b5a65dc2db826f77745264a1ca37438a659e",
+    "artifacts/campaign-v3/mechanism-selected-review.json": "0170e992ec5a15021ec47011ba38aa32037a02d91fd7e7596f753793678c79fe",
+    "artifacts/campaign-v3/mechanism-selected/manifest.json": "1b24a395af65162b1945c91e5311412a2466bbe9f088e59e69cb56508e87f7dc",
+    "artifacts/campaign-v3/mechanism-selected/summary.json": "4ccbcd2482452272a47f2b748d3ad8f3793e4ff5daf74c7bed99b17cfedd1a9f",
+    "artifacts/campaign-v3/mechanism-selected/runtime-review.json": "8e363527f2ea8d0c4b8ff946be2d81542a7ed4714161d19171f65bfa61e729cf",
+    "scripts/v3_mechanism_report.py": "0ea0fe7ae1c8fda11a99ce1e857977d3b92c3da76e02ea2eb4648d2f2b8de9d4",
+    "artifacts/campaign-v3/exclusion-review.json": "5895cec7c5c9ec3d145ae286fca6dc57088dc3dec02060f7e2bdfdf6576c12d2",
+    "artifacts/campaign-v3/selection-arithmetic-correction.json": "51ac6c44edaa5fed99ad013350f68c7ce657ea58f1b1bd088ab1f8acbd6b1481",
+    "controls/v1/manifest.json": "7008cc10041050c7a39a21d2287b79f04287ed1b438c11d204d98693c2f317d3",
+    "controls/v3/manifest.json": "e34f280542fdf992d3b27fdb6c4e8573ab67b594015dc69a6b913156a9b1272f",
+    "controls/v3/fit-results.json": "648d42237d2ffc7912cdb794f23af395a98366d29f8d4dad9d54092abbb01d2d",
+    "scripts/v3_select.py": "f96fdf0c63d04f2f25cc1a733aca70cac404cef56565e41e3aaa79ce68429537",
+    "scripts/v3_precision.py": "1ea2e1f3a0612f436fa1f66e4c98fdb145c3aa4852aba4f26ab0a7f0d1ca20df",
+    "scripts/v3_mechanism.py": "7badd26304964ab47aa64eae68b16e67df017e9feecbb4c875a4905d563cfff6",
+    "scripts/v3_instrument_selected.py": "fb473ce2d2904b01c0146445b01886bb6b56896fb862f2452c3fc2248c4ef956",
+    "scripts/v3_selected_transparency.py": "d01e4b2916a58097eb8fcad0bc4c67eedd13de6fe321d71afa33a02e721cea68",
+    "scripts/v3_fit.py": "54508faf8ed9c8ae7b6f309b9e8147f27120557e73c2566fe9b8e2981dc9a3fe",
+    "scripts/v3_comparator_check.py": "22ec4d56f7ee98deaf4511a071e12317121e4ee5aeaf0509cee4ae98e99a7594",
+    "artifacts/campaign-v3/matched-integration-smoke/development-summary.json": "d5098aef99c5c8b8f7e31cb10a90b8a7fedadc4d638a27a3680853878868b66b",
+    "artifacts/campaign-v3/matched-integration-smoke/provenance.json": "acfedf0e101c2c5300e492f32c5a7f4695868a05fd8c67da44a65543de919c1b",
+    "results/private/campaign-v2-assessment-seeds.json": "5b8445bc5c93af93b1954932a33696999df26f9861848fabb8272337b8082f70",
+    "results/private/assessment-seeds.json": "8e05f239e7067822fb200bb2fa9ad27f4c034b3dc62c52cb18cf00488a2f06d6",
+    "results/private/v3-selection-seeds.json": "514b3de2db1de05f406d952736d461f74a10c3853c26d0d6f1909912830d43d5",
+    "results/private/v3-fit-seeds.json": "e8c0eee3ea522b43e1c2ac326869145cb3d6d3d93fe53023b5f9842908a37b2e",
+    "results/private/v3-fit-validation-seeds.json": "d723aa726e4a915c5385ede035cfd9d65e926ace7bbed859c0a3450985e0573a",
+    "results/private/v3-development-seeds.json": "1d89a5d7b264ba156ff62fff1ee34530948300485e38f14eae8eb38ffe0d136c",
+    "artifacts/campaign-v2/development-seeds.json": "d287d65e65f78d1673ba9413fec51d82be23d13961fa91fc92130f619b473e4f"
+  },
+  "driver_sha256": "1892972346f178af599e579a8db730ea740c0def05701ebc58384a1024bbf6a6",
+  "analysis_runtime": {
+    "python": "3.10.12",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "pool_path": "results/private/v3-wave1-assessment-seeds.json",
+  "excluded_pool_paths": [
+    "results/private/campaign-v2-assessment-seeds.json",
+    "results/private/assessment-seeds.json",
+    "results/private/v3-selection-seeds.json",
+    "results/private/v3-fit-seeds.json",
+    "results/private/v3-fit-validation-seeds.json",
+    "results/private/v3-development-seeds.json",
+    "artifacts/campaign-v2/development-seeds.json"
+  ],
+  "excluded_seed_ranges": [
+    [
+      0,
+      10000000
+    ]
+  ],
+  "matched": {
+    "memory_condition": "memory",
+    "source": "controls/v3/directional.py",
+    "source_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+    "selected": {
+      "source": "artifacts/campaign-v3/selection/selected-instrumented.py",
+      "source_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+      "adapter": "selected-gen4-no-planner",
+      "parameter_key": [
+        "learning",
+        "raw_predictive_state"
+      ]
+    },
+    "helper_files": {
+      "scripts/v3_matched.py": "537e27391aef00958b478a0be39bbac8ab43665310b08c294687c17500f01e44",
+      "dreamer/worker_v3_shadow.py": "4ad0f1dde1fa8ecc55d5a7d458fd0a8f40c808eecf516fe650a76087787e99fc"
+    },
+    "shadow_conditions": [
+      "fitted_frozen",
+      "fitted_online",
+      "known_law",
+      "selected_online",
+      "selected_frozen"
+    ],
+    "shadow_pairs": [
+      {
+        "left": "selected_online",
+        "right": "selected_frozen",
+        "family": "descriptive"
+      },
+      {
+        "left": "fitted_online",
+        "right": "fitted_frozen",
+        "family": "descriptive"
+      },
+      {
+        "left": "selected_online",
+        "right": "fitted_online",
+        "family": "descriptive"
+      },
+      {
+        "left": "known_law",
+        "right": "selected_online",
+        "family": "descriptive"
+      },
+      {
+        "left": "known_law",
+        "right": "fitted_online",
+        "family": "descriptive"
+      },
+      {
+        "left": "known_law",
+        "right": "fitted_frozen",
+        "family": "descriptive"
+      }
+    ]
+  },
+  "replays": {
+    "conditions": [
+      "selected",
+      "selected_frozen"
+    ],
+    "first_cases": 32
+  },
+  "contrasts": [
+    {
+      "left": "selected",
+      "right": "selected_frozen",
+      "family": "primary",
+      "regimes": [
+        "stationary",
+        "switch"
+      ]
+    },
+    {
+      "left": "selected",
+      "right": "selected_frozen",
+      "family": "descriptive",
+      "regimes": [
+        "uniform"
+      ]
+    },
+    {
+      "left": "fitted_online",
+      "right": "fitted_frozen",
+      "family": "secondary",
+      "regimes": [
+        "stationary",
+        "switch"
+      ]
+    },
+    {
+      "left": "fitted_online",
+      "right": "fitted_frozen",
+      "family": "descriptive",
+      "regimes": [
+        "uniform"
+      ]
+    },
+    {
+      "left": "selected",
+      "right": "memory",
+      "family": "descriptive"
+    },
+    {
+      "left": "selected",
+      "right": "seed",
+      "family": "descriptive"
+    },
+    {
+      "left": "selected",
+      "right": "v2_gen14",
+      "family": "descriptive"
+    },
+    {
+      "left": "selected",
+      "right": "fitted_online",
+      "family": "descriptive"
+    },
+    {
+      "left": "known_law",
+      "right": "fitted_frozen",
+      "family": "descriptive"
+    },
+    {
+      "left": "selected",
+      "right": "selected_fixed_risk",
+      "family": "descriptive"
+    },
+    {
+      "left": "selected_frozen",
+      "right": "selected_frozen_fixed_risk",
+      "family": "descriptive"
+    }
+  ],
+  "selected_matched_conditions": {
+    "online": "selected_fixed_risk",
+    "frozen": "selected_frozen_fixed_risk"
+  },
+  "regime_interactions": [
+    {
+      "left": "selected",
+      "right": "selected_frozen",
+      "regime_a": "stationary",
+      "regime_b": "uniform"
+    },
+    {
+      "left": "selected",
+      "right": "selected_frozen",
+      "regime_a": "switch",
+      "regime_b": "uniform"
+    },
+    {
+      "left": "selected",
+      "right": "selected_frozen",
+      "regime_a": "switch",
+      "regime_b": "stationary"
+    }
+  ],
+  "interpretation": {
+    "primary": "Selected online minus frozen escape in stationary/switch, two-sided exact paired tests with Holm across two regimes.",
+    "secondary": "Fitted online minus fitted frozen escape, its own two-regime Holm family.",
+    "intervals": "Pointwise paired conservative 95% intervals; Holm applies to registered p-values, not intervals.",
+    "prediction": "Whole-case paired bootstrap of pooled sums/counts and relative losses; common-memory and selected uniform-planning experience remain separate.",
+    "prediction_use": "Uniform attempted-law substitution in all planning forecasts/hazards; does not remove predictive reasoning.",
+    "post_switch": "Unconditional outcomes remain primary; later forecast windows select surviving recorded experience.",
+    "reliable_discovery": "Not assessed by one selected search.",
+    "invalids": "All invalid executions retained with zero combined task fitness; no outcome-dependent retry. On-policy prediction retains produced targets; shadow failure uses0.5 on all recorded targets.",
+    "instrumentation": "Original chosen source preserved; additive read-only observer verified by AST and24 paired development executions, with costs disclosed.",
+    "retirement": "Every final-assessment case retired from future tuning; excluded small-integer range is not an episode count."
+  },
+  "workers": 4,
+  "first_command": ".venv/bin/python scripts/v3_assessment.py --plan artifacts/campaign-v3/assessment/preregistration.json --out results/campaign-v3-assessment --workers 4 --reserve-pool",
+  "resume_command": ".venv/bin/python scripts/v3_assessment.py --plan artifacts/campaign-v3/assessment/preregistration.json --out results/campaign-v3-assessment --workers 4"
+}

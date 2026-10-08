@@ -1,0 +1,22 @@
+{
+  "original_source": "artifacts/campaign-v3/selection/selected.py",
+  "original_source_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+  "instrumented_source": "artifacts/campaign-v3/selection/selected-instrumented.py",
+  "instrumented_source_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+  "builder_sha256": "fb473ce2d2904b01c0146445b01886bb6b56896fb862f2452c3fc2248c4ef956",
+  "parameter_key": "model.learning.raw_predictive_state",
+  "original_algorithm_ast_equal_after_removing_observer_call": true,
+  "original_export_fields_unchanged": true,
+  "observer_writes": [
+    "memory._diagnostic_decision",
+    "export.learning.raw_predictive_state",
+    "export.diagnostic_planning"
+  ],
+  "observer_call_position": "After move selection and immediately before returning the action",
+  "observer_reads": "Already computed planner locals and adaptive slow/fast/log_weights; no new action choice, prediction rollout, random draw or hidden environment input.",
+  "nonfinite_diagnostic_costs": "Represented by null; original control calculations unchanged.",
+  "passive_replay": "Without a planner call, diagnostic_planning is null; raw predictive state and original occupancy exports remain available.",
+  "runtime_transparency": "Requires separately recorded paired development verification.",
+  "new_environment_episodes": 0,
+  "new_model_calls": 0
+}

@@ -1,0 +1,138 @@
+{
+  "created_at_utc": "2026-10-08T21:02:53.546284+00:00",
+  "status": "Selected source reviewed; exact AST preservation and all 24 paired runtime transparency checks passed before the registered full development intervention audit.",
+  "generation": 4,
+  "program_path": "artifacts/campaign-v3/selection/selected-instrumented.py",
+  "program_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+  "original_selected_path": "artifacts/campaign-v3/selection/selected.py",
+  "original_selected_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+  "selection_record_sha256": "518a6a26432ad482dd08cbf26a943374cdae998996cbbefdf557f9c82fa4c451",
+  "parameter_key": "model.learning.raw_predictive_state",
+  "risk_adapter": "gen4_planner_observer",
+  "freezing_is_coherent": true,
+  "interventions": {
+    "predictive": "Slow/fast concentration and expert-weight adaptation runs; learned mixture predicts occupancy and feeds the existing route/lookahead planner.",
+    "frozen": "Disable _learn before both forgetting and evidence updates; raw slow[9], fast[9], log_weights[3] remain initial. Mapping, localization, visible-state inference, visits, targets and forecasting continue.",
+    "no_planning": "Continue learning and exporting learned forecasts, but recompute all route risks and lookahead hazards using uniform attempted-movement probabilities in the same planner; this is uniform-law prediction, not removal of all prediction.",
+    "frozen_no_planning": "Combine concentration/weight freeze with uniform-law route and lookahead forecasts."
+  },
+  "predictive_adaptation": {
+    "raw_parameters": [
+      "slow[9]",
+      "fast[9]",
+      "log_weights[3]"
+    ],
+    "updates": "Anonymous occupied-set likelihood under uniform/slow/fast experts; expected directional responsibilities respecting blocked attempts; information-weighted concentration updates and likelihood-tempered expert weights.",
+    "forgetting": "Slow/fast concentrations relax toward0.65/0.35 priors with retention0.985/0.86 on every enabled step, including steps without admitted likelihood. Log weights update only for admitted likelihoods; skip likelihood across25-step wall-phase boundaries.",
+    "mixture": "Fixed12% uniform plus88% expert-weighted mixture; initial effective law is uniform. Frozen parameters are episode-initial values, not post-learning values.",
+    "update_counter_limit": "Source counters measure informative slow-expert sources/effective information. Raw parameter changes also include forgetting and expert-weight normalization; counts alone do not establish new dynamics information."
+  },
+  "state_separation": {
+    "localization_mapping": "Public displacement updates position; terrain, seen times and inferred boundaries accumulate from observations. These routines do not read learned parameters.",
+    "occupancy_inference": "Reset visible source masses at current occupied cells and reconstruct fresh diffuse hidden Poisson intensity every forecast. No persistent hidden-density filter or inferred enemy identities.",
+    "controller_memory": "Target/target_kind, visits and map/observation history remain active in all conditions. Planner only writes target/target_kind; those fields are not read by predictive updates or forecasts.",
+    "anonymous_limit": "One source per observed occupied cell approximates unknown multiplicity when enemies overlap."
+  },
+  "forecast": {
+    "target": "At least one enemy occupies a coordinate after the next enemy tick.",
+    "horizon": 1,
+    "coordinates": "Grid coordinates relative to initial agent position, accumulated from public displacement.",
+    "action_conditioning": "Assumes interaction=True, including opening a cardinally adjacent door when holding both keys. Enemy law is independent of the chosen movement. All selected and immutable-memory actions interact=True.",
+    "unknown_terrain": "Observed/memorized walls and inferred boundaries block; unobserved terrain is treated as traversable for enemy propagation. Blocked attempted probability stays; no legal-only renormalization.",
+    "hidden_model": "Diffuse intensity over unseen remembered/local candidate cells, density=(3-visible occupied cells)/max(45,130-free visible cells); not normalized to a fixed remaining enemy count."
+  },
+  "planner": {
+    "route": "Static route edge cost1+16*horizon1 occupancy+visits+known occupied-cell penalty. A route cost reusing this field is not a calibrated future path-collision probability.",
+    "hazard_event": "For coordinate q at lookahead stage t, enemy occupies q before OR after enemy tick t. Visible-source overlap correction before+after-before*stay; hidden intensity uses an analogous Poisson union.",
+    "horizons": [
+      1,
+      2,
+      3
+    ],
+    "coordinates": "Same origin-relative grid coordinates.",
+    "conditioning": "Stages2/3 remain unconditional marginal hazards; they are not conditioned on survival along earlier proposed positions. Door geometry is the initially forecast open/closed state rather than branch-specific future interactions.",
+    "control": "Three-stage dynamic program with fixed stage weights1,0.55,0.25, deadline-dependent risk multiplier55..100, route potential and step/wait/visit costs. Excludes visible occupied immediate destinations.",
+    "immediate_comparability": "At an admitted immediate destination, before occupancy is zero and all possible predecessors are observed; actual stage1 hazard equals corresponding next-tick occupancy for the same law. Validate independently from public geometry. Exported learned occupancy can differ from risk used under the uniform-law intervention."
+  },
+  "instrumentation": {
+    "manifest": "artifacts/campaign-v3/selection/instrumentation.json",
+    "manifest_sha256": "61e911dbb7c8ef86718fd4db0df4c5deb9507a1a44c5f78a1cc2e667883918be",
+    "ast_proof": "All original top-level algorithm nodes are structurally identical after removing one observer call placed after action computation and before return. Original export function preserved under a wrapper.",
+    "observer": "Copies already computed actual planner choices, scores, hazards, continuations, current law, route target, risk weight and local hazard fields into a diagnostic-only memory key. Copies raw predictive parameters during export. No additional forecast rollout or random draw.",
+    "public_planning_fields": "diagnostic_planning: occupancy_horizon1_local, collision_hazards_local[1..3], choices, selected move, position, target, target_kind, risk_weight, future_weights and law. Law is inferred or uniform; no hidden environment probabilities enter ordinary candidates.",
+    "actual_risk_validation": "Independent immediate occupancy reconstruction from visible sources/public blocked geometry; compare to actual captured stage1 hazards and original exports. Reconstruct each choice score from recorded continuation, observed visit counts and hazard. Check chosen action equals argmin of actual captured score/hazard/potential/move tuple.",
+    "runtime_transparency_record": "artifacts/campaign-v3/selection/transparency.json",
+    "resource_limit": "Observer adds serialization/computation overhead under unchanged worker limits; frozen assessment must retain invalid executions.",
+    "runtime_transparency_sha256": "d679866cd631c5a2f00079ea9237b5a65dc2db826f77745264a1ca37438a659e",
+    "runtime_transparency_checks": {
+      "all_checks_pass": true,
+      "condition_episodes": 24,
+      "invalid_condition_episodes": 0,
+      "environment_steps": 1206,
+      "candidate_cpu_seconds": 17.118802000000002,
+      "evaluator_cpu_seconds": 2.2303663789999995,
+      "session_seconds": 9.665775814995868,
+      "cpu_by_source": {
+        "instrumented": 8.882018000000002,
+        "original": 8.236783999999998
+      }
+    },
+    "runtime_decision_audit": {
+      "frames": 603,
+      "choices": 3873,
+      "chosen_move_mismatches": 0,
+      "choice_score_mismatches": 0,
+      "choice_hazard_field_mismatches": 0,
+      "planning_reconstruction_mismatches": 0,
+      "export_reconstruction_mismatches": 0,
+      "observer_law_mismatches": 0
+    }
+  },
+  "passive_replay": {
+    "feasible": true,
+    "source_bound_adapter": "selected-gen4-no-planner",
+    "same_memory_experience": "Selected online/frozen shadows may run WM/export only on immutable-memory public observations and preceding recorded actions. No planner or environment step runs in the shadow.",
+    "independence_argument": "Only target/target_kind are written by planner; neither is read by WM, _learn, _combined_law, _forecast or original export. last_action is unused. The memory policy always interacts=True, matching forecast geometry.",
+    "runtime_verification": "Source-independent common observations/labels and raw freeze state will be checked by the shared five-shadow helper. Failure fallback retains every forecast target and episode; no on-policy trajectory match required for these shadows."
+  },
+  "lineage_snapshot": {
+    "copied_at_utc": "2026-10-08T21:02:53.546541+00:00",
+    "records": [
+      {
+        "generation": 4,
+        "id": "1c9d8197-0fad-4324-a2fa-55530930bb1a",
+        "parent_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+        "source_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+        "birth_island": 0,
+        "island_idx": 0,
+        "archive_inspiration_ids": [],
+        "top_k_inspiration_ids": [],
+        "migration_history": []
+      },
+      {
+        "generation": 0,
+        "id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+        "parent_id": null,
+        "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+        "birth_island": 0,
+        "island_idx": 0,
+        "archive_inspiration_ids": [],
+        "top_k_inspiration_ids": [],
+        "migration_history": []
+      }
+    ],
+    "source": "native lineage and gen4 sampling record",
+    "sampling_record_sha256": "7a16a565aeda509572097848fa6aa423cb1125cde82c08556c4822fe0494028b",
+    "scope": "Selected is a direct original-seed child on birth island0, with no inspirations. This is not a gen1 descendant or the handwritten comparator."
+  },
+  "prior_source_review": "artifacts/campaign-v3/mechanism-gen4-review.json",
+  "limitations": [
+    "Development audit reuses search cases and is not independent selected-program performance evidence.",
+    "Uniform-law substitution retains a predictive planner; do not call it no prediction.",
+    "Better on-policy forecast scores do not establish better prediction on identical experience.",
+    "A single selected program does not establish reliable discovery across searches.",
+    "Forecast hazards and route cost are approximate and are not an optimal-policy bound."
+  ],
+  "new_environment_episodes_at_source_review": 0,
+  "new_model_calls": 0
+}

@@ -208,12 +208,20 @@ def display_index(left, right):
 
 def public_frame(frame):
     # Explicit allowlists exclude hidden movement laws, seeds, candidate-private
-    # state, predictor internals and any future schedule from published examples.
-    return {"world": {key: frame["world"][key] for key in
+    # state and future schedules. The reviewed observer exports only the
+    # already-computed planning fields/costs; its inferred law is also omitted.
+    result = {"world": {key: frame["world"][key] for key in
                        ("grid", "enemies", "agent", "origin", "step", "keys", "door_open")},
             "model": {key: frame["model"][key] for key in
                        ("position", "terrain", "enemy", "default_enemy") if key in frame["model"]},
             "action": frame["action"], "next_enemies": frame["next_enemies"]}
+    diagnostic = frame["model"].get("diagnostic_planning")
+    if diagnostic and diagnostic.get("adapter") == "gen4-planner-observer-v1":
+        result["model"]["diagnostic_planning"] = {key: diagnostic[key] for key in
+            ("adapter", "position", "target", "target_kind", "move", "risk_weight",
+             "future_weights", "uniform_law_intervention", "occupancy_horizon1_local",
+             "collision_hazards_local", "choices")}
+    return result
 
 
 def prepare_examples(raw, rows, selections):
@@ -358,6 +366,80 @@ def render_gif(example,traces,path):
     return str(path)
 
 
+def render_decision_fields(examples, out):
+    """Plot the exact recorded gen4 planning fields, without reconstructing them."""
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib.cm import ScalarMappable
+    from matplotlib.colors import Normalize
+    from visual_theme import apply_theme, field_cmap, save_figure, COBALT, MAGENTA, SECONDARY
+    apply_theme()
+    outputs = []
+    for example in examples:
+        frames = [example['agents'][name]['display_frame'] for name in PAIR]
+        diagnostics = [frame and frame['model'].get('diagnostic_planning') for frame in frames]
+        if not all(diagnostics):
+            continue
+        fig, axes = plt.subplots(2, 4, figsize=(11.5, 7.4),
+            gridspec_kw={'width_ratios': [1, 1, 1, 1.25], 'wspace': .30, 'hspace': .65})
+        fig.subplots_adjust(left=.05, right=.94, top=.82, bottom=.23)
+        for row, (name, diagnostic) in enumerate(zip(PAIR, diagnostics)):
+            color = COBALT if row == 0 else MAGENTA
+            px, py = diagnostic['position']
+            for stage, layer in enumerate(diagnostic['collision_hazards_local']):
+                ax = axes[row, stage]
+                field = np.zeros((7, 7))
+                for x, y, probability in layer:
+                    if abs(x-px) <= 3 and abs(y-py) <= 3:
+                        field[y-py+3, x-px+3] = probability
+                ax.imshow(field, cmap=field_cmap(), vmin=0, vmax=1,
+                          extent=(-3.5, 3.5, 3.5, -3.5), interpolation='nearest')
+                ax.scatter([0], [0], s=35, facecolors='white', edgecolors=color, linewidths=1.4)
+                if stage == 0:
+                    dx, dy = diagnostic['move']
+                    if dx or dy:
+                        ax.annotate('', xy=(dx, dy), xytext=(0, 0),
+                            arrowprops={'arrowstyle': '-|>', 'color': color, 'lw': 2})
+                ax.set(xticks=[-3, 0, 3], yticks=[-3, 0, 3],
+                       title=f"{'Selected' if row == 0 else 'Frozen'} · stage {stage+1}")
+                if row == 1:
+                    ax.set_xlabel('Offset from decision position', fontsize=8)
+                if stage == 0:
+                    ax.set_ylabel('Vertical offset', fontsize=9)
+            ax = axes[row, 3]
+            choices = diagnostic['choices']
+            finite = [choice['score'] for choice in choices if choice['score'] is not None]
+            minimum = min(finite) if finite else 0.
+            for index, choice in enumerate(choices):
+                if choice['score'] is None:
+                    ax.text(0, index, 'nonfinite', color=SECONDARY, fontsize=8)
+                    continue
+                excess = max(0., choice['score']-minimum)
+                chosen = choice['move'] == diagnostic['move']
+                ax.hlines(index, 0, excess, color=color, alpha=1. if chosen else .45, linewidth=2)
+                ax.plot(excess, index, 'o' if chosen else '.', color=color, markersize=7 if chosen else 4)
+            ax.set(yticks=range(len(choices)), yticklabels=[str(tuple(c['move'])) for c in choices],
+                   title='Admissible first moves')
+            if row == 1:
+                ax.set_xlabel('Excess planner cost')
+            ax.set_xscale('symlog', linthresh=1)
+            ax.invert_yaxis()
+            ax.tick_params(axis='y', labelsize=8)
+        fig.suptitle(f"{example['regime'].capitalize()} · case {example['case']} · step {example['display_step']}\n"
+                     'The fields and costs used to choose the move', x=.05, ha='left', fontsize=15, fontweight='bold')
+        cax = fig.add_axes([.963, .31, .012, .34])
+        fig.colorbar(ScalarMappable(norm=Normalize(0, 1), cmap=field_cmap()), cax=cax,
+                     label='P(occupied before OR after tick)')
+        fig.text(.05, .065, 'Recorded planner estimates; coordinates relative to the current decision position. Arrow = chosen first move.\n'
+            'Later fields are unconditional marginals, not survival-conditioned path risks. Excess cost is a heuristic, not a probability.\n'
+            'Cases follow the frozen outcome-stratum rule; these illustrations do not replace paired assessment.',
+            fontsize=9, color=SECONDARY)
+        target = Path(out)/f"decision-fields-{example['regime']}-{example['stratum']}"
+        save_figure(fig, target)
+        outputs.extend(str(target.with_suffix('.'+extension)) for extension in ('svg', 'pdf', 'png'))
+    return outputs
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data',default='artifacts/campaign-v3/assessment')
@@ -379,12 +461,15 @@ def main():
         'path_scope':'Pre-action recorded positions; terminal destinations are not reconstructed.',
         'exposure_notice':'These displayed cases are now explicitly exposed. The entire assessment pool is retired from future tuning and fresh-test claims.',
         'hidden_laws_published':False,'selections':selections,'examples':examples}
+    publication['planning_diagnostics_contract'] = ('Source-reviewed generation-4 observer; exact already-computed local stage1..3 collision hazards and first-action choice costs. '
+        'Fields estimate occupancy before OR after a tick at a destination; later marginals are not conditioned on earlier survival. Costs are heuristic. No inferred or hidden movement laws are published.')
     write_immutable(data/'behavior-examples.json',publication)
     write_immutable(data/'exposed-cases.json',{'analysis_closure_sha256':publication['analysis_closure_sha256'],
         'whole_assessment_pool_retired':True,'seed_pool_read':False,
         'cases':[{'case':e['case'],'regime':e['regime'],'stratum':e['stratum']} for e in examples],
         'status':'Published retrospectively after numerical closure; exclude all assessment cases from tuning/future fresh tests.'})
     outputs=render_figures(examples,data/'figures')
+    outputs.extend(render_decision_fields(examples,data/'figures'))
     if args.gif and examples:
         first=examples[0]
         gif=render_gif(first,private[first['regime'],first['stratum'],first['case']],data/'figures/behavior-example.gif')

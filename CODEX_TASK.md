@@ -10,19 +10,25 @@ Do not start another copy or extend the closed v2 database. The active campaign 
 [docs/v3-protocol.md](docs/v3-protocol.md) and
 [artifacts/campaign-v3/protocol.json](artifacts/campaign-v3/protocol.json).
 The task-only objective, 24 development layouts × three regimes, original
-predictive seed and native settings were frozen before mutation.
+predictive seed and native settings were frozen before mutation. The search is
+now **complete at 50 slots**; do not restart it. Selection validation chose
+generation 4. A 288-episode development audit verified its interventions.
 
 Use the compact [search summary](artifacts/campaign-v3/search-summary.json) and
 [native audit](artifacts/campaign-v3/native-audit.json) for the latest exported
-counts; inspect the actual database, lock and process before resuming. The exact
-command is:
+counts. The frozen assessment has 1,536 paired layout cases, three regimes and
+ten conditions. Inspect its existing checkpoints and controller before using
+the exact continuation command:
 
 ```bash
-HEADLESS_BILLING=subscription .venv/bin/python scripts/resume_v3_transport.py \
-  --results results/campaign-v3 --generations 50
+.venv/bin/python scripts/v3_assessment.py \
+  --plan artifacts/campaign-v3/assessment/preregistration.json \
+  --out results/campaign-v3-assessment --workers 4
 ```
 
-Run only one controller. Original driver/configuration files are hash-frozen;
+Run only one controller. Reserve the assessment pool once, only after its
+complete preregistration is committed; resumption never draws another pool.
+Original native driver/configuration files are hash-frozen;
 the additive resume driver applies the preserved prompt-description correction.
 Follow [methods and execution](docs/v3-methods.md) for that correction, comparator
 fitting, matched prediction, checkpoints and remaining assessment gates. A final

@@ -2,7 +2,7 @@
 
 ## Unknown dynamics: current experiment
 
-A separate **v3 wave is running one 50-slot native ShinkaEvolve search**. Enemies
+A separate **v3 wave completed one 50-slot native ShinkaEvolve search**. Enemies
 retain nine attempted moves, including waiting; blocked moves become stays. The
 three equally weighted regimes are the original uniform law, a privately drawn
 stationary directional law, and an unannounced change of law. The maze, partial
@@ -11,15 +11,26 @@ This search optimizes absolute task performance; proper prediction losses are
 diagnostics and textual feedback. It starts from the immutable original
 predictive seed, separately from the manually fitted directional comparator.
 
-The [live search record](artifacts/campaign-v3/search-summary.json),
+The [completed search report](docs/v3-search-results.md),
 [every-candidate table](artifacts/campaign-v3/search.csv),
 [native execution audit](artifacts/campaign-v3/native-audit.json) and
 [methods](docs/v3-methods.md) distinguish completed work from planned assessment.
 The [source review](docs/v3-program-changes.md) records substantive changes,
 actual ancestry and intervention caveats for the initial branches.
-The selected program, interventions and precision calculation will be frozen
-before drawing fresh assessment cases. Development leaders are not final results.
-One search cannot establish reliable discovery across independent runs.
+Selection validation chose **generation 4** (180/192 escapes), a direct descendant
+of the original seed with uniform, slow and fast directional movement experts.
+This score is selection-biased. Its development audit verifies that freezing
+predictive parameters preserves mapping and that substituting a uniform law
+changes the predictions used by its existing planner. Learning changed action
+sequences in 50/72 development cases without changing escape outcomes.
+
+The [frozen assessment design](docs/v3-assessment-design.md) specifies **1,536
+paired cases per regime**, ten on-policy conditions and five passive predictors
+on identical recorded experience. The program, comparators, interventions,
+precision and analysis are frozen before drawing fresh cases. That assessment
+is the remaining inferential evidence; development results do not establish
+generalization or a control benefit. One search cannot establish reliable
+discovery across independent runs.
 
 ![V3 development search: all candidate slots, prediction diagnostics, native ancestry and CPU cost](artifacts/campaign-v3/figures/search.svg)
 

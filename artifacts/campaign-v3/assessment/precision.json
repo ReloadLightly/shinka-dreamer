@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-10-08T21:09:58.801680+00:00",
+  "development_only": true,
+  "assessment_pool_drawn": false,
+  "program_sha256": "5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c",
+  "development_manifest_sha256": "1b24a395af65162b1945c91e5311412a2466bbe9f088e59e69cb56508e87f7dc",
+  "development_summary_sha256": "4ccbcd2482452272a47f2b748d3ad8f3793e4ff5daf74c7bed99b17cfedd1a9f",
+  "mechanism_review_sha256": "0170e992ec5a15021ec47011ba38aa32037a02d91fd7e7596f753793678c79fe",
+  "script_sha256": "1ea2e1f3a0612f436fa1f66e4c98fdb145c3aa4852aba4f26ab0a7f0d1ca20df",
+  "sample_size_per_regime": 1536,
+  "meaningful_escape_difference": 0.03,
+  "target_power": 0.8,
+  "per_test_alpha": 0.025,
+  "multiplicity": "Two primary regime tests use Holm; planning uses alpha=.025 for each.",
+  "rule": {
+    "minimum_cases": 1024,
+    "round_up_increment": 256,
+    "discordance_floor": 0.08,
+    "planning_discordance": "maximum one-sided 95% development upper bound across stationary/switch, or floor"
+  },
+  "development": {
+    "stationary": {
+      "cases": 24,
+      "discordant_escape_pairs": 0,
+      "discordance": 0.0,
+      "one_sided_95_upper": 0.11734615615494873
+    },
+    "switch": {
+      "cases": 24,
+      "discordant_escape_pairs": 0,
+      "discordance": 0.0,
+      "one_sided_95_upper": 0.11734615615494873
+    }
+  },
+  "planning_discordance": 0.11734615615494873,
+  "exact_planning_power": 0.8739121108010671,
+  "ci_at_rounded_expected_counts_null": {
+    "cases": 1536,
+    "left_only": 90,
+    "right_only": 90,
+    "difference": 0.0,
+    "ci95": [
+      -0.023415988864804844,
+      0.023415988864804862
+    ]
+  },
+  "ci_at_rounded_expected_counts_meaningful_effect": {
+    "cases": 1536,
+    "left_only": 113,
+    "right_only": 67,
+    "difference": 0.029947916666666668,
+    "ci95": [
+      0.008398116149160207,
+      0.0568997137221618
+    ]
+  },
+  "precision_note": "Intervals are evaluated at rounded expected cell counts, not averaged over repeated sampling.",
+  "sensitivity": [
+    {
+      "discordance": 0.03,
+      "power": 0.9999999999999138
+    },
+    {
+      "discordance": 0.08,
+      "power": 0.9716517798302868
+    },
+    {
+      "discordance": 0.11734615615494873,
+      "power": 0.8739121108010671
+    },
+    {
+      "discordance": 0.15,
+      "power": 0.7707590077049308
+    },
+    {
+      "discordance": 0.25,
+      "power": 0.5249563149930494
+    },
+    {
+      "discordance": 0.5,
+      "power": 0.2696323148300774
+    },
+    {
+      "discordance": 1.0,
+      "power": 0.13689186487695937
+    }
+  ],
+  "limitations": "Conditional planning power is not guaranteed: only 24 reused development cases per regime; the selected program was searched on them. Individual 95% discordance bounds are neither a simultaneous two-regime guarantee nor selection-adjusted intervals. Conservative planning bounds and the 1024-case floor reduce, but do not eliminate, this uncertainty. Final n is frozen regardless of assessment significance.",
+  "model_calls": 0,
+  "additional_environment_episodes": 0
+}

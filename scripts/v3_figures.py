@@ -14,8 +14,9 @@ import numpy as np
 
 LABELS={'memory':'Original memory','v2_gen14':'v2 generation 14',
         'seed':'Original predictive seed','selected':'Selected evolved',
-        'selected_frozen':'Selected, frozen','selected_fixed_risk':'Selected, fixed risk',
-        'selected_frozen_fixed_risk':'Selected, frozen + fixed risk',
+        'selected_online':'Selected, online',
+        'selected_frozen':'Selected, frozen','selected_fixed_risk':'Selected, uniform-law planning',
+        'selected_frozen_fixed_risk':'Selected, frozen + uniform law',
         'fitted_online':'Fitted predictor, online','fitted_frozen':'Fitted predictor, frozen',
         'known_law':'Known-law reference'}
 
@@ -46,7 +47,7 @@ def outcomes(data,out):
             ax.errorbar(value,i,xerr=[[value-lo],[hi-value]],fmt='o',color=COBALT if p['family']=='primary' else MAGENTA,capsize=3)
         ax.axvline(0,c=SECONDARY,lw=.7)
         ax.set(yticks=range(len(pairs)),yticklabels=[f"{display(p['left'])}\n− {display(p['right'])}" for p in pairs],
-               xlabel='Escape difference (percentage points)',title='Paired effects · 95% intervals')
+               xlabel='Escape difference (percentage points)',title='Paired effects · pointwise 95% intervals')
         ax.invert_yaxis()
     fig.suptitle('Unknown enemy dynamics · frozen-program assessment',fontsize=16,fontweight='bold',y=.995)
     save_figure(fig,out/'outcomes-effects')
@@ -63,7 +64,7 @@ def forecast_cost(data,out):
             for name in names:
                 row=data['outcomes'][f'{regime}/{name}']
                 stat=row['forecasts']['brier_near'] if key=='forecast' else row['candidate_cpu_seconds']
-                if not stat:
+                if not stat or stat.get('ci95') is None or (key == 'cost' and stat.get('mean') is None):
                     values.append(np.nan);low.append(np.nan);high.append(np.nan)
                     continue
                 value=stat['loss'] if key=='forecast' else stat['mean']
@@ -81,13 +82,18 @@ def forecast_cost(data,out):
 
 def write_tables(data,out):
     lines=['# Frozen v3 outcomes','','All outcome denominators include invalid executions. Forecast scores here are on-policy.','',
+           'Paired 95% intervals are pointwise, not Holm-adjusted simultaneous intervals. Holm p-values apply only to the registered test families. CPU means use measured executions only; unavailable measurements are counted separately and never treated as zero.','',
            '| Regime | Condition | Escape | Death | Timeout | Invalid | Mean task | Near Brier | CPU s/episode |',
            '|:--|:--|--:|--:|--:|--:|--:|--:|--:|']
     for key,row in data['outcomes'].items():
         regime,name=key.split('/',1)
         near=row['forecasts']['brier_near']
         near_text=f"{near['loss']:.6f}" if near else 'Unavailable'
-        lines.append(f"| {regime} | {display(name)} | {row['escape']['count']}/{row['episodes']} | {row['death']['count']} | {row['timeout']['count']} | {row['invalid']['count']} | {row['combined_score']['mean']:.4f} | {near_text} | {row['candidate_cpu_seconds']['mean']:.3f} |")
+        cpu=row['candidate_cpu_seconds']
+        cpu_text=f"{cpu['mean']:.3f}" if cpu['mean'] is not None else 'Unavailable'
+        if cpu.get('unavailable_episodes'):
+            cpu_text+=f" ({cpu['unavailable_episodes']} unmeasured)"
+        lines.append(f"| {regime} | {display(name)} | {row['escape']['count']}/{row['episodes']} | {row['death']['count']} | {row['timeout']['count']} | {row['invalid']['count']} | {row['combined_score']['mean']:.4f} | {near_text} | {cpu_text} |")
     lines+=['','| Regime | Paired contrast | Escape Δ, pp [95% CI] | Wins / losses | Exact p | Holm p |','|:--|:--|--:|--:|--:|--:|']
     for row in data['pairs'].values():
         effect=row['outcomes']['escape'];lo,hi=np.array(effect['ci95'])*100
@@ -111,6 +117,7 @@ def matched_figure(data,out,name='matched-learning'):
                           gridspec_kw={'wspace':.48,'hspace':.62})
     fig.subplots_adjust(top=.84 if len(available)==1 else .90,bottom=.19 if len(available)==1 else .08)
     colors={'fitted_online':COBALT,'fitted_frozen':MAGENTA,'known_law':ORANGE,
+            'selected_online':COBALT,'selected_frozen':MAGENTA,
             'selected_fixed_risk':COBALT,'selected_frozen_fixed_risk':MAGENTA,
             'no_planning':COBALT,'frozen_no_planning':MAGENTA}
     for row,regime in enumerate(available):
@@ -122,7 +129,8 @@ def matched_figure(data,out,name='matched-learning'):
             if not points: continue
             x=[b['midpoint'] for b in points];stats=[b['conditions'][condition] for b in points]
             y=[s['loss'] for s in stats];color=colors.get(condition,(COBALT,MAGENTA,ORANGE)[i%3])
-            ax.plot(x,y,'o-',color=color,label=display(condition),markersize=3)
+            style = 's--' if condition.startswith('fitted_') else 'o-'
+            ax.plot(x,y,style,color=color,label=display(condition),markersize=3)
             ax.fill_between(x,[s['ci95'][0] for s in stats],[s['ci95'][1] for s in stats],color=color,alpha=.1)
         if conditions:
             counts=[str((b.get('conditions',{}).get(conditions[0]) or {}).get('contributing_episodes',0)) for b in bins]
@@ -139,7 +147,7 @@ def matched_figure(data,out,name='matched-learning'):
             value=100*stat['relative_reduction'];lo,hi=np.array(stat['relative_reduction_ci95'])*100
             ax.errorbar(value,i,xerr=[[value-lo],[hi-value]],fmt='o',color=COBALT if i==0 else ORANGE,capsize=3)
         ax.axvline(0,color=SECONDARY,lw=.8)
-        ax.set(yticks=range(len(pairs)),yticklabels=[k.replace('-minus-','\n− ').replace('_',' ') for k in pairs],
+        ax.set(yticks=range(len(pairs)),yticklabels=['\n− '.join(display(p) for p in k.split('-minus-')) for k in pairs],
                xlabel='Pooled Brier reduction (%)',title='Paired whole-episode uncertainty')
         ax.invert_yaxis()
     fig.suptitle('Predictive learning on matched experience\n'+data.get('study','Selected frozen program'),
@@ -149,10 +157,10 @@ def matched_figure(data,out,name='matched-learning'):
 
 def write_matched_tables(fitted,selected,out):
     lines=['# Prediction on identical experience','',
-           'Each comparison uses the same recorded experience within its policy. Losses across different policies are not a head-to-head predictor comparison. Positive reductions favor the left condition; intervals resample whole paired episodes. Post-switch losses condition on the recorded policy reaching the switch.','',
+           'All five passive predictors share the original memory-policy recordings. The additional selected uniform-planning comparison has its own policy; losses across these policies are not a head-to-head predictor comparison. Positive reductions favor the left condition; intervals resample whole paired episodes. Post-switch losses condition on the recorded policy reaching the switch.','',
            '| Experience | Regime | Left − right | Target | Left / right Brier | Reduction, % [95% CI] | Left / right targets |',
            '|:--|:--|:--|:--|--:|--:|--:|']
-    for experience,data in [('Original memory policy',fitted),('Selected fixed-planning policy',selected)]:
+    for experience,data in [('Original memory policy',fitted),('Selected uniform-law planning policy',selected)]:
         for regime,group in data.get('regimes',data).items():
             if regime not in ('uniform','stationary','switch'):continue
             if not group.get('available',True):

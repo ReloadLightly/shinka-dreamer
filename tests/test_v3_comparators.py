@@ -167,3 +167,45 @@ def test_matched_failed_shadow_preserves_target_denominators(monkeypatch):
         assert row["error"] and row["missing_forecast_frames"] == 2
         assert row["stats"]["brier_near"] == [4.5, 18]
         assert "brier_near_terminal" not in row["stats"]
+
+
+def test_selected_passive_adapter_is_source_bound_and_uses_same_hidden_targets(monkeypatch):
+    import v3_matched as matched
+    selected = {'source':str(ROOT / 'artifacts/campaign-v3/selection/selected-instrumented.py'),
+                'source_sha256':matched.APPROVED_SELECTED_SHA256, 'adapter':matched.SELECTED_ADAPTER,
+                'parameter_key':['learning','raw_predictive_state']}
+    seen=[]
+    class FakeLaw:
+        switch_step=2
+        def __init__(self,*args,**kwargs): pass
+        def law_for_transition(self,transition): return [1/9]*9
+    class FakeShadow:
+        def __init__(self,path,seed,adapter):
+            self.inputs=[]
+            seen.append((adapter,self.inputs))
+        def query(self,request):
+            self.inputs.append(copy.deepcopy(request))
+            step=request['obs']['step'] if request['obs']['learn'] else 0
+            return {'passive_shadow':True,'model':{'enemy':[[1,0,.7]],'default_enemy':0.,
+                    'position':[request['obs']['step'],0],'terrain':[],
+                    'learning':{'transition_weights':[step],
+                                'raw_predictive_state':{'slow':[step],'fast':[step],'log_weights':[0.]}}}}
+        def close(self): pass
+    monkeypatch.setattr(matched,'UnknownDynamicsMaze',FakeLaw)
+    monkeypatch.setattr(matched,'Shadow',FakeShadow)
+    result=matched.evaluate_trace(_shadow_trace(),0,'switch',0,ROOT/'controls/v3/directional.py',
+                                  selected=selected,policy_reason='caught')
+    assert result['condition_episodes']==5 and result['new_environment_episodes']==0
+    assert result['selected_source_sha256']==selected['source_sha256']
+    assert all(row['stats']['brier_near']==result['shadows']['fitted_online']['stats']['brier_near']
+               for row in result['shadows'].values())
+    for index,(adapter,inputs) in enumerate(seen):
+        assert all(set(request)=={'obs','last_action'} for request in inputs)
+        assert all(('known_law' in request['obs']) == (index==2) for request in inputs)
+        assert all(request['obs']['learn']==(index not in (0,4)) for request in inputs)
+        assert (adapter==matched.SELECTED_ADAPTER)==(index>=3)
+    assert result['shadows']['selected_frozen']['audit']['parameters_constant'] is True
+    assert result['shadows']['selected_online']['audit']['parameter_change_steps']==1
+    with pytest.raises(ValueError,match='reviewed gen4'):
+        matched.evaluate_trace(_shadow_trace(),0,'switch',0,ROOT/'controls/v3/directional.py',
+                               selected=dict(selected,source_sha256='unreviewed'))

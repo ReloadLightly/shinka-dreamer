@@ -266,6 +266,8 @@ def complete_matched(root, case, seed, regime, spec, row):
         saved = json.loads(path.read_text())
         if saved.get('policy_trajectory_sha256') != row.get('audit', {}).get('trajectory_sha256'):
             raise ValueError('Matched checkpoint trajectory mismatch')
+        if saved.get('selected_source_sha256') != spec.get('selected', {}).get('source_sha256'):
+            raise ValueError('Matched checkpoint selected-source mismatch')
         if trace_path.exists():
             trace_path.unlink()
         return
@@ -285,7 +287,9 @@ def complete_matched(root, case, seed, regime, spec, row):
     atomic_create(root / 'matched-attempts' / (attempt + '.started.json'), record_start)
     try:
         result = evaluate_trace(trace, seed, regime, case, str(resolve(spec['source'])),
-                                expected_source_sha256=spec['source_sha256'], policy_reason=row['reason'])
+                                expected_source_sha256=spec['source_sha256'], policy_reason=row['reason'],
+                                selected=(dict(spec['selected'], source=str(resolve(spec['selected']['source'])))
+                                          if spec.get('selected') else None))
     except Exception as error:
         # World outcomes are already durable. Failed diagnostic execution is reported.
         result = {'case': case, 'regime': regime, 'policy_trajectory_sha256': trajectory_hash,
@@ -294,6 +298,7 @@ def complete_matched(root, case, seed, regime, spec, row):
                   'evaluator_cpu_seconds': 0., 'cpu_measurement_unavailable': True}
     result['recorded_trace_sha256'] = record_start['trace_sha256']
     result['source_sha256'] = spec['source_sha256']
+    result['selected_source_sha256'] = spec.get('selected', {}).get('source_sha256')
     result['policy_reason'] = row['reason']
     record_start.update(seconds=result['seconds'], candidate_cpu_seconds=result['candidate_cpu_seconds'],
                         evaluator_cpu_seconds=result['evaluator_cpu_seconds'],
@@ -444,10 +449,25 @@ def verify_plan(plan, check_driver=True):
             raise ValueError('Freeze a bounded prefix and named conditions for passive replay retention')
     matched = plan.get('matched')
     if matched:
+        from scripts.v3_matched import APPROVED_COMPARATOR_SHA256, validate_selected_spec
         if matched.get('memory_condition') not in names:
             raise ValueError('Matched experience needs a named assessment policy condition')
         if sha256(resolve(matched['source'])) != matched['source_sha256']:
             raise ValueError('Frozen matched-predictor source changed')
+        if matched['source_sha256'] != APPROVED_COMPARATOR_SHA256:
+            raise ValueError('Matched comparator needs its source-reviewed passive adapter')
+        if matched.get('selected'):
+            selected = matched['selected']
+            validate_selected_spec(dict(selected, source=str(resolve(selected['source']))))
+            expected_shadows = {'fitted_frozen','fitted_online','known_law','selected_online','selected_frozen'}
+            if set(matched.get('shadow_conditions', [])) != expected_shadows or len(matched['shadow_conditions']) != 5:
+                raise ValueError('Freeze all five selected/comparator shadow names')
+            if not matched.get('shadow_pairs'):
+                raise ValueError('Freeze selected/comparator shadow comparison pairs')
+            pairs = [(pair.get('left'), pair.get('right')) for pair in matched['shadow_pairs']]
+            if (len(set(pairs)) != len(pairs) or
+                    any(a not in expected_shadows or b not in expected_shadows or a == b for a,b in pairs)):
+                raise ValueError('Invalid frozen selected/comparator shadow comparisons')
         if not matched.get('helper_files'):
             raise ValueError('Freeze matched helper and worker files before sampling')
         for path, expected in matched['helper_files'].items():

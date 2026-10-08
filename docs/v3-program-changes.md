@@ -1,6 +1,6 @@
 # Initial v3 structural review: candidate slots 0–7
 
-This table describes inspected source code, not the mutation model's claims about its proposal. It covers the first eight completed slots; later candidates have not been structurally reviewed here. The selected program's ancestry will receive a separate review after search. Full source hashes, function-level evidence, native IDs and the separately labeled proposal descriptions are in [program-review.json](../artifacts/campaign-v3/program-review.json).
+This table describes inspected source code, not the mutation model's claims about its proposal. It covers the first eight completed slots; later candidates have not been structurally reviewed here. The selected program's ancestry is reviewed below. Full source hashes, function-level evidence, native IDs and the separately labeled proposal descriptions are in [program-review.json](../artifacts/campaign-v3/program-review.json).
 
 Each development result uses the same 72 episodes: 24 layouts × three regimes. These are selection-biased feedback, not fresh assessment or evidence of reliable discovery. All eight candidates had zero invalid episodes. Task is the absolute task objective; escape is a count out of 72.
 
@@ -24,3 +24,28 @@ Gen6 is a useful negative branch: the proposed survival-conditioned planner scor
 The [gen1 development audit](../artifacts/campaign-v3/mechanism-gen1-smoke/summary.json) preserves a negative result: online learning worsened prediction on identical experience despite better on-policy prediction loss, with no observed escape improvement in its small smoke comparison. The [gen4 review](../artifacts/campaign-v3/mechanism-gen4-review.json) is source evidence only. Better development task scores, better prediction, causal control benefit and reliable discovery remain separate claims.
 
 The expanding [all-candidate table](../artifacts/campaign-v3/search.csv), [lineage](../artifacts/campaign-v3/lineage.json), [accepted source archive](../artifacts/campaign-v3/programs/), [saved proposal archive](../artifacts/campaign-v3/proposals/) and [attempt archive](../artifacts/campaign-v3/attempts/) include branches beyond this review. Their presence does not mean their architectures have been inspected. This documentation task added no environment episodes or model calls.
+
+## Selected ancestry after 50 slots
+
+The frozen selection chose **slot 4**, a direct rewrite of the original seed on island 0, with no inspirations. Its immutable source SHA is `aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c`. It is independent of the slot 1 branch and of the manually engineered directional comparator. The five-candidate selection used 960 episodes; slot 4 escaped in 180/192, with no invalid executions and task score 0.930887. These results remain selection-biased. The [selection record](../artifacts/campaign-v3/selection/selection.json) and [selected source review](../artifacts/campaign-v3/mechanism-selected-review.json) bind the exact sources and native relationships.
+
+| Selected ancestry | Verified substantive change | Intervention meaning |
+| --- | --- | --- |
+| Original seed, slot 0 → slot 4 | Five occupancy-category rates become nine-direction slow/fast evidence concentrations plus a uniform expert. Anonymous occupancy likelihood updates their weights and blocked-attempt responsibilities. Mapping and current observed occupancy remain separate state. | Freezing stops concentration forgetting and evidence/expert updates. Localization, mapping, visits and occupancy inference continue. |
+| Slot 4 planner | Static seed routing becomes route potentials and three-stage action search, with actual before/after occupancy-union hazards and persistent targets. Later hazards remain unconditional; accumulated cost is not calibrated path-death probability. | The historical `no_planning` flag replaces learned dynamics with a uniform movement law throughout the same predictive planner. It does not remove prediction. |
+| Additive diagnostic observer | Copies raw slow/fast concentrations and expert weights, plus already computed action scores and local hazards, after the original action has been chosen. It adds no learned capabilities or new planning calculation. | Original algorithm AST is preserved after removing that single observer call. All 24 paired original/instrumented development runs matched actions, observations, physical trajectories, original forecasts and outcomes. Runtime overhead remains measured under unchanged limits. |
+
+The observer source has a distinct SHA, `5861f5e973b98bb48c878cc6f780af8d919f2b413775642aa5b6d640c36aba3c`; the [instrumentation manifest](../artifacts/campaign-v3/selection/instrumentation.json) and [transparency results](../artifacts/campaign-v3/selection/transparency.json) preserve that distinction. Its forecast is next-tick occupancy in coordinates relative to the agent's starting point, under interaction enabled. The immediate chosen destination's captured stage-one hazard can be compared with that occupancy when current occupancy there is zero. Stage-two/three hazards and route costs target different events and horizons.
+
+The planner writes only target selection fields that the world-model update and forecast do not consume. This permits source-bound online/frozen prediction shadows on identical recorded memory-policy observations, without running a shadow planner. Such matched prediction evidence is separate from the four on-policy control interventions and from independent-search reliability.
+
+The completed [288-episode development audit](../artifacts/campaign-v3/mechanism-selected/runtime-review.json) verified constant parameters in all 144 frozen runs, changed parameters in all 144 online runs, continued map growth in every run and no localization errors. It reconstructed 126,033 actual choices across 20,958 frames without a score, hazard, exported-occupancy, inferred-law or chosen-action mismatch. Learned and frozen control produced different action sequences on 50/72 cases, yet **all four interventions escaped on the same 69/72 cases**. There was no observed development escape benefit from adaptation. The paired 24-case regime intervals remain broad and selection-biased.
+
+Under fixed uniform-law control, online/frozen physical trajectories, observations and maps matched on all 72 pairs. Online near-target Brier loss improved by 1.56% on stationary and 1.28% on switching development episodes, but worsened by 0.072% under uniform dynamics. These are pooled sum/count point estimates on reused development experience, not fresh assessment or a discovery-reliability claim. The audit used 388.45 candidate CPU seconds, 55.72 evaluator CPU seconds and 213.17 elapsed seconds; no model calls or further world episodes were needed for its summary.
+
+Reproduce the development audit in a separate directory to preserve the frozen record:
+
+```bash
+.venv/bin/python scripts/v3_mechanism.py --program artifacts/campaign-v3/selection/selected-instrumented.py --review artifacts/campaign-v3/mechanism-selected-review.json --out results/v3-mechanism-reproduction --workers 2
+.venv/bin/python scripts/v3_mechanism_report.py --directory results/v3-mechanism-reproduction
+```

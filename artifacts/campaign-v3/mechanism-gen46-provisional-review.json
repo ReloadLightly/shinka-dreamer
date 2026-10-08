@@ -1,0 +1,289 @@
+{
+  "created_at_utc": "2026-10-08T20:26:32.520043+00:00",
+  "status": "Provisional source-only review; candidate not selected and no runtime mechanism evidence added.",
+  "program_path": "results/campaign-v3/gen_46/main.py",
+  "program_sha256": "c0011929926cd93bf6cf5b6b6e3deee5591bcf073655e33db469416185c785aa",
+  "generation": 46,
+  "source_evidence": {
+    "_add": {
+      "line": 13,
+      "end_line": 14,
+      "ast_sha256": "bc212cb132b694d96b37856e710fd1ce110aff2955f94503a322dfe649b015fa"
+    },
+    "_distance": {
+      "line": 17,
+      "end_line": 18,
+      "ast_sha256": "01526441aafb1c5609a0eea6091f848a24859833e2c63824a6d5d53dc339ad1a"
+    },
+    "_mean": {
+      "line": 21,
+      "end_line": 23,
+      "ast_sha256": "1f707508cc46d519f5f106f69acbd79fa040987dbf0720fdf2689755749e6c43"
+    },
+    "_new_memory": {
+      "line": 26,
+      "end_line": 47,
+      "ast_sha256": "1b10cc8434b2b7048b5c076474e591cef47f25654c1785eb4226b7d0423e6912"
+    },
+    "_inside": {
+      "line": 50,
+      "end_line": 56,
+      "ast_sha256": "8370585f983c86f306cea252767ee53638303fe1a39e335902e7e44397df172d"
+    },
+    "_infer_bounds": {
+      "line": 59,
+      "end_line": 80,
+      "ast_sha256": "a9a351a56ab47f813329308c45dfe6d7d7f51730e562f4db06d425bdadaa2abf"
+    },
+    "_solid": {
+      "line": 83,
+      "end_line": 87,
+      "ast_sha256": "5342f4b7c5c564ddb8c30b4428a5942892390fe408ed8ba7b850edf48091739a"
+    },
+    "_opens": {
+      "line": 90,
+      "end_line": 95,
+      "ast_sha256": "1b9f49e10f91811f952cc231c526f4f6e7d918d8c95fcb63782cce5b63410649"
+    },
+    "_legal": {
+      "line": 98,
+      "end_line": 106,
+      "ast_sha256": "251e7f93809fa9d520b1a293cae560a4d315366c722c08b7766eab506c6fc22b"
+    },
+    "_observed_destination": {
+      "line": 109,
+      "end_line": 121,
+      "ast_sha256": "0300050243c65806fbd3888ad63460505f36cd6bae3eb85c7899c3aec6170110"
+    },
+    "_observation_terms": {
+      "line": 124,
+      "end_line": 170,
+      "ast_sha256": "7b87b861fa21fe79e915812943441fd420c93b1faab4226ca02477e4896d6917"
+    },
+    "_evidence": {
+      "line": 173,
+      "end_line": 198,
+      "ast_sha256": "8e929e63398d6f871089351b82b03a0966dbfee14d84f323e5be35e68129f448"
+    },
+    "_update_dynamics": {
+      "line": 201,
+      "end_line": 266,
+      "ast_sha256": "14c032459dcf0b623752a5fec67c0fbc793de48aef6a1bbff56a513ffe470f84"
+    },
+    "_motion_law": {
+      "line": 269,
+      "end_line": 275,
+      "ast_sha256": "5009d3acddeaab89352b6b479cb72404938a6de85b62e9d30ecee99107cfc6d5"
+    },
+    "_kernel": {
+      "line": 278,
+      "end_line": 294,
+      "ast_sha256": "131a4b78b78a3e7760769c8f2c62a0b3c66882b7905bdedc2020642edff3f7ce"
+    },
+    "_spread": {
+      "line": 297,
+      "end_line": 302,
+      "ast_sha256": "2953a1c65ecec63ca6e58ef7ac4ed822489d4f380cad7ce1e20885baf104e26f"
+    },
+    "_forecast": {
+      "line": 305,
+      "end_line": 357,
+      "ast_sha256": "b8f8413ffddd8126a8c06979d0bdf25ed65802b5f7765ed07b88dd63f76fef34"
+    },
+    "world_model_step": {
+      "line": 360,
+      "end_line": 403,
+      "ast_sha256": "1d4e0f76fdd81be4bba0aca410dc08b404e5d0a97516a98f5b1bde0d154f451d"
+    },
+    "_routes": {
+      "line": 406,
+      "end_line": 438,
+      "ast_sha256": "64662ea91c173d5610d9e16cd17b436419e853ca558232699aa3b6e9b40071f9"
+    },
+    "_view_gains": {
+      "line": 441,
+      "end_line": 455,
+      "ast_sha256": "e77882c81cf6e8660cc7401ec5bf2761d8a4f76291bc8cee28aab342d5ebeab6"
+    },
+    "_select_primary": {
+      "line": 458,
+      "end_line": 507,
+      "ast_sha256": "f0c1c12904749a392a8141659b3605745bec2d66d4f7911abfeee6156ded5c78"
+    },
+    "_select_route": {
+      "line": 510,
+      "end_line": 582,
+      "ast_sha256": "04a81cc8b8669fc40d2bb33c5622216be5dd8dc14d8fdfc3d96aeb274c4209ce"
+    },
+    "_survival_control": {
+      "line": 585,
+      "end_line": 732,
+      "ast_sha256": "2d4af1c961be7df99ff8efe21b68e5d8eb4552c93441065d63a263f617ec88c1"
+    },
+    "planner": {
+      "line": 735,
+      "end_line": 763,
+      "ast_sha256": "cf7fcf3f5d32a827fdc44d43ba47850d908ea4399f3882075d97f5bc982e4a9e"
+    },
+    "export_model": {
+      "line": 766,
+      "end_line": 799,
+      "ast_sha256": "108cbdbeda949c65adf061c05ff3e61342c41634cb74f0d6049463d815c93560"
+    }
+  },
+  "native_lineage": {
+    "snapshot_created_at_utc": "2026-10-08T20:26:32.520107+00:00",
+    "lineage_file_sha256_at_query": "960754bc3cec1c75177379f62fcacccf57c756c098b7967592d524b30503c367",
+    "sampling_file_sha256": "eca487fee679e1d890f5d80fe69add3ed9ce7193fb1990972bcbca4918a6b7d9",
+    "ancestry": [
+      {
+        "generation": 46,
+        "id": "ddd05ef9-92d5-44f5-905b-acae4e398552",
+        "parent_id": "bfecb57e-cecb-447e-ad51-0c985c8ede27",
+        "source_sha256": "c0011929926cd93bf6cf5b6b6e3deee5591bcf073655e33db469416185c785aa",
+        "birth_island": 2,
+        "island_idx": 2,
+        "archive_inspiration_ids": [
+          "8cc418ce-e791-4893-b3d7-b339c1db9dd1"
+        ],
+        "top_k_inspiration_ids": [
+          "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+        ],
+        "migration_history": []
+      },
+      {
+        "generation": 28,
+        "id": "bfecb57e-cecb-447e-ad51-0c985c8ede27",
+        "parent_id": "4536a171-0c9f-4e65-94f2-a87b6919c45c",
+        "source_sha256": "c80f8f6d80f316f91414f21700af4b3864c935f18b3f74c8a4c6fbaa6ac187b0",
+        "birth_island": 2,
+        "island_idx": 2,
+        "archive_inspiration_ids": [
+          "8cc418ce-e791-4893-b3d7-b339c1db9dd1"
+        ],
+        "top_k_inspiration_ids": [
+          "6f9bc525-2a1a-41a8-96b3-a7cb82023f3c"
+        ],
+        "migration_history": []
+      },
+      {
+        "generation": 14,
+        "id": "4536a171-0c9f-4e65-94f2-a87b6919c45c",
+        "parent_id": "af9462ea-cc8d-4cc4-a39e-b39db32d0a66",
+        "source_sha256": "a3bda0c282e0b4f42c778a283bb4722aeb3b74f161200824c5958252b6dedf4d",
+        "birth_island": 2,
+        "island_idx": 2,
+        "archive_inspiration_ids": [
+          "997377fa-6443-471c-8083-008a0c34a12a"
+        ],
+        "top_k_inspiration_ids": [
+          "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+        ],
+        "migration_history": []
+      },
+      {
+        "generation": 9,
+        "id": "af9462ea-cc8d-4cc4-a39e-b39db32d0a66",
+        "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+        "source_sha256": "5e593b715149242c55a14155934cfa0788487846a7ac6c5713e748469dad9731",
+        "birth_island": 2,
+        "island_idx": 1,
+        "archive_inspiration_ids": [
+          "19157a7b-b0ca-41c4-bd82-86be43a9152d"
+        ],
+        "top_k_inspiration_ids": [
+          "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+        ],
+        "migration_history": [
+          {
+            "generation": 30,
+            "from": 2,
+            "to": 1,
+            "timestamp": 1791485683.7809813
+          }
+        ]
+      },
+      {
+        "generation": 5,
+        "id": "997377fa-6443-471c-8083-008a0c34a12a",
+        "parent_id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+        "source_sha256": "eca43e28566d0f6434852544fb7fb09af75c7f760d869de3dc08d89f00db7501",
+        "birth_island": 2,
+        "island_idx": 2,
+        "archive_inspiration_ids": [],
+        "top_k_inspiration_ids": [],
+        "migration_history": []
+      },
+      {
+        "generation": 0,
+        "id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+        "parent_id": null,
+        "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+        "birth_island": 2,
+        "island_idx": 2,
+        "archive_inspiration_ids": [],
+        "top_k_inspiration_ids": [],
+        "migration_history": []
+      }
+    ],
+    "inspiration_generations": {
+      "archive": [
+        24
+      ],
+      "top_k": [
+        1
+      ]
+    },
+    "ancestry_scope": "Identity relationships checked; this review independently inspects gen46 source, not every ancestor architecture."
+  },
+  "verified_learner": {
+    "representation": "Approximate change-point mixture: persistent uniform component plus up to8 categorical hypotheses. Each hypothesis stores9 raw attempted-direction concentrations, mass and informative age.",
+    "observation_likelihood": "Anonymous occupied-set likelihood via inclusion-exclusion over previously visible source cells and the old inner3 monitored region. Unseen arrivals are censored outside that region; each distinct previously occupied cell is modeled as one source, so overlapping enemy multiplicity remains approximate.",
+    "blocked_attempts": "Nine attempted directions retain their mass; blocked destinations or blocked diagonal corner attempts stay at the source. No legal-move-only renormalization.",
+    "update": "Only admitted informative consecutive observations update. Skip step25-boundary transitions and observed wall changes. Add a fresh0.75-concentration hypothesis with information-scaled hazard0.035; likelihood exponent0.85; mix with fixed uniform evidence; retain seven highest-mass hypotheses plus oldest (or eighth). Accumulate information-weighted expected direction counts.",
+    "effective_law": "Posterior mixture of normalized hypothesis concentrations plus uniform component, then90% mixture+10% uniform shrinkage.",
+    "claim_limit": "Not an exact Bayesian change-point posterior or identified enemy tracking. No empirical benefit established by this review."
+  },
+  "state_inference_separation": {
+    "predictive_parameters": "memory.dynamics: uniform, hypotheses[{alpha,mass,age}], updates, information.",
+    "continued_observation_state": "Position from displacement feedback; observed terrain/last-seen map, inferred board bounds, visible anonymous enemy set; no persistent hidden-density filtering.",
+    "continued_control_memory": "Target, progress, history, idle counter, waypoint, recovery/cooldown state. These depend on observations and executed/planned navigation, not exclusively predictive parameters.",
+    "hidden_state": "Fresh diffuse Poisson hidden intensity constructed at each _forecast from unobserved map/local cells and3-minus-visible-occupied-cell count; propagated three ticks."
+  },
+  "interventions": {
+    "freezing_is_source_coherent": true,
+    "freeze": "world_model_step calls _update_dynamics only when learn=True; learning=False suppresses hypothesis births/pruning/count updates/mass updates and counters. Mapping, localization, navigation observation updates and forecast recomputation continue.",
+    "prediction_use": "predictive_planning=False reconstructs _forecast(memory,UNIFORM); route selection and survival control receive this context. No direct use of memory.law, dynamics or learned forecast was found downstream of that branch.",
+    "fixed_control_matched_experience": "Expected from source separation but NOT yet tested. Require trajectory, physical observation, actions and map/localization equality across no_planning/frozen_no_planning.",
+    "existing_export_insufficient_for_raw_freeze": "Export normalizes alpha to laws and omits raw concentration magnitudes; recoveries is control memory and must not be included in predictive-parameter freezing.",
+    "proposed_parameter_key_if_selected": "model.learning.raw_dynamics",
+    "runtime_verification": "Pending final selection; no episodes run."
+  },
+  "forecast_contract": {
+    "target_event": "At least one enemy occupying each coordinate after the next enemy transition.",
+    "horizon": 1,
+    "coordinates": "Absolute grid coordinates relative to episode starting agent position, not current egocentric coordinates.",
+    "action_conditioning": "Current interaction is assumed true and can open an adjacent door before attempted movement. Otherwise law is independent of candidate movement; exported field is not total death probability.",
+    "partial_observation": "Visible point sources plus fresh Poisson hidden intensity; unseen terrain is treated as free for enemy propagation, known blocked attempts stay."
+  },
+  "verified_planning": {
+    "routing": "Risk-weighted graph potential uses1+6*horizon1 occupancy+visit cost per edge. This reuses a static horizon1 field for route ranking and is not a calibrated multi-step path collision probability.",
+    "progress_control": "Repeated positions, idle steps and target-distance stagnation build pressure. Safe-route reachable waypoints can be held up to7 steps with a9-step recovery cooldown; there is no proof the waypoint accesses a distinct corridor.",
+    "visible_enemy_control": "Up to3 steps of branch-specific beam planning. Distributions retain unnormalized probability of enemy paths surviving the proposed agent path. Each step removes pre-movement contact and post-movement arrival at the agent destination. Loss is minus log(new surviving mass/old surviving mass), summed across visible sources.",
+    "key_door_state": "Each beam node retains distinct collected key coordinates and opened state; opening is checked from node position and prior key count before movement. These branches affect visible-enemy transition kernels.",
+    "cost": "Step cost+deadline-dependent risk weight63..105 times tick weights1,0.80,0.55 times visible+hidden negative-log survival, with visit/repetition/wait penalties and route potential.",
+    "beam_limit": "Deduplicate by destination, first action, target-reached, door-open and collected-key state; retain best16 plus up to2 candidates per first action, capped30.",
+    "hidden_limit": "Hidden hazards remain unconditional on previous hidden-enemy survival and are precomputed using initial forecast door state; later hypothetical door opening is not reflected in those hidden hazards.",
+    "no_visible_sources": "Uses a greedy step down the risk-weighted route potential, retaining wait/history penalties; does not run the three-step beam.",
+    "prediction_vs_control": "At an immediate legal destination without known occupied entry, learned exported occupancy should equal the first-step visible/hidden collision marginal. Later conditioned hazards, static route costs and exported occupancy are distinct quantities."
+  },
+  "possible_passive_diagnostics_if_selected": {
+    "raw_predictive_state": "Append a source-bound export wrapper returning raw dynamics concentrations/masses/ages, distinct from navigation counters.",
+    "actually_used_context": "A passive wrapper around _select_route can retain the exact learned/uniform context supplied to routing and control, target, selected law, horizon1 occupancy and hidden hazard fields. Preserve original function bodies and selected.py; diagnostics remain additive.",
+    "decision_validation": "Independently reconstruct immediate chosen-destination risk and compare exported occupancy with the actually used planning context; condition analysis on legal movement/no initial occupied destination. Retain actual used context in final passive traces if selected.",
+    "full_path_hazards": "The original beam does not export its winning intermediate path. Claiming actual selected-path hazards at horizons2/3 would require extra source-specific passive instrumentation and transparency checks, not generic occupancy relabeling."
+  },
+  "new_environment_episodes": 0,
+  "new_model_calls": 0,
+  "source_modified": false
+}

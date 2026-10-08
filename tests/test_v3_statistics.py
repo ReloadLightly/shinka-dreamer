@@ -22,6 +22,24 @@ def test_holm_preserves_original_order():
     assert holm([.04,.001])==[.04,.002]
 
 
+def test_unavailable_cpu_is_not_averaged_as_zero_or_used_in_pair_denominator():
+    from scripts.v3_analysis import cpu_summary,cpu_pair
+    weights=np.array([[1,1],[2,0],[0,2]],float)
+    left=[{'candidate_cpu_seconds':10.},
+          {'candidate_cpu_seconds':0.,'cpu_measurement_unavailable':True}]
+    right=[{'candidate_cpu_seconds':4.},{'candidate_cpu_seconds':8.}]
+    summary=cpu_summary(left,'candidate_cpu_seconds',weights)
+    assert summary['mean']==10. and summary['sum']==10. and summary['ci95']==[10.,10.]
+    assert summary['measured_episodes']==1 and summary['unavailable_episodes']==1
+    assert summary['recorded_sum_is_lower_bound'] and summary['bootstrap_retained']==2
+    pair=cpu_pair(left,right,'candidate_cpu_seconds',weights)
+    assert pair['difference']==6. and pair['ci95']==[6.,6.]
+    assert pair['measured_pairs']==1 and pair['unavailable_pairs']==1 and pair['all_case_pairs']==2
+    empty=cpu_summary([left[1],{}],'candidate_cpu_seconds',weights)
+    assert empty['mean'] is None and empty['ci95'] is None and empty['sum']==0.
+    assert empty['unavailable_episodes']==2 and empty['bootstrap_retained']==0
+
+
 def test_behavior_audits_separate_invalid_missing_and_actual_changes():
     import copy
     from scripts.v3_analysis import behavior_pair, state_audit_summary
@@ -136,6 +154,36 @@ def test_matched_bootstrap_pools_counts_and_preserves_cross_regime_resamples(mon
     assert result['regimes']['stationary']['bins'] == result['regimes']['switch']['bins']
     post = result['regimes']['switch']['forecasts']['fitted_online']['brier_near_post_switch']
     assert post['contributing_episodes'] == 1 and post['targets'] == 10
+
+
+def test_five_shadow_analysis_separates_architecture_audits_and_declared_absolute_pairs(monkeypatch):
+    import copy
+    import pytest
+    from scripts import v3_analysis as analysis
+    monkeypatch.setattr(analysis,'BOOTSTRAP_REPLICATES',100)
+    rows,plan,policy=matched_fixture()
+    names=list(analysis.MATCHED_CONDITIONS)+['selected_online','selected_frozen']
+    pairs=list(analysis.MATCHED_PAIRS)+[('selected_online','selected_frozen'),
+                                      ('selected_online','fitted_online'),('known_law','selected_online')]
+    plan['matched'].update(source_sha256='fitted-source',selected={'source_sha256':'selected-source'},
+                           shadow_conditions=names,shadow_pairs=[{'left':a,'right':b} for a,b in pairs])
+    for record in rows:
+        for shadow in record['shadows'].values(): shadow['program_sha256']='fitted-source'
+        for name in ('selected_online','selected_frozen'):
+            shadow=copy.deepcopy(record['shadows']['fitted_online' if name=='selected_online' else 'fitted_frozen'])
+            shadow['program_sha256']='selected-source'
+            shadow['audit']['map_position_sha256']='different evolved representation'
+            record['shadows'][name]=shadow
+    result=analysis.analyze_matched(rows,plan,policy)['regimes']['switch']
+    assert result['complete_matched_prediction_evidence']
+    assert len(result['pairs'])==6
+    assert result['pairs']['selected_online-minus-fitted_online']['forecasts']['brier_near']['difference']==0.
+    audit=result['audits']['parameter_pairs']['selected_online-minus-selected_frozen']
+    assert audit['map_position_matched_episodes']==2 and audit['frozen_parameters_constant_episodes']==2
+    assert result['audits']['physical_observation_matched_episodes']==2
+    rows[0]['shadows']['selected_online']['program_sha256']='changed source'
+    with pytest.raises(ValueError,match='source differs'):
+        analysis.analyze_matched(rows,plan,policy)
 
 
 def test_matched_rejects_wrong_trajectory_and_does_not_hide_missing_or_failed_shadows(monkeypatch):
