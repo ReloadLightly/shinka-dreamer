@@ -1,0 +1,3839 @@
+{
+  "development_only": true,
+  "driver_sha256": "5b241a0f1822471d59bdb79d4f19c5268a007839a63334d13d12683772fa0fa5",
+  "final_helper_sha256": "7f8475231e8b6f39ebce9234f0c2ce037e2b5bcc3d68338a75087af051e2308d",
+  "memory_environment_episodes": 8,
+  "model_calls": 0,
+  "pool_sha256": "1d89a5d7b264ba156ff62fff1ee34530948300485e38f14eae8eb38ffe0d136c",
+  "post_smoke_change": "Replaced runtime comparator-manifest lookup with the same explicit reviewed source SHA; no prediction/scoring logic changed. Seven semantic tests passed on final helper.",
+  "records": [
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 0.53531,
+      "case": 0,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.112247234,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 47,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.108511,
+        "error": null,
+        "evaluator_cpu_seconds": 0.043207646,
+        "reason": "escaped",
+        "seconds": 0.141423922003014,
+        "steps": 47
+      },
+      "policy_trajectory_sha256": "13aacb2126e2e84e3afa31e29ed55008f244a9a37ac20849763f415f2dfdfc8b",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 0.5993493059941102,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "80426a601674048f44ca85436dab91e29fa9fa3d5e75cebc210e727f25bf9d4e",
+            "observations_sha256": "c763af5c5857204f24510ce54944dc7d953cf93ea9b689ad63515920c0264fb6",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.012476205079485176,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0,
+                198
+              ]
+            }
+          },
+          "case": 0,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 47,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 47,
+          "seconds": 0.16284956299932674,
+          "stats": {
+            "brier_audit": [
+              9.563324470825036,
+              564
+            ],
+            "brier_audit_final_recorded": [
+              0.0014793904213430558,
+              12
+            ],
+            "brier_audit_post_switch": [
+              1.9861610800864147,
+              204
+            ],
+            "brier_audit_pre_switch": [
+              7.5771633907385905,
+              360
+            ],
+            "brier_audit_terminal": [
+              0.0014793904213430558,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              47
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              17
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              30
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.012476205079485176,
+              423
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              153
+            ],
+            "brier_near_pre_switch": [
+              0.012476205079485176,
+              270
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.012476205079485176,
+              108
+            ],
+            "prevalence_audit": [
+              11.0,
+              564
+            ],
+            "prevalence_destination": [
+              0.0,
+              47
+            ],
+            "prevalence_near": [
+              0.0,
+              423
+            ],
+            "valid_brier_audit": [
+              9.563324470825036,
+              564
+            ],
+            "valid_brier_destination": [
+              0.0,
+              47
+            ],
+            "valid_brier_near": [
+              0.012476205079485176,
+              423
+            ]
+          },
+          "successful_forecast_frames": 47
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              -0.015195115239268864,
+              0.04746559543258119,
+              0.023358814286143236,
+              -0.04791440057874809,
+              0.020918238172976583,
+              -0.03871597896480623,
+              0.001862227491086865,
+              -0.016613590226296646,
+              0.024834209626331944
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "80426a601674048f44ca85436dab91e29fa9fa3d5e75cebc210e727f25bf9d4e",
+            "observations_sha256": "c763af5c5857204f24510ce54944dc7d953cf93ea9b689ad63515920c0264fb6",
+            "parameter_change_steps": 1,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.012476205079485176,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0,
+                198
+              ]
+            }
+          },
+          "case": 0,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 47,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 47,
+          "seconds": 0.19010177397285588,
+          "stats": {
+            "brier_audit": [
+              9.555163850505807,
+              564
+            ],
+            "brier_audit_final_recorded": [
+              0.0014731856462643043,
+              12
+            ],
+            "brier_audit_post_switch": [
+              1.9863000976571277,
+              204
+            ],
+            "brier_audit_pre_switch": [
+              7.568863752848649,
+              360
+            ],
+            "brier_audit_terminal": [
+              0.0014731856462643043,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              47
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              17
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              30
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.012476205079485176,
+              423
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              153
+            ],
+            "brier_near_pre_switch": [
+              0.012476205079485176,
+              270
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.012476205079485176,
+              108
+            ],
+            "prevalence_audit": [
+              11.0,
+              564
+            ],
+            "prevalence_destination": [
+              0.0,
+              47
+            ],
+            "prevalence_near": [
+              0.0,
+              423
+            ],
+            "valid_brier_audit": [
+              9.555163850505807,
+              564
+            ],
+            "valid_brier_destination": [
+              0.0,
+              47
+            ],
+            "valid_brier_near": [
+              0.012476205079485176,
+              423
+            ]
+          },
+          "successful_forecast_frames": 47
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "80426a601674048f44ca85436dab91e29fa9fa3d5e75cebc210e727f25bf9d4e",
+            "observations_sha256": "c763af5c5857204f24510ce54944dc7d953cf93ea9b689ad63515920c0264fb6",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.008085522346322866,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0,
+                198
+              ]
+            }
+          },
+          "case": 0,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 47,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 47,
+          "seconds": 0.2346061930002179,
+          "stats": {
+            "brier_audit": [
+              9.466884653192253,
+              564
+            ],
+            "brier_audit_final_recorded": [
+              0.0013451294481371093,
+              12
+            ],
+            "brier_audit_post_switch": [
+              1.978482517162681,
+              204
+            ],
+            "brier_audit_pre_switch": [
+              7.488402136029544,
+              360
+            ],
+            "brier_audit_terminal": [
+              0.0013451294481371093,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              47
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              17
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              30
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.008085522346322866,
+              423
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              153
+            ],
+            "brier_near_pre_switch": [
+              0.008085522346322866,
+              270
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.008085522346322866,
+              108
+            ],
+            "prevalence_audit": [
+              11.0,
+              564
+            ],
+            "prevalence_destination": [
+              0.0,
+              47
+            ],
+            "prevalence_near": [
+              0.0,
+              423
+            ],
+            "valid_brier_audit": [
+              9.466884653192253,
+              564
+            ],
+            "valid_brier_destination": [
+              0.0,
+              47
+            ],
+            "valid_brier_near": [
+              0.008085522346322866,
+              423
+            ]
+          },
+          "successful_forecast_frames": 47
+        }
+      },
+      "switch_step": 31,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 0.79634,
+      "case": 1,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.19856735599999997,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 49,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.1463349999999999,
+        "error": null,
+        "evaluator_cpu_seconds": 0.05213056500000002,
+        "reason": "escaped",
+        "seconds": 0.18326556999818422,
+        "steps": 49
+      },
+      "policy_trajectory_sha256": "87ac7fbb907374d705203a9f55231efb7438dca5c9a85b3923f6e1f4220a8814",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 0.9118334600061644,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "a93bae2bd14c92c73e9d892bb6ff76957cd926dbaa5caa27f90ae56bdb798765",
+            "observations_sha256": "f1b88489cc56484a940f7d9e00e47e4a95fc839926667c67e493c1882b1a574b",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.025885756656121785,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0,
+                216
+              ]
+            }
+          },
+          "case": 1,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 49,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 49,
+          "seconds": 0.267151706997538,
+          "stats": {
+            "brier_audit": [
+              12.813539171525273,
+              588
+            ],
+            "brier_audit_final_recorded": [
+              0.9739834637134971,
+              12
+            ],
+            "brier_audit_post_switch": [
+              6.812663544385656,
+              192
+            ],
+            "brier_audit_pre_switch": [
+              6.000875627139608,
+              396
+            ],
+            "brier_audit_terminal": [
+              0.9739834637134971,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              49
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              16
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              33
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.025885756656121785,
+              441
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              144
+            ],
+            "brier_near_pre_switch": [
+              0.025885756656121785,
+              297
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.025885756656121785,
+              18
+            ],
+            "prevalence_audit": [
+              13.0,
+              588
+            ],
+            "prevalence_destination": [
+              0.0,
+              49
+            ],
+            "prevalence_near": [
+              0.0,
+              441
+            ],
+            "valid_brier_audit": [
+              12.813539171525273,
+              588
+            ],
+            "valid_brier_destination": [
+              0.0,
+              49
+            ],
+            "valid_brier_near": [
+              0.025885756656121785,
+              441
+            ]
+          },
+          "successful_forecast_frames": 49
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              -0.00928250419166138,
+              -0.0004907181504250123,
+              0.02950383580300875,
+              -0.042192118953560134,
+              0.02704828027547472,
+              -0.03274227793219512,
+              0.007876559081432933,
+              -0.010709360290112395,
+              0.030988304358037632
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "a93bae2bd14c92c73e9d892bb6ff76957cd926dbaa5caa27f90ae56bdb798765",
+            "observations_sha256": "f1b88489cc56484a940f7d9e00e47e4a95fc839926667c67e493c1882b1a574b",
+            "parameter_change_steps": 2,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.026039023813760918,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0,
+                216
+              ]
+            }
+          },
+          "case": 1,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 49,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 49,
+          "seconds": 0.2586608419951517,
+          "stats": {
+            "brier_audit": [
+              12.813651442437843,
+              588
+            ],
+            "brier_audit_final_recorded": [
+              0.9739454011054395,
+              12
+            ],
+            "brier_audit_post_switch": [
+              6.8118011077878435,
+              192
+            ],
+            "brier_audit_pre_switch": [
+              6.001850334649994,
+              396
+            ],
+            "brier_audit_terminal": [
+              0.9739454011054395,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              49
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              16
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              33
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.026039023813760918,
+              441
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              144
+            ],
+            "brier_near_pre_switch": [
+              0.026039023813760918,
+              297
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.026039023813760918,
+              18
+            ],
+            "prevalence_audit": [
+              13.0,
+              588
+            ],
+            "prevalence_destination": [
+              0.0,
+              49
+            ],
+            "prevalence_near": [
+              0.0,
+              441
+            ],
+            "valid_brier_audit": [
+              12.813651442437843,
+              588
+            ],
+            "valid_brier_destination": [
+              0.0,
+              49
+            ],
+            "valid_brier_near": [
+              0.026039023813760918,
+              441
+            ]
+          },
+          "successful_forecast_frames": 49
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "a93bae2bd14c92c73e9d892bb6ff76957cd926dbaa5caa27f90ae56bdb798765",
+            "observations_sha256": "f1b88489cc56484a940f7d9e00e47e4a95fc839926667c67e493c1882b1a574b",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.011142599097798751,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0,
+                216
+              ]
+            }
+          },
+          "case": 1,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 49,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 49,
+          "seconds": 0.371089465013938,
+          "stats": {
+            "brier_audit": [
+              12.814910582986846,
+              588
+            ],
+            "brier_audit_final_recorded": [
+              0.9798753810872746,
+              12
+            ],
+            "brier_audit_post_switch": [
+              6.83715683933923,
+              192
+            ],
+            "brier_audit_pre_switch": [
+              5.977753743647595,
+              396
+            ],
+            "brier_audit_terminal": [
+              0.9798753810872746,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              49
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              16
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              33
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.011142599097798751,
+              441
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              144
+            ],
+            "brier_near_pre_switch": [
+              0.011142599097798751,
+              297
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.011142599097798751,
+              18
+            ],
+            "prevalence_audit": [
+              13.0,
+              588
+            ],
+            "prevalence_destination": [
+              0.0,
+              49
+            ],
+            "prevalence_near": [
+              0.0,
+              441
+            ],
+            "valid_brier_audit": [
+              12.814910582986846,
+              588
+            ],
+            "valid_brier_destination": [
+              0.0,
+              49
+            ],
+            "valid_brier_near": [
+              0.011142599097798751,
+              441
+            ]
+          },
+          "successful_forecast_frames": 49
+        }
+      },
+      "switch_step": 34,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 0.601918,
+      "case": 2,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.11547978999999997,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 44,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.1314079999999999,
+        "error": null,
+        "evaluator_cpu_seconds": 0.049466738999999926,
+        "reason": "escaped",
+        "seconds": 0.1674354319984559,
+        "steps": 44
+      },
+      "policy_trajectory_sha256": "38064f0f05f4bf03dcd018fc86221af02750770c9ec680049279021e16a67443",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 0.6621539129992016,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "a72cd2f88e789ff08b16c050fd6dadeea3975b70de88e8f725f4d5e1d965e6c8",
+            "observations_sha256": "4beef6e0155f70c16c8a57f75ded4278c851a48b2220a6389b8f4c1c991cb6c7",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.039600969096330395,
+                171
+              ]
+            }
+          },
+          "case": 2,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 44,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 44,
+          "seconds": 0.21313900899258442,
+          "stats": {
+            "brier_audit": [
+              4.930654895492244,
+              528
+            ],
+            "brier_audit_final_recorded": [
+              0.992050532158591,
+              12
+            ],
+            "brier_audit_post_switch": [
+              1.993044836283868,
+              228
+            ],
+            "brier_audit_pre_switch": [
+              2.937610059208377,
+              300
+            ],
+            "brier_audit_terminal": [
+              0.992050532158591,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              44
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              19
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              25
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.039600969096330395,
+              396
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.039600969096330395,
+              171
+            ],
+            "brier_near_pre_switch": [
+              0.0,
+              225
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.039600969096330395,
+              45
+            ],
+            "prevalence_audit": [
+              5.0,
+              528
+            ],
+            "prevalence_destination": [
+              0.0,
+              44
+            ],
+            "prevalence_near": [
+              0.0,
+              396
+            ],
+            "valid_brier_audit": [
+              4.930654895492244,
+              528
+            ],
+            "valid_brier_destination": [
+              0.0,
+              44
+            ],
+            "valid_brier_near": [
+              0.039600969096330395,
+              396
+            ]
+          },
+          "successful_forecast_frames": 44
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              -0.0037633848371357963,
+              -0.04404475169176255,
+              -0.016066231529916104,
+              -0.03685168771662407,
+              0.032771615470136885,
+              0.022927109992451948,
+              0.013491205400765332,
+              -0.005198110864920001,
+              0.03673423577700436
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "a72cd2f88e789ff08b16c050fd6dadeea3975b70de88e8f725f4d5e1d965e6c8",
+            "observations_sha256": "4beef6e0155f70c16c8a57f75ded4278c851a48b2220a6389b8f4c1c991cb6c7",
+            "parameter_change_steps": 3,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.038680674225559514,
+                171
+              ]
+            }
+          },
+          "case": 2,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 44,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 44,
+          "seconds": 0.19589313000324182,
+          "stats": {
+            "brier_audit": [
+              4.929604027326443,
+              528
+            ],
+            "brier_audit_final_recorded": [
+              0.9919065034800406,
+              12
+            ],
+            "brier_audit_post_switch": [
+              1.9919939681180658,
+              228
+            ],
+            "brier_audit_pre_switch": [
+              2.937610059208377,
+              300
+            ],
+            "brier_audit_terminal": [
+              0.9919065034800406,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              44
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              19
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              25
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.038680674225559514,
+              396
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.038680674225559514,
+              171
+            ],
+            "brier_near_pre_switch": [
+              0.0,
+              225
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.038680674225559514,
+              45
+            ],
+            "prevalence_audit": [
+              5.0,
+              528
+            ],
+            "prevalence_destination": [
+              0.0,
+              44
+            ],
+            "prevalence_near": [
+              0.0,
+              396
+            ],
+            "valid_brier_audit": [
+              4.929604027326443,
+              528
+            ],
+            "valid_brier_destination": [
+              0.0,
+              44
+            ],
+            "valid_brier_near": [
+              0.038680674225559514,
+              396
+            ]
+          },
+          "successful_forecast_frames": 44
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "a72cd2f88e789ff08b16c050fd6dadeea3975b70de88e8f725f4d5e1d965e6c8",
+            "observations_sha256": "4beef6e0155f70c16c8a57f75ded4278c851a48b2220a6389b8f4c1c991cb6c7",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.0012847201776057344,
+                171
+              ]
+            }
+          },
+          "case": 2,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 44,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 44,
+          "seconds": 0.24239186698105186,
+          "stats": {
+            "brier_audit": [
+              4.892327830950382,
+              528
+            ],
+            "brier_audit_final_recorded": [
+              0.9842641260793323,
+              12
+            ],
+            "brier_audit_post_switch": [
+              1.9545819900307642,
+              228
+            ],
+            "brier_audit_pre_switch": [
+              2.9377458409196184,
+              300
+            ],
+            "brier_audit_terminal": [
+              0.9842641260793323,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              44
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              19
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              25
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              0.0012847201776057344,
+              396
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0012847201776057344,
+              171
+            ],
+            "brier_near_pre_switch": [
+              0.0,
+              225
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              0.0012847201776057344,
+              45
+            ],
+            "prevalence_audit": [
+              5.0,
+              528
+            ],
+            "prevalence_destination": [
+              0.0,
+              44
+            ],
+            "prevalence_near": [
+              0.0,
+              396
+            ],
+            "valid_brier_audit": [
+              4.892327830950382,
+              528
+            ],
+            "valid_brier_destination": [
+              0.0,
+              44
+            ],
+            "valid_brier_near": [
+              0.0012847201776057344,
+              396
+            ]
+          },
+          "successful_forecast_frames": 44
+        }
+      },
+      "switch_step": 26,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 1.8130990000000002,
+      "case": 3,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.431411919,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 108,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.3659570000000003,
+        "error": null,
+        "evaluator_cpu_seconds": 0.15939894899999996,
+        "reason": "escaped",
+        "seconds": 0.4864279930188786,
+        "steps": 108
+      },
+      "policy_trajectory_sha256": "78d72a589c29314d7f0004202ad94bb914535406cefea04e9fa7ca7ef0bd84a1",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 2.0643742679967545,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "4bd5c53c37396c447759800a1ab400c922a9384990ea33e7f319675910172341",
+            "observations_sha256": "86d71bd93b1375f198b672712984cbc3ff39174d7bdb4aa825927b83558479c5",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.5623206471547146,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                1.737359601721741,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.011092322723992689,
+                225
+              ]
+            },
+            "3": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "4": {
+              "brier": [
+                0.0,
+                72
+              ]
+            }
+          },
+          "case": 3,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 108,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 108,
+          "seconds": 0.6979098340088967,
+          "stats": {
+            "brier_audit": [
+              22.084905697712134,
+              1296
+            ],
+            "brier_audit_final_recorded": [
+              0.0010810775559902184,
+              12
+            ],
+            "brier_audit_post_switch": [
+              14.105946797089699,
+              840
+            ],
+            "brier_audit_pre_switch": [
+              7.978958900622477,
+              456
+            ],
+            "brier_audit_terminal": [
+              0.0010810775559902184,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              108
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              70
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              38
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              3.3107725716004484,
+              972
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.011092322723992689,
+              630
+            ],
+            "brier_near_pre_switch": [
+              3.299680248876456,
+              342
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              3.3107725716004484,
+              171
+            ],
+            "prevalence_audit": [
+              22.0,
+              1296
+            ],
+            "prevalence_destination": [
+              0.0,
+              108
+            ],
+            "prevalence_near": [
+              4.0,
+              972
+            ],
+            "valid_brier_audit": [
+              22.084905697712134,
+              1296
+            ],
+            "valid_brier_destination": [
+              0.0,
+              108
+            ],
+            "valid_brier_near": [
+              3.3107725716004484,
+              972
+            ]
+          },
+          "successful_forecast_frames": 108
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              0.03789116786756333,
+              -0.024648884649275993,
+              -0.12585295848499575,
+              0.012801977612134644,
+              0.28383600230700334,
+              -0.20480220692778514,
+              -0.24605161888000196,
+              0.5000774643785925,
+              -0.23325094322323495
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "4bd5c53c37396c447759800a1ab400c922a9384990ea33e7f319675910172341",
+            "observations_sha256": "86d71bd93b1375f198b672712984cbc3ff39174d7bdb4aa825927b83558479c5",
+            "parameter_change_steps": 13,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.5574700696481905,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                1.7424805755992587,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.013101516572407572,
+                225
+              ]
+            },
+            "3": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "4": {
+              "brier": [
+                0.0,
+                72
+              ]
+            }
+          },
+          "case": 3,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 108,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 108,
+          "seconds": 0.7693297740188427,
+          "stats": {
+            "brier_audit": [
+              21.94618632968115,
+              1296
+            ],
+            "brier_audit_final_recorded": [
+              0.0009238843503774166,
+              12
+            ],
+            "brier_audit_post_switch": [
+              13.968962332277316,
+              840
+            ],
+            "brier_audit_pre_switch": [
+              7.9772239974038746,
+              456
+            ],
+            "brier_audit_terminal": [
+              0.0009238843503774166,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              108
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              70
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              38
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              3.313052161819857,
+              972
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.013101516572407572,
+              630
+            ],
+            "brier_near_pre_switch": [
+              3.299950645247449,
+              342
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              3.313052161819857,
+              171
+            ],
+            "prevalence_audit": [
+              22.0,
+              1296
+            ],
+            "prevalence_destination": [
+              0.0,
+              108
+            ],
+            "prevalence_near": [
+              4.0,
+              972
+            ],
+            "valid_brier_audit": [
+              21.94618632968115,
+              1296
+            ],
+            "valid_brier_destination": [
+              0.0,
+              108
+            ],
+            "valid_brier_near": [
+              3.313052161819857,
+              972
+            ]
+          },
+          "successful_forecast_frames": 108
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "4bd5c53c37396c447759800a1ab400c922a9384990ea33e7f319675910172341",
+            "observations_sha256": "86d71bd93b1375f198b672712984cbc3ff39174d7bdb4aa825927b83558479c5",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.2435965987770343,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                2.145614531468969,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.0069820033142359884,
+                225
+              ]
+            },
+            "3": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "4": {
+              "brier": [
+                0.0,
+                72
+              ]
+            }
+          },
+          "case": 3,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 108,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 108,
+          "seconds": 0.5472668009751942,
+          "stats": {
+            "brier_audit": [
+              21.379610434786557,
+              1296
+            ],
+            "brier_audit_final_recorded": [
+              0.00030274774792773225,
+              12
+            ],
+            "brier_audit_post_switch": [
+              13.40034081217383,
+              840
+            ],
+            "brier_audit_pre_switch": [
+              7.97926962261273,
+              456
+            ],
+            "brier_audit_terminal": [
+              0.00030274774792773225,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              108
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              70
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              38
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              3.396193133560239,
+              972
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0069820033142359884,
+              630
+            ],
+            "brier_near_pre_switch": [
+              3.3892111302460033,
+              342
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              3.396193133560239,
+              171
+            ],
+            "prevalence_audit": [
+              22.0,
+              1296
+            ],
+            "prevalence_destination": [
+              0.0,
+              108
+            ],
+            "prevalence_near": [
+              4.0,
+              972
+            ],
+            "valid_brier_audit": [
+              21.379610434786557,
+              1296
+            ],
+            "valid_brier_destination": [
+              0.0,
+              108
+            ],
+            "valid_brier_near": [
+              3.396193133560239,
+              972
+            ]
+          },
+          "successful_forecast_frames": 108
+        }
+      },
+      "switch_step": 39,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 0.7989079999999992,
+      "case": 4,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.16870819700000017,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 53,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.170399,
+        "error": null,
+        "evaluator_cpu_seconds": 0.075229239,
+        "reason": "escaped",
+        "seconds": 0.22638233500765637,
+        "steps": 53
+      },
+      "policy_trajectory_sha256": "fbca5620a24db20b6be531b402e9d8e6816132943eaa8b0ec1d385959e0275c5",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 0.8900121050246526,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "8d0712cb8028036407c8b4f12b5c6136a56c9f044cfe5722c4a509752c686126",
+            "observations_sha256": "288d90e5dfffc10c6fe2d83533aea858d208ebfa9a1c3aa82bfb66fc11c4ff5d",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                2.831038581423274,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                3.0735691843224604,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.011092322723992689,
+                27
+              ]
+            }
+          },
+          "case": 4,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 53,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 53,
+          "seconds": 0.2757611539855134,
+          "stats": {
+            "brier_audit": [
+              7.012447959794478,
+              636
+            ],
+            "brier_audit_final_recorded": [
+              0.0022447822588744087,
+              12
+            ],
+            "brier_audit_post_switch": [
+              0.7901798833819382,
+              96
+            ],
+            "brier_audit_pre_switch": [
+              6.222268076412541,
+              540
+            ],
+            "brier_audit_terminal": [
+              0.0022447822588744087,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              53
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              8
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              45
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              5.915700088469727,
+              477
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.03514421484528037,
+              72
+            ],
+            "brier_near_pre_switch": [
+              5.880555873624447,
+              405
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              5.915700088469727,
+              189
+            ],
+            "prevalence_audit": [
+              8.0,
+              636
+            ],
+            "prevalence_destination": [
+              0.0,
+              53
+            ],
+            "prevalence_near": [
+              7.0,
+              477
+            ],
+            "valid_brier_audit": [
+              7.012447959794478,
+              636
+            ],
+            "valid_brier_destination": [
+              0.0,
+              53
+            ],
+            "valid_brier_near": [
+              5.915700088469727,
+              477
+            ]
+          },
+          "successful_forecast_frames": 53
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              -0.14582427842302656,
+              -0.0922840003059583,
+              0.14749383691914195,
+              -0.06647908909793127,
+              0.08946062543211054,
+              -0.19846641606146098,
+              -0.09606148638931115,
+              -0.1559899456931735,
+              0.5181507536196093
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "8d0712cb8028036407c8b4f12b5c6136a56c9f044cfe5722c4a509752c686126",
+            "observations_sha256": "288d90e5dfffc10c6fe2d83533aea858d208ebfa9a1c3aa82bfb66fc11c4ff5d",
+            "parameter_change_steps": 14,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                2.9054529223308436,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                3.2200932372242885,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.011149005077750134,
+                27
+              ]
+            }
+          },
+          "case": 4,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 53,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 53,
+          "seconds": 0.2594862249970902,
+          "stats": {
+            "brier_audit": [
+              7.106261452401916,
+              636
+            ],
+            "brier_audit_final_recorded": [
+              0.0022391306406266353,
+              12
+            ],
+            "brier_audit_post_switch": [
+              0.8281656725689694,
+              96
+            ],
+            "brier_audit_pre_switch": [
+              6.278095779832947,
+              540
+            ],
+            "brier_audit_terminal": [
+              0.0022391306406266353,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              53
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              8
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              45
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              6.136695164632884,
+              477
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.03054233523118432,
+              72
+            ],
+            "brier_near_pre_switch": [
+              6.106152829401699,
+              405
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              6.136695164632884,
+              189
+            ],
+            "prevalence_audit": [
+              8.0,
+              636
+            ],
+            "prevalence_destination": [
+              0.0,
+              53
+            ],
+            "prevalence_near": [
+              7.0,
+              477
+            ],
+            "valid_brier_audit": [
+              7.106261452401916,
+              636
+            ],
+            "valid_brier_destination": [
+              0.0,
+              53
+            ],
+            "valid_brier_near": [
+              6.136695164632884,
+              477
+            ]
+          },
+          "successful_forecast_frames": 53
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "8d0712cb8028036407c8b4f12b5c6136a56c9f044cfe5722c4a509752c686126",
+            "observations_sha256": "288d90e5dfffc10c6fe2d83533aea858d208ebfa9a1c3aa82bfb66fc11c4ff5d",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                2.7607847745598977,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                3.3506332451621805,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.005173855514574332,
+                27
+              ]
+            }
+          },
+          "case": 4,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 53,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 53,
+          "seconds": 0.33178255800157785,
+          "stats": {
+            "brier_audit": [
+              6.797574942809856,
+              636
+            ],
+            "brier_audit_final_recorded": [
+              0.004329544629612103,
+              12
+            ],
+            "brier_audit_post_switch": [
+              0.545887948774507,
+              96
+            ],
+            "brier_audit_pre_switch": [
+              6.251686994035347,
+              540
+            ],
+            "brier_audit_terminal": [
+              0.004329544629612103,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              53
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              8
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              45
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              6.116591875236651,
+              477
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.005778676403885631,
+              72
+            ],
+            "brier_near_pre_switch": [
+              6.110813198832766,
+              405
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              6.116591875236651,
+              189
+            ],
+            "prevalence_audit": [
+              8.0,
+              636
+            ],
+            "prevalence_destination": [
+              0.0,
+              53
+            ],
+            "prevalence_near": [
+              7.0,
+              477
+            ],
+            "valid_brier_audit": [
+              6.797574942809856,
+              636
+            ],
+            "valid_brier_destination": [
+              0.0,
+              53
+            ],
+            "valid_brier_near": [
+              6.116591875236651,
+              477
+            ]
+          },
+          "successful_forecast_frames": 53
+        }
+      },
+      "switch_step": 46,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 0.48599099999999995,
+      "case": 5,
+      "condition_episodes": 3,
+      "encountered_switch": false,
+      "evaluator_cpu_seconds": 0.10560199999999997,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 44,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.12709700000000063,
+        "error": null,
+        "evaluator_cpu_seconds": 0.057773889999999994,
+        "reason": "escaped",
+        "seconds": 0.16979531501419842,
+        "steps": 44
+      },
+      "policy_trajectory_sha256": "10f77b6c0ab39de43808a7d9c299de2af6fa419e7505b734af73091f1d6a9a09",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 0.5478355100203771,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "65b3551c08d5dd7f81632ad6975cfd69604b67b1d9f03818503919e05ec21247",
+            "observations_sha256": "b656f49f11b78040ac7c4a07e20a5950a4d7c04e733b06fac9e14ac10d0a0d96",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                2.5142302850487246,
+                171
+              ]
+            }
+          },
+          "case": 5,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 44,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 44,
+          "seconds": 0.18294933598372154,
+          "stats": {
+            "brier_audit": [
+              15.596608635697075,
+              528
+            ],
+            "brier_audit_final_recorded": [
+              0.0015098715850730944,
+              12
+            ],
+            "brier_audit_pre_switch": [
+              15.596608635697075,
+              528
+            ],
+            "brier_audit_terminal": [
+              0.0015098715850730944,
+              12
+            ],
+            "brier_destination": [
+              0.011092322723992689,
+              44
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_pre_switch": [
+              0.011092322723992689,
+              44
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              2.5142302850487246,
+              396
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_pre_switch": [
+              2.5142302850487246,
+              396
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              2.5142302850487246,
+              81
+            ],
+            "prevalence_audit": [
+              16.0,
+              528
+            ],
+            "prevalence_destination": [
+              0.0,
+              44
+            ],
+            "prevalence_near": [
+              3.0,
+              396
+            ],
+            "valid_brier_audit": [
+              15.596608635697075,
+              528
+            ],
+            "valid_brier_destination": [
+              0.011092322723992689,
+              44
+            ],
+            "valid_brier_near": [
+              2.5142302850487246,
+              396
+            ]
+          },
+          "successful_forecast_frames": 44
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              -0.17193767599471277,
+              0.16343191399927787,
+              -0.14575595399949692,
+              -0.22687145971668876,
+              0.8365230022569464,
+              -0.1114461155697853,
+              -0.15364049169150612,
+              -0.13506369964348652,
+              -0.05523951964054785
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "65b3551c08d5dd7f81632ad6975cfd69604b67b1d9f03818503919e05ec21247",
+            "observations_sha256": "b656f49f11b78040ac7c4a07e20a5950a4d7c04e733b06fac9e14ac10d0a0d96",
+            "parameter_change_steps": 4,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                2.452848370666396,
+                171
+              ]
+            }
+          },
+          "case": 5,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 44,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 44,
+          "seconds": 0.17974044199218042,
+          "stats": {
+            "brier_audit": [
+              15.594200057053177,
+              528
+            ],
+            "brier_audit_final_recorded": [
+              0.0015134336896009736,
+              12
+            ],
+            "brier_audit_pre_switch": [
+              15.594200057053177,
+              528
+            ],
+            "brier_audit_terminal": [
+              0.0015134336896009736,
+              12
+            ],
+            "brier_destination": [
+              0.010048190920693922,
+              44
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_pre_switch": [
+              0.010048190920693922,
+              44
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              2.452848370666396,
+              396
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_pre_switch": [
+              2.452848370666396,
+              396
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              2.452848370666396,
+              81
+            ],
+            "prevalence_audit": [
+              16.0,
+              528
+            ],
+            "prevalence_destination": [
+              0.0,
+              44
+            ],
+            "prevalence_near": [
+              3.0,
+              396
+            ],
+            "valid_brier_audit": [
+              15.594200057053177,
+              528
+            ],
+            "valid_brier_destination": [
+              0.010048190920693922,
+              44
+            ],
+            "valid_brier_near": [
+              2.452848370666396,
+              396
+            ]
+          },
+          "successful_forecast_frames": 44
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "65b3551c08d5dd7f81632ad6975cfd69604b67b1d9f03818503919e05ec21247",
+            "observations_sha256": "b656f49f11b78040ac7c4a07e20a5950a4d7c04e733b06fac9e14ac10d0a0d96",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                2.04761773426585,
+                171
+              ]
+            }
+          },
+          "case": 5,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 44,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 44,
+          "seconds": 0.1742967019963544,
+          "stats": {
+            "brier_audit": [
+              15.41428041083574,
+              528
+            ],
+            "brier_audit_final_recorded": [
+              0.0014696210187273642,
+              12
+            ],
+            "brier_audit_pre_switch": [
+              15.41428041083574,
+              528
+            ],
+            "brier_audit_terminal": [
+              0.0014696210187273642,
+              12
+            ],
+            "brier_destination": [
+              0.003678347239947332,
+              44
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_pre_switch": [
+              0.003678347239947332,
+              44
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              2.04761773426585,
+              396
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_pre_switch": [
+              2.04761773426585,
+              396
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              2.04761773426585,
+              81
+            ],
+            "prevalence_audit": [
+              16.0,
+              528
+            ],
+            "prevalence_destination": [
+              0.0,
+              44
+            ],
+            "prevalence_near": [
+              3.0,
+              396
+            ],
+            "valid_brier_audit": [
+              15.41428041083574,
+              528
+            ],
+            "valid_brier_destination": [
+              0.003678347239947332,
+              44
+            ],
+            "valid_brier_near": [
+              2.04761773426585,
+              396
+            ]
+          },
+          "successful_forecast_frames": 44
+        }
+      },
+      "switch_step": 67,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 0.7338859999999995,
+      "case": 6,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.18596762,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 64,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.17759100000000005,
+        "error": null,
+        "evaluator_cpu_seconds": 0.07698104799999994,
+        "reason": "escaped",
+        "seconds": 0.23622882799827494,
+        "steps": 64
+      },
+      "policy_trajectory_sha256": "3eca3c5c0861c99196f37b3fbed8dbc4d72f9e6b1c82fb60b9915633e80022e3",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 0.8502338670077734,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "dcfab09591ba94537afbcb03e5e32b38bd9e52b165ec14152a2991c0d28b0fe8",
+            "observations_sha256": "061c7f908de884abf1db15f9f1d1f1904c946be82b7efc6b6f4dae415b42d34d",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.4076450916483,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.8713257760667443,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.0720488017084296,
+                126
+              ]
+            }
+          },
+          "case": 6,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 64,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 64,
+          "seconds": 0.27865942000062205,
+          "stats": {
+            "brier_audit": [
+              13.12812925117125,
+              768
+            ],
+            "brier_audit_final_recorded": [
+              0.0006961358195106205,
+              12
+            ],
+            "brier_audit_post_switch": [
+              0.004662027930859471,
+              60
+            ],
+            "brier_audit_pre_switch": [
+              13.123467223240397,
+              708
+            ],
+            "brier_audit_terminal": [
+              0.0006961358195106205,
+              12
+            ],
+            "brier_destination": [
+              0.012476205079485176,
+              64
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              5
+            ],
+            "brier_destination_pre_switch": [
+              0.012476205079485176,
+              59
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              2.3510196694234744,
+              576
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0720488017084296,
+              45
+            ],
+            "brier_near_pre_switch": [
+              2.2789708677150444,
+              531
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              2.3510196694234744,
+              162
+            ],
+            "prevalence_audit": [
+              13.0,
+              768
+            ],
+            "prevalence_destination": [
+              0.0,
+              64
+            ],
+            "prevalence_near": [
+              4.0,
+              576
+            ],
+            "valid_brier_audit": [
+              13.12812925117125,
+              768
+            ],
+            "valid_brier_destination": [
+              0.012476205079485176,
+              64
+            ],
+            "valid_brier_near": [
+              2.3510196694234744,
+              576
+            ]
+          },
+          "successful_forecast_frames": 64
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              -0.01965608024123674,
+              -0.2788855228212616,
+              0.3935934823709684,
+              -0.2729233284757471,
+              0.1387856113364017,
+              -0.030951880629736382,
+              -0.12618524092692218,
+              -0.06615024523360051,
+              0.26237320462113434
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "dcfab09591ba94537afbcb03e5e32b38bd9e52b165ec14152a2991c0d28b0fe8",
+            "observations_sha256": "061c7f908de884abf1db15f9f1d1f1904c946be82b7efc6b6f4dae415b42d34d",
+            "parameter_change_steps": 16,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.3461465219482895,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.9165424333203148,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.07377020559572306,
+                126
+              ]
+            }
+          },
+          "case": 6,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 64,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 64,
+          "seconds": 0.297185295028612,
+          "stats": {
+            "brier_audit": [
+              13.213216332099003,
+              768
+            ],
+            "brier_audit_final_recorded": [
+              0.0007814552480492615,
+              12
+            ],
+            "brier_audit_post_switch": [
+              0.00490776416260874,
+              60
+            ],
+            "brier_audit_pre_switch": [
+              13.208308567936397,
+              708
+            ],
+            "brier_audit_terminal": [
+              0.0007814552480492615,
+              12
+            ],
+            "brier_destination": [
+              0.01151680555014666,
+              64
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              5
+            ],
+            "brier_destination_pre_switch": [
+              0.01151680555014666,
+              59
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              2.3364591608643273,
+              576
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.07377020559572306,
+              45
+            ],
+            "brier_near_pre_switch": [
+              2.2626889552686045,
+              531
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              2.3364591608643273,
+              162
+            ],
+            "prevalence_audit": [
+              13.0,
+              768
+            ],
+            "prevalence_destination": [
+              0.0,
+              64
+            ],
+            "prevalence_near": [
+              4.0,
+              576
+            ],
+            "valid_brier_audit": [
+              13.213216332099003,
+              768
+            ],
+            "valid_brier_destination": [
+              0.01151680555014666,
+              64
+            ],
+            "valid_brier_near": [
+              2.3364591608643273,
+              576
+            ]
+          },
+          "successful_forecast_frames": 64
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "dcfab09591ba94537afbcb03e5e32b38bd9e52b165ec14152a2991c0d28b0fe8",
+            "observations_sha256": "061c7f908de884abf1db15f9f1d1f1904c946be82b7efc6b6f4dae415b42d34d",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.1036060980710771,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.8865993121146631,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.29045584747071024,
+                126
+              ]
+            }
+          },
+          "case": 6,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 64,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 64,
+          "seconds": 0.2566877770004794,
+          "stats": {
+            "brier_audit": [
+              13.458567427205827,
+              768
+            ],
+            "brier_audit_final_recorded": [
+              0.0014434609694996489,
+              12
+            ],
+            "brier_audit_post_switch": [
+              0.005656076761609124,
+              60
+            ],
+            "brier_audit_pre_switch": [
+              13.452911350444221,
+              708
+            ],
+            "brier_audit_terminal": [
+              0.0014434609694996489,
+              12
+            ],
+            "brier_destination": [
+              0.0022179711727914483,
+              64
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              5
+            ],
+            "brier_destination_pre_switch": [
+              0.0022179711727914483,
+              59
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              2.28066125765645,
+              576
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.29045584747071024,
+              45
+            ],
+            "brier_near_pre_switch": [
+              1.9902054101857398,
+              531
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              2.28066125765645,
+              162
+            ],
+            "prevalence_audit": [
+              13.0,
+              768
+            ],
+            "prevalence_destination": [
+              0.0,
+              64
+            ],
+            "prevalence_near": [
+              4.0,
+              576
+            ],
+            "valid_brier_audit": [
+              13.458567427205827,
+              768
+            ],
+            "valid_brier_destination": [
+              0.0022179711727914483,
+              64
+            ],
+            "valid_brier_near": [
+              2.28066125765645,
+              576
+            ]
+          },
+          "successful_forecast_frames": 64
+        }
+      },
+      "switch_step": 60,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    },
+    {
+      "adapter": "directional-v3-no-planner",
+      "candidate_cpu_seconds": 1.6362480000000006,
+      "case": 7,
+      "condition_episodes": 3,
+      "encountered_switch": true,
+      "evaluator_cpu_seconds": 0.2501241600000004,
+      "label_visibility": "near targets become visible in the next observation if nonterminal; terminal and nonlocal audit labels are evaluator-only",
+      "missing_forecast_probability": 0.5,
+      "model_calls": 0,
+      "new_environment_episodes": 0,
+      "policy_frames": 85,
+      "policy_reason": "escaped",
+      "policy_result": {
+        "candidate_cpu_seconds": 0.2596179999999999,
+        "error": null,
+        "evaluator_cpu_seconds": 0.11574859100000001,
+        "reason": "escaped",
+        "seconds": 0.3419362519925926,
+        "steps": 85
+      },
+      "policy_trajectory_sha256": "7ca9870164bcbd8e1b250ab9bc8d6370b76cc0146e046657639743787fa764dc",
+      "post_switch_scope": "survivor-conditioned: only recorded transitions reaching the private switch",
+      "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+      "regime": "switch",
+      "seconds": 1.71397747300216,
+      "shadows": {
+        "fitted_frozen": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "b98ab785b9d59f6e3695aac07a00dcc4212c717ebf2d57222798acc65cf56191",
+            "observations_sha256": "0c57fb02e75d42f5e0f8c8bfa79fcca56f45c885e958cd00fa9720da0442924a",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.0798440309591246,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.04859729485347229,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "3": {
+              "brier": [
+                0.0,
+                90
+              ]
+            }
+          },
+          "case": 7,
+          "condition": "fitted_frozen",
+          "error": null,
+          "error_step": null,
+          "frames": 85,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 85,
+          "seconds": 0.3898933030141052,
+          "stats": {
+            "brier_audit": [
+              17.837500595749315,
+              1020
+            ],
+            "brier_audit_final_recorded": [
+              0.0012298738103716273,
+              12
+            ],
+            "brier_audit_post_switch": [
+              7.86237929821237,
+              552
+            ],
+            "brier_audit_pre_switch": [
+              9.975121297536862,
+              468
+            ],
+            "brier_audit_terminal": [
+              0.0012298738103716273,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              85
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              46
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              39
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              1.128441325812597,
+              765
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              414
+            ],
+            "brier_near_pre_switch": [
+              1.128441325812597,
+              351
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              1.128441325812597,
+              108
+            ],
+            "prevalence_audit": [
+              18.0,
+              1020
+            ],
+            "prevalence_destination": [
+              0.0,
+              85
+            ],
+            "prevalence_near": [
+              1.0,
+              765
+            ],
+            "valid_brier_audit": [
+              17.837500595749315,
+              1020
+            ],
+            "valid_brier_destination": [
+              0.0,
+              85
+            ],
+            "valid_brier_near": [
+              1.128441325812597,
+              765
+            ]
+          },
+          "successful_forecast_frames": 85
+        },
+        "fitted_online": {
+          "audit": {
+            "final_parameters": [
+              0.07714622004918335,
+              -0.016207496205233776,
+              -0.07802373970000709,
+              0.012768161778176924,
+              0.06156055930275459,
+              -0.0010640674799996446,
+              -0.25284321861057624,
+              0.07559273129222296,
+              0.1210708495734789
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "b98ab785b9d59f6e3695aac07a00dcc4212c717ebf2d57222798acc65cf56191",
+            "observations_sha256": "0c57fb02e75d42f5e0f8c8bfa79fcca56f45c885e958cd00fa9720da0442924a",
+            "parameter_change_steps": 12,
+            "parameters_constant": false,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.0863134501975302,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.04546050472347794,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "3": {
+              "brier": [
+                0.0,
+                90
+              ]
+            }
+          },
+          "case": 7,
+          "condition": "fitted_online",
+          "error": null,
+          "error_step": null,
+          "frames": 85,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 85,
+          "seconds": 0.6751456880010664,
+          "stats": {
+            "brier_audit": [
+              17.835803817860782,
+              1020
+            ],
+            "brier_audit_final_recorded": [
+              0.0012282461903292128,
+              12
+            ],
+            "brier_audit_post_switch": [
+              7.867475267410294,
+              552
+            ],
+            "brier_audit_pre_switch": [
+              9.968328550450439,
+              468
+            ],
+            "brier_audit_terminal": [
+              0.0012282461903292128,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              85
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              46
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              39
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              1.131773954921008,
+              765
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              414
+            ],
+            "brier_near_pre_switch": [
+              1.131773954921008,
+              351
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              1.131773954921008,
+              108
+            ],
+            "prevalence_audit": [
+              18.0,
+              1020
+            ],
+            "prevalence_destination": [
+              0.0,
+              85
+            ],
+            "prevalence_near": [
+              1.0,
+              765
+            ],
+            "valid_brier_audit": [
+              17.835803817860782,
+              1020
+            ],
+            "valid_brier_destination": [
+              0.0,
+              85
+            ],
+            "valid_brier_near": [
+              1.131773954921008,
+              765
+            ]
+          },
+          "successful_forecast_frames": 85
+        },
+        "known_law": {
+          "audit": {
+            "final_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "first_parameters": [
+              -0.02062496780992635,
+              0.041686636293128666,
+              0.017716729276405704,
+              -0.05317038106979092,
+              0.01528982933694252,
+              0.005614625928563752,
+              -0.0036605252735014775,
+              -0.022035787654477657,
+              0.019183840972655755
+            ],
+            "map_position_sha256": "b98ab785b9d59f6e3695aac07a00dcc4212c717ebf2d57222798acc65cf56191",
+            "observations_sha256": "0c57fb02e75d42f5e0f8c8bfa79fcca56f45c885e958cd00fa9720da0442924a",
+            "parameter_change_steps": 0,
+            "parameters_constant": true,
+            "parameters_exported": true
+          },
+          "bins": {
+            "0": {
+              "brier": [
+                1.8935274845810173,
+                225
+              ]
+            },
+            "1": {
+              "brier": [
+                0.021847670575162306,
+                225
+              ]
+            },
+            "2": {
+              "brier": [
+                0.0,
+                225
+              ]
+            },
+            "3": {
+              "brier": [
+                0.0,
+                90
+              ]
+            }
+          },
+          "case": 7,
+          "condition": "known_law",
+          "error": null,
+          "error_step": null,
+          "frames": 85,
+          "missing_forecast_frames": 0,
+          "regime": "switch",
+          "scored_frames": 85,
+          "seconds": 0.6268537610012572,
+          "stats": {
+            "brier_audit": [
+              16.752015602703448,
+              1020
+            ],
+            "brier_audit_final_recorded": [
+              0.0009592628374698185,
+              12
+            ],
+            "brier_audit_post_switch": [
+              7.665343819603588,
+              552
+            ],
+            "brier_audit_pre_switch": [
+              9.086671783099805,
+              468
+            ],
+            "brier_audit_terminal": [
+              0.0009592628374698185,
+              12
+            ],
+            "brier_destination": [
+              0.0,
+              85
+            ],
+            "brier_destination_final_recorded": [
+              0.0,
+              1
+            ],
+            "brier_destination_post_switch": [
+              0.0,
+              46
+            ],
+            "brier_destination_pre_switch": [
+              0.0,
+              39
+            ],
+            "brier_destination_terminal": [
+              0.0,
+              1
+            ],
+            "brier_near": [
+              1.9153751551561795,
+              765
+            ],
+            "brier_near_final_recorded": [
+              0.0,
+              9
+            ],
+            "brier_near_post_switch": [
+              0.0,
+              414
+            ],
+            "brier_near_pre_switch": [
+              1.9153751551561795,
+              351
+            ],
+            "brier_near_terminal": [
+              0.0,
+              9
+            ],
+            "brier_threat": [
+              1.9153751551561795,
+              108
+            ],
+            "prevalence_audit": [
+              18.0,
+              1020
+            ],
+            "prevalence_destination": [
+              0.0,
+              85
+            ],
+            "prevalence_near": [
+              1.0,
+              765
+            ],
+            "valid_brier_audit": [
+              16.752015602703448,
+              1020
+            ],
+            "valid_brier_destination": [
+              0.0,
+              85
+            ],
+            "valid_brier_near": [
+              1.9153751551561795,
+              765
+            ]
+          },
+          "successful_forecast_frames": 85
+        }
+      },
+      "switch_step": 40,
+      "target_contract": "horizon1 union enemy occupancy; origin-relative coordinates; near previous3x3, audit12, actual destination",
+      "terminal_transition_included": true
+    }
+  ],
+  "shadow_condition_episodes": 24,
+  "worker_sha256": "4face925ede0460d45b22fecbc74974086eedccde425c82ba7f1d4884102b1db"
+}

@@ -1,0 +1,156 @@
+{
+  "corpus_condition_episodes": 264,
+  "corpus_episode_seconds": 82.91420840332285,
+  "corpus_steps": 16872,
+  "elapsed_seconds": 204.53816959701362,
+  "frozen_fits": [
+    {
+      "iterations": 10,
+      "regularization": 0.0,
+      "success": true,
+      "theta": [
+        -0.2367697028945304,
+        0.34888645393026385,
+        0.12675796953954768,
+        -0.48022589688997047,
+        0.20561281194082412,
+        0.0418352983448602,
+        0.017184601872541155,
+        -0.18258973599122852,
+        0.15930820014769234
+      ],
+      "train_brier": 0.00884107450608677,
+      "validation_brier": 0.008339557990212501
+    },
+    {
+      "iterations": 7,
+      "regularization": 0.001,
+      "success": true,
+      "theta": [
+        -0.11444335276297546,
+        0.20913855240255916,
+        0.07338760555147911,
+        -0.23790549965430105,
+        0.08517700693793566,
+        0.016453701348767946,
+        -0.012751400974743145,
+        -0.10728570450605658,
+        0.08822909165733436
+      ],
+      "train_brier": 0.008854689011268128,
+      "validation_brier": 0.008291165988600047
+    },
+    {
+      "iterations": 5,
+      "regularization": 0.01,
+      "success": true,
+      "theta": [
+        -0.02062496780992635,
+        0.041686636293128666,
+        0.017716729276405704,
+        -0.05317038106979092,
+        0.01528982933694252,
+        0.005614625928563752,
+        -0.0036605252735014775,
+        -0.022035787654477657,
+        0.019183840972655755
+      ],
+      "train_brier": 0.008894059959438332,
+      "validation_brier": 0.008264168999891854
+    }
+  ],
+  "limitations": [
+    "anonymous occupancy approximation cannot identify overlapping enemies",
+    "unseen terrain uses observed map and gen14 occupancy belief; not an exact POMDP filter",
+    "fit subvalidation is development and is selection-biased",
+    "online updates use Brier gradients, not privileged movement labels"
+  ],
+  "online_rate_results": [
+    {
+      "brier": 0.006190855433839928,
+      "loss_sum": 245.93792296472498,
+      "rate": 0.0,
+      "targets": 39726
+    },
+    {
+      "brier": 0.0061698463544599775,
+      "loss_sum": 245.10331627727706,
+      "rate": 0.5,
+      "targets": 39726
+    },
+    {
+      "brier": 0.006133894678918725,
+      "loss_sum": 243.67510001472527,
+      "rate": 2.0,
+      "targets": 39726
+    },
+    {
+      "brier": 0.006467469967183588,
+      "loss_sum": 256.92671191633525,
+      "rate": 8.0,
+      "targets": 39726
+    }
+  ],
+  "plan": {
+    "corpus_policy_sha256": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e",
+    "driver_sha256": "54508faf8ed9c8ae7b6f309b9e8147f27120557e73c2566fe9b8e2981dc9a3fe",
+    "fit": "nine absolute attempted-direction logits; blocked attempts stay; anonymous occupancy Brier",
+    "fit_subvalidation_layouts": 24,
+    "fit_subvalidation_pool_sha256": "d723aa726e4a915c5385ede035cfd9d65e926ace7bbed859c0a3450985e0573a",
+    "fit_targets": "next visible labels at previous inner 3x3 traversable cells; no terminal labels",
+    "model_calls": 0,
+    "online_rate_candidates": [
+      0.5,
+      2.0,
+      8.0
+    ],
+    "online_rate_targets": "same observation-only replay, previous inner 3x3 including walls",
+    "optimizer": "L-BFGS-B, maxiter 150, theta bounds [-5,5], zero start",
+    "purpose": "manually engineered ordinary comparator; not evolution seed",
+    "regime_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "regularization_candidates": [
+      0.0,
+      0.001,
+      0.01
+    ],
+    "selection": "lowest subvalidation proper Brier, ties prefer smaller regularization/rate",
+    "template_sha256": "b3b37ed5208886dc9eb45804848b6fe34d5af0c647552aeb6fc770addfad318a",
+    "train_pool_sha256": "e8c0eee3ea522b43e1c2ac326869145cb3d6d3d93fe53023b5f9842908a37b2e",
+    "training_layouts": 64
+  },
+  "program_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+  "selected_online_rate": 2.0,
+  "selected_prior": [
+    -0.02062496780992635,
+    0.041686636293128666,
+    0.017716729276405704,
+    -0.05317038106979092,
+    0.01528982933694252,
+    0.005614625928563752,
+    -0.0036605252735014775,
+    -0.022035787654477657,
+    0.019183840972655755
+  ],
+  "selected_regularization": 0.01,
+  "train_counts": {
+    "episodes": 192,
+    "informative_targets": 7189,
+    "targets": 82604,
+    "transitions": 12194
+  },
+  "validation_counts": {
+    "episodes": 72,
+    "informative_targets": 2371,
+    "targets": 29758,
+    "transitions": 4414
+  }
+}

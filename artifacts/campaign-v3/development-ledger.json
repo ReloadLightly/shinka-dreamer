@@ -1,0 +1,33 @@
+{
+  "scope": "Named scientific development units; automated tests are separate checks, not added to scientific denominators.",
+  "objective_check": {
+    "condition_episodes": 120,
+    "pool": "first8development cases,three regimes,five controls",
+    "data_sha256": "80997a6dd13754db22b42824b991e55c6b3698a9688fabcbabe9ed7c972b3ca4"
+  },
+  "comparator_fitting_corpus": {
+    "condition_episodes": 264,
+    "cases_train": 64,
+    "cases_subvalidation": 24,
+    "regimes": 3,
+    "steps": 16872,
+    "fit_record_sha256": "648d42237d2ffc7912cdb794f23af395a98366d29f8d4dad9d54092abbb01d2d"
+  },
+  "comparator_decision_diagnostic": {
+    "condition_episodes": 72,
+    "cases": 8,
+    "regimes": 3,
+    "conditions": 3,
+    "record_sha256": "eceb160e9491a249f10896a432f3f2a05679bbbdcfeb04760a8d003df7644046"
+  },
+  "non_test_smoke": {
+    "condition_episodes": 4,
+    "description": "One initial.py switching case and three-regime native evaluator smoke; not search slots."
+  },
+  "matched_fitting_subvalidation": {
+    "recorded_experience_episodes": 72,
+    "additional_environment_episodes": 0,
+    "scope": "Selection biased; fits/rates selected on this subvalidation."
+  },
+  "search": "Use search-summary.json and native-audit.json for exact ongoing counts."
+}

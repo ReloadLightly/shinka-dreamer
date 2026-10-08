@@ -1,0 +1,126 @@
+{
+  "action_conditioning": "current interaction always true can open adjacent door; attempted enemy law otherwise independent of action",
+  "attempt_order": [
+    [
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "fitting_regime_exposure": {
+    "train": {
+      "stationary": {
+        "episodes": 64,
+        "fit_target_fraction": 0.35621761658031087,
+        "fit_targets": 29425,
+        "replay_targets": 38637
+      },
+      "switch": {
+        "episodes": 64,
+        "fit_target_fraction": 0.32768388940002907,
+        "fit_targets": 27068,
+        "replay_targets": 36099
+      },
+      "uniform": {
+        "episodes": 64,
+        "fit_target_fraction": 0.31609849401966006,
+        "fit_targets": 26111,
+        "replay_targets": 35010
+      }
+    },
+    "validation": {
+      "stationary": {
+        "episodes": 24,
+        "fit_target_fraction": 0.3314738893742859,
+        "fit_targets": 9864,
+        "replay_targets": 13230
+      },
+      "switch": {
+        "episodes": 24,
+        "fit_target_fraction": 0.3199475771221184,
+        "fit_targets": 9521,
+        "replay_targets": 12762
+      },
+      "uniform": {
+        "episodes": 24,
+        "fit_target_fraction": 0.3485785335035957,
+        "fit_targets": 10373,
+        "replay_targets": 13734
+      }
+    }
+  },
+  "fitting_regime_weight_interpretation": "Equal episode counts across regimes; fitting/subvalidation minimizes pooled target loss, so effective target weights follow recorded exposure rather than exactly one third.",
+  "forecast_target": "at least one enemy at each origin-relative grid coordinate after the next enemy tick",
+  "frozen_variant": "same source and initial logits; evaluator sets learn=False, only transition-logit updates stop",
+  "historical_base": "artifacts/campaign-v2/mechanism-gen14/agent.py",
+  "historical_base_sha256": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+  "inherited": [
+    "gen14 map and localization",
+    "gen14 anonymous partial-observation occupancy filter",
+    "gen14 target and two-step planner"
+  ],
+  "known_law_variant": "same source and partial-observation state; evaluator provides current nine probabilities only",
+  "limitations": [
+    "anonymous occupancy approximation cannot identify overlapping enemies",
+    "unseen terrain uses observed map and gen14 occupancy belief; not an exact POMDP filter",
+    "fit subvalidation is development and is selection-biased",
+    "online updates use Brier gradients, not privileged movement labels"
+  ],
+  "manual_changes": [
+    "replace ten gen14 transition features with nine absolute attempted-direction logits",
+    "aggregate blocked-attempt probability at source, including illegal corner diagonals",
+    "anonymous union-occupancy Brier-gradient update and independently development-fitted initial logits",
+    "optional privileged current-law observation for known-law reference; same planner"
+  ],
+  "online_update": "Per-observation anonymous occupancy Brier gradient; rate2.0; per-coordinate gradient clipped[-0.5,0.5], ridge pull0.002 toward fitted prior; center and clip logits[-5,5].",
+  "online_variant": "same source and initial logits; evaluator sets learn=True",
+  "planning_risk": "immediate exported one-tick occupancy; continuation is inherited survival-conditioned two-tick collision heuristic; neither equals total death probability",
+  "predictor_subvalidation_counts": {
+    "episodes": 72,
+    "informative_targets": 2371,
+    "targets": 29758,
+    "transitions": 4414
+  },
+  "private_inputs": "Existing results/private/v3-fit-seeds.json and v3-fit-validation-seeds.json; never assessment cases",
+  "reproduce": ".venv/bin/python scripts/v3_fit.py --workers 2",
+  "role": "manually engineered comparator, not the new evolutionary seed",
+  "source": "controls/v3/directional.py",
+  "source_sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78",
+  "training_counts": {
+    "episodes": 192,
+    "informative_targets": 7189,
+    "targets": 82604,
+    "transitions": 12194
+  }
+}

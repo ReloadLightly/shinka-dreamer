@@ -1,0 +1,17 @@
+{
+  "generation": 2,
+  "request_sha256": "541fcf72d7b2d41c4882884e33575e03ef8c155b289a530b23da2c4d83dc4819",
+  "task_present": true,
+  "corrected_keys_description": true,
+  "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+  "parent_code_present": true,
+  "string_feedback": true,
+  "feedback_present": true,
+  "archive_inspiration_ids": [
+    "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+  ],
+  "inspiration_code_presence": {
+    "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de": true
+  },
+  "slot1_preserved": true
+}

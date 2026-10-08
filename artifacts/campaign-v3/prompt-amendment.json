@@ -1,0 +1,24 @@
+{
+  "campaign_sha256": "cb147fc6227f5d91b8d33ca525404113c2ee384c868191ab72e374686bf8b0a0",
+  "reason": "Correct a mistaken description of the existing keys score term; evaluator always used raw count.",
+  "old_text": "where keys is the fraction of the two collected keys.",
+  "new_text": "where keys is the raw number of collected keys (0, 1, or 2).",
+  "old_prompt_sha256": "0178975ea5272ce2eaa6ac62b7af8d76ac6aec4e17477a85028dd5ab5474e429",
+  "new_prompt_sha256": "97b50b2edc31fe42b0521926fca8a131f633d5adc071cb45d18bcb538e6b3c03",
+  "evaluation_unchanged": true,
+  "search_mechanisms_unchanged": true,
+  "first_controller_stop": {
+    "controller_pid": 1231897,
+    "persisted_last_generation": 1,
+    "signal": "SIGINT",
+    "time": 1791476050.9248164,
+    "reason": "Correct prompt-only keys description; preserve current completed proposal before resume",
+    "active_model_calls": 0
+  },
+  "new_resume_driver_sha256": "51372461dac254dfb69708cc51159de99c7637e243b680a7fa24b2cdb7954f0d",
+  "local_worker_instructions_sha256": "a4cf5c3307406c9f7008bf7cfff4b8c35b48d07770c4660efa1f6f12bea3836c",
+  "local_worker_instructions": "# Native mutation and recommendation worker\n\nThis directory is an inference workspace for a native ShinkaEvolve request.\nThe complete allowed scientific context is in the supplied request: task,\nparent/inspiration programs, development feedback and native recommendations.\n\nDo not call tools, run shell commands, read files, inspect parent directories,\nor retrieve other experiment outputs. In particular, do not open validation,\ncomparator fitting or assessment data. Work only from the supplied request.\n\nThe repository's bootstrap, implementation, test, reporting, commit and push\nworkflow belongs to the outer experiment controller. This worker only returns\nthe code, patch or recommendation in the exact requested native format.\nRepresentations, predictive updates, memory, helpers and planning remain open\nto substantive evolution within the task's interface and resource boundaries.\n",
+  "instruction_reason": "Prevent inherited repository implementation workflow from triggering outside-context reads; no global authentication/settings/sandbox changed.",
+  "observed_first_request_context": "Native tool telemetry shows pwd plus CODEX_TASK.md/docs/design.md reads; no v3 private validation/fitting/assessment data read.",
+  "preservation": "Original manifest/resolved/prompt/driver and every call/proposal remain intact."
+}
