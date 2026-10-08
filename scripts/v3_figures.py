@@ -173,6 +173,68 @@ def write_matched_tables(fitted,selected,out):
     (out.parent/'matched-tables.md').write_text('\n'.join(lines)+'\n')
 
 
+def exposure_figure(data,out):
+    """Display unconditional exposure counts; no new statistical decisions."""
+    groups=[(key.split('/',1)[1],row) for key,row in data['outcomes'].items()
+            if key.startswith('switch/')]
+    if not groups:return
+    fig,axes=plt.subplots(1,2,figsize=(11,max(5.4,len(groups)*.49)),
+                          gridspec_kw={'wspace':.25})
+    y=np.arange(len(groups))
+    for offset,key,color,label in [(-.16,'encountered',COBALT,'Encountered replacement law'),
+            (.16,'contrast',MAGENTA,'Observed a post-switch contrast')]:
+        values=[]
+        for _,row in groups:
+            value=(row['switch_exposure']['encountered'] if key=='encountered' else
+                   row['observed_transition_opportunities']['post_switch_episodes_with_observed_contrast'])
+            values.append(100*value/row['episodes'])
+        axes[0].barh(y+offset,values,height=.27,color=color,label=label)
+    means=[row['observed_transition_opportunities']['post_switch_sums'].get(
+        'observed_destination_contrast_opportunities',0)/row['episodes'] for _,row in groups]
+    axes[1].barh(y,means,height=.55,color=ORANGE)
+    for index,value in enumerate(means):
+        axes[1].annotate(f'{value:.2f}',(value,index),xytext=(5,0),textcoords='offset points',
+                         va='center',fontsize=9,color=SECONDARY)
+    axes[0].set(yticks=y,yticklabels=[display(name) for name,_ in groups],xlim=(0,100),
+                xlabel='Fraction of all episodes (%)',title='Exposure is policy dependent')
+    axes[1].set(yticks=y,yticklabels=[],xlabel='Source-cell contrasts per episode',
+                title='Observed learning opportunities')
+    axes[1].set_xlim(0,max(means,default=0)*1.25 or 1)
+    for ax in axes:ax.invert_yaxis()
+    axes[0].legend(loc='lower left',bbox_to_anchor=(0,1.13),fontsize=9)
+    fig.suptitle('An unannounced change does not guarantee informative experience',
+                 fontsize=15,fontweight='bold',y=1.08)
+    fig.text(.125,-.04,'All episode denominators include early endings and invalid execution.\n'
+             'Anonymous occupancy contrasts are an observation proxy, not measured information gain.',
+             fontsize=9,color=SECONDARY)
+    save_figure(fig,out/'switch-exposure')
+
+
+def write_mechanism_tables(data,out):
+    lines=['# Behavior, adaptive state and switch exposure','',
+           'Sequence changes describe behavior, not beneficial control. Invalid pairs remain in the outcome analysis; missing audits are unavailable. Recorded physical-state hashes cover pre-action world snapshots and post-transition enemies, but not the final agent position.','',
+           '| Regime | Paired contrast | Actions differ / all cases | Observations differ | Invalid pairs | Action audits unavailable |',
+           '|:--|:--|--:|--:|--:|--:|']
+    for row in data['pairs'].values():
+        b=row.get('behavior')
+        if not b:continue
+        lines.append(f"| {row['regime']} | {display(row['left'])} − {display(row['right'])} | {b['actions']['differing_pairs']}/{b['cases']} | {b['physical_observations']['differing_pairs']} | {b['invalid_pairs']} | {b['actions']['unavailable_valid_pairs']} |")
+    lines+=['','Parameter changes can include forgetting or regularization. Exports are source-specific and do not by themselves prove predictive learning.','',
+            '| Regime | Condition | Exported parameter audits | Constant | Changed | Unavailable | Localization errors / checks |',
+            '|:--|:--|--:|--:|--:|--:|--:|']
+    for key,row in data['outcomes'].items():
+        regime,name=key.split('/',1);a=row['state_audit']
+        lines.append(f"| {regime} | {display(name)} | {a['parameters_exported_episodes']} | {a['parameters_constant_episodes']} | {a['parameters_changed_episodes']} | {a['parameters_unavailable_episodes']} | {a['localization_errors']}/{a['localization_checks']} |")
+    lines+=['','Switch exposure uses all episodes as its denominator. Post-switch forecast windows and observed contrasts require reaching those transitions/observations and are survivor-conditioned. Contrasts are anonymous occupied-source-cell opportunities, not enemy identities or independent samples.','',
+            '| Condition | Encountered switch / all episodes | Episodes with post-switch contrast | Post-switch contrasts | Fully observed contrasts | Opportunity audits available |',
+            '|:--|--:|--:|--:|--:|--:|']
+    for key,row in data['outcomes'].items():
+        if not key.startswith('switch/'):continue
+        a=row['observed_transition_opportunities'];s=a['post_switch_sums']
+        lines.append(f"| {display(key.split('/',1)[1])} | {row['switch_exposure']['encountered']}/{row['episodes']} | {a['post_switch_episodes_with_observed_contrast']} | {s.get('observed_destination_contrast_opportunities',0)} | {s.get('fully_observed_transition_opportunities',0)} | {a['available_episode_audits']} |")
+    (out.parent/'mechanism-tables.md').write_text('\n'.join(lines)+'\n')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--analysis',default='artifacts/campaign-v3/assessment/analysis.json')
@@ -181,6 +243,7 @@ def main():
     args=parser.parse_args()
     data=json.loads(Path(args.analysis).read_text());out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
     apply_theme();outcomes(data,out);forecast_cost(data,out);write_tables(data,out)
+    exposure_figure(data,out);write_mechanism_tables(data,out)
     fitted=json.loads(Path(args.matched).read_text()) if Path(args.matched).exists() else {}
     if fitted: matched_figure(fitted,out)
     if data.get('selected_matched'):matched_figure(data['selected_matched'],out,'selected-matched-learning')
