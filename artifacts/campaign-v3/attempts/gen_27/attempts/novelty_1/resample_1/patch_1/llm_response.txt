@@ -1,0 +1,168 @@
+<NAME>
+conditioned_escape_tail
+</NAME>
+
+<DESCRIPTION>
+Add a bounded third-step escape check to the two-step planner. For each first action, examine its two best continuations, condition enemy distributions on surviving both movements, and estimate the safest third action. Penalize continuations whose apparent safety leads into a threatened bottleneck. This preserves the existing first- and second-step collision calculations and uses the learned movement laws, including blocked attempts. The proposed control improvement requires empirical evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def route_forecasts(m, experts, prepared, weights, law):
+=======
+def escape_tail_cost(m, prepared, q, r, weights, potential, pressure):
+    # Reaching the current target triggers replanning and possibly a new
+    # objective, so do not extrapolate its old route beyond that point.
+    if r == m["target"]:
+        return 0.0
+    cells = [
+        add(r, d) for d in MOVES
+        if add(r, d) in potential and legal(m, r, add(r, d))
+    ]
+    if not cells:
+        return pressure
+
+    # Only these cells can contribute to a third-step collision.
+    needed = {add(s, d) for s in cells for d in MOVES}
+    probabilities = [[] for _ in cells]
+    excluded = (q,) if q == r else (q, r)
+
+    for tracks, after, fog, fog_after, transition in prepared:
+        kernels = {p: transition(p) for p in excluded}
+        conditioned = []
+        impossible = False
+        for old, new in zip(tracks, after):
+            removed = [(p, old.get(p, 0.0)) for p in excluded]
+            killed_after = max(
+                0.0,
+                new.get(r, 0.0)
+                - sum(mass * kernels[p].get(r, 0.0)
+                      for p, mass in removed),
+            )
+            surviving = 1.0 - sum(mass for _, mass in removed)
+            surviving -= killed_after
+            if surviving <= 1e-12:
+                impossible = True
+                break
+            conditioned.append({
+                s: 0.0 if s == r else min(1.0, max(
+                    0.0,
+                    new.get(s, 0.0)
+                    - sum(mass * kernels[p].get(s, 0.0)
+                          for p, mass in removed),
+                ) / surviving)
+                for s in needed
+            })
+
+        if impossible:
+            for row in probabilities:
+                row.append(1.0)
+            continue
+
+        # Poisson fog survives by thinning, without track normalization.
+        remaining_fog = {
+            s: 0.0 if s == r else max(
+                0.0,
+                fog_after.get(s, 0.0)
+                - sum(fog.get(p, 0.0) * kernels[p].get(s, 0.0)
+                      for p in excluded),
+            )
+            for s in needed
+        }
+        for index, s in enumerate(cells):
+            incoming = [
+                (p, transition(p).get(s, 0.0))
+                for p in (add(s, d) for d in WALK)
+                if remaining_fog.get(p, 0.0) > 0.0
+                or any(track.get(p, 0.0) > 0.0
+                       for track in conditioned)
+            ]
+            # Entering an occupied cell kills before enemies move.
+            # Otherwise only arrivals from distinct cells add danger.
+            total = remaining_fog.get(s, 0.0) + sum(
+                remaining_fog.get(p, 0.0) * probability
+                for p, probability in incoming
+            )
+            for track in conditioned:
+                danger = track.get(s, 0.0) + sum(
+                    track.get(p, 0.0) * probability
+                    for p, probability in incoming
+                )
+                total += hazard(danger)
+            probabilities[index].append(
+                min(1.0, max(0.0, -math.expm1(-total)))
+            )
+
+    best = min(
+        1.0 + potential[s]
+        + .75 * pressure * mixture_hazard(row, weights)
+        for s, row in zip(cells, probabilities)
+    )
+    # Charge only excess over the existing route-to-target estimate.
+    return max(0.0, best - potential[r])
+
+
+def route_forecasts(m, experts, prepared, weights, law):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            continuation = float("inf")
+            if sum(survivor_weights) > 1e-12:
+                for e in MOVES:
+                    r = add(q, e)
+                    if r not in potential or not legal(m, q, r):
+                        continue
+                    second_probabilities = [
+                        second_probability(state, q, r)
+                        for state in prepared
+                    ]
+                    h2 = mixture_hazard(
+                        second_probabilities, survivor_weights
+                    )
+                    value = 1.0 + potential[r] + .85 * pressure * h2
+                    value += .025 * min(16, m["visits"].get(r, 0))
+                    if r == q:
+                        value += .15
+                    continuation = min(continuation, value)
+            if not math.isfinite(continuation):
+                continuation = potential[q] + 10.0
+=======
+            continuation = float("inf")
+            second_choices = []
+            if sum(survivor_weights) > 1e-12:
+                for e in MOVES:
+                    r = add(q, e)
+                    if r not in potential or not legal(m, q, r):
+                        continue
+                    second_probabilities = [
+                        second_probability(state, q, r)
+                        for state in prepared
+                    ]
+                    h2 = mixture_hazard(
+                        second_probabilities, survivor_weights
+                    )
+                    value = 1.0 + potential[r] + .85 * pressure * h2
+                    value += .025 * min(16, m["visits"].get(r, 0))
+                    if r == q:
+                        value += .15
+                    second_choices.append((value, r, second_probabilities))
+
+                # A small beam bounds computation while allowing an
+                # alternative continuation when the cheapest one is a trap.
+                for value, r, probabilities in sorted(second_choices)[:2]:
+                    after_survival = [
+                        weight * max(0.0, 1.0 - probability)
+                        for weight, probability
+                        in zip(survivor_weights, probabilities)
+                    ]
+                    if sum(after_survival) <= 1e-12:
+                        extra = pressure
+                    else:
+                        extra = escape_tail_cost(
+                            m, prepared, q, r, after_survival,
+                            potential, pressure,
+                        )
+                    continuation = min(continuation, value + .50 * extra)
+            if not math.isfinite(continuation):
+                continuation = potential[q] + 10.0
+>>>>>>> REPLACE
+</DIFF>

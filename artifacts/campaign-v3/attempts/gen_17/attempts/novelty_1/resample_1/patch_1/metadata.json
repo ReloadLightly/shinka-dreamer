@@ -1,0 +1,15 @@
+{
+  "generation": 17,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "surprise_recovery_safe_arrival",
+  "patch_description": "Retains anonymous movement inference and shared-law mixture forecasts. Adds crowd-normalized predictive-surprise detection that rebuilds the fast expert from recent informative transitions while preserving the slow expert and uniform floor. Excludes stale geometry from learning, checks survival after reaching intermediate targets, and measures planning progress using maze distance. Cached second-step forecasts reduce repeated computation. These changes target adaptation and collision avoidance; improved fitness remains to be established by evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:35:17.522135",
+  "llm_cost": 0.641328,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_17/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

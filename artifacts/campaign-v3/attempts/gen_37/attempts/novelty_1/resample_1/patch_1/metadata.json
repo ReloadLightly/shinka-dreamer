@@ -1,0 +1,15 @@
+{
+  "generation": 37,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "belief_route_controller",
+  "patch_description": "Reorganizes the agent into observation, dynamics learning, forecasting, route recovery, and control stages. Arrival-aware route costs prevent transient enemy positions from permanently distorting long routes. Persistent progress tracking and targeted observations of stale walls and diagonal clearances address stalled connectivity. The controller retains anonymous movement inference, separate learning and prediction-use interventions, and survival-conditioned local planning. Performance improvements require evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:25:53.905678",
+  "llm_cost": 0.888028,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_37/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -1,0 +1,15 @@
+{
+  "generation": 29,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 7,
+  "patch_name": "survival_conditioned_edges",
+  "patch_description": "Condition future collision risk on having survived at the preceding planned position. The current planner repeatedly charges probability mass for enemies occupying a cell where the agent must already have survived. This can distort waiting and escape maneuvers around moving enemies.\n\nRetain each expert\u2019s transition distributions and compute future edge hazards after excluding enemy occupancy at the preceding agent position. Reweight experts by that survival evidence before combining hazards. This is a one-step survival-conditioning approximation, not a full path posterior. It preserves the three-step horizon, uniform floor, immediate collision checks, exported forecasts, and separate prediction-use intervention. Performance improvement remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:42:33.171696",
+  "llm_cost": 0.481758,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_29/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

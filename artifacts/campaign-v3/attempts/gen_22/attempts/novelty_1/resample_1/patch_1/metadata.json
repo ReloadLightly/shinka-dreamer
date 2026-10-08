@@ -1,0 +1,15 @@
+{
+  "generation": 22,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "information_clocked_adaptation",
+  "patch_description": "Advance the dynamics learners when informative enemy transitions arrive, preserving learned laws during periods without evidence. Measure directional information from anonymous transition constraints, accounting for blocked attempts and ambiguous assignments. Scale change evidence by this information and require sustained fast-model advantage before rebuilding the short-memory expert; uniform-model advantage alone no longer triggers resets. Existing forecasts and survival planning consume the resulting mixture. This targets adaptation and retention without changing mapping or terrain-change exclusions; performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:02:51.881001",
+  "llm_cost": 0.439718,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_22/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

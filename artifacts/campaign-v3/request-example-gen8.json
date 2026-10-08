@@ -1,0 +1,55 @@
+{
+  "scope": "One complete actual resumed native mutation request, with its original whitespace and all supplied context. This is development context, not a fresh assessment result.",
+  "generation": 8,
+  "request_file": "request-example-gen8.md",
+  "original_request_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+  "archived_request_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+  "actual_native_call_id": "20261008T170242616753Z-02287234",
+  "native_sampling": {
+    "generation": 8,
+    "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+    "parent_sha256": "eca43e28566d0f6434852544fb7fb09af75c7f760d869de3dc08d89f00db7501",
+    "parent_island": 2,
+    "archive_inspiration_ids": [
+      "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+    ],
+    "top_k_inspiration_ids": [],
+    "parent_feedback_is_string": true,
+    "parent_text_feedback": "namazu-unknown-dynamics-v3; absolute-task-v1. 72 paired development condition-episodes. Absolute task fitness; prediction losses are diagnostics: {\"episodes\": 72, \"escape\": 0.8888888888888888, \"death\": 0.08333333333333333, \"timeout\": 0.027777777777777776, \"invalid\": 0, \"task\": 0.891079861111111, \"keys\": 1.9166666666666667, \"door\": 0.8888888888888888, \"steps\": 55.111111111111114, \"model_score\": 0.9886695121409562, \"seconds\": 0.15741675806889865, \"candidate_cpu_seconds\": 0.1353055277777778, \"evaluator_cpu_seconds\": 0.03365772966666663, \"base_audit\": 0.017335483870967845, \"base_near\": 0.007496774193548394, \"brier_audit\": 0.016264233071974606, \"brier_audit_post_switch\": 0.01361971083596312, \"brier_audit_pre_switch\": 0.016429958354038526, \"brier_destination\": 0.001371405219698934, \"brier_near\": 0.005497247382353348, \"brier_near_post_switch\": 0.0036512048683085847, \"brier_near_pre_switch\": 0.005612934031599861, \"brier_threat\": 0.01945858841496707, \"coverage\": 0.6466943884408602, \"map_age\": 19.3829117007112, \"persistence_audit\": 0.016617103494623777, \"persistence_near\": 0.008792562724014337, \"persistence_threat\": 0.03112300525324611, \"prevalence_audit\": 0.017641129032258066, \"prevalence_destination\": 0.0015120967741935483, \"prevalence_near\": 0.00739247311827957, \"reconstruction\": 0.6381468413978495, \"reconstruction_stale\": 0.9838344520792787, \"reconstruction_unseen\": 0.0, \"reconstruction_visible\": 1.0, \"escape_steps\": 52.640625, \"regimes\": {\"uniform\": {\"episodes\": 24, \"escape\": 0.9166666666666666, \"task\": 0.921197916666667, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"stationary\": {\"episodes\": 24, \"escape\": 0.8333333333333334, \"task\": 0.8433333333333333, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"switch\": {\"episodes\": 24, \"escape\": 0.9166666666666666, \"task\": 0.9087083333333332, \"encountered_switch\": 15, \"post_switch_steps\": 234, \"post_switch_visible_enemy_steps\": 50}}}. Improve escape/keys/door and escape efficiency under unknown stationary and switching attempted movement laws; blocked enemy attempts stay. Predictive feedback is horizon-1 occupancy at fixed cells in starting-agent coordinates: near targets surround the OLD agent position, audit targets sample interior cells; predictions precede outcomes. Threat losses concern currently visible nearby enemies; audit prevalence is sparse. All representations, memory, updating, helpers and planning may evolve. Do not infer adaptive prediction from map accumulation, or control benefit from lower Brier.",
+    "mode": "mutation",
+    "recommendation": "**Maintain enemy beliefs across visibility loss.** Replace the freshly initialized diffuse hidden intensity in `_forecast` with a persistent spatial belief propagated through the learned movement kernel, removing mass from currently observed empty cells and reconciling visible occupancy without assuming enemy identities. Preserve blocked-attempt behavior and separate occupancy from collision hazard; this extends the best program\u2019s successful forecasting while potentially reducing both blind spots and unnecessary avoidance around recently cleared areas."
+  },
+  "request_evidence": {
+    "generation": 8,
+    "request_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+    "patch_attempt": 1,
+    "encoded_native_history_decoded_for_presence_checks": true,
+    "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+    "parent_island_when_sampled": 2,
+    "parent_code_present": true,
+    "task_present": true,
+    "string_feedback": true,
+    "feedback_present": true,
+    "archive_inspiration_ids": [
+      "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+    ],
+    "top_k_inspiration_ids": [],
+    "inspiration_code_presence": {
+      "c13ed547-b881-4de7-8c58-27c7f5aa83f1": true
+    },
+    "restored_or_current_recommendation_present": true,
+    "uses_corrected_keys_description": true
+  },
+  "saved_meta_sha256": "42ac207e55ef4f09cf619ca8da8045928d0406a22f125a388b030d2dd510a757",
+  "sensitive_content_check": {
+    "private_seed_values_found": false,
+    "credential_patterns_found": false
+  },
+  "transport_failure_raw_stdout": {
+    "generation": 5,
+    "patch_attempt": 1,
+    "path": "attempts/gen_5/attempts/novelty_1/resample_1/patch_1/headless-raw-stdout.txt",
+    "sha256": "b832a29ddf248afc4c18f628a21e9d72412aba329a59f6d3820eb3e8502e0a8f",
+    "scope": "Actual pre-parser stdout, including preserved blank lines and reported usage; native rejected parsed attempt remains separately archived."
+  }
+}

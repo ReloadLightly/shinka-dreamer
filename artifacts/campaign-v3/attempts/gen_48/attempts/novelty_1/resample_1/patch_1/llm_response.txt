@@ -1,0 +1,262 @@
+<NAME>
+survival_conditioned_three_step_control
+</NAME>
+
+<DESCRIPTION>
+Replace the two-step occupancy approximation with three-step planning that conditions enemy distributions on surviving each proposed action. Collision probability accounts for both entering an occupied cell and enemies subsequently moving onto the destination, including blocked attempts that stay. A small uniform component protects control against uncertain or recently changed laws; learned exports and the learning intervention remain separate.
+
+Retain target selection and route recovery, evaluating every immediate action and a bounded continuation beam. Fix hypothetical door interaction geometry separately: future interactions depend on the simulated position and inventory. These changes aim to reduce deaths without permanently treating current enemy positions as obstacles; improvement requires evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _legal(m, p, d):
+    q = _add(p, d)
+    terrain = m["map"]
+    unlocked = m["keys"] >= 2 or m["door_open"]
+    if _wall(terrain, q, unlocked, True):
+        return False
+    if terrain.get(q) == 3 and not m["door_open"]:
+        if d[0] and d[1]:
+            return False
+    if d[0] and d[1]:
+        # A closed door cannot serve as a diagonal corner before interaction.
+        for side in ((d[0], 0), (0, d[1])):
+            s = _add(p, side)
+            open_here = m["door_open"] or (
+                m["keys"] >= 2 and
+                abs(s[0] - m["pos"][0]) + abs(s[1] - m["pos"][1]) == 1)
+            if _wall(terrain, s, open_here, True):
+                return False
+    return True
+=======
+def _interaction_open(m, p, keys, opened):
+    return bool(opened or (
+        keys >= 2 and any(
+            m["map"].get(_add(p, d)) == 3
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))))
+def _legal(m, p, d, opened=None, keys=None):
+    if keys is None:
+        keys = m["keys"]
+    if opened is None:
+        opened = m["door_open"]
+    opened = _interaction_open(m, p, keys, opened)
+    terrain = m["map"]
+    if _wall(terrain, _add(p, d), opened, True):
+        return False
+    if d[0] and d[1]:
+        for side in ((d[0], 0), (0, d[1])):
+            if _wall(terrain, _add(p, side), opened, True):
+                return False
+    return True
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        risk, risk2 = m["forecast"]
+    else:
+        # This intervention removes learned dynamics from control, while
+        # retaining localization, terrain and an ordinary uniform predictor.
+        fixed, _, _ = _forecasts(m, [1.0 / 9] * 9)
+        risk, risk2 = fixed
+    dist = _paths(m, start, risk)
+    target = _choose_target(m, dist)
+    m["target"] = target
+    target, recovering = _recovery_target(m, target, dist, risk)
+    potential = _paths(m, target, risk, True)
+    pressure = max(20.0, min(85.0, (200 - m["step"]) * 2.5))
+    safe_detour = recovering and any(
+        _legal(m, start, d)
+        and _add(start, d) not in m["enemies"]
+        and _add(start, d) in potential
+        and risk.get(_add(start, d), m["background"])
+            <= min(.02, risk.get(start, m["background"]) + .003)
+        for d in STEPS
+    )
+    choices = []
+    for d in MOVES:
+        q = _add(start, d)
+        if not _legal(m, start, d) or q in m["enemies"]:
+            continue
+        if q not in potential:
+            continue
+        immediate = risk.get(q, m["background"])
+        future = float("inf")
+        if q == target:
+            future = 0.0
+        else:
+            for e in MOVES:
+                r = _add(q, e)
+                if not _legal(m, q, e) or r not in potential:
+                    continue
+                before = 0.0 if r == q else risk.get(r, m["background"])
+                after = risk2.get(r, m["background"])
+                danger = 1.0 - (1.0 - before) * (1.0 - after)
+                value = 1.0 + potential[r] + .42 * pressure * _hazard(danger)
+                future = min(future, value)
+        if not math.isfinite(future):
+            future = potential[q] + 4.0
+        score = 1.0 + .65 * potential[q] + .35 * future
+        score += pressure * _hazard(immediate)
+        score += .04 * min(20, m["visits"].get(q, 0))
+        if d == (0, 0):
+            score += .12 + (1.25 if safe_detour else 0.0)
+        choices.append((score, immediate, d))
+    move = min(choices)[2] if choices else (0, 0)
+    return {"move": list(move), "interact": True}
+=======
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        law = [.90 * p + .10 / 9.0 for p in _law(m)]
+    else:
+        law = [1.0 / 9.0] * 9
+    fixed, _, _ = _forecasts(m, law)
+    risk = fixed[0]
+    dist = _paths(m, start, risk)
+    target = _choose_target(m, dist)
+    m["target"] = target
+    target, recovering = _recovery_target(m, target, dist, risk)
+    potential = _paths(m, target, risk, True)
+    pressure = max(20.0, min(85.0, (200 - m["step"]) * 2.5))
+    safe_detour = recovering and any(
+        _legal(m, start, d)
+        and _add(start, d) not in m["enemies"]
+        and _add(start, d) in potential
+        and risk.get(_add(start, d), m["background"])
+            <= min(.02, risk.get(start, m["background"]) + .003)
+        for d in STEPS
+    )
+    kernels = {}
+    def kernel(p, opened):
+        key = (p, opened)
+        if key not in kernels:
+            row = {}
+            for d, probability in zip(MOVES, law):
+                q = _destination(m["map"], p, d, opened)
+                row[q] = row.get(q, 0.0) + probability
+            kernels[key] = row
+        return kernels[key]
+    def project(tracks, opened):
+        projected = []
+        for track in tracks:
+            result = {}
+            for p, mass in track.items():
+                for q, probability in kernel(p, opened).items():
+                    result[q] = result.get(q, 0.0) + mass * probability
+            projected.append(result)
+        return projected
+    def background(q, horizon):
+        if horizon <= 0 or _distance(q, start) <= 2 - horizon:
+            return 0.0
+        if q in m["local"]:
+            return m["background"] * min(1.0, .18 * horizon)
+        return m["background"]
+    def collision(tracks, projected, p, q, depth, opened):
+        stay = kernel(q, opened).get(q, 0.0)
+        hazard = 0.0
+        for before, after in zip(tracks, projected):
+            # Union of occupancy before and after enemy motion.
+            danger = after.get(q, 0.0)
+            danger += before.get(q, 0.0) * (1.0 - stay)
+            if danger >= 1.0 - 1e-12:
+                return float("inf")
+            hazard += _hazard(danger)
+        hazard += _hazard(background(q, depth))
+        if p != q:
+            hazard += _hazard(background(q, depth - 1))
+        return hazard
+    def surviving(tracks, projected, q, opened):
+        outgoing = kernel(q, opened)
+        result = []
+        for before, after in zip(tracks, projected):
+            occupied = before.get(q, 0.0)
+            filtered = {}
+            for p, mass in after.items():
+                if p == q:
+                    continue
+                value = mass - occupied * outgoing.get(p, 0.0)
+                if value > 1e-15:
+                    filtered[p] = value
+            total = sum(filtered.values())
+            if total <= 1e-12:
+                return None
+            result.append({p: mass / total for p, mass in filtered.items()})
+        return result
+    def search(p, depth, tracks, keys, collected, opened):
+        opened = _interaction_open(m, p, keys, opened)
+        projected = project(tracks, opened)
+        candidates = []
+        for d in MOVES:
+            q = _add(p, d)
+            if not _legal(m, p, d, opened, keys):
+                continue
+            if depth == 1 and q in m["enemies"]:
+                continue
+            if q not in potential:
+                continue
+            hazard = collision(tracks, projected, p, q, depth, opened)
+            if not math.isfinite(hazard):
+                continue
+            cost = 1.0 + pressure * (0.0, 1.0, .60, .35)[depth] * hazard
+            cost += (.04 if depth == 1 else .02) * min(
+                20, m["visits"].get(q, 0))
+            if d == (0, 0):
+                cost += .12
+                if depth == 1 and safe_detour:
+                    cost += 1.25
+            new_keys, new_collected = keys, collected
+            if m["map"].get(q) == 2 and q not in collected:
+                new_keys = min(2, keys + 1)
+                new_collected = collected | frozenset((q,))
+            terminal = (
+                (q == target and target != start)
+                or (m["map"].get(q) == 4 and new_keys >= 2 and opened)
+            )
+            tail = 0.0 if terminal else potential[q]
+            candidates.append((
+                cost + tail, hazard, d, q, cost,
+                new_keys, new_collected, terminal))
+        if not candidates:
+            return float("inf"), float("inf"), (0, 0)
+        # Every immediate action is evaluated. Bound only the intermediate
+        # continuation beam and always retain its safest candidate.
+        candidates.sort(key=lambda item: item[:3])
+        if depth == 2:
+            beam = candidates[:4]
+            safest = min(candidates, key=lambda item: (item[1], item[0]))
+            if safest not in beam:
+                beam.append(safest)
+        else:
+            beam = candidates
+        best = (float("inf"), float("inf"), (0, 0))
+        for estimate, hazard, d, q, cost, new_keys, new_collected, terminal in beam:
+            if terminal or depth == 3:
+                value = estimate
+            else:
+                next_tracks = surviving(tracks, projected, q, opened)
+                if next_tracks is None:
+                    continue
+                future, _, _ = search(
+                    q, depth + 1, next_tracks, new_keys,
+                    new_collected, opened)
+                value = cost + future
+            best = min(best, (value, hazard, d))
+        return best
+    tracks = [{e: 1.0} for e in sorted(m["enemies"])]
+    score, _, move = search(
+        start, 1, tracks, m["keys"], frozenset(), bool(m["door_open"]))
+    if not math.isfinite(score):
+        emergency = [
+            (risk.get(_add(start, d), m["background"]),
+             potential.get(_add(start, d), 1e6), d)
+            for d in MOVES
+            if _legal(m, start, d) and _add(start, d) not in m["enemies"]
+        ]
+        move = min(emergency)[2] if emergency else (0, 0)
+    return {"move": list(move), "interact": True}
+>>>>>>> REPLACE
+</DIFF>

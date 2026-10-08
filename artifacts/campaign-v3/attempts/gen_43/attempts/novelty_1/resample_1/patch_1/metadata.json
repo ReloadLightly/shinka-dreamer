@@ -1,0 +1,15 @@
+{
+  "generation": 43,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "persistent_expert_routes",
+  "patch_description": "Preserves each movement expert through all four forecast horizons, combining predictions only after propagation. Route costs account for enemies occupying a destination before or after movement, while retaining the existing horizon-one export, adaptive learning, uniform expert, and two-action local safety planner. This targets underestimated route danger without increasing planning depth. Performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T22:00:00.267400",
+  "llm_cost": 0.879508,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_43/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

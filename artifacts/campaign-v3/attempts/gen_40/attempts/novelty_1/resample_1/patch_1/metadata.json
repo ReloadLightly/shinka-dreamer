@@ -1,0 +1,15 @@
+{
+  "generation": 40,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "complete_route_recovery",
+  "patch_description": "Replace purely local waypoint selection with a search for a complete alternate route when progress stalls. Temporarily exclude the nominal next approach cell, then choose a safe waypoint along a bounded detour that still reaches the objective. Retain the existing recovery fallback and collision penalties. Release an active waypoint when objective distance improves. This targets timeouts without reducing caution; performance gains require evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:39:43.160080",
+  "llm_cost": 0.412538,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_40/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

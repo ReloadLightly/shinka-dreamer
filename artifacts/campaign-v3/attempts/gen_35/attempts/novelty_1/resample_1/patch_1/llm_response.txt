@@ -1,0 +1,198 @@
+<NAME>
+stateful_bottleneck_observation
+</NAME>
+
+<DESCRIPTION>
+Add targeted observation goals when remembered objectives are disconnected or progress toward a reachable objective stalls. A separate optimistic search identifies stale walls and diagonal clearance cells that could reconnect a route, while preserving the door’s interaction state. The agent then approaches a reachable viewpoint using its existing learned hazard planner. Observation goals expire or terminate when their blocking cells are refreshed; optimistic passages never become executable movement edges. This targets route-recovery failures without changing the dynamics learner or its interventions. Performance remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def choose_target(m, edges, state_dist, risk):
+=======
+def bottleneck_view(m, state_dist, objectives):
+    """Use optimistic connectivity only to choose an observation target."""
+    step = m["step"]
+    epoch = 25 * (step // 25)
+    start = m["pos"]
+    objectives = set(objectives)
+    dist = position_costs(state_dist)
+    active = m.get("bottleneck_observation")
+
+    if active is not None:
+        goal, blockers, view, selected, deadline, old_epoch = active
+        pending = any(m["seen"].get(p, -1) < selected for p in blockers)
+        if (
+            goal in objectives and view in dist and view != start
+            and pending and step < deadline and epoch == old_epoch
+        ):
+            return view
+        m["bottleneck_observation"] = None
+        m["bottleneck_cooldown"] = step + 3
+
+    if (
+        not objectives or epoch == 0
+        or step < m.get("bottleneck_cooldown", -1)
+    ):
+        return None
+
+    reachable = objectives.intersection(dist)
+    if reachable and (
+        m["stall"] < 12 or min(dist[p] for p in reachable) <= 4.0
+    ):
+        return None
+
+    left, right, top, bottom = m["enemy_bounds"]
+    classification = {}
+
+    def classify(p, opened):
+        key = (p, opened)
+        if key in classification:
+            return classification[key]
+        cell = m["map"].get(p, -1)
+        if (
+            not (left <= p[0] <= right and top <= p[1] <= bottom)
+            or cell == -1
+            or (cell == 3 and not opened)
+        ):
+            result = -1
+        elif cell == 1:
+            permanent = any(
+                m["map"].get(add(p, d)) == -1 for d in CARDINAL
+            )
+            result = (
+                1 if not permanent and m["seen"].get(p, step) < epoch
+                else -1
+            )
+        else:
+            result = 0
+        classification[key] = result
+        return result
+
+    source = (start, m["door_open"])
+    costs = {source: 0.0}
+    parents = {}
+    queue = [(0.0, source)]
+    finish = None
+    while queue:
+        cost, node = heapq.heappop(queue)
+        if cost != costs[node]:
+            continue
+        p, opened = node
+        if p in objectives and p != start:
+            finish = node
+            break
+        outcomes = [opened]
+        if not opened and interaction_state(m, p, False, m["keys"], True):
+            outcomes.append(True)
+        for next_open in outcomes:
+            moves = WALK if next_open == opened else MOVES
+            for d in moves:
+                q = add(p, d)
+                required = [q]
+                if d[0] and d[1]:
+                    required.extend((
+                        (p[0] + d[0], p[1]),
+                        (p[0], p[1] + d[1]),
+                    ))
+                kinds = [classify(cell, next_open) for cell in required]
+                if any(kind < 0 for kind in kinds):
+                    continue
+                blockers = tuple(
+                    cell for cell, kind in zip(required, kinds) if kind == 1
+                )
+                following = (q, next_open)
+                candidate = cost + 1.0 + 5.0 * len(blockers)
+                if candidate < costs.get(following, float("inf")):
+                    costs[following] = candidate
+                    parents[following] = (node, blockers)
+                    heapq.heappush(queue, (candidate, following))
+
+    if finish is None:
+        m["bottleneck_cooldown"] = step + 5
+        return None
+
+    crossings = []
+    node = finish
+    while node != source:
+        node, blockers = parents[node]
+        crossings.append(blockers)
+    ordered = []
+    for blockers in reversed(crossings):
+        for p in blockers:
+            if p not in ordered:
+                ordered.append(p)
+    if not ordered:
+        m["bottleneck_cooldown"] = step + 5
+        return None
+
+    # The first uncertain crossing has priority. Looking farther along a
+    # hypothetical route is useful only when the same view reveals both.
+    first = ordered[0]
+    options = []
+    for view, travel in dist.items():
+        if view == start or view in m["enemies"] or distance(view, first) > 2:
+            continue
+        revealed = tuple(p for p in ordered if distance(view, p) <= 2)
+        score = (
+            travel + .06 * min(20, m["visits"].get(view, 0))
+            + .08 * distance(view, finish[0])
+            - .40 * min(3, len(revealed))
+        )
+        options.append((score, travel, view, revealed))
+    if not options:
+        m["bottleneck_cooldown"] = step + 5
+        return None
+
+    _, travel, view, revealed = min(options)
+    duration = min(20, max(6, int(math.ceil(travel)) + 5))
+    m["bottleneck_observation"] = (
+        finish[0], revealed, view, step, step + duration, epoch,
+    )
+    m["bottleneck_routes"] = m.get("bottleneck_routes", 0) + 1
+    return view
+
+
+def choose_target(m, edges, state_dist, risk):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    goals = [
+        p for p in dist if p != start and m["map"].get(p) == desired
+    ]
+    if goals:
+=======
+    goals = [
+        p for p in dist if p != start and m["map"].get(p) == desired
+    ]
+    # Preserve ordinary objective priority. An unreachable remembered exit
+    # may instead be approached through its gating door.
+    observation_goals = list(goals)
+    if not observation_goals:
+        observation_goals = [
+            p for p, cell in m["map"].items()
+            if p != start and cell == desired
+        ]
+        if m["keys"] >= 2 and not m["door_open"]:
+            observation_goals.extend(
+                p for p, cell in m["map"].items()
+                if p != start and cell == 3
+            )
+    view = bottleneck_view(m, state_dist, observation_goals)
+    if view is not None:
+        return view
+    if goals:
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        "position": list(m["pos"]),
+        "learning": {
+=======
+        "position": list(m["pos"]),
+        "navigation": {
+            "bottleneck_routes": m.get("bottleneck_routes", 0),
+            "observing_bottleneck": (
+                m.get("bottleneck_observation") is not None
+            ),
+        },
+        "learning": {
+>>>>>>> REPLACE
+</DIFF>

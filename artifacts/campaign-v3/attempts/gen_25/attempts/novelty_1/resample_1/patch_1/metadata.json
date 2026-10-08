@@ -1,0 +1,15 @@
+{
+  "generation": 25,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 8,
+  "patch_name": "informative_surprise_recovery_expert",
+  "patch_description": "Measure directional information from anonymous transition constraints before accumulating change evidence. Scale fast-versus-slow predictive surprise by informative source count, and decay old evidence across observation gaps. Sustained surprise creates a separate recent-history expert without discarding either existing learner. Its initial weight is modest; subsequent predictive likelihood determines its influence on occupancy forecasts and planning. Preserve terrain-change exclusions, the uniform floor, and predictive interventions. Export information and expert-count diagnostics. This is an untested adaptation hypothesis, not a claimed performance improvement.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:20:32.285690",
+  "llm_cost": 0.514278,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_25/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

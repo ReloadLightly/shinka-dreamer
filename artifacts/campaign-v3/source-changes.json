@@ -1,0 +1,2046 @@
+{
+  "lineage_sha256": "3595e60ea4ad49130db53122e7d3e1958495a543da0c8df6e798f0fe5c2353a5",
+  "slots": 50,
+  "scope": "Top-level declaration AST comparison with actual native parent; ignores formatting/comments, retains literals, docstrings, nested bodies and module statements. Changed declarations can affect other unchanged functions through calls. Syntactic co-change does not establish causal model\u2013planner synergy.",
+  "candidates": [
+    {
+      "generation": 0,
+      "native_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+      "parent_id": null,
+      "parent_generation": null,
+      "archive_inspiration_generations": [],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "valid": true,
+      "lines": 142,
+      "ast_nodes": 1843,
+      "native_patch_name": "initial_program",
+      "native_patch_description": "Initial program setup",
+      "native_description_scope": "Proposal author description; not independent behavioral verification."
+    },
+    {
+      "generation": 1,
+      "native_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_id": "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de",
+      "parent_generation": 0,
+      "archive_inspiration_generations": [],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+      "valid": true,
+      "lines": 295,
+      "ast_nodes": 3258,
+      "native_patch_name": "anonymous_motion_survival",
+      "native_patch_description": "Learns a forgetting-weighted movement law through anonymous transition matching, including blocked attempts and overlapping enemies. Combines explicit occupancy forecasts with survival-aware routing, waiting, retreat, and cardinal door approaches. Predictive interventions remain separate from mapping. Synthetic validity checks and 200 decision cycles passed; improved task performance requires development evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_choose_target",
+        "_destination",
+        "_distance",
+        "_forecasts",
+        "_hazard",
+        "_law",
+        "_learn",
+        "_paths",
+        "_wall"
+      ],
+      "removed": [
+        "_blocked",
+        "_feature",
+        "_fixed_risk"
+      ],
+      "changed": [
+        "_add",
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 153,
+      "ast_nodes_delta": 1415
+    },
+    {
+      "generation": 2,
+      "native_id": "d6e060db-3484-48d7-a330-330805071240",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_generation": 1,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "1dba7390fe394c556af655f43c274e24ea00a2c712ae4a49d7e280074742db91",
+      "valid": true,
+      "lines": 464,
+      "ast_nodes": 4702,
+      "native_patch_name": "censored_bayes_survival",
+      "native_patch_description": "This agent maintains a Bayesian distribution over complete enemy movement laws, updating it from anonymous, partially observed transitions with explicit blocked-attempt probabilities. Persistent enemy intensity tracks threats that leave view. A five-step survival planner accounts for collisions both before and after enemy movement, while global routing considers key collection order and exploration value. The approach aims to reduce dangerous commitments and adapt after unannounced dynamics changes; its performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "add",
+        "blocked",
+        "choose_target",
+        "destination",
+        "distance",
+        "edge_survival",
+        "forecast",
+        "graph",
+        "legal",
+        "make_hypotheses",
+        "occupancy",
+        "opening_now",
+        "paths",
+        "posterior_law",
+        "propagate",
+        "transitions",
+        "update_laws"
+      ],
+      "removed": [
+        "_add",
+        "_choose_target",
+        "_destination",
+        "_distance",
+        "_forecasts",
+        "_hazard",
+        "_law",
+        "_learn",
+        "_legal",
+        "_paths",
+        "_wall"
+      ],
+      "changed": [
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 169,
+      "ast_nodes_delta": 1444
+    },
+    {
+      "generation": 3,
+      "native_id": "41c9932e-ad3d-4df7-ad67-f531b6b68d21",
+      "parent_id": "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80",
+      "parent_generation": 0,
+      "archive_inspiration_generations": [],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "d8d80d4ccc0fb680f83510f09d83489ba4724d0b1bb5548d725e3b5d98144044",
+      "valid": true,
+      "lines": 475,
+      "ast_nodes": 4204,
+      "native_patch_name": "anonymous_motion_lookahead",
+      "native_patch_description": "Learns attempted movement laws from anonymous occupancy transitions, marginalizing blocked moves and ambiguous observations. A mixture of uniform, persistent, and rapidly adapting models handles stationary and changing dynamics. Planning compares movement, waiting, and retreat over four steps, accounting for collisions both before and after enemy movement. Mapping and predictive interventions remain separate. These improvements are proposed without claiming new evaluation results.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_anonymous_evidence",
+        "_destination",
+        "_distance_to_target",
+        "_expert_laws",
+        "_law",
+        "_passable",
+        "_predict",
+        "_reachable",
+        "_select_target",
+        "_spatial_cost",
+        "_update_dynamics"
+      ],
+      "removed": [
+        "_blocked",
+        "_feature",
+        "_fixed_risk"
+      ],
+      "changed": [
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 333,
+      "ast_nodes_delta": 2361
+    },
+    {
+      "generation": 4,
+      "native_id": "1c9d8197-0fad-4324-a2fa-55530930bb1a",
+      "parent_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+      "parent_generation": 0,
+      "archive_inspiration_generations": [],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+      "valid": true,
+      "lines": 465,
+      "ast_nodes": 4918,
+      "native_patch_name": "anonymous_law_safe_horizon",
+      "native_patch_description": "The seed uses six occupancy categories, prior strength 12, cumulative updates, risk weight 45, and a fixed waiting threshold of .12. This replacement infers attempted movement laws from anonymous occupancy transitions, including blocked attempts. It combines uniform, slow-learning, and fast-learning models with evidence-based weights; evidence retention is .985 and .86 per step.\nControl uses equal movement-time costs, persistent exploration targets, and three-step planning with explicit collision-before-movement and collision-after-movement risk. Immediate risk weight is 100, with future weights .55 and .25. Mapping remains separate from predictive learning and prediction-use interventions. These changes target safer, faster escapes; improvement requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_choose_target",
+        "_combined_law",
+        "_distance",
+        "_distances",
+        "_edge_cost",
+        "_forecast",
+        "_gain",
+        "_infer_anonymous",
+        "_infer_bounds",
+        "_inside",
+        "_learn",
+        "_mean",
+        "_observation_masks",
+        "_solid",
+        "_terrain_destination"
+      ],
+      "removed": [
+        "_feature",
+        "_fixed_risk"
+      ],
+      "changed": [
+        "_add",
+        "_blocked",
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 323,
+      "ast_nodes_delta": 3075
+    },
+    {
+      "generation": 5,
+      "native_id": "997377fa-6443-471c-8083-008a0c34a12a",
+      "parent_id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+      "parent_generation": 0,
+      "archive_inspiration_generations": [],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "eca43e28566d0f6434852544fb7fb09af75c7f760d869de3dc08d89f00db7501",
+      "valid": true,
+      "lines": 180,
+      "ast_nodes": 2117,
+      "native_patch_name": "censored_motion_learning",
+      "native_patch_description": "Correct the failed patch by matching individual functions separately, preserving the original blank lines. Learn the shared attempted-movement law from fully observed anonymous transitions, distributing blocked-stay evidence among compatible directions and gradually forgetting old evidence. Propagate visible enemies through terrain to obtain directional occupancy forecasts. Keep predictive updating separate from mapping and localization.\nUse equal costs for cardinal and diagonal actions, approach closed doors cardinally, and compare immediate movement risk against waiting. These changes target survival and escape efficiency; their performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_enemy_destination",
+        "_forecast",
+        "_learn_motion",
+        "_motion_weights"
+      ],
+      "removed": [
+        "_feature"
+      ],
+      "changed": [
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 38,
+      "ast_nodes_delta": 274
+    },
+    {
+      "generation": 6,
+      "native_id": "ccb14c5b-7ded-4023-805f-3cd7b4345f6b",
+      "parent_id": "41c9932e-ad3d-4df7-ad67-f531b6b68d21",
+      "parent_generation": 3,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "96a21aa754ad781f3527e3502d3d0bd491ec0923166c0dcc5a9cf5ecd453583d",
+      "valid": true,
+      "lines": 548,
+      "ast_nodes": 4657,
+      "native_patch_name": "survival_conditioned_beam",
+      "native_patch_description": "Replace the planner\u2019s sum of marginal collision penalties with survival-conditioned enemy trajectories. After each hypothetical agent move, remove enemy paths that would already have caused a collision and condition subsequent predictions on survival. This avoids repeatedly charging for the same dangerous trajectories across the planning horizon, while preserving both pre-movement and post-movement collision checks.\nA bounded beam retains alternatives for each first action, including waiting. Hidden-enemy risk remains conservative, and learned movement laws, anonymous dynamics updates, and prediction interventions remain intact. This targets the current agent\u2019s long escape times and timeouts without lowering its immediate collision penalty. Performance gains require evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "_predict",
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 73,
+      "ast_nodes_delta": 453
+    },
+    {
+      "generation": 7,
+      "native_id": "30498266-649f-4122-9dbe-43fef8bdbd97",
+      "parent_id": "d6e060db-3484-48d7-a330-330805071240",
+      "parent_generation": 2,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [
+        1
+      ],
+      "source_sha256": "ea46c5a3c174f0a102ba6445c7687a9034bc6d73f107c7973a4ba0270d794f2c",
+      "valid": true,
+      "lines": 476,
+      "ast_nodes": 4832,
+      "native_patch_name": "adaptive_law_progress",
+      "native_patch_description": "The current agent uses 113 fixed movement hypotheses, a five-step planning horizon, and a low delay cost; its lower death rate comes with substantially more timeouts. This proposal replaces the hypothesis catalog with continuous slow/fast categorical learners, using anonymous transition likelihoods and censored blocked attempts. Forgetting factors are .992 and .88, with evidence caps of 80 and 16.\nControl uses two-step survival calculations conditioned on surviving the first move, risk-aware routes, and a stagnation-sensitive risk penalty. This configuration aims to preserve enemy avoidance while reducing repeated waiting and improving escape efficiency. Mapping, predictive updates, and prediction use remain separately controllable. Performance improvements require evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "component_laws",
+        "conditioned_future",
+        "evidence_and_counts",
+        "first_forecast",
+        "hazard",
+        "learned_law",
+        "make_transition",
+        "second_hazard",
+        "transition_terms",
+        "update_dynamics"
+      ],
+      "removed": [
+        "edge_survival",
+        "forecast",
+        "make_hypotheses",
+        "posterior_law",
+        "transitions",
+        "update_laws"
+      ],
+      "changed": [
+        "add",
+        "blocked",
+        "choose_target",
+        "distance",
+        "export_model",
+        "graph",
+        "legal",
+        "occupancy",
+        "paths",
+        "planner",
+        "propagate",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 12,
+      "ast_nodes_delta": 130
+    },
+    {
+      "generation": 8,
+      "native_id": "19157a7b-b0ca-41c4-bd82-86be43a9152d",
+      "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+      "parent_generation": 5,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [],
+      "source_sha256": "74a673e8da351c4df09363967f2f7b0cad0138543569fba49ada9aa779db3c55",
+      "valid": true,
+      "lines": 281,
+      "ast_nodes": 3013,
+      "native_patch_name": "survival_lookahead",
+      "native_patch_description": "Use three-step movement forecasts to choose between progressing, sidestepping, and waiting. For each visible enemy, calculate the probability of occupying a destination either before or after its movement, including blocked attempts that stay. Combine these hazards across enemies and plan against a distance-to-goal estimate. Allow routes through cells that enemies currently occupy, while forbidding immediate entry, so temporary obstructions do not hide reachable objectives. This targets collision deaths and repeated waiting; improvement requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_planning_hazards"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 101,
+      "ast_nodes_delta": 896
+    },
+    {
+      "generation": 9,
+      "native_id": "af9462ea-cc8d-4cc4-a39e-b39db32d0a66",
+      "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+      "parent_generation": 5,
+      "archive_inspiration_generations": [
+        8
+      ],
+      "top_k_inspiration_generations": [
+        0
+      ],
+      "source_sha256": "5e593b715149242c55a14155934cfa0788487846a7ac6c5713e748469dad9731",
+      "valid": true,
+      "lines": 321,
+      "ast_nodes": 3584,
+      "native_patch_name": "bounded_safe_detour_recovery",
+      "native_patch_description": "Preserve the current controller during ordinary progress. Detect repeated waits and position\u2013target cycles without exploration, task progress, or route advance. During stalls only, compare low-hazard detours with waiting through a three-step search using learned enemy motion, including collision risk before enemy movement. Penalize recent revisits and repeated waiting while retaining immediate visible-enemy exclusion. Recovery never relaxes its immediate hazard bound merely because time has elapsed. This targets the observed timeouts; its effect on fitness requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_recovery_move"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 141,
+      "ast_nodes_delta": 1467
+    },
+    {
+      "generation": 10,
+      "native_id": "97464de1-5a16-408e-a4c6-ef51c8141b53",
+      "parent_id": "30498266-649f-4122-9dbe-43fef8bdbd97",
+      "parent_generation": 7,
+      "archive_inspiration_generations": [
+        1
+      ],
+      "top_k_inspiration_generations": [
+        2
+      ],
+      "source_sha256": "e7597e414f07962d8391f48c6bf353466a77a73f1bd6cf07d64ca63ec298b6a5",
+      "valid": true,
+      "lines": 527,
+      "ast_nodes": 5335,
+      "native_patch_name": "surprise_triggered_fast_recovery",
+      "native_patch_description": "Add a sequential change detector using the anonymous transition likelihoods already computed by the mixture. Accumulate evidence when an equal mixture of the uniform and fast experts predicts observations better than the slow expert, normalized by informative enemy count. Require sustained support and a cooldown before rebuilding the fast learner from four recent informative transitions.\n\nRecovery preserves the slow learner, terrain-change exclusions, probability floors, and learning intervention. The refreshed dynamics feed both existing planning and exported predictions. This targets delayed adaptation without discarding useful stationary-law evidence; improvement remains an empirical hypothesis.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "export_model",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": false,
+      "lines_delta": 51,
+      "ast_nodes_delta": 503
+    },
+    {
+      "generation": 11,
+      "native_id": "6f9bc525-2a1a-41a8-96b3-a7cb82023f3c",
+      "parent_id": "19157a7b-b0ca-41c4-bd82-86be43a9152d",
+      "parent_generation": 8,
+      "archive_inspiration_generations": [
+        4
+      ],
+      "top_k_inspiration_generations": [
+        0
+      ],
+      "source_sha256": "67bffbc75e2d818217b183bfac8aa80b707b8a2ee5e419b663d19551ee38bbe4",
+      "valid": true,
+      "lines": 728,
+      "ast_nodes": 6169,
+      "native_patch_name": "adaptive_safe_detours",
+      "native_patch_description": "The current program uses a single .96-decay movement learner, linear risk weight 45, and three-step planning. This replacement combines uniform, slow (.985), and fast (.86) anonymous-transition experts, with a .12 uniform safeguard. Planning retains three steps but uses logarithmic collision costs weighted 100, with future weights 1/.55/.25.\n\nA bounded recovery controller detects four stationary steps, repeated position cycles, or ten steps without route progress. It compares safe alternate waypoints, commits for at most seven steps, and increases waiting penalties only during stalls. Immediate visible-enemy exclusion remains mandatory. Mapping, predictive learning, and prediction-use interventions remain separate. These changes target survival and timeout reduction; improved performance requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_choose_target",
+        "_combined_law",
+        "_control_target",
+        "_distance",
+        "_distances",
+        "_edge_cost",
+        "_gain",
+        "_infer_anonymous",
+        "_infer_bounds",
+        "_inside",
+        "_learn",
+        "_mean",
+        "_observation_masks",
+        "_solid",
+        "_stale_gain",
+        "_terrain_destination"
+      ],
+      "removed": [
+        "_enemy_destination",
+        "_fixed_risk",
+        "_learn_motion",
+        "_motion_weights",
+        "_planning_hazards"
+      ],
+      "changed": [
+        "_add",
+        "_blocked",
+        "_forecast",
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 447,
+      "ast_nodes_delta": 3156
+    },
+    {
+      "generation": 12,
+      "native_id": "aa5aa63e-d9a6-4c0d-9d27-dba233c9cce1",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_generation": 1,
+      "archive_inspiration_generations": [
+        10
+      ],
+      "top_k_inspiration_generations": [
+        2
+      ],
+      "source_sha256": "e6e1634f47e0f933e4719cf9397d77b062dc25c0da407b2333fb667073ae5eac",
+      "valid": true,
+      "lines": 413,
+      "ast_nodes": 4284,
+      "native_patch_name": "survival_conditioned_three_step_search",
+      "native_patch_description": "Replace independent before/after collision estimates with per-enemy survival conditioning. Each hypothetical move removes trajectories that collide before movement or after movement, preserving the remaining distribution for subsequent decisions. This avoids double-counting persistent enemies and exposes routes that become dangerous after an initially safe move.\n\nExtend planning to three steps, refining the three most promising second moves for each immediate action to limit computation. Retain the existing learner, mapping, exploration, export predictions, and uniform-dynamics intervention. Hidden-enemy risk remains an approximate background term. This is an untested control improvement; higher task fitness requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_background_cost",
+        "_collision_cost",
+        "_planning_transition",
+        "_project_tracks",
+        "_surviving_tracks"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 118,
+      "ast_nodes_delta": 1026
+    },
+    {
+      "generation": 13,
+      "native_id": "afa23382-1e5c-4c15-8783-be4621916065",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_generation": 1,
+      "archive_inspiration_generations": [
+        2
+      ],
+      "top_k_inspiration_generations": [
+        10
+      ],
+      "source_sha256": "a0f9e202f63554c4e7826770924051792c69c33708c521c615854ab310677fac",
+      "valid": true,
+      "lines": 381,
+      "ast_nodes": 4164,
+      "native_patch_name": "bounded_observation_detours",
+      "native_patch_description": "Add a bounded stall controller that measures progress using legal route length, avoiding false stalls on winding paths. Repeated position\u2013target cycles trigger a short, low-risk observation detour, selected using route cost, distance to the original objective, and fresh observation opportunities. Detours expire after six decisions and have a cooldown. During recovery, waiting receives an additional penalty only when a low-hazard immediate move exists. Normal planning, learned dynamics, and visible-enemy exclusion remain intact. This targets avoidable waiting without globally reducing survival pressure; performance improvement remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_recovery_target",
+        "_route_steps"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 86,
+      "ast_nodes_delta": 906
+    },
+    {
+      "generation": 14,
+      "native_id": "4536a171-0c9f-4e65-94f2-a87b6919c45c",
+      "parent_id": "af9462ea-cc8d-4cc4-a39e-b39db32d0a66",
+      "parent_generation": 9,
+      "archive_inspiration_generations": [
+        5
+      ],
+      "top_k_inspiration_generations": [
+        0
+      ],
+      "source_sha256": "a3bda0c282e0b4f42c778a283bb4722aeb3b74f161200824c5958252b6dedf4d",
+      "valid": true,
+      "lines": 382,
+      "ast_nodes": 4235,
+      "native_patch_name": "adaptive_expert_threat_planning",
+      "native_patch_description": "Learn uniform, slow-adapting, and fast-adapting movement experts, weighting them by the likelihood of subsequently observed anonymous transitions. This lets stationary evidence accumulate while retaining a responsive alternative after a dynamics change. Blocked attempts remain probability mass on staying.\n\nPropagate each expert separately through the existing three-step planner. Penalize expected collision hazard plus bounded disagreement among plausible experts, and invoke this planner proactively near the proposed route rather than only after stalling. Preserve the existing low-risk first-move restriction and keep repetition penalties specific to recovery. Export expert weights alongside the learned movement law. These changes aim to reduce deaths without extending the planning horizon; performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_expert_laws",
+        "_expert_probabilities"
+      ],
+      "removed": [],
+      "changed": [
+        "_learn_motion",
+        "_motion_weights",
+        "_recovery_move",
+        "export_model",
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 61,
+      "ast_nodes_delta": 651
+    },
+    {
+      "generation": 15,
+      "native_id": "ba193a0a-b95c-4f28-ae0c-e6a00a5e386c",
+      "parent_id": "30498266-649f-4122-9dbe-43fef8bdbd97",
+      "parent_generation": 7,
+      "archive_inspiration_generations": [
+        3
+      ],
+      "top_k_inspiration_generations": [
+        0
+      ],
+      "source_sha256": "60c8b5c6d03ac3179dc0a68219cd02881fc69c0f7698584c9d1fb0d18746f9e6",
+      "valid": true,
+      "lines": 519,
+      "ast_nodes": 5180,
+      "native_patch_name": "persistent_bounded_enemy_belief",
+      "native_patch_description": "Maintain anonymous enemy intensity across the entire feasible maze, including unexplored cells. The current reservoir discards spatial information outside mapped terrain and repeatedly introduces diffuse mass. Replace it with a persistent field, conditioned on visible empty cells and constrained by observed exterior boundaries. Propagate blocked attempts as stays and retain a small background component for recovery from uncertain geometry.\n\nThe existing learned movement mixture and survival-conditioned planner consume this field directly. This should improve avoidance of enemies that disappear from view while reducing unnecessary avoidance of recently cleared areas. It preserves separate occupancy forecasts and collision calculations; improved task performance remains an empirical question.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "reconcile_fog"
+      ],
+      "removed": [],
+      "changed": [
+        "make_transition",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": false,
+      "lines_delta": 43,
+      "ast_nodes_delta": 348
+    },
+    {
+      "generation": 16,
+      "native_id": "d7936778-614c-41a6-a09d-de4aae80000a",
+      "parent_id": "ba193a0a-b95c-4f28-ae0c-e6a00a5e386c",
+      "parent_generation": 15,
+      "archive_inspiration_generations": [
+        3
+      ],
+      "top_k_inspiration_generations": [
+        7
+      ],
+      "source_sha256": "06bece2c0e04600645dcdc63ca98b9c42b6de445650782c4570eabaaacc3a7c1",
+      "valid": true,
+      "lines": 606,
+      "ast_nodes": 5893,
+      "native_patch_name": "survival_conditioned_expert_risk",
+      "native_patch_description": "Forecast occupancy separately under the uniform, persistent, and responsive experts instead of averaging their movement laws before prediction. Score actions using mean collision probability plus a modest disagreement penalty among plausible experts. Condition expert weights on surviving the first move, then evaluate each second move consistently across experts. Apply the additional planning work near threats. Export the uninflated mixture forecast so prediction diagnostics remain distinct from conservative control costs. This targets stationary-law deaths; improvement requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "mixture_hazard"
+      ],
+      "removed": [],
+      "changed": [
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 87,
+      "ast_nodes_delta": 713
+    },
+    {
+      "generation": 17,
+      "native_id": "ea8cc052-e26e-4790-b558-93994f474c62",
+      "parent_id": "d7936778-614c-41a6-a09d-de4aae80000a",
+      "parent_generation": 16,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [
+        7
+      ],
+      "source_sha256": "5cca7060816cdb32ad28d037144b6401821182dca66af144ca4871f1a7e06af3",
+      "valid": true,
+      "lines": 782,
+      "ast_nodes": 6622,
+      "native_patch_name": "surprise_recovery_safe_arrival",
+      "native_patch_description": "Retains anonymous movement inference and shared-law mixture forecasts. Adds crowd-normalized predictive-surprise detection that rebuilds the fast expert from recent informative transitions while preserving the slow expert and uniform floor. Excludes stale geometry from learning, checks survival after reaching intermediate targets, and measures planning progress using maze distance. Cached second-step forecasts reduce repeated computation. These changes target adaptation and collision avoidance; improved fitness remains to be established by evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "cap_counts",
+        "count_law",
+        "geometric_distances",
+        "prepare_second",
+        "rebuild_fast",
+        "reverse_graph",
+        "second_probability"
+      ],
+      "removed": [
+        "conditioned_future",
+        "second_hazard"
+      ],
+      "changed": [
+        "component_laws",
+        "export_model",
+        "paths",
+        "planner",
+        "transition_terms",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 176,
+      "ast_nodes_delta": 729
+    },
+    {
+      "generation": 18,
+      "native_id": "4e6e7b4d-3dc3-418d-a2f0-1beb488d1bbe",
+      "parent_id": "1c9d8197-0fad-4324-a2fa-55530930bb1a",
+      "parent_generation": 4,
+      "archive_inspiration_generations": [
+        6
+      ],
+      "top_k_inspiration_generations": [
+        11
+      ],
+      "source_sha256": "1ea17d5f6e5403a1962c1d011602b2d026e72e7291bb312645cafaf1c2545bbb",
+      "valid": true,
+      "lines": 772,
+      "ast_nodes": 6236,
+      "native_patch_name": "plausible_expert_control",
+      "native_patch_description": "The parent uses three movement experts, per-step retention of .985/.86, a three-step planner, and collision weight 100. This revision forecasts each expert separately, preserving uncertainty about the shared movement law. Planning adds a .30 disagreement penalty only near visible threats and among plausible experts. Learning uses informative-observation retention of .99/.84, preserving evidence during observation gaps while retaining a responsive expert. Progress-aware waiting costs and deadline-dependent risk pricing target remaining timeouts. Anonymous association, blocked-attempt stays, independent mapping, and separate learning/prediction-use interventions remain supported. These are proposed improvements; no new evaluation results are claimed.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_progress_pressure",
+        "_stale_gain"
+      ],
+      "removed": [],
+      "changed": [
+        "_choose_target",
+        "_combined_law",
+        "_distances",
+        "_edge_cost",
+        "_forecast",
+        "_infer_anonymous",
+        "_learn",
+        "_legal",
+        "_mean",
+        "_observation_masks",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 307,
+      "ast_nodes_delta": 1318
+    },
+    {
+      "generation": 19,
+      "native_id": "bc31feaf-c537-432a-b049-63764fcb18f4",
+      "parent_id": "4e6e7b4d-3dc3-418d-a2f0-1beb488d1bbe",
+      "parent_generation": 18,
+      "archive_inspiration_generations": [
+        4
+      ],
+      "top_k_inspiration_generations": [
+        11
+      ],
+      "source_sha256": "fdb03d7e98e362bf07f0ab252ace7e15d28700892c5fd246924748a7430d330e",
+      "valid": true,
+      "lines": 948,
+      "ast_nodes": 7576,
+      "native_patch_name": "targeted_bottleneck_observation",
+      "native_patch_description": "Add observation routes aimed at stale walls that separate the agent from remembered objectives. A relaxed graph identifies potential passages, including diagonal clearance cells; movement still uses the existing legal graph and predictive collision controller. Activate recovery when objectives are unreachable or progress stalls, retain the viewpoint until its bottleneck is observed, and bound retries with expiry and cooldown.\n\nThis targets the three reported timeouts without broadly refreshing an already accurate map. It is a navigation hypothesis, not a new predictive-learning mechanism; improvement requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_route_observation"
+      ],
+      "removed": [],
+      "changed": [
+        "_choose_target",
+        "export_model"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": false,
+      "lines_delta": 176,
+      "ast_nodes_delta": 1340
+    },
+    {
+      "generation": 20,
+      "native_id": "3167a0eb-7d86-4ee9-89d0-3383d891224c",
+      "parent_id": "4e6e7b4d-3dc3-418d-a2f0-1beb488d1bbe",
+      "parent_generation": 18,
+      "archive_inspiration_generations": [
+        4
+      ],
+      "top_k_inspiration_generations": [
+        19
+      ],
+      "source_sha256": "7b3e543105a3e4e02522ec397549cad8eba6afe8969e6da66453191edd38e84b",
+      "valid": true,
+      "lines": 843,
+      "ast_nodes": 6769,
+      "native_patch_name": "surprise_triggered_restart_expert",
+      "native_patch_description": "Add a short-memory expert when informative anonymous observations repeatedly favor the fast model over the slow model. A discounted likelihood-ratio accumulator scales evidence by directional information and observed enemy count, excludes the existing terrain-change ambiguities, and requires sustained support before spawning or restarting the expert.\n\nInitialize the new expert from recent informative observations and give it modest mixture weight. Subsequent predictive likelihood determines its influence on both occupancy forecasts and planning hazards. Preserve the slow model, uniform floor, and separate learning and prediction-use interventions. Export trigger diagnostics without treating triggers as confirmed environmental switches. This is a predictive-learning extension; improved task performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "_combined_law",
+        "_learn",
+        "export_model",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": false,
+      "lines_delta": 71,
+      "ast_nodes_delta": 533
+    },
+    {
+      "generation": 21,
+      "native_id": "8a4bed0d-4bf1-4bf1-8167-6a9c4cf33427",
+      "parent_id": "ea8cc052-e26e-4790-b558-93994f474c62",
+      "parent_generation": 17,
+      "archive_inspiration_generations": [
+        15
+      ],
+      "top_k_inspiration_generations": [
+        7
+      ],
+      "source_sha256": "efa771a6701b07e78ea0df8e70c259da37895c8dcef35b33bc9e5c1a6bdd6d32",
+      "valid": true,
+      "lines": 875,
+      "ast_nodes": 7306,
+      "native_patch_name": "arrival_aware_routes",
+      "native_patch_description": "The current agent combines slow/fast learning rates (.992/.88), capped evidence (80/16), surprise-triggered recovery, and survival-conditioned local planning. Its route cost applies next-step enemy occupancy even to distant cells.\n\nThis revision preserves those learning and immediate safety mechanisms, but replaces route risk with arrival-aware forecasts: four prediction horizons, followed by gradual relaxation toward background occupancy. Relaxation is slower where blocked movement makes enemies persistent. The route risk weight remains 4.0, isolating the effect of temporal prediction. This is intended to reduce unnecessary detours and waiting; performance improvement requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "arrival_risk",
+        "breadth_distances",
+        "route_forecasts"
+      ],
+      "removed": [],
+      "changed": [
+        "blocked",
+        "choose_target",
+        "evidence_and_counts",
+        "export_model",
+        "geometric_distances",
+        "planner",
+        "rebuild_fast",
+        "transition_terms",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 93,
+      "ast_nodes_delta": 684
+    },
+    {
+      "generation": 22,
+      "native_id": "9e0d7652-6a3e-4c8b-bea1-55b066124954",
+      "parent_id": "8a4bed0d-4bf1-4bf1-8167-6a9c4cf33427",
+      "parent_generation": 21,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [
+        17
+      ],
+      "source_sha256": "90c1a09cd6379031be6ed2c6f2117cfc2ebce193d8c3bce67273eaa7ee5249de",
+      "valid": true,
+      "lines": 929,
+      "ast_nodes": 7618,
+      "native_patch_name": "information_clocked_adaptation",
+      "native_patch_description": "Advance the dynamics learners when informative enemy transitions arrive, preserving learned laws during periods without evidence. Measure directional information from anonymous transition constraints, accounting for blocked attempts and ambiguous assignments. Scale change evidence by this information and require sustained fast-model advantage before rebuilding the short-memory expert; uniform-model advantage alone no longer triggers resets. Existing forecasts and survival planning consume the resulting mixture. This targets adaptation and retention without changing mapping or terrain-change exclusions; performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "directional_information"
+      ],
+      "removed": [],
+      "changed": [
+        "export_model",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": false,
+      "lines_delta": 54,
+      "ast_nodes_delta": 312
+    },
+    {
+      "generation": 23,
+      "native_id": "16f1f7ac-d9e7-4a2a-9230-4524fe7146cb",
+      "parent_id": "ea8cc052-e26e-4790-b558-93994f474c62",
+      "parent_generation": 17,
+      "archive_inspiration_generations": [
+        21
+      ],
+      "top_k_inspiration_generations": [
+        22
+      ],
+      "source_sha256": "1ee22f279f6956db7f79c9767a5b0cfee85ba64e08082de29323c0f7de6b2afc",
+      "valid": true,
+      "lines": 895,
+      "ast_nodes": 7546,
+      "native_patch_name": "time_indexed_route_values",
+      "native_patch_description": "Replace the static enemy-risk route potential with four forecast horizons and backward dynamic programming. Route values then account for when the agent reaches a threatened cell, including the option to wait for danger to pass. Target selection uses estimated arrival times; longer routes relax toward a background occupancy estimate. Reuse second-step forecasts and pool later forecasts to bound computation. Preserve the existing learner, exported next-step predictions, and conditional immediate collision calculations. This is an untested control improvement motivated by the supplied arrival-aware routing results.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "arrival_route_risk",
+        "route_forecasts",
+        "timed_route_values"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 113,
+      "ast_nodes_delta": 924
+    },
+    {
+      "generation": 24,
+      "native_id": "8cc418ce-e791-4893-b3d7-b339c1db9dd1",
+      "parent_id": "4536a171-0c9f-4e65-94f2-a87b6919c45c",
+      "parent_generation": 14,
+      "archive_inspiration_generations": [
+        5
+      ],
+      "top_k_inspiration_generations": [
+        11
+      ],
+      "source_sha256": "5817416aaf0a1fef6c8367c188bb2226c27e340d63b19ac20befee25149b06c0",
+      "valid": true,
+      "lines": 842,
+      "ast_nodes": 6590,
+      "native_patch_name": "censored_survival_search",
+      "native_patch_description": "This program replaces fixed slow/fast experts with an adaptive bank of movement-law hypotheses. It evaluates anonymous observations through a censored set likelihood, introduces new hypotheses only on informative transitions, and uses approximate fractional-count updates.\n\nPlanning uses survival-conditioned trajectory search: enemy probability mass is removed when a proposed route would collide before or after enemy movement. This avoids repeatedly charging for the same surviving enemy trajectory. Persistent exploration targets, bounded recovery routes, and geometry-refresh objectives address waiting and navigation cycles. Mapping, predictive learning, and prediction-use interventions remain separate. Performance improvements require evaluation; none are claimed here.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_agent_blocked",
+        "_distance",
+        "_distances",
+        "_enemy_solid",
+        "_forecasts",
+        "_information_gain",
+        "_inside",
+        "_kernel",
+        "_law",
+        "_learn",
+        "_likelihood_terms",
+        "_mean",
+        "_observed_destination",
+        "_recovery_target",
+        "_refresh_gain",
+        "_set_evidence",
+        "_spread",
+        "_survival_search",
+        "_target",
+        "_update_bounds"
+      ],
+      "removed": [
+        "_blocked",
+        "_enemy_destination",
+        "_expert_laws",
+        "_expert_probabilities",
+        "_fixed_risk",
+        "_forecast",
+        "_learn_motion",
+        "_motion_weights",
+        "_recovery_move"
+      ],
+      "changed": [
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 460,
+      "ast_nodes_delta": 2355
+    },
+    {
+      "generation": 25,
+      "native_id": "c276e730-989d-4b8a-adfe-03964a56c492",
+      "parent_id": "8a4bed0d-4bf1-4bf1-8167-6a9c4cf33427",
+      "parent_generation": 21,
+      "archive_inspiration_generations": [
+        16
+      ],
+      "top_k_inspiration_generations": [
+        23
+      ],
+      "source_sha256": "4f06951720229e683adb12b8db9cbc9fa1979d3dedf48204d19c1a0b94d689fe",
+      "valid": true,
+      "lines": 951,
+      "ast_nodes": 7787,
+      "native_patch_name": "informative_surprise_recovery_expert",
+      "native_patch_description": "Measure directional information from anonymous transition constraints before accumulating change evidence. Scale fast-versus-slow predictive surprise by informative source count, and decay old evidence across observation gaps. Sustained surprise creates a separate recent-history expert without discarding either existing learner. Its initial weight is modest; subsequent predictive likelihood determines its influence on occupancy forecasts and planning. Preserve terrain-change exclusions, the uniform floor, and predictive interventions. Export information and expert-count diagnostics. This is an untested adaptation hypothesis, not a claimed performance improvement.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "directional_information"
+      ],
+      "removed": [],
+      "changed": [
+        "export_model",
+        "rebuild_fast",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": false,
+      "lines_delta": 76,
+      "ast_nodes_delta": 481
+    },
+    {
+      "generation": 26,
+      "native_id": "0aa7f97c-ab3e-4b46-821d-40166a13d68e",
+      "parent_id": "c276e730-989d-4b8a-adfe-03964a56c492",
+      "parent_generation": 25,
+      "archive_inspiration_generations": [
+        21
+      ],
+      "top_k_inspiration_generations": [
+        23
+      ],
+      "source_sha256": "1736dbb89e6970a09b90cb4b4eb55c683bb165af12c5651332c7dcd5e71fe524",
+      "valid": true,
+      "lines": 1060,
+      "ast_nodes": 8642,
+      "native_patch_name": "bounded_safe_detours",
+      "native_patch_description": "Add short waypoint commitments when repeated position\u2013objective pairs indicate stalled progress. Compare safe approaches using predicted occupancy across three horizons and onward routes that avoid returning through the stalled cell. Cancel a commitment when its route becomes unsafe, its objective changes, or six steps elapse. Preserve immediate enemy exclusion, conditional hazard planning, and the dynamics learner. During recovery, retain the original safety pressure instead of progressively accepting more danger. This is an untested control improvement; the supplied results do not establish its benefit.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "recovery_potential"
+      ],
+      "removed": [],
+      "changed": [
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 109,
+      "ast_nodes_delta": 855
+    },
+    {
+      "generation": 27,
+      "native_id": "3f5b96a4-a733-493f-b511-138adcd448da",
+      "parent_id": "8a4bed0d-4bf1-4bf1-8167-6a9c4cf33427",
+      "parent_generation": 21,
+      "archive_inspiration_generations": [
+        25
+      ],
+      "top_k_inspiration_generations": [
+        23
+      ],
+      "source_sha256": "0dc045e0d8f15dec65fccfe46eeb40622b18925edc5176b00cdb4549c1ebaf7e",
+      "valid": true,
+      "lines": 985,
+      "ast_nodes": 8111,
+      "native_patch_name": "conditioned_escape_tail",
+      "native_patch_description": "Add a bounded third-step escape check to the two-step planner. For each first action, examine its two best continuations, condition enemy distributions on surviving both movements, and estimate the safest third action. Penalize continuations whose apparent safety leads into a threatened bottleneck. This preserves the existing first- and second-step collision calculations and uses the learned movement laws, including blocked attempts. The proposed control improvement requires empirical evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "escape_tail_cost"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 110,
+      "ast_nodes_delta": 805
+    },
+    {
+      "generation": 28,
+      "native_id": "bfecb57e-cecb-447e-ad51-0c985c8ede27",
+      "parent_id": "4536a171-0c9f-4e65-94f2-a87b6919c45c",
+      "parent_generation": 14,
+      "archive_inspiration_generations": [
+        24
+      ],
+      "top_k_inspiration_generations": [
+        11
+      ],
+      "source_sha256": "c80f8f6d80f316f91414f21700af4b3864c935f18b3f74c8a4c6fbaa6ac187b0",
+      "valid": true,
+      "lines": 446,
+      "ast_nodes": 4632,
+      "native_patch_name": "door_schedule_conditioned_planning",
+      "native_patch_description": "Carry the door\u2019s opening time through the existing three-step planner. Each branch opens it only when interaction occurs from a cardinal neighbor with two previously collected keys. Enemy forecasts then use closed-door kernels before that time and open-door kernels afterward, preserving blocked-attempt probability mass. Memoization includes the opening schedule and hypothetical key pickups.\n\nAlso make immediate forecasts and learning evidence respect actual interaction timing. This targets inconsistent door geometry without changing the learner\u2019s adaptation rates, risk penalties, exploration strategy, or planning horizon. Improved control is a hypothesis; this patch has not been evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_interaction_open"
+      ],
+      "removed": [],
+      "changed": [
+        "_blocked",
+        "_enemy_destination",
+        "_forecast",
+        "_learn_motion",
+        "_legal",
+        "_recovery_move"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": false,
+      "lines_delta": 64,
+      "ast_nodes_delta": 397
+    },
+    {
+      "generation": 29,
+      "native_id": "02793ee7-a391-4869-9ace-7a1d514fbaf1",
+      "parent_id": "bc31feaf-c537-432a-b049-63764fcb18f4",
+      "parent_generation": 19,
+      "archive_inspiration_generations": [
+        4
+      ],
+      "top_k_inspiration_generations": [
+        18
+      ],
+      "source_sha256": "0f9a930cde7e9121fe3b96e06f1f7b1ab5f518e84744585c0c6b32371c87fb6f",
+      "valid": true,
+      "lines": 1059,
+      "ast_nodes": 8356,
+      "native_patch_name": "survival_conditioned_edges",
+      "native_patch_description": "Condition future collision risk on having survived at the preceding planned position. The current planner repeatedly charges probability mass for enemies occupying a cell where the agent must already have survived. This can distort waiting and escape maneuvers around moving enemies.\n\nRetain each expert\u2019s transition distributions and compute future edge hazards after excluding enemy occupancy at the preceding agent position. Reweight experts by that survival evidence before combining hazards. This is a one-step survival-conditioning approximation, not a full path posterior. It preserves the three-step horizon, uniform floor, immediate collision checks, exported forecasts, and separate prediction-use intervention. Performance improvement remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_conditioned_edge"
+      ],
+      "removed": [],
+      "changed": [
+        "_forecast",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 111,
+      "ast_nodes_delta": 780
+    },
+    {
+      "generation": 30,
+      "native_id": "33ca29a6-7203-4e58-9075-cd12672de615",
+      "parent_id": "16f1f7ac-d9e7-4a2a-9230-4524fe7146cb",
+      "parent_generation": 23,
+      "archive_inspiration_generations": [
+        27
+      ],
+      "top_k_inspiration_generations": [
+        21
+      ],
+      "source_sha256": "d3384b8324dfa7803701c358e4706cb535594c775125172d630a2ef09ab9d4ae",
+      "valid": true,
+      "lines": 1097,
+      "ast_nodes": 8841,
+      "native_patch_name": "door_history_planner",
+      "native_patch_description": "Makes door opening an explicit action-dependent state transition. Movement legality, enemy kernels, survival conditioning, and timed route memoization carry the opening history. The learner retains the preceding door state and accepts explained opening transitions; exported forecasts reflect the selected action. Existing anonymous movement-law learning and separate learning/planning interventions are preserved. These changes target inconsistent door forecasts and unsafe continuations; performance gains remain to be measured.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "breadth_distances",
+        "interaction_state",
+        "pool_states",
+        "position_costs",
+        "set_prediction"
+      ],
+      "removed": [
+        "geometric_distances",
+        "opening_now"
+      ],
+      "changed": [
+        "arrival_route_risk",
+        "blocked",
+        "choose_target",
+        "evidence_and_counts",
+        "export_model",
+        "first_forecast",
+        "graph",
+        "legal",
+        "make_transition",
+        "paths",
+        "planner",
+        "prepare_second",
+        "rebuild_fast",
+        "reverse_graph",
+        "route_forecasts",
+        "timed_route_values",
+        "transition_terms",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 202,
+      "ast_nodes_delta": 1295
+    },
+    {
+      "generation": 31,
+      "native_id": "a5056cba-f4f7-4c23-86c1-7ba057b025b0",
+      "parent_id": "afa23382-1e5c-4c15-8783-be4621916065",
+      "parent_generation": 13,
+      "archive_inspiration_generations": [
+        2
+      ],
+      "top_k_inspiration_generations": [
+        12
+      ],
+      "source_sha256": "29ad26acba31c9b9ded81414d654fd5d1cb704a49af069d8041c4f6175d72131",
+      "valid": true,
+      "lines": 680,
+      "ast_nodes": 5877,
+      "native_patch_name": "filtered_survival",
+      "native_patch_description": "The current agent uses decayed movement counts (.965 retention, 45-count cap), a fresh hidden-enemy background each turn, and two-step risk planning. This rewrite introduces persistent, observation-filtered hidden occupancy with exactly three represented enemies; adaptive mixing of uniform, slow (.993 retention), and fast (.91 retention) movement estimators; and collision forecasts conditioned on surviving the first action. It retains exploration and route recovery while increasing second-step risk weight from .42 to .60. These changes aim to reduce avoidable deaths without excessive waiting; improved fitness requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_collision_cost",
+        "_count_law",
+        "_density",
+        "_evidence",
+        "_filter_tracks",
+        "_occupancy",
+        "_opening",
+        "_project",
+        "_spatial_prior",
+        "_surviving_tracks",
+        "_transition"
+      ],
+      "removed": [
+        "_forecasts",
+        "_hazard"
+      ],
+      "changed": [
+        "_choose_target",
+        "_law",
+        "_learn",
+        "_legal",
+        "_wall",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 299,
+      "ast_nodes_delta": 1713
+    },
+    {
+      "generation": 32,
+      "native_id": "df808e66-5875-4c81-bf8f-625a2017cff5",
+      "parent_id": "aa5aa63e-d9a6-4c0d-9d27-dba233c9cce1",
+      "parent_generation": 12,
+      "archive_inspiration_generations": [
+        0
+      ],
+      "top_k_inspiration_generations": [
+        13
+      ],
+      "source_sha256": "990a4400965706b2a67b8465388e96412c3c28c0dd4271b678b95e6489ae6be0",
+      "valid": true,
+      "lines": 430,
+      "ast_nodes": 4341,
+      "native_patch_name": "door_state_branch_planning",
+      "native_patch_description": "Carry door state through each planning branch. Interaction opens the door before movement only when the simulated agent has both keys and is cardinally adjacent; subsequent enemy transitions and diagonal legality use that resulting state. Cache separate enemy kernels for open and closed doors, and account for keys collected along simulated paths. Retain the existing always-interact policy.\n\nStore the observed preceding door state separately from the forecast state. Learn opening transitions using the confirmed resulting door state, avoiding attribution of newly legal enemy movements to a change in movement law. This targets transition-model errors without changing the objective or predictive interventions. Performance improvement remains untested.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_door_after"
+      ],
+      "removed": [],
+      "changed": [
+        "_forecasts",
+        "_learn",
+        "_legal",
+        "_planning_transition",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 17,
+      "ast_nodes_delta": 57
+    },
+    {
+      "generation": 33,
+      "native_id": "b7d10e6e-a97e-4032-9258-f143869235fc",
+      "parent_id": "bc31feaf-c537-432a-b049-63764fcb18f4",
+      "parent_generation": 19,
+      "archive_inspiration_generations": [
+        4
+      ],
+      "top_k_inspiration_generations": [
+        18
+      ],
+      "source_sha256": "6b3d9e6ce2f0c151aaed2e64c05c9258cc8e243792e95f6e6f11c256ef00d118",
+      "valid": true,
+      "lines": 997,
+      "ast_nodes": 7935,
+      "native_patch_name": "persistent_anonymous_enemy_filter",
+      "native_patch_description": "Carry enemy intensity between observations instead of rebuilding hidden enemies from a uniform density each turn. Condition the previous forecast on visible empty cells, remove visible enemies from hidden mass, and normalize the remainder to the unresolved enemy count. A small diffuse component permits recovery from terrain changes and approximation errors.\n\nPropagate this belief through the existing blocked-attempt kernels and use it in both forecasts and planning hazards. Maintain separate adaptive and uniform histories for the prediction-use intervention. This is an approximate anonymous intensity filter, with the existing overlap approximation retained. It aims to distinguish recently cleared passages from likely incoming threats; performance improvement remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "_forecast",
+        "export_model"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": false,
+      "lines_delta": 49,
+      "ast_nodes_delta": 359
+    },
+    {
+      "generation": 34,
+      "native_id": "a0874208-6515-44b0-9c85-a4ba2b73cf67",
+      "parent_id": "aa5aa63e-d9a6-4c0d-9d27-dba233c9cce1",
+      "parent_generation": 12,
+      "archive_inspiration_generations": [
+        13
+      ],
+      "top_k_inspiration_generations": [
+        32
+      ],
+      "source_sha256": "854e8dd19dc967fc2b7e72ae84dbefcd59aa97c0de08b570b7bce56d16cd0964",
+      "valid": true,
+      "lines": 502,
+      "ast_nodes": 5177,
+      "native_patch_name": "stale_bottleneck_observation",
+      "native_patch_description": "Add targeted observation goals when a remembered exit or door remains unreachable for four steps after collecting both keys. A counterfactual shortest-path search permits stale walls to reopen, including walls blocking diagonal corners, and identifies the first obstruction along a promising route. The agent then travels to a reachable viewpoint that reveals that obstruction. Actual movement retains the existing legality checks and learned hazard planner; hypothetical openings never modify terrain memory. Fresh observations invalidate obsolete recovery goals. This targets failed route recovery without changing ordinary exploration or predictive learning. Performance remains untested.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_bottleneck_view"
+      ],
+      "removed": [],
+      "changed": [
+        "_choose_target"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": false,
+      "lines_delta": 89,
+      "ast_nodes_delta": 893
+    },
+    {
+      "generation": 35,
+      "native_id": "3864d0d7-8e0b-43bd-ba5c-9a332abd64ac",
+      "parent_id": "33ca29a6-7203-4e58-9075-cd12672de615",
+      "parent_generation": 30,
+      "archive_inspiration_generations": [
+        29
+      ],
+      "top_k_inspiration_generations": [
+        23
+      ],
+      "source_sha256": "b63b02f6cd16ad18eba9d28aa91908e5c34c507c978cec650eb1332edb814f13",
+      "valid": true,
+      "lines": 1262,
+      "ast_nodes": 10156,
+      "native_patch_name": "stateful_bottleneck_observation",
+      "native_patch_description": "Add targeted observation goals when remembered objectives are disconnected or progress toward a reachable objective stalls. A separate optimistic search identifies stale walls and diagonal clearance cells that could reconnect a route, while preserving the door\u2019s interaction state. The agent then approaches a reachable viewpoint using its existing learned hazard planner. Observation goals expire or terminate when their blocking cells are refreshed; optimistic passages never become executable movement edges. This targets route-recovery failures without changing the dynamics learner or its interventions. Performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "bottleneck_view"
+      ],
+      "removed": [],
+      "changed": [
+        "choose_target",
+        "export_model"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": false,
+      "lines_delta": 165,
+      "ast_nodes_delta": 1315
+    },
+    {
+      "generation": 36,
+      "native_id": "925a9001-25fd-49af-9986-36db5244ad76",
+      "parent_id": "1c9d8197-0fad-4324-a2fa-55530930bb1a",
+      "parent_generation": 4,
+      "archive_inspiration_generations": [
+        8
+      ],
+      "top_k_inspiration_generations": [
+        18
+      ],
+      "source_sha256": "92cd9a1e3f88dd38f287d22cfdf2a8e96b267ae690c0322c3d0b452633dbb07d",
+      "valid": true,
+      "lines": 789,
+      "ast_nodes": 6303,
+      "native_patch_name": "persistent_belief_navigation",
+      "native_patch_description": "Separates geometry, movement learning, anonymous enemy filtering, forecasting, and navigation. Persistent enemy intensity carries hidden threats between observations, removes mass from visibly empty cells, and conserves the unresolved enemy count. Cached transition kernels support both prediction and control. Progress-aware planning reduces repeated waiting and revisits stale passages. Learning and prediction-use interventions remain separate from localization. Performance improvements require evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "EnemyFilter",
+        "Geometry",
+        "Kernel",
+        "MotionLearner",
+        "Navigation",
+        "_clip",
+        "_new_memory"
+      ],
+      "removed": [
+        "_blocked",
+        "_choose_target",
+        "_combined_law",
+        "_distance",
+        "_distances",
+        "_edge_cost",
+        "_forecast",
+        "_gain",
+        "_infer_anonymous",
+        "_learn",
+        "_legal",
+        "_observation_masks",
+        "_solid",
+        "_terrain_destination"
+      ],
+      "changed": [
+        "_mean",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 324,
+      "ast_nodes_delta": 1385
+    },
+    {
+      "generation": 37,
+      "native_id": "0781fb9b-0717-4d75-bac8-d517e96fe0a9",
+      "parent_id": "02793ee7-a391-4869-9ace-7a1d514fbaf1",
+      "parent_generation": 29,
+      "archive_inspiration_generations": [
+        23
+      ],
+      "top_k_inspiration_generations": [
+        21
+      ],
+      "source_sha256": "55d4cbe9b4d47a716b6c4ef6936f645fd8bc368ed3e913213e95f6106ef6ca62",
+      "valid": true,
+      "lines": 1018,
+      "ast_nodes": 9274,
+      "native_patch_name": "belief_route_controller",
+      "native_patch_description": "Reorganizes the agent into observation, dynamics learning, forecasting, route recovery, and control stages. Arrival-aware route costs prevent transient enemy positions from permanently distorting long routes. Persistent progress tracking and targeted observations of stale walls and diagonal clearances address stalled connectivity. The controller retains anonymous movement inference, separate learning and prediction-use interventions, and survival-conditioned local planning. Performance improvements require evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "add",
+        "anonymous_posterior",
+        "blocked_for_agent",
+        "border",
+        "breadth",
+        "build_forecast",
+        "choose_target",
+        "clamp",
+        "conditioned_risk",
+        "control",
+        "distance",
+        "hidden_prior",
+        "infer_bounds",
+        "inside",
+        "learn",
+        "legal",
+        "log_risk",
+        "navigation_graph",
+        "new_memory",
+        "normalized",
+        "observation_goal",
+        "observation_masks",
+        "observe",
+        "opens_now",
+        "progress_pressure",
+        "refresh_laws",
+        "route_risks",
+        "shortest",
+        "solid",
+        "spread",
+        "terrain_destination",
+        "view_gain"
+      ],
+      "removed": [
+        "_add",
+        "_blocked",
+        "_choose_target",
+        "_combined_law",
+        "_conditioned_edge",
+        "_distance",
+        "_distances",
+        "_edge_cost",
+        "_forecast",
+        "_gain",
+        "_infer_anonymous",
+        "_infer_bounds",
+        "_inside",
+        "_learn",
+        "_legal",
+        "_mean",
+        "_observation_masks",
+        "_progress_pressure",
+        "_route_observation",
+        "_solid",
+        "_stale_gain",
+        "_terrain_destination"
+      ],
+      "changed": [
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": -41,
+      "ast_nodes_delta": 918
+    },
+    {
+      "generation": 38,
+      "native_id": "fb629c8a-b135-4ec8-a49f-f3eecf245d99",
+      "parent_id": "1c9d8197-0fad-4324-a2fa-55530930bb1a",
+      "parent_generation": 4,
+      "archive_inspiration_generations": [
+        36
+      ],
+      "top_k_inspiration_generations": [
+        18
+      ],
+      "source_sha256": "dae950424764a3d2c6cdff77f77aa0711101fe7d38ab184d886e7da651f3549b",
+      "valid": true,
+      "lines": 498,
+      "ast_nodes": 5134,
+      "native_patch_name": "arrival_time_risk_planning",
+      "native_patch_description": "Replace discounted three-step control with eight-step space-time planning. The current controller can repeatedly postpone a dangerous crossing because the same collision becomes cheaper when imagined several steps later. Charge survival risk consistently across the planning horizon, and compute the terminal route using predicted future occupancy instead of freezing current enemy positions. This should help distinguish a crossing that will clear from one requiring a detour. Cache navigation edges and avoid duplicate enemy propagation to limit computation. Learning, exported next-step predictions, and the prediction-use intervention remain separate. This proposal has not been evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "_forecast",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 33,
+      "ast_nodes_delta": 216
+    },
+    {
+      "generation": 39,
+      "native_id": "3b6483f7-4f37-4a06-87a5-506c1e1ad6c3",
+      "parent_id": "a0874208-6515-44b0-9c85-a4ba2b73cf67",
+      "parent_generation": 34,
+      "archive_inspiration_generations": [
+        32
+      ],
+      "top_k_inspiration_generations": [
+        13
+      ],
+      "source_sha256": "6f07d8cf04a1403d892a9bdf63a883975a71b1177803fc07ddcde12a7555f66b",
+      "valid": true,
+      "lines": 578,
+      "ast_nodes": 5866,
+      "native_patch_name": "safe_target_continuation",
+      "native_patch_description": "Intermediate targets currently terminate lookahead, hiding danger immediately after collecting a key or reaching a frontier. Replace that cutoff with a short survival continuation conditioned on reaching the target alive. Target completion removes the routing potential once; subsequent actions assess collision risk without repeatedly rewarding arrival. The continuation tracks collected keys and door interactions within each branch, while actual escape remains terminal. This preserves the existing immediate collision safeguards and learned movement law. Performance gains require evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_target_tail"
+      ],
+      "removed": [],
+      "changed": [
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 76,
+      "ast_nodes_delta": 689
+    },
+    {
+      "generation": 40,
+      "native_id": "ecd6fdcf-de80-4bf8-b029-1737e6f2763b",
+      "parent_id": "afa23382-1e5c-4c15-8783-be4621916065",
+      "parent_generation": 13,
+      "archive_inspiration_generations": [
+        12
+      ],
+      "top_k_inspiration_generations": [
+        32
+      ],
+      "source_sha256": "65ac3f25222591a80aa90c37943e0dd0b0fba20b7b62d1bc426b4d76751fff80",
+      "valid": true,
+      "lines": 460,
+      "ast_nodes": 4906,
+      "native_patch_name": "complete_route_recovery",
+      "native_patch_description": "Replace purely local waypoint selection with a search for a complete alternate route when progress stalls. Temporarily exclude the nominal next approach cell, then choose a safe waypoint along a bounded detour that still reaches the objective. Retain the existing recovery fallback and collision penalties. Release an active waypoint when objective distance improves. This targets timeouts without reducing caution; performance gains require evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_alternate_waypoint"
+      ],
+      "removed": [],
+      "changed": [
+        "_recovery_target"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": false,
+      "lines_delta": 79,
+      "ast_nodes_delta": 742
+    },
+    {
+      "generation": 41,
+      "native_id": "8b66524f-5170-4037-800e-74564709be07",
+      "parent_id": "3f5b96a4-a733-493f-b511-138adcd448da",
+      "parent_generation": 27,
+      "archive_inspiration_generations": [
+        21
+      ],
+      "top_k_inspiration_generations": [
+        37
+      ],
+      "source_sha256": "e1c4fedceb1654499230f10bc10830453ca49633a3975715837cbb2869d37b20",
+      "valid": true,
+      "lines": 1022,
+      "ast_nodes": 9878,
+      "native_patch_name": "survival_timed_routes",
+      "native_patch_description": "Uses time-dependent route values and a three-step controller that conditions enemy beliefs on surviving the entire proposed path. It strengthens immediate safety, retains anonymous dynamics learning and switch recovery, and adds a censored-observation learning fallback plus targeted inspection of stale walls. These changes aim to reduce deaths and navigation stalls; performance remains to be measured.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "clamp",
+        "collision_field",
+        "enumerate_terms",
+        "inspection_target",
+        "is_exit",
+        "third_value",
+        "timed_potentials"
+      ],
+      "removed": [
+        "escape_tail_cost",
+        "geometric_distances"
+      ],
+      "changed": [
+        "arrival_risk",
+        "breadth_distances",
+        "cap_counts",
+        "choose_target",
+        "evidence_and_counts",
+        "export_model",
+        "first_forecast",
+        "hazard",
+        "learned_law",
+        "legal",
+        "make_transition",
+        "mixture_hazard",
+        "occupancy",
+        "paths",
+        "planner",
+        "rebuild_fast",
+        "reconcile_fog",
+        "route_forecasts",
+        "second_probability",
+        "transition_terms",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 37,
+      "ast_nodes_delta": 1767
+    },
+    {
+      "generation": 42,
+      "native_id": "c3dfdabb-14fa-4b3e-822c-eb1da845fc06",
+      "parent_id": "c276e730-989d-4b8a-adfe-03964a56c492",
+      "parent_generation": 25,
+      "archive_inspiration_generations": [
+        41
+      ],
+      "top_k_inspiration_generations": [
+        37
+      ],
+      "source_sha256": "040c6953ddec2569d2e5a0e424dc7f431ae03fec8875a08cee26bc2af477567f",
+      "valid": true,
+      "lines": 1086,
+      "ast_nodes": 9347,
+      "native_patch_name": "safe_target_continuation",
+      "native_patch_description": "The current agent uses slow/fast learning decays of .992/.88, likelihood tempering of .8, four routing horizons, and two-step local control. This version retains the recovery expert and adds censored-observation learning, information-weighted updates, and three-step survival-conditioned control. Intermediate targets receive a completion reward once, followed by safety checks and a bounded onward-route potential; only escape is terminal. Local risk weights become 92, .58, and .27 across the three steps, with a three-candidate second-step beam. These changes aim to reduce collisions around keys and frontiers while preserving progress. Performance remains to be measured.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "clamp",
+        "continuation_field",
+        "is_exit",
+        "third_probabilities",
+        "view_gain"
+      ],
+      "removed": [
+        "geometric_distances"
+      ],
+      "changed": [
+        "arrival_risk",
+        "breadth_distances",
+        "cap_counts",
+        "choose_target",
+        "directional_information",
+        "evidence_and_counts",
+        "export_model",
+        "first_forecast",
+        "hazard",
+        "legal",
+        "make_transition",
+        "mixture_hazard",
+        "occupancy",
+        "paths",
+        "planner",
+        "reconcile_fog",
+        "route_forecasts",
+        "second_probability",
+        "transition_terms",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 135,
+      "ast_nodes_delta": 1560
+    },
+    {
+      "generation": 43,
+      "native_id": "39bb3bfe-eb6c-4e70-9259-efa275fd662a",
+      "parent_id": "0aa7f97c-ab3e-4b46-821d-40166a13d68e",
+      "parent_generation": 26,
+      "archive_inspiration_generations": [
+        17
+      ],
+      "top_k_inspiration_generations": [
+        42
+      ],
+      "source_sha256": "9aa66dd9323a3e00db9c56c38cff1635f705fce4101b6cb2794d40d5abd6ed8e",
+      "valid": true,
+      "lines": 1071,
+      "ast_nodes": 8682,
+      "native_patch_name": "persistent_expert_routes",
+      "native_patch_description": "Preserves each movement expert through all four forecast horizons, combining predictions only after propagation. Route costs account for enemies occupying a destination before or after movement, while retaining the existing horizon-one export, adaptive learning, uniform expert, and two-action local safety planner. This targets underestimated route danger without increasing planning depth. Performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "arrival_collision",
+        "clamp",
+        "mixture_probability"
+      ],
+      "removed": [],
+      "changed": [
+        "arrival_risk",
+        "breadth_distances",
+        "export_model",
+        "hazard",
+        "mixture_hazard",
+        "occupancy",
+        "planner",
+        "recovery_potential",
+        "route_forecasts",
+        "second_probability",
+        "update_dynamics",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 11,
+      "ast_nodes_delta": 40
+    },
+    {
+      "generation": 44,
+      "native_id": "9c45b169-9cac-4465-bd36-2b9dd728a9ae",
+      "parent_id": "df808e66-5875-4c81-bf8f-625a2017cff5",
+      "parent_generation": 32,
+      "archive_inspiration_generations": [
+        40
+      ],
+      "top_k_inspiration_generations": [
+        19
+      ],
+      "source_sha256": "61de8aaaafec0d475c0931150fa657c42b1d6a219f014b43611389db67cc0c92",
+      "valid": true,
+      "lines": 712,
+      "ast_nodes": 5531,
+      "native_patch_name": "safe_target_continuation",
+      "native_patch_description": "The planner continues beyond intermediate targets, carrying collected-key and door state through each branch. Completion earns one bounded reward; only escape terminates planning. Survival-conditioned enemy forecasts retain immediate collision checks, while stronger continuation risk costs address hazards hidden by early target termination. A secondary navigation potential encourages useful onward movement, and modest uniform shrinkage limits overconfidence in learned dynamics. Performance remains to be evaluated.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_stagnation"
+      ],
+      "removed": [],
+      "changed": [
+        "_choose_target",
+        "_door_after",
+        "_paths",
+        "_surviving_tracks",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 282,
+      "ast_nodes_delta": 1190
+    },
+    {
+      "generation": 45,
+      "native_id": "7486849c-5363-433a-a978-4853e073b1f0",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_generation": 1,
+      "archive_inspiration_generations": [
+        3
+      ],
+      "top_k_inspiration_generations": [
+        24
+      ],
+      "source_sha256": "ba3cbffb55e45743efd28bfd9c8c4ff30bc4f6544f560e982d2a27356caf77a4",
+      "valid": true,
+      "lines": 355,
+      "ast_nodes": 3748,
+      "native_patch_name": "persistent_motion_ensemble",
+      "native_patch_description": "Maintain a responsive movement estimate alongside the existing slower learner, with a uniform component for uncertainty about unseen dynamics changes. Propagate each law independently through the existing two forecast steps, then average occupancy probabilities. This preserves uncertainty about a persistent movement law without increasing planning depth.\n\nCompute second-step collision probabilities from each enemy\u2019s joint pre-move and post-move occupancy, subtracting overlapping stay events. The current independence approximation can overprice waiting for blocked enemies to clear a route. Preserve mapping, exploration, and both learning and prediction-use interventions. These are proposed improvements; their control benefit requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_forecast_laws"
+      ],
+      "removed": [],
+      "changed": [
+        "_forecasts",
+        "_learn",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 60,
+      "ast_nodes_delta": 490
+    },
+    {
+      "generation": 46,
+      "native_id": "ddd05ef9-92d5-44f5-905b-acae4e398552",
+      "parent_id": "bfecb57e-cecb-447e-ad51-0c985c8ede27",
+      "parent_generation": 28,
+      "archive_inspiration_generations": [
+        24
+      ],
+      "top_k_inspiration_generations": [
+        1
+      ],
+      "source_sha256": "c0011929926cd93bf6cf5b6b6e3deee5591bcf073655e33db469416185c785aa",
+      "valid": true,
+      "lines": 800,
+      "ast_nodes": 6811,
+      "native_patch_name": "belief_route_survival",
+      "native_patch_description": "Separates terrain estimation, anonymous dynamics learning, route selection, and survival-conditioned control. A compact change-point learner replaces isolated enemy matching. The planner evaluates three-step continuations with branch-specific key collection and door opening, while a progress controller selects temporary alternative-route waypoints. These changes target collision deaths and repeated-route timeouts; performance requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_distance",
+        "_evidence",
+        "_infer_bounds",
+        "_inside",
+        "_kernel",
+        "_mean",
+        "_motion_law",
+        "_new_memory",
+        "_observation_terms",
+        "_observed_destination",
+        "_opens",
+        "_routes",
+        "_select_primary",
+        "_select_route",
+        "_solid",
+        "_spread",
+        "_survival_control",
+        "_update_dynamics",
+        "_view_gains"
+      ],
+      "removed": [
+        "_blocked",
+        "_enemy_destination",
+        "_expert_laws",
+        "_expert_probabilities",
+        "_fixed_risk",
+        "_interaction_open",
+        "_learn_motion",
+        "_motion_weights",
+        "_recovery_move"
+      ],
+      "changed": [
+        "_forecast",
+        "_legal",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 354,
+      "ast_nodes_delta": 2179
+    },
+    {
+      "generation": 47,
+      "native_id": "a4bf2f77-f41f-44e1-a638-a9407678f4d2",
+      "parent_id": "1c9d8197-0fad-4324-a2fa-55530930bb1a",
+      "parent_generation": 4,
+      "archive_inspiration_generations": [
+        36
+      ],
+      "top_k_inspiration_generations": [
+        18
+      ],
+      "source_sha256": "1f071ab8d453cf4b4d350566ad8dc01621d1416e7ca4dda16dfcfc513a2cdc67",
+      "valid": true,
+      "lines": 713,
+      "ast_nodes": 5480,
+      "native_patch_name": "persistent_motion_ensemble",
+      "native_patch_description": "The current agent uses slow/fast retention rates of .985/.86, a .12 uniform floor, three-step planning, and future risk weights of 1/.55/.25. Its averaged movement kernel implicitly resamples the movement law at every forecast step.\n\nThis revision propagates uniform, slow, and fast experts independently through all three steps, then averages their collision probabilities. It preserves the original horizon-one forecast, learner settings, navigation costs, and planning depth to isolate the effect of persistent movement-law uncertainty. Shared geometry caches and removal of duplicate propagation reduce overhead. Performance improvement remains to be measured.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "ForecastGeometry",
+        "MotionKernel",
+        "_clip",
+        "_forecast_fields"
+      ],
+      "removed": [
+        "_distance"
+      ],
+      "changed": [
+        "_combined_law",
+        "_forecast",
+        "_infer_anonymous",
+        "_learn",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": true,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 248,
+      "ast_nodes_delta": 562
+    },
+    {
+      "generation": 48,
+      "native_id": "df357d44-3f35-4863-b3b9-8a9e304cf1f7",
+      "parent_id": "ecd6fdcf-de80-4bf8-b029-1737e6f2763b",
+      "parent_generation": 40,
+      "archive_inspiration_generations": [
+        19
+      ],
+      "top_k_inspiration_generations": [
+        44
+      ],
+      "source_sha256": "207f5bd20ce4e94cef1ddef75a2cb225f28cf55887a4c2e7165d946e93692a03",
+      "valid": true,
+      "lines": 556,
+      "ast_nodes": 5812,
+      "native_patch_name": "survival_conditioned_three_step_control",
+      "native_patch_description": "Replace the two-step occupancy approximation with three-step planning that conditions enemy distributions on surviving each proposed action. Collision probability accounts for both entering an occupied cell and enemies subsequently moving onto the destination, including blocked attempts that stay. A small uniform component protects control against uncertain or recently changed laws; learned exports and the learning intervention remain separate.\n\nRetain target selection and route recovery, evaluating every immediate action and a bounded continuation beam. Fix hypothetical door interaction geometry separately: future interactions depend on the simulated position and inventory. These changes aim to reduce deaths without permanently treating current enemy positions as obstacles; improvement requires evaluation.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_interaction_open"
+      ],
+      "removed": [],
+      "changed": [
+        "_legal",
+        "planner"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": false,
+      "planner_changed": true,
+      "lines_delta": 96,
+      "ast_nodes_delta": 906
+    },
+    {
+      "generation": 49,
+      "native_id": "2a5a0dd9-cb4e-402c-98f7-8ffbd1ad2b2e",
+      "parent_id": "ddd05ef9-92d5-44f5-905b-acae4e398552",
+      "parent_generation": 46,
+      "archive_inspiration_generations": [
+        1
+      ],
+      "top_k_inspiration_generations": [
+        24
+      ],
+      "source_sha256": "4c86f41802f79dc9552fda9b8208306b224532551102d686e6ea11d27577a3ee",
+      "valid": true,
+      "lines": 943,
+      "ast_nodes": 7636,
+      "native_patch_name": "persistent_anonymous_flow",
+      "native_patch_description": "Reorganizes the agent into observation, dynamics learning, anonymous belief filtering, forecasting, routing, and survival control stages. Concealed enemy probability now persists across observation gaps, with visible empty cells removing incompatible mass and a diffuse reserve representing unresolved enemies. The planner conditions both visible threats and concealed probability on survival along each candidate path. A separate uniform-law filter preserves the prediction-use intervention. These changes target safer routing around recently disappeared enemies; performance remains to be measured.",
+      "native_description_scope": "Proposal author description; not independent behavioral verification.",
+      "added": [
+        "_assimilate",
+        "_beam_selection",
+        "_belief_domain",
+        "_collision_loss",
+        "_condition_packets",
+        "_enemy_free",
+        "_make_context",
+        "_observe",
+        "_safe_route_step",
+        "_threat_packets",
+        "_transport"
+      ],
+      "removed": [
+        "_forecast",
+        "_spread"
+      ],
+      "changed": [
+        "_evidence",
+        "_infer_bounds",
+        "_kernel",
+        "_legal",
+        "_mean",
+        "_new_memory",
+        "_observation_terms",
+        "_observed_destination",
+        "_solid",
+        "_survival_control",
+        "_update_dynamics",
+        "export_model",
+        "planner",
+        "world_model_step"
+      ],
+      "module_statements_changed": false,
+      "world_model_step_changed": true,
+      "planner_changed": true,
+      "lines_delta": 143,
+      "ast_nodes_delta": 825
+    }
+  ]
+}

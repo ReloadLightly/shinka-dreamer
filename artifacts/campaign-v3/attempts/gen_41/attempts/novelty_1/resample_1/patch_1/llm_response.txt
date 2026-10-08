@@ -1,0 +1,1034 @@
+<NAME>
+survival_timed_routes
+</NAME>
+
+<DESCRIPTION>
+Uses time-dependent route values and a three-step controller that conditions enemy beliefs on surviving the entire proposed path. It strengthens immediate safety, retains anonymous dynamics learning and switch recovery, and adds a censored-observation learning fallback plus targeted inspection of stale walls. These changes aim to reduce deaths and navigation stalls; performance remains to be measured.
+</DESCRIPTION>
+
+<CODE>
+```python
+"""Predictive seed. Entire representation, learner and planner may evolve."""
+# EVOLVE-BLOCK-START
+import heapq
+import math
+
+MOVES = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
+WALK = tuple(d for d in MOVES if d != (0, 0))
+CARDINAL = ((1, 0), (-1, 0), (0, 1), (0, -1))
+UNIFORM = [1.0 / 9.0] * 9
+ROUTE_HORIZON = 6
+
+
+def add(p, d):
+    return p[0] + d[0], p[1] + d[1]
+
+
+def distance(p, q):
+    return max(abs(p[0] - q[0]), abs(p[1] - q[1]))
+
+
+def clamp(value):
+    return min(1.0, max(0.0, value))
+
+
+def blocked(terrain, p, opened=False, unknown=False):
+    cell = terrain.get(p)
+    if cell is None:
+        return unknown
+    return cell in (-1, 1) or (cell == 3 and not opened)
+
+
+def destination(terrain, p, d, opened):
+    q = add(p, d)
+    if blocked(terrain, q, opened):
+        return p
+    if d[0] and d[1]:
+        if (blocked(terrain, add(p, (d[0], 0)), opened)
+                or blocked(terrain, add(p, (0, d[1])), opened)):
+            return p
+    return q
+
+
+def opening_now(m):
+    return m["door_open"] or (
+        m["keys"] >= 2
+        and any(m["map"].get(add(m["pos"], d)) == 3
+                for d in CARDINAL)
+    )
+
+
+def count_law(counts):
+    total = sum(counts) + 6.3
+    return [(c + .7) / total for c in counts]
+
+
+def component_laws(m):
+    return [UNIFORM] + [count_law(c) for c in m["counts"]]
+
+
+def learned_law(m):
+    return [
+        sum(w * law[k] for w, law in zip(m["weights"], component_laws(m)))
+        for k in range(9)
+    ]
+
+
+def enumerate_terms(options, required):
+    terms = []
+
+    def visit(index, covered, masks):
+        if index == len(options):
+            if required.issubset(covered):
+                terms.append(tuple(masks))
+            return
+        for label, mask in options[index]:
+            visit(
+                index + 1,
+                covered if label is None else covered | {label},
+                masks + [mask],
+            )
+
+    visit(0, set(), [])
+    return terms or None
+
+
+def transition_terms(m):
+    previous = m["previous"]
+    if previous is None:
+        return None
+    old_map, sources, center, step, opened, old_seen = previous
+    if m["step"] != step + 1 or not sources:
+        return None
+    if m["step"] % 25 == 0 or step % 25 == 0:
+        return None
+
+    terrain = dict(old_map)
+    for p, cell in m["local"].items():
+        old = old_map.get(p)
+        if old is not None and old != cell:
+            if old in (1, 3) or cell in (1, 3):
+                return None
+        terrain[p] = cell
+
+    epoch = 25 * (step // 25)
+    complete = all(
+        add(source, d) in terrain
+        and (
+            add(source, d) in m["local"]
+            or old_seen.get(add(source, d), -1) >= epoch
+        )
+        for source in sources for d in MOVES
+    )
+    monitored = (
+        set(m["local"]) if complete else
+        {p for p in m["local"] if distance(p, center) <= 1}
+    )
+    required = {
+        p for p in m["enemies"] if distance(p, center) <= 1
+    }
+    options = []
+    for source in sources:
+        groups = {}
+        for k, d in enumerate(MOVES):
+            attempted = add(source, d)
+            if not complete and source not in monitored and attempted not in monitored:
+                # Whether this censored attempt was blocked cannot alter
+                # occupancy in the monitored central square.
+                label = None
+            else:
+                q = destination(terrain if complete else old_map, source, d, opened)
+                if q in monitored:
+                    if q not in m["enemies"]:
+                        continue
+                    label = q
+                else:
+                    label = None
+            groups[label] = groups.get(label, 0) | (1 << k)
+        if not groups:
+            return None
+        options.append(list(groups.items()))
+    return enumerate_terms(options, required)
+
+
+def evidence_and_counts(law, terms):
+    masks = {mask for term in terms for mask in term}
+    probabilities = {
+        mask: sum(law[k] for k in range(9) if mask & (1 << k))
+        for mask in masks
+    }
+    evidence = 0.0
+    posterior = [[0.0] * 9 for _ in terms[0]]
+    for term in terms:
+        weight = 1.0
+        for mask in term:
+            weight *= probabilities[mask]
+        evidence += weight
+        for index, mask in enumerate(term):
+            denominator = probabilities[mask]
+            if denominator > 1e-15:
+                for k in range(9):
+                    if mask & (1 << k):
+                        posterior[index][k] += weight * law[k] / denominator
+
+    expected = [0.0] * 9
+    if evidence > 1e-15:
+        for row in posterior:
+            row = [value / evidence for value in row]
+            # Weakly censored observations must not manufacture large
+            # amounts of evidence for the current law.
+            information = min(1.0, sum(abs(a - b) for a, b in zip(row, law)))
+            for k in range(9):
+                expected[k] += information * row[k]
+    return evidence, expected
+
+
+def cap_counts(counts, cap):
+    total = sum(counts)
+    if total > cap:
+        for k in range(9):
+            counts[k] *= cap / total
+
+
+def rebuild_fast(m):
+    counts = [0.0] * 9
+    for _, terms in m["recent_terms"]:
+        evidence, expected = evidence_and_counts(count_law(counts), terms)
+        for k in range(9):
+            counts[k] = .78 * counts[k] + (
+                expected[k] if evidence > 1e-15 else 0.0
+            )
+    cap_counts(counts, 10.0)
+    m["counts"][1] = counts
+    uniform = max(.15, min(.35, m["weights"][0]))
+    fast = max(.40, min(.55, m["weights"][2]))
+    m["weights"] = [uniform, 1.0 - uniform - fast, fast]
+    m["surprise"] = [0.0, 0.0]
+    m["surprise_signs"] = []
+    m["last_reset"] = m["step"]
+    m["recoveries"] += 1
+
+
+def update_dynamics(m, obs):
+    if not obs.get("learn", True):
+        return
+    for counts, decay in zip(m["counts"], (.992, .88)):
+        for k in range(9):
+            counts[k] *= decay
+    m["weights"] = [
+        .975 * w + .025 * prior
+        for w, prior in zip(m["weights"], (.30, .45, .25))
+    ]
+    terms = transition_terms(m)
+    if not terms:
+        return
+    results = [evidence_and_counts(law, terms) for law in component_laws(m)]
+    if results[0][0] >= 1.0 - 1e-10:
+        return
+    count = max(1, len(terms[0]))
+    contamination = .004 * (1.0 / 9.0) ** count
+    likelihood = [
+        max(1e-30, .996 * result[0] + contamination)
+        for result in results
+    ]
+    advantages = [
+        math.log(likelihood[0] / likelihood[1]) / count,
+        math.log(likelihood[2] / likelihood[1]) / count,
+    ]
+    for i, advantage in enumerate(advantages):
+        m["surprise"][i] = max(
+            0.0, .94 * m["surprise"][i]
+            + max(-1.5, min(1.5, advantage)) - .035,
+        )
+    m["surprise_signs"] = (
+        m["surprise_signs"]
+        + [tuple(value > .035 for value in advantages)]
+    )[-5:]
+    m["recent_terms"] = [
+        item for item in (m["recent_terms"] + [(m["step"], terms)])[-5:]
+        if m["step"] - item[0] <= 16
+    ]
+    weights = [
+        w * probability ** .8
+        for w, probability in zip(m["weights"], likelihood)
+    ]
+    total = sum(weights)
+    if total > 1e-25:
+        m["weights"] = [.94 * w / total + .02 for w in weights]
+    for counts, result, cap in zip(m["counts"], results[1:], (80.0, 16.0)):
+        if result[0] > 1e-15:
+            for k in range(9):
+                counts[k] += result[1][k]
+            cap_counts(counts, cap)
+    sustained = any(
+        m["surprise"][i] > 1.15
+        and sum(signs[i] for signs in m["surprise_signs"]) >= 3
+        for i in range(2)
+    )
+    if (sustained and sum(m["counts"][0]) >= 10.0
+            and len(m["recent_terms"]) >= 3
+            and m["step"] - m["last_reset"] >= 10):
+        rebuild_fast(m)
+    m["updates"] += 1
+
+
+def make_transition(m, law):
+    terrain = m["map"]
+    opened = opening_now(m)
+    left, right, top, bottom = m["enemy_bounds"]
+    cache = {}
+
+    def transition(p):
+        if p not in cache:
+            row = {}
+            for d, probability in zip(MOVES, law):
+                q = destination(terrain, p, d, opened)
+                if not (left <= q[0] <= right and top <= q[1] <= bottom):
+                    q = p
+                row[q] = row.get(q, 0.0) + probability
+            cache[p] = row
+        return cache[p]
+    return transition
+
+
+def propagate(distribution, transition):
+    result = {}
+    for p, mass in distribution.items():
+        if mass < 1e-10:
+            continue
+        for q, probability in transition(p).items():
+            result[q] = result.get(q, 0.0) + mass * probability
+    return result
+
+
+def occupancy(tracks, fog, p):
+    empty = math.exp(-max(0.0, fog.get(p, 0.0)))
+    for track in tracks:
+        empty *= 1.0 - clamp(track.get(p, 0.0))
+    return clamp(1.0 - empty)
+
+
+def reconcile_fog(m):
+    terrain = m["map"]
+    physical = [p for p, cell in terrain.items() if cell != -1]
+    left = max(-13, max(p[0] for p in physical) - 13)
+    right = min(13, min(p[0] for p in physical) + 13)
+    top = max(-13, max(p[1] for p in physical) - 13)
+    bottom = min(13, min(p[1] for p in physical) + 13)
+    for p, cell in terrain.items():
+        if cell != -1:
+            continue
+        for dx, dy in CARDINAL:
+            q = add(p, (dx, dy))
+            if q not in terrain or terrain[q] == -1:
+                continue
+            if dx == 1:
+                left = max(left, q[0] + 1)
+            elif dx == -1:
+                right = min(right, q[0] - 1)
+            elif dy == 1:
+                top = max(top, q[1] + 1)
+            else:
+                bottom = min(bottom, q[1] - 1)
+    m["enemy_bounds"] = (left, right, top, bottom)
+    support = {}
+    for y in range(top, bottom + 1):
+        for x in range(left, right + 1):
+            p = (x, y)
+            if p not in m["local"] and not blocked(terrain, p, m["door_open"]):
+                support[p] = 1.0 if p in terrain else .68
+    missing = max(0, 3 - len(m["enemies"]))
+    if not missing or not support:
+        return {}
+    prior_total = sum(support.values())
+    residual = {p: max(0.0, m["density"].get(p, 0.0)) for p in support}
+    residual_total = sum(residual.values())
+    if residual_total <= 1e-12:
+        return {p: missing * w / prior_total for p, w in support.items()}
+    return {
+        p: missing * (
+            .99 * residual[p] / residual_total
+            + .01 * support[p] / prior_total
+        )
+        for p in support
+    }
+
+
+def first_forecast(m, law):
+    transition = make_transition(m, law)
+    tracks = [dict(transition(p)) for p in sorted(m["enemies"])]
+    return tracks, propagate(m["fog"], transition), transition
+
+
+def world_model_step(memory, local_obs, last_action):
+    if memory is None:
+        memory = {
+            "map": {}, "seen": {}, "pos": (0, 0), "visits": {},
+            "counts": [[0.0] * 9, [0.0] * 9],
+            "weights": [.30, .45, .25], "updates": 0,
+            "previous": None, "target": None, "density": {}, "fog": {},
+            "stall": 0, "last_distance": None, "last_objective": None,
+            "surprise": [0.0, 0.0], "surprise_signs": [],
+            "recent_terms": [], "last_reset": -100, "recoveries": 0,
+            "route_background": 0.0, "recent_positions": [],
+            "last_useful": 0, "inspection": None, "inspection_count": 0,
+            "keys": 0, "door_open": False,
+        }
+    m = memory
+    old_keys, old_open = m["keys"], m["door_open"]
+    m["pos"] = add(m["pos"], local_obs["feedback"]["displacement"])
+    m["keys"] = int(local_obs["keys"])
+    m["door_open"] = bool(local_obs["door_open"])
+    m["step"] = int(local_obs["step"])
+    m["visits"][m["pos"]] = m["visits"].get(m["pos"], 0) + 1
+    m["recent_positions"] = (m["recent_positions"] + [m["pos"]])[-16:]
+    local, enemies = {}, set()
+    discoveries = 0
+    for y, row in enumerate(local_obs["terrain"]):
+        for x, cell in enumerate(row):
+            p = add(m["pos"], (x - 2, y - 2))
+            discoveries += int(p not in m["map"] and cell != -1)
+            local[p] = int(cell)
+            m["map"][p], m["seen"][p] = int(cell), m["step"]
+            if local_obs["grid"][y][x] == 5:
+                enemies.add(p)
+    m["local"], m["enemies"] = local, enemies
+    if discoveries >= 3 or m["keys"] > old_keys or m["door_open"] != old_open:
+        m["last_useful"] = m["step"]
+    if m["keys"] > old_keys or m["door_open"] != old_open:
+        m["inspection"] = None
+        m["stall"] = 0
+
+    update_dynamics(m, local_obs)
+    m["law"] = learned_law(m)
+    m["fog"] = reconcile_fog(m)
+    forecasts, density = [], {}
+    cells = set(m["map"])
+    for weight, law in zip(m["weights"], component_laws(m)):
+        tracks, fog, _ = first_forecast(m, law)
+        forecasts.append((list(law), tracks, fog))
+        for distribution in [fog] + tracks:
+            cells.update(distribution)
+            for p, mass in distribution.items():
+                density[p] = density.get(p, 0.0) + weight * mass
+    m["forecast_components"] = forecasts
+    m["prediction"] = {
+        p: 0.0 if blocked(m["map"], p, opening_now(m)) else clamp(sum(
+            weight * occupancy(tracks, fog, p)
+            for weight, (_, tracks, fog) in zip(m["weights"], forecasts)
+        ))
+        for p in cells
+    }
+    m["default"] = 0.0
+    m["density"] = density
+    m["previous"] = (
+        dict(m["map"]), tuple(sorted(enemies)), m["pos"],
+        m["step"], opening_now(m), dict(m["seen"]),
+    )
+    return m
+
+
+def legal(m, p, q, immediate=False):
+    dx, dy = q[0] - p[0], q[1] - p[1]
+    opened = opening_now(m) if immediate else (m["door_open"] or m["keys"] >= 2)
+    if blocked(m["map"], q, opened, True):
+        return False
+    if dx and dy:
+        if any(
+            blocked(m["map"], side, opened, True)
+            for side in ((p[0] + dx, p[1]), (p[0], p[1] + dy))
+        ):
+            return False
+        if m["map"].get(q) == 3 and not m["door_open"]:
+            return False
+    return True
+
+
+def graph(m):
+    opened = m["door_open"] or m["keys"] >= 2
+    return {
+        p: [add(p, d) for d in WALK if legal(m, p, add(p, d))]
+        for p in m["map"] if not blocked(m["map"], p, opened, True)
+    }
+
+
+def reverse_graph(edges):
+    result = {p: [] for p in edges}
+    for p, neighbors in edges.items():
+        for q in neighbors:
+            result.setdefault(q, []).append(p)
+    return result
+
+
+def breadth_distances(edges, source):
+    result, queue = {source: 0}, [source]
+    for p in queue:
+        for q in edges.get(p, ()):
+            if q not in result:
+                result[q] = result[p] + 1
+                queue.append(q)
+    return result
+
+
+def paths(edges, source, m, risk, reverse=False):
+    adjacency = reverse_graph(edges) if reverse else edges
+    result, queue = {source: 0.0}, [(0.0, source)]
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != result[p]:
+            continue
+        for q in adjacency.get(p, ()):
+            cell = p if reverse else q
+            new = (
+                cost + 1.0 + 5.0 * risk.get(cell, 0.0)
+                + .02 * min(15, m["visits"].get(cell, 0))
+            )
+            if new < result.get(q, float("inf")):
+                result[q] = new
+                heapq.heappush(queue, (new, q))
+    return result
+
+
+def hazard(probability):
+    return -math.log(max(1e-10, 1.0 - clamp(probability)))
+
+
+def mixture_hazard(probabilities, weights):
+    total = sum(weights)
+    if total <= 1e-15:
+        return hazard(1.0)
+    weights = [w / total for w in weights]
+    mean = sum(w * p for w, p in zip(weights, probabilities))
+    cutoff = max(.08, .20 * max(weights))
+    plausible = [(w, p) for w, p in zip(weights, probabilities) if w >= cutoff]
+    mass = sum(w for w, _ in plausible)
+    center = sum(w * p for w, p in plausible) / mass
+    variance = sum(w * (p - center) ** 2 for w, p in plausible) / mass
+    upper = max(mean, max(p for _, p in plausible))
+    return hazard(min(upper, mean + .45 * math.sqrt(max(0.0, variance))))
+
+
+def prepare_second(expert):
+    tracks, fog, transition = expert
+    return (
+        tracks, [propagate(track, transition) for track in tracks],
+        fog, propagate(fog, transition), transition,
+    )
+
+
+def second_probability(state, q, r):
+    tracks, after, fog, fog_after, transition = state
+    qr = transition(q).get(r, 0.0)
+    rr = transition(r).get(r, 0.0)
+    total = 0.0
+    for old, new in zip(tracks, after):
+        at_q = old.get(q, 0.0)
+        surviving = 1.0 - at_q
+        if surviving <= 1e-12:
+            return 1.0
+        danger = max(0.0, new.get(r, 0.0) - at_q * qr) / surviving
+        if r != q:
+            danger += old.get(r, 0.0) * (1.0 - rr) / surviving
+        total += hazard(danger)
+    intensity = max(0.0, fog_after.get(r, 0.0) - fog.get(q, 0.0) * qr)
+    if r != q:
+        intensity += fog.get(r, 0.0) * (1.0 - rr)
+    return clamp(-math.expm1(-total - max(0.0, intensity)))
+
+
+def collision_field(cells, tracks, after, fog, fog_after, transition):
+    result = {}
+    for p in cells:
+        stay = transition(p).get(p, 0.0)
+        empty = 1.0
+        for old, new in zip(tracks, after):
+            probability = old.get(p, 0.0) * (1.0 - stay) + new.get(p, 0.0)
+            empty *= 1.0 - clamp(probability)
+        intensity = max(0.0, fog.get(p, 0.0) * (1.0 - stay) + fog_after.get(p, 0.0))
+        result[p] = clamp(1.0 - empty * math.exp(-intensity))
+    return result
+
+
+def route_forecasts(m, experts, prepared, weights, law):
+    cells = list(m["map"])
+    current = [{p: 1.0} for p in sorted(m["enemies"])]
+    fields = [{p: 0.0 for p in cells} for _ in range(2)]
+    for weight, expert, state in zip(weights, experts, prepared):
+        tracks, fog, transition = expert
+        first = collision_field(cells, current, tracks, m["fog"], fog, transition)
+        second = collision_field(cells, tracks, state[1], fog, state[3], transition)
+        for p in cells:
+            fields[0][p] += weight * first[p]
+            fields[1][p] += weight * second[p]
+
+    tracks = [{} for _ in current]
+    fog = {}
+    for weight, state in zip(weights, prepared):
+        for pooled, distribution in zip(tracks, state[1]):
+            for p, mass in distribution.items():
+                pooled[p] = pooled.get(p, 0.0) + weight * mass
+        for p, mass in state[3].items():
+            fog[p] = fog.get(p, 0.0) + weight * mass
+    transition = make_transition(m, law)
+    for _ in range(2, ROUTE_HORIZON):
+        after = [propagate(track, transition) for track in tracks]
+        fog_after = propagate(fog, transition)
+        fields.append(collision_field(cells, tracks, after, fog, fog_after, transition))
+        tracks, fog = after, fog_after
+
+    left, right, top, bottom = m["enemy_bounds"]
+    area = sum(
+        .68 if (x, y) not in m["map"] else
+        float(not blocked(m["map"], (x, y), opening_now(m)))
+        for y in range(top, bottom + 1)
+        for x in range(left, right + 1)
+    )
+    background = min(.08, max(.018, 5.0 / max(65.0, area)))
+    persistence = {p: transition(p).get(p, 0.0) for p in cells}
+    m["route_background"] = background
+    return fields, persistence, background
+
+
+def arrival_risk(edges, source, forecast, offset=0):
+    fields, persistence, background = forecast
+    result = {}
+    for p, steps in breadth_distances(edges, source).items():
+        arrival = max(1, int(offset) + steps)
+        if arrival <= ROUTE_HORIZON:
+            value = fields[arrival - 1].get(p, background)
+        else:
+            retained = math.exp(
+                -(arrival - ROUTE_HORIZON) / (3.0 + 5.0 * persistence.get(p, 0.0))
+            )
+            value = retained * fields[-1].get(p, background) + (1.0 - retained) * background
+        result[p] = clamp(value)
+    return result
+
+
+def timed_potentials(m, edges, target, forecast):
+    fields, _, background = forecast
+    steady = {
+        p: background + .15 * max(0.0, fields[-1].get(p, background) - background)
+        for p in edges
+    }
+    tail = paths(edges, target, m, steady, True)
+    layers = [None] * (ROUTE_HORIZON + 1)
+    layers[-1] = tail
+    for tick in range(ROUTE_HORIZON - 1, -1, -1):
+        following = layers[tick + 1]
+        costs = {
+            q: 1.0 + 5.0 * fields[tick].get(q, background)
+            + .02 * min(15, m["visits"].get(q, 0))
+            for q in tail
+        }
+        layer = {}
+        for p in tail:
+            if p == target:
+                layer[p] = 0.0
+                continue
+            layer[p] = min(
+                costs[q] + following[q] + (.18 if q == p else 0.0)
+                for q in [p] + edges.get(p, [])
+                if q in following
+            )
+        layers[tick] = layer
+    return layers
+
+
+def inspection_target(m, dist, objectives):
+    if not objectives:
+        m["inspection"] = None
+        return None
+    active = m["inspection"]
+    if active is not None:
+        goal, walls, view, selected, expires = active
+        if (
+            goal in objectives and view in dist and view != m["pos"]
+            and m["step"] < expires
+            and any(m["seen"].get(p, -1) < selected for p in walls)
+        ):
+            return view
+        m["inspection"] = None
+
+    reachable = [p for p in objectives if p in dist]
+    stalled = (
+        m["stall"] >= 12 or m["step"] - m["last_useful"] >= 30
+        or m["recent_positions"].count(m["pos"]) >= 7
+    )
+    if m["step"] < 25 or (reachable and not stalled):
+        return None
+    if reachable and min(dist[p] for p in reachable) < 5:
+        return None
+
+    tick = 25 * (m["step"] // 25)
+
+    def classify(p):
+        cell = m["map"].get(p, -1)
+        if cell == -1 or (cell == 3 and m["keys"] < 2 and not m["door_open"]):
+            return -1
+        if cell != 1:
+            return 0
+        if m["seen"].get(p, m["step"]) >= tick:
+            return -1
+        if any(m["map"].get(add(p, d)) == -1 for d in CARDINAL):
+            return -1
+        return 1
+
+    start = m["pos"]
+    costs, parents, queue = {start: 0.0}, {}, [(0.0, start)]
+    goal = None
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != costs[p]:
+            continue
+        if p in objectives and p != start:
+            goal = p
+            break
+        for d in WALK:
+            q = add(p, d)
+            required = [q]
+            if d[0] and d[1]:
+                if m["map"].get(q) == 3 and not m["door_open"]:
+                    continue
+                required += [(p[0] + d[0], p[1]), (p[0], p[1] + d[1])]
+            kinds = [classify(cell) for cell in required]
+            if min(kinds) < 0:
+                continue
+            walls = tuple(cell for cell, kind in zip(required, kinds) if kind == 1)
+            new = cost + 1.0 + 4.0 * len(walls)
+            if new < costs.get(q, float("inf")):
+                costs[q] = new
+                parents[q] = p, walls
+                heapq.heappush(queue, (new, q))
+    if goal is None:
+        return None
+    segments, p = [], goal
+    while p != start:
+        p, walls = parents[p]
+        segments.append(walls)
+    walls = []
+    for segment in reversed(segments):
+        for p in segment:
+            if p not in walls:
+                walls.append(p)
+    if not walls:
+        return None
+    options = [
+        (
+            cost + .08 * distance(view, goal)
+            - .35 * min(3, sum(distance(view, wall) <= 2 for wall in walls)),
+            view,
+        )
+        for view, cost in dist.items()
+        if view != start and distance(view, walls[0]) <= 2 and view not in m["enemies"]
+    ]
+    if not options:
+        return None
+    view = min(options)[1]
+    watched = tuple(p for p in walls if distance(view, p) <= 2)
+    m["inspection"] = (goal, watched, view, m["step"], m["step"] + 22)
+    m["inspection_count"] += 1
+    return view
+
+
+def choose_target(m, edges, dist, forecast):
+    start = m["pos"]
+    desired = 2 if m["keys"] < 2 else 4
+    remembered = [
+        p for p, cell in m["map"].items() if p != start and cell == desired
+    ]
+    goals = [p for p in remembered if p in dist]
+    if goals:
+        best = min(goals, key=lambda p: (dist[p], p))
+        if desired == 2 and m["keys"] == 0 and len(goals) > 1:
+            doors = [p for p, cell in m["map"].items() if cell in (3, 4)]
+            arrivals = breadth_distances(edges, start)
+            tours = []
+            for first in goals:
+                risk = arrival_risk(edges, first, forecast, arrivals.get(first, 0))
+                onward = paths(edges, first, m, risk)
+                for second in goals:
+                    if second != first and second in onward:
+                        tail = min((distance(second, p) for p in doors), default=0)
+                        tours.append((dist[first] + onward[second] + .6 * tail, first))
+            if tours:
+                best = min(tours)[1]
+        view = inspection_target(m, dist, [best])
+        return best if view is None else view
+
+    if m["keys"] >= 2 and not m["door_open"]:
+        doors = [p for p, cell in m["map"].items() if cell == 3 and p != start]
+        reachable = [p for p in doors if p in dist]
+        if reachable:
+            best = min(reachable, key=lambda p: (dist[p], p))
+            view = inspection_target(m, dist, [best])
+            return best if view is None else view
+        remembered += doors
+
+    view = inspection_target(m, dist, remembered)
+    if view is not None:
+        return view
+    frontier, fallback = [], []
+    tick = 25 * (m["step"] // 25)
+    for p, travel in dist.items():
+        if p == start:
+            continue
+        unseen = stale = 0
+        for dy in range(-2, 3):
+            for dx in range(-2, 3):
+                q = add(p, (dx, dy))
+                if q not in m["map"]:
+                    unseen += 1
+                elif m["map"][q] != -1 and m["seen"][q] < tick:
+                    stale += 1
+        visits = m["visits"].get(p, 0)
+        if unseen:
+            score = (travel + .15 * visits) / unseen ** .55
+            if p == m["target"]:
+                score *= .94
+            frontier.append((score, p))
+        fallback.append((travel + .9 * visits - .20 * stale, p))
+    if frontier:
+        return min(frontier)[1]
+    return min(fallback)[1] if fallback else start
+
+
+def is_exit(m, p):
+    return m["map"].get(p) == 4 and m["keys"] >= 2 and opening_now(m)
+
+
+def third_value(m, prepared, q, r, weights, layers, pressure, reached):
+    cells = [
+        add(r, d) for d in MOVES
+        if add(r, d) in layers[3] and legal(m, r, add(r, d))
+    ]
+    if not cells:
+        return pressure + layers[2].get(r, 250.0)
+    needed = {add(s, d) for s in cells for d in MOVES}
+    rows = [[] for _ in cells]
+    excluded = (q,) if q == r else (q, r)
+
+    for tracks, after, fog, fog_after, transition in prepared:
+        kernels = {p: transition(p) for p in excluded}
+        conditioned = []
+        impossible = False
+        for old, new in zip(tracks, after):
+            removed = [(p, old.get(p, 0.0)) for p in excluded]
+            killed_after = max(
+                0.0, new.get(r, 0.0)
+                - sum(mass * kernels[p].get(r, 0.0) for p, mass in removed),
+            )
+            surviving = 1.0 - sum(mass for _, mass in removed) - killed_after
+            if surviving <= 1e-12:
+                impossible = True
+                break
+            conditioned.append({
+                s: 0.0 if s == r else clamp(
+                    max(0.0, new.get(s, 0.0) - sum(
+                        mass * kernels[p].get(s, 0.0) for p, mass in removed
+                    )) / surviving
+                )
+                for s in needed
+            })
+        if impossible:
+            for row in rows:
+                row.append(1.0)
+            continue
+        remaining_fog = {
+            s: 0.0 if s == r else max(
+                0.0, fog_after.get(s, 0.0)
+                - sum(fog.get(p, 0.0) * kernels[p].get(s, 0.0) for p in excluded),
+            )
+            for s in needed
+        }
+        for index, s in enumerate(cells):
+            incoming = [
+                (p, transition(p).get(s, 0.0))
+                for p in (add(s, d) for d in WALK)
+                if remaining_fog.get(p, 0.0) > 0.0
+                or any(track.get(p, 0.0) > 0.0 for track in conditioned)
+            ]
+            total = remaining_fog.get(s, 0.0) + sum(
+                remaining_fog.get(p, 0.0) * probability for p, probability in incoming
+            )
+            for track in conditioned:
+                total += hazard(track.get(s, 0.0) + sum(
+                    track.get(p, 0.0) * probability for p, probability in incoming
+                ))
+            rows[index].append(clamp(-math.expm1(-total)))
+
+    return min(
+        1.0 + (0.0 if reached or s == m["target"] else layers[3][s])
+        + .30 * pressure * mixture_hazard(row, weights)
+        + (.18 if s == r else 0.0)
+        + .02 * min(12, m["visits"].get(s, 0))
+        for s, row in zip(cells, rows)
+    )
+
+
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    predictive = local_obs.get("predictive_planning", True)
+    nearby = (
+        bool(m["enemies"])
+        or any(
+            distance(start, p) <= 2 and probability > .006
+            for p, probability in m["prediction"].items()
+        )
+    )
+    law = m["law"] if predictive else UNIFORM
+    if predictive and nearby:
+        weights = list(m["weights"])
+        experts = [
+            (tracks, fog, make_transition(m, component))
+            for component, tracks, fog in m["forecast_components"]
+        ]
+    else:
+        experts, weights = [first_forecast(m, law)], [1.0]
+    prepared = [prepare_second(expert) for expert in experts]
+    edges = graph(m)
+    forecast = route_forecasts(m, experts, prepared, weights, law)
+    risk = arrival_risk(edges, start, forecast)
+    dist = paths(edges, start, m, risk)
+    target = choose_target(m, edges, dist, forecast)
+    geometry = breadth_distances(reverse_graph(edges), target)
+    objective = (target, m["keys"], m["door_open"])
+    progress = geometry.get(start, 225)
+    if objective == m["last_objective"]:
+        if progress < m["last_distance"]:
+            m["stall"] = max(0, m["stall"] - 3)
+        else:
+            m["stall"] += 1
+    else:
+        m["stall"] = max(0, m["stall"] - 2)
+    m["last_objective"], m["last_distance"], m["target"] = objective, progress, target
+    layers = timed_potentials(m, edges, target, forecast)
+
+    remaining = max(1, 200 - m["step"])
+    slack = remaining - geometry.get(start, 25)
+    pressure = min(100.0, max(28.0, 2.0 * slack))
+    pressure /= 1.0 + .025 * max(0, m["stall"] - 12)
+    pressure = max(24.0, pressure)
+    waiting = .22 + .025 * min(16, m["stall"])
+    choices = []
+
+    for d in MOVES:
+        q = add(start, d)
+        if not legal(m, start, q, True) or q in m["enemies"] or q not in layers[1]:
+            continue
+        probabilities = [occupancy(tracks, fog, q) for tracks, fog, _ in experts]
+        first_hazard = mixture_hazard(probabilities, weights)
+        score = 1.0 + pressure * first_hazard
+        score += .035 * min(16, m["visits"].get(q, 0))
+        if q == start:
+            score += waiting
+
+        if not is_exit(m, q):
+            surviving = [
+                weight * max(0.0, 1.0 - probability)
+                for weight, probability in zip(weights, probabilities)
+            ]
+            second_choices = []
+            reached_q = q == target
+            for e in MOVES:
+                r = add(q, e)
+                if r not in layers[2] or not legal(m, q, r):
+                    continue
+                probabilities2 = [second_probability(state, q, r) for state in prepared]
+                h2 = mixture_hazard(probabilities2, surviving)
+                local_cost = (
+                    1.0 + .60 * pressure * h2
+                    + .025 * min(16, m["visits"].get(r, 0))
+                    + (waiting if r == q else 0.0)
+                )
+                reached = reached_q or r == target
+                proxy = local_cost + (0.0 if reached else layers[2][r])
+                second_choices.append((proxy, r, local_cost, probabilities2, reached))
+
+            continuation = float("inf")
+            # Exact survival conditioning is restricted to a small beam.
+            for _, r, local_cost, probabilities2, reached in sorted(second_choices)[:3]:
+                if is_exit(m, r):
+                    value = local_cost
+                else:
+                    after_survival = [
+                        weight * max(0.0, 1.0 - probability)
+                        for weight, probability in zip(surviving, probabilities2)
+                    ]
+                    value = local_cost + third_value(
+                        m, prepared, q, r, after_survival,
+                        layers, pressure, reached,
+                    )
+                continuation = min(continuation, value)
+            score += (
+                continuation if math.isfinite(continuation)
+                else layers[1][q] + pressure
+            )
+        choices.append((score, first_hazard, d))
+
+    if choices:
+        move = min(choices)[2]
+    else:
+        emergency = []
+        for d in MOVES:
+            q = add(start, d)
+            if legal(m, start, q, True) and q not in m["enemies"]:
+                emergency.append((
+                    mixture_hazard(
+                        [occupancy(tracks, fog, q) for tracks, fog, _ in experts],
+                        weights,
+                    ),
+                    distance(q, target),
+                    d,
+                ))
+        move = min(emergency)[2] if emergency else (0, 0)
+    return {"move": [int(move[0]), int(move[1])], "interact": True}
+
+
+def export_model(memory, local_obs):
+    m = memory
+    return {
+        "enemy": [
+            [p[0], p[1], float(clamp(probability))]
+            for p, probability in sorted(m["prediction"].items())
+        ],
+        "default_enemy": m["default"],
+        "terrain": [
+            [p[0], p[1], int(cell), int(m["seen"][p])]
+            for p, cell in sorted(m["map"].items())
+        ],
+        "position": list(m["pos"]),
+        "learning": {
+            "updates": m["updates"],
+            "attempt_probabilities": list(m["law"]),
+            "mixture_weights": list(m["weights"]),
+            "effective_evidence": [sum(c) for c in m["counts"]],
+            "component_attempt_probabilities": [
+                list(law) for law, _, _ in m["forecast_components"]
+            ],
+            "surprise_evidence": list(m["surprise"]),
+            "fast_recoveries": m["recoveries"],
+            "route_forecast_horizons": ROUTE_HORIZON,
+            "route_background": m["route_background"],
+            "conditional_control_horizon": 3,
+            "inspection_routes": m["inspection_count"],
+            "near_expert_disagreement": max(
+                (
+                    math.sqrt(max(0.0, sum(
+                        weight * (occupancy(tracks, fog, p) - m["prediction"][p]) ** 2
+                        for weight, (_, tracks, fog) in zip(
+                            m["weights"], m["forecast_components"]
+                        )
+                    )))
+                    for p in m["local"]
+                    if distance(p, m["pos"]) <= 1
+                    and not blocked(m["map"], p, opening_now(m))
+                ),
+                default=0.0,
+            ),
+        },
+    }
+# EVOLVE-BLOCK-END
+```
+</CODE>

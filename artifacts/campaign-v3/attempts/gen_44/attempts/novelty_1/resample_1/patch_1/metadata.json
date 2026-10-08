@@ -1,0 +1,15 @@
+{
+  "generation": 44,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "safe_target_continuation",
+  "patch_description": "The planner continues beyond intermediate targets, carrying collected-key and door state through each branch. Completion earns one bounded reward; only escape terminates planning. Survival-conditioned enemy forecasts retain immediate collision checks, while stronger continuation risk costs address hazards hidden by early target termination. A secondary navigation potential encourages useful onward movement, and modest uniform shrinkage limits overconfidence in learned dynamics. Performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T22:11:18.752596",
+  "llm_cost": 0.772738,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_44/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

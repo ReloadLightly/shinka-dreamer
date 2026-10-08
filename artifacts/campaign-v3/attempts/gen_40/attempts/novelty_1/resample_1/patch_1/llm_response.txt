@@ -1,0 +1,139 @@
+<NAME>
+complete_route_recovery
+</NAME>
+
+<DESCRIPTION>
+Replace purely local waypoint selection with a search for a complete alternate route when progress stalls. Temporarily exclude the nominal next approach cell, then choose a safe waypoint along a bounded detour that still reaches the objective. Retain the existing recovery fallback and collision penalties. Release an active waypoint when objective distance improves. This targets timeouts without reducing caution; performance gains require evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _recovery_target(m, target, dist, risk):
+=======
+def _alternate_waypoint(m, target, geometry, risk, history):
+    start = m["pos"]
+    remaining = geometry.get(start)
+    if remaining is None or remaining < 2:
+        return None
+    approaches = []
+    for d in STEPS:
+        q = _add(start, d)
+        if (_legal(m, start, d)
+                and geometry.get(q, 1000) < remaining):
+            approaches.append((
+                geometry[q] + 4.0 * risk.get(q, m["background"]), q))
+    if not approaches:
+        return None
+    gate = min(approaches)[1]
+    if gate == target:
+        return None
+    # Search all known corridors with this approach temporarily excluded.
+    # This is a routing constraint, not an assertion about terrain.
+    recent = {}
+    for p, goal in history:
+        if goal == target:
+            recent[p] = recent.get(p, 0) + 1
+    costs = {target: 0.0}
+    successor = {}
+    queue = [(0.0, target)]
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != costs[p]:
+            continue
+        if p == start:
+            break
+        for dx, dy in STEPS:
+            q = _add(p, (dx, dy))
+            if q == gate:
+                continue
+            if _wall(m["map"], q, m["keys"] >= 2 or m["door_open"], True):
+                continue
+            if not _legal(m, q, (-dx, -dy)):
+                continue
+            edge = 1.0 + 8.0 * risk.get(p, m["background"])
+            edge += .5 * recent.get(p, 0)
+            candidate = cost + edge
+            if candidate < costs.get(q, float("inf")):
+                costs[q] = candidate
+                successor[q] = p
+                heapq.heappush(queue, (candidate, q))
+    if start not in successor:
+        return None
+    path = [start]
+    while path[-1] != target:
+        q = successor.get(path[-1])
+        if q is None or len(path) > len(m["map"]):
+            return None
+        path.append(q)
+    length = len(path) - 1
+    if length > min(remaining + 12, 200 - m["step"] - 2):
+        return None
+    # Commit beyond the immediate turn, while keeping the waypoint close
+    # enough for the ordinary predictive controller to reassess safely.
+    options = []
+    for index in range(2, min(6, length) + 1):
+        p = path[index]
+        if (_distance(start, p) >= 2 and recent.get(p, 0) == 0
+                and risk.get(p, m["background"]) <= .025):
+            options.append((abs(index - 4), index, p))
+    return min(options)[2] if options else None
+def _recovery_target(m, target, dist, risk):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if route < state["best"].get(target, 1000):
+        state["best"][target] = route
+        state["advance"] = step
+    state["history"].append((start, target))
+    state["history"] = state["history"][-12:]
+    waypoint = state["waypoint"]
+    if waypoint is not None:
+        if (step < state["until"] and waypoint != start
+                and waypoint in dist and target == state["objective"]):
+            return waypoint, True
+        state["waypoint"] = None
+        state["cooldown"] = step + 8
+=======
+    improved = route < state["best"].get(target, 1000)
+    if improved:
+        state["best"][target] = route
+        state["advance"] = step
+    state["history"].append((start, target))
+    state["history"] = state["history"][-12:]
+    waypoint = state["waypoint"]
+    if waypoint is not None:
+        resumed = (improved and target == state["objective"]
+                   and step >= state.get("started", step) + 2)
+        if (not resumed and step < state["until"] and waypoint != start
+                and waypoint in dist and target == state["objective"]):
+            return waypoint, True
+        state["waypoint"] = None
+        state["cooldown"] = step + 8
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    tick = (step // 25) * 25
+    candidates = []
+    for p, travel in dist.items():
+=======
+    alternate = _alternate_waypoint(
+        m, target, geometry, risk, state["history"])
+    if alternate is not None:
+        state["waypoint"] = alternate
+        state["objective"] = target
+        state["started"] = step
+        state["until"] = step + 10
+        return alternate, True
+    tick = (step // 25) * 25
+    candidates = []
+    for p, travel in dist.items():
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    state["waypoint"] = waypoint
+    state["objective"] = target
+    state["until"] = step + 6
+=======
+    state["waypoint"] = waypoint
+    state["objective"] = target
+    state["started"] = step
+    state["until"] = step + 6
+>>>>>>> REPLACE
+</DIFF>

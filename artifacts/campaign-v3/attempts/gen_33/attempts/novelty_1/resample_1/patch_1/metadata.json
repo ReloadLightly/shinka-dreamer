@@ -1,0 +1,15 @@
+{
+  "generation": 33,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "persistent_anonymous_enemy_filter",
+  "patch_description": "Carry enemy intensity between observations instead of rebuilding hidden enemies from a uniform density each turn. Condition the previous forecast on visible empty cells, remove visible enemies from hidden mass, and normalize the remainder to the unresolved enemy count. A small diffuse component permits recovery from terrain changes and approximation errors.\n\nPropagate this belief through the existing blocked-attempt kernels and use it in both forecasts and planning hazards. Maintain separate adaptive and uniform histories for the prediction-use intervention. This is an approximate anonymous intensity filter, with the existing overlap approximation retained. It aims to distinguish recently cleared passages from likely incoming threats; performance improvement remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:07:48.632000",
+  "llm_cost": 0.424288,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_33/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

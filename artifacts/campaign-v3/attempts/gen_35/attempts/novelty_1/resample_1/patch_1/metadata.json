@@ -1,0 +1,15 @@
+{
+  "generation": 35,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 3,
+  "patch_name": "stateful_bottleneck_observation",
+  "patch_description": "Add targeted observation goals when remembered objectives are disconnected or progress toward a reachable objective stalls. A separate optimistic search identifies stale walls and diagonal clearance cells that could reconnect a route, while preserving the door\u2019s interaction state. The agent then approaches a reachable viewpoint using its existing learned hazard planner. Observation goals expire or terminate when their blocking cells are refreshed; optimistic passages never become executable movement edges. This targets route-recovery failures without changing the dynamics learner or its interventions. Performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:12:43.512455",
+  "llm_cost": 0.503988,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_35/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

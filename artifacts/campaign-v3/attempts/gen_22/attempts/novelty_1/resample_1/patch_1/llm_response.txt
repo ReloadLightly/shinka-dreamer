@@ -1,0 +1,236 @@
+<NAME>
+information_clocked_adaptation
+</NAME>
+
+<DESCRIPTION>
+Advance the dynamics learners when informative enemy transitions arrive, preserving learned laws during periods without evidence. Measure directional information from anonymous transition constraints, accounting for blocked attempts and ambiguous assignments. Scale change evidence by this information and require sustained fast-model advantage before rebuilding the short-memory expert; uniform-model advantage alone no longer triggers resets. Existing forecasts and survival planning consume the resulting mixture. This targets adaptation and retention without changing mapping or terrain-change exclusions; performance remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def cap_counts(counts, cap):
+=======
+def directional_information(terms):
+    # Uniform-reference posterior over each anonymous source's attempted
+    # direction. Ambiguous blocked attempts contribute less information
+    # than a uniquely observed displacement.
+    count = len(terms[0])
+    marginals = [[0.0] * 9 for _ in range(count)]
+    evidence = 0.0
+    for term in terms:
+        sizes = [mask.bit_count() for mask in term]
+        weight = 1.0
+        for size in sizes:
+            weight *= size / 9.0
+        evidence += weight
+        for i, (mask, size) in enumerate(zip(term, sizes)):
+            if size:
+                share = weight / size
+                for k in range(9):
+                    if mask & (1 << k):
+                        marginals[i][k] += share
+    if evidence <= 1e-15:
+        return 0.0
+    information = 0.0
+    for marginal in marginals:
+        entropy = 0.0
+        for mass in marginal:
+            probability = mass / evidence
+            if probability > 1e-15:
+                entropy -= probability * math.log(probability)
+        information += max(0.0, 1.0 - entropy / math.log(9.0))
+    return min(float(count), information)
+
+
+def cap_counts(counts, cap):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def update_dynamics(m, obs):
+    if not obs.get("learn", True):
+        return
+
+    for counts, decay in zip(m["counts"], (.992, .88)):
+        for k in range(9):
+            counts[k] *= decay
+    m["weights"] = [
+        .975 * w + .025 * prior
+        for w, prior in zip(m["weights"], (.30, .45, .25))
+    ]
+
+    terms = transition_terms(m)
+    if not terms:
+        return
+    if all(all(mask == 511 for mask in term) for term in terms):
+        return
+
+    results = [
+        evidence_and_counts(law, terms) for law in component_laws(m)
+    ]
+    if results[0][0] >= 1.0 - 1e-10:
+        return
+
+    count = max(1, len(terms[0]))
+    contamination = .004 * (1.0 / 9.0) ** count
+    likelihood = [
+        max(1e-30, .996 * result[0] + contamination)
+        for result in results
+    ]
+    advantages = [
+        math.log(likelihood[0] / likelihood[1]) / count,
+        math.log(likelihood[2] / likelihood[1]) / count,
+    ]
+    for i, advantage in enumerate(advantages):
+        m["surprise"][i] = max(
+            0.0,
+            .94 * m["surprise"][i]
+            + max(-1.5, min(1.5, advantage)) - .035,
+        )
+    m["surprise_signs"].append(
+        tuple(advantage > .035 for advantage in advantages)
+    )
+    m["surprise_signs"] = m["surprise_signs"][-5:]
+    m["recent_terms"].append((m["step"], terms))
+    m["recent_terms"] = [
+        item for item in m["recent_terms"][-5:]
+        if m["step"] - item[0] <= 16
+    ]
+
+    weights = [
+        w * probability ** .8
+        for w, probability in zip(m["weights"], likelihood)
+    ]
+    total = sum(weights)
+    if total > 1e-25:
+        m["weights"] = [.94 * w / total + .02 for w in weights]
+
+    for counts, result, cap in zip(
+            m["counts"], results[1:], (80.0, 16.0)):
+        if result[0] <= 1e-15:
+            continue
+        for k in range(9):
+            counts[k] += result[1][k]
+        cap_counts(counts, cap)
+
+    sustained = any(
+        m["surprise"][i] > 1.15
+        and sum(signs[i] for signs in m["surprise_signs"]) >= 3
+        for i in range(2)
+    )
+    if (sustained and sum(m["counts"][0]) >= 10.0
+            and len(m["recent_terms"]) >= 3
+            and m["step"] - m["last_reset"] >= 10):
+        rebuild_fast(m)
+    m["updates"] += 1
+=======
+def update_dynamics(m, obs):
+    if not obs.get("learn", True):
+        return
+
+    terms = transition_terms(m)
+    if not terms:
+        return
+    information = directional_information(terms)
+    if information <= 1e-8:
+        return
+
+    # Score the retained experts before incorporating this observation.
+    # Empty views and rejected wall-change transitions cannot erase a law.
+    results = [
+        evidence_and_counts(law, terms) for law in component_laws(m)
+    ]
+    if results[0][0] >= 1.0 - 1e-10:
+        return
+
+    count = max(1, len(terms[0]))
+    contamination = .004 * (1.0 / 9.0) ** count
+    likelihood = [
+        max(1e-30, .996 * result[0] + contamination)
+        for result in results
+    ]
+
+    gap = max(1, m["step"] - m["last_information_step"])
+    retention = .94 ** gap
+    if gap > 12:
+        m["surprise_signs"] = []
+    m["last_information_step"] = m["step"]
+    m["directional_evidence"] += information
+
+    # Joint log evidence already scales with observed source count.
+    # Attenuate it by directional ambiguity, rather than dividing away
+    # independent evidence from multiple visible enemies.
+    reliability = information / count
+    advantages = [
+        reliability * math.log(likelihood[0] / likelihood[1]),
+        reliability * math.log(likelihood[2] / likelihood[1]),
+    ]
+    for i, advantage in enumerate(advantages):
+        m["surprise"][i] = max(
+            0.0,
+            retention * m["surprise"][i]
+            + max(-1.5, min(1.5, advantage)) - .035 * information,
+        )
+    m["surprise_signs"].append(
+        tuple(advantage > .035 * information
+              for advantage in advantages)
+    )
+    m["surprise_signs"] = m["surprise_signs"][-5:]
+    m["recent_terms"].append((m["step"], terms))
+    m["recent_terms"] = [
+        item for item in m["recent_terms"][-5:]
+        if m["step"] - item[0] <= 16
+    ]
+
+    # Forgetting and fixed-share mixing use an evidence clock.
+    # This preserves stationary learning through long exploration gaps,
+    # while several informative sources accelerate short-memory renewal.
+    clock = max(.25, information)
+    sharing = 1.0 - .975 ** clock
+    prior_weights = [
+        (1.0 - sharing) * w + sharing * prior
+        for w, prior in zip(m["weights"], (.30, .45, .25))
+    ]
+    weights = [
+        w * probability ** .8
+        for w, probability in zip(prior_weights, likelihood)
+    ]
+    total = sum(weights)
+    if total > 1e-25:
+        m["weights"] = [.94 * w / total + .02 for w in weights]
+
+    for counts, result, cap, decay in zip(
+            m["counts"], results[1:], (80.0, 16.0), (.992, .88)):
+        if result[0] <= 1e-15:
+            continue
+        retention = decay ** clock
+        for k in range(9):
+            counts[k] = retention * counts[k] + result[1][k]
+        cap_counts(counts, cap)
+
+    # Uniform disagreement remains diagnostic; only sustained predictive
+    # success of the fast expert justifies a short-memory reconstruction.
+    sustained = (
+        m["surprise"][1] > 1.15
+        and sum(signs[1] for signs in m["surprise_signs"]) >= 3
+    )
+    if (sustained and sum(m["counts"][0]) >= 10.0
+            and len(m["recent_terms"]) >= 3
+            and m["step"] - m["last_reset"] >= 10):
+        rebuild_fast(m)
+    m["updates"] += 1
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "recoveries": 0, "route_background": 0.0,
+=======
+            "recoveries": 0, "route_background": 0.0,
+            "last_information_step": 0, "directional_evidence": 0.0,
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "surprise_evidence": list(m["surprise"]),
+            "fast_recoveries": m["recoveries"],
+=======
+            "surprise_evidence": list(m["surprise"]),
+            "directional_evidence": m["directional_evidence"],
+            "last_information_step": m["last_information_step"],
+            "fast_recoveries": m["recoveries"],
+>>>>>>> REPLACE
+</DIFF>

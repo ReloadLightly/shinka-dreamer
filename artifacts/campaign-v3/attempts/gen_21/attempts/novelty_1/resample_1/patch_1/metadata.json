@@ -1,0 +1,15 @@
+{
+  "generation": 21,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "arrival_aware_routes",
+  "patch_description": "The current agent combines slow/fast learning rates (.992/.88), capped evidence (80/16), surprise-triggered recovery, and survival-conditioned local planning. Its route cost applies next-step enemy occupancy even to distant cells.\n\nThis revision preserves those learning and immediate safety mechanisms, but replaces route risk with arrival-aware forecasts: four prediction horizons, followed by gradual relaxation toward background occupancy. Relaxation is slower where blocked movement makes enemies persistent. The route risk weight remains 4.0, isolating the effect of temporal prediction. This is intended to reduce unnecessary detours and waiting; performance improvement requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:58:14.090300",
+  "llm_cost": 0.732888,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_21/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

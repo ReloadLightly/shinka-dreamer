@@ -1,0 +1,15 @@
+{
+  "generation": 36,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "persistent_belief_navigation",
+  "patch_description": "Separates geometry, movement learning, anonymous enemy filtering, forecasting, and navigation. Persistent enemy intensity carries hidden threats between observations, removes mass from visibly empty cells, and conserves the unresolved enemy count. Cached transition kernels support both prediction and control. Progress-aware planning reduces repeated waiting and revisits stale passages. Learning and prediction-use interventions remain separate from localization. Performance improvements require evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:20:05.136906",
+  "llm_cost": 0.750658,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_36/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

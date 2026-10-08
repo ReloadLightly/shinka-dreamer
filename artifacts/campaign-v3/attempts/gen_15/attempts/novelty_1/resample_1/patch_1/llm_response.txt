@@ -1,0 +1,143 @@
+<NAME>
+persistent_bounded_enemy_belief
+</NAME>
+
+<DESCRIPTION>
+Maintain anonymous enemy intensity across the entire feasible maze, including unexplored cells. The current reservoir discards spatial information outside mapped terrain and repeatedly introduces diffuse mass. Replace it with a persistent field, conditioned on visible empty cells and constrained by observed exterior boundaries. Propagate blocked attempts as stays and retain a small background component for recovery from uncertain geometry.
+
+The existing learned movement mixture and survival-conditioned planner consume this field directly. This should improve avoidance of enemies that disappear from view while reducing unnecessary avoidance of recently cleared areas. It preserves separate occupancy forecasts and collision calculations; improved task performance remains an empirical question.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def make_transition(m, law):
+    terrain = m["map"]
+    opened = opening_now(m)
+    cache = {}
+    def transition(p):
+        if p not in cache:
+            result = {}
+            for d, probability in zip(MOVES, law):
+                q = destination(terrain, p, d, opened)
+                result[q] = result.get(q, 0.0) + probability
+            cache[p] = result
+        return cache[p]
+    return transition
+=======
+def make_transition(m, law):
+    terrain = m["map"]
+    opened = opening_now(m)
+    left, right, top, bottom = m["enemy_bounds"]
+    cache = {}
+    def transition(p):
+        if p not in cache:
+            result = {}
+            for d, probability in zip(MOVES, law):
+                q = destination(terrain, p, d, opened)
+                if not (left <= q[0] <= right and top <= q[1] <= bottom):
+                    q = p
+                result[q] = result.get(q, 0.0) + probability
+            cache[p] = result
+        return cache[p]
+    return transition
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def first_forecast(m, law):
+    transition = make_transition(m, law)
+    tracks = [dict(transition(p)) for p in sorted(m["enemies"])]
+    fog = propagate(m["fog"], transition)
+    return tracks, fog, transition
+=======
+def reconcile_fog(m):
+    terrain = m["map"]
+    physical = [p for p, cell in terrain.items() if cell != -1]
+    # Every observed physical cell lies within one common 15x15 world.
+    # Enemies occupy its interior; the initial agent is also inside it.
+    left = max(-13, max(p[0] for p in physical) - 13)
+    right = min(13, min(p[0] for p in physical) + 13)
+    top = max(-13, max(p[1] for p in physical) - 13)
+    bottom = min(13, min(p[1] for p in physical) + 13)
+    for p, cell in terrain.items():
+        if cell != -1:
+            continue
+        for dx, dy in CARDINAL:
+            q = add(p, (dx, dy))
+            if q not in terrain or terrain[q] == -1:
+                continue
+            # Exterior adjacent to a physical cell identifies a fixed border.
+            if dx == 1:
+                left = max(left, q[0] + 1)
+            elif dx == -1:
+                right = min(right, q[0] - 1)
+            elif dy == 1:
+                top = max(top, q[1] + 1)
+            else:
+                bottom = min(bottom, q[1] - 1)
+    m["enemy_bounds"] = (left, right, top, bottom)
+    support = {}
+    for y in range(top, bottom + 1):
+        for x in range(left, right + 1):
+            p = (x, y)
+            if p in m["local"] or blocked(terrain, p, m["door_open"]):
+                continue
+            support[p] = 1.0 if p in terrain else .68
+    missing = max(0, 3 - len(m["enemies"]))
+    if not missing or not support:
+        return {}
+    prior_total = sum(support.values())
+    residual = {
+        p: max(0.0, m["density"].get(p, 0.0))
+        for p in support
+    }
+    residual_total = sum(residual.values())
+    if residual_total <= 1e-12:
+        return {
+            p: missing * weight / prior_total
+            for p, weight in support.items()
+        }
+    # Condition the previous prediction on this observation. Visible empty
+    # cells have exactly zero posterior mass. A small background component
+    # allows recovery when stale walls made the previous field too narrow.
+    return {
+        p: missing * (
+            .995 * residual[p] / residual_total
+            + .005 * weight / prior_total
+        )
+        for p, weight in support.items()
+    }
+def first_forecast(m, law):
+    transition = make_transition(m, law)
+    tracks = [dict(transition(p)) for p in sorted(m["enemies"])]
+    fog = propagate(m["fog"], transition)
+    return tracks, fog, transition
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    free = [p for p in m["map"]
+            if not blocked(m["map"], p, m["door_open"])]
+    outside = [p for p in free if p not in local]
+    known = sum(c != -1 for c in m["map"].values())
+    reservoir = .68 * max(0, 225 - known)
+    base = 3.0 / max(60.0, len(free) + reservoir)
+    fog = {
+        p: .94 * m["density"].get(p, base) + .06 * base
+        for p in outside
+    }
+    missing = max(0, 3 - len(enemies))
+    denominator = sum(fog.values()) + reservoir * base
+    if denominator > 1e-12:
+        factor = missing / denominator
+        fog = {p: max(0.0, value * factor)
+               for p, value in fog.items()}
+    else:
+        fog = {}
+    m["fog"] = fog
+=======
+    m["fog"] = reconcile_fog(m)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    m["default"] = min(.06, missing / max(80.0, len(free) + reservoir))
+=======
+    # The explicit field covers all feasible interior coordinates.
+    m["default"] = 0.0
+>>>>>>> REPLACE
+</DIFF>

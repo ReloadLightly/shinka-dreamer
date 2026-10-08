@@ -1,0 +1,15 @@
+{
+  "generation": 16,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 5,
+  "patch_name": "survival_conditioned_expert_risk",
+  "patch_description": "Forecast occupancy separately under the uniform, persistent, and responsive experts instead of averaging their movement laws before prediction. Score actions using mean collision probability plus a modest disagreement penalty among plausible experts. Condition expert weights on surviving the first move, then evaluate each second move consistently across experts. Apply the additional planning work near threats. Export the uninflated mixture forecast so prediction diagnostics remain distinct from conservative control costs. This targets stationary-law deaths; improvement requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:29:14.289647",
+  "llm_cost": 0.391598,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_16/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -1,0 +1,15 @@
+{
+  "generation": 19,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 3,
+  "patch_name": "targeted_bottleneck_observation",
+  "patch_description": "Add observation routes aimed at stale walls that separate the agent from remembered objectives. A relaxed graph identifies potential passages, including diagonal clearance cells; movement still uses the existing legal graph and predictive collision controller. Activate recovery when objectives are unreachable or progress stalls, retain the viewpoint until its bottleneck is observed, and bound retries with expiry and cooldown.\n\nThis targets the three reported timeouts without broadly refreshing an already accurate map. It is a navigation hypothesis, not a new predictive-learning mechanism; improvement requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:48:25.311826",
+  "llm_cost": 0.466628,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_19/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

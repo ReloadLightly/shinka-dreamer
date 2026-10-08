@@ -1,0 +1,15 @@
+{
+  "generation": 38,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 5,
+  "patch_name": "arrival_time_risk_planning",
+  "patch_description": "Replace discounted three-step control with eight-step space-time planning. The current controller can repeatedly postpone a dangerous crossing because the same collision becomes cheaper when imagined several steps later. Charge survival risk consistently across the planning horizon, and compute the terminal route using predicted future occupancy instead of freezing current enemy positions. This should help distinguish a crossing that will clear from one requiring a detour. Cache navigation edges and avoid duplicate enemy propagation to limit computation. Learning, exported next-step predictions, and the prediction-use intervention remain separate. This proposal has not been evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:33:50.256837",
+  "llm_cost": 0.498948,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_38/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

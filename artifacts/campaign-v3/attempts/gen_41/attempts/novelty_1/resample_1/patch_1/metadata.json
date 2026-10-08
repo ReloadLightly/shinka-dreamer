@@ -1,0 +1,15 @@
+{
+  "generation": 41,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "survival_timed_routes",
+  "patch_description": "Uses time-dependent route values and a three-step controller that conditions enemy beliefs on surviving the entire proposed path. It strengthens immediate safety, retains anonymous dynamics learning and switch recovery, and adds a censored-observation learning fallback plus targeted inspection of stale walls. These changes aim to reduce deaths and navigation stalls; performance remains to be measured.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:45:31.130423",
+  "llm_cost": 0.947054,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_41/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

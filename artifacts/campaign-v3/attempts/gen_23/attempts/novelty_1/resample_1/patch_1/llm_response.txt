@@ -1,0 +1,188 @@
+<NAME>
+time_indexed_route_values
+</NAME>
+
+<DESCRIPTION>
+Replace the static enemy-risk route potential with four forecast horizons and backward dynamic programming. Route values then account for when the agent reaches a threatened cell, including the option to wait for danger to pass. Target selection uses estimated arrival times; longer routes relax toward a background occupancy estimate. Reuse second-step forecasts and pool later forecasts to bound computation. Preserve the existing learner, exported next-step predictions, and conditional immediate collision calculations. This is an untested control improvement motivated by the supplied arrival-aware routing results.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+=======
+def route_forecasts(m, experts, prepared, weights):
+    cells = list(m["map"])
+    fields = [{
+        p: sum(
+            weight * occupancy(tracks, fog, p)
+            for weight, (tracks, fog, _) in zip(weights, experts)
+        )
+        for p in cells
+    }, {
+        p: sum(
+            weight * occupancy(state[1], state[3], p)
+            for weight, state in zip(weights, prepared)
+        )
+        for p in cells
+    }]
+
+    # Pool only beyond the two horizons used by conditional local safety.
+    tracks = [{} for _ in experts[0][0]]
+    fog = {}
+    for weight, state in zip(weights, prepared):
+        for pooled, track in zip(tracks, state[1]):
+            for p, mass in track.items():
+                pooled[p] = pooled.get(p, 0.0) + weight * mass
+        for p, mass in state[3].items():
+            fog[p] = fog.get(p, 0.0) + weight * mass
+
+    # Mixing kernels also respects the prediction-use intervention.
+    cache = {}
+
+    def transition(p):
+        if p not in cache:
+            result = {}
+            for weight, (_, _, kernel) in zip(weights, experts):
+                for q, probability in kernel(p).items():
+                    result[q] = result.get(q, 0.0) + weight * probability
+            cache[p] = result
+        return cache[p]
+
+    for _ in range(2):
+        tracks = [propagate(track, transition) for track in tracks]
+        fog = propagate(fog, transition)
+        fields.append({
+            p: occupancy(tracks, fog, p) for p in cells
+        })
+
+    left, right, top, bottom = m["enemy_bounds"]
+    area = 0.0
+    for y in range(top, bottom + 1):
+        for x in range(left, right + 1):
+            p = (x, y)
+            if p not in m["map"]:
+                area += .68
+            elif not blocked(m["map"], p, opening_now(m)):
+                area += 1.0
+    background = min(.06, max(.012, 3.0 / max(60.0, area)))
+    return fields, background
+
+
+def arrival_route_risk(edges, source, fields, background):
+    arrival = {source: 0}
+    queue = [source]
+    for p in queue:
+        for q in edges.get(p, ()):
+            if q not in arrival:
+                arrival[q] = arrival[p] + 1
+                queue.append(q)
+
+    risk = {}
+    for p, steps in arrival.items():
+        horizon = max(1, steps)
+        if horizon <= len(fields):
+            value = fields[horizon - 1].get(p, background)
+        else:
+            retained = math.exp(-(horizon - len(fields)) / 5.0)
+            value = (
+                retained * fields[-1].get(p, background)
+                + (1.0 - retained) * background
+            )
+        risk[p] = value
+    return risk
+
+
+def timed_route_values(m, edges, target, fields, background):
+    # The tail charges ordinary travel and background danger. Backward
+    # recursion adds transient danger at its actual future time index.
+    tail = paths(
+        edges, target, m, {p: background for p in edges}, True
+    )
+    values = [None] * (len(fields) + 1)
+    values[-1] = tail
+    for t in range(len(fields) - 1, -1, -1):
+        following = values[t + 1]
+        current = {target: 0.0}
+        for p in tail:
+            if p == target:
+                continue
+            best = float("inf")
+            for q in [p] + edges.get(p, []):
+                if q not in following:
+                    continue
+                cost = 1.0 + following[q]
+                cost += 4.0 * fields[t].get(q, background)
+                cost += .02 * min(15, m["visits"].get(q, 0))
+                best = min(best, cost)
+            current[p] = best
+        values[t] = current
+    return values
+
+
+def planner(memory, local_obs):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    route_risk = {
+        p: sum(
+            weight * occupancy(tracks, fog, p)
+            for weight, (tracks, fog, _) in zip(weights, experts)
+        )
+        for p in m["map"]
+    }
+    edges = graph(m)
+    dist = paths(edges, start, m, route_risk)
+    target = choose_target(m, edges, dist, route_risk)
+    potential = paths(edges, target, m, route_risk, True)
+    geometry = geometric_distances(edges, target)
+=======
+    prepared = [prepare_second(expert) for expert in experts]
+    edges = graph(m)
+    route_fields, background = route_forecasts(
+        m, experts, prepared, weights
+    )
+    route_risk = arrival_route_risk(
+        edges, start, route_fields, background
+    )
+    dist = paths(edges, start, m, route_risk)
+    target = choose_target(m, edges, dist, route_risk)
+    timed_values = timed_route_values(
+        m, edges, target, route_fields, background
+    )
+    potential = timed_values[0]
+    after_first = timed_values[1]
+    after_second = timed_values[2]
+    geometry = geometric_distances(edges, target)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Each expert needs only one unconditional second propagation.
+    prepared = [prepare_second(expert) for expert in experts]
+    choices = []
+=======
+    # Conditional safety reuses the propagations prepared for routing.
+    choices = []
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+                    value = 1.0 + potential[r] + .85 * pressure * h2
+=======
+                    value = 1.0 + after_second[r] + .85 * pressure * h2
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            if not math.isfinite(continuation):
+                continuation = potential[q] + 10.0
+
+        score = 1.0 + pressure * first_hazard
+        if not terminal:
+            # Keys, doors and exploration targets are intermediate states.
+            # Check whether their surroundings permit surviving another turn.
+            score += .60 * potential[q] + .40 * continuation
+=======
+            if not math.isfinite(continuation):
+                continuation = after_first[q] + 10.0
+
+        score = 1.0 + pressure * first_hazard
+        if not terminal:
+            # Evaluate remaining travel at the time reached by each branch.
+            # Conditional local hazards retain their original calculation.
+            score += .60 * after_first[q] + .40 * continuation
+>>>>>>> REPLACE
+</DIFF>

@@ -22,6 +22,29 @@ def write_json(path, data):
     path.write_text(json.dumps(data, indent=2, allow_nan=False)+'\n')
 
 
+def compact_native_metadata(metadata, program_id, database):
+    """Keep lineage compact; original native values remain in the runtime DB."""
+    compact = dict(metadata)
+    archived = {}
+    for key in ('llm_result', 'meta_summary', 'meta_scratch_pad'):
+        if key not in compact:
+            continue
+        value = compact.pop(key)
+        encoded = json.dumps(value, sort_keys=True, ensure_ascii=False,
+                             separators=(',', ':')).encode('utf-8')
+        archived[key] = {
+            'canonical_json_sha256': hashlib.sha256(encoded).hexdigest(),
+            'canonical_json_bytes': len(encoded),
+            'encoding': 'UTF-8 JSON, sorted keys, ensure_ascii=False, compact separators',
+            'native_database': str(database.relative_to(ROOT)) if database.is_relative_to(ROOT) else str(database),
+            'native_program_id': program_id,
+            'native_metadata_field': key,
+            'public_related_artifacts': ['attempts.json', 'recommendations/',
+                                         'request-example-gen8.json'],
+        }
+    return compact, archived
+
+
 def objective_figure(out):
     data = json.loads((out / 'objective-check.json').read_text())
     names = list(data['metrics'])
@@ -55,11 +78,12 @@ def search_report(campaign, out, target):
     sources.mkdir(exist_ok=True)
     lineage, metrics, episodes = [], [], []
     for row in rows:
-        meta = json.loads(row['metadata'])
+        meta, archived = compact_native_metadata(json.loads(row['metadata']), row['id'], database)
         entry = {k: row[k] for k in ('id','generation','parent_id','island_idx','correct','combined_score')}
         entry.update(source_sha256=hashlib.sha256(row['code'].encode()).hexdigest(),
                      **{k:json.loads(row[k] or '[]') for k in ('archive_inspiration_ids','top_k_inspiration_ids','migration_history')},
-                     metadata=meta, public=json.loads(row['public_metrics']))
+                     metadata=meta, archived_native_metadata=archived,
+                     public=json.loads(row['public_metrics']))
         history=entry['migration_history']
         entry['birth_island']=(min(history,key=lambda x:(x['generation'],x['timestamp']))['from']
                                if history else entry['island_idx'])
@@ -120,6 +144,11 @@ def search_report(campaign, out, target):
     for name in ('campaign-manifest.json','dreamer-resolved.json'):
         if (campaign/name).exists(): shutil.copy2(campaign/name,out/name)
     if (campaign/'meta').exists(): shutil.copytree(campaign/'meta',out/'recommendations',dirs_exist_ok=True)
+    search_figure(lineage, metrics, out, target)
+
+
+def search_figure(lineage, metrics, out, target):
+    """Render the public saved quantities without the private runtime database."""
     valid=[m for m in metrics if m['correct']]
     if not valid: return
     fig, axes=plt.subplots(2,2,figsize=(10,8),gridspec_kw={'hspace':.52,'wspace':.38})
@@ -147,7 +176,7 @@ def search_report(campaign, out, target):
     axes[1,1].set(title='D  Computation by candidate',xlabel='Slot',ylabel='Mean candidate CPU seconds / episode')
     from matplotlib.ticker import MaxNLocator
     for ax in (axes[0,0],axes[1,0],axes[1,1]):ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-    fig.suptitle(f"Unknown dynamics · {len(unique)}/{target} slots · 72-episode development pool",fontsize=16,fontweight='bold')
+    fig.suptitle(f"Unknown dynamics · {len(metrics)}/{target} slots · 72-episode development pool",fontsize=16,fontweight='bold')
     save_figure(fig,out/'figures/search')
 
 
@@ -156,11 +185,18 @@ def main():
     parser.add_argument('--campaign',default='results/campaign-v3')
     parser.add_argument('--out',default='artifacts/campaign-v3')
     parser.add_argument('--slots',type=int,default=50)
+    parser.add_argument('--saved',action='store_true',
+                        help='Render committed metrics/lineage without opening the runtime database or exporting new search data')
     args=parser.parse_args()
     out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
     apply_theme()
     objective_figure(out)
-    search_report(Path(args.campaign).resolve(),out,args.slots)
+    if args.saved:
+        lineage=json.loads((out/'lineage.json').read_text())
+        metrics=json.loads((out/'generation-metrics.json').read_text())
+        search_figure(lineage,metrics,out,args.slots)
+    else:
+        search_report(Path(args.campaign).resolve(),out,args.slots)
     if (out/'lineage.json').exists():
         from v3_source_changes import report
         report(out)

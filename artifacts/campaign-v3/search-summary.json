@@ -1,14 +1,14 @@
 {
   "target_slots": 50,
-  "persisted_slots": 15,
-  "complete": false,
+  "persisted_slots": 50,
+  "complete": true,
   "seed_slots": 1,
   "seed_island_rows": 4,
-  "valid_descendants": 14,
+  "valid_descendants": 49,
   "failed_slots": [],
-  "saved_evaluation_episodes": 1080,
-  "candidate_cpu_seconds": 567.7790079999996,
-  "evaluator_cpu_seconds": 62.92499168000013,
-  "episode_host_seconds": 579.9769250090467,
+  "saved_evaluation_episodes": 3600,
+  "candidate_cpu_seconds": 4131.361668999999,
+  "evaluator_cpu_seconds": 248.84209458799998,
+  "episode_host_seconds": 4022.974580728973,
   "scope": "One search; reused development results, no independent discovery replication."
 }

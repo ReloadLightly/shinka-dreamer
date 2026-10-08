@@ -48,11 +48,131 @@
     }
   },
   {
+    "path": "gen_15/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "42c079b9fa13a1db2cf03ba91e45a93a32b3e5d7fbcac1a50ca7bdd68d53d824",
+      "patch.txt": "11926cb4e9278c5ae68fc4bb2c478cee85be5a37f9e5346d87e50d33a56340b4",
+      "metadata.json": "680fcd20dcede65021748fe4e5d589f78cb3685adce32a49d53e313f3506f29a"
+    }
+  },
+  {
+    "path": "gen_16/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "f6206aa981895be3858cfe82ee59cc9dc383620a5cad79607ca18ad81eae35a0",
+      "patch.txt": "1f556bd4960b731322188339c5662eff0347922c77893bf8128da3a7ae3208d1",
+      "metadata.json": "9c75ac457d87008f19817331352a42586d728798209778c85441f9b01115f1da"
+    }
+  },
+  {
+    "path": "gen_17/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "6d0ef3a8bc3b03b9316c13013dab54dedc72df53a802ae5385f3bd4660993b26",
+      "patch.txt": "74a402a9928938136e232fcc01df8d1754701d5f96666565c69d520f75179f42",
+      "metadata.json": "211c46bc10d53639fa9aecca0a411ef2a9f435a386cf8b2fb825bd567be5b1db"
+    }
+  },
+  {
+    "path": "gen_18/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "bd4be6277fcb57804998d5bf1cfbda3495e58aa6bbdfc0f82c4205cbeff2c1f7",
+      "patch.txt": "e16c0b3079a3f5425a502382a1e1cc055d8246bac4e997cdaebd70e85b2b5ea5",
+      "metadata.json": "6c969b8eb2670b2e39c47e99013987b415f1b9694f488161d9eb802639317182"
+    }
+  },
+  {
+    "path": "gen_19/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "4565a010ebf565559ecc44137d33103ce993926e357b630d12a44b8622349ef5",
+      "patch.txt": "e9843e87716b96d3ccc3f3c5326eeb47a8f8f89dfc375bb7e6a8d7b1036529ec",
+      "metadata.json": "7e2ee1d57d4f7bf87fe098597be18b3e9a902f1412a677ac07b736bb8772863f"
+    }
+  },
+  {
     "path": "gen_2/attempts/novelty_1/resample_1/patch_1",
     "files": {
       "llm_response.txt": "ae59cb6d5e4c9ed44af7fb19ecb844ebc001ee5a45ea588a26a4add09826a3fc",
       "patch.txt": "328ff3b2fcdd4a636ca3bbf662907187020b5ed46d6bd5b77032ec1990d34ca3",
       "metadata.json": "461ea2162b9f1911c089f801cea9531c41bcab8b95c3d4cacffdd7dbedcdd5e4"
+    }
+  },
+  {
+    "path": "gen_20/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "bacf88598d534accf2baae4159a328633b3a682d5ac4dda3b63fc3e5fe130df4",
+      "patch.txt": "f2ca8faef7eedbb67625cb0333daed2806107c73a289717141214bbabffce7a2",
+      "metadata.json": "8a0c823221f93c2d1ca475acc8f2a938e65ea617654c4d45c805bcdd07fbbf07"
+    }
+  },
+  {
+    "path": "gen_21/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "93f7c9316b37cc0a445245d44bb08d91786b80f4320074a2fd4cc4bc19788735",
+      "patch.txt": "8e25ab55d8ba4f2f5f75bc1161423dd804b0536218f0846494e50aa4e4b599ad",
+      "metadata.json": "1d5b9156016e4cea00118793bad300af43567b08cb7ec687ccffa125e3fa5516"
+    }
+  },
+  {
+    "path": "gen_22/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "a571c00cc0f4cc753ff72b2255ec7cf60df75681679f7d7fb1c6b9a060af0705",
+      "patch.txt": "ea860e6cc5b84ea4ac55743812d4214f86731612c4aecf76a686ea9bd549c60e",
+      "metadata.json": "3077873959db6e8cd30111f7f089bc9eae0ebabe7300bc1b835e1aca61e93e58"
+    }
+  },
+  {
+    "path": "gen_23/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "9878bd63a749c8d4f9099ac8eeccc41f9376944e86647a59ad152b0306fe3861",
+      "patch.txt": "2dafd648c0e3d335ec51e1283ef8908a4316d53cacf5649f8662b146f2364470",
+      "metadata.json": "eefd8315c7ee10b36860a02d63b76030f0a2bc1c9a4f4f8ecb911d7b1b2b0efe"
+    }
+  },
+  {
+    "path": "gen_24/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "8378cda4a290b949c8afa546fa143d87aad9b3155a21e8d358eb53d1aae02c41",
+      "patch.txt": "972442c0b7978e98d1f4eb15f8a099647aa2f59239d27fa4cf65f401b1106e02",
+      "metadata.json": "8ba9a2d411b9af6bdcc55a00822a91fc25dd607dc6a0c27c5c02a9eea2b235f3"
+    }
+  },
+  {
+    "path": "gen_25/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "81c6d714d4967634279f49b71c4b39fa28d290e1d19f26dca2d33227fdd8fc84",
+      "patch.txt": "9b34a0f71a06e3861bda5b375d3df83e5bc698173325605bcc85d1059d976a2e",
+      "metadata.json": "e3411f51da3e1e9514d1e55332afbdc8f5a739b4d077a7e53892c4821b05fe39"
+    }
+  },
+  {
+    "path": "gen_26/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "0d20017ed9f2caf6f97fe941ef1f21a8cb294aabe5be20e3fe5d28ccfa7c9ca6",
+      "patch.txt": "62de5a9650708b122566508151dadb381997e2b12ce57955fd09d8ce9a365ceb",
+      "metadata.json": "52b256f32a4b2fab3790f653fe0cebc8706fb29b0cee0daa612855da33b1474f"
+    }
+  },
+  {
+    "path": "gen_27/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "90839ac9df88b5e71b4770dafcac8ab0d288bb66e1495f795b9d42c4667cf4c1",
+      "patch.txt": "7358d24db01129d9c8221cbc389f23785fe5ddd4c8c87eb4a61021702216493f",
+      "metadata.json": "390f379aa954ce31ec2f5f60f925a1ca83599ec33dec70389b13e1539d0ff897"
+    }
+  },
+  {
+    "path": "gen_28/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "c2d5f37b1452c040b02f6b84c609bc25fce5910e7c8908ee89178e98a956852b",
+      "patch.txt": "c83c75ceba4895d56a5e4a79189952b1aa68ebfe7e4f5e268dc0247cd28b511d",
+      "metadata.json": "c763673ad0d6c277fdce4521a7aba930164a2a6d4ef0a00680e39fa0a494c348"
+    }
+  },
+  {
+    "path": "gen_29/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "acccac270c4ed338c7a0bc09c2e480213715bd9b179376100d23a63620dcc09a",
+      "patch.txt": "99700efe0235054ba71d1adaca88e0e29981015ff74473fd2b8f69282bc88b7c",
+      "metadata.json": "1de8dcf6d8bf80be6b1fb9de6292eca6710282199a026b2915f4423b6cd26174"
     }
   },
   {
@@ -64,11 +184,171 @@
     }
   },
   {
+    "path": "gen_30/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "1734558a23e1aba2806929ace2647868cfa670b0eeffe523189266460e5744be",
+      "patch.txt": "c47c1e5f0116c88ce4661bfef59359d41e87e10e450852e5735cefc871478933",
+      "metadata.json": "ab48f372be2753b76664c9d9a7e3a8c385214efc28f22f8304bd413d8dd71fe6"
+    }
+  },
+  {
+    "path": "gen_31/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "9d6d148c361d92307030e1e6f4f6abdf2526481c26aedfe43968e7fb82f04748",
+      "patch.txt": "0d08132e7c2ef13fef39aa34197b6b617a3ce527467a1c3bdc075452336b313c",
+      "metadata.json": "56e2cefd7eec97ab3992d02ab76ac76f53a5b8f986b05c4c6b74cbdc11ef7d91"
+    }
+  },
+  {
+    "path": "gen_32/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "143f86566cc84b8ac9321dd8bfcadaa69c93bc2646410327d00bc126536998f0",
+      "patch.txt": "96d4fd205e7b31287033bb5072cc7454be5e39c8ffa6bef77f4a00ef084c10c1",
+      "metadata.json": "cdaadf59a0a52b5e7c8494dfd257859b0df7d23817440662933a49e31d0030b7"
+    }
+  },
+  {
+    "path": "gen_33/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "ad073ca8ede1b453c23e21a4a38cdf91d8b676f86331f81d271ad0c4ed744ebe",
+      "patch.txt": "d8e58f69d634a6da9470ac86bbf0c5daaf37b59a8cccf7ec09703024c07c6d4b",
+      "metadata.json": "08cae0446944ac6751c7d609a2334e28e3e4eed99f5e4359e2629fbbe1986f06"
+    }
+  },
+  {
+    "path": "gen_34/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "d93bfc3b2835dc0afab4f86e419408a12b8bbad7743eb422740fd8071035e712",
+      "patch.txt": "1847f4ada9f5733483d47031e3652a6096174cca17c678112653550c0131cfc2",
+      "metadata.json": "c812502d0912b3a31f422a93c6085bd3e0f55b028568eadccbf18073c328f1b4"
+    }
+  },
+  {
+    "path": "gen_35/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "e1ca0ab30fd79c56468de52c549dfe1f5fcff6125bccf6f38d4494201577c07c",
+      "patch.txt": "c705fc601acddea4adbde119d4fc8215d7857d6c93cfe4d5e4b531eacc959bce",
+      "metadata.json": "0b867193f925b54222ec293792bf2c3c589bbb2268dd4508c4925ce6826c10c0"
+    }
+  },
+  {
+    "path": "gen_36/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "34bbbfb87579a44f490ee25390b6244ec181077bd68566a39dbf5684cb123bdf",
+      "patch.txt": "41c7fcc868b68dc1dca17b8ed487d95c06aa2919eb8668ff31e1c62677cad65b",
+      "metadata.json": "651fd6e7c661b07a04352649cc30f3cc9becc2f6e02bf109c237bd79ec50222f"
+    }
+  },
+  {
+    "path": "gen_37/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "1fcc97aebdb5d77bf7b18e85ebb03461bdb95531cd3b9dff1d1a51334e72b874",
+      "patch.txt": "d15441953c217e8a0ae10ef3562e5dfc97712248019c52639e024dcef36065ed",
+      "metadata.json": "6d4956cd190fd87d8012149e346b34e0477a71df68bfb5cef8ef5314db0bb2f3"
+    }
+  },
+  {
+    "path": "gen_38/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "adac0958d02a868492c124cdc4f1f4d0860375d903073220815959f29426e82f",
+      "patch.txt": "c924e58c663cea52c37b295dbdc6037ed9a6d85744e9f8e733ad2b8e61395859",
+      "metadata.json": "d7623fb9452257310b44b2c61562e4a29c15c1cd82c7dbc1dd5e76cb892559e0"
+    }
+  },
+  {
+    "path": "gen_39/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "480b70b8e13b998001708755a6d30a79214e2568cc2b3ac0e57c23fa5014f935",
+      "patch.txt": "40939a1aa8b75125fbdf364e5df4152c5bc1d62834bc1ba0197bc0867aa382bc",
+      "metadata.json": "da6a3e2544df2287e0c5927ee0fb762a2d99e2b6070d65c1d81ffeae41287c46"
+    }
+  },
+  {
     "path": "gen_4/attempts/novelty_1/resample_1/patch_1",
     "files": {
       "llm_response.txt": "27da04ed37b2cede2d699aa92062518bed56b09976037f90765d8f9c9516bd7d",
       "patch.txt": "44415dc3e8cc015f32ab4f8261a372d73a3f279966d872701fd61808b6f550ea",
       "metadata.json": "109008385fa10096734710b99356c182327636f72554dd62e4604727ddd48718"
+    }
+  },
+  {
+    "path": "gen_40/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "82cd987eb2c34bdad7602d0324113b8dc0aeb615f5bfc220168c4116169784f4",
+      "patch.txt": "eb223d9cc2150083b480de0c5c1301bbba9cebc96469d51d32cad5b2796536ba",
+      "metadata.json": "3ff864f6265114a3fc593acd6a428ec12a6e8dd02ec7052b8fcba2f11788dde1"
+    }
+  },
+  {
+    "path": "gen_41/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "444d4399869a3d634691e7ae247cba837de257287e34fa8eb79a067120c43a8f",
+      "patch.txt": "842ae311ade83b16947a44caa8f592fe279483bb57197648930fd5f03c20245b",
+      "metadata.json": "605f77dae3c58d6f7489a5010379f39ba81291465740430c262d0276eaaaa72c"
+    }
+  },
+  {
+    "path": "gen_42/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "e2d6ea8df0407cfe225c5f1584e4c50ad8e7095a662fc7eb58f37d6ac8fc3551",
+      "patch.txt": "8f44a15442e384c789bffd6f44b76c47e944f5b785a277a0d19755c02ff6eb18",
+      "metadata.json": "bfbaaf807230606ffc73dae6cd6d0eaed634e6697d5998c7a78d952da51cdbc5"
+    }
+  },
+  {
+    "path": "gen_43/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "e7739d72e140c44c3af48ba47789bc0117bb60319030ffbeed256368933a3f87",
+      "patch.txt": "7ec66790a83296643b2ed6e76b6d12b53a95aa936bf87e51a4f9327edc07f6ea",
+      "metadata.json": "1c1aecc9fce9d4df6a6298f24d0c95d0b093f29e3d532888c9d3e7b8c5299b23"
+    }
+  },
+  {
+    "path": "gen_44/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "76f88fb144d395cbd0282cdf7dbccf2fa34306a6b854a9bd2509e535562d4ccd",
+      "patch.txt": "89132a4d85f8dcae86baca2429d84df8847df9cfd2145795d2bf46f6ae2ff063",
+      "metadata.json": "6a09957cb44722b02a468a117c558bce03351b0eb0660dcd6501f284177e23b6"
+    }
+  },
+  {
+    "path": "gen_45/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "32080e1858a3a67113d0424336c7fb4de8959b414e810ff2e0bb84369b0a1f3d",
+      "patch.txt": "f8280360ea80c9c64a9ada4ed151659f2d581865af3f0084bd299e1c9379f067",
+      "metadata.json": "805641eafbbc5c53d9c7de54b8cc7c63fe069433d5e065c6d144d7196fafd9f4"
+    }
+  },
+  {
+    "path": "gen_46/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "8697ce3b56439fcdf93861bf478b3c197538fa7bf4bac4532a1d69cf86c15f88",
+      "patch.txt": "9332aaa2d22ae8e5551f3f00ec6ea1aaa1a71ee408398224ba215d35e24f57c0",
+      "metadata.json": "01d9cc03b3c1c2b74e0f3cb5cff8f7ac7ec99039ac649b224ff0ace6b411e974"
+    }
+  },
+  {
+    "path": "gen_47/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "71409090d04d45386be3a59434c5dd1ac4d2c8bfa248913718c154be95103716",
+      "patch.txt": "baadf074ab0f373416022a0430f0ce5e27292879c114c25ac8a8d07e58eef251",
+      "metadata.json": "df846e84a3518997c696aac69248b5476fdd64e1d206c849f351f0c538de5568"
+    }
+  },
+  {
+    "path": "gen_48/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "529a432366d583e8467d916d18c361b0732facfe393d937f86c8ac7a103c28e0",
+      "patch.txt": "9521ce5ce5f87b4b6ba85bcac60dd6b4a3e809cb8ff62a86f02eaa3d703c2656",
+      "metadata.json": "a9547cfa19c833cd44fc39b534bab95adb1a0893803ec04bcadca170553655c4"
+    }
+  },
+  {
+    "path": "gen_49/attempts/novelty_1/resample_1/patch_1",
+    "files": {
+      "llm_response.txt": "9c63855d4d763ee231e12cbadb173162090f7448c7b1331c9a5f8a3804bb0421",
+      "patch.txt": "c50f1889b1ddd5d1f81b0984889020811574332269b55ca00984311b1f9c32d1",
+      "metadata.json": "3f365e449de6679b455022c2c778c1aaf50c35e08ea7c2f3aa7a673c1050aebb"
     }
   },
   {

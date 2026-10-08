@@ -1,0 +1,15 @@
+{
+  "generation": 18,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "plausible_expert_control",
+  "patch_description": "The parent uses three movement experts, per-step retention of .985/.86, a three-step planner, and collision weight 100. This revision forecasts each expert separately, preserving uncertainty about the shared movement law. Planning adds a .30 disagreement penalty only near visible threats and among plausible experts. Learning uses informative-observation retention of .99/.84, preserving evidence during observation gaps while retaining a responsive expert. Progress-aware waiting costs and deadline-dependent risk pricing target remaining timeouts. Anonymous association, blocked-attempt stays, independent mapping, and separate learning/prediction-use interventions remain supported. These are proposed improvements; no new evaluation results are claimed.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:41:04.154635",
+  "llm_cost": 0.665518,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_18/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

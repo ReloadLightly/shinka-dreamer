@@ -1,0 +1,15 @@
+{
+  "generation": 49,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "persistent_anonymous_flow",
+  "patch_description": "Reorganizes the agent into observation, dynamics learning, anonymous belief filtering, forecasting, routing, and survival control stages. Concealed enemy probability now persists across observation gaps, with visible empty cells removing incompatible mass and a diffuse reserve representing unresolved enemies. The planner conditions both visible threats and concealed probability on survival along each candidate path. A separate uniform-law filter preserves the prediction-use intervention. These changes target safer routing around recently disappeared enemies; performance remains to be measured.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T22:35:42.117394",
+  "llm_cost": 0.848058,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_49/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

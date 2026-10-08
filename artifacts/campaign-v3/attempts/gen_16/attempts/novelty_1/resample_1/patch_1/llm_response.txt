@@ -1,0 +1,220 @@
+<NAME>
+survival_conditioned_expert_risk
+</NAME>
+
+<DESCRIPTION>
+Forecast occupancy separately under the uniform, persistent, and responsive experts instead of averaging their movement laws before prediction. Score actions using mean collision probability plus a modest disagreement penalty among plausible experts. Condition expert weights on surviving the first move, then evaluate each second move consistently across experts. Apply the additional planning work near threats. Export the uninflated mixture forecast so prediction diagnostics remain distinct from conservative control costs. This targets stationary-law deaths; improvement requires evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    tracks, next_fog, _ = first_forecast(m, m["law"])
+    cells = set(m["map"]) | set(next_fog)
+    for track in tracks:
+        cells.update(track)
+    opened = opening_now(m)
+    m["prediction"] = {
+        p: 0.0 if blocked(m["map"], p, opened)
+        else occupancy(tracks, next_fog, p)
+        for p in cells
+    }
+    # The explicit field covers all feasible interior coordinates.
+    m["default"] = 0.0
+    density = dict(next_fog)
+    for track in tracks:
+        for p, value in track.items():
+            density[p] = density.get(p, 0.0) + value
+    m["density"] = density
+=======
+    # The movement law is shared by all enemies. Marginalize occupancy
+    # after forecasting each law, preserving this common uncertainty.
+    forecasts = []
+    cells = set(m["map"])
+    density = {}
+    for weight, law in zip(m["weights"], component_laws(m)):
+        tracks, next_fog, _ = first_forecast(m, law)
+        forecasts.append((list(law), tracks, next_fog))
+        cells.update(next_fog)
+        for p, value in next_fog.items():
+            density[p] = density.get(p, 0.0) + weight * value
+        for track in tracks:
+            cells.update(track)
+            for p, value in track.items():
+                density[p] = density.get(p, 0.0) + weight * value
+    m["forecast_components"] = forecasts
+    opened = opening_now(m)
+    m["prediction"] = {
+        p: 0.0 if blocked(m["map"], p, opened)
+        else sum(
+            weight * occupancy(tracks, fog, p)
+            for weight, (_, tracks, fog)
+            in zip(m["weights"], forecasts)
+        )
+        for p in cells
+    }
+    # Export calibrated probabilities; planning adds its own uncertainty cost.
+    m["default"] = 0.0
+    m["density"] = density
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        law = [.93 * p + .07 / 9.0 for p in m["law"]]
+    else:
+        law = list(UNIFORM)
+    tracks, fog, transition = first_forecast(m, law)
+    route_risk = {
+        p: occupancy(tracks, fog, p) for p in m["map"]
+    }
+=======
+def mixture_hazard(probabilities, weights):
+    total = sum(weights)
+    if total <= 1e-15:
+        return hazard(1.0)
+    weights = [w / total for w in weights]
+    mean = sum(w * p for w, p in zip(weights, probabilities))
+    cutoff = max(.08, .20 * max(weights))
+    plausible = [
+        (w, p) for w, p in zip(weights, probabilities)
+        if w >= cutoff
+    ]
+    mass = sum(w for w, _ in plausible)
+    center = sum(w * p for w, p in plausible) / mass
+    variance = sum(w * (p - center) ** 2 for w, p in plausible) / mass
+    upper = max(mean, max(p for _, p in plausible))
+    conservative = min(upper, mean + .45 * math.sqrt(variance))
+    return hazard(conservative)
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    predictive = local_obs.get("predictive_planning", True)
+    nearby = (
+        any(distance(start, p) <= 3 for p in m["enemies"])
+        or any(
+            distance(start, p) <= 2 and probability > .006
+            for p, probability in m["prediction"].items()
+        )
+    )
+    if predictive and nearby:
+        weights = list(m["weights"])
+        experts = [
+            (tracks, fog, make_transition(m, law))
+            for law, tracks, fog in m["forecast_components"]
+        ]
+    else:
+        law = m["law"] if predictive else UNIFORM
+        experts = [first_forecast(m, law)]
+        weights = [1.0]
+    route_risk = {
+        p: sum(
+            weight * occupancy(tracks, fog, p)
+            for weight, (tracks, fog, _) in zip(weights, experts)
+        )
+        for p in m["map"]
+    }
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        first_hazard = max(0.0, fog.get(q, 0.0))
+        for track in tracks:
+            first_hazard += hazard(track.get(q, 0.0))
+        if q == target and q != start:
+            continuation = 0.0
+        else:
+            state = conditioned_future(tracks, fog, q, transition)
+            continuation = float("inf")
+            if state is not None:
+                for e in MOVES:
+                    r = add(q, e)
+                    if r not in potential or not legal(m, q, r):
+                        continue
+                    h2 = second_hazard(state, q, r, transition)
+                    value = 1.0 + potential[r] + .85 * pressure * h2
+                    value += .025 * min(16, m["visits"].get(r, 0))
+                    if r == q:
+                        value += .15
+                    continuation = min(continuation, value)
+            if not math.isfinite(continuation):
+                continuation = potential[q] + 10.0
+=======
+        first_probabilities = [
+            occupancy(tracks, fog, q) for tracks, fog, _ in experts
+        ]
+        first_hazard = mixture_hazard(first_probabilities, weights)
+        if q == target and q != start:
+            continuation = 0.0
+        else:
+            states = [
+                conditioned_future(tracks, fog, q, transition)
+                for tracks, fog, transition in experts
+            ]
+            # Survival is evidence about both enemy locations and the
+            # common movement law. Keep these two updates consistent.
+            survivor_weights = [
+                weight * max(0.0, 1.0 - probability)
+                for weight, probability in zip(weights, first_probabilities)
+            ]
+            continuation = float("inf")
+            if sum(survivor_weights) > 1e-12:
+                for e in MOVES:
+                    r = add(q, e)
+                    if r not in potential or not legal(m, q, r):
+                        continue
+                    second_probabilities = [
+                        1.0 if state is None else -math.expm1(
+                            -second_hazard(state, q, r, expert[2])
+                        )
+                        for state, expert in zip(states, experts)
+                    ]
+                    h2 = mixture_hazard(
+                        second_probabilities, survivor_weights
+                    )
+                    value = 1.0 + potential[r] + .85 * pressure * h2
+                    value += .025 * min(16, m["visits"].get(r, 0))
+                    if r == q:
+                        value += .15
+                    continuation = min(continuation, value)
+            if not math.isfinite(continuation):
+                continuation = potential[q] + 10.0
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+                emergency.append((
+                    occupancy(tracks, fog, q),
+                    potential.get(q, 1e6), d,
+                ))
+=======
+                emergency.append((
+                    mixture_hazard(
+                        [occupancy(tracks, fog, q)
+                         for tracks, fog, _ in experts],
+                        weights,
+                    ),
+                    potential.get(q, 1e6), d,
+                ))
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "effective_evidence": [sum(c) for c in m["counts"]],
+=======
+            "effective_evidence": [sum(c) for c in m["counts"]],
+            "component_attempt_probabilities": [
+                list(law) for law, _, _ in m["forecast_components"]
+            ],
+            "near_expert_disagreement": max(
+                (
+                    math.sqrt(max(0.0, sum(
+                        weight * (
+                            occupancy(tracks, fog, p) - m["prediction"][p]
+                        ) ** 2
+                        for weight, (_, tracks, fog) in zip(
+                            m["weights"], m["forecast_components"]
+                        )
+                    )))
+                    for p in m["local"]
+                    if distance(p, m["pos"]) <= 1
+                    and not blocked(m["map"], p, opening_now(m))
+                ),
+                default=0.0,
+            ),
+>>>>>>> REPLACE
+</DIFF>

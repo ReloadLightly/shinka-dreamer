@@ -1,0 +1,1018 @@
+"""Predictive seed. Entire representation, learner and planner may evolve."""
+# EVOLVE-BLOCK-START
+import heapq
+import itertools
+import math
+
+DIRECTIONS = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
+MOVES = tuple(d for d in DIRECTIONS if d != (0, 0))
+CARDINAL = ((1, 0), (-1, 0), (0, 1), (0, -1))
+UNIFORM = (1.0 / 9.0,) * 9
+PRIOR = (.30, .45, .25)
+HORIZON = 3
+
+
+def add(p, d):
+    return p[0] + d[0], p[1] + d[1]
+
+
+def distance(p, q):
+    return max(abs(p[0] - q[0]), abs(p[1] - q[1]))
+
+
+def normalized(values):
+    total = sum(values)
+    if total <= 1e-30:
+        return tuple(1.0 / len(values) for _ in values)
+    return tuple(v / total for v in values)
+
+
+def clamp(p):
+    return min(1.0, max(0.0, p))
+
+
+def log_risk(p):
+    return -math.log(max(1e-9, 1.0 - clamp(p)))
+
+
+def new_memory():
+    return {
+        "atlas": {
+            "cells": {}, "seen": {}, "visits": {},
+            "bounds": [None, None, None, None],
+        },
+        "dynamics": {
+            "slow": [.65] * 9,
+            "fast": [.35] * 9,
+            "weights": list(PRIOR),
+            "updates": 0,
+            "effective_updates": 0.0,
+        },
+        "navigation": {
+            "target": None, "kind": None,
+            "progress_target": None, "best_distance": 250.0,
+            "last_progress": 0, "last_task_progress": 0,
+            "stationary": 0, "recent": [],
+            "observation": None, "cooldown": -1,
+            "observation_routes": 0,
+        },
+        "pos": (0, 0), "keys": 0, "door_open": False,
+        "step": 0, "previous": None,
+        "hidden_prediction": {},
+    }
+
+
+def inside(m, p):
+    left, right, top, bottom = m["atlas"]["bounds"]
+    return (
+        (left is None or left <= p[0] <= right)
+        and (top is None or top <= p[1] <= bottom)
+    )
+
+
+def border(m, p):
+    left, right, top, bottom = m["atlas"]["bounds"]
+    return (
+        not inside(m, p)
+        or (left is not None and p[0] in (left, right))
+        or (top is not None and p[1] in (top, bottom))
+    )
+
+
+def infer_bounds(m, local):
+    x, y = m["pos"]
+    b = m["atlas"]["bounds"]
+    for delta in (-2, -1, 1, 2):
+        if local.get((x + delta, y)) == -1:
+            if delta < 0:
+                edge = x + delta + 1
+                if b[0] is None or edge > b[0]:
+                    b[0], b[1] = edge, edge + 14
+            else:
+                edge = x + delta - 1
+                if b[1] is None or edge < b[1]:
+                    b[0], b[1] = edge - 14, edge
+        if local.get((x, y + delta)) == -1:
+            if delta < 0:
+                edge = y + delta + 1
+                if b[2] is None or edge > b[2]:
+                    b[2], b[3] = edge, edge + 14
+            else:
+                edge = y + delta - 1
+                if b[3] is None or edge < b[3]:
+                    b[2], b[3] = edge - 14, edge
+
+
+def observe(m, obs):
+    nav, atlas = m["navigation"], m["atlas"]
+    feedback = obs.get("feedback", {})
+    displacement = tuple(feedback.get("displacement", (0, 0)))
+    old_keys, old_open = m["keys"], m["door_open"]
+
+    m["pos"] = add(m["pos"], displacement)
+    m["keys"] = int(obs["keys"])
+    m["door_open"] = bool(obs["door_open"])
+    m["step"] = int(obs["step"])
+    p = m["pos"]
+    atlas["visits"][p] = atlas["visits"].get(p, 0) + 1
+    nav["stationary"] = (
+        nav["stationary"] + 1
+        if m["previous"] is not None and displacement == (0, 0)
+        else 0
+    )
+    nav["recent"] = (nav["recent"] + [p])[-20:]
+
+    local, enemies = {}, set()
+    new_cells = 0
+    for y, row in enumerate(obs["terrain"]):
+        for x, cell in enumerate(row):
+            q = add(p, (x - 2, y - 2))
+            if q not in atlas["cells"] and cell != -1:
+                new_cells += 1
+            local[q] = int(cell)
+            atlas["cells"][q] = int(cell)
+            atlas["seen"][q] = m["step"]
+            if obs["grid"][y][x] == 5:
+                enemies.add(q)
+    m["local"], m["enemies"] = local, enemies
+    infer_bounds(m, local)
+
+    task_progress = (
+        m["keys"] > old_keys or (m["door_open"] and not old_open)
+    )
+    if task_progress:
+        nav["last_task_progress"] = m["step"]
+        nav["last_progress"] = m["step"]
+        nav["progress_target"] = None
+        nav["stationary"] = 0
+        nav["recent"] = [p]
+        nav["observation"] = None
+    elif new_cells >= 3:
+        nav["last_task_progress"] = m["step"]
+
+
+def terrain_destination(terrain, p, d, opened):
+    def blocked(q):
+        cell = terrain.get(q, 0)
+        return cell in (-1, 1) or (cell == 3 and not opened)
+
+    q = add(p, d)
+    if blocked(q):
+        return p
+    if d[0] and d[1]:
+        if blocked((p[0] + d[0], p[1])) or blocked((p[0], p[1] + d[1])):
+            return p
+    return q
+
+
+def observation_masks(m):
+    old_map, sources, center, step, opened = m["previous"]
+    # Every predecessor of a monitored cell lay within the old view.
+    monitored = {
+        add(center, (dx, dy))
+        for dx in (-1, 0, 1)
+        for dy in (-1, 0, 1)
+        if add(center, (dx, dy)) in m["local"]
+    }
+    occupied = sorted(monitored.intersection(m["enemies"]))
+    labels = {p: 1 << i for i, p in enumerate(occupied)}
+    rows = []
+    for source in sorted(sources):
+        row = []
+        for d in DIRECTIONS:
+            q = terrain_destination(old_map, source, d, opened)
+            if q not in monitored:
+                row.append(0)
+            elif q in labels:
+                row.append(labels[q])
+            else:
+                row.append(-1)
+        rows.append(row)
+    return rows, (1 << len(occupied)) - 1
+
+
+def anonymous_posterior(law, rows, required):
+    groups = []
+    for row in rows:
+        masses = {}
+        for k, label in enumerate(row):
+            if label >= 0:
+                masses[label] = masses.get(label, 0.0) + law[k]
+        if not masses:
+            return 0.0, None
+        groups.append(tuple(masses.items()))
+
+    evidence = 0.0
+    marginals = [{} for _ in rows]
+    for assignment in itertools.product(*groups):
+        covered, probability = 0, 1.0
+        for label, mass in assignment:
+            covered |= label
+            probability *= mass
+        if covered != required:
+            continue
+        evidence += probability
+        for j, (label, _) in enumerate(assignment):
+            marginals[j][label] = marginals[j].get(label, 0.0) + probability
+
+    if evidence <= 1e-15:
+        return 0.0, None
+
+    posteriors = []
+    for j, row in enumerate(rows):
+        masses = dict(groups[j])
+        posteriors.append([
+            0.0 if label < 0 else
+            law[k] * marginals[j].get(label, 0.0)
+            / (evidence * masses[label])
+            for k, label in enumerate(row)
+        ])
+    return evidence, posteriors
+
+
+def learn(m, obs):
+    if not obs.get("learn", True) or m["previous"] is None:
+        return
+    old_map, sources, center, old_step, old_open = m["previous"]
+    if not sources:
+        return
+    if (
+        m["step"] != old_step + 1
+        or m["step"] % 25 in (0, 1)
+        or old_step // 25 != m["step"] // 25
+        or old_open != m["door_open"]
+        or obs.get("feedback", {}).get("opened", False)
+    ):
+        return
+
+    rows, required = observation_masks(m)
+    dyn = m["dynamics"]
+    laws = (UNIFORM, normalized(dyn["slow"]), normalized(dyn["fast"]))
+    results = [anonymous_posterior(law, rows, required) for law in laws]
+    if any(post is None for _, post in results):
+        return
+
+    information = [
+        [
+            min(1.0, sum(abs(a - b) for a, b in zip(posterior, law)))
+            for posterior in posteriors
+        ]
+        for law, (_, posteriors) in zip(laws, results)
+    ]
+    strength = sum(information[0])
+    if strength <= 1e-8:
+        return
+
+    dyn["weights"] = list(normalized([
+        (.965 * weight + .035 * prior)
+        * max(result[0], 1e-15) ** .75
+        for weight, prior, result in zip(dyn["weights"], PRIOR, results)
+    ]))
+
+    for index, name, retention, prior in (
+        (1, "slow", .99, .65),
+        (2, "fast", .84, .35),
+    ):
+        decay = retention ** min(3.0, sum(information[index]))
+        alpha = [prior + decay * (a - prior) for a in dyn[name]]
+        for posterior, amount in zip(results[index][1], information[index]):
+            for k in range(9):
+                alpha[k] += amount * posterior[k]
+        dyn[name] = alpha
+    dyn["updates"] += 1
+    dyn["effective_updates"] += strength
+
+
+def refresh_laws(m):
+    dyn = m["dynamics"]
+    dyn["laws"] = (
+        UNIFORM, normalized(dyn["slow"]), normalized(dyn["fast"])
+    )
+    dyn["forecast_weights"] = (
+        .10 + .90 * dyn["weights"][0],
+        .90 * dyn["weights"][1],
+        .90 * dyn["weights"][2],
+    )
+    dyn["law"] = tuple(
+        sum(w * law[k] for w, law in zip(dyn["forecast_weights"], dyn["laws"]))
+        for k in range(9)
+    )
+
+
+def opens_now(m):
+    return m["door_open"] or (
+        m["keys"] >= 2
+        and any(m["atlas"]["cells"].get(add(m["pos"], d)) == 3
+                for d in CARDINAL)
+    )
+
+
+def solid(m, p, opened):
+    if border(m, p):
+        return True
+    cell = m["atlas"]["cells"].get(p, 0)
+    return cell in (-1, 1) or (cell == 3 and not opened)
+
+
+def hidden_prior(m):
+    cells = m["atlas"]["cells"]
+    physical = [p for p, cell in cells.items() if cell != -1]
+    left, right, top, bottom = m["atlas"]["bounds"]
+    if left is None:
+        left = max(-13, max(p[0] for p in physical) - 13)
+        right = min(13, min(p[0] for p in physical) + 13)
+    else:
+        left, right = left + 1, right - 1
+    if top is None:
+        top = max(-13, max(p[1] for p in physical) - 13)
+        bottom = min(13, min(p[1] for p in physical) + 13)
+    else:
+        top, bottom = top + 1, bottom - 1
+
+    support = {}
+    for y in range(top, bottom + 1):
+        for x in range(left, right + 1):
+            p = (x, y)
+            if p not in m["local"] and not solid(m, p, m["door_open"]):
+                support[p] = 1.0 if p in cells else .68
+
+    missing = max(0, 3 - len(m["enemies"]))
+    if not missing or not support:
+        return {}
+    prior_mass = sum(support.values())
+    residual = {
+        p: max(0.0, m["hidden_prediction"].get(p, 0.0))
+        for p in support
+    }
+    residual_mass = sum(residual.values())
+    if residual_mass <= 1e-12:
+        return {p: missing * w / prior_mass for p, w in support.items()}
+    return {
+        p: missing * (
+            .97 * residual[p] / residual_mass
+            + .03 * support[p] / prior_mass
+        )
+        for p in support
+    }
+
+
+def spread(distribution, kernel):
+    result = {}
+    for p, mass in distribution.items():
+        if mass <= 1e-12:
+            continue
+        for q, probability in kernel(p):
+            result[q] = result.get(q, 0.0) + mass * probability
+    return result
+
+
+def build_forecast(m, predictive=True):
+    dyn = m["dynamics"]
+    laws = dyn["laws"] if predictive else (UNIFORM,)
+    weights = dyn["forecast_weights"] if predictive else (1.0,)
+    opened = opens_now(m)
+    cells = m["atlas"]["cells"]
+    destination_cache, solid_cache = {}, {}
+
+    def blocked(p):
+        if p not in solid_cache:
+            solid_cache[p] = solid(m, p, opened)
+        return solid_cache[p]
+
+    def destinations(p):
+        if p not in destination_cache:
+            row = []
+            for d in DIRECTIONS:
+                q = add(p, d)
+                if blocked(q) or (
+                    d[0] and d[1]
+                    and (
+                        blocked((p[0] + d[0], p[1]))
+                        or blocked((p[0], p[1] + d[1]))
+                    )
+                ):
+                    q = p
+                row.append(q)
+            destination_cache[p] = tuple(row)
+        return destination_cache[p]
+
+    components = []
+    for law in laws:
+        kernels, stays = {}, {}
+
+        def kernel(p):
+            if p not in kernels:
+                grouped = {}
+                for q, probability in zip(destinations(p), law):
+                    grouped[q] = grouped.get(q, 0.0) + probability
+                kernels[p] = tuple(grouped.items())
+                stays[p] = grouped.get(p, 0.0)
+            return kernels[p]
+
+        hidden = dict(m["hidden"])
+        tracks = [{p: 1.0} for p in sorted(m["enemies"])]
+        fields, hazards, transitions = [{}], [{}], [None]
+        for tick in range(1, HORIZON + 1):
+            next_hidden = spread(hidden, kernel)
+            next_tracks = [spread(track, kernel) for track in tracks]
+            domain = set(cells).union(hidden, next_hidden)
+            for before, after in zip(tracks, next_tracks):
+                domain.update(before)
+                domain.update(after)
+            occupancy, collision = {}, {}
+            for p in domain:
+                kernel(p)
+                if blocked(p):
+                    occupancy[p], collision[p] = 0.0, 0.0
+                    continue
+                empty, safe = 1.0, 1.0
+                stay = stays[p]
+                for before, after in zip(tracks, next_tracks):
+                    a, b = before.get(p, 0.0), after.get(p, 0.0)
+                    empty *= 1.0 - clamp(b)
+                    safe *= 1.0 - clamp(a + b - a * stay)
+                a, b = hidden.get(p, 0.0), next_hidden.get(p, 0.0)
+                occupancy[p] = clamp(1.0 - empty * math.exp(-max(0.0, b)))
+                collision[p] = clamp(
+                    1.0 - safe * math.exp(-max(0.0, a + b - a * stay))
+                )
+            fields.append(occupancy)
+            hazards.append(collision)
+            transitions.append((tracks, next_tracks, hidden, next_hidden))
+            tracks, hidden = next_tracks, next_hidden
+        components.append({
+            "fields": fields, "hazards": hazards,
+            "transitions": transitions, "kernels": kernels, "stays": stays,
+        })
+
+    mixed, uncertainty = [{}], [{}]
+    plausible = [
+        i for i, w in enumerate(weights)
+        if w >= max(.06, .15 * max(weights))
+    ]
+    plausible_mass = sum(weights[i] for i in plausible)
+    for tick in range(1, HORIZON + 1):
+        domain = set()
+        for component in components:
+            domain.update(component["hazards"][tick])
+        mean_field, deviation = {}, {}
+        for p in domain:
+            values = [c["hazards"][tick].get(p, 0.0) for c in components]
+            mean_field[p] = sum(w * v for w, v in zip(weights, values))
+            if len(plausible) > 1 and any(
+                distance(p, source) <= tick for source in m["enemies"]
+            ):
+                center = sum(weights[i] * values[i] for i in plausible) / plausible_mass
+                variance = sum(
+                    weights[i] * (values[i] - center) ** 2 for i in plausible
+                ) / plausible_mass
+                deviation[p] = math.sqrt(max(0.0, variance))
+        mixed.append(mean_field)
+        uncertainty.append(deviation)
+
+    domain = set()
+    for component in components:
+        domain.update(component["fields"][1])
+    prediction = {
+        p: clamp(sum(
+            w * c["fields"][1].get(p, 0.0)
+            for w, c in zip(weights, components)
+        ))
+        for p in domain
+    }
+
+    area = sum(not solid(m, p, opened) for p in cells)
+    area += .68 * sum(p not in cells for p in m["hidden"])
+    background = min(.06, max(.012, 3.0 / max(60.0, area)))
+    return {
+        "weights": tuple(weights), "components": components,
+        "prediction": prediction, "hazards": mixed,
+        "uncertainty": uncertainty, "background": background,
+    }
+
+
+def conditioned_risk(m, forecast, origin, q, tick):
+    evidence, risks = [], []
+    for weight, component in zip(forecast["weights"], forecast["components"]):
+        before_tracks, after_tracks, hidden, after_hidden = (
+            component["transitions"][tick]
+        )
+        arrival = sum(
+            mass for cell, mass in component["kernels"].get(origin, ())
+            if cell == q
+        )
+        stay = component["stays"].get(q, 0.0)
+        survival, safe = 1.0, 1.0
+        for before, after in zip(before_tracks, after_tracks):
+            excluded = before.get(origin, 0.0)
+            absent = max(0.0, 1.0 - excluded)
+            survival *= absent
+            old = 0.0 if q == origin else before.get(q, 0.0)
+            new = max(0.0, after.get(q, 0.0) - excluded * arrival)
+            collision = clamp((old * (1.0 - stay) + new) / max(1e-12, absent))
+            safe *= 1.0 - collision
+        excluded = hidden.get(origin, 0.0)
+        survival *= math.exp(-excluded)
+        old = 0.0 if q == origin else hidden.get(q, 0.0)
+        new = max(0.0, after_hidden.get(q, 0.0) - excluded * arrival)
+        safe *= math.exp(-max(0.0, old * (1.0 - stay) + new))
+        evidence.append(weight * survival)
+        risks.append(clamp(1.0 - safe))
+
+    if sum(evidence) <= 1e-12:
+        return 1.0, 0.0
+    posterior = normalized(evidence)
+    mean = sum(w * p for w, p in zip(posterior, risks))
+    plausible = [
+        i for i, w in enumerate(posterior)
+        if w >= max(.06, .15 * max(posterior))
+    ]
+    deviation = 0.0
+    if len(plausible) > 1 and any(
+        distance(q, source) <= tick for source in m["enemies"]
+    ):
+        total = sum(posterior[i] for i in plausible)
+        center = sum(posterior[i] * risks[i] for i in plausible) / total
+        deviation = math.sqrt(max(0.0, sum(
+            posterior[i] * (risks[i] - center) ** 2 for i in plausible
+        ) / total))
+    return mean, deviation
+
+
+def world_model_step(memory, local_obs, last_action):
+    m = new_memory() if memory is None else memory
+    observe(m, local_obs)
+    learn(m, local_obs)
+    refresh_laws(m)
+    m["hidden"] = hidden_prior(m)
+    m["forecast"] = build_forecast(m)
+
+    density = {}
+    for weight, component in zip(
+        m["forecast"]["weights"], m["forecast"]["components"]
+    ):
+        _, tracks, _, fog = component["transitions"][1]
+        for distribution in [fog] + tracks:
+            for p, mass in distribution.items():
+                density[p] = density.get(p, 0.0) + weight * mass
+    m["hidden_prediction"] = density
+    m["previous"] = (
+        dict(m["local"]), set(m["enemies"]), m["pos"],
+        m["step"], m["door_open"],
+    )
+    return m
+
+
+def blocked_for_agent(m, p):
+    if border(m, p):
+        return True
+    cell = m["atlas"]["cells"].get(p, 1)
+    return cell in (-1, 1) or (
+        cell == 3 and m["keys"] < 2 and not m["door_open"]
+    )
+
+
+def legal(m, p, d):
+    q = add(p, d)
+    if blocked_for_agent(m, q):
+        return False
+    if d[0] and d[1]:
+        if (
+            blocked_for_agent(m, (p[0] + d[0], p[1]))
+            or blocked_for_agent(m, (p[0], p[1] + d[1]))
+        ):
+            return False
+        if m["atlas"]["cells"].get(q) == 3 and not m["door_open"]:
+            return False
+    return True
+
+
+def navigation_graph(m):
+    edges = {
+        p: [add(p, d) for d in MOVES if legal(m, p, d)]
+        for p in m["atlas"]["cells"]
+        if not blocked_for_agent(m, p)
+    }
+    reverse = {p: [] for p in edges}
+    for p, neighbors in edges.items():
+        for q in neighbors:
+            reverse.setdefault(q, []).append(p)
+    return edges, reverse
+
+
+def breadth(edges, source):
+    distances, queue = {source: 0}, [source]
+    for p in queue:
+        for q in edges.get(p, ()):
+            if q not in distances:
+                distances[q] = distances[p] + 1
+                queue.append(q)
+    return distances
+
+
+def route_risks(m, forecast, arrivals):
+    background = forecast["background"]
+    result = {}
+    for p, steps in arrivals.items():
+        tick = max(1, int(steps))
+        if tick <= HORIZON:
+            value = forecast["hazards"][tick].get(p, background)
+        else:
+            stay = sum(
+                w * c["stays"].get(p, 0.0)
+                for w, c in zip(forecast["weights"], forecast["components"])
+            )
+            retained = math.exp(-(tick - HORIZON) / (3.0 + 5.0 * stay))
+            value = (
+                retained * forecast["hazards"][HORIZON].get(p, background)
+                + (1.0 - retained) * background
+            )
+        result[p] = clamp(value)
+    return result
+
+
+def shortest(m, edges, source, risk, reverse=False):
+    result, queue = {source: 0.0}, [(0.0, source)]
+    visits = m["atlas"]["visits"]
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != result[p]:
+            continue
+        for q in edges.get(p, ()):
+            destination = p if reverse else q
+            new = (
+                cost + 1.0
+                + .025 * min(12, visits.get(destination, 0))
+                + 8.0 * risk.get(destination, 0.0)
+            )
+            if new < result.get(q, float("inf")):
+                result[q] = new
+                heapq.heappush(queue, (new, q))
+    return result
+
+
+def view_gain(m, p, stale=False):
+    atlas = m["atlas"]
+    tick = 25 * (m["step"] // 25)
+    result = 0
+    for dy in range(-2, 3):
+        for dx in range(-2, 3):
+            q = add(p, (dx, dy))
+            if stale:
+                result += (
+                    atlas["cells"].get(q) in (0, 1)
+                    and atlas["seen"].get(q, m["step"]) < tick
+                    and not border(m, q)
+                )
+            else:
+                result += inside(m, q) and q not in atlas["cells"]
+    return result
+
+
+def observation_goal(m, distances, objectives):
+    nav, atlas = m["navigation"], m["atlas"]
+    start, step = m["pos"], m["step"]
+    objectives = set(objectives)
+    if not objectives:
+        nav["observation"] = None
+        return None
+
+    active = nav["observation"]
+    if active is not None:
+        goal, blockers, view, selected, expires = active
+        unobserved = [
+            p for p in blockers if atlas["seen"].get(p, -1) < selected
+        ]
+        if (
+            goal in objectives and unobserved
+            and view in distances and view != start and step < expires
+        ):
+            return view
+        nav["observation"] = None
+        nav["cooldown"] = step + 2
+
+    reachable = objectives.intersection(distances)
+    stalled = (
+        nav["stationary"] >= 8
+        or step - nav["last_progress"] >= 16
+        or step - nav["last_task_progress"] >= 28
+        or nav["recent"][-12:].count(start) >= 6
+    )
+    if reachable and (
+        not stalled or min(distances[p] for p in reachable) <= 5.0
+    ):
+        return None
+    if step < nav["cooldown"] or step < 25:
+        return None
+
+    tick = 25 * (step // 25)
+    classes = {}
+
+    def classify(p):
+        if p in classes:
+            return classes[p]
+        cell = atlas["cells"].get(p, -1)
+        if border(m, p) or cell == -1:
+            kind = -1
+        elif cell == 3 and m["keys"] < 2 and not m["door_open"]:
+            kind = -1
+        elif cell == 1:
+            fixed = any(atlas["cells"].get(add(p, d)) == -1 for d in CARDINAL)
+            kind = 1 if not fixed and atlas["seen"].get(p, step) < tick else -1
+        else:
+            kind = 0
+        classes[p] = kind
+        return kind
+
+    costs, parents = {start: 0.0}, {}
+    queue, goal = [(0.0, start)], None
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != costs[p]:
+            continue
+        if p in objectives and p != start:
+            goal = p
+            break
+        for d in MOVES:
+            q = add(p, d)
+            required = [q]
+            if d[0] and d[1]:
+                if atlas["cells"].get(q) == 3 and not m["door_open"]:
+                    continue
+                required.extend(((p[0] + d[0], p[1]), (p[0], p[1] + d[1])))
+            kinds = [classify(cell) for cell in required]
+            if any(kind < 0 for kind in kinds):
+                continue
+            blockers = tuple(cell for cell, kind in zip(required, kinds) if kind == 1)
+            new = cost + 1.0 + 4.0 * len(blockers)
+            if new < costs.get(q, float("inf")):
+                costs[q] = new
+                parents[q] = p, blockers
+                heapq.heappush(queue, (new, q))
+    if goal is None:
+        nav["cooldown"] = step + 5
+        return None
+
+    segments, p = [], goal
+    while p != start:
+        p, blockers = parents[p]
+        segments.append(blockers)
+    ordered = []
+    for segment in reversed(segments):
+        for p in segment:
+            if p not in ordered:
+                ordered.append(p)
+    if not ordered:
+        nav["cooldown"] = step + 5
+        return None
+
+    first = ordered[0]
+    options = []
+    for view, cost in distances.items():
+        if view == start or distance(view, first) > 2 or view in m["enemies"]:
+            continue
+        revealed = sum(distance(view, blocker) <= 2 for blocker in ordered)
+        score = (
+            cost + .08 * distance(view, goal)
+            + .05 * min(20, atlas["visits"].get(view, 0))
+            - .40 * min(3, revealed)
+        )
+        options.append((score, cost, view))
+    if not options:
+        nav["cooldown"] = step + 4
+        return None
+    _, cost, view = min(options)
+    watched = tuple(p for p in ordered if distance(view, p) <= 2)
+    duration = min(24, max(7, int(math.ceil(cost)) + 5))
+    nav["observation"] = (goal, watched, view, step, step + duration)
+    nav["observation_routes"] += 1
+    return view
+
+
+def choose_target(m, edges, distances, forecast):
+    start = m["pos"]
+    atlas, nav = m["atlas"], m["navigation"]
+    desired = 2 if m["keys"] < 2 else 4
+    remembered = [
+        p for p, cell in atlas["cells"].items()
+        if p != start and cell == desired
+    ]
+    reachable = [p for p in remembered if p in distances]
+
+    if reachable:
+        best = min(reachable, key=lambda p: (distances[p], p))
+        if desired == 2 and m["keys"] == 0 and len(reachable) > 1:
+            arrivals = breadth(edges, start)
+            doors = [p for p, cell in atlas["cells"].items() if cell in (3, 4)]
+            tours = []
+            for first in reachable:
+                onward_steps = breadth(edges, first)
+                onward_risk = route_risks(
+                    m, forecast,
+                    {p: arrivals.get(first, 0) + n for p, n in onward_steps.items()},
+                )
+                onward = shortest(m, edges, first, onward_risk)
+                for second in reachable:
+                    if second == first or second not in onward:
+                        continue
+                    tail = min((distance(second, p) for p in doors), default=0)
+                    tours.append((distances[first] + onward[second] + .6 * tail, first))
+            if tours:
+                best = min(tours)[1]
+        view = observation_goal(m, distances, [best])
+        return (view, "observe_route") if view is not None else (best, "goal")
+
+    if m["keys"] >= 2 and not m["door_open"]:
+        doors = [
+            p for p, cell in atlas["cells"].items()
+            if cell == 3 and p != start
+        ]
+        reachable_doors = [p for p in doors if p in distances]
+        if reachable_doors:
+            best = min(reachable_doors, key=lambda p: (distances[p], p))
+            view = observation_goal(m, distances, [best])
+            return (view, "observe_route") if view is not None else (best, "door")
+        remembered.extend(doors)
+
+    view = observation_goal(m, distances, remembered)
+    if view is not None:
+        return view, "observe_route"
+
+    frontier = {}
+    for p, cost in distances.items():
+        if p != start:
+            gain = view_gain(m, p)
+            if gain:
+                frontier[p] = (cost + .3) / math.sqrt(gain)
+    if frontier:
+        best = min(frontier, key=lambda p: (frontier[p], p))
+        old = nav["target"]
+        if (
+            nav["kind"] == "frontier" and old in frontier
+            and frontier[old] <= 1.15 * frontier[best]
+        ):
+            best = old
+        return best, "frontier"
+
+    alternatives = [p for p in distances if p != start]
+    if alternatives:
+        return min(alternatives, key=lambda p: (
+            .8 * min(20, atlas["visits"].get(p, 0))
+            + .18 * distances[p] - .18 * view_gain(m, p, True), p,
+        )), "patrol"
+    return start, "wait"
+
+
+def progress_pressure(m, target, geometry):
+    nav = m["navigation"]
+    route = geometry.get(m["pos"], 250)
+    if nav["progress_target"] != target:
+        nav["progress_target"] = target
+        nav["best_distance"] = route
+        # Target changes do not erase a prolonged lack of useful progress.
+    elif route < nav["best_distance"]:
+        nav["best_distance"] = route
+        nav["last_progress"] = m["step"]
+    idle = m["step"] - nav["last_progress"]
+    repeats = nav["recent"][-12:].count(m["pos"])
+    return min(1.0, max(
+        0.0,
+        (nav["stationary"] - 5) / 10.0,
+        (idle - 14) / 20.0,
+        (repeats - 5) / 6.0,
+    ))
+
+
+def control(m, forecast, edges, reverse, target, route_risk, distances):
+    nav, atlas = m["navigation"], m["atlas"]
+    start = m["pos"]
+    potential = shortest(m, reverse, target, route_risk, True)
+    geometry = breadth(reverse, target)
+    pressure = progress_pressure(m, target, geometry)
+    remaining = max(1, 200 - m["step"])
+    length = max(1.0, geometry.get(start, distances.get(target, 25.0)))
+    risk_weight = 100.0 * (.45 + .55 * min(1.0, remaining / (length + 10.0)))
+    risk_weight *= .55 + .45 * min(1.0, remaining / 30.0)
+
+    future_weights = (
+        0.0, 1.0,
+        .55 * (1.0 - .25 * pressure),
+        .25 * (1.0 - .35 * pressure),
+    )
+    uncertainty_weight = .30 * (1.0 - .35 * pressure)
+    recent = nav["recent"][-10:]
+    memo, stages = {}, {}
+
+    def stage(p, q, tick):
+        key = (p, q, tick)
+        if key in stages:
+            return stages[key]
+        if tick == 1:
+            probability = forecast["hazards"][1].get(q, 0.0)
+            uncertainty = forecast["uncertainty"][1].get(q, 0.0)
+        else:
+            probability, uncertainty = conditioned_risk(m, forecast, p, q, tick)
+        robust = clamp(probability + uncertainty_weight * uncertainty)
+        wait = .16 + .70 * pressure if p == q else 0.0
+        cost = (
+            1.0 + wait
+            + .08 * pressure * recent.count(q)
+            + .02 * min(10, atlas["visits"].get(q, 0))
+            + risk_weight * future_weights[tick] * log_risk(robust)
+        )
+        stages[key] = cost
+        return cost
+
+    def value(p, tick):
+        if p == target and target != start:
+            return 0.0
+        if tick > HORIZON:
+            return potential.get(p, 250.0)
+        key = p, tick
+        if key in memo:
+            return memo[key]
+        best = float("inf")
+        for q in [p] + edges.get(p, []):
+            if q not in potential:
+                continue
+            candidate = stage(p, q, tick) + value(q, tick + 1)
+            best = min(best, candidate)
+        memo[key] = best
+        return best
+
+    choices = []
+    for d in DIRECTIONS:
+        if not legal(m, start, d):
+            continue
+        q = add(start, d)
+        if q in m["enemies"]:
+            continue
+        score = stage(start, q, 1) + value(q, 2)
+        choices.append((
+            score,
+            forecast["hazards"][1].get(q, 0.0),
+            potential.get(q, 250.0),
+            d,
+        ))
+    if choices:
+        return min(choices)[3]
+    return (0, 0)
+
+
+def planner(memory, local_obs):
+    m = memory
+    forecast = (
+        m["forecast"] if local_obs.get("predictive_planning", True)
+        else build_forecast(m, predictive=False)
+    )
+    edges, reverse = navigation_graph(m)
+    arrivals = breadth(edges, m["pos"])
+    route_risk = route_risks(m, forecast, arrivals)
+    distances = shortest(m, edges, m["pos"], route_risk)
+    target, kind = choose_target(m, edges, distances, forecast)
+    m["navigation"]["target"], m["navigation"]["kind"] = target, kind
+    move = control(m, forecast, edges, reverse, target, route_risk, distances)
+    return {"move": [int(move[0]), int(move[1])], "interact": True}
+
+
+def export_model(memory, local_obs):
+    m = memory
+    dyn, atlas, nav = m["dynamics"], m["atlas"], m["navigation"]
+    forecast = m["forecast"]
+    return {
+        "enemy": [
+            [p[0], p[1], float(clamp(probability))]
+            for p, probability in sorted(forecast["prediction"].items())
+        ],
+        "default_enemy": 0.0,
+        "terrain": [
+            [p[0], p[1], int(cell), int(atlas["seen"][p])]
+            for p, cell in sorted(atlas["cells"].items())
+        ],
+        "position": list(m["pos"]),
+        "navigation": {
+            "target_kind": nav["kind"],
+            "observation_routes": nav["observation_routes"],
+            "last_progress": nav["last_progress"],
+            "last_task_progress": nav["last_task_progress"],
+        },
+        "learning": {
+            "updates": dyn["updates"],
+            "effective_updates": dyn["effective_updates"],
+            "attempted_movement_law": list(dyn["law"]),
+            "directions": [list(d) for d in DIRECTIONS],
+            "expert_weights": list(dyn["forecast_weights"]),
+            "slow_law": list(normalized(dyn["slow"])),
+            "fast_law": list(normalized(dyn["fast"])),
+            "forecast_horizon": HORIZON,
+            "max_local_disagreement": max(
+                (
+                    forecast["uncertainty"][1].get(p, 0.0)
+                    for p in m["local"]
+                    if distance(p, m["pos"]) <= 1
+                ),
+                default=0.0,
+            ),
+        },
+    }
+# EVOLVE-BLOCK-END

@@ -1,0 +1,127 @@
+<NAME>
+persistent_anonymous_enemy_filter
+</NAME>
+
+<DESCRIPTION>
+Carry enemy intensity between observations instead of rebuilding hidden enemies from a uniform density each turn. Condition the previous forecast on visible empty cells, remove visible enemies from hidden mass, and normalize the remainder to the unresolved enemy count. A small diffuse component permits recovery from terrain changes and approximation errors.
+
+Propagate this belief through the existing blocked-attempt kernels and use it in both forecasts and planning hazards. Maintain separate adaptive and uniform histories for the prediction-use intervention. This is an approximate anonymous intensity filter, with the existing overlap approximation retained. It aims to distinguish recently cleared passages from likely incoming threats; performance improvement remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    visible_free = sum(not solid(p) for p in m["visible"])
+    hidden_count = max(0, 3 - len(m["enemies"]))
+    density = hidden_count / float(max(45, 130 - visible_free))
+    candidates = set(m["map"])
+    x, y = m["pos"]
+    candidates.update(
+        (x + dx, y + dy)
+        for dx in range(-6, 7)
+        for dy in range(-6, 7)
+    )
+    initial_hidden = {
+        p: density
+        for p in candidates
+        if density > 0 and p not in m["visible"] and not solid(p)
+    }
+
+    expert_forecasts = []
+    expert_hazards = []
+    for law in laws:
+=======
+    # Each intervention maintains its own prediction history. Conditioning
+    # on observations remains active even when dynamics learning is disabled.
+    filter_name = "adaptive" if predictive else "uniform"
+    filters = m.setdefault("enemy_filters", {})
+    previous_filter = filters.get(filter_name, {})
+    consecutive = previous_filter.get("step") == m["step"] - 1
+    prior = previous_filter.get("next", {}) if consecutive else {}
+
+    hidden_count = max(0, 3 - len(m["enemies"]))
+    candidates = set(m["map"])
+    candidates.update(prior)
+    left, right, top, bottom = m["bounds"]
+    x, y = m["pos"]
+    xs = range(left + 1, right) if left is not None else range(x - 6, x + 7)
+    ys = range(top + 1, bottom) if top is not None else range(y - 6, y + 7)
+    candidates.update((px, py) for px in xs for py in ys)
+    hidden_cells = {
+        p for p in candidates
+        if abs(p[0]) <= 13 and abs(p[1]) <= 13
+        and p not in m["visible"] and not solid(p)
+    }
+    density = hidden_count / float(max(1, len(hidden_cells)))
+
+    if previous_filter.get("step") == m["step"]:
+        initial_hidden = dict(previous_filter["hidden"])
+    elif hidden_count and hidden_cells:
+        # Negative observations remove mass, including mass at newly
+        # observed enemy locations: those locations become explicit sources.
+        retained = {
+            p: prior.get(p, 0.0) for p in hidden_cells
+        }
+        total = sum(retained.values())
+        if total > 1e-12:
+            scale = .97 * hidden_count / total
+            initial_hidden = {
+                p: scale * retained[p] + .03 * density
+                for p in hidden_cells
+            }
+        else:
+            initial_hidden = {p: density for p in hidden_cells}
+    else:
+        initial_hidden = {}
+
+    expert_forecasts = []
+    expert_hazards = []
+    next_intensity = {}
+    for law, expert_weight in zip(laws, weights):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            cells = set(no_occupancy).union(hidden, next_hidden, m["map"])
+            occupancy, collision_risk = {}, {}
+=======
+            if tick == 1:
+                # Preserve expected counts, not occupancy probabilities.
+                # Visible sources and unresolved intensity together form
+                # the next observation's prior, with no extra diffuse copy.
+                for distribution in [next_hidden] + next_sources:
+                    for p, mass in distribution.items():
+                        next_intensity[p] = (
+                            next_intensity.get(p, 0.0)
+                            + expert_weight * mass
+                        )
+
+            cells = set(no_occupancy).union(hidden, next_hidden, m["map"])
+            occupancy, collision_risk = {}, {}
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    return risk, hazards, disagreement, 1.0 - math.exp(-density)
+
+
+def world_model_step(memory, local_obs, last_action):
+=======
+    filters[filter_name] = {
+        "step": m["step"],
+        "hidden": initial_hidden,
+        "next": next_intensity,
+    }
+    return risk, hazards, disagreement, 1.0 - math.exp(-density)
+
+
+def world_model_step(memory, local_obs, last_action):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "forecast_horizon": HORIZON,
+            "max_local_disagreement": max(
+=======
+            "forecast_horizon": HORIZON,
+            "filtered_hidden_mass": sum(
+                m.get("enemy_filters", {}).get(
+                    "adaptive", {}
+                ).get("hidden", {}).values()
+            ),
+            "max_local_disagreement": max(
+>>>>>>> REPLACE
+</DIFF>

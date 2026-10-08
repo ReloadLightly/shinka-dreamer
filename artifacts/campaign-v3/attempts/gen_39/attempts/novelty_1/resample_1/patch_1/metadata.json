@@ -1,0 +1,15 @@
+{
+  "generation": 39,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 3,
+  "patch_name": "safe_target_continuation",
+  "patch_description": "Intermediate targets currently terminate lookahead, hiding danger immediately after collecting a key or reaching a frontier. Replace that cutoff with a short survival continuation conditioned on reaching the target alive. Target completion removes the routing potential once; subsequent actions assess collision risk without repeatedly rewarding arrival. The continuation tracks collected keys and door interactions within each branch, while actual escape remains terminal. This preserves the existing immediate collision safeguards and learned movement law. Performance gains require evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:37:17.110244",
+  "llm_cost": 0.363718,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_39/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

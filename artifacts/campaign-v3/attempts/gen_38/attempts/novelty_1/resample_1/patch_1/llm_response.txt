@@ -1,0 +1,202 @@
+<NAME>
+arrival_time_risk_planning
+</NAME>
+
+<DESCRIPTION>
+Replace discounted three-step control with eight-step space-time planning. The current controller can repeatedly postpone a dangerous crossing because the same collision becomes cheaper when imagined several steps later. Charge survival risk consistently across the planning horizon, and compute the terminal route using predicted future occupancy instead of freezing current enemy positions. This should help distinguish a crossing that will clear from one requiring a detour. Cache navigation edges and avoid duplicate enemy propagation to limit computation. Learning, exported next-step predictions, and the prediction-use intervention remain separate. This proposal has not been evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _forecast(m, law, horizon=3):
+=======
+def _forecast(m, law, horizon=8):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        no_occupancy = {}
+        no_collision = {}
+        for previous in visible_distributions:
+            following = spread(previous)
+=======
+        no_occupancy = {}
+        no_collision = {}
+        next_visible_distributions = []
+        for previous in visible_distributions:
+            following = spread(previous)
+            next_visible_distributions.append(following)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        visible_distributions = [spread(d) for d in visible_distributions]
+=======
+        visible_distributions = next_visible_distributions
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    forecasts, hazards, default = _forecast(m, m["law"])
+    m["risk"], m["hazards"], m["default_enemy"] = forecasts[1], hazards, default
+=======
+    forecasts, hazards, default = _forecast(m, m["law"])
+    m["forecasts"] = forecasts
+    m["risk"], m["hazards"], m["default_enemy"] = forecasts[1], hazards, default
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+    m = memory
+    if local_obs.get("predictive_planning", True):
+        risk, hazards = m["risk"], m["hazards"]
+    else:
+        # Prediction-use intervention retains the same control algorithm,
+        # replacing only the inferred movement law.
+        forecasts, hazards, _ = _forecast(m, UNIFORM)
+        risk = forecasts[1]
+    distances = _distances(m, m["pos"], risk)
+    target, kind = _choose_target(m, distances)
+    m["target"], m["target_kind"] = target, kind
+    potential = _distances(m, target, risk, reverse=True)
+    remaining = max(1, 200 - m["step"])
+    route_length = max(1.0, distances.get(target, 1.0))
+    risk_weight = 100.0 * (
+        .55 + .45 * min(1.0, remaining / (route_length + 8.0))
+    )
+    future_weights = (0.0, 1.0, .55, .25)
+    memo = {}
+    def value(p, time):
+        if p == target and target != m["pos"]:
+            return 0.0
+        if time > 3:
+            return potential.get(p, 250.0)
+        key = (p, time)
+        if key in memo:
+            return memo[key]
+        best = float("inf")
+        for d in DIRECTIONS:
+            if not _legal(m, p, d):
+                continue
+            q = _add(p, d)
+            if time == 1 and q in m["enemies"]:
+                continue
+            hazard = hazards[time].get(q, 0.0)
+            survival_cost = -math.log(max(1e-7, 1.0 - hazard))
+            cost = (
+                1.0 + (.16 if d == (0, 0) else 0.0)
+                + .02 * min(10, m["visits"].get(q, 0))
+                + risk_weight * future_weights[time] * survival_cost
+                + value(q, time + 1)
+            )
+            if cost < best:
+                best = cost
+        memo[key] = best
+        return best
+    choices = []
+    for d in DIRECTIONS:
+        if not _legal(m, m["pos"], d):
+            continue
+        q = _add(m["pos"], d)
+        if q in m["enemies"]:
+            continue
+        hazard = hazards[1].get(q, 0.0)
+        score = (
+            1.0 + (.16 if d == (0, 0) else 0.0)
+            + .02 * min(10, m["visits"].get(q, 0))
+            + risk_weight * -math.log(max(1e-7, 1.0 - hazard))
+            + value(q, 2)
+        )
+        choices.append((score, hazard, potential.get(q, 250.0), d))
+    move = min(choices)[3] if choices else (0, 0)
+    return {"move": [move[0], move[1]], "interact": True}
+=======
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        forecasts, hazards = m["forecasts"], m["hazards"]
+    else:
+        # Replace only predictive dynamics, retaining the same controller.
+        forecasts, hazards, _ = _forecast(m, UNIFORM)
+    risk = forecasts[1]
+    distances = _distances(m, start, risk)
+    target, kind = _choose_target(m, distances)
+    m["target"], m["target_kind"] = target, kind
+    remaining = max(1, 200 - m["step"])
+    horizon = min(len(hazards) - 1, remaining)
+    route_length = max(1.0, distances.get(target, 1.0))
+    risk_weight = 100.0 * (
+        .55 + .45 * min(1.0, remaining / (route_length + 8.0))
+    )
+
+    # Cache the observed navigation graph once for all temporal layers.
+    graph, reverse = {}, {}
+    for p in distances:
+        edges = []
+        for d in DIRECTIONS:
+            q = _add(p, d)
+            if q in distances and _legal(m, p, d):
+                edges.append((q, d))
+                if q != p:
+                    reverse.setdefault(q, []).append(p)
+        graph[p] = edges
+
+    # Beyond the explicit temporal horizon, use a continuation route under
+    # the forecast at that time. Current visible enemies are not permanent
+    # obstacles or permanent surcharges in this future route.
+    terminal = {target: 0.0}
+    queue = [(0.0, target)]
+    tail_risk = forecasts[horizon]
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != terminal[p]:
+            continue
+        occupancy = min(1.0, max(0.0, tail_risk.get(p, 0.0)))
+        edge = (
+            1.0 + .025 * min(12, m["visits"].get(p, 0))
+            + 16.0 * -math.log(max(1e-7, 1.0 - occupancy))
+        )
+        for q in reverse.get(p, ()):
+            candidate = cost + edge
+            if candidate < terminal.get(q, float("inf")):
+                terminal[q] = candidate
+                heapq.heappush(queue, (candidate, q))
+
+    # Survival costs use the same scale at every time. A crossing therefore
+    # cannot become attractive solely by moving it to a discounted layer.
+    stage_cache, memo = {}, {}
+    def stage(q, waiting, time):
+        key = (q, waiting, time)
+        if key not in stage_cache:
+            hazard = min(1.0, max(0.0, hazards[time].get(q, 0.0)))
+            stage_cache[key] = (
+                1.0 + (.16 if waiting else 0.0)
+                + .02 * min(10, m["visits"].get(q, 0))
+                + risk_weight * -math.log(max(1e-7, 1.0 - hazard))
+            )
+        return stage_cache[key]
+
+    def value(p, time):
+        if p == target and target != start:
+            return 0.0
+        if time > horizon:
+            return terminal.get(p, 250.0)
+        key = (p, time)
+        if key not in memo:
+            memo[key] = min(
+                (
+                    stage(q, d == (0, 0), time) + value(q, time + 1)
+                    for q, d in graph.get(p, ())
+                ),
+                default=250.0,
+            )
+        return memo[key]
+
+    choices = []
+    for q, d in graph.get(start, ()):
+        # Agent movement precedes enemy movement.
+        if q in m["enemies"]:
+            continue
+        score = stage(q, d == (0, 0), 1) + value(q, 2)
+        choices.append((
+            score, hazards[1].get(q, 0.0),
+            terminal.get(q, 250.0), d
+        ))
+    move = min(choices)[3] if choices else (0, 0)
+    return {"move": [move[0], move[1]], "interact": True}
+>>>>>>> REPLACE
+</DIFF>

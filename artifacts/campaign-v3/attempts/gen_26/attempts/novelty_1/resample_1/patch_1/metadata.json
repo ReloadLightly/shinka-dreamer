@@ -1,0 +1,15 @@
+{
+  "generation": 26,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "bounded_safe_detours",
+  "patch_description": "Add short waypoint commitments when repeated position\u2013objective pairs indicate stalled progress. Compare safe approaches using predicted occupancy across three horizons and onward routes that avoid returning through the stalled cell. Cancel a commitment when its route becomes unsafe, its objective changes, or six steps elapse. Preserve immediate enemy exclusion, conditional hazard planning, and the dynamics learner. During recovery, retain the original safety pressure instead of progressively accepting more danger. This is an untested control improvement; the supplied results do not establish its benefit.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:24:30.841382",
+  "llm_cost": 0.513088,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_26/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

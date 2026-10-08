@@ -1,0 +1,145 @@
+<NAME>
+bounded_safe_detours
+</NAME>
+
+<DESCRIPTION>
+Add short waypoint commitments when repeated position–objective pairs indicate stalled progress. Compare safe approaches using predicted occupancy across three horizons and onward routes that avoid returning through the stalled cell. Cancel a commitment when its route becomes unsafe, its objective changes, or six steps elapse. Preserve immediate enemy exclusion, conditional hazard planning, and the dynamics learner. During recovery, retain the original safety pressure instead of progressively accepting more danger. This is an untested control improvement; the supplied results do not establish its benefit.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+            "directional_information": 0.0, "information_total": 0.0,
+=======
+            "directional_information": 0.0, "information_total": 0.0,
+            "route_history": [], "waypoint": None,
+            "detours": 0, "detour_cooldown": 0,
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+=======
+def recovery_potential(m, edges, target, geometry, forecast, route_risk):
+    start = m["pos"]
+    objective = (target, m["keys"], m["door_open"])
+    history = [
+        item for item in m["route_history"]
+        if m["step"] - item[0] <= 11
+    ]
+    history.append((m["step"], start, objective))
+    m["route_history"] = history
+    repeated = sum(
+        p == start and goal == objective for _, p, goal in history
+    )
+
+    active = m["waypoint"]
+    if active is not None:
+        point, goal, deadline = active
+        if (goal != objective or m["step"] >= deadline
+                or point == start or point not in edges):
+            m["waypoint"] = None
+            m["detour_cooldown"] = m["step"] + 3
+            active = None
+
+    trigger = (
+        repeated >= 4 and m["stall"] >= 3
+        and m["step"] >= m["detour_cooldown"]
+        and m["step"] < 188
+    )
+    if active is None and not trigger:
+        return None
+
+    # A waypoint is a temporary route commitment, never a safety override.
+    # Use the planner's own expert forecasts, preserving its intervention.
+    fields = forecast[0]
+    danger = {
+        p: max(field.get(p, forecast[2]) for field in fields[:3])
+        for p in edges
+    }
+    safe = {
+        p for p in edges
+        if p not in m["enemies"] and danger[p] <= .055
+    }
+    safe.add(start)
+    safe_edges = {
+        p: [q for q in edges.get(p, ()) if q in safe]
+        for p in safe
+    }
+    local_risk = {
+        p: max(route_risk.get(p, 0.0), 4.0 * danger[p])
+        for p in safe
+    }
+
+    if active is not None:
+        point = active[0]
+        if point in safe:
+            guide = paths(safe_edges, point, m, local_risk, True)
+            if start in guide:
+                return guide
+        m["waypoint"] = None
+        m["detour_cooldown"] = m["step"] + 3
+        return None
+
+    # Require an onward route that does not immediately return through the
+    # stalled cell. This rejects attractive but useless side chambers.
+    onward_edges = {
+        p: [q for q in neighbors if q != start]
+        for p, neighbors in edges.items() if p != start
+    }
+    onward = geometric_distances(onward_edges, target)
+    approach = breadth_distances(safe_edges, start)
+    costs = paths(safe_edges, start, m, local_risk)
+    direct = geometry.get(start, 225)
+    candidates = []
+    for point, steps in approach.items():
+        if not 2 <= steps <= 4 or point not in onward:
+            continue
+        tail = onward[point]
+        if steps + tail > direct + 8:
+            continue
+        recent_visits = sum(p == point for _, p, _ in history)
+        score = costs[point] + tail + 24.0 * danger[point]
+        score += .20 * min(12, m["visits"].get(point, 0))
+        score += 1.5 * recent_visits
+        candidates.append((score, point))
+
+    if not candidates:
+        m["detour_cooldown"] = m["step"] + 3
+        return None
+    point = min(candidates)[1]
+    m["waypoint"] = (point, objective, m["step"] + 6)
+    m["detours"] += 1
+    return paths(safe_edges, point, m, local_risk, True)
+
+
+def planner(memory, local_obs):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    pressure = max(12.0, pressure)
+
+    choices = []
+=======
+    pressure = max(12.0, pressure)
+
+    detour = recovery_potential(
+        m, edges, target, geometry, forecast, route_risk
+    )
+    if detour is not None:
+        potential = detour
+        # Recovery changes the route rather than spending the safety margin
+        # merely because waiting has accumulated.
+        pressure = min(72.0, max(15.0, 1.5 * slack))
+
+    choices = []
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "route_background": m["route_background"],
+            "near_expert_disagreement": max(
+=======
+            "route_background": m["route_background"],
+            "safe_detours": m["detours"],
+            "recovery_waypoint": (
+                list(m["waypoint"][0])
+                if m["waypoint"] is not None else None
+            ),
+            "near_expert_disagreement": max(
+>>>>>>> REPLACE
+</DIFF>

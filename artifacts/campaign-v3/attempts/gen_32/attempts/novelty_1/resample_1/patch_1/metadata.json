@@ -1,0 +1,15 @@
+{
+  "generation": 32,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 9,
+  "patch_name": "door_state_branch_planning",
+  "patch_description": "Carry door state through each planning branch. Interaction opens the door before movement only when the simulated agent has both keys and is cardinally adjacent; subsequent enemy transitions and diagonal legality use that resulting state. Cache separate enemy kernels for open and closed doors, and account for keys collected along simulated paths. Retain the existing always-interact policy.\n\nStore the observed preceding door state separately from the forecast state. Learn opening transitions using the confirmed resulting door state, avoiding attribution of newly legal enemy movements to a change in movement law. This targets transition-model errors without changing the objective or predictive interventions. Performance improvement remains untested.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:05:05.465483",
+  "llm_cost": 0.430678,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_32/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

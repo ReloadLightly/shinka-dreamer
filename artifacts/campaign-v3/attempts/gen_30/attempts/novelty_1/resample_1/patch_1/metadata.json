@@ -1,0 +1,15 @@
+{
+  "generation": 30,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "door_history_planner",
+  "patch_description": "Makes door opening an explicit action-dependent state transition. Movement legality, enemy kernels, survival conditioning, and timed route memoization carry the opening history. The learner retains the preceding door state and accepts explained opening transitions; exported forecasts reflect the selected action. Existing anonymous movement-law learning and separate learning/planning interventions are preserved. These changes target inconsistent door forecasts and unsafe continuations; performance gains remain to be measured.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:51:49.000184",
+  "llm_cost": 1.052938,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_30/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -1,0 +1,351 @@
+# INDIVIDUAL PROGRAM SUMMARIES
+
+The following are summaries of individual programs evaluated since the last meta update:
+
+The following are summaries of individual programs evaluated since the last meta update:
+
+**Program Name: Online Occupancy Learning with Risk-Aware Dijkstra Planning**
+- **Implementation**: Accumulates terrain and learns horizon-one enemy occupancy probabilities from anonymous local features using prior-smoothed counts, without forgetting older observations. Eight-direction Dijkstra planning combines movement, predicted risk and revisit costs, prioritizes keys and exit/door goals, explores frontiers, and waits when the next move is substantially riskier.
+- **Performance**: Passed all validation tests with task score 0.799 across 72 development episodes, 77.8% escape, 20.8% death, 1.875 keys per episode, and 54.34 steps per successful escape.
+- **Feedback**: Occupancy Brier losses modestly outperform supplied audit baselines, but sparse occupancy and absent comparative control results prevent attributing escape performance to learning. Stationary-regime escape is weakest at 70.8%; cumulative updates lack an explicit adaptation mechanism for switching dynamics, and only 14 switch episodes actually encountered a switch.
+**Program Identifier:** Generation 0 - Patch Name initial_program - Correct Program: 1
+
+**Program Name: Adaptive Enemy Prediction with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a timestamped terrain map and learns nine enemy movement-attempt probabilities using decayed, smoothed counts and probabilistic assignments that account for blocked moves and partial visibility. Two-step occupancy forecasts guide risk-weighted Dijkstra routing, key/door/exit targeting, frontier exploration, and stale-map revisits.
+- **Performance**: Across 72 development episodes, achieved 0.917 task fitness, 91.7% escape, 6.9% death, zero invalid actions, and 58.95 steps per successful escape; all validation tests passed.
+- **Feedback**: Near-cell Brier loss improved over the reported baseline (0.00938 versus 0.01500), while audit improvement was smaller under sparse occupancy; these diagnostics do not establish a control benefit from learning. Stationary-law escape was weakest at 87.5%, compared with 91.7% uniform and 95.8% switching, identifying stationary-law navigation and survival as improvement targets.
+**Program Identifier:** Generation 1 - Patch Name anonymous_motion_survival - Correct Program: 1
+
+**Program Name: Bayesian Enemy Dynamics with Risk-Aware Horizon Planning**
+- **Implementation**: Maintains a terrain map and a Bayesian mixture over 113 enemy movement laws, using collision-aware, partially observed transition likelihoods and posterior mixing to accommodate changes. Combines visible-enemy forecasts with unseen-enemy intensity estimates, key-tour and exploration targeting, and five-step planning that balances collision risk against travel time.
+- **Performance**: Achieved 0.8703 task fitness across 72 development episodes, with 86.1% escape, 5.6% death, 8.3% timeout, 1.97 keys per episode, and 73.61 steps per successful escape; all validation tests passed with zero invalid actions.
+- **Feedback**: Occupancy Brier losses improved over supplied baseline and persistence diagnostics, while escape reached 91.7% under switching dynamics versus 83.3% in each other regime. These results support predictive accuracy but do not establish a causal control benefit from learning; remaining priorities are reducing deaths, timeouts, and escape time.
+**Program Identifier:** Generation 2 - Patch Name censored_bayes_survival - Correct Program: True
+
+**Program Name: Anonymous Motion Learning with Risk-Aware Horizon Planning**
+- **Implementation**: Learns enemy attempted-movement distributions from anonymous occupancy using exact likelihoods, mixing uniform, persistent, and responsive experts with decayed counts. Maintains a timestamped map, propagates visible enemies and estimated hidden occupancy four steps, and combines risk-weighted shortest paths with finite-horizon collision avoidance and frontier exploration.
+- **Performance**: Achieved 0.898 task fitness across 72 development episodes, with 90.3% escape, 4.2% death, 5.6% timeout, 95.6 steps per escape, and no invalid actions; all validation tests passed.
+- **Feedback**: Escape reached 100% under uniform dynamics and 91.7% under switching dynamics, but stationary dynamics remained weakest at 79.2%. Occupancy Brier losses improved modestly over audit baselines and more clearly nearby, although these diagnostics alone do not establish that predictive learning improves control.
+**Program Identifier:** Generation 3 - Patch Name anonymous_motion_lookahead - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Risk-Aware Receding-Horizon Planning**
+- **Implementation**: Learns anonymous enemy movements through exact occupancy likelihoods, combining uniform, slow, and fast adaptive predictors while accounting for blocked attempts and censored observations. Persistent terrain mapping supports risk-weighted shortest paths, frontier exploration, and three-step planning using visible-enemy forecasts and diffuse unseen-enemy risk.
+- **Performance**: Achieved 0.9509 task fitness across 72 development episodes, with 95.83% escape, zero deaths or invalid actions, 4.17% timeouts, and 65.78 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape reached 100% under uniform dynamics, 91.67% under stationary dynamics, and 95.83% under switching dynamics, leaving completion and efficiency as improvement targets. Near-cell Brier loss improved over the reported baseline (0.00761 versus 0.01134), but these diagnostics alone do not establish adaptive learning or a causal control benefit.
+**Program Identifier:** Generation 4 - Patch Name anonymous_law_safe_horizon - Correct Program: True
+
+**Program Name: Adaptive Enemy Motion Learning with Risk-Aware Dijkstra Planning**
+- **Implementation**: Maintains a displacement-localized terrain map and learns nine-direction enemy motion probabilities using decayed counts, smoothing, and fractional evidence for blocked attempts, skipping ambiguous observations and geometry-change boundaries. Forecasts one-step occupancy for risk-weighted Dijkstra routing toward keys, doors, exits, or exploration frontiers, with visit penalties and risk-based waiting.
+- **Performance**: Scored 0.891 across 72 development episodes, achieving 88.9% escape, 8.3% death, 2.8% timeout, 1.92 keys on average, and 52.64 steps per escape, with zero invalid actions and all validation tests passing.
+- **Feedback**: Escape reached 91.7% in uniform and switching regimes but 83.3% under stationary dynamics, making stationary performance the clearest weakness. Occupancy Brier losses improved over reported baselines, but sparse audit occupancy and limited post-switch exposure constrain interpretation; these results alone do not establish adaptive prediction or a control benefit from learning.
+**Program Identifier:** Generation 5 - Patch Name censored_motion_learning - Correct Program: True
+
+**Program Name: Anonymous Dynamics Learning with Survival-Conditioned Beam Planning**
+- **Implementation**: Learns enemy attempted-movement laws from exact anonymous occupancy likelihoods, mixing uniform, persistent, and responsive experts with decaying counts while modeling blocked attempts as stays. Combines remembered terrain and risk-weighted goal/frontier selection with four-step beam planning, conditioning visible-enemy beliefs on path survival and approximating unseen-enemy hazards.
+- **Performance**: Across 72 development episodes, achieved 0.7802 task fitness, 76.4% escape, 8.3% death, 15.3% timeout, 1.94 keys per episode, and 132.8 steps per successful escape, with zero invalid actions and all validation tests passing.
+- **Feedback**: Escape was strongest under uniform dynamics (91.7%), falling to 66.7% under stationary unknown laws and 70.8% under switching laws, identifying these regimes and escape efficiency as improvement priorities. Near-cell Brier loss improved over the supplied baseline (0.00293 versus 0.00462), while audit improvement was small (0.01592 versus 0.01647); these diagnostics alone do not establish that predictive learning improved control.
+**Program Identifier:** Generation 6 - Patch Name survival_conditioned_beam - Correct Program: True
+
+**Program Name: Multiscale Enemy Learning with Survival-Conditioned Planning**
+- **Implementation**: Combines uniform, slow-decaying, and fast-decaying enemy movement models, updating mixture weights and directional counts from ambiguous observations while accounting for blocked attempts and censoring. Maintains terrain memory and unseen-enemy density, then combines risk-weighted routing, key-tour selection, exploration, and two-step survival-conditioned collision planning.
+- **Performance**: Achieved 0.9138 task fitness across 72 development episodes, with 91.7% escape, 6.9% death, 1.4% timeout, 1.94 keys per episode, and 60.97 steps per successful escape; all validation tests passed with no invalid actions.
+- **Feedback**: Escape reached 95.8% in both uniform and switching regimes but fell to 83.3% under stationary dynamics, making stationary-law robustness the clearest improvement target. Audit and near-cell Brier losses improved over supplied baselines, but these diagnostics alone do not establish adaptive learning or causal control benefit; only 18 switching episodes encountered a switch.
+**Program Identifier:** Generation 7 - Patch Name adaptive_law_progress - Correct Program: True
+
+**Program Name: Online Motion Learning with Temporal Risk Planning**
+- **Implementation**: Maintains a persistent terrain map and learns nine attempted enemy movement probabilities using decayed counts, smoothing, and ambiguity-weighted updates that account for blocked attempts. Risk-weighted Dijkstra selects objectives, while a three-step temporal planner considers waiting, enemy occupancy before and after movement, and terminal route costs.
+- **Performance**: Scored 0.8598 across 72 development episodes, with 84.7% escape, 15.3% death, 1.93 keys per episode, 50.39 average steps, and no timeouts or invalid actions.
+- **Feedback**: All validation tests passed; escape reached 87.5% in stationary and switching regimes versus 79.2% under uniform motion. Near-cell Brier loss improved over the supplied baseline (0.0060 versus 0.0090), but sparse audit occupancy and only 39 post-switch visible-enemy steps limit adaptation claims, and these results alone do not establish a control benefit from learning.
+**Program Identifier:** Generation 8 - Patch Name survival_lookahead - Correct Program: True
+
+**Program Name: Adaptive Enemy Forecasting with Stall Recovery**
+- **Implementation**: Maintains a displacement-localized terrain map and learns nine attempted enemy motions using decayed, smoothed evidence from unambiguous observed transitions, accounting for blocked attempts. Risk-weighted Dijkstra planning pursues keys, doors, exits, and exploration frontiers; stalls trigger three-step hazard-aware planning with repetition penalties.
+- **Performance**: Achieved 0.891 task fitness across 72 development episodes, with 88.9% escape, 8.3% death, 2.8% timeout, 1.92 mean keys, and 52.77 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape reached 91.7% in uniform and switching regimes but 83.3% under stationary dynamics, identifying the weakest condition. Prediction losses improved over reported baselines, but sparse occupancy and only 58 post-switch visible-enemy steps limit adaptation evidence; these diagnostics alone do not establish a control benefit from learning or recovery.
+**Program Identifier:** Generation 9 - Patch Name bounded_safe_detour_recovery - Correct Program: True
+
+**Program Name: Adaptive Enemy Dynamics with Survival-Conditioned Planning**
+- **Implementation**: Learns enemy movement through a weighted mixture of uniform, slow, and fast models, using anonymous transition likelihoods that account for blocked attempts and partial visibility; sustained surprise triggers fast-model recovery. Combines persistent terrain memory and unseen-enemy density with risk-weighted routing and survival-conditioned two-step planning toward keys, doors, exits, and exploration targets.
+- **Performance**: Across 72 development episodes, achieved 0.9138 task fitness, 91.7% escape, 6.9% death, zero invalid actions, and 60.97 steps per successful escape; escape was 95.8% in uniform and switching regimes versus 83.3% in stationary regimes.
+- **Feedback**: Passed all validation tests, with occupancy Brier losses below persistence baselines on audit, nearby, and threat targets, although these diagnostics do not establish a causal control benefit from learning. Stationary dynamics remain the main observed weakness; switching results include only 18 episodes that actually encountered a switch.
+**Program Identifier:** Generation 10 - Patch Name surprise_triggered_fast_recovery - Correct Program: True
+
+**Program Name: Adaptive Motion Ensemble with Risk-Aware Planning and Recovery**
+- **Implementation**: Learns anonymous enemy motion using uniform, slow-adapting, and fast-adapting experts, marginalizing possible associations and treating blocked attempts as stays. Combines three-step collision forecasts with risk-weighted pathfinding, persistent terrain memory, frontier exploration, and temporary recovery waypoints to escape navigation cycles.
+- **Performance**: Achieved 0.93 combined score across 72 development episodes, with 93.1% escape, 2.8% death, 4.2% timeout, 66.13 steps per successful escape, and no invalid actions; all validation tests passed.
+- **Feedback**: Escape reached 95.8% in uniform and switching regimes but fell to 87.5% under stationary dynamics, identifying the main improvement opportunity. Near-cell Brier loss was 0.00739 versus baseline 0.01074, but these diagnostics alone do not establish that adaptive learning improved control; causal benefit requires intervention comparisons.
+**Program Identifier:** Generation 11 - Patch Name adaptive_safe_detours - Correct Program: True
+
+**Program Name: Online Movement Learning with Survival-Conditioned Beam Planning**
+- **Implementation**: Maintains a timestamped terrain map and learns a shared nine-action enemy movement distribution using decayed, smoothed counts and probabilistic assignment of partially observed transitions, accounting for blocked attempts and skipping wall-change boundaries. Risk-weighted Dijkstra routes guide key, door, exit and exploration targets, while three-step beam planning conditions enemy forecasts on surviving earlier actions and falls back to minimizing immediate collision risk.
+- **Performance**: Achieved task fitness 0.9066 across 72 development episodes, with 90.3% escape, 8.3% death, 1.4% timeout, zero invalid actions, 1.97 keys per episode and 57.08 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape rates were 91.7% for uniform, 83.3% for stationary and 95.8% for switching dynamics, making stationary conditions the clearest improvement target. Near-cell Brier loss beat persistence (0.00885 versus 0.01307), but these prediction diagnostics do not establish a causal control benefit; 65.9% map coverage also limits overall reconstruction despite accurate visible and previously observed terrain.
+**Program Identifier:** Generation 12 - Patch Name survival_conditioned_three_step_search - Correct Program: True
+
+**Program Name: Adaptive Enemy Forecasting with Risk-Aware Routing and Recovery**
+- **Implementation**: Maintains a timestamped terrain map and learns nine-direction enemy movement probabilities through decayed, smoothed counts and probabilistic assignment of partially observed transitions, accounting for blocked attempts and skipping wall-change transitions. Two-step occupancy forecasts guide risk-weighted routing, key/door/exit targeting, frontier exploration, and temporary recovery waypoints when progress stalls.
+- **Performance**: Achieved 0.917 task fitness and 91.7% escape across 72 development episodes, with 5.6% deaths, 2.8% timeouts, 58.5 steps per successful escape, zero invalid actions, and all validation tests passing.
+- **Feedback**: Near-cell Brier loss was 0.0091 versus 0.0137 for persistence, while audit improvement was smaller against sparse occupancy baselines; these diagnostics alone do not establish a control benefit from learning. Escape reached 95.8% in switching conditions but 87.5% under stationary laws, making stationary-condition reliability a remaining weakness; no ablation isolates the recovery mechanism’s contribution.
+**Program Identifier:** Generation 13 - Patch Name bounded_observation_detours - Correct Program: True
+
+**Program Name: Adaptive Motion Ensemble with Risk-Aware Recovery Planning**
+- **Implementation**: Maintains a persistent terrain map and learns enemy attempted-movement laws using uniform, slow-decaying, and fast-decaying experts, with likelihood-based weighting and blocked attempts modeled as staying. Risk-weighted Dijkstra navigation seeks keys, doors, exits, and exploration frontiers; threats or stalls trigger three-step planning with expert-disagreement penalties.
+- **Performance**: Achieved 0.903 task fitness and 90.3% escape across 72 development episodes, with 6.9% deaths, 2.8% timeouts, 58.83 steps per successful escape, and all validation tests passing.
+- **Feedback**: Escape reached 95.8% under uniform dynamics and 91.7% under switching dynamics, but fell to 83.3% under stationary dynamics. Audit and nearby Brier losses improved over supplied baselines, though sparse occupancy and absent control ablations prevent attributing escape performance to predictive learning.
+**Program Identifier:** Generation 14 - Patch Name adaptive_expert_threat_planning - Correct Program: True
+
+**Program Name: Multiscale Enemy Learning with Survival-Conditioned Planning**
+- **Implementation**: Learns enemy movement attempts through a mixture of uniform, slow-decaying, and fast-decaying models, using likelihoods that account for blocked moves, ambiguous enemy identities, and partial visibility. Combines visible-enemy forecasts with an unseen-enemy density field, then uses risk-weighted shortest paths and two-step survival-conditioned planning with key collection, exploration, and stall-sensitive risk tolerance.
+- **Performance**: Achieved task fitness 0.9000 across 72 development episodes, with 90.28% escape, 8.33% death, 1.39% timeout, 1.92 keys per episode, and 61.38 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape rates were 100% under uniform dynamics, 79.17% under stationary dynamics, and 91.67% under switching dynamics, identifying stationary movement laws as the main weakness. Audit and nearby occupancy Brier losses improved over supplied baselines, but these diagnostics alone do not establish that learning caused better control outcomes.
+**Program Identifier:** Generation 15 - Patch Name persistent_bounded_enemy_belief - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Survival-Conditioned Planning**
+- **Implementation**: Combines uniform, slow-decay, and fast-decay enemy movement models, learning from ambiguous observations while accounting for blocked attempts and censoring. Maintains hidden-enemy occupancy estimates and uses risk-weighted routing with two-step survival-conditioned planning, key collection objectives, and stall-sensitive risk tolerance.
+- **Performance**: Achieved 0.912 task fitness across 72 development episodes, with 91.7% escapes, 6.9% deaths, 62.7 steps per escape, 0.00947 near-cell Brier loss, and all validation tests passing.
+- **Feedback**: Escape rates reached 95.8% in both uniform and switching regimes but fell to 83.3% under stationary unknown dynamics, identifying the main weakness. Near-cell predictions outperformed supplied baselines, but sparse occupancy affects loss interpretation, and these results alone do not establish that learning improved control.
+**Program Identifier:** Generation 16 - Patch Name survival_conditioned_expert_risk - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Survival-Aware Planning**
+- **Implementation**: Learns enemy attempted movements through visibility-constrained transition matching, combining uniform, slow-decaying, and fast-decaying experts with evidence-weighted updates and surprise-triggered fast-model rebuilding. Propagates visible enemy distributions and unseen-enemy density, then combines risk-weighted routing, key/door objectives, frontier exploration, and two-step survival-conditioned planning.
+- **Performance**: Passed all validation tests with zero invalid actions; achieved 0.925 task fitness, 93.1% escape, 5.6% death, 1.4% timeout, 1.96 keys per episode, and 65.49 steps per successful escape across 72 development episodes.
+- **Feedback**: Escape reached 95.8% in uniform and switching regimes but 87.5% under stationary dynamics, making stationary performance the clearest weakness. Near-cell Brier loss improved over reported baselines, but destination loss essentially matched prevalence and near-cell loss increased after switches; these diagnostics alone do not establish that adaptive learning improved control.
+**Program Identifier:** Generation 17 - Patch Name surprise_recovery_safe_arrival - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Risk-Aware Lookahead**
+- **Implementation**: Learns anonymous enemy movement through association marginalization, combining uniform, slow, and fast forgetting experts with recoverable evidence weights. Propagates each expert through blocked-move geometry over three steps, then combines collision risk and disagreement with Dijkstra navigation, exploration, and anti-stalling pressure.
+- **Performance**: Achieved 0.9508 task fitness across 72 development episodes, with 95.83% escape, zero deaths or invalid actions, 2.00 keys on average, and 66.23 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape rates were 100% under uniform dynamics, 91.67% under stationary dynamics, and 95.83% under switching dynamics, leaving timeouts as the observed failure mode. Near-cell Brier loss improved over the supplied baseline (0.00764 versus 0.01138), but prediction diagnostics alone do not establish a causal control benefit; stationary-law completion and escape efficiency remain improvement targets.
+**Program Identifier:** Generation 18 - Patch Name plausible_expert_control - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Risk-Aware Observation Planning**
+- **Implementation**: Learns anonymous enemy movement through association marginalization and a mixture of uniform, slow-adapting, and fast-adapting experts, propagating each law over three steps with blocked attempts staying in place. Combines collision risk and expert disagreement with shortest-path guidance, stall recovery, frontier exploration, and targeted re-observation of stale passages.
+- **Performance**: Achieved 0.9508 task fitness across 72 development episodes, with 95.83% escape, zero deaths or invalid actions, 4.17% timeouts, 66.23 steps per escape, and 0.9887 model score.
+- **Feedback**: All validation tests passed; escape reached 100% under uniform dynamics, 91.67% under stationary dynamics, and 95.83% under switching dynamics, leaving stationary-case timeouts as the main completion weakness. Near-cell Brier loss improved over the reported baseline (0.00764 versus 0.01138), but these diagnostics alone do not establish adaptive learning or a causal control benefit.
+**Program Identifier:** Generation 19 - Patch Name targeted_bottleneck_observation - Correct Program: True
+
+**Program Name: Adaptive Enemy-Law Mixture with Risk-Aware Short-Horizon Planning**
+- **Implementation**: Integrates anonymous enemy associations to update slow and fast movement-law experts, mixes them with a uniform expert using predictive likelihoods, and initializes a restart expert after sustained change evidence. Terrain-aware three-step forecasts drive collision- and disagreement-sensitive planning, with key/exit targeting, frontier exploration, stale-map revisiting, and anti-stalling pressure.
+- **Performance**: Achieved 0.9508 task fitness across 72 development episodes, with 95.83% escape, zero deaths or invalid actions, 4.17% timeouts, 66.23 steps per escape, and 0.9887 model score.
+- **Feedback**: Passed all validation tests; escape rates were 100% for uniform, 91.67% for stationary, and 95.83% for switching dynamics, leaving timeout reduction and efficiency as the main opportunities. Near-cell Brier loss improved over the reported baseline (0.00764 versus 0.01138), but these diagnostics alone do not establish a control benefit from learning or isolate the restart mechanism’s contribution.
+**Program Identifier:** Generation 20 - Patch Name surprise_triggered_restart_expert - Correct Program: True
+
+**Program Name: Adaptive Mixture Dynamics with Arrival-Aware Risk Planning**
+- **Implementation**: Learns enemy movement attempts using uniform, slow-decaying, and fast-decaying models, accounting for blocked attempts and ambiguous observations; sustained surprise rebuilds the fast learner from recent evidence. Tracks visible enemies and unseen enemy density, combining four-horizon arrival-risk routing with survival-conditioned two-step planning, key collection, and frontier exploration.
+- **Performance**: Achieved task fitness 0.9358 and 94.44% escape across 72 development episodes, averaging 1.96 keys and 66.01 steps, with 5.56% deaths, no timeouts or invalid actions, and model score 0.9876.
+- **Feedback**: Passed all validation tests; escape was 95.83% in uniform and switching regimes but 91.67% in stationary regimes. Near-cell Brier loss improved over the supplied baseline (0.01079 versus 0.01582), although post-switch near-cell loss increased and these diagnostics alone do not establish adaptive learning or a causal planning benefit.
+**Program Identifier:** Generation 21 - Patch Name arrival_aware_routes - Correct Program: True
+
+**Program Name: Adaptive Enemy Dynamics Mixture with Survival-Aware Routing**
+- **Implementation**: Learns anonymous enemy attempted movements using ambiguity-weighted evidence, combining uniform, slow-memory, and fast-memory experts with sustained-surprise recovery. Tracks visible enemies and unseen occupancy, then combines four-horizon risk-weighted routing with two-step survival-conditioned action selection.
+- **Performance**: Achieved 0.9147 task fitness across 72 development episodes, with 91.7% escape, 6.9% death, 1.4% timeout, 1.96 keys per episode, and 63.23 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape rates were 95.8% under uniform dynamics, 87.5% under stationary dynamics, and 91.7% under switching dynamics, making stationary performance the clearest improvement target. Audit and near-cell Brier losses beat supplied baselines, but these diagnostics alone do not establish that adaptive learning improved control.
+**Program Identifier:** Generation 22 - Patch Name information_clocked_adaptation - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Time-Aware Risk Planning**
+- **Implementation**: Maintains a timestamped terrain map and learns enemy movement through uniform, slow, and fast experts using ambiguity-aware transition evidence; sustained surprise rebuilds the fast expert from recent observations. Combines visible-enemy tracks and hidden-enemy density with four-step risk forecasts, survival-conditioned two-step action evaluation, and key/door/frontier routing.
+- **Performance**: Achieved 0.938 task fitness and 94.4% escape across 72 development episodes, with 4.2% deaths, 1.4% timeouts, 64.62 steps per escape, zero invalid actions, and all validation tests passing.
+- **Feedback**: Escape reached 100% under uniform dynamics, 87.5% under stationary dynamics, and 95.8% under switching dynamics, making stationary performance the clearest improvement target. Audit and near-cell Brier losses improved over reported baselines, but sparse occupancy and the absence of intervention comparisons prevent attributing control success to predictive learning.
+**Program Identifier:** Generation 23 - Patch Name time_indexed_route_values - Correct Program: True
+
+**Program Name: Censored Motion Mixture Learning with Survival Beam Planning**
+- **Implementation**: Learns enemy attempted-motion laws through inclusion-exclusion occupancy likelihoods and information-weighted fractional updates to a changing mixture of Dirichlet hypotheses, retaining uniform probability for robustness. Combines persistent terrain mapping, risk-weighted routing, exploration and recovery waypoints with three-step beam planning that conditions enemy distributions on survival.
+- **Performance**: Achieved task score 0.9419 across 72 development episodes, with 94.44% escape, 5.56% death, no timeouts or invalid actions, 2.00 keys per episode, and 57.74 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape rates were 100% under uniform motion, 87.5% under stationary laws, and 95.83% under switching laws, making stationary dynamics the main observed weakness. Audit and near-cell Brier losses improved over reported baselines, but sparse occupancy and limited post-switch exposure constrain interpretation; these diagnostics alone do not establish a control benefit from learning.
+**Program Identifier:** Generation 24 - Patch Name censored_survival_search - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Survival-Aware Route Planning**
+- **Implementation**: Learns enemy attempted-movement laws from anonymous, partially observed transitions using uniform, persistent, and fast experts, adding a recovery expert after sustained predictive surprise while modeling blocked attempts as stays. Combines visible-enemy tracks and hidden-enemy density with four-horizon route forecasts, survival-conditioned two-step planning, and key/door/frontier targeting.
+- **Performance**: Achieved 0.936 task fitness and 94.4% escape across 72 development episodes, with 5.6% deaths, no timeouts or invalid actions, 1.96 keys per episode, 66.01 average steps, and 0.988 model score.
+- **Feedback**: Passed all validation tests; escape was 95.8% under uniform and switching dynamics versus 91.7% under stationary dynamics. Near-cell Brier loss improved over the reported baseline (0.0108 versus 0.0158), but worsened after switches; these diagnostics alone do not establish adaptation or a causal control benefit from learning.
+**Program Identifier:** Generation 25 - Patch Name informative_surprise_recovery_expert - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Survival-Aware Route Planning**
+- **Implementation**: Learns attempted enemy movements from anonymous, partially observed transitions using uniform, slow, and fast experts, adding a recovery expert after sustained predictive surprise while modeling blocked attempts as stays. Combines visible-enemy tracks and unseen-enemy density with four-horizon routing, two-step survival conditioning, key-tour selection, and temporary safe detours.
+- **Performance**: Achieved 0.9251 task fitness and 93.06% escape across 72 development episodes, with 5.56% deaths, 1.39% timeouts, 65.36 steps per escape, and all validation tests passing.
+- **Feedback**: Escape reached 95.83% in uniform and switching regimes but 87.5% under stationary dynamics, making stationary control the clearest improvement target. Audit and near Brier losses beat supplied baselines, but near loss increased after switches; these diagnostics alone do not establish adaptation or control benefit without ablations.
+**Program Identifier:** Generation 26 - Patch Name bounded_safe_detours - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Survival-Conditioned Lookahead**
+- **Implementation**: Learns enemy attempted-movement laws using uniform, slow-decay and fast-decay experts, ambiguity-aware transition evidence, and surprise-triggered fast-model rebuilding; blocked attempts remain stationary. Combines visible-enemy tracks with hidden-enemy density, four-horizon arrival-risk routing, and survival-conditioned local lookahead with a two-option third-step beam.
+- **Performance**: Achieved task fitness 0.9248 across 72 development episodes, with 93.1% escapes, 5.6% deaths, 1.4% timeouts, 1.96 keys per episode, 66.46 steps per escape, and all validation tests passing.
+- **Feedback**: Stationary dynamics were weakest at 87.5% escape versus 95.8% for uniform and switching regimes; 19 switching episodes actually encountered a switch. Audit/near Brier losses of 0.0149/0.0103 beat reported baselines, but these diagnostics alone do not establish adaptive-learning or control benefits without intervention comparisons.
+**Program Identifier:** Generation 27 - Patch Name conditioned_escape_tail - Correct Program: True
+
+**Program Name: Adaptive Motion Experts with Risk-Aware Recovery Planning**
+- **Implementation**: Maintains a displacement-aligned terrain map and combines uniform, slowly adapting, and rapidly adapting enemy-motion experts using likelihood-based weights, accounting for blocked attempts. Risk-weighted Dijkstra routing targets keys, exits, and exploration frontiers, with three-step recovery planning that tracks key collection, door-opening timing, and predictive uncertainty.
+- **Performance**: Achieved 0.903 task fitness and 90.3% escape across 72 development episodes, with 6.9% deaths, 2.8% timeouts, zero invalid actions, and 58.83 steps per successful escape.
+- **Feedback**: Passed all validation tests; escape rates were 95.8% under uniform motion, 83.3% under stationary laws, and 91.7% under switching laws, making stationary dynamics the clearest improvement target. Prediction errors were below the reported baseline on audit and nearby cells, but sparse occupancy and absent control ablations limit conclusions about learning’s contribution to escape performance.
+**Program Identifier:** Generation 28 - Patch Name door_schedule_conditioned_planning - Correct Program: True
+
+**Program Name: Adaptive Enemy Ensemble with Risk-Aware Observation Planning**
+- **Implementation**: Learns anonymous enemy movement through association marginalization and a fixed-share ensemble of uniform, slow, and fast forgetting models, accounting for blocked attempts staying in place. Three-step planning combines survival-conditioned collision risk, expert disagreement, risk-weighted routes, and targeted re-observation of stale passages.
+- **Performance**: Achieved 0.9375 task fitness and 94.4% escape across 72 development episodes, with 2.8% deaths, 2.8% timeouts, zero invalid actions, and 64.9 steps per successful escape; escape rates were 100% uniform, 87.5% stationary, and 95.8% switching.
+- **Feedback**: All validation tests passed; near-cell Brier loss was 0.00751 versus the reported baseline of 0.01121, while audit improvement was smaller (0.01547 versus 0.01664). Stationary dynamics remain the largest outcome weakness, and these diagnostics do not establish that adaptive prediction caused better control.
+**Program Identifier:** Generation 29 - Patch Name survival_conditioned_edges - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Door-Aware Risk Planning**
+- **Implementation**: Learns enemy attempted-movement laws using uniform, slow-decay and fast-decay experts, marginalizing ambiguous observations and blocked attempts, with surprise-triggered fast-model rebuilding. Combines visible-enemy tracks and unseen-enemy density with four-step door-aware routing and two-step survival-conditioned action evaluation.
+- **Performance**: Achieved 0.9269 task fitness and 93.1% escape across 72 development episodes, with 4.2% deaths, 2.8% timeouts, 63.5 steps per successful escape, and no invalid actions; all validation tests passed.
+- **Feedback**: Escape was strongest under uniform dynamics (100%) and switching dynamics (95.8%), with stationary dynamics the main weakness (83.3%). Audit and nearby occupancy Brier losses beat supplied baselines, but these diagnostics alone do not establish adaptive-learning or control benefits; post-switch nearby prediction remained less accurate than pre-switch prediction.
+**Program Identifier:** Generation 30 - Patch Name door_history_planner - Correct Program: True
+
+**Program Name: Adaptive Enemy Beliefs with Survival-Aware Route Planning**
+- **Implementation**: Learns attempted enemy movements from ambiguous observations using evidence-weighted uniform, slow-decay, and fast-decay estimators, explicitly treating blocked attempts as stays; spatial beliefs track unseen enemies within inferred board boundaries. Risk-weighted pathfinding and two-step survival-conditioned lookahead pursue keys, doors, exits, and exploration targets, with temporary recovery waypoints to escape repeated stalls.
+- **Performance**: Achieved task fitness 0.8923 across 72 development episodes, with 88.9% escape, 8.3% death, 2.8% timeout, zero invalid actions, 1.94 keys per episode, and 59.53 steps per successful escape; all validation tests passed.
+- **Feedback**: Near-cell Brier loss improved over the supplied baseline (0.00986 versus 0.01541), while audit improvement was smaller and post-switch near-cell loss increased to 0.01609, indicating remaining prediction limitations. Stationary-law escape was weakest at 83.3%, versus 91.7% for uniform and switching conditions; these diagnostics alone do not establish that adaptive prediction caused better control.
+**Program Identifier:** Generation 31 - Patch Name filtered_survival - Correct Program: True
+
+**Program Name: Adaptive Movement Learning with Survival-Conditioned Beam Planning**
+- **Implementation**: Maintains a timestamped terrain map and learns nine enemy movement-attempt probabilities through latent assignment enumeration, decayed counts, and blocked-move modeling, skipping observations around wall changes. Uses risk-weighted routing, key/exit and exploration targets, and three-action beam planning with branch-specific door states and enemy distributions conditioned on survival.
+- **Performance**: Achieved 0.9066 task fitness across 72 development episodes, with 90.3% escape, 8.3% death, 1.4% timeout, 57.1 steps per escape, 0.9875 model score, and all validation tests passing.
+- **Feedback**: Escape was strongest in switching conditions (95.8%) and weakest under stationary dynamics (83.3%), making stationary robustness the clearest improvement target. Near-cell Brier loss improved over the supplied baseline (0.00885 versus 0.01466), but sparse audit occupancy and the absence of a reported control ablation limit claims about adaptive prediction or its contribution to escape performance.
+**Program Identifier:** Generation 32 - Patch Name door_state_branch_planning - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Risk-Aware Observation Planning**
+- **Implementation**: Learns anonymous enemy motion using marginalized associations and a fixed-share mixture of uniform, slow, and fast forgetting experts, accounting for blocked attempts that stay in place. Filters hidden enemy intensity, propagates three-step collision forecasts, and combines risk-aware graph routing with short-horizon planning, stale-passage observation targets, and anti-stalling penalties.
+- **Performance**: Achieved 0.9148 task fitness and 91.7% escape across 72 development episodes, with 5.6% deaths, 2.8% timeouts, 1.96 keys per episode, 62.6 steps per escape, and no invalid actions.
+- **Feedback**: Passed all validation tests; escape reached 95.8% under uniform dynamics and 100% in switch conditions, while stationary dynamics remained weakest at 79.2%. Audit and nearby Brier losses improved over supplied baselines, but these diagnostics alone do not establish a causal control benefit from learning; only 19 of 24 switch episodes actually encountered a switch.
+**Program Identifier:** Generation 33 - Patch Name persistent_anonymous_enemy_filter - Correct Program: True
+
+**Program Name: Adaptive Enemy Tracking with Survival-Conditioned Lookahead**
+- **Implementation**: Maintains a timestamped terrain map and learns nine enemy movement-attempt probabilities through probabilistic assignment of partial observations, with decaying counts and blocked attempts modeled as stays. Risk-weighted paths guide exploration and stale bottleneck inspection, while three-action beam lookahead conditions enemy trajectories on survival.
+- **Performance**: Achieved 0.9066 task fitness across 72 development episodes, with 90.3% escape, 8.3% death, 1.4% timeout, 1.97 keys per episode, 57.1 steps per escape, and no invalid actions; all validation tests passed.
+- **Feedback**: Escape was strongest in switching conditions (95.8%) and weakest under stationary laws (83.3%), identifying stationary dynamics as the main improvement opportunity. Near-cell Brier loss improved over baseline (0.00885 versus 0.01466), but sparse occupancy and the absence of ablation evidence prevent attributing control gains to adaptive prediction.
+**Program Identifier:** Generation 34 - Patch Name stale_bottleneck_observation - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Door-Aware Risk Planning**
+- **Implementation**: Learns enemy attempted movements through censored transition likelihoods, combining uniform, slow-decaying, and fast-decaying models with surprise-triggered recovery. Tracks unseen enemy density and uses four-step door-aware forecasts, survival-conditioned two-step collision estimates, and targeted observation of stale bottlenecks to guide navigation.
+- **Performance**: Achieved 0.927 task fitness and 93.1% escape across 72 development episodes, with 4.2% deaths, 2.8% timeouts, zero invalid actions, and 63.75 steps per successful escape.
+- **Feedback**: Passed all validation tests; escape rates were 100% under uniform dynamics, 83.3% under stationary dynamics, and 95.8% under switching dynamics, making stationary performance the clearest improvement target. Occupancy Brier losses beat reported baselines overall, but nearby prediction worsened after switches, and these diagnostics alone do not establish a control benefit from learning.
+**Program Identifier:** Generation 35 - Patch Name stateful_bottleneck_observation - Correct Program: True
+
+**Program Name: Adaptive Motion Experts with Belief Filtering and Risk Planning**
+- **Implementation**: Learns attempted enemy movements from censored, anonymous observations using uniform, slow, and fast experts, with blocked attempts remaining stationary. Combines visible-enemy distributions and hidden-enemy intensity with four-step risk-aware planning, key/door/exit routing, frontier exploration, and penalties for repeated nonprogress.
+- **Performance**: Achieved 0.92 combined score and 91.7% escape across 72 episodes, with 6.9% deaths, 1.4% timeouts, no invalid actions, and 60.6 steps per successful escape; escape rates were 95.8% uniform, 79.2% stationary, and 100% switching.
+- **Feedback**: Passed all validation tests, and occupancy Brier losses improved over reported baseline and persistence diagnostics, although these results alone do not establish a control benefit from learning. Stationary dynamics remain the main weakness; switching results include only 18 episodes that encountered a switch, limiting conclusions about adaptation.
+**Program Identifier:** Generation 36 - Patch Name persistent_belief_navigation - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Risk-Aware Maze Planning**
+- **Implementation**: Learns anonymous enemy movement through occupancy-consistent latent assignments, combining uniform, slow-adapting, and fast-adapting movement models with explicit blocked-attempt handling. Three-step forecasts propagate visible enemies and hidden density, guiding uncertainty-aware planning, key collection, exploration, and targeted reobservation of stale route blockers.
+- **Performance**: Achieved 0.9385 task fitness across 72 episodes, with 94.44% escape, 1.39% death, 4.17% timeout, 1.97 mean keys, and 60.62 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape reached 100% under uniform dynamics and 95.83% under switching dynamics, while stationary dynamics remained weakest at 87.5%. Audit and nearby Brier losses improved over supplied baselines, but these diagnostics alone do not establish a causal control benefit from learning; stationary escape reliability and efficiency remain priorities.
+**Program Identifier:** Generation 37 - Patch Name belief_route_controller - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixture with Temporal Risk Planning**
+- **Implementation**: Learns anonymous enemy motion through exact occupancy likelihoods, combining uniform, slow-adapting, and fast-adapting movement models with information-weighted updates. Maintains a persistent terrain map and uses eight-step enemy forecasts, diffuse unseen-enemy risk, and temporal planning with undiscounted survival costs to pursue keys, doors, exits, and exploration.
+- **Performance**: Achieved 0.787 task fitness across 72 development episodes, with 76.4% escape, 18.1% death, 5.6% timeout, 1.89 average keys, 68.9 steps per escape, and zero invalid actions; all validation tests passed.
+- **Feedback**: Escape rates were highest under uniform dynamics (83.3%), versus stationary (75.0%) and switching dynamics (70.8%), highlighting remaining adaptation and control challenges. Prediction errors beat reported baseline diagnostics, particularly near the agent, but these results alone do not establish that learning improves control; only 15 switching episodes encountered a switch.
+**Program Identifier:** Generation 38 - Patch Name arrival_time_risk_planning - Correct Program: True
+
+**Program Name: Adaptive Enemy Tracking with Survival-Conditioned Planning**
+- **Implementation**: Maintains a timestamped terrain map and learns enemy movement probabilities through probabilistic matching of consecutive sightings, accounting for blocked attempts, partial visibility, and forgetting. Combines risk-weighted shortest paths, stale-wall observation targets, and three-step survival-conditioned planning with additional safety checks after target arrival.
+- **Performance**: Achieved 0.9066 task fitness and 90.3% escape across 72 development episodes, with 8.3% deaths, 1.4% timeouts, 57.1 steps per successful escape, and all validation tests passing.
+- **Feedback**: Stationary dynamics were weakest at 83.3% escape, versus 91.7% for uniform and 95.8% for switching dynamics. Prediction errors beat the supplied persistence baselines, particularly near enemies, but these diagnostics alone do not establish adaptation or a causal control benefit from learning.
+**Program Identifier:** Generation 39 - Patch Name safe_target_continuation - Correct Program: True
+
+**Program Name: Adaptive Enemy Forecasting with Risk-Aware Route Recovery**
+- **Implementation**: Maintains a timestamped terrain map and learns nine enemy movement probabilities through probabilistic assignment of partially observed transitions, with decayed counts and blocked attempts modeled as staying. Combines two-step occupancy forecasts, risk-weighted shortest paths, frontier exploration, and temporary recovery waypoints when progress stalls.
+- **Performance**: Achieved 0.928 task fitness across 72 development episodes, with 93.1% escape, 4.2% death, 2.8% timeout, zero invalid actions, and 58.15 steps per successful escape.
+- **Feedback**: Passed all validation tests; escape was 95.8% in uniform and switching regimes but 87.5% under stationary dynamics. Prediction errors beat the supplied baselines, especially nearby, but sparse audit occupancy and absent ablation results limit claims about adaptive learning or its contribution to control.
+**Program Identifier:** Generation 40 - Patch Name complete_route_recovery - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Survival-Conditioned Planning**
+- **Implementation**: Learns enemy movement through uniform, slow, and fast mixture components using censored transition evidence, blocked-attempt modeling, and surprise-triggered fast-model rebuilding. Combines hidden-enemy density tracking, six-step risk forecasts, three-step survival-conditioned beam planning, key-tour selection, and stale-wall inspection.
+- **Performance**: Scored 0.9052 across 72 development episodes, with 90.3% escapes, 5.6% deaths, 4.2% timeouts, 1.99 keys per episode, and 69.17 steps per successful escape; all validation tests passed.
+- **Feedback**: Escape rates were highest under uniform dynamics (95.8%), versus 87.5% for both stationary and switching laws, identifying the latter as improvement priorities. Near-cell Brier loss was 0.00542 versus baseline 0.00794, but these diagnostics alone do not establish adaptive learning or a causal control benefit.
+**Program Identifier:** Generation 41 - Patch Name survival_timed_routes - Correct Program: True
+
+**Program Name: Adaptive Enemy Mixtures with Survival-Conditioned Planning**
+- **Implementation**: Learns enemy attempted-movement laws from ambiguous observations using uniform, slow-decay, and fast-decay experts, with surprise-triggered recovery and explicit blocked-attempt handling. Combines unseen-enemy density estimates, four-step route forecasts, and three-step survival-conditioned beam planning to pursue keys, doors, exits, and exploration targets.
+- **Performance**: Achieved 0.9468 task fitness across 72 development episodes, with 95.83% escapes, zero deaths or invalid actions, 1.99 keys per episode, and 77.06 steps per successful escape.
+- **Feedback**: Passed all validation tests; remaining failures were timeouts, with stationary dynamics showing the lowest escape rate (91.67%, versus 100% uniform and 95.83% switching). Prediction losses beat reported baseline and persistence diagnostics, but sparse occupancy and the absence of control ablations limit claims that adaptive learning caused the strong task performance.
+**Program Identifier:** Generation 42 - Patch Name safe_target_continuation - Correct Program: True
+
+**Program Name: Persistent Dynamics Mixture with Collision-Aware Planning**
+- **Implementation**: Learns enemy attempted-move distributions from ambiguous observations using uniform, slow, and fast experts, with surprise-triggered recovery and explicit blocked-attempt handling. Preserves expert identity across four-step collision forecasts, combines visible-enemy tracks with unseen-enemy density, and uses risk-weighted routing, two-step survival-conditioned action selection, and safe detours.
+- **Performance**: Scored 0.912 across 72 development episodes, with 91.7% escapes, 6.9% deaths, 1.4% timeouts, 62.7 steps per escape, a 0.988 model score, and all validation tests passing.
+- **Feedback**: Escape rates were 95.8% for uniform and switching dynamics but 83.3% for stationary dynamics, making stationary control the clearest weakness. Near-cell Brier loss beat the supplied baselines, but sparse occupancy limits interpretation, and these results alone do not establish that learning or recovery mechanisms caused better control.
+**Program Identifier:** Generation 43 - Patch Name persistent_expert_routes - Correct Program: True
+
+**Program Name: Adaptive Enemy Motion Learning with Survival-Conditioned Planning**
+- **Implementation**: Maintains a timestamped map and learns nine attempted enemy-movement probabilities through enumerated latent assignments, accounting for blocked attempts, partial visibility, and decaying evidence. Combines risk-weighted pathfinding and frontier exploration with three-step beam planning, survival-conditioned enemy forecasts, hypothetical key/door transitions, and stagnation penalties.
+- **Performance**: Achieved 0.9382 task fitness across 72 development episodes, with 94.44% escapes, 1.39% deaths, 4.17% timeouts, 73.47 steps per successful escape, and no invalid actions; all validation tests passed.
+- **Feedback**: Escape rates were 95.83% for uniform, 87.50% for stationary, and 100% for switching conditions, making stationary performance the clearest improvement target. Prediction errors beat reported audit and near baselines, but sparse occupancy limits interpretation, and these results alone do not establish adaptation or a control benefit from learning.
+**Program Identifier:** Generation 44 - Patch Name safe_target_continuation - Correct Program: True
+
+**Program Name: Adaptive Enemy Forecasting with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a persistent terrain map and learns enemy movement attempts through probabilistic assignment of consecutive observations, accounting for blocked attempts and skipping wall-change boundaries. Blends uniform, slow-decay, and fast-decay movement models for two-step occupancy and collision forecasts, guiding risk-weighted shortest paths, key/exit targeting, frontier exploration, and stale-map revisits.
+- **Performance**: Achieved 0.9066 task fitness across 72 development episodes, with 90.3% escapes, 6.9% deaths, 2.8% timeouts, 1.97 keys per episode, 57.12 steps per successful escape, and no invalid actions; all validation tests passed.
+- **Feedback**: Near-cell Brier loss was 0.00979 versus 0.01482 for persistence, supporting predictive accuracy but not establishing that learning improved control. Escape reached 91.7% in uniform and switching regimes versus 87.5% in stationary conditions; higher post-switch near-cell loss indicates remaining adaptation difficulty despite strong switching-regime task outcomes.
+**Program Identifier:** Generation 45 - Patch Name persistent_motion_ensemble - Correct Program: True
+
+**Program Name: Adaptive Motion Mixture with Survival Beam Planning**
+- **Implementation**: Maintains a timestamped terrain map and learns enemy motion through an explicit uniform component and up to eight Dirichlet hypotheses, using censored anonymous occupancy evidence that accounts for blocked attempts and overlapping enemies. Risk-weighted routing, exploration, and recovery waypoints guide a three-step survival beam search that tracks enemy distributions, key collection, and door opening.
+- **Performance**: Across 72 development episodes, achieved 0.9525 task fitness, 95.83% escape, 2.78% death, 1.39% timeout, two keys per episode on average, and 59.20 steps per escape, with zero invalid actions and all validation tests passing.
+- **Feedback**: Escape rates were 100% under uniform motion, 91.67% under stationary laws, and 95.83% under switching laws, identifying stationary dynamics as the weakest condition. Audit and nearby occupancy Brier losses improved over supplied baselines, but sparse occupancy and the absence of control ablations prevent attributing escape performance to predictive learning alone.
+**Program Identifier:** Generation 46 - Patch Name belief_route_survival - Correct Program: True
+
+**Program Name: Persistent Expert Motion Forecasting with Risk-Aware Planning**
+- **Implementation**: Learns enemy movement through anonymous, censored observations using uniform, slow, and fast experts, with blocked attempts remaining stationary. Combines experts for one-step occupancy but preserves expert identity across later forecasts, feeding a three-step collision-aware planner with risk-weighted navigation and frontier exploration.
+- **Performance**: Achieved task score 0.9402 across 72 episodes, with 94.44% escapes, zero deaths or invalid actions, 5.56% timeouts, and 64.91 average steps per escape; escape rates were 100% uniform, 87.5% stationary, and 95.83% switching.
+- **Feedback**: All validation tests passed; remaining failures were timeouts, making stationary-regime completion and escape efficiency the clearest improvement targets. Near-cell Brier loss improved over the reported baseline (0.00763 versus 0.01137), but sparse occupancy and absent ablation results prevent attributing control gains to predictive learning or persistent experts.
+**Program Identifier:** Generation 47 - Patch Name persistent_motion_ensemble - Correct Program: True
+
+**Program Name: Adaptive Enemy Forecasting with Survival-Aware Route Recovery**
+- **Implementation**: Maintains a timestamped terrain map and learns nine enemy movement-attempt probabilities using decayed, smoothed counts and probabilistic assignments of partially observed transitions, accounting for blocked attempts. Combines risk-weighted routing with three-step survival-conditioned planning, simulated key/door interactions, exploration and stale-map revisits, plus temporary waypoints to escape repeated stalls.
+- **Performance**: Achieved 0.916 task fitness and 66/72 escapes (91.7%), with four deaths, two timeouts, zero invalid actions, 58.59 steps per successful escape, and 0.588 candidate CPU seconds reported.
+- **Feedback**: Passed all validation tests; escape rates were 87.5% in both uniform and stationary regimes and 100% in the switch regime, although only 18/24 switch episodes encountered a switch. Near-cell Brier loss (0.00680) improved over the reported baseline (0.01022), while audit improvement was smaller; these development results do not independently establish adaptation or a causal control benefit from prediction.
+**Program Identifier:** Generation 48 - Patch Name survival_conditioned_three_step_control - Correct Program: True
+
+**Program Name: Adaptive Enemy Beliefs with Survival Beam Planning**
+- **Implementation**: Learns attempted enemy motion through censored occupancy likelihoods and a mixture of Dirichlet hypotheses with restart components, while maintaining separate adaptive and uniform spatial filters for concealed enemies. Risk-weighted routing, exploration and recovery waypoints guide a three-step survival beam planner that accounts for blocked moves, collision conditioning, keys and doors.
+- **Performance**: Achieved 0.9298 task fitness across 72 development episodes, with 93.06% escapes, 5.56% deaths, 1.39% timeouts, 1.99 keys per episode and 57.04 steps per successful escape; all validation tests passed.
+- **Feedback**: Audit and near-cell Brier losses improved over reported baselines, supporting predictive accuracy but not establishing a causal control benefit from learning. Stationary dynamics were weakest at 87.5% escape versus 95.83% for uniform and switching regimes; only 15 switching episodes encountered a switch, limiting adaptation evidence.
+**Program Identifier:** Generation 49 - Patch Name persistent_anonymous_flow - Correct Program: True
+
+# GLOBAL INSIGHTS SCRATCHPAD
+
+The following are global insights about optimization approaches and their effectiveness:
+
+## Successful Algorithmic Patterns
+
+- **Generation 46, `belief_route_survival`, remains the best program at 0.952483 fitness and 69/72 escapes.** Its combination of anonymous motion inference, multiple Dirichlet hypotheses, recovery waypoints and three-step survival planning outperforms Generation 48’s 0.916 and Generation 49’s 0.9298. These evaluations support the complete combination; they do not isolate individual components’ contributions.
+- **Survival-conditioned planning recurs among strong programs.** Generations 42, 44 and 46 scored 0.9468, 0.9382 and 0.952483 respectively. Generations 48 and 49 retain three-step survival planning but achieve lower completion, reinforcing the earlier finding that the surrounding representation and routing matter.
+- **Generation 49’s richer belief system improves on Generation 48’s reported results.** Censored occupancy likelihoods, restart hypotheses and separate adaptive/uniform concealed-enemy filters accompany one additional escape, one fewer timeout and a 0.0138 fitness gain. Successful escapes also shorten from 58.59 to 57.04 steps, although the simultaneous implementation differences prevent causal attribution.
+- **Recovery-enabled routing remains part of successful combinations.** Generation 40 achieved 0.928 fitness with temporary waypoints; Generation 46 combines recovery with stronger inference and survival planning to reach 0.952483. Recovery also appears in Generations 48 and 49, showing that its presence alone does not guarantee leading performance.
+
+## Ineffective Approaches
+
+- **Neither recent forecasting variant surpasses the current best.** Generation 48’s decayed, smoothed attempt counts produce 66 escapes, four deaths and two timeouts. Generation 49’s persistent concealed-enemy beliefs improve this to 67 escapes, four deaths and one timeout, but still trail Generation 46’s 69 escapes, two deaths and one timeout. The summaries do not identify which component caused the remaining failures.
+- **Longer forecasts previously failed to deliver consistent gains.** Generation 38’s eight-step forecasts and undiscounted survival costs scored 0.787 with 13 deaths; Generation 41’s six-step configuration scored 0.9052. Both trail Generation 46’s three-step controller, without establishing horizon length alone as the cause.
+- **Lower prediction loss does not consistently correspond to better control.** Generation 48’s near-cell Brier loss, 0.00680, improves on Generation 46’s 0.00711 despite substantially lower fitness. Generation 41 provides a stronger historical counterexample: 0.00542 near-cell loss but only 0.9052 fitness. Different visited states and sparse occupancy limit these comparisons.
+- **Faster successful episodes do not compensate for additional failures.** Generations 48 and 49 finish successful episodes faster than Generation 46’s 59.20 steps, yet escape less often. This repeats the pattern from Generations 39 and 45, which averaged approximately 57.1 steps but achieved only 65/72 escapes and 0.9066 fitness.
+
+## Implementation Insights
+
+- **The best program explicitly models attempted motion under anonymous, censored observations.** `_observed_destination` converts blocked and corner-blocked attempts into stays. `_observation_terms` restricts evidence to cells with previously visible predecessors and uses inclusion–exclusion to allow overlapping enemies. It also skips scheduled terrain-change boundaries and observed wall changes, reducing the risk of attributing terrain changes to movement dynamics.
+- **Its learner preserves competing movement histories.** `_update_dynamics` maintains up to eight Dirichlet hypotheses, introduces restart mass according to observation informativeness, tempers likelihoods with exponent 0.85 and preserves the oldest surviving hypothesis. `_motion_law` blends these hypotheses with an explicit uniform component and a 10% uniform floor. This implementation accompanies 23/24 switching escapes, but adaptation’s causal contribution remains unmeasured.
+- **Its planner propagates survival-conditioned enemy distributions.** `_survival_control` charges collision risk both before and after enemy movement, removes collision paths before subsequent projections, and represents hypothetical key collection and door opening. Beam selection preserves initial-action diversity and interaction states. These mechanics accompany two deaths and zero invalid actions in the best evaluation.
+- **Persistent hidden-enemy filtering is not required for the strongest supplied result.** Generation 46 rebuilds a concealed-enemy density field in `_forecast`; its beam conditions visible-enemy distributions while using precomputed hidden hazards. Generation 49 adds persistent adaptive/uniform spatial filters but scores lower. Generation 46 also bypasses beam planning when no enemies are visible, accompanying approximately 0.70 reported candidate CPU seconds.
+
+## Performance Analysis
+
+- **Generation 46 leads Generation 48 by approximately 0.0365 fitness and Generation 49 by 0.0227.** Their escape counts are 69, 66 and 67 respectively. Generation 49’s gain over Generation 48 comes with unchanged deaths and one fewer timeout; Generation 46’s advantage over Generation 49 includes two fewer deaths.
+- **Stationary dynamics remain the shared weakness.** Generation 46 achieves 22/24 stationary escapes, versus 21/24 for both recent programs. Uniform escapes are 24/24, 21/24 and 23/24 for Generations 46, 48 and 49; switching escapes are 23/24, 24/24 and 23/24. Generation 48’s perfect switching result therefore coexists with weaker overall reliability. Each regime outcome changes the rate by 4.17 percentage points.
+- **The historical lead remains small and involves a safety tradeoff.** Generation 46 exceeds Generation 4’s 0.950906 fitness by 0.001577, with the same 69 escapes and successful episodes approximately 10% shorter. Generation 4 recorded zero deaths and three timeouts, versus Generation 46’s two deaths and one timeout.
+- **Prediction diagnostics support accuracy gains, with limited adaptation evidence.** Generation 46 reduces near-cell Brier loss by approximately 27.9% against its reported baseline and audit loss by 6.6%. Only 17 switching episodes encountered a switch, yielding 142 post-switch visible-enemy steps; the corresponding episode counts are 18 for Generation 48 and 15 for Generation 49. These development results lack supplied uncertainty estimates or ablations establishing that learning caused improved control.
+
+# META RECOMMENDATIONS
+
+The following are actionable recommendations for the next program generations:
+
+1. **Preserve movement hypotheses through survival planning.** In `_survival_control`, propagate a small set of high-mass motion hypotheses separately, including the uniform component, and update their branch weights after conditioning on survival. Combine branch survival probabilities before taking the logarithmic risk penalty; this preserves persistent-law uncertainty that repeated propagation with `_motion_law`’s averaged kernel loses, extending the best program’s successful multi-hypothesis representation.
+
+2. **Update direction beliefs according to what censored observations actually identify.** Within each dynamics hypothesis, evaluate `_evidence` on a compact weighted set of candidate motion laws and use likelihood-weighted posterior moments to update its representation. This can avoid excessive concentration from adding expected counts for ambiguous blocked attempts; retain restart hypotheses, the oldest surviving history and the uniform floor, which accompany the strongest supplied result.
+
+3. **Add a safe-continuation value at the beam horizon.** For each retained third-step state, use its survival-conditioned enemy distributions to estimate the least collision risk among legal next actions and penalize states with no reasonably safe continuation. This extends the successful three-step controller without adopting the substantially longer tactical searches that performed less reliably, and could distinguish an apparently safe cul-de-sac from a position with an escape route.
+
+4. **Make terrain refresh respond to blocked objectives.** When a known key, door or exit is unreachable under the remembered map, search a separate optimistic graph that treats stale interior walls as uncertain, then select a currently reachable observation position overlooking a promising blockage. Execute only moves legal under the current observed map; this builds on recovery waypoints and scheduled terrain awareness while addressing routes that ordinary distance-based recovery cannot discover.
+
+5. **Give completed intermediate objectives a branch-specific continuation potential.** Replace `terminal = 0.0 if reached` with a cached next-objective value based on each branch’s collected keys, opened door and position, while keeping escape terminal. The current planner already models those interaction states, so this extends a demonstrated strength and may reduce wasted movement after collecting keys or reaching recovery waypoints without weakening its collision checks.

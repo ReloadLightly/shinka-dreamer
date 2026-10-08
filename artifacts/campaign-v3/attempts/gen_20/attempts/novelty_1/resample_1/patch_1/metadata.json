@@ -1,0 +1,15 @@
+{
+  "generation": 20,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 5,
+  "patch_name": "surprise_triggered_restart_expert",
+  "patch_description": "Add a short-memory expert when informative anonymous observations repeatedly favor the fast model over the slow model. A discounted likelihood-ratio accumulator scales evidence by directional information and observed enemy count, excludes the existing terrain-change ambiguities, and requires sustained support before spawning or restarting the expert.\n\nInitialize the new expert from recent informative observations and give it modest mixture weight. Subsequent predictive likelihood determines its influence on both occupancy forecasts and planning hazards. Preserve the slow model, uniform floor, and separate learning and prediction-use interventions. Export trigger diagnostics without treating triggers as confirmed environmental switches. This is a predictive-learning extension; improved task performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:52:36.694513",
+  "llm_cost": 0.430808,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_20/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

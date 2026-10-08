@@ -1,0 +1,113 @@
+<NAME>
+stale_bottleneck_observation
+</NAME>
+
+<DESCRIPTION>
+Add targeted observation goals when a remembered exit or door remains unreachable for four steps after collecting both keys. A counterfactual shortest-path search permits stale walls to reopen, including walls blocking diagonal corners, and identifies the first obstruction along a promising route. The agent then travels to a reachable viewpoint that reveals that obstruction. Actual movement retains the existing legality checks and learned hazard planner; hypothetical openings never modify terrain memory. Fresh observations invalidate obsolete recovery goals. This targets failed route recovery without changing ordinary exploration or predictive learning. Performance remains untested.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _choose_target(m, dist):
+=======
+def _bottleneck_view(m, dist):
+    terrain, step = m["map"], m["step"]
+    if m["keys"] < 2:
+        m.pop("blocked_objective", None)
+        return None
+    goals = sorted(p for p, c in terrain.items()
+                   if c == 4 and p not in dist)
+    if not goals and not m["door_open"]:
+        goals = sorted(p for p, c in terrain.items()
+                       if c == 3 and p not in dist)
+    if not goals:
+        m.pop("blocked_objective", None)
+        return None
+    signature = (tuple(goals), m["keys"], m["door_open"])
+    state = m.get("blocked_objective")
+    if state is None or state["signature"] != signature:
+        state = {"signature": signature, "since": step}
+        m["blocked_objective"] = state
+    if step - state["since"] < 4:
+        return None
+    tick = (step // 25) * 25
+    cardinal = ((1, 0), (-1, 0), (0, 1), (0, -1))
+    # Only reconsider old walls with a known surrounding neighborhood.
+    # Observed exterior cells exclude fixed boundary walls.
+    uncertain = {
+        p for p, c in terrain.items()
+        if c == 1 and m["seen"].get(p, step) < tick
+        and all(terrain.get(_add(p, d)) not in (None, -1)
+                for d in cardinal)
+    }
+    if not uncertain:
+        return None
+    allowed = {p for p, c in terrain.items() if c in (0, 2, 3, 4)}
+    allowed.update(uncertain)
+    # This graph proposes observations, never executable wall crossings.
+    # Charge for destination walls and both diagonal corner requirements.
+    costs = {p: 0.0 for p in goals}
+    queue = [(0.0, p) for p in goals]
+    heapq.heapify(queue)
+    successor, obstructions = {}, {}
+    while queue:
+        cost, b = heapq.heappop(queue)
+        if cost != costs[b]:
+            continue
+        for dx, dy in STEPS:
+            a = (b[0] - dx, b[1] - dy)
+            required = {a, b}
+            if dx and dy:
+                required.add((a[0] + dx, a[1]))
+                required.add((a[0], a[1] + dy))
+            if not required.issubset(allowed):
+                continue
+            blocked = required.intersection(uncertain)
+            proposal = cost + 1.0 + 6.0 * len(blocked)
+            if proposal < costs.get(a, float("inf")):
+                costs[a] = proposal
+                successor[a] = b
+                obstructions[a] = blocked
+                heapq.heappush(queue, (proposal, a))
+    anchors = [p for p in dist if p in costs]
+    if not anchors:
+        return None
+    anchor = min(anchors, key=lambda p: (dist[p] + costs[p], p))
+    cursor = anchor
+    blockers = set()
+    while cursor in successor:
+        blockers = obstructions[cursor]
+        if blockers:
+            break
+        cursor = successor[cursor]
+    if not blockers:
+        return None
+    views = []
+    for p, travel in dist.items():
+        if p == m["pos"]:
+            continue
+        revealed = sum(_distance(p, wall) <= 2 for wall in blockers)
+        if not revealed:
+            continue
+        score = (travel + .15 * _distance(p, cursor)
+                 + .05 * min(20, m["visits"].get(p, 0))) / revealed
+        if p == m["target"]:
+            score *= .90
+        views.append((score, p))
+    return min(views)[1] if views else None
+def _choose_target(m, dist):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if goals:
+        return min(goals, key=lambda p: (dist[p], p))
+    frontier = []
+=======
+    if goals:
+        m.pop("blocked_objective", None)
+        return min(goals, key=lambda p: (dist[p], p))
+    observation_goal = _bottleneck_view(m, dist)
+    if observation_goal is not None:
+        return observation_goal
+    frontier = []
+>>>>>>> REPLACE
+</DIFF>

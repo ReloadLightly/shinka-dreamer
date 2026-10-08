@@ -1,0 +1,11 @@
+{
+  "upstream_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+  "observed_log": "Background embedding recomputation completed",
+  "meaning": "The native scheduled housekeeping coroutine returned normally; this log is not evidence that embedding generation, clustering or novelty assessment ran.",
+  "configured_evolution_embedding_model": null,
+  "configured_database_embedding_model": null,
+  "nonempty_embedding_rows_observed": 0,
+  "function_source_sha256": "34db73f0c09ff945ceba63a2a632ebd8e64b91f5dd089795372dc9ac72a76be2",
+  "guard": "The method reads existing embedding rows and returns when fewer than num_clusters=4 exist; _ensure_embedding_client also returns None when no embedding model is configured.",
+  "native_novelty_exercised": false
+}

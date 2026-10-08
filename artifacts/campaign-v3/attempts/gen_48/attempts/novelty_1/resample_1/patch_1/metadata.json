@@ -1,0 +1,15 @@
+{
+  "generation": 48,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 2,
+  "patch_name": "survival_conditioned_three_step_control",
+  "patch_description": "Replace the two-step occupancy approximation with three-step planning that conditions enemy distributions on surviving each proposed action. Collision probability accounts for both entering an occupied cell and enemies subsequently moving onto the destination, including blocked attempts that stay. A small uniform component protects control against uncertain or recently changed laws; learned exports and the learning intervention remain separate.\n\nRetain target selection and route recovery, evaluating every immediate action and a bounded continuation beam. Fix hypothetical door interaction geometry separately: future interactions depend on the simulated position and inventory. These changes aim to reduce deaths without permanently treating current enemy positions as obstacles; improvement requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T22:29:25.976526",
+  "llm_cost": 0.500748,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_48/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

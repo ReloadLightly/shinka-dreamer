@@ -1,0 +1,212 @@
+<NAME>
+persistent_motion_ensemble
+</NAME>
+
+<DESCRIPTION>
+Maintain a responsive movement estimate alongside the existing slower learner, with a uniform component for uncertainty about unseen dynamics changes. Propagate each law independently through the existing two forecast steps, then average occupancy probabilities. This preserves uncertainty about a persistent movement law without increasing planning depth.
+
+Compute second-step collision probabilities from each enemy’s joint pre-move and post-move occupancy, subtracting overlapping stay events. The current independence approximation can overprice waiting for blocked enemies to clear a route. Preserve mapping, exploration, and both learning and prediction-use interventions. These are proposed improvements; their control benefit requires evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    m["counts"] = [c * .965 for c in m["counts"]]
+    if not old_enemies:
+=======
+    m["counts"] = [c * .965 for c in m["counts"]]
+    m["fast_counts"] = [c * .80 for c in m["fast_counts"]]
+    if not old_enemies:
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        for k in range(9):
+            m["counts"][k] += expected[k] / normalizer[0]
+        m["updates"] += sum(informative)
+=======
+        for k in range(9):
+            evidence = expected[k] / normalizer[0]
+            m["counts"][k] += evidence
+            m["fast_counts"][k] += evidence
+        m["updates"] += sum(informative)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def _forecasts(m, law):
+    opened = m["door_open"] or (
+        m["keys"] >= 2 and any(
+            m["map"].get(_add(m["pos"], d)) == 3
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+    tracks = [{e: 1.0} for e in sorted(m["enemies"])]
+    forecasts = []
+    background = max(0, 3 - len(tracks)) / 140.0
+    for horizon in (1, 2):
+        new_tracks = []
+        for track in tracks:
+            new = {}
+            for p, mass in track.items():
+                for d, probability in zip(MOVES, law):
+                    q = _destination(m["map"], p, d, opened)
+                    new[q] = new.get(q, 0.0) + mass * probability
+            new_tracks.append(new)
+        tracks = new_tracks
+        cells = set(m["map"])
+        for track in tracks:
+            cells.update(track)
+        risk = {}
+        for p in cells:
+            if _wall(m["map"], p, opened):
+                risk[p] = 0.0
+                continue
+            distance = _distance(p, m["pos"])
+            if distance <= 2 - horizon:
+                base = 0.0
+            elif p in m["local"]:
+                base = background * min(1.0, .18 * horizon)
+            else:
+                base = background
+            empty = 1.0 - base
+            for track in tracks:
+                empty *= 1.0 - min(1.0, track.get(p, 0.0))
+            risk[p] = min(1.0, max(0.0, 1.0 - empty))
+        forecasts.append(risk)
+    return forecasts, background, opened
+=======
+def _forecast_laws(m, law, adaptive=True):
+    if not adaptive:
+        return [(1.0, law)]
+    total = sum(m["fast_counts"]) + 9.0
+    responsive = [(c + 1.0) / total for c in m["fast_counts"]]
+    return [
+        (.20, [1.0 / 9.0] * 9),
+        (.50, law),
+        (.30, responsive),
+    ]
+def _forecasts(m, law, adaptive=True):
+    opened = m["door_open"] or (
+        m["keys"] >= 2 and any(
+            m["map"].get(_add(m["pos"], d)) == 3
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+    sources = sorted(m["enemies"])
+    background = max(0, 3 - len(sources)) / 140.0
+    forecasts = [{}, {}]
+    collisions = [{}, {}]
+    def hidden_base(p, horizon):
+        if _distance(p, m["pos"]) <= 2 - horizon:
+            return 0.0
+        if p in m["local"]:
+            return background * min(1.0, .18 * horizon)
+        return background
+    # Keep each movement law fixed throughout its forecast. All enemies
+    # share that law; average only after computing joint occupancy.
+    for weight, expert_law in _forecast_laws(m, law, adaptive):
+        tracks = [{e: 1.0} for e in sources]
+        kernels = {}
+        def kernel(p):
+            if p not in kernels:
+                grouped = {}
+                for d, probability in zip(MOVES, expert_law):
+                    q = _destination(m["map"], p, d, opened)
+                    grouped[q] = grouped.get(q, 0.0) + probability
+                kernels[p] = grouped
+            return kernels[p]
+        for index, horizon in enumerate((1, 2)):
+            following = []
+            cells = set(m["map"])
+            for track in tracks:
+                new = {}
+                for p, mass in track.items():
+                    for q, probability in kernel(p).items():
+                        new[q] = new.get(q, 0.0) + mass * probability
+                following.append(new)
+                cells.update(track)
+                cells.update(new)
+            for p in cells:
+                occupancy = collision = 0.0
+                if not _wall(m["map"], p, opened):
+                    base = hidden_base(p, horizon)
+                    empty = 1.0 - base
+                    # Preserve the background approximation, while treating
+                    # visible enemy self-transitions explicitly.
+                    old_base = (
+                        hidden_base(p, horizon - 1) if horizon > 1 else 0.0
+                    )
+                    safe = (1.0 - old_base) * (1.0 - base)
+                    stay = kernel(p).get(p, 0.0)
+                    for before, after in zip(tracks, following):
+                        previous_mass = before.get(p, 0.0)
+                        next_mass = after.get(p, 0.0)
+                        union = previous_mass + next_mass - previous_mass * stay
+                        empty *= 1.0 - min(1.0, max(0.0, next_mass))
+                        safe *= 1.0 - min(1.0, max(0.0, union))
+                    occupancy = min(1.0, max(0.0, 1.0 - empty))
+                    collision = min(1.0, max(0.0, 1.0 - safe))
+                forecasts[index][p] = (
+                    forecasts[index].get(p, 0.0) + weight * occupancy
+                )
+                collisions[index][p] = (
+                    collisions[index].get(p, 0.0) + weight * collision
+                )
+            tracks = following
+    return forecasts, background, opened, collisions
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+                  "counts": [0.0] * 9, "updates": 0, "previous": None,
+=======
+                  "counts": [0.0] * 9, "fast_counts": [0.0] * 9,
+                  "updates": 0, "previous": None,
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    m["forecast"], m["background"], opened = _forecasts(m, _law(m))
+=======
+    m["forecast"], m["background"], opened, m["collisions"] = _forecasts(
+        m, _law(m))
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if local_obs.get("predictive_planning", True):
+        risk, risk2 = m["forecast"]
+    else:
+        # This intervention removes learned dynamics from control, while
+        # retaining localization, terrain and an ordinary uniform predictor.
+        fixed, _, _ = _forecasts(m, [1.0 / 9] * 9)
+        risk, risk2 = fixed
+=======
+    if local_obs.get("predictive_planning", True):
+        risk, risk2 = m["forecast"]
+        collision2 = m["collisions"][1]
+    else:
+        # This intervention removes both learned movement estimates while
+        # retaining geometry, collision accounting, and the same planner.
+        fixed, _, _, fixed_collisions = _forecasts(
+            m, [1.0 / 9] * 9, adaptive=False)
+        risk, risk2 = fixed
+        collision2 = fixed_collisions[1]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+                before = 0.0 if r == q else risk.get(r, m["background"])
+                after = risk2.get(r, m["background"])
+                danger = 1.0 - (1.0 - before) * (1.0 - after)
+=======
+                if r == q:
+                    # Survival of the first action rules out occupancy
+                    # here before the next enemy movement.
+                    danger = risk2.get(r, m["background"])
+                else:
+                    danger = collision2.get(
+                        r, 1.0 - (1.0 - m["background"]) ** 2)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "learning": {"updates": m["updates"],
+                         "attempt_probabilities": _law(m)}}
+=======
+            "learning": {
+                "updates": m["updates"],
+                "attempt_probabilities": [
+                    sum(weight * law[k] for weight, law in
+                        _forecast_laws(m, _law(m)))
+                    for k in range(9)
+                ],
+                "movement_experts": [
+                    {"weight": weight, "attempt_probabilities": law}
+                    for weight, law in _forecast_laws(m, _law(m))
+                ],
+            }}
+>>>>>>> REPLACE
+</DIFF>

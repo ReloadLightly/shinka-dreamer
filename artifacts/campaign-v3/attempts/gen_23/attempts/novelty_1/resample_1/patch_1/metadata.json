@@ -1,0 +1,15 @@
+{
+  "generation": 23,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 5,
+  "patch_name": "time_indexed_route_values",
+  "patch_description": "Replace the static enemy-risk route potential with four forecast horizons and backward dynamic programming. Route values then account for when the agent reaches a threatened cell, including the option to wait for danger to pass. Target selection uses estimated arrival times; longer routes relax toward a background occupancy estimate. Reuse second-step forecasts and pool later forecasts to bound computation. Preserve the existing learner, exported next-step predictions, and conditional immediate collision calculations. This is an untested control improvement motivated by the supplied arrival-aware routing results.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:07:06.685031",
+  "llm_cost": 0.447958,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_23/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

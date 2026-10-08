@@ -1,0 +1,227 @@
+<NAME>
+targeted_bottleneck_observation
+</NAME>
+
+<DESCRIPTION>
+Add observation routes aimed at stale walls that separate the agent from remembered objectives. A relaxed graph identifies potential passages, including diagonal clearance cells; movement still uses the existing legal graph and predictive collision controller. Activate recovery when objectives are unreachable or progress stalls, retain the viewpoint until its bottleneck is observed, and bound retries with expiry and cooldown.
+
+This targets the three reported timeouts without broadly refreshing an already accurate map. It is a navigation hypothesis, not a new predictive-learning mechanism; improvement requires evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _choose_target(m, distances):
+=======
+def _route_observation(m, distances, objectives):
+    """Plan observations of uncertain passages without assuming them open."""
+    objectives = set(objectives)
+    if not objectives:
+        return None
+
+    step, start = m["step"], m["pos"]
+    active = m.get("route_observation")
+    if active is not None:
+        goal, blocker, view, selected, expires = active
+        if (
+            goal in objectives
+            and view in distances and view != start
+            and step < expires
+            and m["seen"].get(blocker, -1) < selected
+        ):
+            return view
+        m["route_observation"] = None
+        m["observation_cooldown"] = step + 4
+
+    if step < m.get("observation_cooldown", -1):
+        return None
+
+    reachable = objectives.intersection(distances)
+    stalled = (
+        m["stationary"] >= 8
+        or step - m["last_progress"] >= 16
+        or m["recent"][-12:].count(start) >= 6
+    )
+    if reachable and (
+        not stalled or min(distances[p] for p in reachable) <= 5.0
+    ):
+        return None
+
+    tick = (step // 25) * 25
+    if tick == 0:
+        return None
+    left, right, top, bottom = m["bounds"]
+    classifications = {}
+
+    def classify(p):
+        if p in classifications:
+            return classifications[p]
+        cell = m["map"].get(p, -1)
+        border = (
+            not _inside(m, p)
+            or (left is not None and p[0] in (left, right))
+            or (top is not None and p[1] in (top, bottom))
+        )
+        if border or cell == -1:
+            result = -1
+        elif cell == 3 and m["keys"] < 2 and not m["door_open"]:
+            result = -1
+        elif cell == 1:
+            # Known border walls remain permanent even before both axes
+            # have been localized. Only old interior walls are uncertain.
+            border_neighbor = any(
+                m["map"].get(_add(p, d)) == -1 for d in CARDINAL
+            )
+            result = (
+                1 if not border_neighbor
+                and m["seen"].get(p, step) < tick else -1
+            )
+        else:
+            result = 0
+        classifications[p] = result
+        return result
+
+    # This graph is used solely to identify useful observations. A relaxed
+    # edge pays for each stale wall needed for destination or clearance.
+    costs = {start: 0.0}
+    parents = {}
+    queue = [(0.0, start)]
+    goal = None
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != costs[p]:
+            continue
+        if p in objectives and p != start:
+            goal = p
+            break
+        for d in MOVES:
+            q = _add(p, d)
+            required = [q]
+            if d[0] and d[1]:
+                if m["map"].get(q) == 3 and not m["door_open"]:
+                    continue
+                required.extend((
+                    (p[0] + d[0], p[1]),
+                    (p[0], p[1] + d[1]),
+                ))
+            types = [classify(cell) for cell in required]
+            if any(kind < 0 for kind in types):
+                continue
+            blockers = tuple(
+                cell for cell, kind in zip(required, types) if kind == 1
+            )
+            candidate = cost + 1.0 + 4.0 * len(blockers)
+            if candidate < costs.get(q, float("inf")):
+                costs[q] = candidate
+                parents[q] = (p, blockers)
+                heapq.heappush(queue, (candidate, q))
+
+    if goal is None:
+        m["observation_cooldown"] = step + 6
+        return None
+
+    edges = []
+    p = goal
+    while p != start:
+        p, blockers = parents[p]
+        edges.append(blockers)
+    ordered = []
+    for blockers in reversed(edges):
+        for blocker in blockers:
+            if blocker not in ordered:
+                ordered.append(blocker)
+
+    if not ordered:
+        m["observation_cooldown"] = step + 6
+        return None
+
+    # Inspect the first uncertain crossing before investigating passages
+    # deeper along an optimistic route that may never become traversable.
+    blocker = ordered[0]
+    options = []
+    for view, cost in distances.items():
+        if view == start or _distance(view, blocker) > 2:
+            continue
+        if view in m["enemies"]:
+            continue
+        revealed = sum(_distance(view, cell) <= 2 for cell in ordered)
+        score = (
+            cost + .08 * _distance(view, goal)
+            + .06 * min(20, m["visits"].get(view, 0))
+            - .35 * min(3, revealed)
+        )
+        options.append((score, cost, view))
+    if not options:
+        m["observation_cooldown"] = step + 6
+        return None
+
+    _, cost, view = min(options)
+    duration = min(18, max(6, int(math.ceil(cost)) + 4))
+    m["route_observation"] = (
+        goal, blocker, view, step, step + duration
+    )
+    m["observation_routes"] = m.get("observation_routes", 0) + 1
+    return view
+
+
+def _choose_target(m, distances):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if goals:
+        return min(goals, key=lambda p: (distances[p], p)), "goal"
+
+    if m["keys"] >= 2 and not m["door_open"]:
+        doors = [
+            p for p in distances
+            if p != start and m["map"].get(p) == 3
+        ]
+        if doors:
+            return min(doors, key=lambda p: (distances[p], p)), "door"
+
+    frontier = {}
+=======
+    if goals:
+        best = min(goals, key=lambda p: (distances[p], p))
+        view = _route_observation(m, distances, [best])
+        if view is not None:
+            return view, "observe_route"
+        return best, "goal"
+
+    if m["keys"] >= 2 and not m["door_open"]:
+        doors = [
+            p for p in distances
+            if p != start and m["map"].get(p) == 3
+        ]
+        if doors:
+            best = min(doors, key=lambda p: (distances[p], p))
+            view = _route_observation(m, distances, [best])
+            if view is not None:
+                return view, "observe_route"
+            return best, "door"
+
+    remembered = [
+        p for p, cell in m["map"].items()
+        if p != start and cell == wanted
+    ]
+    if m["keys"] >= 2 and not m["door_open"]:
+        remembered.extend(
+            p for p, cell in m["map"].items()
+            if p != start and cell == 3
+        )
+    view = _route_observation(m, distances, remembered)
+    if view is not None:
+        return view, "observe_route"
+
+    frontier = {}
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        "position": list(m["pos"]),
+        "learning": {
+=======
+        "position": list(m["pos"]),
+        "navigation": {
+            "observation_routes": m.get("observation_routes", 0),
+            "target_kind": m.get("target_kind"),
+        },
+        "learning": {
+>>>>>>> REPLACE
+</DIFF>

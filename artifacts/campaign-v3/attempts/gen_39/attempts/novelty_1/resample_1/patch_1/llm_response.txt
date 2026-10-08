@@ -1,0 +1,121 @@
+<NAME>
+safe_target_continuation
+</NAME>
+
+<DESCRIPTION>
+Intermediate targets currently terminate lookahead, hiding danger immediately after collecting a key or reaching a frontier. Replace that cutoff with a short survival continuation conditioned on reaching the target alive. Target completion removes the routing potential once; subsequent actions assess collision risk without repeatedly rewarding arrival. The continuation tracks collected keys and door interactions within each branch, while actual escape remains terminal. This preserves the existing immediate collision safeguards and learned movement law. Performance gains require evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+=======
+def _target_tail(m, tracks, path, law, pressure, depth):
+    if tracks is None:
+        return float("inf")
+    cardinal = ((1, 0), (-1, 0), (0, 1), (0, -1))
+    terrain = m["map"]
+    def opening(p, keys, opened):
+        return opened or (keys >= 2 and any(
+            terrain.get(_add(p, d)) == 3 for d in cardinal))
+    # Reconstruct inventory and interaction state at target arrival.
+    # Each key can contribute only once within this hypothetical path.
+    p, keys, opened = m["pos"], m["keys"], m["door_open"]
+    collected = frozenset()
+    for q in path:
+        opened = opening(p, keys, opened)
+        if terrain.get(q) == 2 and q not in collected:
+            keys = min(2, keys + 1)
+            collected = collected | {q}
+        p = q
+    kernels = {}
+    for state in (False, True):
+        branch = dict(m)
+        branch["door_open"] = state
+        # Suppress implicit opening: state already describes this action.
+        branch["keys"] = 0
+        kernels[state] = _planning_transition(branch, law)
+    def value(p, tracks, keys, opened, collected, horizon, remaining):
+        if terrain.get(p) == 4 and keys >= 2 and opened:
+            return 0.0
+        if remaining == 0:
+            return 0.0
+        opened = opening(p, keys, opened)
+        branch = dict(m)
+        branch["pos"] = p
+        branch["keys"] = keys
+        branch["door_open"] = opened
+        transition = kernels[opened]
+        projected = _project_tracks(tracks, transition)
+        candidates = []
+        for d in MOVES:
+            q = _add(p, d)
+            if not _legal(branch, p, d):
+                continue
+            hazard = _collision_cost(tracks, projected, q, transition)
+            hazard += _background_cost(m, p, q, horizon + 1)
+            if math.isfinite(hazard):
+                candidates.append((hazard, q))
+        best = float("inf")
+        # Every target arrival gets a survival beam, including waiting.
+        for hazard, q in sorted(candidates)[:3]:
+            next_keys, next_collected = keys, collected
+            if terrain.get(q) == 2 and q not in collected:
+                next_keys = min(2, keys + 1)
+                next_collected = collected | {q}
+            future = 0.0
+            if remaining > 1:
+                surviving = _surviving_tracks(
+                    tracks, projected, q, transition)
+                if surviving is None:
+                    continue
+                future = value(
+                    q, surviving, next_keys, opened, next_collected,
+                    horizon + 1, remaining - 1)
+            weight = .60 if horizon == 1 else .50
+            cost = weight * pressure * hazard + .35 * future
+            best = min(best, cost)
+        return best
+    # No additional target rewards or routing costs after completion.
+    # Safe arrival retains its original value; trapped arrivals do not.
+    return value(p, tracks, keys, opened, collected, depth, 2)
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        if q == target and q != start:
+            future = 0.0
+        else:
+            tracks1 = _surviving_tracks(
+                tracks0, projected0, q, transition)
+=======
+        if q == target and q != start:
+            tracks1 = _surviving_tracks(
+                tracks0, projected0, q, transition)
+            future = _target_tail(
+                m, tracks1, (q,), law, pressure, 1)
+        else:
+            tracks1 = _surviving_tracks(
+                tracks0, projected0, q, transition)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+                    if r == target and r != start:
+                        value = 1.0 + .60 * pressure * h2
+                    else:
+                        tracks2 = _surviving_tracks(
+                            tracks1, projected1, r, transition)
+=======
+                    if r == target and r != start:
+                        tracks2 = _surviving_tracks(
+                            tracks1, projected1, r, transition)
+                        tail = _target_tail(
+                            m, tracks2, (q, r), law, pressure, 2)
+                        value = 1.0 + .60 * pressure * h2 + .35 * tail
+                    else:
+                        tracks2 = _surviving_tracks(
+                            tracks1, projected1, r, transition)
+>>>>>>> REPLACE
+</DIFF>

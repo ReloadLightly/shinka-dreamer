@@ -1,0 +1,15 @@
+{
+  "generation": 15,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "persistent_bounded_enemy_belief",
+  "patch_description": "Maintain anonymous enemy intensity across the entire feasible maze, including unexplored cells. The current reservoir discards spatial information outside mapped terrain and repeatedly introduces diffuse mass. Replace it with a persistent field, conditioned on visible empty cells and constrained by observed exterior boundaries. Propagate blocked attempts as stays and retain a small background component for recovery from uncertain geometry.\n\nThe existing learned movement mixture and survival-conditioned planner consume this field directly. This should improve avoidance of enemies that disappear from view while reducing unnecessary avoidance of recently cleared areas. It preserves separate occupancy forecasts and collision calculations; improved task performance remains an empirical question.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:26:21.217147",
+  "llm_cost": 0.399018,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_15/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

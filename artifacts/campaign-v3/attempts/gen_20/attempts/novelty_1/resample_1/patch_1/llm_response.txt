@@ -1,0 +1,178 @@
+<NAME>
+surprise_triggered_restart_expert
+</NAME>
+
+<DESCRIPTION>
+Add a short-memory expert when informative anonymous observations repeatedly favor the fast model over the slow model. A discounted likelihood-ratio accumulator scales evidence by directional information and observed enemy count, excludes the existing terrain-change ambiguities, and requires sustained support before spawning or restarting the expert.
+
+Initialize the new expert from recent informative observations and give it modest mixture weight. Subsequent predictive likelihood determines its influence on both occupancy forecasts and planning hazards. Preserve the slow model, uniform floor, and separate learning and prediction-use interventions. Export trigger diagnostics without treating triggers as confirmed environmental switches. This is a predictive-learning extension; improved task performance remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    laws = (UNIFORM, _mean(m["slow"]), _mean(m["fast"]))
+    results = [_infer_anonymous(law, masks, target) for law in laws]
+=======
+    laws = (UNIFORM, _mean(m["slow"]), _mean(m["fast"]))
+    if m["restart"] is not None:
+        laws += (_mean(m["restart"]),)
+    results = [_infer_anonymous(law, masks, target) for law in laws]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # Fixed-share predictive evidence allows a previously weak expert to
+    # recover after an unannounced law change.
+    old_weights = m["weights"]
+    likelihoods = [
+        (.965 * old_weights[i] + .035 * EXPERT_PRIOR[i])
+        * max(results[i][0], 1e-15) ** .75
+        for i in range(3)
+    ]
+    m["weights"] = list(_mean(likelihoods))
+
+    # Forgetting advances with informative observations, not empty views.
+    for expert_index, name, retention, prior in (
+        (1, "slow", .99, .65),
+        (2, "fast", .84, .35),
+    ):
+=======
+    # Compare predictions made before this observation updates either law.
+    # The joint likelihood already scales with enemy count; the information
+    # fraction suppresses transitions dominated by uninformative censoring.
+    informative_fraction = min(1.0, strength / len(masks))
+    log_advantage = math.log(
+        max(results[2][0], 1e-15) / max(results[1][0], 1e-15)
+    )
+    increment = (
+        informative_fraction * max(-3.0, min(3.0, log_advantage))
+        - .04 * strength
+    )
+    evidence = max(0.0, .97 * m["surprise_evidence"] + increment)
+    m["surprise_evidence"] = evidence
+    if evidence <= 1e-12:
+        m["surprise_support"] = 0
+        m["surprise_window"] = []
+    else:
+        if increment > 0.0:
+            m["surprise_support"] += 1
+        # Uniform-reference posteriors avoid inheriting the slow expert's
+        # directional bias when initializing a new local model.
+        counts = [
+            sum(weight * posterior[i] for posterior, weight in zip(
+                results[0][1], information[0]
+            ))
+            for i in range(9)
+        ]
+        m["surprise_window"].append(counts)
+        m["surprise_window"] = m["surprise_window"][-6:]
+
+    # Fixed-share evidence scores every existing expert prequentially.
+    # A newborn expert receives no retrospective likelihood credit.
+    prior_weights = EXPERT_PRIOR
+    if m["restart"] is not None:
+        prior_weights = tuple(.90 * w for w in EXPERT_PRIOR) + (.10,)
+    old_weights = m["weights"]
+    likelihoods = [
+        (.965 * old_weights[i] + .035 * prior_weights[i])
+        * max(results[i][0], 1e-15) ** .75
+        for i in range(len(laws))
+    ]
+    m["weights"] = list(_mean(likelihoods))
+
+    # Forgetting advances with informative observations, not empty views.
+    experts = [
+        (1, "slow", .99, .65),
+        (2, "fast", .84, .35),
+    ]
+    if m["restart"] is not None:
+        experts.append((3, "restart", .80, .35))
+    for expert_index, name, retention, prior in experts:
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    m["updates"] += 1
+    m["effective_updates"] += strength
+
+
+def _combined_law(m):
+    laws = (UNIFORM, _mean(m["slow"]), _mean(m["fast"]))
+    # A small uniform component is shared by exported forecasts and control.
+    weights = [
+        .10 + .90 * m["weights"][0],
+        .90 * m["weights"][1],
+        .90 * m["weights"][2],
+    ]
+    m["expert_weights"] = weights
+    m["expert_laws"] = laws
+    return tuple(
+        sum(weights[j] * laws[j][i] for j in range(3))
+        for i in range(9)
+    )
+=======
+    m["updates"] += 1
+    m["effective_updates"] += strength
+
+    # Require accumulated evidence and several supporting transitions.
+    # Cooldown is measured in information, so empty views cannot exhaust it.
+    if (
+        evidence >= 2.4
+        and m["surprise_support"] >= 4
+        and m["effective_updates"] >= 12.0
+        and m["effective_updates"] - m["last_restart_information"] >= 12.0
+    ):
+        window = m["surprise_window"]
+        m["restart"] = [
+            .35 + .5 * sum(counts[i] for counts in window)
+            for i in range(9)
+        ]
+        # Preserve the original experts and their relative credibility.
+        # Even a repeated trigger cannot allocate excessive restart mass.
+        retained = _mean(m["weights"][:3])
+        m["weights"] = [.88 * w for w in retained] + [.12]
+        m["restart_events"] += 1
+        m["last_restart_information"] = m["effective_updates"]
+        m["surprise_evidence"] = 0.0
+        m["surprise_support"] = 0
+        m["surprise_window"] = []
+
+
+def _combined_law(m):
+    laws = (UNIFORM, _mean(m["slow"]), _mean(m["fast"]))
+    if m["restart"] is not None:
+        laws += (_mean(m["restart"]),)
+    # The same mixture drives exports, collision forecasts and disagreement.
+    weights = [.90 * w for w in m["weights"]]
+    weights[0] += .10
+    m["expert_weights"] = weights
+    m["expert_laws"] = laws
+    return tuple(
+        sum(weights[j] * laws[j][i] for j in range(len(laws)))
+        for i in range(9)
+    )
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "slow": [.65] * 9, "fast": [.35] * 9,
+            "weights": list(EXPERT_PRIOR),
+            "updates": 0, "effective_updates": 0.0,
+=======
+            "slow": [.65] * 9, "fast": [.35] * 9,
+            "weights": list(EXPERT_PRIOR),
+            "restart": None, "restart_events": 0,
+            "surprise_evidence": 0.0, "surprise_support": 0,
+            "surprise_window": [], "last_restart_information": 0.0,
+            "updates": 0, "effective_updates": 0.0,
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "fast_law": list(_mean(m["fast"])),
+            "forecast_horizon": HORIZON,
+=======
+            "fast_law": list(_mean(m["fast"])),
+            "restart_law": (
+                list(_mean(m["restart"]))
+                if m["restart"] is not None else None
+            ),
+            "restart_events": m["restart_events"],
+            "surprise_evidence": m["surprise_evidence"],
+            "surprise_support": m["surprise_support"],
+            "last_restart_information": m["last_restart_information"],
+            "forecast_horizon": HORIZON,
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,216 @@
+<NAME>
+door_state_branch_planning
+</NAME>
+
+<DESCRIPTION>
+Carry door state through each planning branch. Interaction opens the door before movement only when the simulated agent has both keys and is cardinally adjacent; subsequent enemy transitions and diagonal legality use that resulting state. Cache separate enemy kernels for open and closed doors, and account for keys collected along simulated paths. Retain the existing always-interact policy.
+
+Store the observed preceding door state separately from the forecast state. Learn opening transitions using the confirmed resulting door state, avoiding attribution of newly legal enemy movements to a change in movement law. This targets transition-model errors without changing the objective or predictive interventions. Performance improvement remains untested.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _legal(m, p, d):
+    q = _add(p, d)
+    terrain = m["map"]
+    unlocked = m["keys"] >= 2 or m["door_open"]
+    if _wall(terrain, q, unlocked, True):
+        return False
+    if terrain.get(q) == 3 and not m["door_open"]:
+        if d[0] and d[1]:
+            return False
+    if d[0] and d[1]:
+        # A closed door cannot serve as a diagonal corner before interaction.
+        for side in ((d[0], 0), (0, d[1])):
+            s = _add(p, side)
+            open_here = m["door_open"] or (
+                m["keys"] >= 2 and
+                abs(s[0] - m["pos"][0]) + abs(s[1] - m["pos"][1]) == 1)
+            if _wall(terrain, s, open_here, True):
+                return False
+    return True
+=======
+def _door_after(m, p, opened, keys=None, interact=True):
+    if opened:
+        return True
+    if keys is None:
+        keys = m["keys"]
+    return bool(interact and keys >= 2 and any(
+        m["map"].get(_add(p, d)) == 3
+        for d in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+def _legal(m, p, d, opened=None):
+    # Explicit branch state is already AFTER this action's interaction.
+    # Static routing uses the same interaction rule at its hypothetical source.
+    if opened is None:
+        opened = _door_after(m, p, m["door_open"])
+    terrain = m["map"]
+    if _wall(terrain, _add(p, d), opened, True):
+        return False
+    if d[0] and d[1]:
+        for side in ((d[0], 0), (0, d[1])):
+            if _wall(terrain, _add(p, side), opened, True):
+                return False
+    return True
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    old_terrain, old_enemies, old_center, old_step, opened = previous
+    if m["step"] != old_step + 1:
+        return
+    # Avoid attributing unobserved wall changes to the movement law.
+=======
+    old_terrain, old_enemies, old_center, old_step, old_opened = previous
+    if m["step"] != old_step + 1:
+        return
+    # Door opening precedes enemy movement. Use the confirmed resulting
+    # state, not an opening assumed before the previous action was chosen.
+    opened = bool(m["door_open"])
+    if old_opened and not opened:
+        return
+    # Avoid attributing unobserved wall changes to the movement law.
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def _forecasts(m, law):
+    opened = m["door_open"] or (
+        m["keys"] >= 2 and any(
+            m["map"].get(_add(m["pos"], d)) == 3
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+    tracks = [{e: 1.0} for e in sorted(m["enemies"])]
+=======
+def _forecasts(m, law, opened):
+    # The caller supplies the door state after the selected interaction.
+    tracks = [{e: 1.0} for e in sorted(m["enemies"])]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    m["local"], m["enemies"] = terrain, enemies
+    m["forecast"], m["background"], opened = _forecasts(m, _law(m))
+    m["previous"] = (terrain, enemies, m["pos"], m["step"], opened)
+    return m
+=======
+    m["local"], m["enemies"] = terrain, enemies
+    # Every returned action interacts, so its immediate opening state is
+    # known here. Deeper planner branches compute their own opening states.
+    opened = _door_after(m, m["pos"], m["door_open"], interact=True)
+    m["forecast"], m["background"], _ = _forecasts(m, _law(m), opened)
+    m["previous"] = (
+        terrain, enemies, m["pos"], m["step"], bool(m["door_open"]))
+    return m
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def _planning_transition(m, law):
+    opened = m["door_open"] or (
+        m["keys"] >= 2 and any(
+            m["map"].get(_add(m["pos"], d)) == 3
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+    cache = {}
+=======
+def _planning_transition(m, law, opened):
+    # Each closure owns one door state's cache; kernels cannot leak
+    # between branches with different interaction histories.
+    cache = {}
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        law = _law(m)
+        risk = m["forecast"][0]
+    else:
+        # Mapping and learning remain independent of prediction use.
+        law = [1.0 / 9.0] * 9
+        fixed, _, _ = _forecasts(m, law)
+        risk = fixed[0]
+=======
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    opened0 = _door_after(m, start, m["door_open"], interact=True)
+    if local_obs.get("predictive_planning", True):
+        law = _law(m)
+        risk = m["forecast"][0]
+    else:
+        # Mapping and learning remain independent of prediction use.
+        law = [1.0 / 9.0] * 9
+        fixed, _, _ = _forecasts(m, law, opened0)
+        risk = fixed[0]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    transition = _planning_transition(m, law)
+    tracks0 = [{e: 1.0} for e in sorted(m["enemies"])]
+    projected0 = _project_tracks(tracks0, transition)
+    choices = []
+    emergency = []
+    for d in MOVES:
+        q = _add(start, d)
+        if not _legal(m, start, d) or q in m["enemies"]:
+            continue
+=======
+    transitions = {
+        state: _planning_transition(m, law, state)
+        for state in (False, True)}
+    transition = transitions[opened0]
+    tracks0 = [{e: 1.0} for e in sorted(m["enemies"])]
+    projected0 = _project_tracks(tracks0, transition)
+    choices = []
+    emergency = []
+    for d in MOVES:
+        q = _add(start, d)
+        if not _legal(m, start, d, opened0) or q in m["enemies"]:
+            continue
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            if tracks1 is not None:
+                projected1 = _project_tracks(tracks1, transition)
+                seconds = []
+                for e in MOVES:
+                    r = _add(q, e)
+                    if not _legal(m, q, e) or r not in potential:
+                        continue
+                    h2 = _collision_cost(
+                        tracks1, projected1, r, transition)
+=======
+            if tracks1 is not None:
+                keys1 = min(2, m["keys"] + int(m["map"].get(q) == 2))
+                opened1 = _door_after(m, q, opened0, keys1, True)
+                transition1 = transitions[opened1]
+                projected1 = _project_tracks(tracks1, transition1)
+                seconds = []
+                for e in MOVES:
+                    r = _add(q, e)
+                    if not _legal(m, q, e, opened1) or r not in potential:
+                        continue
+                    h2 = _collision_cost(
+                        tracks1, projected1, r, transition1)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+                        tracks2 = _surviving_tracks(
+                            tracks1, projected1, r, transition)
+                        if tracks2 is None:
+                            continue
+                        projected2 = _project_tracks(tracks2, transition)
+                        third = float("inf")
+                        for f in MOVES:
+                            s = _add(r, f)
+                            if not _legal(m, r, f) or s not in potential:
+                                continue
+                            h3 = _collision_cost(
+                                tracks2, projected2, s, transition)
+=======
+                        tracks2 = _surviving_tracks(
+                            tracks1, projected1, r, transition1)
+                        if tracks2 is None:
+                            continue
+                        keys2 = min(2, keys1 + int(
+                            r != q and m["map"].get(r) == 2))
+                        opened2 = _door_after(m, r, opened1, keys2, True)
+                        transition2 = transitions[opened2]
+                        projected2 = _project_tracks(tracks2, transition2)
+                        third = float("inf")
+                        for f in MOVES:
+                            s = _add(r, f)
+                            if not _legal(m, r, f, opened2) or s not in potential:
+                                continue
+                            h3 = _collision_cost(
+                                tracks2, projected2, s, transition2)
+>>>>>>> REPLACE
+</DIFF>

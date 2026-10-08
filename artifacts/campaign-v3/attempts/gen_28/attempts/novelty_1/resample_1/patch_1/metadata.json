@@ -1,0 +1,15 @@
+{
+  "generation": 28,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 6,
+  "patch_name": "door_schedule_conditioned_planning",
+  "patch_description": "Carry the door\u2019s opening time through the existing three-step planner. Each branch opens it only when interaction occurs from a cardinal neighbor with two previously collected keys. Enemy forecasts then use closed-door kernels before that time and open-door kernels afterward, preserving blocked-attempt probability mass. Memoization includes the opening schedule and hypothetical key pickups.\n\nAlso make immediate forecasts and learning evidence respect actual interaction timing. This targets inconsistent door geometry without changing the learner\u2019s adaptation rates, risk penalties, exploration strategy, or planning horizon. Improved control is a hypothesis; this patch has not been evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T20:38:17.844862",
+  "llm_cost": 0.70492,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_28/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

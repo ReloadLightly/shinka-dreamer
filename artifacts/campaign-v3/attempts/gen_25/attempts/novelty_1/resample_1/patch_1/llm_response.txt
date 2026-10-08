@@ -1,0 +1,234 @@
+<NAME>
+informative_surprise_recovery_expert
+</NAME>
+
+<DESCRIPTION>
+Measure directional information from anonymous transition constraints before accumulating change evidence. Scale fast-versus-slow predictive surprise by informative source count, and decay old evidence across observation gaps. Sustained surprise creates a separate recent-history expert without discarding either existing learner. Its initial weight is modest; subsequent predictive likelihood determines its influence on occupancy forecasts and planning. Preserve terrain-change exclusions, the uniform floor, and predictive interventions. Export information and expert-count diagnostics. This is an untested adaptation hypothesis, not a claimed performance improvement.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def rebuild_fast(m):
+    counts = [0.0] * 9
+    for _, terms in m["recent_terms"]:
+        evidence, expected = evidence_and_counts(count_law(counts), terms)
+        for k in range(9):
+            counts[k] *= .78
+            if evidence > 1e-15:
+                counts[k] += expected[k]
+    cap_counts(counts, 10.0)
+    m["counts"][1] = counts
+    uniform = max(.15, min(.35, m["weights"][0]))
+    fast = max(.40, min(.55, m["weights"][2]))
+    m["weights"] = [uniform, 1.0 - uniform - fast, fast]
+    m["surprise"] = [0.0, 0.0]
+    m["surprise_signs"] = []
+    m["last_reset"] = m["step"]
+    m["recoveries"] += 1
+=======
+def directional_information(terms):
+    # Under a uniform reference law, compute each anonymous source's
+    # posterior attempted direction. Fully censored sources contribute zero.
+    # Marginals are computed separately so opposing moves do not cancel.
+    sources = len(terms[0])
+    posterior = [[0.0] * 9 for _ in range(sources)]
+    evidence = 0.0
+    for term in terms:
+        sizes = [mask.bit_count() for mask in term]
+        weight = 1.0
+        for size in sizes:
+            weight *= size / 9.0
+        evidence += weight
+        for row, mask, size in zip(posterior, term, sizes):
+            if not size:
+                continue
+            contribution = weight / size
+            for k in range(9):
+                if mask & (1 << k):
+                    row[k] += contribution
+    if evidence <= 1e-15:
+        return 0.0
+    information = 0.0
+    for row in posterior:
+        for value in row:
+            probability = value / evidence
+            if probability > 1e-15:
+                information += probability * math.log(9.0 * probability)
+    return min(float(sources), max(0.0, information / math.log(9.0)))
+
+
+def rebuild_fast(m):
+    # Fit a separate recovery expert. Repeated responsibility estimation
+    # revises ambiguous attempts without counting the same event twice.
+    counts = [0.0] * 9
+    recent = m["recent_terms"]
+    for _ in range(3):
+        law = count_law(counts)
+        revised = [0.0] * 9
+        for index, (_, terms) in enumerate(recent):
+            evidence, expected = evidence_and_counts(law, terms)
+            if evidence <= 1e-15:
+                continue
+            recency = .78 ** (len(recent) - 1 - index)
+            for k in range(9):
+                revised[k] += recency * expected[k]
+        cap_counts(revised, 10.0)
+        counts = revised
+
+    # Keep the persistent and fast learners. Only the recovery slot is
+    # replaced, with bounded initial mass and no retrospective score boost.
+    if len(m["counts"]) == 2:
+        m["counts"].append(counts)
+        retained = list(m["weights"])
+    else:
+        m["counts"][2] = counts
+        retained = list(m["weights"][:3])
+    total = sum(retained)
+    m["weights"] = [.88 * w / total for w in retained] + [.12]
+    m["surprise"] = [0.0, 0.0]
+    m["surprise_signs"] = []
+    m["last_reset"] = m["step"]
+    m["recoveries"] += 1
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    for counts, decay in zip(m["counts"], (.992, .88)):
+        for k in range(9):
+            counts[k] *= decay
+    m["weights"] = [
+        .975 * w + .025 * prior
+        for w, prior in zip(m["weights"], (.30, .45, .25))
+    ]
+
+    terms = transition_terms(m)
+=======
+    for counts, decay in zip(m["counts"], (.992, .88, .78)):
+        for k in range(9):
+            counts[k] *= decay
+    priors = (
+        (.30, .45, .25) if len(m["weights"]) == 3
+        else (.30, .40, .20, .10)
+    )
+    m["weights"] = [
+        .975 * w + .025 * prior
+        for w, prior in zip(m["weights"], priors)
+    ]
+    # Evidence must be temporally sustained, including during visibility gaps.
+    m["surprise"] = [.97 * value for value in m["surprise"]]
+    m["surprise_signs"] = [
+        item for item in m["surprise_signs"]
+        if m["step"] - item[0] <= 16
+    ]
+    m["recent_terms"] = [
+        item for item in m["recent_terms"]
+        if m["step"] - item[0] <= 16
+    ]
+    m["directional_information"] = 0.0
+
+    terms = transition_terms(m)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if results[0][0] >= 1.0 - 1e-10:
+        return
+
+    count = max(1, len(terms[0]))
+=======
+    if results[0][0] >= 1.0 - 1e-10:
+        return
+
+    information = directional_information(terms)
+    m["directional_information"] = information
+    m["information_total"] += information
+    count = max(1, len(terms[0]))
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    advantages = [
+        math.log(likelihood[0] / likelihood[1]) / count,
+        math.log(likelihood[2] / likelihood[1]) / count,
+    ]
+    for i, advantage in enumerate(advantages):
+        m["surprise"][i] = max(
+            0.0,
+            .94 * m["surprise"][i]
+            + max(-1.5, min(1.5, advantage)) - .035,
+        )
+    m["surprise_signs"].append(
+        tuple(advantage > .035 for advantage in advantages)
+    )
+    m["surprise_signs"] = m["surprise_signs"][-5:]
+    m["recent_terms"].append((m["step"], terms))
+    m["recent_terms"] = [
+        item for item in m["recent_terms"][-5:]
+        if m["step"] - item[0] <= 16
+    ]
+=======
+    if information >= .08:
+        # Log likelihood already sums evidence across independent sources.
+        # Discount it by directional resolution instead of dividing away
+        # the extra evidence supplied by multiple informative enemies.
+        resolution = information / count
+        advantages = [
+            resolution * math.log(likelihood[0] / likelihood[1]),
+            resolution * math.log(likelihood[2] / likelihood[1]),
+        ]
+        allowance = .035 * information
+        for i, advantage in enumerate(advantages):
+            m["surprise"][i] = max(
+                0.0,
+                m["surprise"][i]
+                + max(-2.0, min(2.0, advantage)) - allowance,
+            )
+        m["surprise_signs"].append((
+            m["step"],
+            tuple(advantage > allowance for advantage in advantages),
+        ))
+        m["surprise_signs"] = m["surprise_signs"][-5:]
+        m["recent_terms"].append((m["step"], terms))
+        m["recent_terms"] = m["recent_terms"][-5:]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if total > 1e-25:
+        m["weights"] = [.94 * w / total + .02 for w in weights]
+
+    for counts, result, cap in zip(
+            m["counts"], results[1:], (80.0, 16.0)):
+=======
+    if total > 1e-25:
+        floor = .06 / len(weights)
+        m["weights"] = [.94 * w / total + floor for w in weights]
+
+    for counts, result, cap in zip(
+            m["counts"], results[1:], (80.0, 16.0, 10.0)):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    sustained = any(
+        m["surprise"][i] > 1.15
+        and sum(signs[i] for signs in m["surprise_signs"]) >= 3
+        for i in range(2)
+    )
+=======
+    # Uniform advantage remains diagnostic. Birth requires the adaptive
+    # fast expert to have predicted several informative outcomes better.
+    sustained = (
+        information >= .08
+        and m["surprise"][1] > 1.15
+        and sum(signs[1] for _, signs in m["surprise_signs"]) >= 3
+    )
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "recoveries": 0, "route_background": 0.0,
+=======
+            "recoveries": 0, "route_background": 0.0,
+            "directional_information": 0.0, "information_total": 0.0,
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "surprise_evidence": list(m["surprise"]),
+            "fast_recoveries": m["recoveries"],
+=======
+            "surprise_evidence": list(m["surprise"]),
+            "fast_recoveries": m["recoveries"],
+            "recovery_expert_births": m["recoveries"],
+            "active_experts": len(m["weights"]),
+            "directional_information": m["directional_information"],
+            "cumulative_directional_information": m["information_total"],
+>>>>>>> REPLACE
+</DIFF>

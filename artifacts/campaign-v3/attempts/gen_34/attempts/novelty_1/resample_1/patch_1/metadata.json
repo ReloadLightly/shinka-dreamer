@@ -1,0 +1,15 @@
+{
+  "generation": 34,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 2,
+  "patch_name": "stale_bottleneck_observation",
+  "patch_description": "Add targeted observation goals when a remembered exit or door remains unreachable for four steps after collecting both keys. A counterfactual shortest-path search permits stale walls to reopen, including walls blocking diagonal corners, and identifies the first obstruction along a promising route. The agent then travels to a reachable viewpoint that reveals that obstruction. Actual movement retains the existing legality checks and learned hazard planner; hypothetical openings never modify terrain memory. Fresh observations invalidate obsolete recovery goals. This targets failed route recovery without changing ordinary exploration or predictive learning. Performance remains untested.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T21:11:13.378694",
+  "llm_cost": 0.353878,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_34/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

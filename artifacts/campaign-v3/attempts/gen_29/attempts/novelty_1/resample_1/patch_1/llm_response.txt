@@ -1,0 +1,212 @@
+<NAME>
+survival_conditioned_edges
+</NAME>
+
+<DESCRIPTION>
+Condition future collision risk on having survived at the preceding planned position. The current planner repeatedly charges probability mass for enemies occupying a cell where the agent must already have survived. This can distort waiting and escape maneuvers around moving enemies.
+
+Retain each expert’s transition distributions and compute future edge hazards after excluding enemy occupancy at the preceding agent position. Reweight experts by that survival evidence before combining hazards. This is a one-step survival-conditioning approximation, not a full path posterior. It preserves the three-step horizon, uniform floor, immediate collision checks, exported forecasts, and separate prediction-use intervention. Performance improvement remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    expert_forecasts = []
+    expert_hazards = []
+    for law in laws:
+=======
+    expert_forecasts = []
+    expert_hazards = []
+    expert_transitions = []
+    for law in laws:
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        forecasts, hazards = [{}], [{}]
+
+        for tick in range(1, HORIZON + 1):
+=======
+        forecasts, hazards = [{}], [{}]
+        transitions = [None]
+
+        for tick in range(1, HORIZON + 1):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            forecasts.append(occupancy)
+            hazards.append(collision_risk)
+            hidden, sources = next_hidden, next_sources
+
+        expert_forecasts.append(forecasts)
+        expert_hazards.append(hazards)
+=======
+            forecasts.append(occupancy)
+            hazards.append(collision_risk)
+            transitions.append((
+                sources, next_sources, hidden, next_hidden, kernels, stays
+            ))
+            hidden, sources = next_hidden, next_sources
+
+        expert_forecasts.append(forecasts)
+        expert_hazards.append(hazards)
+        expert_transitions.append(transitions)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    return risk, hazards, disagreement, 1.0 - math.exp(-density)
+
+
+def world_model_step(memory, local_obs, last_action):
+=======
+    return (
+        risk, hazards, disagreement, 1.0 - math.exp(-density),
+        (tuple(weights), expert_transitions),
+    )
+
+
+def _conditioned_edge(m, transition_models, origin, destination, tick):
+    """Condition on survival at the preceding position, within each law."""
+    weights, experts = transition_models
+    evidence, risks = [], []
+    changed = False
+
+    for weight, transitions in zip(weights, experts):
+        before_sources, after_sources, hidden, next_hidden, kernels, stays = (
+            transitions[tick]
+        )
+        origin_kernel = kernels.get(origin, ())
+        arrival = sum(
+            probability for cell, probability in origin_kernel
+            if cell == destination
+        )
+        destination_stay = stays.get(destination, 0.0)
+        survival_evidence = 1.0
+        no_collision = 1.0
+
+        for before, after in zip(before_sources, after_sources):
+            excluded = before.get(origin, 0.0)
+            changed = changed or excluded > 1e-12
+            absent = max(0.0, 1.0 - excluded)
+            survival_evidence *= absent
+
+            # Remove trajectories beginning at the preceding agent cell.
+            # At the new destination, collision can occur before or after
+            # movement; subtract the overlap from blocked/stay attempts.
+            before_destination = (
+                0.0 if destination == origin
+                else before.get(destination, 0.0)
+            )
+            after_destination = max(
+                0.0, after.get(destination, 0.0) - excluded * arrival
+            )
+            union = (
+                before_destination * (1.0 - destination_stay)
+                + after_destination
+            )
+            collision = min(
+                1.0, max(0.0, union / max(1e-12, absent))
+            )
+            no_collision *= 1.0 - collision
+
+        # A diffuse Poisson population conditioned on an empty origin
+        # retains its intensity elsewhere.
+        excluded_hidden = hidden.get(origin, 0.0)
+        changed = changed or excluded_hidden > 1e-12
+        survival_evidence *= math.exp(-excluded_hidden)
+        before_hidden = (
+            0.0 if destination == origin
+            else hidden.get(destination, 0.0)
+        )
+        after_hidden = max(
+            0.0,
+            next_hidden.get(destination, 0.0) - excluded_hidden * arrival,
+        )
+        hidden_union = max(
+            0.0,
+            before_hidden * (1.0 - destination_stay) + after_hidden,
+        )
+        no_collision *= math.exp(-hidden_union)
+        evidence.append(weight * survival_evidence)
+        risks.append(min(1.0, max(0.0, 1.0 - no_collision)))
+
+    total = sum(evidence)
+    if not changed or total <= 1e-12:
+        return None
+
+    posterior = [mass / total for mass in evidence]
+    mean = sum(weight * risk for weight, risk in zip(posterior, risks))
+    uncertainty = 0.0
+    plausible = [
+        i for i, weight in enumerate(posterior)
+        if weight >= max(.06, .15 * max(posterior))
+    ]
+    if (
+        len(plausible) > 1
+        and any(_distance(destination, source) <= tick
+                for source in m["enemies"])
+    ):
+        mass = sum(posterior[i] for i in plausible)
+        center = sum(posterior[i] * risks[i] for i in plausible) / mass
+        variance = sum(
+            posterior[i] * (risks[i] - center) ** 2
+            for i in plausible
+        ) / mass
+        uncertainty = math.sqrt(max(0.0, variance))
+    return mean, uncertainty
+
+
+def world_model_step(memory, local_obs, last_action):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    risk, hazards, disagreement, default = _forecast(m)
+    m["risk"], m["hazards"] = risk, hazards
+    m["disagreement"], m["default_enemy"] = disagreement, default
+=======
+    risk, hazards, disagreement, default, transitions = _forecast(m)
+    m["risk"], m["hazards"] = risk, hazards
+    m["disagreement"], m["default_enemy"] = disagreement, default
+    m["transition_models"] = transitions
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if local_obs.get("predictive_planning", True):
+        risk = m["risk"]
+        hazards = m["hazards"]
+        disagreement = m["disagreement"]
+    else:
+        # Export retains the learned forecast; only decision prediction
+        # changes. Geometry and the complete controller remain identical.
+        risk, hazards, disagreement, _ = _forecast(m, predictive=False)
+=======
+    if local_obs.get("predictive_planning", True):
+        risk = m["risk"]
+        hazards = m["hazards"]
+        disagreement = m["disagreement"]
+        transitions = m["transition_models"]
+    else:
+        # Export retains the learned forecast; only decision prediction
+        # changes. Geometry and the complete controller remain identical.
+        risk, hazards, disagreement, _, transitions = _forecast(
+            m, predictive=False
+        )
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    def stage_cost(q, direction, tick):
+        key = (q, direction == (0, 0), tick)
+        if key in stage_cache:
+            return stage_cache[key]
+        hazard = hazards[tick].get(q, 0.0)
+        uncertainty = disagreement[tick].get(q, 0.0)
+        robust_hazard = min(
+=======
+    def stage_cost(q, direction, tick):
+        origin = (q[0] - direction[0], q[1] - direction[1])
+        key = (origin, q, tick)
+        if key in stage_cache:
+            return stage_cache[key]
+        hazard = hazards[tick].get(q, 0.0)
+        uncertainty = disagreement[tick].get(q, 0.0)
+        if tick > 1:
+            conditioned = _conditioned_edge(
+                m, transitions, origin, q, tick
+            )
+            if conditioned is not None:
+                hazard, uncertainty = conditioned
+        robust_hazard = min(
+>>>>>>> REPLACE
+</DIFF>
