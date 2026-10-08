@@ -1,0 +1,14 @@
+{
+  "target_slots": 50,
+  "persisted_slots": 1,
+  "complete": false,
+  "seed_slots": 1,
+  "seed_island_rows": 4,
+  "valid_descendants": 0,
+  "failed_slots": [],
+  "saved_evaluation_episodes": 72,
+  "candidate_cpu_seconds": 12.172829000000002,
+  "evaluator_cpu_seconds": 3.1983313580000043,
+  "episode_host_seconds": 14.462446613993961,
+  "scope": "One search; reused development results, no independent discovery replication."
+}

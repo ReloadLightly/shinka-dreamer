@@ -1,0 +1,197 @@
+{
+  "updated_utc": "2026-10-08T16:10:11.315194+00:00",
+  "campaign_sha256": "cb147fc6227f5d91b8d33ca525404113c2ee384c868191ab72e374686bf8b0a0",
+  "total_slots_budget": 50,
+  "persisted_slots": 1,
+  "native_rows_including_island_seed_copies": 4,
+  "seed_slots": 1,
+  "valid_descendants": 0,
+  "failed_slots": [],
+  "saved_evaluation_episodes": 72,
+  "invalid_saved_episodes": 0,
+  "model_calls": [
+    {
+      "id": "20261008T160407360228Z-6cac4aa9",
+      "started_utc": "2026-10-08T16:04:07.360321+00:00",
+      "prompt_sha256": "8a76cc436dc436370ecb2ed5b436cfe20e19830be3c4044e6a4b4d69c65b925b",
+      "status": "started",
+      "billing_required": "subscription",
+      "role": "mutation_or_repair",
+      "generation": null
+    }
+  ],
+  "probe_calls": [
+    {
+      "source": "subscription-probe-20261008T160323501898Z.log",
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 2414,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 5,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 14707,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.02414,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.00025,
+          "total": 0.036678
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 2414,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 5,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 14707,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.02414,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.00025,
+                  "total": 0.036678
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "subscription-readiness-probe-20261008.log",
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 6860,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 5,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 19153,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.0686,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.00025,
+          "total": 0.081138
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 6860,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 5,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 19153,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.0686,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.00025,
+                  "total": 0.081138
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "native_model_requests": 1,
+  "all_model_requests_including_probes": 3,
+  "model_requests_by_role": {
+    "mutation_or_repair": 1
+  },
+  "model_status_counts": {
+    "started": 1
+  },
+  "billing_attempt_routes": {
+    "subscription": 2
+  },
+  "reported_tokens": {
+    "inputTokens": 9274,
+    "cacheReadTokens": 24576,
+    "cacheWriteTokens": 0,
+    "outputTokens": 10,
+    "reasoningOutputTokens": 0,
+    "totalTokens": 33860
+  },
+  "cost_note": "All dollar figures in native logs are API-list-price estimates, not actual subscription charges.",
+  "resources": {
+    "model_elapsed_seconds": 0,
+    "candidate_cpu_seconds": 12.172829000000002,
+    "evaluator_cpu_seconds": 3.1983313580000043,
+    "episode_wall_seconds": 14.462446613993961
+  },
+  "features": {
+    "native_islands": {
+      "configured": 4,
+      "rows_observed_by_island": {
+        "1": 1,
+        "3": 1,
+        "0": 1,
+        "2": 1
+      }
+    },
+    "native_migration": {
+      "configured_interval": 10,
+      "observed": []
+    },
+    "inspirations": {
+      "configured_archive": 1,
+      "configured_top_k": 1,
+      "sampled_nonempty_requests": 0
+    },
+    "recommendations": {
+      "configured_interval": 10,
+      "outputs": [],
+      "requests_with_recommendation": 0
+    },
+    "novelty": "inactive: embeddings and novelty judge explicitly disabled; no novelty claim",
+    "model_bandit": "disabled: one effective model/effort configuration",
+    "prompt_evolution": "disabled",
+    "evaluator_llm": "none"
+  },
+  "request_evidence": [],
+  "upstream_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+  "headless_revision": "93cd9b06b85f848af1308c41e018991b33907c5e",
+  "effective_model": "gpt-6-astra",
+  "effective_effort": "high",
+  "not_forwarded_codex_controls": [
+    "temperature",
+    "max_tokens"
+  ]
+}

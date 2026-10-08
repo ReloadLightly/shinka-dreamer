@@ -1,0 +1,42 @@
+{
+  "development": {
+    "count": 24,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "condition_episodes": 72,
+    "pool_sha256": "1d89a5d7b264ba156ff62fff1ee34530948300485e38f14eae8eb38ffe0d136c"
+  },
+  "selection": {
+    "count": 64,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "condition_episodes": 192,
+    "pool_sha256": "514b3de2db1de05f406d952736d461f74a10c3853c26d0d6f1909912830d43d5"
+  },
+  "fit": {
+    "count": 64,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "condition_episodes": 192,
+    "pool_sha256": "e8c0eee3ea522b43e1c2ac326869145cb3d6d3d93fe53023b5f9842908a37b2e"
+  },
+  "fit-validation": {
+    "count": 24,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "condition_episodes": 72,
+    "pool_sha256": "d723aa726e4a915c5385ede035cfd9d65e926ace7bbed859c0a3450985e0573a"
+  }
+}

@@ -1,0 +1,70 @@
+[
+  {
+    "generation": 0,
+    "correct": true,
+    "combined_score": 0.7991562499999998,
+    "episode_count": 72,
+    "episodes": 72,
+    "escape": 0.7777777777777778,
+    "death": 0.20833333333333334,
+    "timeout": 0.013888888888888888,
+    "invalid": 0,
+    "task": 0.7991562499999998,
+    "keys": 1.875,
+    "door": 0.7777777777777778,
+    "steps": 51.611111111111114,
+    "model_score": 0.9883203572878558,
+    "seconds": 0.20086731408324945,
+    "candidate_cpu_seconds": 0.16906706944444447,
+    "evaluator_cpu_seconds": 0.04442126886111117,
+    "base_audit": 0.016847793326157292,
+    "base_near": 0.008006745604592752,
+    "brier_audit": 0.016229963907654608,
+    "brier_audit_post_switch": 0.012563311703297145,
+    "brier_audit_pre_switch": 0.01653338151430888,
+    "brier_destination": 0.0036963101743201646,
+    "brier_near": 0.006127493610904402,
+    "brier_near_post_switch": 0.004648418378631156,
+    "brier_near_pre_switch": 0.006249887948306968,
+    "brier_threat": 0.024908940792286567,
+    "coverage": 0.5986724076067456,
+    "map_age": 18.955311657177106,
+    "persistence_audit": 0.016712791532113518,
+    "persistence_near": 0.008760913766295897,
+    "persistence_threat": 0.03561876975443715,
+    "prevalence_audit": 0.017133118048080372,
+    "prevalence_destination": 0.004036598493003229,
+    "prevalence_near": 0.00792369333811745,
+    "reconstruction": 0.5918774668101902,
+    "reconstruction_stale": 0.9858714911871678,
+    "reconstruction_unseen": 0.0,
+    "reconstruction_visible": 1.0,
+    "escape_steps": 54.339285714285715,
+    "regimes": {
+      "uniform": {
+        "episodes": 24,
+        "escape": 0.7916666666666666,
+        "task": 0.8183541666666669,
+        "encountered_switch": 0,
+        "post_switch_steps": 0,
+        "post_switch_visible_enemy_steps": 0
+      },
+      "stationary": {
+        "episodes": 24,
+        "escape": 0.7083333333333334,
+        "task": 0.7408020833333331,
+        "encountered_switch": 0,
+        "post_switch_steps": 0,
+        "post_switch_visible_enemy_steps": 0
+      },
+      "switch": {
+        "episodes": 24,
+        "escape": 0.8333333333333334,
+        "task": 0.8383124999999999,
+        "encountered_switch": 14,
+        "post_switch_steps": 284,
+        "post_switch_visible_enemy_steps": 64
+      }
+    }
+  }
+]

@@ -1,0 +1,149 @@
+{
+  "evolution": {
+    "task_sys_msg": "Evolve an executable Python agent for the Namazu unknown-enemy-dynamics v3\nexperiment. Jointly change world_model_step(memory, local_obs, last_action),\nplanner(memory, local_obs), export_model, helpers, representations, memory and\npredictive updating. Substantive new programs and algorithms are permitted;\nthis is not a fixed algorithm catalog or parameter-only search.\n\nThe world is 15x15 with a local 5x5 observation square without occlusion. Two\nkeys unlock a cardinally adjacent gating door and an exit. Three anonymous\nenemies move independently. Interior dynamic walls change every 25 steps; fixed\nborders and a 200-step horizon are retained. Actions: move=[dx,dy], each integer\nin -1,0,1, plus interact=bool. Diagonal corner cutting is blocked. Interaction\nopens adjacent doors before agent movement; keys are collected after movement.\nStepping onto an enemy kills before that enemy moves. A dynamic closure of an\noccupied cell is skipped until the next scheduled tick.\n\nThe three equally weighted development regimes are: uniform nine attempted\nmovements including stay; one privately drawn stationary categorical movement\nlaw per episode; and an unannounced within-episode change to an independent law.\nLaws use Dirichlet(1,...,1), rejecting entropy<1.2nats or maximum probability>.6.\nThe changing regime switches at a private uniform integer step 25..75, with total\nvariation distance>=.3 between laws. All enemies share the current law. Blocked\nattempted moves become stays; probabilities are NOT renormalized over legal\nmoves. Laws, switch times, enemy identities, hidden coordinates and seeds are\nnever revealed to ordinary candidates.\n\nlocal_obs supplies grid(enemy overlay=5), terrain(0empty,1wall,2key,3locked door,\n4exit,-1outside), step,health,keys,door_open, and feedback(actual displacement,\ncollected,opened). Coordinates in exported models use the initial agent position\nas(0,0). Memory resets to None every episode. Terrain and localization memory are\nstate estimation; predictive adaptation means learning dynamics from experience.\n\nThe evaluator records export_model(memory,local_obs) after action choice and\nbefore the next transition. Export enemy=[[relative_x,relative_y,p],...] and\ndefault_enemy=p in[0,1], predicting NEXT-step anonymous occupancy at stationary\ncells in initial-agent coordinates. Export terrain=[[x,y,cell,last_seen_step],...]\nfor reconstruction diagnostics and position=[x,y]. It scores every local 3x3 cell\nand 12 random interior audit cells; missing probabilities default to.5. Invalid\nnumbers, actions or malformed exports fail evaluation. Prediction quality is\nreported as proper Brier losses and actionable text feedback, but it is not the\nfitness objective. Prediction and risk calculations used in decisions may use\nany coherent representation; the export interface does not constrain planning.\n\nFrozen objective absolute-task-v3: task=.65*escape+.10*keys+.10*door+\n.05*escape*(1-steps/200), where keys is the fraction of the two collected keys.\nMaximize the mean absolute task component over all equally weighted regimes.\nDo not optimize advantage over a disabled version or sabotage an intervention.\nForecast improvements only matter to selection when they improve actual control.\nIf your representation naturally permits predictive-update or prediction-use\ninterventions, preserve them separately from mapping/localization. Generic flags\nare not required to force your algorithm into the seed's representation.\n\nExecution is Python 3.10 standard library, 192 MiB address space, 10 CPU seconds per\nepisode, 3 wall seconds per decision, 512 KiB source, 2 MiB reply. OS isolation denies\nrepository/private files,network,new processes and evaluator inspection. Resource\nlimits regulate execution, not permissible algorithms. Use only this task and\nthe supplied parent/inspiration code,development text feedback and native meta\nrecommendations. Do not read other experiment outputs or assessment data. Return\na patch or full program in ShinkaEvolve's requested format.\n",
+    "patch_types": [
+      "diff",
+      "full"
+    ],
+    "patch_type_probs": [
+      0.6,
+      0.4
+    ],
+    "num_generations": 50,
+    "max_patch_resamples": 2,
+    "max_patch_attempts": 2,
+    "job_type": "local",
+    "language": "python",
+    "llm_models": [
+      "headless/codex@gpt-6-astra?effort=high"
+    ],
+    "llm_dynamic_selection": null,
+    "llm_dynamic_selection_kwargs": {
+      "cost_aware_coef": 0.5
+    },
+    "llm_kwargs": {
+      "temperatures": [
+        1.0
+      ],
+      "max_tokens": 24000
+    },
+    "meta_rec_interval": 10,
+    "meta_llm_models": [
+      "headless/codex@gpt-6-astra?effort=high"
+    ],
+    "meta_llm_kwargs": {},
+    "meta_max_recommendations": 5,
+    "sample_single_meta_rec": true,
+    "embedding_model": null,
+    "init_program_path": "/home/roland/projects/shinka-dreamer/controls/v1/predictive.py",
+    "results_dir": "/home/roland/projects/shinka-dreamer/results/campaign-v3",
+    "enable_wandb_logging": false,
+    "wandb_project": "shinka-evolve",
+    "wandb_entity": null,
+    "wandb_group": null,
+    "wandb_name": null,
+    "wandb_mode": null,
+    "wandb_tags": [],
+    "wandb_notes": null,
+    "wandb_dir": null,
+    "wandb_run_id": null,
+    "wandb_resume": "allow",
+    "wandb_config": {},
+    "max_novelty_attempts": 1,
+    "code_embed_sim_threshold": 0.99,
+    "novelty_llm_models": null,
+    "novelty_llm_kwargs": {},
+    "use_text_feedback": true,
+    "max_api_costs": null,
+    "inspiration_sort_order": "ascending",
+    "enable_controlled_oversubscription": false,
+    "proposal_target_mode": "adaptive",
+    "proposal_target_min_samples": 5,
+    "proposal_target_ratio_cap": 2.0,
+    "proposal_buffer_max": 2,
+    "proposal_target_hard_cap": null,
+    "proposal_target_ewma_alpha": 0.3,
+    "evolve_prompts": false,
+    "prompt_patch_types": [
+      "diff",
+      "full"
+    ],
+    "prompt_patch_type_probs": [
+      0.7,
+      0.3
+    ],
+    "prompt_evolution_interval": null,
+    "prompt_archive_size": 10,
+    "prompt_llm_models": null,
+    "prompt_llm_kwargs": {},
+    "prompt_ucb_exploration_constant": 1.0,
+    "prompt_epsilon": 0.1,
+    "prompt_evo_top_k_programs": 3,
+    "prompt_percentile_recompute_interval": 20
+  },
+  "database": {
+    "db_path": null,
+    "num_islands": 4,
+    "archive_size": 40,
+    "max_stdout_log_chars": null,
+    "elite_selection_ratio": 0.3,
+    "num_archive_inspirations": 1,
+    "num_top_k_inspirations": 1,
+    "migration_interval": 10,
+    "migration_rate": 0.1,
+    "island_elitism": true,
+    "enforce_island_separation": true,
+    "island_selection_strategy": "uniform",
+    "enable_dynamic_islands": false,
+    "stagnation_threshold": 100,
+    "island_spawn_strategy": "initial",
+    "island_spawn_subtree_size": 1,
+    "parent_selection_strategy": "weighted",
+    "exploitation_alpha": 1.0,
+    "exploitation_ratio": 0.2,
+    "parent_selection_lambda": 10.0,
+    "num_beams": 5,
+    "archive_selection_strategy": "fitness",
+    "archive_criteria": {
+      "combined_score": 1.0
+    }
+  },
+  "job": {
+    "eval_program_path": "/home/roland/projects/shinka-dreamer/evaluate_v3.py",
+    "extra_cmd_args": {
+      "episodes": 24,
+      "seed_file": "/home/roland/projects/shinka-dreamer/results/private/v3-development-seeds.json",
+      "campaign_manifest": "/home/roland/projects/shinka-dreamer/results/campaign-v3/campaign-manifest.json"
+    },
+    "eval_verbose": true,
+    "numeric_threads_per_job": 1,
+    "time": "00:15:00",
+    "conda_env": null,
+    "activate_script": null,
+    "python_executable": "/home/roland/projects/shinka-dreamer/.venv/bin/python"
+  },
+  "max_evaluation_jobs": 1,
+  "max_proposal_jobs": 1,
+  "max_db_workers": 1,
+  "billing": "subscription",
+  "upstream": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+  "headless": "93cd9b06b85f848af1308c41e018991b33907c5e",
+  "native_sampling_seed": 3181473,
+  "native_sampling_resume": "Python/NumPy checkpoint restored before setup/recovery; saved proposals and native recommendations restored; LLM sampling not reproducible",
+  "roles": {
+    "mutation_fix": "headless/codex@gpt-6-astra?effort=high",
+    "meta_recommendation": "headless/codex@gpt-6-astra?effort=high",
+    "novelty": null,
+    "embedding": null,
+    "evaluator": "local Python; no LLM"
+  },
+  "effective_codex": {
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "timeout_seconds": 600,
+    "not_forwarded": [
+      "temperature",
+      "max_tokens"
+    ]
+  }
+}

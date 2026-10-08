@@ -1,0 +1,115 @@
+{
+  "campaign": "namazu-unknown-dynamics-v3",
+  "target_generation_slots": 50,
+  "evaluation": {
+    "protocol": "namazu-unknown-dynamics-v3",
+    "objective": "absolute-task-v1",
+    "objective_formula": ".65*escape+.10*keys+.10*door+.05*escape*(1-steps/200); invalid=0",
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "regime_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "law_distribution": {
+      "dirichlet_alpha": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "entropy_min_nats": 1.2,
+      "max_component": 0.6,
+      "switch_min_tv": 0.3,
+      "switch_first_transition_inclusive": [
+        25,
+        75
+      ]
+    },
+    "rng": {
+      "layout": "layout (unchanged v2 generation)",
+      "initial_law": "v3:law:initial",
+      "replacement_law": "v3:law:replacement",
+      "switch_time": "v3:switch-time",
+      "enemy_innovations": "v3:enemy-innovations",
+      "forecast_targets": "v3:forecast-targets",
+      "candidate": "v3:candidate",
+      "enemy_draws_per_tick": 3,
+      "sampler": "one uniform innovation, inverse CDF per enemy"
+    },
+    "source_sha256": {
+      "evaluate_v3.py": "474766796b48353627bdf60e1239a32df841c7625a5a070fd3ccc396bd1055e4",
+      "dreamer/evaluation_v3.py": "0c6753e60212b8b8d4c3f4cd7bb93d20629225f62965ab4ba567eea120b0f3aa",
+      "dreamer/world_v3.py": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/worker_v3.py": "7c8a71365fb4e2378a64e554e81624034c23e3bc41446ebce88ed735f7139f37",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/bridge_v3.py": "ec4558be11581df2139f2efb0247ddb12f15ebe674a51e04530a49b36c234341",
+      "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e"
+    },
+    "controls": {
+      "predictive": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "runtime": {
+      "evaluator_python": "3.10.12",
+      "candidate_executable": "/usr/bin/python3",
+      "candidate_executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "candidate_args": [
+        "-s",
+        "-S"
+      ],
+      "hash_seed": 0,
+      "agent_random_seed_before_exec": "stream_seed(case, 'v3:candidate')",
+      "limits": {
+        "address_space_mib": 192,
+        "cpu_seconds": 10,
+        "reply_seconds": 3,
+        "source_kib": 512,
+        "reply_mib": 2,
+        "file_descriptors": 64
+      },
+      "isolation": "Landlock + seccomp, unchanged from v2"
+    }
+  },
+  "development_pool": {
+    "path": "/home/roland/projects/shinka-dreamer/results/private/v3-development-seeds.json",
+    "sha256": "1d89a5d7b264ba156ff62fff1ee34530948300485e38f14eae8eb38ffe0d136c",
+    "episodes": 24
+  },
+  "regimes": [
+    "uniform",
+    "stationary",
+    "switch"
+  ],
+  "candidate_episodes": 72,
+  "seed_program_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+  "seed_source": "immutable original predictive seed; no manually fitted comparator incorporated",
+  "protocol_sha256": "690ca469b2506da82bfb6511757294a66ae616ec10662458e10d838b089c767e",
+  "resolved_sha256": "d41af61b47d402b63224da51a7fb435d1432f5f747c60f6c2afcd4e02afc0851",
+  "driver_sha256": {
+    "scripts/evolve_v3.py": "a4ab3f97c92f8d4b80cbb2cc36d06d94d88ab1edaf1265dc292a14b3c2242d85",
+    "dreamer/native_v3.py": "fa82ab358d8161e9661a98b3488bde629348905dc3b5d46af7a665b753462b67",
+    "scripts/recover_campaign.py": "094b9fb88e2a0b1ce6d77dbeae697f401f66ee1b535f189d08b2b3597d005afd",
+    "dreamer/native.py": "4e457b8781a099482b7a497312a11812e069467b41a875805d7ea2e68f1f8cc0",
+    "scripts/subscription_headless.sh": "caedeafe87fcf0774838af0e9e8dfb965fcdfba9ce47a16b2b659359a1f0a04d",
+    "docs/mutation-prompt-v3.md": "0178975ea5272ce2eaa6ac62b7af8d76ac6aec4e17477a85028dd5ab5474e429"
+  },
+  "installed": {
+    "shinka_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+    "shinka_version": "0.0.7",
+    "shinka_python_sha256": "1dcc5fb99df0ca7957d0e0f74803e64ab1bf8c80a5c31abe78070444a5139ff4",
+    "headless_revision": "93cd9b06b85f848af1308c41e018991b33907c5e",
+    "headless_js_sha256": "61fcadcb61d04661aecffb84ef24480c3ca0e3d44fbc693ecd0035bcb9fde0ab",
+    "codex": "codex-cli 0.161.0"
+  }
+}

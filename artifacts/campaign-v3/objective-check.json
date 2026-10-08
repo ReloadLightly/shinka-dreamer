@@ -1,0 +1,479 @@
+{
+  "plan": {
+    "split": "first 8 development cases; reused by search",
+    "case_count": 8,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "conditions": {
+      "original_memory": [
+        "controls/v1/memory.py",
+        "memory"
+      ],
+      "evolution_seed": [
+        "controls/v1/predictive.py",
+        "predictive"
+      ],
+      "v2_gen14": [
+        "artifacts/campaign-v2/completed-50/selected.py",
+        "predictive"
+      ],
+      "v2_gen14_frozen": [
+        "artifacts/campaign-v2/completed-50/selected.py",
+        "frozen"
+      ],
+      "v2_gen14_fixed_risk": [
+        "artifacts/campaign-v2/completed-50/selected.py",
+        "no_planning"
+      ]
+    },
+    "purpose": "score scale/ranking/sparsity/decision relevance; no weight sweep",
+    "proposed_objective": "absolute-task-v1",
+    "programs": {
+      "original_memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e",
+      "evolution_seed": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "v2_gen14": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+      "v2_gen14_frozen": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0",
+      "v2_gen14_fixed_risk": "588eeb7c10b978fe86c7e7b572f177e8b755c9c25699f3c75bfadd41192ec5e0"
+    }
+  },
+  "evaluation": {
+    "protocol": "namazu-unknown-dynamics-v3",
+    "objective": "absolute-task-v1",
+    "objective_formula": ".65*escape+.10*keys+.10*door+.05*escape*(1-steps/200); invalid=0",
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "regime_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "law_distribution": {
+      "dirichlet_alpha": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "entropy_min_nats": 1.2,
+      "max_component": 0.6,
+      "switch_min_tv": 0.3,
+      "switch_first_transition_inclusive": [
+        25,
+        75
+      ]
+    },
+    "rng": {
+      "layout": "layout (unchanged v2 generation)",
+      "initial_law": "v3:law:initial",
+      "replacement_law": "v3:law:replacement",
+      "switch_time": "v3:switch-time",
+      "enemy_innovations": "v3:enemy-innovations",
+      "forecast_targets": "v3:forecast-targets",
+      "candidate": "v3:candidate",
+      "enemy_draws_per_tick": 3,
+      "sampler": "one uniform innovation, inverse CDF per enemy"
+    },
+    "source_sha256": {
+      "evaluate_v3.py": "4187c9bd2a7feeb3bbf7b195d64c4288d736038a8735f0187e2112639d07cb3a",
+      "dreamer/evaluation_v3.py": "e039214e04236f65b814c38ea8a89b40b6556a60de6bb8d90db4564d76b8ecdd",
+      "dreamer/world_v3.py": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/worker_v3.py": "7c8a71365fb4e2378a64e554e81624034c23e3bc41446ebce88ed735f7139f37",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/bridge_v3.py": "ec4558be11581df2139f2efb0247ddb12f15ebe674a51e04530a49b36c234341",
+      "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e"
+    },
+    "controls": {
+      "predictive": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "runtime": {
+      "evaluator_python": "3.10.12",
+      "candidate_executable": "/usr/bin/python3",
+      "candidate_executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "candidate_args": [
+        "-s",
+        "-S"
+      ],
+      "hash_seed": 0,
+      "agent_random_seed_before_exec": "stream_seed(case, 'v3:candidate')",
+      "limits": {
+        "address_space_mib": 192,
+        "cpu_seconds": 10,
+        "reply_seconds": 3,
+        "source_kib": 512,
+        "reply_mib": 2,
+        "file_descriptors": 64
+      },
+      "isolation": "Landlock + seccomp, unchanged from v2"
+    }
+  },
+  "episodes": 120,
+  "metrics": {
+    "original_memory": {
+      "episodes": 24,
+      "escape": 0.875,
+      "death": 0.125,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8785312500000005,
+      "keys": 1.9166666666666667,
+      "door": 0.875,
+      "steps": 62.625,
+      "model_score": 0.9874122784672679,
+      "seconds": 0.29284174537315266,
+      "candidate_cpu_seconds": 0.22841508333333335,
+      "evaluator_cpu_seconds": 0.08915525270833335,
+      "base_audit": 0.017698735861610308,
+      "base_near": 0.0067872255489021815,
+      "brier_audit": 0.01830343756930598,
+      "brier_audit_post_switch": 0.015857274401473373,
+      "brier_audit_pre_switch": 0.018638350983358695,
+      "brier_near": 0.007022991054927183,
+      "brier_near_post_switch": 0.0,
+      "brier_near_pre_switch": 0.007984535216002689,
+      "brier_threat": 0.032578875171467764,
+      "coverage": 0.6021845198491905,
+      "map_age": 16.247859313138754,
+      "persistence_audit": 0.01830343756930598,
+      "persistence_near": 0.007022991054927183,
+      "persistence_threat": 0.032578875171467764,
+      "prevalence_audit": 0.018019516522510534,
+      "prevalence_near": 0.00665335994677312,
+      "reconstruction": 0.5948103792415169,
+      "reconstruction_stale": 0.9845832850353541,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 60.04761904761905,
+      "regimes": {
+        "uniform": {
+          "episodes": 8,
+          "escape": 0.75,
+          "task": 0.77559375,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "stationary": {
+          "episodes": 8,
+          "escape": 0.875,
+          "task": 0.8754375,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "switch": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.9845625,
+          "encountered_switch": 7,
+          "post_switch_steps": 181,
+          "post_switch_visible_enemy_steps": 27
+        }
+      },
+      "absolute_task": 0.8785312500000005,
+      "historical_composite_diagnostic": 0.9220836613869069
+    },
+    "evolution_seed": {
+      "episodes": 24,
+      "escape": 0.8333333333333334,
+      "death": 0.16666666666666666,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8549583333333334,
+      "keys": 2.0,
+      "door": 0.8333333333333334,
+      "steps": 51.791666666666664,
+      "model_score": 0.9871454244234638,
+      "seconds": 0.23852237508253893,
+      "candidate_cpu_seconds": 0.1804750833333333,
+      "evaluator_cpu_seconds": 0.07806609870833334,
+      "base_audit": 0.01848527755430423,
+      "base_near": 0.008466505765620785,
+      "brier_audit": 0.018003475602275647,
+      "brier_audit_post_switch": 0.015681632205675276,
+      "brier_audit_pre_switch": 0.018240188359907778,
+      "brier_near": 0.007191260175199241,
+      "brier_near_post_switch": 0.0006846920427466209,
+      "brier_near_pre_switch": 0.00785460710359645,
+      "brier_threat": 0.030093291837046836,
+      "coverage": 0.5914454277286135,
+      "map_age": 14.147245522557244,
+      "persistence_audit": 0.018714668812014053,
+      "persistence_near": 0.010905515330294092,
+      "persistence_threat": 0.04564160119715675,
+      "prevalence_audit": 0.01883883078573344,
+      "prevalence_near": 0.008402610172521677,
+      "reconstruction": 0.5846071332796996,
+      "reconstruction_stale": 0.9853784403669725,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 56.2,
+      "regimes": {
+        "uniform": {
+          "episodes": 8,
+          "escape": 0.75,
+          "task": 0.7886875000000001,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "stationary": {
+          "episodes": 8,
+          "escape": 0.875,
+          "task": 0.88809375,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "switch": {
+          "episodes": 8,
+          "escape": 0.875,
+          "task": 0.8880937500000001,
+          "encountered_switch": 5,
+          "post_switch_steps": 115,
+          "post_switch_visible_enemy_steps": 20
+        }
+      },
+      "absolute_task": 0.8549583333333334,
+      "historical_composite_diagnostic": 0.9078331697693858
+    },
+    "v2_gen14": {
+      "episodes": 24,
+      "escape": 1.0,
+      "death": 0.0,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.9869062499999998,
+      "keys": 2.0,
+      "door": 1.0,
+      "steps": 52.375,
+      "model_score": 0.9888352924622645,
+      "seconds": 1.7694771901660715,
+      "candidate_cpu_seconds": 1.8238443749999995,
+      "evaluator_cpu_seconds": 0.09606651208333332,
+      "base_audit": 0.01860206841686578,
+      "base_near": 0.00667950145849906,
+      "brier_audit": 0.017328185067540764,
+      "brier_audit_post_switch": 0.016159852486555815,
+      "brier_audit_pre_switch": 0.017425881843709325,
+      "brier_near": 0.005357694815609862,
+      "brier_near_post_switch": 0.000987111510409033,
+      "brier_near_pre_switch": 0.005723166005786138,
+      "brier_threat": 0.022226476512282496,
+      "coverage": 0.6431980906921241,
+      "map_age": 11.693568336425479,
+      "persistence_audit": 0.018730761071334066,
+      "persistence_near": 0.0076902678334659245,
+      "persistence_threat": 0.0319031903190319,
+      "prevalence_audit": 0.01896048793423495,
+      "prevalence_near": 0.0065411473526032,
+      "reconstruction": 0.6351763457968709,
+      "reconstruction_stale": 0.9843971631205674,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 52.375,
+      "regimes": {
+        "uniform": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.9870000000000001,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "stationary": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.98659375,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "switch": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.9871250000000001,
+          "encountered_switch": 5,
+          "post_switch_steps": 97,
+          "post_switch_visible_enemy_steps": 16
+        }
+      },
+      "absolute_task": 0.9869062499999998,
+      "historical_composite_diagnostic": 0.9876778669849058
+    },
+    "v2_gen14_frozen": {
+      "episodes": 24,
+      "escape": 1.0,
+      "death": 0.0,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.9869583333333334,
+      "keys": 2.0,
+      "door": 1.0,
+      "steps": 52.166666666666664,
+      "model_score": 0.9887053396886682,
+      "seconds": 3.072736012539584,
+      "candidate_cpu_seconds": 3.1804016666666666,
+      "evaluator_cpu_seconds": 0.15458662179166668,
+      "base_audit": 0.018483067092651986,
+      "base_near": 0.006619382321618732,
+      "brier_audit": 0.017290183411971447,
+      "brier_audit_post_switch": 0.016618410682594044,
+      "brier_audit_pre_switch": 0.017345341933398286,
+      "brier_near": 0.005640292766256092,
+      "brier_near_post_switch": 0.0010731041123913582,
+      "brier_near_pre_switch": 0.006015299613375495,
+      "brier_threat": 0.022853225059393616,
+      "coverage": 0.6421059637912673,
+      "map_age": 11.599046335648389,
+      "persistence_audit": 0.01867907348242832,
+      "persistence_near": 0.00789847355342563,
+      "persistence_threat": 0.03200287666307084,
+      "prevalence_audit": 0.018836528221512248,
+      "prevalence_near": 0.006478523251686191,
+      "reconstruction": 0.6340521831735889,
+      "reconstruction_stale": 0.984304060189389,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 52.166666666666664,
+      "regimes": {
+        "uniform": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.987125,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "stationary": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.9865625,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "switch": {
+          "episodes": 8,
+          "escape": 1.0,
+          "task": 0.9871875000000001,
+          "encountered_switch": 5,
+          "post_switch_steps": 95,
+          "post_switch_visible_enemy_steps": 19
+        }
+      },
+      "absolute_task": 0.9869583333333334,
+      "historical_composite_diagnostic": 0.9876571358754674
+    },
+    "v2_gen14_fixed_risk": {
+      "episodes": 24,
+      "escape": 0.875,
+      "death": 0.125,
+      "timeout": 0.0,
+      "invalid": 0,
+      "task": 0.8802604166666664,
+      "keys": 1.9166666666666667,
+      "door": 0.875,
+      "steps": 50.333333333333336,
+      "model_score": 0.988246268995137,
+      "seconds": 1.3119543514609784,
+      "candidate_cpu_seconds": 1.2950753333333336,
+      "evaluator_cpu_seconds": 0.13043332054166665,
+      "base_audit": 0.018810596026490222,
+      "base_near": 0.008082119205298013,
+      "brier_audit": 0.017394100974357594,
+      "brier_audit_post_switch": 0.017191609990587657,
+      "brier_audit_pre_switch": 0.017407314671711187,
+      "brier_near": 0.006296826922120822,
+      "brier_near_post_switch": 0.0015251492233166518,
+      "brier_near_pre_switch": 0.006608206242854074,
+      "brier_threat": 0.023920021767050166,
+      "coverage": 0.6416252759381899,
+      "map_age": 12.35953123320073,
+      "persistence_audit": 0.018760706401766154,
+      "persistence_near": 0.008094186902133923,
+      "persistence_threat": 0.030747728860936407,
+      "prevalence_audit": 0.019177704194260486,
+      "prevalence_near": 0.008002207505518763,
+      "reconstruction": 0.6333471302428256,
+      "reconstruction_stale": 0.9837684295955633,
+      "reconstruction_unseen": 0.0,
+      "reconstruction_visible": 1.0,
+      "escape_steps": 52.142857142857146,
+      "regimes": {
+        "uniform": {
+          "episodes": 8,
+          "escape": 0.875,
+          "task": 0.88790625,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "stationary": {
+          "episodes": 8,
+          "escape": 0.875,
+          "task": 0.8763125,
+          "encountered_switch": 0,
+          "post_switch_steps": 0,
+          "post_switch_visible_enemy_steps": 0
+        },
+        "switch": {
+          "episodes": 8,
+          "escape": 0.875,
+          "task": 0.8765624999999999,
+          "encountered_switch": 6,
+          "post_switch_steps": 74,
+          "post_switch_visible_enemy_steps": 16
+        }
+      },
+      "absolute_task": 0.8802604166666664,
+      "historical_composite_diagnostic": 0.923454757598055
+    }
+  },
+  "spans": {
+    "task": 0.132,
+    "model_score": 0.0016898680388007792,
+    "historical_weighted_task": 0.0792,
+    "historical_weighted_model": 0.0006759472155203118
+  },
+  "decision_diagnostic": {
+    "v2_gen14_frozen": {
+      "action_sequence_changed_cases": 6,
+      "escape_wins": 0,
+      "escape_losses": 0
+    },
+    "v2_gen14_fixed_risk": {
+      "action_sequence_changed_cases": 21,
+      "escape_wins": 3,
+      "escape_losses": 0
+    }
+  },
+  "task_ranking": [
+    "v2_gen14_frozen",
+    "v2_gen14",
+    "v2_gen14_fixed_risk",
+    "original_memory",
+    "evolution_seed"
+  ],
+  "historical_composite_ranking": [
+    "v2_gen14",
+    "v2_gen14_frozen",
+    "v2_gen14_fixed_risk",
+    "original_memory",
+    "evolution_seed"
+  ],
+  "decision": "Freeze absolute task; diagnostic forecasts do not add selection pressure from mostly empty cells.",
+  "limitations": "Five existing programs/variants on 24 development condition-cases; not a power study or search-discovery evidence."
+}

@@ -1,0 +1,150 @@
+{
+  "study": "namazu-unknown-dynamics-v3-wave1",
+  "frozen_utc": "2026-10-08T16:02:34.643997+00:00",
+  "searches": 1,
+  "total_candidate_slots": 50,
+  "candidate_episodes": 72,
+  "evaluation": {
+    "protocol": "namazu-unknown-dynamics-v3",
+    "objective": "absolute-task-v1",
+    "objective_formula": ".65*escape+.10*keys+.10*door+.05*escape*(1-steps/200); invalid=0",
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "regime_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "law_distribution": {
+      "dirichlet_alpha": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "entropy_min_nats": 1.2,
+      "max_component": 0.6,
+      "switch_min_tv": 0.3,
+      "switch_first_transition_inclusive": [
+        25,
+        75
+      ]
+    },
+    "rng": {
+      "layout": "layout (unchanged v2 generation)",
+      "initial_law": "v3:law:initial",
+      "replacement_law": "v3:law:replacement",
+      "switch_time": "v3:switch-time",
+      "enemy_innovations": "v3:enemy-innovations",
+      "forecast_targets": "v3:forecast-targets",
+      "candidate": "v3:candidate",
+      "enemy_draws_per_tick": 3,
+      "sampler": "one uniform innovation, inverse CDF per enemy"
+    },
+    "source_sha256": {
+      "evaluate_v3.py": "474766796b48353627bdf60e1239a32df841c7625a5a070fd3ccc396bd1055e4",
+      "dreamer/evaluation_v3.py": "0c6753e60212b8b8d4c3f4cd7bb93d20629225f62965ab4ba567eea120b0f3aa",
+      "dreamer/world_v3.py": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/worker_v3.py": "7c8a71365fb4e2378a64e554e81624034c23e3bc41446ebce88ed735f7139f37",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/bridge_v3.py": "ec4558be11581df2139f2efb0247ddb12f15ebe674a51e04530a49b36c234341",
+      "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e"
+    },
+    "controls": {
+      "predictive": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "runtime": {
+      "evaluator_python": "3.10.12",
+      "candidate_executable": "/usr/bin/python3",
+      "candidate_executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "candidate_args": [
+        "-s",
+        "-S"
+      ],
+      "hash_seed": 0,
+      "agent_random_seed_before_exec": "stream_seed(case, 'v3:candidate')",
+      "limits": {
+        "address_space_mib": 192,
+        "cpu_seconds": 10,
+        "reply_seconds": 3,
+        "source_kib": 512,
+        "reply_mib": 2,
+        "file_descriptors": 64
+      },
+      "isolation": "Landlock + seccomp, unchanged from v2"
+    }
+  },
+  "protocol_text_sha256": "482b230cf73550e03df5d176b17bcd9aafc45562dc59ca1e45c7791a4dabf8b7",
+  "splits": {
+    "development": {
+      "count": 24,
+      "regimes": [
+        "uniform",
+        "stationary",
+        "switch"
+      ],
+      "condition_episodes": 72,
+      "pool_sha256": "1d89a5d7b264ba156ff62fff1ee34530948300485e38f14eae8eb38ffe0d136c"
+    },
+    "selection": {
+      "count": 64,
+      "regimes": [
+        "uniform",
+        "stationary",
+        "switch"
+      ],
+      "condition_episodes": 192,
+      "pool_sha256": "514b3de2db1de05f406d952736d461f74a10c3853c26d0d6f1909912830d43d5"
+    },
+    "fit": {
+      "count": 64,
+      "regimes": [
+        "uniform",
+        "stationary",
+        "switch"
+      ],
+      "condition_episodes": 192,
+      "pool_sha256": "e8c0eee3ea522b43e1c2ac326869145cb3d6d3d93fe53023b5f9842908a37b2e"
+    },
+    "fit-validation": {
+      "count": 24,
+      "regimes": [
+        "uniform",
+        "stationary",
+        "switch"
+      ],
+      "condition_episodes": 72,
+      "pool_sha256": "d723aa726e4a915c5385ede035cfd9d65e926ace7bbed859c0a3450985e0573a"
+    }
+  },
+  "search_seed_source": "controls/v1/predictive.py",
+  "search_seed_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+  "objective_check_sha256": "a92fbe8ea57eafe50ed22b93da2edd960ce1e47b33e8f67b18a1bff283ccb350",
+  "objective_check_note": "120 development condition-episodes before mutations; last evaluator revision added destination loss and corrected exposure diagnostics only, without changing task/trajectory/forecast scoring used by this check.",
+  "selection": {
+    "unique_top_development_sources": 5,
+    "validation_layout_cases": 64,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "order": [
+      "mean absolute task incl zero invalid",
+      "escape count",
+      "earlier generation"
+    ]
+  },
+  "final_assessment": "Not yet drawn. Freeze selected program, comparator, interventions, analysis and sample size first.",
+  "independent_discovery_claim": false
+}
