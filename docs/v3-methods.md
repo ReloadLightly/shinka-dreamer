@@ -137,6 +137,20 @@ recommendation history. Total slots include seed and failures; seed island copie
 are not additional slots. The original `scripts/evolve_v3.py` is preserved as the
 initial-launch record; use the additive resume entrypoint for this amended run.
 
+For the native live dashboard, run a separate read-only UI process:
+
+```bash
+.venv/bin/python scripts/v3_webui.py --port 8000
+```
+
+Open `http://localhost:8000/viz_tree.html?db_path=programs.sqlite`. The repository
+wrapper serves the installed upstream HTML and handlers on loopback, with HTTP
+paths restricted to this campaign; it starts no controller or model calls. Native
+auto-refresh checks for completed database rows every three seconds. The UI counts
+three extra island copies of the seed, whereas the experimental budget counts
+one seed slot. Native dollar figures are API price estimates, not subscription
+charges. This local address is not a public internet deployment.
+
 Development pools can be recreated locally without drawing assessment cases:
 
 ```bash
