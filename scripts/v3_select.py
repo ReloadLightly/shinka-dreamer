@@ -8,14 +8,16 @@ import argparse
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import sqlite3
 import sys
+import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from dreamer.evaluation_v3 import aggregate, evaluation_identity
-from dreamer.provenance import pool, record, sha256
+from dreamer.provenance import pool, sha256
 from dreamer.world_v3 import REGIMES
 from scripts.recover_campaign import campaign_lock
 from scripts.v3_assessment import atomic_create, digest, run_cases
@@ -55,14 +57,32 @@ def candidates_after_completion(database, total_slots=50, limit=5):
 
 
 def immutable_source(path, source):
+    """Publish source bytes atomically, preserving an interrupted shorter write."""
     path = Path(path)
+    expected = source.encode('utf-8')
     if path.exists():
-        if path.read_text() != source:
+        if path.read_bytes() != expected:
             raise ValueError(f'Frozen source changed: {path}')
-    else:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with path.open('x') as handle:
-            handle.write(source)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(path.name + '.partial')
+    if temporary.exists() and temporary.read_bytes() != expected:
+        temporary.rename(temporary.with_name(temporary.name + '.interrupted-' + uuid.uuid4().hex))
+    if not temporary.exists():
+        with temporary.open('xb') as handle:
+            handle.write(expected)
+            handle.flush()
+            os.fsync(handle.fileno())
+    # A complete temporary from an interrupted publication is linked directly.
+    # The exclusive link refuses any competing or changed final destination.
+    os.link(temporary, path)
+    directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(directory)
+        temporary.unlink()
+        os.fsync(directory)
+    finally:
+        os.close(directory)
 
 
 def main():
@@ -98,7 +118,7 @@ def main():
                     'selection_rule': 'mean absolute task, then escape count, then lower candidate slot',
                     'driver_sha256': sha256(__file__), 'checkpoint_driver_sha256': sha256(ROOT / 'scripts/v3_assessment.py'),
                     'splits_sha256': sha256(splits_path), 'model_calls': 0}
-        record(out / 'manifest.json', manifest)
+        atomic_create(out / 'manifest.json', manifest)
         rows = run_cases(out, seeds, conditions, list(REGIMES), args.workers)
         rankings = []
         for candidate, condition in zip(candidates, conditions):
@@ -120,9 +140,9 @@ def main():
                      'case_count': 64, 'regimes': list(REGIMES), 'candidate_count': len(candidates),
                      'condition_episodes': len(rows), 'selection_biased': True, 'inventory': inventory}
         immutable_source(out / 'selected.py', source)
-        record(out / 'selection.json', selection)
+        atomic_create(out / 'selection.json', selection)
         immutable_source(publish / 'selected.py', source)
-        record(publish / 'selection.json', selection)
+        atomic_create(publish / 'selection.json', selection)
         print(json.dumps(selection, indent=2), flush=True)
 
 

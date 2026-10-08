@@ -35,6 +35,35 @@ def test_selection_requires_complete_slots_counts_seed_clones_and_deduplicates(t
         immutable_source(frozen, '#c')
 
 
+def test_selection_source_recovers_complete_temporary_after_interrupted_link(tmp_path, monkeypatch):
+    from scripts import v3_select
+    path = tmp_path / 'selected.py'
+    source = '# source with UTF-8: Löchli\nvalue = 7\n'
+    original_link = v3_select.os.link
+    def interrupted_link(*args, **kwargs):
+        raise OSError('interrupted before atomic source publication')
+    monkeypatch.setattr(v3_select.os, 'link', interrupted_link)
+    with pytest.raises(OSError, match='interrupted'):
+        immutable_source(path, source)
+    temporary = path.with_name(path.name + '.partial')
+    assert not path.exists() and temporary.read_bytes() == source.encode('utf-8')
+    monkeypatch.setattr(v3_select.os, 'link', original_link)
+    immutable_source(path, source)
+    assert path.read_bytes() == source.encode('utf-8') and not temporary.exists()
+
+
+def test_selection_source_preserves_incomplete_temporary_bytes(tmp_path):
+    path = tmp_path / 'selected.py'
+    temporary = path.with_name(path.name + '.partial')
+    incomplete = b'# incomplete sour'
+    temporary.write_bytes(incomplete)
+    source = '# complete source\n'
+    immutable_source(path, source)
+    interrupted = list(tmp_path.glob('selected.py.partial.interrupted-*'))
+    assert len(interrupted) == 1 and interrupted[0].read_bytes() == incomplete
+    assert path.read_text() == source
+
+
 def test_arbitrary_nested_parameter_audit_missing_is_not_frozen():
     def row():
         return {'trace': [{'world': {'agent': [2, 3], 'origin': [1, 1]}, 'action': {}, 'next_enemies': [],

@@ -1,0 +1,14 @@
+{
+  "actual_request_id": "20261008T170242616753Z-02287234",
+  "generation": 8,
+  "raw_stdout_sha256": "ff944d10bf47070778d4c97f03f01d7c3dbfda0a3e48a18dd0fd2750838609c5",
+  "stored_native_response_sha256": "87edb686e9ff150d19880b0b6eeb8f7dd1016c424e09dfe0840735684480ee4f",
+  "exact_parsed_content_equality": true,
+  "preserved_interior_blank_lines": 13,
+  "actual_patch_success": true,
+  "actual_applied_blocks": 3,
+  "billing_routes": [
+    "subscription"
+  ],
+  "scope": "Verifies the installed transport hook on an actual resumed native request. The candidate score is assessed separately; transport success is not scientific learning evidence."
+}

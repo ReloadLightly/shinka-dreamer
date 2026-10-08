@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-08T17:03:23.756053+00:00",
+  "updated_utc": "2026-10-08T17:24:31.515477+00:00",
   "campaign_sha256": "cb147fc6227f5d91b8d33ca525404113c2ee384c868191ab72e374686bf8b0a0",
   "objective_name_note": "The mutation prompt calls the unchanged formula absolute-task-v3; the canonical evaluator identity is absolute-task-v1 within namazu-unknown-dynamics-v3. This is a naming alias, not an objective change.",
   "normal_checkpoint_requests": [
@@ -227,12 +227,12 @@
     "scope": "Verifies actual restored meta text/history and native selection of a saved recommendation into a real resumed mutation request; does not attribute candidate improvements to recommendations."
   },
   "total_slots_budget": 50,
-  "persisted_slots": 8,
-  "native_rows_including_island_seed_copies": 11,
+  "persisted_slots": 15,
+  "native_rows_including_island_seed_copies": 18,
   "seed_slots": 1,
-  "valid_descendants": 7,
+  "valid_descendants": 14,
   "failed_slots": [],
-  "saved_evaluation_episodes": 576,
+  "saved_evaluation_episodes": 1080,
   "invalid_saved_episodes": 0,
   "model_calls": [
     {
@@ -1409,6 +1409,461 @@
       "id": "20261008T170242616753Z-02287234",
       "started_utc": "2026-10-08T17:02:42.616802+00:00",
       "prompt_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 140.6638943789876,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 10877,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 3508,
+        "reasoningOutputTokens": 2070,
+        "totalTokens": 26673,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.10877,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.1754,
+          "total": 0.296458
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 10877,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 3508,
+                "reasoningOutputTokens": 2070,
+                "totalTokens": 26673,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.10877,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.1754,
+                  "total": 0.296458
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 8,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T170539942630Z-7cffaa95",
+      "started_utc": "2026-10-08T17:05:39.942690+00:00",
+      "prompt_sha256": "8e202444b6b35401396e019a8dfd9838a1938f491c0003cd486d1361dad8959d",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 98.01388641801896,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 19752,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 2885,
+        "reasoningOutputTokens": 1034,
+        "totalTokens": 34925,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.19752,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.14425,
+          "total": 0.354058
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 19752,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 2885,
+                "reasoningOutputTokens": 1034,
+                "totalTokens": 34925,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.19752,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.14425,
+                  "total": 0.354058
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 9,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T170745842301Z-95af843a",
+      "started_utc": "2026-10-08T17:07:45.842370+00:00",
+      "prompt_sha256": "8b4df2a23bbd341124f6255e6e2109ab898699a0fd860a76541c56bb9ba738cf",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 74.20898892797413,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 21184,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 2004,
+        "reasoningOutputTokens": 919,
+        "totalTokens": 35476,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.21184,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.1002,
+          "total": 0.324328
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 21184,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 2004,
+                "reasoningOutputTokens": 919,
+                "totalTokens": 35476,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.21184,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.1002,
+                  "total": 0.324328
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 10,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T170942412680Z-5a39f41f",
+      "started_utc": "2026-10-08T17:09:42.412769+00:00",
+      "prompt_sha256": "6cb64007d62717685e6e56c642daacff07e76e01f30336c1460748ab04c048df",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 252.20258455100702,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 22367,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 8800,
+        "reasoningOutputTokens": 2070,
+        "totalTokens": 43455,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.22367,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.44,
+          "total": 0.675958
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 22367,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 8800,
+                "reasoningOutputTokens": 2070,
+                "totalTokens": 43455,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.22367,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.44,
+                  "total": 0.675958
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 11,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T171532387547Z-728ab4fc",
+      "started_utc": "2026-10-08T17:15:32.388139+00:00",
+      "prompt_sha256": "a6b530b8fa4395c0e20a5ff688eeb57d28177c3b464363d1c28183ef00459b0f",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 127.00768445202266,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 26280,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 3981,
+        "reasoningOutputTokens": 1552,
+        "totalTokens": 42549,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.2628,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.19905,
+          "total": 0.474138
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 26280,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 3981,
+                "reasoningOutputTokens": 1552,
+                "totalTokens": 42549,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.2628,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.19905,
+                  "total": 0.474138
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 12,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T171828243465Z-aac0b1fc",
+      "started_utc": "2026-10-08T17:18:28.243543+00:00",
+      "prompt_sha256": "e3ebbf7518f872793e86133c9348c1b41dbb8653983cd9f905dc0e72d1593eac",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 105.41973910000524,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 21838,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 2818,
+        "reasoningOutputTokens": 1493,
+        "totalTokens": 36944,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.21838,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.1409,
+          "total": 0.371568
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 21838,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 2818,
+                "reasoningOutputTokens": 1493,
+                "totalTokens": 36944,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.21838,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.1409,
+                  "total": 0.371568
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 13,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T172057008120Z-0aad9108",
+      "started_utc": "2026-10-08T17:20:57.008196+00:00",
+      "prompt_sha256": "25441a8c4a0f4bb6fe977a4ad1fb4032284b1b41e796d91ec9f0ad834377b4cd",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 153.24097645599977,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 15808,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 4531,
+        "reasoningOutputTokens": 1884,
+        "totalTokens": 32627,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.15808,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.22655,
+          "total": 0.396918
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 15808,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 4531,
+                "reasoningOutputTokens": 1884,
+                "totalTokens": 32627,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.15808,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.22655,
+                  "total": 0.396918
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 14,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T172413408350Z-606d9f4e",
+      "started_utc": "2026-10-08T17:24:13.408406+00:00",
+      "prompt_sha256": "d18c7cd7595bac1adeef4386ad5b3463e07949d0072702e242d0f2bc17d9e0f8",
       "status": "started",
       "billing_required": "subscription",
       "role": "mutation_or_repair",
@@ -1636,16 +2091,16 @@
       }
     }
   ],
-  "native_model_requests": 19,
-  "all_model_requests_including_probes": 23,
+  "native_model_requests": 26,
+  "all_model_requests_including_probes": 30,
   "model_requests_by_role": {
-    "mutation_or_repair": 9,
+    "mutation_or_repair": 16,
     "meta_program_summary": 8,
     "meta_global_insights": 1,
     "meta_recommendations": 1
   },
   "model_status_counts": {
-    "completed": 18,
+    "completed": 25,
     "started": 1
   },
   "model_nonzero_returncodes": 0,
@@ -1664,6 +2119,81 @@
       "llm_cost": 0.966254,
       "llm_model": "headless/codex@gpt-6-astra?effort=high",
       "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_1/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 10,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 4,
+      "patch_name": "surprise_triggered_fast_recovery",
+      "patch_description": "Add a sequential change detector using the anonymous transition likelihoods already computed by the mixture. Accumulate evidence when an equal mixture of the uniform and fast experts predicts observations better than the slow expert, normalized by informative enemy count. Require sustained support and a cooldown before rebuilding the fast learner from four recent informative transitions.\n\nRecovery preserves the slow learner, terrain-change exclusions, probability floors, and learning intervention. The refreshed dynamics feed both existing planning and exported predictions. This targets delayed adaptation without discarding useful stationary-law evidence; improvement remains an empirical hypothesis.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:09:06.044263",
+      "llm_cost": 0.324328,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_10/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 11,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 1,
+      "patch_name": "adaptive_safe_detours",
+      "patch_description": "The current program uses a single .96-decay movement learner, linear risk weight 45, and three-step planning. This replacement combines uniform, slow (.985), and fast (.86) anonymous-transition experts, with a .12 uniform safeguard. Planning retains three steps but uses logarithmic collision costs weighted 100, with future weights 1/.55/.25.\n\nA bounded recovery controller detects four stationary steps, repeated position cycles, or ten steps without route progress. It compares safe alternate waypoints, commits for at most seven steps, and increases waiting penalties only during stalls. Immediate visible-enemy exclusion remains mandatory. Mapping, predictive learning, and prediction-use interventions remain separate. These changes target survival and timeout reduction; improved performance requires evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:14:19.105372",
+      "llm_cost": 0.675958,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_11/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 12,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 2,
+      "patch_name": "survival_conditioned_three_step_search",
+      "patch_description": "Replace independent before/after collision estimates with per-enemy survival conditioning. Each hypothetical move removes trajectories that collide before movement or after movement, preserving the remaining distribution for subsequent decisions. This avoids double-counting persistent enemies and exposes routes that become dangerous after an initially safe move.\n\nExtend planning to three steps, refining the three most promising second moves for each immediate action to limit computation. Retain the existing learner, mapping, exploration, export predictions, and uniform-dynamics intervention. Hidden-enemy risk remains an approximate background term. This is an untested control improvement; higher task fitness requires evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:17:51.985308",
+      "llm_cost": 0.474138,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_12/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 13,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 3,
+      "patch_name": "bounded_observation_detours",
+      "patch_description": "Add a bounded stall controller that measures progress using legal route length, avoiding false stalls on winding paths. Repeated position\u2013target cycles trigger a short, low-risk observation detour, selected using route cost, distance to the original objective, and fresh observation opportunities. Detours expire after six decisions and have a cooldown. During recovery, waiting receives an additional penalty only when a low-hazard immediate move exists. Normal planning, learned dynamics, and visible-enemy exclusion remain intact. This targets avoidable waiting without globally reducing survival pressure; performance improvement remains to be evaluated.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:20:23.403067",
+      "llm_cost": 0.371568,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_13/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 14,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 4,
+      "patch_name": "adaptive_expert_threat_planning",
+      "patch_description": "Learn uniform, slow-adapting, and fast-adapting movement experts, weighting them by the likelihood of subsequently observed anonymous transitions. This lets stationary evidence accumulate while retaining a responsive alternative after a dynamics change. Blocked attempts remain probability mass on staying.\n\nPropagate each expert separately through the existing three-step planner. Penalize expected collision hazard plus bounded disagreement among plausible experts, and invoke this planner proactively near the proposed route rather than only after stalling. Preserve the existing low-risk first-move restriction and keep repetition penalties specific to recovery. Export expert weights alongside the learned movement law. These changes aim to reduce deaths without extending the planning horizon; performance remains to be evaluated.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:23:46.778378",
+      "llm_cost": 0.396918,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_14/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
     },
     {
       "generation": 2,
@@ -1769,63 +2299,131 @@
       "llm_cost": 0.513338,
       "llm_model": "headless/codex@gpt-6-astra?effort=high",
       "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_7/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 8,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 3,
+      "patch_name": "survival_lookahead",
+      "patch_description": "Use three-step movement forecasts to choose between progressing, sidestepping, and waiting. For each visible enemy, calculate the probability of occupying a destination either before or after its movement, including blocked attempts that stay. Combine these hazards across enemies and plan against a distance-to-goal estimate. Allow routes through cells that enemies currently occupy, while forbidding immediate entry, so temporary obstructions do not hide reachable objectives. This targets collision deaths and repeated waiting; improvement requires evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:05:19.400310",
+      "llm_cost": 0.296458,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_8/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 9,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 2,
+      "patch_name": "bounded_safe_detour_recovery",
+      "patch_description": "Preserve the current controller during ordinary progress. Detect repeated waits and position\u2013target cycles without exploration, task progress, or route advance. During stalls only, compare low-hazard detours with waiting through a three-step search using learned enemy motion, including collision risk before enemy movement. Penalize recent revisits and repeated waiting while retaining immediate visible-enemy exclusion. Recovery never relaxes its immediate hazard bound merely because time has elapsed. This targets the observed timeouts; its effect on fitness requires evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T19:07:27.315356",
+      "llm_cost": 0.354058,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_9/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
     }
   ],
-  "patch_attempt_count": 8,
+  "patch_attempt_count": 15,
   "patch_retry_attempts": 1,
   "patch_application_failures": 1,
   "parent_resamples": 0,
   "native_fix_sample_events": 0,
   "native_novelty_rejections": 0,
   "billing_attempt_routes": {
-    "subscription": 22
+    "subscription": 29
   },
   "reported_tokens": {
-    "inputTokens": 211537,
-    "cacheReadTokens": 346880,
+    "inputTokens": 349643,
+    "cacheReadTokens": 432896,
     "cacheWriteTokens": 0,
-    "outputTokens": 61918,
-    "reasoningOutputTokens": 23903,
-    "totalTokens": 620335
+    "outputTokens": 90445,
+    "reasoningOutputTokens": 34925,
+    "totalTokens": 872984
   },
   "cost_note": "All dollar figures in native logs are API-list-price estimates, not actual subscription charges.",
+  "resource_scope_note": "Model elapsed seconds sum recorded native calls and exclude readiness probes, whose durations were not separately captured. CPU and episode wall totals cover saved search evaluations. Remote model CPU and complete controller-process CPU were not measured.",
   "resources": {
-    "model_elapsed_seconds": 2673.3840008110856,
-    "candidate_cpu_seconds": 375.17567500000024,
-    "evaluator_cpu_seconds": 38.49458205200008,
-    "episode_wall_seconds": 380.68737945711473
+    "model_elapsed_seconds": 3624.141755095101,
+    "candidate_cpu_seconds": 567.7790079999993,
+    "evaluator_cpu_seconds": 62.92499168000008,
+    "episode_wall_seconds": 579.9769250090467
   },
   "features": {
     "native_islands": {
       "configured": 4,
       "rows_observed_by_island": {
-        "1": 4,
+        "1": 6,
         "3": 3,
-        "0": 2,
-        "2": 2
+        "0": 5,
+        "2": 4
       }
     },
     "native_migration": {
       "configured_interval": 10,
-      "observed": []
+      "observed": [
+        {
+          "id": "ccb14c5b-7ded-4023-805f-3cd7b4345f6b",
+          "generation": 6,
+          "events": [
+            {
+              "generation": 10,
+              "from": 3,
+              "to": 0,
+              "timestamp": 1791479382.3563263
+            }
+          ]
+        },
+        {
+          "id": "30498266-649f-4122-9dbe-43fef8bdbd97",
+          "generation": 7,
+          "events": [
+            {
+              "generation": 10,
+              "from": 1,
+              "to": 3,
+              "timestamp": 1791479382.3559608
+            }
+          ]
+        },
+        {
+          "id": "19157a7b-b0ca-41c4-bd82-86be43a9152d",
+          "generation": 8,
+          "events": [
+            {
+              "generation": 10,
+              "from": 2,
+              "to": 0,
+              "timestamp": 1791479382.3561473
+            }
+          ]
+        }
+      ]
     },
     "inspirations": {
       "configured_archive": 1,
       "configured_top_k": 1,
-      "sampled_nonempty_requests": 3,
-      "sampled_archive_contexts": 4,
-      "sampled_top_k_contexts": 1
+      "sampled_nonempty_requests": 10,
+      "sampled_archive_contexts": 11,
+      "sampled_top_k_contexts": 8
     },
     "native_sampling": {
       "configured_parent_strategy": "weighted",
       "configured_island_strategy": "uniform",
       "sampled_parent_islands": {
-        "1": 3,
-        "3": 2,
-        "0": 1,
-        "2": 2
+        "1": 6,
+        "0": 2,
+        "2": 4,
+        "3": 3
       },
-      "sampling_contexts": 8
+      "sampling_contexts": 15
     },
     "mutation_operators": {
       "configured": [
@@ -1837,8 +2435,8 @@
         0.4
       ],
       "observed_slot_operators": {
-        "full": 5,
-        "diff": 2
+        "diff": 8,
+        "full": 6
       }
     },
     "recommendations": {
@@ -1849,7 +2447,7 @@
           "sha256": "42ac207e55ef4f09cf619ca8da8045928d0406a22f125a388b030d2dd510a757"
         }
       ],
-      "requests_with_recommendation": 0
+      "requests_with_recommendation": 7
     },
     "novelty": "inactive: embeddings and novelty judge explicitly disabled; no novelty claim",
     "model_bandit": "disabled: one effective model/effort configuration",
@@ -1871,6 +2469,116 @@
       "inspiration_code_presence": {},
       "restored_or_current_recommendation_present": false,
       "uses_corrected_keys_description": false
+    },
+    {
+      "generation": 10,
+      "request_sha256": "8b4df2a23bbd341124f6255e6e2109ab898699a0fd860a76541c56bb9ba738cf",
+      "parent_id": "30498266-649f-4122-9dbe-43fef8bdbd97",
+      "parent_island_when_sampled": 1,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+      ],
+      "top_k_inspiration_ids": [
+        "d6e060db-3484-48d7-a330-330805071240"
+      ],
+      "inspiration_code_presence": {
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1": true,
+        "d6e060db-3484-48d7-a330-330805071240": true
+      },
+      "restored_or_current_recommendation_present": true,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 11,
+      "request_sha256": "6cb64007d62717685e6e56c642daacff07e76e01f30336c1460748ab04c048df",
+      "parent_id": "19157a7b-b0ca-41c4-bd82-86be43a9152d",
+      "parent_island_when_sampled": 0,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "1c9d8197-0fad-4324-a2fa-55530930bb1a"
+      ],
+      "top_k_inspiration_ids": [
+        "56ef1d30-ef54-47a4-bfc4-84024e5e110f"
+      ],
+      "inspiration_code_presence": {
+        "1c9d8197-0fad-4324-a2fa-55530930bb1a": true,
+        "56ef1d30-ef54-47a4-bfc4-84024e5e110f": true
+      },
+      "restored_or_current_recommendation_present": true,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 12,
+      "request_sha256": "a6b530b8fa4395c0e20a5ff688eeb57d28177c3b464363d1c28183ef00459b0f",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_island_when_sampled": 1,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "97464de1-5a16-408e-a4c6-ef51c8141b53"
+      ],
+      "top_k_inspiration_ids": [
+        "d6e060db-3484-48d7-a330-330805071240"
+      ],
+      "inspiration_code_presence": {
+        "97464de1-5a16-408e-a4c6-ef51c8141b53": true,
+        "d6e060db-3484-48d7-a330-330805071240": true
+      },
+      "restored_or_current_recommendation_present": true,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 13,
+      "request_sha256": "e3ebbf7518f872793e86133c9348c1b41dbb8653983cd9f905dc0e72d1593eac",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_island_when_sampled": 1,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "d6e060db-3484-48d7-a330-330805071240"
+      ],
+      "top_k_inspiration_ids": [
+        "97464de1-5a16-408e-a4c6-ef51c8141b53"
+      ],
+      "inspiration_code_presence": {
+        "d6e060db-3484-48d7-a330-330805071240": true,
+        "97464de1-5a16-408e-a4c6-ef51c8141b53": true
+      },
+      "restored_or_current_recommendation_present": true,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 14,
+      "request_sha256": "25441a8c4a0f4bb6fe977a4ad1fb4032284b1b41e796d91ec9f0ad834377b4cd",
+      "parent_id": "af9462ea-cc8d-4cc4-a39e-b39db32d0a66",
+      "parent_island_when_sampled": 2,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "997377fa-6443-471c-8083-008a0c34a12a"
+      ],
+      "top_k_inspiration_ids": [
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+      ],
+      "inspiration_code_presence": {
+        "997377fa-6443-471c-8083-008a0c34a12a": true,
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1": true
+      },
+      "restored_or_current_recommendation_present": true,
+      "uses_corrected_keys_description": true
     },
     {
       "generation": 2,
@@ -1990,6 +2698,47 @@
         "a1c631bd-c257-41ab-8d15-9a71a128d9d1": true
       },
       "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 8,
+      "request_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+      "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+      "parent_island_when_sampled": 2,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+      ],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1": true
+      },
+      "restored_or_current_recommendation_present": true,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 9,
+      "request_sha256": "8e202444b6b35401396e019a8dfd9838a1938f491c0003cd486d1361dad8959d",
+      "parent_id": "997377fa-6443-471c-8083-008a0c34a12a",
+      "parent_island_when_sampled": 2,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "19157a7b-b0ca-41c4-bd82-86be43a9152d"
+      ],
+      "top_k_inspiration_ids": [
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+      ],
+      "inspiration_code_presence": {
+        "19157a7b-b0ca-41c4-bd82-86be43a9152d": true,
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1": true
+      },
+      "restored_or_current_recommendation_present": true,
       "uses_corrected_keys_description": true
     }
   ],
@@ -2273,6 +3022,104 @@
       {
         "session_id": "01a11c77-9be3-76d3-8601-6275cbb9cc00",
         "session_timestamp": "2026-10-08T17:02:43.184Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 23165,
+          "cached_input_tokens": 12288,
+          "output_tokens": 3508,
+          "reasoning_output_tokens": 2070,
+          "total_tokens": 26673
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:05:18.900Z"
+      },
+      {
+        "session_id": "01a11c7a-505d-7f31-9b3c-a2cfaa35f9ed",
+        "session_timestamp": "2026-10-08T17:05:41.174Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 32040,
+          "cached_input_tokens": 12288,
+          "output_tokens": 2885,
+          "reasoning_output_tokens": 1034,
+          "total_tokens": 34925
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:07:26.838Z"
+      },
+      {
+        "session_id": "01a11c7c-3c23-7a93-9dd7-5a4a1e264b01",
+        "session_timestamp": "2026-10-08T17:07:46.352Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 33472,
+          "cached_input_tokens": 12288,
+          "output_tokens": 2004,
+          "reasoning_output_tokens": 919,
+          "total_tokens": 35476
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:09:05.453Z"
+      },
+      {
+        "session_id": "01a11c7e-0394-77a0-a130-c8ac1550f692",
+        "session_timestamp": "2026-10-08T17:09:43.727Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 34655,
+          "cached_input_tokens": 12288,
+          "output_tokens": 8800,
+          "reasoning_output_tokens": 2070,
+          "total_tokens": 43455
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:14:18.614Z"
+      },
+      {
+        "session_id": "01a11c83-5abf-73d3-ac4e-9714b544495e",
+        "session_timestamp": "2026-10-08T17:15:33.622Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 38568,
+          "cached_input_tokens": 12288,
+          "output_tokens": 3981,
+          "reasoning_output_tokens": 1552,
+          "total_tokens": 42549
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:17:51.472Z"
+      },
+      {
+        "session_id": "01a11c86-0a30-7692-9d32-565a7057ede8",
+        "session_timestamp": "2026-10-08T17:18:28.927Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 34126,
+          "cached_input_tokens": 12288,
+          "output_tokens": 2818,
+          "reasoning_output_tokens": 1493,
+          "total_tokens": 36944
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:20:22.849Z"
+      },
+      {
+        "session_id": "01a11c88-4ec5-7873-8264-60d640d9700e",
+        "session_timestamp": "2026-10-08T17:20:57.554Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 28096,
+          "cached_input_tokens": 12288,
+          "output_tokens": 4531,
+          "reasoning_output_tokens": 1884,
+          "total_tokens": 32627
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:23:46.258Z"
+      },
+      {
+        "session_id": "01a11c8b-4e13-76b3-8c4a-7f7c33688e7e",
+        "session_timestamp": "2026-10-08T17:24:14.893Z",
         "tool_calls": [],
         "tool_call_count": 0,
         "latest_native_token_report": null,

@@ -1,0 +1,15 @@
+{
+  "generation": 13,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 3,
+  "patch_name": "bounded_observation_detours",
+  "patch_description": "Add a bounded stall controller that measures progress using legal route length, avoiding false stalls on winding paths. Repeated position\u2013target cycles trigger a short, low-risk observation detour, selected using route cost, distance to the original objective, and fresh observation opportunities. Detours expire after six decisions and have a cooldown. During recovery, waiting receives an additional penalty only when a low-hazard immediate move exists. Normal planning, learned dynamics, and visible-enemy exclusion remain intact. This targets avoidable waiting without globally reducing survival pressure; performance improvement remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:20:23.403067",
+  "llm_cost": 0.371568,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_13/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

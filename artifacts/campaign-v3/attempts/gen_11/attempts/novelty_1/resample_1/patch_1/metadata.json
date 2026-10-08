@@ -1,0 +1,15 @@
+{
+  "generation": 11,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "adaptive_safe_detours",
+  "patch_description": "The current program uses a single .96-decay movement learner, linear risk weight 45, and three-step planning. This replacement combines uniform, slow (.985), and fast (.86) anonymous-transition experts, with a .12 uniform safeguard. Planning retains three steps but uses logarithmic collision costs weighted 100, with future weights 1/.55/.25.\n\nA bounded recovery controller detects four stationary steps, repeated position cycles, or ten steps without route progress. It compares safe alternate waypoints, commits for at most seven steps, and increases waiting penalties only during stalls. Immediate visible-enemy exclusion remains mandatory. Mapping, predictive learning, and prediction-use interventions remain separate. These changes target survival and timeout reduction; improved performance requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:14:19.105372",
+  "llm_cost": 0.675958,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_11/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -1,0 +1,15 @@
+{
+  "generation": 9,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 2,
+  "patch_name": "bounded_safe_detour_recovery",
+  "patch_description": "Preserve the current controller during ordinary progress. Detect repeated waits and position\u2013target cycles without exploration, task progress, or route advance. During stalls only, compare low-hazard detours with waiting through a three-step search using learned enemy motion, including collision risk before enemy movement. Penalize recent revisits and repeated waiting while retaining immediate visible-enemy exclusion. Recovery never relaxes its immediate hazard bound merely because time has elapsed. This targets the observed timeouts; its effect on fitness requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:07:27.315356",
+  "llm_cost": 0.354058,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_9/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

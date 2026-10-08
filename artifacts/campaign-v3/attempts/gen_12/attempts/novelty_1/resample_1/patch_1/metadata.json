@@ -1,0 +1,15 @@
+{
+  "generation": 12,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 2,
+  "patch_name": "survival_conditioned_three_step_search",
+  "patch_description": "Replace independent before/after collision estimates with per-enemy survival conditioning. Each hypothetical move removes trajectories that collide before movement or after movement, preserving the remaining distribution for subsequent decisions. This avoids double-counting persistent enemies and exposes routes that become dangerous after an initially safe move.\n\nExtend planning to three steps, refining the three most promising second moves for each immediate action to limit computation. Retain the existing learner, mapping, exploration, export predictions, and uniform-dynamics intervention. Hidden-enemy risk remains an approximate background term. This is an untested control improvement; higher task fitness requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:17:51.985308",
+  "llm_cost": 0.474138,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_12/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

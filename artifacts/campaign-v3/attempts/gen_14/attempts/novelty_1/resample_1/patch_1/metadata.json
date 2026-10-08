@@ -1,0 +1,15 @@
+{
+  "generation": 14,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "adaptive_expert_threat_planning",
+  "patch_description": "Learn uniform, slow-adapting, and fast-adapting movement experts, weighting them by the likelihood of subsequently observed anonymous transitions. This lets stationary evidence accumulate while retaining a responsive alternative after a dynamics change. Blocked attempts remain probability mass on staying.\n\nPropagate each expert separately through the existing three-step planner. Penalize expected collision hazard plus bounded disagreement among plausible experts, and invoke this planner proactively near the proposed route rather than only after stalling. Preserve the existing low-risk first-move restriction and keep repetition penalties specific to recovery. Export expert weights alongside the learned movement law. These changes aim to reduce deaths without extending the planning horizon; performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:23:46.778378",
+  "llm_cost": 0.396918,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_14/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

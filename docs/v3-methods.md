@@ -136,7 +136,9 @@ Development pools can be recreated locally without drawing assessment cases:
 
 ```bash
 .venv/bin/python scripts/v3_development_pools.py
-.venv/bin/python scripts/v3_fit.py --workers 2
+.venv/bin/python scripts/v3_fit.py --workers 2 \
+  --out results/v3-comparator-refit \
+  --source-out results/v3-comparator-refit.py
 .venv/bin/python scripts/v3_comparator_check.py --workers 2
 .venv/bin/python scripts/v3_report.py
 .venv/bin/python scripts/native_v3_audit.py

@@ -1,0 +1,15 @@
+{
+  "generation": 8,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 3,
+  "patch_name": "survival_lookahead",
+  "patch_description": "Use three-step movement forecasts to choose between progressing, sidestepping, and waiting. For each visible enemy, calculate the probability of occupying a destination either before or after its movement, including blocked attempts that stay. Combine these hazards across enemies and plan against a distance-to-goal estimate. Allow routes through cells that enemies currently occupy, while forbidding immediate entry, so temporary obstructions do not hide reachable objectives. This targets collision deaths and repeated waiting; improvement requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T19:05:19.400310",
+  "llm_cost": 0.296458,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_8/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "offline exact recorded transport regression; no candidate evaluation or new search slot",
+  "original_recorded_request": "gen5 novelty1 resample1 patch1",
+  "raw_stdout_sha256": "b832a29ddf248afc4c18f628a21e9d72412aba329a59f6d3820eb3e8502e0a8f",
+  "original_parent_source_sha256": "4b02bf2c4a3b1c6620fba78b8f175233d1ca20219e2b9fe0ef002004d1786183",
+  "upstream_parser": {
+    "applied_blocks": 0,
+    "rejection": "SEARCH text not found in editable regions"
+  },
+  "whitespace_preserving_parser": {
+    "applied_blocks": 6,
+    "rejection": null,
+    "resulting_source_compiles": true
+  },
+  "limitation": "Only proves patch transport/applicability; this unselected repaired-transport source was not evaluated and does not establish performance."
+}

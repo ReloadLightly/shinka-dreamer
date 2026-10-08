@@ -175,6 +175,7 @@ def main():
         'reported_tokens': {key: sum(u.get(key,0) for u in usage) for key in
             ('inputTokens','cacheReadTokens','cacheWriteTokens','outputTokens','reasoningOutputTokens','totalTokens')},
         'cost_note': 'All dollar figures in native logs are API-list-price estimates, not actual subscription charges.',
+        'resource_scope_note': 'Model elapsed seconds sum recorded native calls and exclude readiness probes, whose durations were not separately captured. CPU and episode wall totals cover saved search evaluations. Remote model CPU and complete controller-process CPU were not measured.',
         'resources': {'model_elapsed_seconds': sum(c.get('elapsed_seconds',0) for c in calls),
                       'candidate_cpu_seconds': sum(e.get('candidate_cpu_seconds',0) for e in episodes),
                       'evaluator_cpu_seconds': sum(e.get('evaluator_cpu_seconds',0) for e in episodes),

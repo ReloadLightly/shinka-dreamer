@@ -15,6 +15,8 @@ The [live search record](artifacts/campaign-v3/search-summary.json),
 [every-candidate table](artifacts/campaign-v3/search.csv),
 [native execution audit](artifacts/campaign-v3/native-audit.json) and
 [methods](docs/v3-methods.md) distinguish completed work from planned assessment.
+The [source review](docs/v3-program-changes.md) records substantive changes,
+actual ancestry and intervention caveats for the initial branches.
 The selected program, interventions and precision calculation will be frozen
 before drawing fresh assessment cases. Development leaders are not final results.
 One search cannot establish reliable discovery across independent runs.

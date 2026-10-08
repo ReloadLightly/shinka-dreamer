@@ -1,0 +1,382 @@
+"""Predictive seed. Entire representation, learner and planner may evolve."""
+# EVOLVE-BLOCK-START
+import heapq
+import math
+
+
+def _add(a, b):
+    return a[0] + b[0], a[1] + b[1]
+
+
+def _blocked(m, p):
+    return m["map"].get(p, 1) in (-1, 1) or (m["map"].get(p) == 3 and m["keys"] < 2)
+
+
+def _legal(m, p, d):
+    q = _add(p, d)
+    if m["map"].get(q) == 3 and not m["door_open"] and d[0] and d[1]:
+        return False
+    return (not _blocked(m, q) and not
+            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))
+
+
+_DIRECTIONS = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
+def _enemy_destination(terrain, p, d):
+    def blocked(q):
+        return terrain.get(q, 0) in (-1, 1, 3)
+    q = _add(p, d)
+    if blocked(q):
+        return p
+    if d[0] and d[1]:
+        if blocked(_add(p, (d[0], 0))) or blocked(_add(p, (0, d[1]))):
+            return p
+    return q
+def _expert_probabilities(m):
+    return m.get("expert_mass", [.30, .50, .20])
+
+
+def _expert_laws(m):
+    laws = [[1. / 9.] * 9]
+    for counts, prior in ((m["motion"], 1.),
+                          (m.get("fast_motion", [0.] * 9), .5)):
+        total = sum(counts) + 9. * prior
+        laws.append([.90 * (v + prior) / total + .10 / 9.
+                     for v in counts])
+    return laws
+
+
+def _motion_weights(m):
+    laws = _expert_laws(m)
+    masses = _expert_probabilities(m)
+    return [sum(mass * law[i] for mass, law in zip(masses, laws))
+            for i in range(9)]
+
+
+def _learn_motion(m, terrain, enemies):
+    # Score the laws available before incorporating this transition.
+    laws = _expert_laws(m)
+    m["motion"] = [v * .985 for v in m["motion"]]
+    m["fast_motion"] = [v * .80
+                        for v in m.get("fast_motion", [0.] * 9)]
+    if m["previous"] is None:
+        return
+    old_terrain, old_enemies, old_step = m["previous"]
+    if m["step"] != old_step + 1 or m["step"] // 25 != old_step // 25:
+        return
+    evidence = [[0.] * 9 for _ in range(2)]
+    likelihoods = [1., 1., 1.]
+    observations = 0
+    for source in sorted(old_enemies):
+        neighborhood = [_add(source, d) for d in _DIRECTIONS]
+        if not all(p in old_terrain and p in terrain for p in neighborhood):
+            continue
+        destinations = [_enemy_destination(terrain, source, d)
+                        for d in _DIRECTIONS]
+        possible = set(destinations) & enemies
+        if len(possible) != 1:
+            continue
+        destination = next(iter(possible))
+        compatible = [i for i, q in enumerate(destinations) if q == destination]
+        for expert, law in enumerate(laws):
+            probability = sum(law[i] for i in compatible)
+            likelihoods[expert] *= probability
+            if expert:
+                for i in compatible:
+                    evidence[expert - 1][i] += law[i] / probability
+        observations += 1
+        m["updates"] += 1
+    m["motion"] = [a + b for a, b in zip(m["motion"], evidence[0])]
+    m["fast_motion"] = [a + b for a, b in
+                        zip(m["fast_motion"], evidence[1])]
+    if observations:
+        posterior = [mass * likelihood for mass, likelihood in
+                     zip(_expert_probabilities(m), likelihoods)]
+        total = sum(posterior)
+        # Fixed sharing prevents an expert from becoming irrecoverable
+        # after a long stationary interval followed by an unseen switch.
+        m["expert_mass"] = [.97 * p / total + .01 for p in posterior]
+def _forecast(m, terrain, enemies):
+    weights = _motion_weights(m)
+    arrivals = {}
+    for source in sorted(enemies):
+        distribution = {}
+        for d, probability in zip(_DIRECTIONS, weights):
+            q = _enemy_destination(m["map"], source, d)
+            distribution[q] = distribution.get(q, 0.) + probability
+        for q, probability in distribution.items():
+            arrivals[q] = 1. - (1. - arrivals.get(q, 0.)) * (1. - probability)
+    risk = {}
+    unseen = max(0, 3 - len(enemies))
+    for p, cell in m["map"].items():
+        if cell in (-1, 1, 3):
+            risk[p] = 0.
+            continue
+        distance = max(abs(p[0] - m["pos"][0]), abs(p[1] - m["pos"][1]))
+        # Every predecessor of an inner-square cell is currently visible.
+        background = 0. if distance <= 1 else .008 * unseen
+        risk[p] = min(1., max(0., 1. - (1. - arrivals.get(p, 0.)) * (1. - background)))
+    return risk
+
+
+def world_model_step(memory, local_obs, last_action):
+    if memory is None:
+        memory = {"map": {}, "seen": {}, "pos": (0, 0), "visits": {},
+                  "motion": [0.] * 9,
+                  "updates": 0, "previous": None}
+    m = memory
+    m["pos"] = _add(m["pos"], local_obs["feedback"]["displacement"])
+    m["keys"], m["door_open"], m["step"] = local_obs["keys"], local_obs["door_open"], local_obs["step"]
+    m["visits"][m["pos"]] = m["visits"].get(m["pos"], 0) + 1
+    terrain, enemies = {}, set()
+    for y, row in enumerate(local_obs["terrain"]):
+        for x, cell in enumerate(row):
+            p = _add(m["pos"], (x-2, y-2))
+            terrain[p] = cell
+            m["map"][p], m["seen"][p] = cell, m["step"]
+            if local_obs["grid"][y][x] == 5:
+                enemies.add(p)
+    # FREEZE_PREDICTIVE_UPDATES leaves mapping and localization intact.
+    if local_obs.get("learn", True):
+        _learn_motion(m, terrain, enemies)
+    m["previous"] = (terrain, enemies, m["step"])
+    m["enemies"] = enemies
+    m["risk"] = _forecast(m, terrain, enemies)
+    return m
+
+
+def _fixed_risk(m, p):
+    # Competent hand-written baseline: conservative local enemy avoidance.
+    if p in m["enemies"]:
+        return 1.
+    return .22 if any(max(abs(e[0]-p[0]), abs(e[1]-p[1])) <= 1 for e in m["enemies"]) else 0.
+
+
+def _recovery_move(m, target, predictive, recent, idle):
+    start = m["pos"]
+    moves = [d for d in _DIRECTIONS if d != (0, 0)]
+    risk_fn = ((lambda p: m["risk"].get(p, .02)) if predictive
+               else (lambda p: _fixed_risk(m, p)))
+
+    # A geometric terminal value permits routes around temporary hazards.
+    remaining = {target: 0.}
+    queue = [(0., target)]
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != remaining[p]:
+            continue
+        for d in moves:
+            q = _add(p, d)
+            if _blocked(m, q) or not _legal(m, q, (-d[0], -d[1])):
+                continue
+            new = cost + 1.
+            if new < remaining.get(q, float("inf")):
+                remaining[q] = new
+                heapq.heappush(queue, (new, q))
+
+    # Recovery is available only when a low-hazard first move exists.
+    limit = min(.075, max(.025, risk_fn(start) + .015))
+    safe = [d for d in moves
+            if _legal(m, start, d)
+            and _add(start, d) not in m["enemies"]
+            and risk_fn(_add(start, d)) <= limit]
+    if not safe:
+        return None
+
+    horizon = 3
+    hazards = []
+    if predictive:
+        expert_hazards = []
+        for weights in _expert_laws(m):
+            distributions = [{p: 1.} for p in sorted(m["enemies"])]
+            transitions = {}
+
+            def transition(p):
+                if p not in transitions:
+                    row = {}
+                    for d, probability in zip(_DIRECTIONS, weights):
+                        q = _enemy_destination(m["map"], p, d)
+                        row[q] = row.get(q, 0.) + probability
+                    transitions[p] = row
+                return transitions[p]
+
+            unseen = max(0, 3 - len(distributions))
+            sequence = []
+            for tick in range(1, horizon + 1):
+                combined, following = {}, []
+                for distribution in distributions:
+                    prediction = {}
+                    for p, mass in distribution.items():
+                        for q, probability in transition(p).items():
+                            prediction[q] = prediction.get(q, 0.) + mass * probability
+                    for p in distribution.keys() | prediction.keys():
+                        before = distribution.get(p, 0.)
+                        # Collision can occur before OR after enemy movement.
+                        danger = min(1., max(
+                            0., before + prediction.get(p, 0.)
+                            - before * transition(p).get(p, 0.)))
+                        combined[p] = (
+                            1. - (1. - combined.get(p, 0.)) * (1. - danger))
+                    following.append(prediction)
+                distributions = following
+                for p, cell in m["map"].items():
+                    if cell in (-1, 1, 3):
+                        continue
+                    distance = max(abs(p[0] - start[0]), abs(p[1] - start[1]))
+                    background = 0. if distance + tick <= 2 else .008 * unseen
+                    combined[p] = (
+                        1. - (1. - combined.get(p, 0.)) * (1. - background))
+                sequence.append(combined)
+            expert_hazards.append(sequence)
+
+        masses = _expert_probabilities(m)
+        plausible = [i for i, mass in enumerate(masses) if mass >= .08]
+        plausible_mass = sum(masses[i] for i in plausible)
+        for tick in range(horizon):
+            combined = {}
+            for p in m["map"]:
+                risks = [sequence[tick].get(p, 0.)
+                         for sequence in expert_hazards]
+                mean = sum(w * risk for w, risk in zip(masses, risks))
+                center = sum(masses[i] * risks[i] for i in plausible) / plausible_mass
+                variance = sum(masses[i] * (risks[i] - center) ** 2
+                               for i in plausible) / plausible_mass
+                # Disagreement affects control, not the exported probability.
+                premium = min(.08, .65 * math.sqrt(variance))
+                combined[p] = min(1., mean + premium)
+            hazards.append(combined)
+    else:
+        hazards = [{p: _fixed_risk(m, p) for p in m["map"]}
+                   for _ in range(horizon)]
+
+    counts = {}
+    for p, old_target in recent:
+        counts[p] = counts.get(p, 0) + 1
+    memo, choices = {}, {}
+
+    def value(p, tick):
+        if p == target and target != start and tick > 0:
+            return 0.
+        if tick == horizon:
+            return remaining.get(p, 1000.)
+        key = (p, tick)
+        if key in memo:
+            return memo[key]
+        best, best_move = float("inf"), (0, 0)
+        actions = [(0, 0)] + (safe if tick == 0 else moves)
+        for d in actions:
+            q = _add(p, d)
+            if d != (0, 0) and not _legal(m, p, d):
+                continue
+            if tick == 0 and q in m["enemies"]:
+                continue
+            cost = (1. + 45. * hazards[tick].get(q, .02)
+                    + .6 * min(counts.get(q, 0), 4)
+                    + value(q, tick + 1))
+            if tick == 0 and d == (0, 0):
+                cost += .75 * min(idle, 4)
+            if cost < best:
+                best, best_move = cost, d
+        memo[key], choices[key] = best, best_move
+        return best
+
+    value(start, 0)
+    return choices.get((start, 0))
+
+
+def planner(memory, local_obs):
+    m = memory
+    start = m["pos"]
+    moves = [(x, y) for y in (-1, 0, 1) for x in (-1, 0, 1) if x or y]
+    dist, first, queue = {start: 0.}, {}, [(0., start)]
+    while queue:
+        cost, p = heapq.heappop(queue)
+        if cost != dist[p]:
+            continue
+        for d in moves:
+            q = _add(p, d)
+            if not _legal(m, p, d) or q in m["enemies"]:
+                continue
+            risk = m["risk"].get(q, .02) if local_obs.get("predictive_planning", True) else _fixed_risk(m, q)
+            edge = 1. + 45 * risk
+            new = cost + edge + .06 * min(m["visits"].get(q, 0), 15)
+            if new < dist.get(q, float("inf")):
+                dist[q], first[q] = new, d if p == start else first[p]
+                heapq.heappush(queue, (new, q))
+    goals = [p for p in dist if p != start and m["map"].get(p) == (2 if m["keys"] < 2 else 4)]
+    if not goals and m["keys"] == 2 and not m["door_open"]:
+        goals = [p for p in dist if p != start and m["map"].get(p) == 3]
+    if goals:
+        target = min(goals, key=lambda p: (dist[p], p))
+    else:
+        frontier = []
+        for p in dist:
+            if p == start:
+                continue
+            gain = sum(_add(p, (dx, dy)) not in m["map"] for dx in range(-2, 3) for dy in range(-2, 3))
+            if gain:
+                frontier.append((dist[p] / math.sqrt(gain), p))
+        if frontier:
+            target = min(frontier)[1]
+        elif first:
+            target = min(first, key=lambda p: (m["visits"].get(p, 0), dist[p], p))
+        else:
+            target = start
+    move = first.get(target, (0, 0))
+    predictive = local_obs.get("predictive_planning", True)
+    risk_fn = ((lambda p: m["risk"].get(p, .02)) if predictive
+               else (lambda p: _fixed_risk(m, p)))
+    if (move != (0, 0) and start not in m["enemies"]
+            and risk_fn(_add(start, move)) > risk_fn(start) + .055):
+        move = (0, 0)
+
+    # Control memory is separate from predictive learning and map updates.
+    signature = (m["keys"], m["door_open"], len(m["map"]), len(m["visits"]))
+    state = m.setdefault("recovery", {
+        "signature": signature, "progress": m["step"], "idle": 0,
+        "history": [], "target": target, "best": dist.get(target, 0.)})
+    history = state["history"]
+    route_cost = dist.get(target, 0.)
+    if signature != state["signature"]:
+        state["progress"] = m["step"]
+        state["signature"] = signature
+    if target != state["target"]:
+        state["target"], state["best"] = target, route_cost
+    elif (history and start != history[-1][0]
+          and route_cost < state["best"] - .75):
+        state["best"] = route_cost
+        state["progress"] = m["step"]
+    displacement = tuple(local_obs["feedback"]["displacement"])
+    state["idle"] = (state["idle"] + 1
+                     if m["step"] > 0 and displacement == (0, 0) else 0)
+    history.append((start, target))
+    del history[:-12]
+    repeats = sum(p == start and goal == target for p, goal in history)
+    stalled = (state["idle"] >= 4 or
+               (m["step"] - state["progress"] >= 10 and repeats >= 3))
+    destination = _add(start, move)
+    threatened = (predictive and target != start and any(
+        max(abs(e[0] - destination[0]), abs(e[1] - destination[1])) <= 2
+        for e in m["enemies"]))
+    if stalled or threatened:
+        recovery_move = _recovery_move(
+            m, target, predictive,
+            history if stalled else [],
+            state["idle"] if stalled else 0)
+        if recovery_move is not None:
+            move = recovery_move
+    return {"move": list(move), "interact": True}
+
+
+def export_model(memory, local_obs):
+    m = memory
+    return {"enemy": [[x, y, p] for (x, y), p in m["risk"].items()],
+            "default_enemy": .02,
+            "terrain": [[x, y, c, m["seen"][x, y]] for (x, y), c in m["map"].items()],
+            "position": list(m["pos"]),
+            "learning": {"updates": m["updates"],
+                         "expert_weights": dict(zip(
+                             ("uniform", "slow", "fast"),
+                             _expert_probabilities(m))),
+                         "attempted_motion": [[d[0], d[1], p]
+                                              for d, p in zip(_DIRECTIONS, _motion_weights(m))]}}
+# EVOLVE-BLOCK-END

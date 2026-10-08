@@ -1,0 +1,252 @@
+{
+  "island_note": "parent_island_at_sampling records the native sampling event. islands_in_native_rows_at_initial_review records row state when reviewed; it is not a claim about current island locations.",
+  "materialized_at_utc": "2026-10-08T17:27:34.970165+00:00",
+  "migration_note": "These captured review fields contain no migration events for slots0\u20137 at the initial review. Later migration events and current islands are outside this historical snapshot; see the expanding lineage archive.",
+  "original_review_timestamp_utc": null,
+  "programs": [
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "generation": 0,
+      "islands_in_native_rows_at_initial_review": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "native_patch_name": "initial_program",
+      "native_patch_type": "init",
+      "native_program_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de",
+        "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80",
+        "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+      ],
+      "parent_generation": null,
+      "parent_id": null,
+      "parent_island_at_sampling": null,
+      "parent_source_sha256": null,
+      "sampling_record": null,
+      "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "generation": 1,
+      "islands_in_native_rows_at_initial_review": [
+        1
+      ],
+      "native_patch_name": "anonymous_motion_survival",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+      ],
+      "parent_generation": 0,
+      "parent_id": "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de",
+      "parent_island_at_sampling": 1,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_1/sampling-mutation-1-1.json",
+        "sha256": "10e9e744aed9f8eef7839d5b483862c019d301d34a96ff6a7e542200c1bde760"
+      },
+      "source_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [
+        0
+      ],
+      "archive_inspiration_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+      ],
+      "generation": 2,
+      "islands_in_native_rows_at_initial_review": [
+        1
+      ],
+      "native_patch_name": "censored_bayes_survival",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "d6e060db-3484-48d7-a330-330805071240"
+      ],
+      "parent_generation": 1,
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_island_at_sampling": 1,
+      "parent_source_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_2/sampling-mutation-1-1.json",
+        "sha256": "00a57947aaeed2152214319af342d9727c8901e9bcdca8a8181da806fdd2dcf6"
+      },
+      "source_sha256": "1dba7390fe394c556af655f43c274e24ea00a2c712ae4a49d7e280074742db91",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "generation": 3,
+      "islands_in_native_rows_at_initial_review": [
+        3
+      ],
+      "native_patch_name": "anonymous_motion_lookahead",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "41c9932e-ad3d-4df7-ad67-f531b6b68d21"
+      ],
+      "parent_generation": 0,
+      "parent_id": "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80",
+      "parent_island_at_sampling": 3,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_3/sampling-mutation-1-1.json",
+        "sha256": "bb4b311abdc243743888df3ebe4d251e19d2dee1286b440810dcd81b2b98b7b0"
+      },
+      "source_sha256": "d8d80d4ccc0fb680f83510f09d83489ba4724d0b1bb5548d725e3b5d98144044",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "generation": 4,
+      "islands_in_native_rows_at_initial_review": [
+        0
+      ],
+      "native_patch_name": "anonymous_law_safe_horizon",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "1c9d8197-0fad-4324-a2fa-55530930bb1a"
+      ],
+      "parent_generation": 0,
+      "parent_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+      "parent_island_at_sampling": 0,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_4/sampling-mutation-1-1.json",
+        "sha256": "7a16a565aeda509572097848fa6aa423cb1125cde82c08556c4822fe0494028b"
+      },
+      "source_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "generation": 5,
+      "islands_in_native_rows_at_initial_review": [
+        2
+      ],
+      "native_patch_name": "censored_motion_learning",
+      "native_patch_type": "diff",
+      "native_program_ids": [
+        "997377fa-6443-471c-8083-008a0c34a12a"
+      ],
+      "parent_generation": 0,
+      "parent_id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+      "parent_island_at_sampling": 2,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_5/sampling-mutation-1-1.json",
+        "sha256": "8b20502b12bb8440e8dcc86e4dff2790b472eeb54467d148a7119e7481b5f0e4"
+      },
+      "source_sha256": "eca43e28566d0f6434852544fb7fb09af75c7f760d869de3dc08d89f00db7501",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [
+        0
+      ],
+      "archive_inspiration_ids": [
+        "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80"
+      ],
+      "generation": 6,
+      "islands_in_native_rows_at_initial_review": [
+        3
+      ],
+      "native_patch_name": "survival_conditioned_beam",
+      "native_patch_type": "diff",
+      "native_program_ids": [
+        "ccb14c5b-7ded-4023-805f-3cd7b4345f6b"
+      ],
+      "parent_generation": 3,
+      "parent_id": "41c9932e-ad3d-4df7-ad67-f531b6b68d21",
+      "parent_island_at_sampling": 3,
+      "parent_source_sha256": "d8d80d4ccc0fb680f83510f09d83489ba4724d0b1bb5548d725e3b5d98144044",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_6/sampling-mutation-1-1.json",
+        "sha256": "b1a58721a2720ae4a77b97050a5ebf6b84787ea56c4f1bcfc5c139471b6001e1"
+      },
+      "source_sha256": "96a21aa754ad781f3527e3502d3d0bd491ec0923166c0dcc5a9cf5ecd453583d",
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": []
+    },
+    {
+      "actual_migration_events_at_initial_review": [],
+      "archive_inspiration_generations": [
+        0
+      ],
+      "archive_inspiration_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+      ],
+      "generation": 7,
+      "islands_in_native_rows_at_initial_review": [
+        1
+      ],
+      "native_patch_name": "adaptive_law_progress",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "30498266-649f-4122-9dbe-43fef8bdbd97"
+      ],
+      "parent_generation": 2,
+      "parent_id": "d6e060db-3484-48d7-a330-330805071240",
+      "parent_island_at_sampling": 1,
+      "parent_source_sha256": "1dba7390fe394c556af655f43c274e24ea00a2c712ae4a49d7e280074742db91",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_7/sampling-mutation-1-1.json",
+        "sha256": "e621d0d5399f09a7e90c2fe8c43ccd09675c9d87b398d7355bc84842f925b3fe"
+      },
+      "source_sha256": "ea46c5a3c174f0a102ba6445c7687a9034bc6d73f107c7973a4ba0270d794f2c",
+      "top_k_inspiration_generations": [
+        1
+      ],
+      "top_k_inspiration_ids": [
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+      ]
+    }
+  ],
+  "provenance": {
+    "captured_fields_source": "artifacts/campaign-v3/program-review.json",
+    "captured_fields_source_sha256_before_snapshot_binding": "32c45163a4284775b469167ae7b86ebe7d34709a6eb8a13142df4e3700674d64",
+    "original_live_file_is_not_required_for_this_snapshot": true,
+    "original_live_lineage_path": "artifacts/campaign-v3/lineage.json",
+    "original_live_lineage_sha256_recorded_at_review": "a17add9780687091309503137ab7233d3f189e78d0eb984e96fe8dd0b784283c"
+  },
+  "scope": {
+    "candidate_slot_count": 8,
+    "candidate_slots": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "native_program_row_count": 11
+  },
+  "seed_copy_note": "Four island database seed rows share one source and one total candidate slot; do not count them as four independent searches or seed candidate slots.",
+  "snapshot_kind": "Immutable materialization of lineage fields already captured in the initial gen0\u20137 source review; not a new live lineage query.",
+  "study": "namazu-unknown-dynamics-v3",
+  "timestamp_note": "The initial review did not record its wall-clock capture timestamp. materialized_at_utc dates this file creation only; it does not date the native state reproduced here."
+}

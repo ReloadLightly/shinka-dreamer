@@ -60,6 +60,9 @@ def search_report(campaign, out, target):
         entry.update(source_sha256=hashlib.sha256(row['code'].encode()).hexdigest(),
                      **{k:json.loads(row[k] or '[]') for k in ('archive_inspiration_ids','top_k_inspiration_ids','migration_history')},
                      metadata=meta, public=json.loads(row['public_metrics']))
+        history=entry['migration_history']
+        entry['birth_island']=(min(history,key=lambda x:(x['generation'],x['timestamp']))['from']
+                               if history else entry['island_idx'])
         lineage.append(entry)
     unique = {r['generation']:r for r in reversed(rows)}
     for g,row in sorted(unique.items()):
@@ -137,9 +140,9 @@ def search_report(campaign, out, target):
     for r in lineage:
         p=by_id.get(r['parent_id'])
         if p:
-            axes[1,0].plot([p['generation'],r['generation']],[p['island_idx'],r['island_idx']],color=SECONDARY,alpha=.3,lw=.7)
-        axes[1,0].scatter(r['generation'],r['island_idx'],c=COBALT if r['correct'] else MAGENTA,marker='o' if r['correct'] else 'x',s=18)
-    axes[1,0].set(title='C  Recorded parent ancestry',xlabel='Slot',ylabel='Recorded island',yticks=range(4))
+            axes[1,0].plot([p['generation'],r['generation']],[p['birth_island'],r['birth_island']],color=SECONDARY,alpha=.3,lw=.7)
+        axes[1,0].scatter(r['generation'],r['birth_island'],c=COBALT if r['correct'] else MAGENTA,marker='o' if r['correct'] else 'x',s=18)
+    axes[1,0].set(title='C  Recorded parent ancestry',xlabel='Slot',ylabel='Island at source creation',yticks=range(4))
     axes[1,1].scatter(xs,[m.get('candidate_cpu_seconds',0) for m in valid],color=ORANGE,s=27)
     axes[1,1].set(title='D  Computation by candidate',xlabel='Slot',ylabel='Mean candidate CPU seconds / episode')
     from matplotlib.ticker import MaxNLocator

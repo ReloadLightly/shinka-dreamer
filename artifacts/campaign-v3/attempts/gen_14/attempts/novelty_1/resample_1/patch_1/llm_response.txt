@@ -1,0 +1,255 @@
+<NAME>
+adaptive_expert_threat_planning
+</NAME>
+
+<DESCRIPTION>
+Learn uniform, slow-adapting, and fast-adapting movement experts, weighting them by the likelihood of subsequently observed anonymous transitions. This lets stationary evidence accumulate while retaining a responsive alternative after a dynamics change. Blocked attempts remain probability mass on staying.
+
+Propagate each expert separately through the existing three-step planner. Penalize expected collision hazard plus bounded disagreement among plausible experts, and invoke this planner proactively near the proposed route rather than only after stalling. Preserve the existing low-risk first-move restriction and keep repetition penalties specific to recovery. Export expert weights alongside the learned movement law. These changes aim to reduce deaths without extending the planning horizon; performance remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _motion_weights(m):
+    total = sum(m["motion"]) + 9.
+    # A uniform mixture guards against unobserved changes in the law.
+    return [.85 * (v + 1.) / total + .15 / 9. for v in m["motion"]]
+def _learn_motion(m, terrain, enemies):
+    m["motion"] = [v * .96 for v in m["motion"]]
+    if m["previous"] is None:
+        return
+    old_terrain, old_enemies, old_step = m["previous"]
+    # Skip transitions that may include scheduled geometry changes.
+    if m["step"] != old_step + 1 or m["step"] // 25 != old_step // 25:
+        return
+    weights = _motion_weights(m)
+    evidence = [0.] * 9
+    for source in sorted(old_enemies):
+        neighborhood = [_add(source, d) for d in _DIRECTIONS]
+        if not all(p in old_terrain and p in terrain for p in neighborhood):
+            continue
+        # Current terrain includes any door opened before enemy movement.
+        destinations = [_enemy_destination(terrain, source, d)
+                        for d in _DIRECTIONS]
+        possible = set(destinations) & enemies
+        if len(possible) != 1:
+            continue
+        # With every destination observed, this source must have reached
+        # the sole occupied destination. No enemy identity is required.
+        destination = next(iter(possible))
+        compatible = [i for i, q in enumerate(destinations) if q == destination]
+        normalizer = sum(weights[i] for i in compatible)
+        for i in compatible:
+            evidence[i] += weights[i] / normalizer
+        m["updates"] += 1
+    m["motion"] = [a + b for a, b in zip(m["motion"], evidence)]
+=======
+def _expert_probabilities(m):
+    return m.get("expert_mass", [.30, .50, .20])
+
+
+def _expert_laws(m):
+    laws = [[1. / 9.] * 9]
+    for counts, prior in ((m["motion"], 1.),
+                          (m.get("fast_motion", [0.] * 9), .5)):
+        total = sum(counts) + 9. * prior
+        laws.append([.90 * (v + prior) / total + .10 / 9.
+                     for v in counts])
+    return laws
+
+
+def _motion_weights(m):
+    laws = _expert_laws(m)
+    masses = _expert_probabilities(m)
+    return [sum(mass * law[i] for mass, law in zip(masses, laws))
+            for i in range(9)]
+
+
+def _learn_motion(m, terrain, enemies):
+    # Score the laws available before incorporating this transition.
+    laws = _expert_laws(m)
+    m["motion"] = [v * .985 for v in m["motion"]]
+    m["fast_motion"] = [v * .80
+                        for v in m.get("fast_motion", [0.] * 9)]
+    if m["previous"] is None:
+        return
+    old_terrain, old_enemies, old_step = m["previous"]
+    if m["step"] != old_step + 1 or m["step"] // 25 != old_step // 25:
+        return
+    evidence = [[0.] * 9 for _ in range(2)]
+    likelihoods = [1., 1., 1.]
+    observations = 0
+    for source in sorted(old_enemies):
+        neighborhood = [_add(source, d) for d in _DIRECTIONS]
+        if not all(p in old_terrain and p in terrain for p in neighborhood):
+            continue
+        destinations = [_enemy_destination(terrain, source, d)
+                        for d in _DIRECTIONS]
+        possible = set(destinations) & enemies
+        if len(possible) != 1:
+            continue
+        destination = next(iter(possible))
+        compatible = [i for i, q in enumerate(destinations) if q == destination]
+        for expert, law in enumerate(laws):
+            probability = sum(law[i] for i in compatible)
+            likelihoods[expert] *= probability
+            if expert:
+                for i in compatible:
+                    evidence[expert - 1][i] += law[i] / probability
+        observations += 1
+        m["updates"] += 1
+    m["motion"] = [a + b for a, b in zip(m["motion"], evidence[0])]
+    m["fast_motion"] = [a + b for a, b in
+                        zip(m["fast_motion"], evidence[1])]
+    if observations:
+        posterior = [mass * likelihood for mass, likelihood in
+                     zip(_expert_probabilities(m), likelihoods)]
+        total = sum(posterior)
+        # Fixed sharing prevents an expert from becoming irrecoverable
+        # after a long stationary interval followed by an unseen switch.
+        m["expert_mass"] = [.97 * p / total + .01 for p in posterior]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    horizon = 3
+    hazards = []
+    if predictive:
+        weights = _motion_weights(m)
+        distributions = [{p: 1.} for p in sorted(m["enemies"])]
+        transitions = {}
+
+        def transition(p):
+            if p not in transitions:
+                row = {}
+                for d, probability in zip(_DIRECTIONS, weights):
+                    q = _enemy_destination(m["map"], p, d)
+                    row[q] = row.get(q, 0.) + probability
+                transitions[p] = row
+            return transitions[p]
+
+        unseen = max(0, 3 - len(distributions))
+        for tick in range(1, horizon + 1):
+            combined, following = {}, []
+            for distribution in distributions:
+                prediction = {}
+                for p, mass in distribution.items():
+                    for q, probability in transition(p).items():
+                        prediction[q] = prediction.get(q, 0.) + mass * probability
+                for p in distribution.keys() | prediction.keys():
+                    before = distribution.get(p, 0.)
+                    danger = min(1., max(
+                        0., before + prediction.get(p, 0.)
+                        - before * transition(p).get(p, 0.)))
+                    combined[p] = (
+                        1. - (1. - combined.get(p, 0.)) * (1. - danger))
+                following.append(prediction)
+            distributions = following
+            for p, cell in m["map"].items():
+                if cell in (-1, 1, 3):
+                    continue
+                distance = max(abs(p[0] - start[0]), abs(p[1] - start[1]))
+                background = 0. if distance + tick <= 2 else .008 * unseen
+                combined[p] = (
+                    1. - (1. - combined.get(p, 0.)) * (1. - background))
+            hazards.append(combined)
+    else:
+        hazards = [{p: _fixed_risk(m, p) for p in m["map"]}
+                   for _ in range(horizon)]
+=======
+    horizon = 3
+    hazards = []
+    if predictive:
+        expert_hazards = []
+        for weights in _expert_laws(m):
+            distributions = [{p: 1.} for p in sorted(m["enemies"])]
+            transitions = {}
+
+            def transition(p):
+                if p not in transitions:
+                    row = {}
+                    for d, probability in zip(_DIRECTIONS, weights):
+                        q = _enemy_destination(m["map"], p, d)
+                        row[q] = row.get(q, 0.) + probability
+                    transitions[p] = row
+                return transitions[p]
+
+            unseen = max(0, 3 - len(distributions))
+            sequence = []
+            for tick in range(1, horizon + 1):
+                combined, following = {}, []
+                for distribution in distributions:
+                    prediction = {}
+                    for p, mass in distribution.items():
+                        for q, probability in transition(p).items():
+                            prediction[q] = prediction.get(q, 0.) + mass * probability
+                    for p in distribution.keys() | prediction.keys():
+                        before = distribution.get(p, 0.)
+                        # Collision can occur before OR after enemy movement.
+                        danger = min(1., max(
+                            0., before + prediction.get(p, 0.)
+                            - before * transition(p).get(p, 0.)))
+                        combined[p] = (
+                            1. - (1. - combined.get(p, 0.)) * (1. - danger))
+                    following.append(prediction)
+                distributions = following
+                for p, cell in m["map"].items():
+                    if cell in (-1, 1, 3):
+                        continue
+                    distance = max(abs(p[0] - start[0]), abs(p[1] - start[1]))
+                    background = 0. if distance + tick <= 2 else .008 * unseen
+                    combined[p] = (
+                        1. - (1. - combined.get(p, 0.)) * (1. - background))
+                sequence.append(combined)
+            expert_hazards.append(sequence)
+
+        masses = _expert_probabilities(m)
+        plausible = [i for i, mass in enumerate(masses) if mass >= .08]
+        plausible_mass = sum(masses[i] for i in plausible)
+        for tick in range(horizon):
+            combined = {}
+            for p in m["map"]:
+                risks = [sequence[tick].get(p, 0.)
+                         for sequence in expert_hazards]
+                mean = sum(w * risk for w, risk in zip(masses, risks))
+                center = sum(masses[i] * risks[i] for i in plausible) / plausible_mass
+                variance = sum(masses[i] * (risks[i] - center) ** 2
+                               for i in plausible) / plausible_mass
+                # Disagreement affects control, not the exported probability.
+                premium = min(.08, .65 * math.sqrt(variance))
+                combined[p] = min(1., mean + premium)
+            hazards.append(combined)
+    else:
+        hazards = [{p: _fixed_risk(m, p) for p in m["map"]}
+                   for _ in range(horizon)]
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if stalled:
+        recovery_move = _recovery_move(
+            m, target, predictive, history, state["idle"])
+        if recovery_move is not None:
+            move = recovery_move
+=======
+    destination = _add(start, move)
+    threatened = (predictive and target != start and any(
+        max(abs(e[0] - destination[0]), abs(e[1] - destination[1])) <= 2
+        for e in m["enemies"]))
+    if stalled or threatened:
+        recovery_move = _recovery_move(
+            m, target, predictive,
+            history if stalled else [],
+            state["idle"] if stalled else 0)
+        if recovery_move is not None:
+            move = recovery_move
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "learning": {"updates": m["updates"],
+                         "attempted_motion": [[d[0], d[1], p]
+                                              for d, p in zip(_DIRECTIONS, _motion_weights(m))]}}
+=======
+            "learning": {"updates": m["updates"],
+                         "expert_weights": dict(zip(
+                             ("uniform", "slow", "fast"),
+                             _expert_probabilities(m))),
+                         "attempted_motion": [[d[0], d[1], p]
+                                              for d, p in zip(_DIRECTIONS, _motion_weights(m))]}}
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,125 @@
+<NAME>
+bounded_observation_detours
+</NAME>
+
+<DESCRIPTION>
+Add a bounded stall controller that measures progress using legal route length, avoiding false stalls on winding paths. Repeated position–target cycles trigger a short, low-risk observation detour, selected using route cost, distance to the original objective, and fresh observation opportunities. Detours expire after six decisions and have a cooldown. During recovery, waiting receives an additional penalty only when a low-hazard immediate move exists. Normal planning, learned dynamics, and visible-enemy exclusion remain intact. This targets avoidable waiting without globally reducing survival pressure; performance improvement remains to be evaluated.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _hazard(p):
+    return -math.log(max(1e-6, 1.0 - min(.999999, max(0.0, p))))
+=======
+def _route_steps(m, target):
+    # Reverse breadth-first search measures progress independently of
+    # changing enemy forecasts and accumulated visitation penalties.
+    steps = {target: 0}
+    queue = [target]
+    for p in queue:
+        for dx, dy in STEPS:
+            q = _add(p, (dx, dy))
+            if q in steps:
+                continue
+            if _wall(m["map"], q, m["keys"] >= 2 or m["door_open"], True):
+                continue
+            if _legal(m, q, (-dx, -dy)):
+                steps[q] = steps[p] + 1
+                queue.append(q)
+    return steps
+def _recovery_target(m, target, dist, risk):
+    start, step = m["pos"], m["step"]
+    state = m.setdefault("route_recovery", {
+        "signature": None, "best": {}, "advance": step,
+        "history": [], "waypoint": None, "objective": None,
+        "until": 0, "cooldown": 0,
+    })
+    signature = (m["keys"], m["door_open"], len(m["map"]))
+    if signature != state["signature"]:
+        state["signature"] = signature
+        state["best"] = {}
+        state["advance"] = step
+        state["waypoint"] = None
+    geometry = _route_steps(m, target)
+    route = geometry.get(start, 1000)
+    if route < state["best"].get(target, 1000):
+        state["best"][target] = route
+        state["advance"] = step
+    state["history"].append((start, target))
+    state["history"] = state["history"][-12:]
+    waypoint = state["waypoint"]
+    if waypoint is not None:
+        if (step < state["until"] and waypoint != start
+                and waypoint in dist and target == state["objective"]):
+            return waypoint, True
+        state["waypoint"] = None
+        state["cooldown"] = step + 8
+    repeated = sum(p == start and goal == target
+                   for p, goal in state["history"])
+    if (step - state["advance"] < 8 or repeated < 3
+            or step < state["cooldown"] or 200 - step < route + 12):
+        return target, False
+    tick = (step // 25) * 25
+    candidates = []
+    for p, travel in dist.items():
+        if (travel > 6.0 or _distance(start, p) < 2
+                or geometry.get(p, 1000) > route + 3
+                or risk.get(p, m["background"]) > .025):
+            continue
+        revisits = sum(old == p for old, _ in state["history"])
+        if revisits > 1:
+            continue
+        gain = 0
+        for dy in range(-2, 3):
+            for dx in range(-2, 3):
+                cell = _add(p, (dx, dy))
+                if cell not in m["map"]:
+                    gain += 2
+                elif (m["map"][cell] != -1
+                      and m["seen"].get(cell, step) < tick):
+                    gain += 1
+        score = travel + .65 * geometry[p] + .8 * revisits - .15 * gain
+        candidates.append((score, p))
+    if not candidates:
+        state["cooldown"] = step + 4
+        return target, False
+    waypoint = min(candidates)[1]
+    state["waypoint"] = waypoint
+    state["objective"] = target
+    state["until"] = step + 6
+    return waypoint, True
+def _hazard(p):
+    return -math.log(max(1e-6, 1.0 - min(.999999, max(0.0, p))))
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    target = _choose_target(m, dist)
+    m["target"] = target
+    potential = _paths(m, target, risk, True)
+    pressure = max(20.0, min(85.0, (200 - m["step"]) * 2.5))
+    choices = []
+=======
+    target = _choose_target(m, dist)
+    m["target"] = target
+    target, recovering = _recovery_target(m, target, dist, risk)
+    potential = _paths(m, target, risk, True)
+    pressure = max(20.0, min(85.0, (200 - m["step"]) * 2.5))
+    safe_detour = recovering and any(
+        _legal(m, start, d)
+        and _add(start, d) not in m["enemies"]
+        and _add(start, d) in potential
+        and risk.get(_add(start, d), m["background"])
+            <= min(.02, risk.get(start, m["background"]) + .003)
+        for d in STEPS
+    )
+    choices = []
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        if d == (0, 0):
+            score += .12
+        choices.append((score, immediate, d))
+=======
+        if d == (0, 0):
+            score += .12 + (1.25 if safe_detour else 0.0)
+        choices.append((score, immediate, d))
+>>>>>>> REPLACE
+</DIFF>

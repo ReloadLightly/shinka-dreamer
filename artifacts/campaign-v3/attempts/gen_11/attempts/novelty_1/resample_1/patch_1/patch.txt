@@ -1,0 +1,957 @@
+--- a/original.py
++++ b/original.py
+@@ -1,281 +1,728 @@
+ """Predictive seed. Entire representation, learner and planner may evolve."""
+ # EVOLVE-BLOCK-START
+ import heapq
++import itertools
+ import math
+ 
+-
+-def _add(a, b):
+-    return a[0] + b[0], a[1] + b[1]
+-
+-
+-def _blocked(m, p):
+-    return m["map"].get(p, 1) in (-1, 1) or (m["map"].get(p) == 3 and m["keys"] < 2)
+-
+-
+-def _legal(m, p, d):
+-    q = _add(p, d)
+-    if m["map"].get(q) == 3 and not m["door_open"] and d[0] and d[1]:
+-        return False
+-    return (not _blocked(m, q) and not
+-            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))
+-
+-
+-_DIRECTIONS = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
+-def _enemy_destination(terrain, p, d):
++DIRECTIONS = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
++MOVES = tuple(d for d in DIRECTIONS if d != (0, 0))
++CARDINAL = ((1, 0), (-1, 0), (0, 1), (0, -1))
++UNIFORM = (1.0 / 9.0,) * 9
++EXPERT_PRIOR = (.30, .45, .25)
++
++
++def _add(p, d):
++    return p[0] + d[0], p[1] + d[1]
++
++
++def _distance(a, b):
++    return max(abs(a[0] - b[0]), abs(a[1] - b[1]))
++
++
++def _mean(values):
++    total = sum(values)
++    return tuple(v / total for v in values)
++
++
++def _inside(m, p):
++    left, right, top, bottom = m["bounds"]
++    return ((left is None or left <= p[0] <= right)
++            and (top is None or top <= p[1] <= bottom))
++
++
++def _infer_bounds(m, terrain):
++    x, y = m["pos"]
++    bounds = m["bounds"]
++    for delta in (-2, -1, 1, 2):
++        if terrain.get((x + delta, y)) == -1:
++            if delta < 0:
++                edge = x + delta + 1
++                if bounds[0] is None or edge > bounds[0]:
++                    bounds[0], bounds[1] = edge, edge + 14
++            else:
++                edge = x + delta - 1
++                if bounds[1] is None or edge < bounds[1]:
++                    bounds[0], bounds[1] = edge - 14, edge
++        if terrain.get((x, y + delta)) == -1:
++            if delta < 0:
++                edge = y + delta + 1
++                if bounds[2] is None or edge > bounds[2]:
++                    bounds[2], bounds[3] = edge, edge + 14
++            else:
++                edge = y + delta - 1
++                if bounds[3] is None or edge < bounds[3]:
++                    bounds[2], bounds[3] = edge - 14, edge
++
++
++def _terrain_destination(terrain, p, d, door_open):
+     def blocked(q):
+-        return terrain.get(q, 0) in (-1, 1, 3)
++        cell = terrain.get(q, 0)
++        return cell in (-1, 1) or (cell == 3 and not door_open)
++
+     q = _add(p, d)
+     if blocked(q):
+         return p
+     if d[0] and d[1]:
+-        if blocked(_add(p, (d[0], 0))) or blocked(_add(p, (0, d[1]))):
++        if blocked((p[0] + d[0], p[1])):
++            return p
++        if blocked((p[0], p[1] + d[1])):
+             return p
+     return q
+-def _motion_weights(m):
+-    total = sum(m["motion"]) + 9.
+-    # A uniform mixture guards against unobserved changes in the law.
+-    return [.85 * (v + 1.) / total + .15 / 9. for v in m["motion"]]
+-def _learn_motion(m, terrain, enemies):
+-    m["motion"] = [v * .96 for v in m["motion"]]
+-    if m["previous"] is None:
++
++
++def _observation_masks(previous, terrain, enemies, door_open):
++    old_terrain, old_enemies, old_center, old_step = previous
++    # All predecessors of these cells were inside the old observation.
++    safe = {
++        _add(old_center, (dx, dy))
++        for dx in (-1, 0, 1) for dy in (-1, 0, 1)
++        if _add(old_center, (dx, dy)) in terrain
++    }
++    occupied = sorted(safe.intersection(enemies))
++    bits = {p: 1 << i for i, p in enumerate(occupied)}
++    full_mask = (1 << len(occupied)) - 1
++    rows = []
++    for origin in sorted(old_enemies):
++        row = []
++        for direction in DIRECTIONS:
++            destination = _terrain_destination(
++                old_terrain, origin, direction, door_open
++            )
++            if destination not in safe:
++                row.append(0)
++            elif destination in bits:
++                row.append(bits[destination])
++            else:
++                row.append(-1)
++        rows.append(row)
++    return rows, full_mask
++
++
++def _infer_anonymous(law, masks, full_mask):
++    """Marginalize anonymous associations, including shared destinations."""
++    groups = []
++    for row in masks:
++        masses = {}
++        for i, mask in enumerate(row):
++            if mask >= 0:
++                masses[mask] = masses.get(mask, 0.0) + law[i]
++        if not masses:
++            return 0.0, None
++        groups.append(tuple(masses.items()))
++
++    likelihood = 0.0
++    marginals = [{} for _ in groups]
++    for assignment in itertools.product(*groups):
++        union = 0
++        probability = 1.0
++        for mask, mass in assignment:
++            union |= mask
++            probability *= mass
++        if union != full_mask:
++            continue
++        likelihood += probability
++        for j, (mask, mass) in enumerate(assignment):
++            marginals[j][mask] = (
++                marginals[j].get(mask, 0.0) + probability
++            )
++
++    if likelihood <= 1e-15:
++        return 0.0, None
++
++    posterior = []
++    for j, row in enumerate(masks):
++        masses = dict(groups[j])
++        result = []
++        for i, mask in enumerate(row):
++            if mask < 0:
++                result.append(0.0)
++            else:
++                result.append(
++                    law[i] * marginals[j].get(mask, 0.0)
++                    / (likelihood * masses[mask])
++                )
++        posterior.append(result)
++    return likelihood, posterior
++
++
++def _learn(m, terrain, enemies, enabled):
++    if not enabled:
+         return
+-    old_terrain, old_enemies, old_step = m["previous"]
+-    # Skip transitions that may include scheduled geometry changes.
+-    if m["step"] != old_step + 1 or m["step"] // 25 != old_step // 25:
++    laws = (UNIFORM, _mean(m["slow"]), _mean(m["fast"]))
++    results = None
++    previous = m["previous"]
++    if previous is not None:
++        old_step = previous[3]
++        # Geometry changes are not evidence for a new attempted-movement law.
++        if (m["step"] == old_step + 1
++                and m["step"] // 25 == old_step // 25):
++            masks, target = _observation_masks(
++                previous, terrain, enemies, m["door_open"]
++            )
++            if masks:
++                results = [
++                    _infer_anonymous(law, masks, target) for law in laws
++                ]
++                if any(result[1] is None for result in results):
++                    results = None
++
++    for name, retention, prior in (
++        ("slow", .985, .65),
++        ("fast", .86, .35),
++    ):
++        m[name] = [prior + retention * (a - prior) for a in m[name]]
++
++    if results is None:
+         return
+-    weights = _motion_weights(m)
+-    evidence = [0.] * 9
+-    for source in sorted(old_enemies):
+-        neighborhood = [_add(source, d) for d in _DIRECTIONS]
+-        if not all(p in old_terrain and p in terrain for p in neighborhood):
+-            continue
+-        # Current terrain includes any door opened before enemy movement.
+-        destinations = [_enemy_destination(terrain, source, d)
+-                        for d in _DIRECTIONS]
+-        possible = set(destinations) & enemies
+-        if len(possible) != 1:
+-            continue
+-        # With every destination observed, this source must have reached
+-        # the sole occupied destination. No enemy identity is required.
+-        destination = next(iter(possible))
+-        compatible = [i for i, q in enumerate(destinations) if q == destination]
+-        normalizer = sum(weights[i] for i in compatible)
+-        for i in compatible:
+-            evidence[i] += weights[i] / normalizer
+-        m["updates"] += 1
+-    m["motion"] = [a + b for a, b in zip(m["motion"], evidence)]
+-def _forecast(m, terrain, enemies):
+-    weights = _motion_weights(m)
+-    arrivals = {}
+-    for source in sorted(enemies):
+-        distribution = {}
+-        for d, probability in zip(_DIRECTIONS, weights):
+-            q = _enemy_destination(m["map"], source, d)
+-            distribution[q] = distribution.get(q, 0.) + probability
+-        for q, probability in distribution.items():
+-            arrivals[q] = 1. - (1. - arrivals.get(q, 0.)) * (1. - probability)
+-    risk = {}
+-    unseen = max(0, 3 - len(enemies))
+-    for p, cell in m["map"].items():
+-        if cell in (-1, 1, 3):
+-            risk[p] = 0.
+-            continue
+-        distance = max(abs(p[0] - m["pos"][0]), abs(p[1] - m["pos"][1]))
+-        # Every predecessor of an inner-square cell is currently visible.
+-        background = 0. if distance <= 1 else .008 * unseen
+-        risk[p] = min(1., max(0., 1. - (1. - arrivals.get(p, 0.)) * (1. - background)))
+-    return risk
+-
+-
+-def _planning_hazards(m, horizon):
+-    # Marginal distributions require no persistent enemy identities: each
+-    # currently observed occupied cell starts an independent prediction.
+-    weights = _motion_weights(m)
+-    distributions = [{p: 1.} for p in sorted(m["enemies"])]
+-    transitions = {}
+-    hazards = []
+-    unseen = max(0, 3 - len(distributions))
+-
+-    def transition(p):
+-        if p not in transitions:
+-            row = {}
+-            for d, probability in zip(_DIRECTIONS, weights):
+-                q = _enemy_destination(m["map"], p, d)
+-                row[q] = row.get(q, 0.) + probability
+-            transitions[p] = row
+-        return transitions[p]
++
++    for i, (likelihood, posterior) in enumerate(results):
++        m["log_weights"][i] = (
++            .95 * m["log_weights"][i]
++            + .05 * math.log(EXPERT_PRIOR[i])
++            + .70 * math.log(max(likelihood, 1e-15))
++        )
++    largest = max(m["log_weights"])
++    m["log_weights"] = [v - largest for v in m["log_weights"]]
++
++    for expert, name in ((1, "slow"), (2, "fast")):
++        law = laws[expert]
++        for posterior in results[expert][1]:
++            information = min(
++                1.0, sum(abs(a - b) for a, b in zip(posterior, law))
++            )
++            if information < 1e-8:
++                continue
++            for i, probability in enumerate(posterior):
++                m[name][i] += information * probability
++            if expert == 1:
++                m["updates"] += 1
++                m["effective_updates"] += information
++
++
++def _combined_law(m):
++    largest = max(m["log_weights"])
++    weights = [math.exp(v - largest) for v in m["log_weights"]]
++    total = sum(weights)
++    weights = [v / total for v in weights]
++    laws = (UNIFORM, _mean(m["slow"]), _mean(m["fast"]))
++    m["expert_weights"] = weights
++    return tuple(
++        .12 / 9.0 + .88 * sum(weights[j] * laws[j][i] for j in range(3))
++        for i in range(9)
++    )
++
++
++def _solid(m, p, opened):
++    if not _inside(m, p):
++        return True
++    left, right, top, bottom = m["bounds"]
++    if left is not None and p[0] in (left, right):
++        return True
++    if top is not None and p[1] in (top, bottom):
++        return True
++    cell = m["map"].get(p, 0)
++    return cell in (-1, 1) or (
++        cell == 3 and not m["door_open"] and p not in opened
++    )
++
++
++def _forecast(m, law, horizon=3):
++    opened = set()
++    # Every selected action interacts before movement.
++    if m["keys"] >= 2:
++        for d in CARDINAL:
++            p = _add(m["pos"], d)
++            if m["map"].get(p) == 3:
++                opened.add(p)
++
++    kernels = {}
++    stays = {}
++
++    def kernel(p):
++        if p in kernels:
++            return kernels[p]
++        result = {}
++        for d, probability in zip(DIRECTIONS, law):
++            q = _add(p, d)
++            if (_solid(m, q, opened)
++                    or (d[0] and d[1] and (
++                        _solid(m, (p[0] + d[0], p[1]), opened)
++                        or _solid(m, (p[0], p[1] + d[1]), opened)))):
++                q = p
++            result[q] = result.get(q, 0.0) + probability
++        kernels[p] = tuple(result.items())
++        stays[p] = result.get(p, 0.0)
++        return kernels[p]
++
++    def spread(distribution):
++        result = {}
++        for p, mass in distribution.items():
++            for q, probability in kernel(p):
++                result[q] = result.get(q, 0.0) + mass * probability
++        return result
++
++    free_visible = sum(
++        not _solid(m, p, opened) for p in m["visible"]
++    )
++    hidden_count = max(0, 3 - len(m["enemies"]))
++    density = hidden_count / float(max(45, 130 - free_visible))
++    candidates = set(m["map"])
++    x, y = m["pos"]
++    candidates.update(
++        (x + dx, y + dy)
++        for dx in range(-6, 7) for dy in range(-6, 7)
++    )
++    hidden = {
++        p: density for p in candidates
++        if density > 0 and p not in m["visible"]
++        and not _solid(m, p, opened)
++    }
++    distributions = [{p: 1.0} for p in sorted(m["enemies"])]
++    forecasts, hazards = [{}], [{}]
+ 
+     for tick in range(1, horizon + 1):
+-        combined = {}
+-        following = []
+-        for distribution in distributions:
+-            prediction = {}
+-            for source, mass in distribution.items():
+-                for destination, probability in transition(source).items():
+-                    prediction[destination] = (
+-                        prediction.get(destination, 0.) + mass * probability)
+-            # Entering an occupied cell kills before the enemy moves.
+-            # Subtract the overlap rather than adding both marginals.
+-            for p in distribution.keys() | prediction.keys():
+-                before = distribution.get(p, 0.)
+-                after = prediction.get(p, 0.)
+-                overlap = before * transition(p).get(p, 0.)
+-                danger = min(1., max(0., before + after - overlap))
+-                combined[p] = 1. - (1. - combined.get(p, 0.)) * (1. - danger)
+-            following.append(prediction)
+-        distributions = following
+-        for p, cell in m["map"].items():
+-            if cell in (-1, 1, 3):
++        next_hidden = spread(hidden)
++        no_occupancy, no_collision = {}, {}
++        next_distributions = []
++
++        for before_distribution in distributions:
++            after_distribution = spread(before_distribution)
++            next_distributions.append(after_distribution)
++            for p in set(before_distribution).union(after_distribution):
++                before = before_distribution.get(p, 0.0)
++                after = after_distribution.get(p, 0.0)
++                kernel(p)
++                collision = before + after - before * stays[p]
++                collision = min(1.0, max(0.0, collision))
++                no_occupancy[p] = (
++                    no_occupancy.get(p, 1.0) * (1.0 - after)
++                )
++                no_collision[p] = (
++                    no_collision.get(p, 1.0) * (1.0 - collision)
++                )
++
++        distributions = next_distributions
++        cells = set(no_occupancy).union(hidden, next_hidden, m["map"])
++        occupancy, collision_risk = {}, {}
++        for p in cells:
++            if _solid(m, p, opened):
++                occupancy[p] = 0.0
++                collision_risk[p] = 0.0
+                 continue
+-            distance = max(abs(p[0] - m["pos"][0]),
+-                           abs(p[1] - m["pos"][1]))
+-            # Hidden enemies cannot reach cells whose entire backwards
+-            # movement neighborhood lies in the currently observed square.
+-            background = 0. if distance + tick <= 2 else .008 * unseen
+-            combined[p] = 1. - (1. - combined.get(p, 0.)) * (1. - background)
+-        hazards.append(combined)
+-    return hazards
++            kernel(p)
++            before = hidden.get(p, 0.0)
++            after = next_hidden.get(p, 0.0)
++            hidden_union = max(0.0, before + after - before * stays[p])
++            occupancy[p] = min(1.0, max(
++                0.0, 1.0 - no_occupancy.get(p, 1.0) * math.exp(-after)
++            ))
++            collision_risk[p] = min(1.0, max(
++                0.0,
++                1.0 - no_collision.get(p, 1.0) * math.exp(-hidden_union)
++            ))
++        forecasts.append(occupancy)
++        hazards.append(collision_risk)
++        hidden = next_hidden
++
++    return forecasts, hazards, min(.05, density)
+ 
+ 
+ def world_model_step(memory, local_obs, last_action):
+     if memory is None:
+-        memory = {"map": {}, "seen": {}, "pos": (0, 0), "visits": {},
+-                  "motion": [0.] * 9,
+-                  "updates": 0, "previous": None}
++        memory = {
++            "map": {}, "seen": {}, "pos": (0, 0), "visits": {},
++            "bounds": [None, None, None, None],
++            "slow": [.65] * 9, "fast": [.35] * 9,
++            "log_weights": [math.log(v) for v in EXPERT_PRIOR],
++            "updates": 0, "effective_updates": 0.0,
++            "previous": None, "keys": 0, "door_open": False,
++            "task_target": None, "target_kind": None,
++            "progress_target": None, "route_best": float("inf"),
++            "last_advance": 0, "stationary": 0, "recent": [],
++            "waypoint": None, "waypoint_goal": None,
++            "waypoint_until": -1, "recovery_cooldown": -1,
++            "last_waypoint": None, "recoveries": 0,
++        }
+     m = memory
+-    m["pos"] = _add(m["pos"], local_obs["feedback"]["displacement"])
+-    m["keys"], m["door_open"], m["step"] = local_obs["keys"], local_obs["door_open"], local_obs["step"]
++    old_keys, old_door = m["keys"], m["door_open"]
++    displacement = local_obs.get("feedback", {}).get(
++        "displacement", (0, 0)
++    )
++    m["pos"] = _add(m["pos"], displacement)
++    m["keys"] = local_obs["keys"]
++    m["door_open"] = local_obs["door_open"]
++    m["step"] = local_obs["step"]
+     m["visits"][m["pos"]] = m["visits"].get(m["pos"], 0) + 1
++
++    if m["previous"] is not None and tuple(displacement) == (0, 0):
++        m["stationary"] += 1
++    else:
++        m["stationary"] = 0
++    m["recent"].append(m["pos"])
++    m["recent"] = m["recent"][-18:]
++
++    if m["keys"] > old_keys or (m["door_open"] and not old_door):
++        m["last_advance"] = m["step"]
++        m["progress_target"] = None
++        m["waypoint"] = None
++        m["recent"] = [m["pos"]]
++        m["stationary"] = 0
++
+     terrain, enemies = {}, set()
+     for y, row in enumerate(local_obs["terrain"]):
+         for x, cell in enumerate(row):
+-            p = _add(m["pos"], (x-2, y-2))
++            p = _add(m["pos"], (x - 2, y - 2))
+             terrain[p] = cell
+             m["map"][p], m["seen"][p] = cell, m["step"]
+             if local_obs["grid"][y][x] == 5:
+                 enemies.add(p)
+-    # FREEZE_PREDICTIVE_UPDATES leaves mapping and localization intact.
+-    if local_obs.get("learn", True):
+-        _learn_motion(m, terrain, enemies)
+-    m["previous"] = (terrain, enemies, m["step"])
+-    m["enemies"] = enemies
+-    m["risk"] = _forecast(m, terrain, enemies)
++
++    _infer_bounds(m, terrain)
++    # Predictive-update intervention preserves all navigation state.
++    _learn(m, terrain, enemies, local_obs.get("learn", True))
++    m["previous"] = (terrain, enemies, m["pos"], m["step"])
++    m["visible"], m["enemies"] = set(terrain), enemies
++    m["law"] = _combined_law(m)
++    forecasts, hazards, default = _forecast(m, m["law"])
++    m["risk"] = forecasts[1]
++    m["hazards"] = hazards
++    m["default_enemy"] = default
+     return m
+ 
+ 
+-def _fixed_risk(m, p):
+-    # Competent hand-written baseline: conservative local enemy avoidance.
+-    if p in m["enemies"]:
+-        return 1.
+-    return .22 if any(max(abs(e[0]-p[0]), abs(e[1]-p[1])) <= 1 for e in m["enemies"]) else 0.
++def _blocked(m, p):
++    if not _inside(m, p):
++        return True
++    cell = m["map"].get(p, 1)
++    return cell in (-1, 1) or (
++        cell == 3 and m["keys"] < 2 and not m["door_open"]
++    )
++
++
++def _legal(m, p, d):
++    q = _add(p, d)
++    if _blocked(m, q):
++        return False
++    if d[0] and d[1]:
++        if (_blocked(m, (p[0] + d[0], p[1]))
++                or _blocked(m, (p[0], p[1] + d[1]))):
++            return False
++        if m["map"].get(q) == 3 and not m["door_open"]:
++            return False
++    return True
++
++
++def _edge_cost(m, p, risk, geometric):
++    if geometric:
++        return 1.0
++    return (
++        1.0 + .025 * min(12, m["visits"].get(p, 0))
++        + 16.0 * risk.get(p, 0.0)
++        + (5.0 if p in m["enemies"] else 0.0)
++    )
++
++
++def _distances(m, start, risk, reverse=False, geometric=False,
++               safe_threshold=None):
++    distances = {start: 0.0}
++    queue = [(0.0, start)]
++    while queue:
++        cost, p = heapq.heappop(queue)
++        if cost != distances[p]:
++            continue
++        for d in MOVES:
++            q = _add(p, d)
++            if reverse:
++                if _blocked(m, q) or not _legal(m, q, (-d[0], -d[1])):
++                    continue
++                destination = p
++            else:
++                if not _legal(m, p, d):
++                    continue
++                destination = q
++            if safe_threshold is not None:
++                if (destination in m["enemies"]
++                        or risk.get(destination, 0.0) > safe_threshold):
++                    continue
++            new_cost = cost + _edge_cost(
++                m, destination, risk, geometric
++            )
++            if new_cost < distances.get(q, float("inf")):
++                distances[q] = new_cost
++                heapq.heappush(queue, (new_cost, q))
++    return distances
++
++
++def _gain(m, p):
++    return sum(
++        _inside(m, q) and q not in m["map"]
++        for q in (
++            _add(p, (dx, dy))
++            for dx in range(-2, 3) for dy in range(-2, 3)
++        )
++    )
++
++
++def _stale_gain(m, p):
++    last_tick = (m["step"] // 25) * 25
++    return sum(
++        q in m["map"] and m["map"][q] in (0, 1)
++        and m["seen"].get(q, -1) < last_tick
++        and q not in m["visible"]
++        for q in (
++            _add(p, (dx, dy))
++            for dx in range(-2, 3) for dy in range(-2, 3)
++        )
++    )
++
++
++def _choose_target(m, distances):
++    start = m["pos"]
++    wanted = 2 if m["keys"] < 2 else 4
++    goals = [
++        p for p in distances
++        if p != start and m["map"].get(p) == wanted
++    ]
++    kind = "goal"
++    if not goals and m["keys"] >= 2 and not m["door_open"]:
++        goals = [
++            p for p in distances
++            if p != start and m["map"].get(p) == 3
++        ]
++        kind = "door"
++    if goals:
++        best = min(goals, key=lambda p: (distances[p], p))
++        old = m.get("task_target")
++        if (m.get("target_kind") == kind and old in goals
++                and distances[old] <= 1.12 * distances[best]):
++            best = old
++        return best, kind
++
++    frontier = {}
++    for p, cost in distances.items():
++        if p != start:
++            gain = _gain(m, p)
++            if gain:
++                frontier[p] = (cost + .3) / math.sqrt(gain)
++    if frontier:
++        best = min(frontier, key=lambda p: (frontier[p], p))
++        old = m.get("task_target")
++        if (m.get("target_kind") == "frontier" and old in frontier
++                and frontier[old] <= 1.18 * frontier[best]):
++            best = old
++        return best, "frontier"
++
++    alternatives = [p for p in distances if p != start]
++    if alternatives:
++        return min(alternatives, key=lambda p: (
++            .8 * m["visits"].get(p, 0)
++            + .15 * distances[p] - .10 * _stale_gain(m, p),
++            p,
++        )), "patrol"
++    return start, "wait"
++
++
++def _control_target(m, primary, risk, hazards, potential):
++    """Detect cycles and temporarily select a bounded, safe observation route."""
++    start, step = m["pos"], m["step"]
++    geometric = _distances(m, primary, {}, reverse=True, geometric=True)
++    route = geometric.get(start, 250.0)
++
++    if m["progress_target"] != primary:
++        m["progress_target"] = primary
++        m["route_best"] = route
++        m["last_advance"] = step
++    elif route < m["route_best"] - .5:
++        m["route_best"] = route
++        m["last_advance"] = step
++
++    repeats = m["recent"][-12:].count(start)
++    idle = step - m["last_advance"]
++    pressure = min(1.0, max(
++        0.0,
++        (m["stationary"] - 2) / 6.0,
++        (repeats - 2) / 4.0,
++        (idle - 7) / 12.0,
++    ))
++    stalled = (
++        m["stationary"] >= 4 or repeats >= 4 or idle >= 10
++    )
++
++    waypoint = m["waypoint"]
++    if waypoint is not None:
++        if (m["waypoint_goal"] == primary
++                and step < m["waypoint_until"]
++                and waypoint != start and waypoint in potential):
++            return waypoint, max(.5, pressure)
++        m["waypoint"] = None
++
++    if (not stalled or primary == start
++            or step < m["recovery_cooldown"]):
++        return primary, pressure
++
++    # Compare short routes with low current predicted occupancy. The temporal
++    # planner still checks immediate collision hazards on the selected route.
++    safe_distances = _distances(
++        m, start, risk, safe_threshold=.035
++    )
++    options = []
++    recent = m["recent"][-10:]
++    start_potential = potential.get(start, 250.0)
++    for p, cost in safe_distances.items():
++        if (p == primary or p == m["last_waypoint"]
++                or _distance(start, p) < 2 or cost > 6.5
++                or p not in potential):
++            continue
++        if geometric.get(p, 250.0) > route + 4.0:
++            continue
++        if hazards[1].get(p, 0.0) > .025:
++            continue
++        if hazards[2].get(p, 0.0) > .075:
++            continue
++        detour = cost + potential[p] - start_potential
++        score = (
++            detour
++            + 65.0 * hazards[3].get(p, 0.0)
++            + 1.4 * recent.count(p)
++            + .10 * min(15, m["visits"].get(p, 0))
++            - .20 * _gain(m, p)
++            - .06 * _stale_gain(m, p)
++        )
++        options.append((score, cost, p))
++
++    if not options:
++        # Retry after a few observations, without forcing a hazardous move.
++        m["recovery_cooldown"] = step + 3
++        return primary, pressure
++
++    waypoint = min(options)[2]
++    m["waypoint"] = waypoint
++    m["last_waypoint"] = waypoint
++    m["waypoint_goal"] = primary
++    m["waypoint_until"] = step + 7
++    m["recovery_cooldown"] = step + 12
++    m["recoveries"] += 1
++    return waypoint, max(.5, pressure)
+ 
+ 
+ def planner(memory, local_obs):
+     m = memory
+     start = m["pos"]
+-    moves = [(x, y) for y in (-1, 0, 1) for x in (-1, 0, 1) if x or y]
+-    dist, first, queue = {start: 0.}, {}, [(0., start)]
+-    while queue:
+-        cost, p = heapq.heappop(queue)
+-        if cost != dist[p]:
+-            continue
+-        for d in moves:
+-            q = _add(p, d)
+-            if not _legal(m, p, d):
+-                continue
+-            risk = m["risk"].get(q, .02) if local_obs.get("predictive_planning", True) else _fixed_risk(m, q)
+-            edge = 1. + 45 * risk
+-            new = cost + edge + .06 * min(m["visits"].get(q, 0), 15)
+-            if new < dist.get(q, float("inf")):
+-                dist[q], first[q] = new, d if p == start else first[p]
+-                heapq.heappush(queue, (new, q))
+-    goals = [p for p in dist if p != start and m["map"].get(p) == (2 if m["keys"] < 2 else 4)]
+-    if not goals and m["keys"] == 2 and not m["door_open"]:
+-        goals = [p for p in dist if p != start and m["map"].get(p) == 3]
+-    if goals:
+-        target = min(goals, key=lambda p: (dist[p], p))
++    if local_obs.get("predictive_planning", True):
++        risk, hazards = m["risk"], m["hazards"]
+     else:
+-        frontier = []
+-        for p in dist:
+-            if p == start:
+-                continue
+-            gain = sum(_add(p, (dx, dy)) not in m["map"] for dx in range(-2, 3) for dy in range(-2, 3))
+-            if gain:
+-                frontier.append((dist[p] / math.sqrt(gain), p))
+-        if frontier:
+-            target = min(frontier)[1]
+-        elif first:
+-            target = min(first, key=lambda p: (m["visits"].get(p, 0), dist[p], p))
+-        else:
+-            target = start
+-    predictive = local_obs.get("predictive_planning", True)
+-    risk_fn = ((lambda p: m["risk"].get(p, .02)) if predictive
+-               else (lambda p: _fixed_risk(m, p)))
+-    # Reverse distances supply a terminal value for a small temporal search.
+-    # Current enemy positions are temporary hazards, not permanent walls.
+-    remaining = {target: 0.}
+-    queue = [(0., target)]
+-    while queue:
+-        cost, p = heapq.heappop(queue)
+-        if cost != remaining[p]:
+-            continue
+-        for d in moves:
+-            q = _add(p, d)
+-            if _blocked(m, q) or not _legal(m, q, (-d[0], -d[1])):
+-                continue
+-            edge = (1. + 45 * risk_fn(p)
+-                    + .06 * min(m["visits"].get(p, 0), 15))
+-            new = cost + edge
+-            if new < remaining.get(q, float("inf")):
+-                remaining[q] = new
+-                heapq.heappush(queue, (new, q))
+-
+-    horizon = 3
+-    hazards = (_planning_hazards(m, horizon) if predictive else
+-               [{p: _fixed_risk(m, p) for p in m["map"]}
+-                for _ in range(horizon)])
++        # Replace the inferred law only; preserve mapping and control logic.
++        forecasts, hazards, _ = _forecast(m, UNIFORM)
++        risk = forecasts[1]
++
++    distances = _distances(m, start, risk)
++    primary, kind = _choose_target(m, distances)
++    m["task_target"], m["target_kind"] = primary, kind
++    potential = _distances(m, primary, risk, reverse=True)
++    target, pressure = _control_target(
++        m, primary, risk, hazards, potential
++    )
++    if target != primary:
++        potential = _distances(m, target, risk, reverse=True)
++
++    remaining = max(1, 200 - m["step"])
++    route_length = max(1.0, distances.get(primary, 1.0))
++    risk_weight = 100.0 * (
++        .55 + .45 * min(1.0, remaining / (route_length + 8.0))
++    )
++    future_weights = (0.0, 1.0, .55, .25)
++    recent = m["recent"][-10:]
+     memo = {}
+-    choices = {}
+-    actions = [(0, 0)] + moves
++
++    def stage_cost(p, q, direction, tick):
++        hazard = min(1.0, max(0.0, hazards[tick].get(q, 0.0)))
++        survival_cost = -math.log(max(1e-7, 1.0 - hazard))
++        wait_cost = (
++            .16 + pressure * min(1.6, .25 * m["stationary"])
++            if direction == (0, 0) else 0.0
++        )
++        cycle_cost = .16 * pressure * recent.count(q)
++        return (
++            1.0 + wait_cost + cycle_cost
++            + .02 * min(10, m["visits"].get(q, 0))
++            + risk_weight * future_weights[tick] * survival_cost
++        )
+ 
+     def value(p, tick):
+-        if tick == horizon:
+-            return remaining.get(p, 1000.)
+-        # Reaching the current objective ends this short planning problem.
+-        if tick > 0 and p == target and target != start:
+-            return 0.
++        if p == target and target != start:
++            return 0.0
++        if tick > 3:
++            return potential.get(p, 250.0)
+         key = (p, tick)
+         if key in memo:
+             return memo[key]
+         best = float("inf")
+-        best_move = (0, 0)
+-        for d in actions:
++        for d in DIRECTIONS:
++            if not _legal(m, p, d):
++                continue
+             q = _add(p, d)
+-            if d != (0, 0) and not _legal(m, p, d):
+-                continue
+-            if tick == 0 and q in m["enemies"]:
+-                continue
+-            danger = hazards[tick].get(q, .02)
+-            cost = (1. + 45 * danger
+-                    + .06 * min(m["visits"].get(q, 0), 15)
+-                    + value(q, tick + 1))
++            cost = stage_cost(p, q, d, tick) + value(q, tick + 1)
+             if cost < best:
+-                best, best_move = cost, d
+-        memo[key], choices[key] = best, best_move
++                best = cost
++        memo[key] = best
+         return best
+ 
+-    value(start, 0)
+-    move = choices.get((start, 0), (0, 0))
+-    return {"move": list(move), "interact": True}
++    choices = []
++    for d in DIRECTIONS:
++        if not _legal(m, start, d):
++            continue
++        q = _add(start, d)
++        # This exclusion is absolute, including during recovery.
++        if q in m["enemies"]:
++            continue
++        hazard = hazards[1].get(q, 0.0)
++        score = stage_cost(start, q, d, 1) + value(q, 2)
++        choices.append((score, hazard, potential.get(q, 250.0), d))
++
++    if not choices:
++        move = (0, 0)
++    else:
++        selected = min(choices)
++        # Prefer a comparably safe detour over repeated waiting only when
++        # its complete three-step score stays within a bounded allowance.
++        if selected[3] == (0, 0) and pressure > 0:
++            safe_moves = [
++                choice for choice in choices
++                if choice[3] != (0, 0)
++                and choice[1] <= min(.012, selected[1] + .001)
++                and choice[0] <= selected[0] + 2.5 * pressure
++            ]
++            if safe_moves:
++                selected = min(safe_moves)
++        move = selected[3]
++
++    return {"move": [move[0], move[1]], "interact": True}
+ 
+ 
+ def export_model(memory, local_obs):
+     m = memory
+-    return {"enemy": [[x, y, p] for (x, y), p in m["risk"].items()],
+-            "default_enemy": .02,
+-            "terrain": [[x, y, c, m["seen"][x, y]] for (x, y), c in m["map"].items()],
+-            "position": list(m["pos"]),
+-            "learning": {"updates": m["updates"],
+-                         "attempted_motion": [[d[0], d[1], p]
+-                                              for d, p in zip(_DIRECTIONS, _motion_weights(m))]}}
++    return {
++        "enemy": [
++            [x, y, float(probability)]
++            for (x, y), probability in m["risk"].items()
++        ],
++        "default_enemy": float(m["default_enemy"]),
++        "terrain": [
++            [x, y, cell, m["seen"][(x, y)]]
++            for (x, y), cell in m["map"].items()
++        ],
++        "position": list(m["pos"]),
++        "learning": {
++            "updates": m["updates"],
++            "effective_updates": m["effective_updates"],
++            "attempted_motion": [
++                [d[0], d[1], float(p)]
++                for d, p in zip(DIRECTIONS, m["law"])
++            ],
++            "expert_weights": list(m["expert_weights"]),
++            "slow_law": list(_mean(m["slow"])),
++            "fast_law": list(_mean(m["fast"])),
++            "recoveries": m["recoveries"],
++        },
++    }
+ # EVOLVE-BLOCK-END

@@ -1,0 +1,232 @@
+<NAME>
+survival_conditioned_three_step_search
+</NAME>
+
+<DESCRIPTION>
+Replace independent before/after collision estimates with per-enemy survival conditioning. Each hypothetical move removes trajectories that collide before movement or after movement, preserving the remaining distribution for subsequent decisions. This avoids double-counting persistent enemies and exposes routes that become dangerous after an initially safe move.
+
+Extend planning to three steps, refining the three most promising second moves for each immediate action to limit computation. Retain the existing learner, mapping, exploration, export predictions, and uniform-dynamics intervention. Hidden-enemy risk remains an approximate background term. This is an untested control improvement; higher task fitness requires evaluation.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def _hazard(p):
+    return -math.log(max(1e-6, 1.0 - min(.999999, max(0.0, p))))
+def planner(memory, local_obs):
+=======
+def _hazard(p):
+    return -math.log(max(1e-6, 1.0 - min(.999999, max(0.0, p))))
+def _planning_transition(m, law):
+    opened = m["door_open"] or (
+        m["keys"] >= 2 and any(
+            m["map"].get(_add(m["pos"], d)) == 3
+            for d in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+    cache = {}
+    def transition(p):
+        if p not in cache:
+            result = {}
+            for d, probability in zip(MOVES, law):
+                q = _destination(m["map"], p, d, opened)
+                result[q] = result.get(q, 0.0) + probability
+            cache[p] = result
+        return cache[p]
+    return transition
+def _project_tracks(tracks, transition):
+    projected = []
+    for track in tracks:
+        result = {}
+        for p, mass in track.items():
+            for q, probability in transition(p).items():
+                result[q] = result.get(q, 0.0) + mass * probability
+        projected.append(result)
+    return projected
+def _collision_cost(tracks, projected, q, transition):
+    # For each enemy, collision is the union of occupancy at q before
+    # movement and occupancy there afterwards. These events overlap.
+    stay = transition(q).get(q, 0.0)
+    result = 0.0
+    for before, after in zip(tracks, projected):
+        danger = after.get(q, 0.0) + before.get(q, 0.0) * (1.0 - stay)
+        if danger >= 1.0 - 1e-12:
+            return float("inf")
+        result += _hazard(danger)
+    return result
+def _surviving_tracks(tracks, projected, q, transition):
+    # Remove trajectories starting at q, then trajectories ending at q.
+    # The resulting tracks are conditional on surviving the entire action.
+    outgoing = transition(q)
+    result = []
+    for before, after in zip(tracks, projected):
+        at_q = before.get(q, 0.0)
+        filtered = {}
+        for p, mass in after.items():
+            if p != q:
+                surviving = mass - at_q * outgoing.get(p, 0.0)
+                if surviving > 0.0:
+                    filtered[p] = surviving
+        total = sum(filtered.values())
+        if total <= 1e-12:
+            return None
+        result.append({p: mass / total for p, mass in filtered.items()})
+    return result
+def _background_cost(m, p, q, depth):
+    def probability(cell, horizon):
+        if horizon <= 0:
+            return 0.0
+        if _distance(cell, m["pos"]) <= 2 - horizon:
+            return 0.0
+        if cell in m["local"]:
+            return m["background"] * min(1.0, .18 * horizon)
+        return m["background"]
+    after = probability(q, depth)
+    before = 0.0 if p == q else probability(q, depth - 1)
+    return _hazard(before) + _hazard(after)
+def planner(memory, local_obs):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        risk, risk2 = m["forecast"]
+    else:
+        # This intervention removes learned dynamics from control, while
+        # retaining localization, terrain and an ordinary uniform predictor.
+        fixed, _, _ = _forecasts(m, [1.0 / 9] * 9)
+        risk, risk2 = fixed
+    dist = _paths(m, start, risk)
+    target = _choose_target(m, dist)
+    m["target"] = target
+    potential = _paths(m, target, risk, True)
+    pressure = max(20.0, min(85.0, (200 - m["step"]) * 2.5))
+    choices = []
+    for d in MOVES:
+        q = _add(start, d)
+        if not _legal(m, start, d) or q in m["enemies"]:
+            continue
+        if q not in potential:
+            continue
+        immediate = risk.get(q, m["background"])
+        future = float("inf")
+        if q == target:
+            future = 0.0
+        else:
+            for e in MOVES:
+                r = _add(q, e)
+                if not _legal(m, q, e) or r not in potential:
+                    continue
+                before = 0.0 if r == q else risk.get(r, m["background"])
+                after = risk2.get(r, m["background"])
+                danger = 1.0 - (1.0 - before) * (1.0 - after)
+                value = 1.0 + potential[r] + .42 * pressure * _hazard(danger)
+                future = min(future, value)
+        if not math.isfinite(future):
+            future = potential[q] + 4.0
+        score = 1.0 + .65 * potential[q] + .35 * future
+        score += pressure * _hazard(immediate)
+        score += .04 * min(20, m["visits"].get(q, 0))
+        if d == (0, 0):
+            score += .12
+        choices.append((score, immediate, d))
+    move = min(choices)[2] if choices else (0, 0)
+    return {"move": list(move), "interact": True}
+=======
+    m = memory
+    start = m["pos"]
+    if local_obs.get("predictive_planning", True):
+        law = _law(m)
+        risk = m["forecast"][0]
+    else:
+        # Mapping and learning remain independent of prediction use.
+        law = [1.0 / 9.0] * 9
+        fixed, _, _ = _forecasts(m, law)
+        risk = fixed[0]
+    dist = _paths(m, start, risk)
+    target = _choose_target(m, dist)
+    m["target"] = target
+    potential = _paths(m, target, risk, True)
+    pressure = max(20.0, min(85.0, (200 - m["step"]) * 2.5))
+    transition = _planning_transition(m, law)
+    tracks0 = [{e: 1.0} for e in sorted(m["enemies"])]
+    projected0 = _project_tracks(tracks0, transition)
+    choices = []
+    emergency = []
+    for d in MOVES:
+        q = _add(start, d)
+        if not _legal(m, start, d) or q in m["enemies"]:
+            continue
+        h1 = _collision_cost(tracks0, projected0, q, transition)
+        h1 += _background_cost(m, start, q, 1)
+        emergency.append((h1, potential.get(q, 1e6), d))
+        if q not in potential or not math.isfinite(h1):
+            continue
+        future = float("inf")
+        if q == target and q != start:
+            future = 0.0
+        else:
+            tracks1 = _surviving_tracks(
+                tracks0, projected0, q, transition)
+            if tracks1 is not None:
+                projected1 = _project_tracks(tracks1, transition)
+                seconds = []
+                for e in MOVES:
+                    r = _add(q, e)
+                    if not _legal(m, q, e) or r not in potential:
+                        continue
+                    h2 = _collision_cost(
+                        tracks1, projected1, r, transition)
+                    h2 += _background_cost(m, q, r, 2)
+                    if not math.isfinite(h2):
+                        continue
+                    estimate = 1.0 + potential[r] + .60 * pressure * h2
+                    if r == q:
+                        estimate += .12
+                    seconds.append((estimate, h2, r))
+                # Refine a small beam of complete second-action choices.
+                # Every legal immediate action receives its own beam.
+                for _, h2, r in sorted(seconds)[:3]:
+                    if r == target and r != start:
+                        value = 1.0 + .60 * pressure * h2
+                    else:
+                        tracks2 = _surviving_tracks(
+                            tracks1, projected1, r, transition)
+                        if tracks2 is None:
+                            continue
+                        projected2 = _project_tracks(tracks2, transition)
+                        third = float("inf")
+                        for f in MOVES:
+                            s = _add(r, f)
+                            if not _legal(m, r, f) or s not in potential:
+                                continue
+                            h3 = _collision_cost(
+                                tracks2, projected2, s, transition)
+                            h3 += _background_cost(m, r, s, 3)
+                            candidate = (
+                                1.0 + potential[s] + .50 * pressure * h3)
+                            candidate += .02 * min(
+                                20, m["visits"].get(s, 0))
+                            if s == r:
+                                candidate += .12
+                            third = min(third, candidate)
+                        value = (
+                            1.0 + .65 * potential[r] + .35 * third
+                            + .60 * pressure * h2)
+                    value += .02 * min(20, m["visits"].get(r, 0))
+                    if r == q:
+                        value += .12
+                    future = min(future, value)
+        # Preserve impossible continuations as impossible. If all fail,
+        # the fallback chooses immediate survival explicitly.
+        score = 1.0 + .65 * potential[q] + .35 * future
+        score += pressure * h1
+        score += .04 * min(20, m["visits"].get(q, 0))
+        if d == (0, 0):
+            score += .12
+        if math.isfinite(score):
+            choices.append((score, h1, d))
+    if choices:
+        move = min(choices)[2]
+    else:
+        move = min(emergency)[2] if emergency else (0, 0)
+    return {"move": list(move), "interact": True}
+>>>>>>> REPLACE
+</DIFF>

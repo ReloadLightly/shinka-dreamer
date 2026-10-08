@@ -1,0 +1,846 @@
+{
+  "migration_note": "No actual migration events were captured for reviewed slots0..7 in the initial review; this historical statement is bound to native_lineage_snapshot, not the expanding live lineage archive.",
+  "native_lineage_snapshot": {
+    "note": "Immutable compact materialization of lineage fields captured in this initial review. Materialization time is not the original review time; later live migrations are outside its scope.",
+    "path": "artifacts/campaign-v3/source-review-lineage-0-7.json",
+    "sha256": "b08bddbd563a0d1f66e31f75d01c9f4b71441ec170ebd7fa93cfe42802c351db"
+  },
+  "native_seed_copy_note": "Four island database seed rows share one source and one total candidate slot; do not count them as four independent searches or seed candidate slots.",
+  "new_environment_episodes": 0,
+  "new_model_calls": 0,
+  "preserved_empirical_mechanism": "artifacts/campaign-v3/mechanism-gen1-smoke/summary.json",
+  "preserved_source_reviews": [
+    "artifacts/campaign-v3/mechanism-gen1-smoke/review.json",
+    "artifacts/campaign-v3/mechanism-gen4-review.json"
+  ],
+  "programs": [
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "development_only": {
+        "absolute_task_mean": 0.7991562499999998,
+        "episodes": 72,
+        "escape_rate": 0.7777777777777778,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 0,
+      "islands_in_native_rows": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Initial source, no mutation-model proposal.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "Initial program setup"
+      },
+      "native_patch_name": "initial_program",
+      "native_patch_type": "init",
+      "native_program_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de",
+        "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80",
+        "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+        "c13ed547-b881-4de7-8c58-27c7f5aa83f1"
+      ],
+      "parent_generation": null,
+      "parent_id": null,
+      "parent_island_at_sampling": null,
+      "parent_source_sha256": null,
+      "sampling_record": null,
+      "source_evidence": [
+        {
+          "function": "world_model_step",
+          "function_ast_sha256": "d678c65e088a18f557b8e0e47efbdbae765c7502e21b7dc500115c746cf3b014",
+          "line": 32
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "0b04d6b69afe5808683b0535d1575266f22d7c250ae6344e7abccff443fa0176",
+          "line": 88
+        },
+        {
+          "function": "export_model",
+          "function_ast_sha256": "9e11ff27179dc7f72b765d97c7d63a510d260bd4e169e75119a1402ad5beb78c",
+          "line": 135
+        }
+      ],
+      "source_lines": 142,
+      "source_path": "results/campaign-v3/gen_0/main.py",
+      "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "_add",
+          "_blocked",
+          "_feature",
+          "_fixed_risk",
+          "_legal",
+          "export_model",
+          "planner",
+          "world_model_step"
+        ],
+        "changed_shared_functions": [],
+        "removed_functions": [],
+        "unchanged_shared_functions": []
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Original six-category occupancy-rate seed",
+        "caveat": "Historical v2 generation14 is a different program. Seed does not have a general directional movement law.",
+        "delta": "Immutable controls/v1/predictive.py copied byte-for-byte as new search seed; no manually engineered directional comparator inserted.",
+        "intervention": "learn=False freezes rates; prediction-use flag substitutes hand-coded distance risk. Mapping continues.",
+        "learner": "Cumulative success/count estimates for occupied-tight/open, nearby-one/many and far categories, with a separate fixed blocked-category prior; absolute directions are not represented separately.",
+        "planner": "One static risk-weighted shortest-path search, frontier gain, fixed waiting threshold; diagonal travel cost1.4 versus cardinal1.",
+        "representation": "Observed terrain/last-seen map, relative position, visits and current anonymous enemy cells; next occupancy assigned by local category."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "development_only": {
+        "absolute_task_mean": 0.917045138888889,
+        "episodes": 72,
+        "escape_rate": 0.9166666666666666,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 1,
+      "islands_in_native_rows": [
+        1
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Model describes survival-aware routing; inspected continuation combines unconditional occupancy heuristically, not a fully conditioned path model.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "Learns a forgetting-weighted movement law through anonymous transition matching, including blocked attempts and overlapping enemies. Combines explicit occupancy forecasts with survival-aware routing, waiting, retreat, and cardinal door approaches. Predictive interventions remain separate from mapping. Synthetic validity checks and 200 decision cycles passed; improved task performance requires development evaluation."
+      },
+      "native_patch_name": "anonymous_motion_survival",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+      ],
+      "parent_generation": 0,
+      "parent_id": "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de",
+      "parent_island_at_sampling": 1,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_1/sampling-mutation-1-1.json",
+        "sha256": "10e9e744aed9f8eef7839d5b483862c019d301d34a96ff6a7e542200c1bde760"
+      },
+      "source_evidence": [
+        {
+          "function": "_learn",
+          "function_ast_sha256": "02faebf24088b5574ee88b6044e732b9deb0d8da8e5041171833ee0221bbf9d4",
+          "line": 45
+        },
+        {
+          "function": "_forecasts",
+          "function_ast_sha256": "d76320767035cadf69eeaa007d1644e4d5ac85f16f5543c52075ed514a90839d",
+          "line": 111
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "a4d16c90a83ffffae7f8519eb9e8707e9cf624d9d4687ec050bb9357399206ff",
+          "line": 240
+        }
+      ],
+      "source_lines": 295,
+      "source_path": "results/campaign-v3/gen_1/main.py",
+      "source_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "_choose_target",
+          "_destination",
+          "_distance",
+          "_forecasts",
+          "_hazard",
+          "_law",
+          "_learn",
+          "_paths",
+          "_wall"
+        ],
+        "changed_shared_functions": [
+          "_add",
+          "_legal",
+          "export_model",
+          "planner",
+          "world_model_step"
+        ],
+        "removed_functions": [
+          "_blocked",
+          "_feature",
+          "_fixed_risk"
+        ],
+        "unchanged_shared_functions": []
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Single fading directional law with anonymous latent assignments",
+        "caveat": "Prediction-use means uniform-law substitution, not prediction-free planning. Gen1 smoke showed worse matched prediction despite better on-policy loss.",
+        "delta": "Substantive replacement of category rates and seed planner with directional transition inference and multistep control.",
+        "intervention": "Coherent source separation and 48-episode development smoke: fixed-uniform pairs matched full trajectories/maps; frozen law constant.",
+        "learner": "Marginalizes feasible anonymous source/destination assignments to expected nine-direction counts; retention0.965, total evidence cap45 and unit pseudocounts.",
+        "planner": "Risk-aware routes plus two-step action comparison, waiting and target persistence; before/after continuation hazards are not survival-conditioned.",
+        "representation": "Map and current visible source positions; explicit horizon1/2 occupancy forecasts and a local heuristic hidden-enemy background."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [
+        0
+      ],
+      "archive_inspiration_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+      ],
+      "development_only": {
+        "absolute_task_mean": 0.8702638888888888,
+        "episodes": 72,
+        "escape_rate": 0.8611111111111112,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 2,
+      "islands_in_native_rows": [
+        1
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Bayesian distribution is over113 fixed sampled laws, not the whole continuous law family. Prediction use is not wholly separated from persistent occupancy filtering.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "This agent maintains a Bayesian distribution over complete enemy movement laws, updating it from anonymous, partially observed transitions with explicit blocked-attempt probabilities. Persistent enemy intensity tracks threats that leave view. A five-step survival planner accounts for collisions both before and after enemy movement, while global routing considers key collection order and exploration value. The approach aims to reduce dangerous commitments and adapt after unannounced dynamics changes; its performance remains to be evaluated."
+      },
+      "native_patch_name": "censored_bayes_survival",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "d6e060db-3484-48d7-a330-330805071240"
+      ],
+      "parent_generation": 1,
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_island_at_sampling": 1,
+      "parent_source_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_2/sampling-mutation-1-1.json",
+        "sha256": "00a57947aaeed2152214319af342d9727c8901e9bcdca8a8181da806fdd2dcf6"
+      },
+      "source_evidence": [
+        {
+          "function": "make_hypotheses",
+          "function_ast_sha256": "910ddaa5159bfc3419ba3f4e0a8fcfe493ecd6485386d9e1e4bb6ca4ad057e16",
+          "line": 28
+        },
+        {
+          "function": "update_laws",
+          "function_ast_sha256": "f259d1759be7d4e2aab1e446b6aa465026ef3370dbd2270a7eba1f9c81427344",
+          "line": 44
+        },
+        {
+          "function": "world_model_step",
+          "function_ast_sha256": "2a09497056ce002a07364dbe78e389d35d103556be29781c1fc7a9b0c8bbf956",
+          "line": 159
+        },
+        {
+          "function": "edge_survival",
+          "function_ast_sha256": "9cb6dfb8a46d32e4c6166722c236e8102d53afecbc2b6492d508f90b07e55825",
+          "line": 338
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "9096edb55ee9845c576cd516b567ff3c098e887e13e51850bcdf1b7b17308817",
+          "line": 369
+        }
+      ],
+      "source_lines": 464,
+      "source_path": "results/campaign-v3/gen_2/main.py",
+      "source_sha256": "1dba7390fe394c556af655f43c274e24ea00a2c712ae4a49d7e280074742db91",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "add",
+          "blocked",
+          "choose_target",
+          "destination",
+          "distance",
+          "edge_survival",
+          "forecast",
+          "graph",
+          "legal",
+          "make_hypotheses",
+          "occupancy",
+          "opening_now",
+          "paths",
+          "posterior_law",
+          "propagate",
+          "transitions",
+          "update_laws"
+        ],
+        "changed_shared_functions": [
+          "export_model",
+          "planner",
+          "world_model_step"
+        ],
+        "removed_functions": [
+          "_add",
+          "_choose_target",
+          "_destination",
+          "_distance",
+          "_forecasts",
+          "_hazard",
+          "_law",
+          "_learn",
+          "_legal",
+          "_paths",
+          "_wall"
+        ],
+        "unchanged_shared_functions": []
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Bayesian finite-law hypotheses with persistent hidden intensity",
+        "caveat": "The finite law sample is an evolved representation, not an externally imposed search catalog. Its five-stage DP does not retain a full path-conditioned enemy distribution.",
+        "delta": "Replaces gen1 fading counts with an explicit posterior over a candidate-chosen law sample; adds persistent occupancy state, key-tour planning and deeper control.",
+        "intervention": "learn=False freezes hypothesis weights but occupancy filtering continues. Uniform-law planning still consumes fog previously propagated with the adaptive law, so predictive_planning=False does not remove all adaptation influence on control.",
+        "learner": "Weights113 deterministic candidate laws (one uniform plus112 truncated-Dirichlet draws), using anonymous occupancy likelihood;0.015 per-step weight reset permits recovery;0.005 contamination likelihood.",
+        "planner": "Five-stage dynamic program using edge-survival terms conditioned on the current cell only, key-order routing and deadline-dependent delay cost. Planner uses0.9 posterior law+0.1 uniform while exports use unshrunk law.",
+        "representation": "Posterior mean attempted law and persistent density/fog state; observed occupancy overwrites visible space and hidden intensity is propagated forward."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "development_only": {
+        "absolute_task_mean": 0.8978645833333334,
+        "episodes": 72,
+        "escape_rate": 0.9027777777777778,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 3,
+      "islands_in_native_rows": [
+        3
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Source implements mixture and four stages; descriptions of handling changing laws are intended mechanisms, not verified benefit.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "Learns attempted movement laws from anonymous occupancy transitions, marginalizing blocked moves and ambiguous observations. A mixture of uniform, persistent, and rapidly adapting models handles stationary and changing dynamics. Planning compares movement, waiting, and retreat over four steps, accounting for collisions both before and after enemy movement. Mapping and predictive interventions remain separate. These improvements are proposed without claiming new evaluation results."
+      },
+      "native_patch_name": "anonymous_motion_lookahead",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "41c9932e-ad3d-4df7-ad67-f531b6b68d21"
+      ],
+      "parent_generation": 0,
+      "parent_id": "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80",
+      "parent_island_at_sampling": 3,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_3/sampling-mutation-1-1.json",
+        "sha256": "bb4b311abdc243743888df3ebe4d251e19d2dee1286b440810dcd81b2b98b7b0"
+      },
+      "source_evidence": [
+        {
+          "function": "_anonymous_evidence",
+          "function_ast_sha256": "4b780ce8b20f2483b8ea2108c41473a65b3aa3a2531c7d06265de887cedc11de",
+          "line": 48
+        },
+        {
+          "function": "_update_dynamics",
+          "function_ast_sha256": "233291face4d087f70e9734efc3b15a9a50586a645eb510826b10e8b6846407f",
+          "line": 91
+        },
+        {
+          "function": "_predict",
+          "function_ast_sha256": "601a0c2f81994ebe0dc0d700d98bce5d57c68d184e4b3b0bcc43fe1e13658000",
+          "line": 155
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "c488cea43c3b88722c3dfd3f5d0fee60fc401d72ef8571176d59aa1ce3c92d93",
+          "line": 373
+        }
+      ],
+      "source_lines": 475,
+      "source_path": "results/campaign-v3/gen_3/main.py",
+      "source_sha256": "d8d80d4ccc0fb680f83510f09d83489ba4724d0b1bb5548d725e3b5d98144044",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "_anonymous_evidence",
+          "_destination",
+          "_distance_to_target",
+          "_expert_laws",
+          "_law",
+          "_passable",
+          "_predict",
+          "_reachable",
+          "_select_target",
+          "_spatial_cost",
+          "_update_dynamics"
+        ],
+        "changed_shared_functions": [
+          "_legal",
+          "export_model",
+          "planner",
+          "world_model_step"
+        ],
+        "removed_functions": [
+          "_blocked",
+          "_feature",
+          "_fixed_risk"
+        ],
+        "unchanged_shared_functions": [
+          "_add"
+        ]
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Uniform/persistent/responsive experts with four-stage marginal hazards",
+        "caveat": "Marginal future hazards are not conditioned on earlier path survival; diffuse hidden intensity and one source per visible occupied cell remain approximations.",
+        "delta": "Independent rewrite from the original seed, not a descendant of gen1/gen2: introduces continuous expert mixture and multistage planning.",
+        "intervention": "Freeze returns before expert/count updates or decay. Uniform-law planning recomputes fresh occupancy/hazard fields without a law-dependent persistent fog carryover; actual invariance remains to be tested.",
+        "learner": "Anonymous monitored-cell bitmask likelihood and expected counts; two fading learners(retention0.985/0.88; priors0.9/0.65) mixed with uniform expert; tempered likelihood reweights experts.",
+        "planner": "Risk-weighted global routes and four-stage dynamic program over marginal pre/post occupancy-union hazards, with waiting and stale-map refresh.",
+        "representation": "Fresh visible point sources and diffuse Poisson hidden intensity over a17x17 relative domain; four propagated occupancy and before/after collision fields."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "development_only": {
+        "absolute_task_mean": 0.9509062499999997,
+        "episodes": 72,
+        "escape_rate": 0.9583333333333334,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 4,
+      "islands_in_native_rows": [
+        0
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Model states immediate risk weight100; actual deadline/route-dependent multiplier spans55..100. Hazard targets differ from exported occupancy after the first stage.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "The seed uses six occupancy categories, prior strength 12, cumulative updates, risk weight 45, and a fixed waiting threshold of .12. This replacement infers attempted movement laws from anonymous occupancy transitions, including blocked attempts. It combines uniform, slow-learning, and fast-learning models with evidence-based weights; evidence retention is .985 and .86 per step.\nControl uses equal movement-time costs, persistent exploration targets, and three-step planning with explicit collision-before-movement and collision-after-movement risk. Immediate risk weight is 100, with future weights .55 and .25. Mapping remains separate from predictive learning and prediction-use interventions. These changes target safer, faster escapes; improvement requires evaluation."
+      },
+      "native_patch_name": "anonymous_law_safe_horizon",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "1c9d8197-0fad-4324-a2fa-55530930bb1a"
+      ],
+      "parent_generation": 0,
+      "parent_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+      "parent_island_at_sampling": 0,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_4/sampling-mutation-1-1.json",
+        "sha256": "7a16a565aeda509572097848fa6aa423cb1125cde82c08556c4822fe0494028b"
+      },
+      "source_evidence": [
+        {
+          "function": "_learn",
+          "function_ast_sha256": "6fc3d726eeb9752cef432b39d6373a4203abd773140843837773c8594e6f38f5",
+          "line": 115
+        },
+        {
+          "function": "_combined_law",
+          "function_ast_sha256": "c9471bebac8007525af7f7f29a23001d85e144361c40bf93445a51382c898a5b",
+          "line": 158
+        },
+        {
+          "function": "_forecast",
+          "function_ast_sha256": "6d9eab5603824fec688ce1cdfaf000cbcd8e0b5b5e9bff6d2e38f0fc8dc1b614",
+          "line": 180
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "08b7cd46ceff5771a0da53830db42f797e447c898e9afcd33cfceea5efbd2746",
+          "line": 382
+        }
+      ],
+      "source_lines": 465,
+      "source_path": "results/campaign-v3/gen_4/main.py",
+      "source_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "_choose_target",
+          "_combined_law",
+          "_distance",
+          "_distances",
+          "_edge_cost",
+          "_forecast",
+          "_gain",
+          "_infer_anonymous",
+          "_infer_bounds",
+          "_inside",
+          "_learn",
+          "_mean",
+          "_observation_masks",
+          "_solid",
+          "_terrain_destination"
+        ],
+        "changed_shared_functions": [
+          "_add",
+          "_blocked",
+          "_legal",
+          "export_model",
+          "planner",
+          "world_model_step"
+        ],
+        "removed_functions": [
+          "_feature",
+          "_fixed_risk"
+        ],
+        "unchanged_shared_functions": []
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Information-weighted slow/fast expert mixture with three-stage hazards",
+        "caveat": "Effective-law export omits raw concentration magnitude; full adaptation audit should include slow,fast,log_weights. No runtime mechanism evidence for gen4 was produced by this review.",
+        "delta": "Separate direct seed rewrite adds bounds inference, expert adaptation, hidden intensity propagation and three-stage controller.",
+        "intervention": "Source-coherent concentration/weight freeze and uniform-law planning substitution. All ordinary mapping/state work continues; runtime verification deferred if selected.",
+        "learner": "Uniform/slow/fast laws; occupancy-likelihood expert weighting, information-weighted posterior counts, retention0.985/0.86 and12% uniform shrinkage.",
+        "planner": "Persistent exploration targets, risk-aware route potential and three-stage lookahead with overlap-corrected per-source collision hazards; future stages remain unconditional.",
+        "representation": "Inferred board bounds, observed terrain and fresh visible-plus-Poisson hidden source model; explicit horizon1 occupancy and horizons1..3 before/after union hazards."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [],
+      "archive_inspiration_ids": [],
+      "development_only": {
+        "absolute_task_mean": 0.891079861111111,
+        "episodes": 72,
+        "escape_rate": 0.8888888888888888,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 5,
+      "islands_in_native_rows": [
+        2
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Native repair followed a failed search/replace application; the accepted source implements the described motion counts. Proposed survival improvements are not causal evidence.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "Correct the failed patch by matching individual functions separately, preserving the original blank lines. Learn the shared attempted-movement law from fully observed anonymous transitions, distributing blocked-stay evidence among compatible directions and gradually forgetting old evidence. Propagate visible enemies through terrain to obtain directional occupancy forecasts. Keep predictive updating separate from mapping and localization.\nUse equal costs for cardinal and diagonal actions, approach closed doors cardinally, and compare immediate movement risk against waiting. These changes target survival and escape efficiency; their performance remains to be evaluated."
+      },
+      "native_patch_name": "censored_motion_learning",
+      "native_patch_type": "diff",
+      "native_program_ids": [
+        "997377fa-6443-471c-8083-008a0c34a12a"
+      ],
+      "parent_generation": 0,
+      "parent_id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+      "parent_island_at_sampling": 2,
+      "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "patch_attempts": [
+        {
+          "error": "SEARCH text not found in editable regions\n\nLooking for 13-line block starting with: 'def _legal(m, p, d):'\n\nFull search pattern:\n```\ndef _legal(m, p, d):\n    return (not _blocked(m, _add(p, d)) and not\n            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))\ndef _feature(terrain, enemies, p):\n    # Anonymous occupancy transitions: no matching or hidden enemy identities.\n    if terrain.get(p, 1) in (-1, 1, 3):\n        return \"blocked\"\n    if p in enemies:\n        openings = sum(terrain.get(_add(p, d), 1) not in (-1, 1, 3)\n                       for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n        return \"occupied_tight\" if openings <= 2 else \"occupied_open\"\n    neighbors = sum(max(abs(e[0]-p[0]), abs(e[1]-p[1])) == 1 for e in enemies)\n    return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nFound similar code block at line 16 (\u2713 editable):\n\nDifferences between search pattern and actual code:\n```diff\n-  def _legal(m, p, d):\n+  \n+  \n-      return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nEditable regions where you can make changes:\n  Region 1 (lines 2-142):\n    import heapq\n    import math\n    \n    ... (133 more lines)\n                \"terrain\": [[x, y, c, m[\"seen\"][x, y]] for (x, y), c in m[\"map\"].items()],\n                \"position\": list(m[\"pos\"]),\n                \"learning\": {\"updates\": m[\"updates\"], \"rates\": {k: a/b for k, (a, b) in m[\"rates\"].items()}}}\n\nQuick fixes:\n\u2022 Check indentation - search text must match exactly including spaces/tabs\n\u2022 Look for typos in the search text\n\u2022 Try searching for just the first line instead of the full block",
+          "patch_attempt": 1,
+          "path": "results/campaign-v3/gen_5/attempts/novelty_1/resample_1/patch_1/metadata.json",
+          "sha256": "1558c4c2fb99bd2a164c7d998d37fe4f68a8fe0dc9b0e8cb5280e4afe5ca560f"
+        },
+        {
+          "error": null,
+          "patch_attempt": 2,
+          "path": "results/campaign-v3/gen_5/attempts/novelty_1/resample_1/patch_2/metadata.json",
+          "sha256": "c43a2a281a41fba3eb37e366eda2b6eb87a7f53a21a519056eada94da0741357"
+        }
+      ],
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_5/sampling-mutation-1-1.json",
+        "sha256": "8b20502b12bb8440e8dcc86e4dff2790b472eeb54467d148a7119e7481b5f0e4"
+      },
+      "slot_count_note": "One accepted candidate slot with two native patch attempts; attempt1 patch application failure was repaired, not a second candidate slot.",
+      "source_evidence": [
+        {
+          "function": "_learn_motion",
+          "function_ast_sha256": "d02e568588d590f487bad054c5a46ecd11be7e81f816dde7b4145b932262f06e",
+          "line": 38
+        },
+        {
+          "function": "_forecast",
+          "function_ast_sha256": "6cfa843cdc67058cfeef792d0575fe0614aae60c468f2712332bff951a806974",
+          "line": 67
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "5ab75cc706e6867b4719d4fd0e18393ea543cf4f190fe26213482c2508798afb",
+          "line": 123
+        }
+      ],
+      "source_lines": 180,
+      "source_path": "results/campaign-v3/gen_5/main.py",
+      "source_sha256": "eca43e28566d0f6434852544fb7fb09af75c7f760d869de3dc08d89f00db7501",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "_enemy_destination",
+          "_forecast",
+          "_learn_motion",
+          "_motion_weights"
+        ],
+        "changed_shared_functions": [
+          "_legal",
+          "export_model",
+          "planner",
+          "world_model_step"
+        ],
+        "removed_functions": [
+          "_feature"
+        ],
+        "unchanged_shared_functions": [
+          "_add",
+          "_blocked",
+          "_fixed_risk"
+        ]
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Conservative fully observed motion-count learner with seed-style routing",
+        "caveat": "Forecast treats a currently closed door as blocked even on a decision that will open it; this is a source-level mismatch, not an empirically quantified effect.",
+        "delta": "Substantive learner/forecast replacement while retaining most seed control structure, plus targeted action-cost/door/wait changes.",
+        "intervention": "Motion-count freeze leaves mapping intact. Prediction-use branch retains seed fixed proximity-risk heuristic rather than a uniform probabilistic predictor.",
+        "learner": "Updates nine attempted-direction counts only when every possible destination is observed before/after and exactly one feasible occupied destination remains; blocked-stay evidence is divided among compatible directions; retention0.96 and15% uniform shrinkage.",
+        "planner": "Preserves seed shortest-path/frontier structure but equalizes movement time, blocks diagonal entry through a closed door and lowers waiting risk threshold to0.055.",
+        "representation": "Visible-enemy transition propagation and anonymous occupancy union; zero hidden background in inner3, fixed background elsewhere; map/localization retained."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [
+        0
+      ],
+      "archive_inspiration_ids": [
+        "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80"
+      ],
+      "development_only": {
+        "absolute_task_mean": 0.780197916666667,
+        "episodes": 72,
+        "escape_rate": 0.7638888888888888,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 6,
+      "islands_in_native_rows": [
+        3
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Model proposes improved escape efficiency from survival conditioning; observed development score is lower than its parent. Hidden risk is not survival-conditioned.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "Replace the planner\u2019s sum of marginal collision penalties with survival-conditioned enemy trajectories. After each hypothetical agent move, remove enemy paths that would already have caused a collision and condition subsequent predictions on survival. This avoids repeatedly charging for the same dangerous trajectories across the planning horizon, while preserving both pre-movement and post-movement collision checks.\nA bounded beam retains alternatives for each first action, including waiting. Hidden-enemy risk remains conservative, and learned movement laws, anonymous dynamics updates, and prediction interventions remain intact. This targets the current agent\u2019s long escape times and timeouts without lowering its immediate collision penalty. Performance gains require evaluation."
+      },
+      "native_patch_name": "survival_conditioned_beam",
+      "native_patch_type": "diff",
+      "native_program_ids": [
+        "ccb14c5b-7ded-4023-805f-3cd7b4345f6b"
+      ],
+      "parent_generation": 3,
+      "parent_id": "41c9932e-ad3d-4df7-ad67-f531b6b68d21",
+      "parent_island_at_sampling": 3,
+      "parent_source_sha256": "d8d80d4ccc0fb680f83510f09d83489ba4724d0b1bb5548d725e3b5d98144044",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_6/sampling-mutation-1-1.json",
+        "sha256": "b1a58721a2720ae4a77b97050a5ebf6b84787ea56c4f1bcfc5c139471b6001e1"
+      },
+      "source_evidence": [
+        {
+          "function": "_predict",
+          "function_ast_sha256": "5504cf0f37db09839542cafc20214e9873d9b99aafccfb836206ec99b9b74adc",
+          "line": 155
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "1d04f2727f5c77d4ee9c8817f778d9f44d6f4d2ceaac18fbfc59e006c44fd70a",
+          "line": 383
+        }
+      ],
+      "source_lines": 548,
+      "source_path": "results/campaign-v3/gen_6/main.py",
+      "source_sha256": "96a21aa754ad781f3527e3502d3d0bd491ec0923166c0dcc5a9cf5ecd453583d",
+      "structural_delta_from_parent": {
+        "added_functions": [],
+        "changed_shared_functions": [
+          "_predict",
+          "planner"
+        ],
+        "removed_functions": [],
+        "unchanged_shared_functions": [
+          "_add",
+          "_anonymous_evidence",
+          "_destination",
+          "_distance_to_target",
+          "_expert_laws",
+          "_law",
+          "_legal",
+          "_passable",
+          "_reachable",
+          "_select_target",
+          "_spatial_cost",
+          "_update_dynamics",
+          "export_model",
+          "world_model_step"
+        ]
+      },
+      "top_k_inspiration_generations": [],
+      "top_k_inspiration_ids": [],
+      "verified_code_review": {
+        "architecture": "Gen3 learner plus survival-conditioned visible-source beam planning",
+        "caveat": "Hidden-enemy risk still uses unconditioned marginal fields; beam pruning is approximate. Development task score decreased substantially; preserve this nonleading branch.",
+        "delta": "Focused substantive controller/representation edit: learned dynamics preserved, visible-source survival-conditioned beam states replace merged marginal states.",
+        "intervention": "Uniform-law _predict replaces both planning kernels and hidden hazard fields, so learned-law transition kernels do not leak through this particular hook. No new runtime audit performed.",
+        "learner": "Gen3 anonymous evidence and expert update functions are structurally unchanged.",
+        "planner": "Replaces gen3 marginal-hazard DP with path-specific visible-source distributions. Each proposed action removes pre-contact paths and post-move arrivals at the destination, renormalizes surviving distributions, and retains up to four paths per first move/two per endpoint(first-move pair).",
+        "representation": "Gen3 forecast augmented with reusable transition kernels and separate hidden-only collision fields for planning."
+      }
+    },
+    {
+      "actual_migration_events": [],
+      "archive_inspiration_generations": [
+        0
+      ],
+      "archive_inspiration_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+      ],
+      "development_only": {
+        "absolute_task_mean": 0.9138055555555558,
+        "episodes": 72,
+        "escape_rate": 0.9166666666666666,
+        "invalid_episodes": 0,
+        "native_correct": 1,
+        "not_final_assessment": true,
+        "selection_biased": true
+      },
+      "generation": 7,
+      "islands_in_native_rows": [
+        1
+      ],
+      "model_proposal_description": {
+        "inspection_qualification": "Model claims separate controllability of prediction use; inspection finds persistent-fog dependence. Proposed reduction in repeated waiting is a hypothesis, not established causal mechanism.",
+        "status": "Recorded model-proposed description, not independent performance or mechanism evidence",
+        "text": "The current agent uses 113 fixed movement hypotheses, a five-step planning horizon, and a low delay cost; its lower death rate comes with substantially more timeouts. This proposal replaces the hypothesis catalog with continuous slow/fast categorical learners, using anonymous transition likelihoods and censored blocked attempts. Forgetting factors are .992 and .88, with evidence caps of 80 and 16.\nControl uses two-step survival calculations conditioned on surviving the first move, risk-aware routes, and a stagnation-sensitive risk penalty. This configuration aims to preserve enemy avoidance while reducing repeated waiting and improving escape efficiency. Mapping, predictive updates, and prediction use remain separately controllable. Performance improvements require evaluation."
+      },
+      "native_patch_name": "adaptive_law_progress",
+      "native_patch_type": "full",
+      "native_program_ids": [
+        "30498266-649f-4122-9dbe-43fef8bdbd97"
+      ],
+      "parent_generation": 2,
+      "parent_id": "d6e060db-3484-48d7-a330-330805071240",
+      "parent_island_at_sampling": 1,
+      "parent_source_sha256": "1dba7390fe394c556af655f43c274e24ea00a2c712ae4a49d7e280074742db91",
+      "sampling_record": {
+        "path": "results/campaign-v3/gen_7/sampling-mutation-1-1.json",
+        "sha256": "e621d0d5399f09a7e90c2fe8c43ccd09675c9d87b398d7355bc84842f925b3fe"
+      },
+      "source_evidence": [
+        {
+          "function": "update_dynamics",
+          "function_ast_sha256": "eeb909ec83cb93146f4af6755d49d6fbaafb5556ad009ae63162043137b58b77",
+          "line": 121
+        },
+        {
+          "function": "world_model_step",
+          "function_ast_sha256": "679d20ad3aa200a7abe72c51627d1b1005760fc9a5bf3555ad99f478fbaee548",
+          "line": 191
+        },
+        {
+          "function": "conditioned_future",
+          "function_ast_sha256": "57814fb7dad98288d04083cd2d4c0b046d7f09530799518ca2a6baad261cc535",
+          "line": 347
+        },
+        {
+          "function": "second_hazard",
+          "function_ast_sha256": "4325b07ce622e1d10a1dbdf2e3fa562f81a07201644c8b08c25eebb613cb1f7b",
+          "line": 364
+        },
+        {
+          "function": "planner",
+          "function_ast_sha256": "86f75e8ee6f15af76fb0ed5a951433a3d066dde23b3808c2302484be6f316cf8",
+          "line": 378
+        }
+      ],
+      "source_lines": 476,
+      "source_path": "results/campaign-v3/gen_7/main.py",
+      "source_sha256": "ea46c5a3c174f0a102ba6445c7687a9034bc6d73f107c7973a4ba0270d794f2c",
+      "structural_delta_from_parent": {
+        "added_functions": [
+          "component_laws",
+          "conditioned_future",
+          "evidence_and_counts",
+          "first_forecast",
+          "hazard",
+          "learned_law",
+          "make_transition",
+          "second_hazard",
+          "transition_terms",
+          "update_dynamics"
+        ],
+        "changed_shared_functions": [
+          "add",
+          "blocked",
+          "choose_target",
+          "distance",
+          "export_model",
+          "graph",
+          "legal",
+          "occupancy",
+          "paths",
+          "planner",
+          "propagate",
+          "world_model_step"
+        ],
+        "removed_functions": [
+          "edge_survival",
+          "forecast",
+          "make_hypotheses",
+          "posterior_law",
+          "transitions",
+          "update_laws"
+        ],
+        "unchanged_shared_functions": [
+          "destination",
+          "opening_now"
+        ]
+      },
+      "top_k_inspiration_generations": [
+        1
+      ],
+      "top_k_inspiration_ids": [
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+      ],
+      "verified_code_review": {
+        "architecture": "Continuous fast/slow evidence with two-step conditioned planning",
+        "caveat": "Current-law substitution still consumes persistent fog shaped by earlier adaptive predictions; matched fixed-risk trajectories must not be assumed. Two-step conditioning does not make the full route optimal.",
+        "delta": "Substantive replacement of both finite hypothesis representation and five-step DP; adopts continuous learners and shorter, path-conditioned lookahead with anti-stall control.",
+        "intervention": "Count/weight freeze is source-coherent; uniform-law planner is only a partial prediction-use intervention because learned occupancy history remains.",
+        "learner": "Replaces113 fixed law hypotheses with continuous expected-count experts(retention0.992/0.88, caps80/16, pseudocount0.7), uniform expert and tempered likelihood weights with probability floors.",
+        "planner": "Risk-aware key tours/routes; two-stage control conditions visible distributions and Poisson fog on first-step survival. Deadline/slack and stagnation adjust risk penalty. Planner uses0.93 learned law+0.07 uniform; export remains unshrunk.",
+        "representation": "Retains persistent hidden density/fog from gen2, adds stricter fully known source-neighborhood requirements and explicit stall/progress memory."
+      }
+    }
+  ],
+  "review_method": "Human-readable source inspection plus structural AST comparison; native parent/inspiration identities independently reconciled with source hashes.",
+  "review_scope": "Completed candidate slots0..7; no active/pending generation is inferred complete",
+  "selection_note": "Development task numbers are selection-biased feedback from the same case pool; source changes do not establish learning benefit or reliable independent discovery.",
+  "source_or_evaluator_changes": false,
+  "study": "namazu-unknown-dynamics-v3"
+}

@@ -1,0 +1,95 @@
+<NAME>
+surprise_triggered_fast_recovery
+</NAME>
+
+<DESCRIPTION>
+Add a sequential change detector using the anonymous transition likelihoods already computed by the mixture. Accumulate evidence when an equal mixture of the uniform and fast experts predicts observations better than the slow expert, normalized by informative enemy count. Require sustained support and a cooldown before rebuilding the fast learner from four recent informative transitions.
+
+Recovery preserves the slow learner, terrain-change exclusions, probability floors, and learning intervention. The refreshed dynamics feed both existing planning and exported predictions. This targets delayed adaptation without discarding useful stationary-law evidence; improvement remains an empirical hypothesis.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+    results = [evidence_and_counts(law, terms)
+               for law in component_laws(m)]
+    contamination = .004 * (1.0 / 9.0) ** len(terms[0])
+    weights = [
+=======
+    results = [evidence_and_counts(law, terms)
+               for law in component_laws(m)]
+    contamination = .004 * (1.0 / 9.0) ** len(terms[0])
+    # Score experts before incorporating this observation. The alternative
+    # is a fixed mixture, avoiding a hindsight choice of the best expert.
+    likelihoods = [.996 * result[0] + contamination for result in results]
+    informative = max(1.0, sum(results[0][1]))
+    alternative = .5 * likelihoods[0] + .5 * likelihoods[2]
+    surprise = math.log(
+        max(1e-30, alternative) / max(1e-30, likelihoods[1])
+    ) / informative
+    surprise = max(-1.25, min(1.25, surprise))
+    m["recovery_score"] = max(
+        0.0, .94 * m["recovery_score"] + surprise - .04
+    )
+    if surprise > .08:
+        m["recovery_support"] = min(8, m["recovery_support"] + 1)
+    else:
+        m["recovery_support"] = max(0, m["recovery_support"] - 1)
+    m["recent_terms"].append(terms)
+    m["recent_terms"] = m["recent_terms"][-4:]
+    weights = [
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    m["updates"] += 1
+def make_transition(m, law):
+=======
+    m["updates"] += 1
+    if (m["recovery_score"] > 1.2
+            and m["recovery_support"] >= 3
+            and sum(m["counts"][0]) >= 8.0
+            and m["updates"] - m["last_recovery"] >= 8):
+        # Reinterpret recent anonymous transitions from a fresh prior.
+        # Each transition contributes once; the slow expert is retained.
+        fresh = [0.0] * 9
+        for recent in m["recent_terms"]:
+            fresh = [.88 * value for value in fresh]
+            denominator = sum(fresh) + 6.3
+            fresh_law = [(value + .7) / denominator for value in fresh]
+            evidence, expected = evidence_and_counts(fresh_law, recent)
+            if evidence > 1e-15:
+                fresh = [value + increment
+                         for value, increment in zip(fresh, expected)]
+        total = sum(fresh)
+        if total > 16.0:
+            fresh = [value * 16.0 / total for value in fresh]
+        m["counts"][1] = fresh
+        # Give recovery some control influence while preserving every floor.
+        transfer = .35 * max(0.0, m["weights"][1] - .02)
+        m["weights"][1] -= transfer
+        m["weights"][2] += transfer
+        m["recoveries"] += 1
+        m["last_recovery"] = m["updates"]
+        m["recovery_score"] = 0.0
+        m["recovery_support"] = 0
+def make_transition(m, law):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "weights": [.30, .45, .25], "updates": 0,
+            "previous": None, "target": None, "density": {},
+=======
+            "weights": [.30, .45, .25], "updates": 0,
+            "recovery_score": 0.0, "recovery_support": 0,
+            "recent_terms": [], "last_recovery": -100,
+            "recoveries": 0,
+            "previous": None, "target": None, "density": {},
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "mixture_weights": list(m["weights"]),
+            "effective_evidence": [sum(c) for c in m["counts"]],
+=======
+            "mixture_weights": list(m["weights"]),
+            "effective_evidence": [sum(c) for c in m["counts"]],
+            "fast_recoveries": m["recoveries"],
+            "recovery_score": m["recovery_score"],
+            "recovery_support": m["recovery_support"],
+>>>>>>> REPLACE
+</DIFF>
