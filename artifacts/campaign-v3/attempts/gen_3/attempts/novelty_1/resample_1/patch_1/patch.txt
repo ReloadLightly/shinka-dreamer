@@ -1,0 +1,593 @@
+--- a/original.py
++++ b/original.py
+@@ -1,142 +1,475 @@
+ """Predictive seed. Entire representation, learner and planner may evolve."""
+ # EVOLVE-BLOCK-START
+ import heapq
+ import math
+-
+-
++MOVES = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
++WALK = tuple(d for d in MOVES if d != (0, 0))
++CARDINAL = ((1, 0), (-1, 0), (0, 1), (0, -1))
++UNIFORM = (1.0 / 9,) * 9
+ def _add(a, b):
+     return a[0] + b[0], a[1] + b[1]
+-
+-
+-def _blocked(m, p):
+-    return m["map"].get(p, 1) in (-1, 1) or (m["map"].get(p) == 3 and m["keys"] < 2)
+-
+-
++def _passable(terrain, p, opened=False, unknown=True):
++    cell = terrain.get(p, 0 if unknown else 1)
++    return cell not in (-1, 1) and (cell != 3 or opened)
++def _destination(terrain, p, d, opened=False):
++    q = _add(p, d)
++    if not _passable(terrain, q, opened):
++        return p
++    if d[0] and d[1]:
++        if (not _passable(terrain, _add(p, (d[0], 0)), opened)
++                or not _passable(terrain, _add(p, (0, d[1])), opened)):
++            return p
++    return q
+ def _legal(m, p, d):
+-    return (not _blocked(m, _add(p, d)) and not
+-            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))
+-
+-
+-def _feature(terrain, enemies, p):
+-    # Anonymous occupancy transitions: no matching or hidden enemy identities.
+-    if terrain.get(p, 1) in (-1, 1, 3):
+-        return "blocked"
+-    if p in enemies:
+-        openings = sum(terrain.get(_add(p, d), 1) not in (-1, 1, 3)
+-                       for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+-        return "occupied_tight" if openings <= 2 else "occupied_open"
+-    neighbors = sum(max(abs(e[0]-p[0]), abs(e[1]-p[1])) == 1 for e in enemies)
+-    return "near_many" if neighbors > 1 else "near" if neighbors else "far"
+-
+-
++    terrain = m["map"]
++    unlocked = m["door_open"] or m["keys"] >= 2
++    q = _add(p, d)
++    if not _passable(terrain, q, unlocked, False):
++        return False
++    # A closed door must first be approached cardinally for interaction.
++    if (terrain.get(q) == 3 and not m["door_open"]
++            and d[0] and d[1]):
++        return False
++    if d[0] and d[1]:
++        return (
++            _passable(terrain, _add(p, (d[0], 0)), unlocked, False)
++            and _passable(terrain, _add(p, (0, d[1])), unlocked, False)
++        )
++    return True
++def _law(counts, prior):
++    total = sum(counts) + 9 * prior
++    return [(v + prior) / total for v in counts]
++def _expert_laws(m):
++    return [
++        UNIFORM,
++        _law(m["counts"][0], 0.9),
++        _law(m["counts"][1], 0.65),
++    ]
++def _anonymous_evidence(theta, groups, wanted):
++    """Exact likelihood and expected attempted-direction counts.
++    Each source contributes a destination bit, or zero for a destination
++    outside the monitored cells. OR combines anonymous occupancy, allowing
++    multiple enemies to occupy the same observed cell.
++    """
++    options = []
++    informative = []
++    for source_groups in groups:
++        opts = []
++        for bit, directions in source_groups:
++            if bit & ~wanted:
++                continue
++            probability = sum(theta[d] for d in directions)
++            if probability > 0:
++                opts.append((bit, directions, probability))
++        if not opts:
++            return 0.0, None
++        options.append(opts)
++        informative.append(len(source_groups) > 1)
++    total = 0.0
++    counts = [0.0] * 9
++    chosen = []
++    def visit(i, mask, weight):
++        nonlocal total
++        if i == len(options):
++            if mask != wanted:
++                return
++            total += weight
++            for j, (_, directions, probability) in enumerate(chosen):
++                if informative[j]:
++                    factor = weight / probability
++                    for direction in directions:
++                        counts[direction] += factor * theta[direction]
++            return
++        for option in options[i]:
++            chosen.append(option)
++            visit(i + 1, mask | option[0], weight * option[2])
++            chosen.pop()
++    visit(0, 0, 1.0)
++    if total <= 1e-15:
++        return total, None
++    return total, [value / total for value in counts]
++def _update_dynamics(m, terrain, enemies, local_obs):
++    if not local_obs.get("learn", True):
++        return
++    pending = [None, None]
++    previous = m["previous"]
++    if previous is not None:
++        old_terrain, old_enemies, old_center, old_step, old_open = previous
++        step = m["step"]
++        usable = (
++            step == old_step + 1
++            and step % 25 not in (0, 1)
++            and not local_obs["feedback"].get("opened", False)
++        )
++        if usable and old_enemies:
++            # Every possible incoming source for these cells was visible.
++            targets = [
++                _add(old_center, (dx, dy))
++                for dy in (-1, 0, 1)
++                for dx in (-1, 0, 1)
++                if _add(old_center, (dx, dy)) in terrain
++            ]
++            usable = all(
++                _passable(old_terrain, p, old_open)
++                == _passable(terrain, p, m["door_open"])
++                for p in targets
++            )
++            if usable:
++                bits = {p: 1 << i for i, p in enumerate(targets)}
++                wanted = 0
++                for p in enemies:
++                    wanted |= bits.get(p, 0)
++                groups = []
++                for enemy in sorted(old_enemies):
++                    grouped = {}
++                    for i, direction in enumerate(MOVES):
++                        q = _destination(
++                            old_terrain, enemy, direction, old_open
++                        )
++                        grouped.setdefault(bits.get(q, 0), []).append(i)
++                    groups.append(list(grouped.items()))
++                if any(len(g) > 1 for g in groups):
++                    results = [
++                        _anonymous_evidence(law, groups, wanted)
++                        for law in _expert_laws(m)
++                    ]
++                    if all(result[1] is not None for result in results):
++                        weights = [
++                            (0.975 * weight + 0.025 / 3)
++                            * max(result[0], 1e-12) ** 0.85
++                            for weight, result in zip(m["weights"], results)
++                        ]
++                        normalizer = sum(weights)
++                        m["weights"] = [
++                            weight / normalizer for weight in weights
++                        ]
++                        pending = [results[1][1], results[2][1]]
++                        m["updates"] += 1
++                        m["samples"] += sum(pending[0])
++    for i, retention in enumerate((0.985, 0.88)):
++        addition = pending[i]
++        m["counts"][i] = [
++            retention * value + (addition[j] if addition is not None else 0.0)
++            for j, value in enumerate(m["counts"][i])
++        ]
++def _predict(m, theta, depth=4):
++    terrain = m["map"]
++    center = m["pos"]
++    # The selected action always interacts before either side moves.
++    opened = m["door_open"] or (
++        m["keys"] >= 2
++        and any(terrain.get(_add(center, d)) == 3 for d in CARDINAL)
++    )
++    domain = [
++        _add(center, (dx, dy))
++        for dy in range(-8, 9)
++        for dx in range(-8, 9)
++    ]
++    domain_set = set(domain)
++    kernels = {}
++    self_probability = {}
++    for p in domain:
++        grouped = {}
++        for direction, probability in zip(MOVES, theta):
++            q = _destination(terrain, p, direction, opened)
++            if q in domain_set:
++                grouped[q] = grouped.get(q, 0.0) + probability
++        kernels[p] = tuple(grouped.items())
++        self_probability[p] = grouped.get(p, 0.0)
++    def propagate(distribution):
++        result = {}
++        for p, mass in distribution.items():
++            if mass <= 1e-12:
++                continue
++            for q, probability in kernels.get(p, ()):
++                result[q] = result.get(q, 0.0) + mass * probability
++        return result
++    visible_free = sum(
++        _passable(terrain, p, opened) for p in m["local_terrain"]
++    )
++    unseen_count = max(0, 3 - len(m["enemies"]))
++    density = unseen_count / max(40.0, 125.0 - visible_free)
++    hidden = {
++        p: density
++        for p in domain
++        if p not in m["local_terrain"]
++        and _passable(terrain, p, opened)
++        and density > 0
++    }
++    known = [{p: 1.0} for p in sorted(m["enemies"])]
++    occupancy_fields = []
++    collision_fields = []
++    for _ in range(depth):
++        next_hidden = propagate(hidden)
++        occupancy_survival = {}
++        collision_survival = {}
++        for p in domain:
++            old_mass = hidden.get(p, 0.0)
++            new_mass = next_hidden.get(p, 0.0)
++            occupancy_survival[p] = math.exp(-new_mass)
++            # Union of pre-move and post-move occupancy. Self transitions
++            # appear in both marginals and are subtracted once.
++            union_mass = (
++                old_mass + new_mass - old_mass * self_probability[p]
++            )
++            collision_survival[p] = math.exp(-max(0.0, union_mass))
++        next_known = []
++        for distribution in known:
++            following = propagate(distribution)
++            next_known.append(following)
++            for p, probability in following.items():
++                occupancy_survival[p] *= max(0.0, 1.0 - probability)
++            for p in distribution.keys() | following.keys():
++                old_probability = distribution.get(p, 0.0)
++                union_probability = (
++                    old_probability + following.get(p, 0.0)
++                    - old_probability * self_probability[p]
++                )
++                collision_survival[p] *= max(
++                    0.0, 1.0 - min(1.0, union_probability)
++                )
++        occupancy_fields.append({
++            p: max(0.0, min(1.0, 1.0 - survival))
++            for p, survival in occupancy_survival.items()
++        })
++        collision_fields.append({
++            p: max(0.0, min(1.0, 1.0 - survival))
++            for p, survival in collision_survival.items()
++        })
++        hidden, known = next_hidden, next_known
++    default = 1.0 - math.exp(-density)
++    risk = dict(occupancy_fields[0])
++    for p in terrain:
++        if p not in risk:
++            risk[p] = default if _passable(terrain, p, opened) else 0.0
++    return risk, collision_fields, default
+ def world_model_step(memory, local_obs, last_action):
+     if memory is None:
+-        prior = {"occupied_tight": .65, "occupied_open": .4, "near": .08,
+-                 "near_many": .16, "far": .005, "blocked": .001}
+-        memory = {"map": {}, "seen": {}, "pos": (0, 0), "visits": {},
+-                  "rates": {k: [v * 12, 12.] for k, v in prior.items()},
+-                  "updates": 0, "previous": None}
++        memory = {
++            "map": {}, "seen": {}, "pos": (0, 0), "visits": {},
++            "counts": [[0.0] * 9, [0.0] * 9],
++            "weights": [0.3, 0.45, 0.25],
++            "updates": 0, "samples": 0.0, "previous": None,
++        }
+     m = memory
+     m["pos"] = _add(m["pos"], local_obs["feedback"]["displacement"])
+-    m["keys"], m["door_open"], m["step"] = local_obs["keys"], local_obs["door_open"], local_obs["step"]
++    m["keys"] = local_obs["keys"]
++    m["door_open"] = local_obs["door_open"]
++    m["step"] = local_obs["step"]
+     m["visits"][m["pos"]] = m["visits"].get(m["pos"], 0) + 1
+     terrain, enemies = {}, set()
+     for y, row in enumerate(local_obs["terrain"]):
+         for x, cell in enumerate(row):
+-            p = _add(m["pos"], (x-2, y-2))
++            p = _add(m["pos"], (x - 2, y - 2))
+             terrain[p] = cell
+-            m["map"][p], m["seen"][p] = cell, m["step"]
++            m["map"][p] = cell
++            m["seen"][p] = m["step"]
+             if local_obs["grid"][y][x] == 5:
+                 enemies.add(p)
+-    # FREEZE_PREDICTIVE_UPDATES: ordinary localization/mapping above always run.
+-    if m["previous"] is not None and local_obs.get("learn", True):
+-        prev_terrain, prev_enemies, center = m["previous"]
+-        for dy in (-1, 0, 1):
+-            for dx in (-1, 0, 1):
+-                p = _add(center, (dx, dy))
+-                # Prior 3x3 is fully surrounded by observable 5x5; next label is
+-                # used ONLY now, after the previous forecast was scored.
+-                if p in terrain and terrain[p] not in (-1, 1, 3):
+-                    feature = _feature(prev_terrain, prev_enemies, p)
+-                    if feature != "blocked":
+-                        m["rates"][feature][0] += p in enemies
+-                        m["rates"][feature][1] += 1
+-                        m["updates"] += 1
+-    m["previous"] = (terrain, enemies, m["pos"])
++    # Mapping and localization are independent of predictive learning.
++    _update_dynamics(m, terrain, enemies, local_obs)
+     m["enemies"] = enemies
+-    m["risk"] = {}
+-    for p, cell in m["map"].items():
+-        if max(abs(p[0]-m["pos"][0]), abs(p[1]-m["pos"][1])) <= 1:
+-            feature = _feature(terrain, enemies, p)
+-            n, d = m["rates"][feature]
+-            m["risk"][p] = n / d if cell not in (-1, 1, 3) else 0.
+-        elif p in terrain:
+-            n, d = m["rates"][_feature(terrain, enemies, p)]
+-            m["risk"][p] = n / d if cell not in (-1, 1, 3) else 0.
+-        else:
+-            m["risk"][p] = .02 if cell not in (-1, 1, 3) else 0.
++    m["local_terrain"] = terrain
++    m["previous"] = (
++        terrain, enemies, m["pos"], m["step"], m["door_open"]
++    )
++    laws = _expert_laws(m)
++    m["theta"] = [
++        sum(m["weights"][i] * laws[i][j] for i in range(3))
++        for j in range(9)
++    ]
++    m["risk"], m["collisions"], m["default_enemy"] = _predict(
++        m, m["theta"]
++    )
+     return m
+-
+-
+-def _fixed_risk(m, p):
+-    # Competent hand-written baseline: conservative local enemy avoidance.
+-    if p in m["enemies"]:
+-        return 1.
+-    return .22 if any(max(abs(e[0]-p[0]), abs(e[1]-p[1])) <= 1 for e in m["enemies"]) else 0.
+-
+-
++def _spatial_cost(m, p, risk):
++    return (
++        1.0 + 7.0 * risk.get(p, 0.02)
++        + 0.025 * min(12, m["visits"].get(p, 0))
++    )
++def _reachable(m, risk):
++    start = m["pos"]
++    distances = {start: 0.0}
++    queue = [(0.0, start)]
++    while queue:
++        cost, p = heapq.heappop(queue)
++        if cost > distances[p] + 1e-10:
++            continue
++        for direction in WALK:
++            if not _legal(m, p, direction):
++                continue
++            q = _add(p, direction)
++            new_cost = cost + _spatial_cost(m, q, risk)
++            if new_cost + 1e-10 < distances.get(q, float("inf")):
++                distances[q] = new_cost
++                heapq.heappush(queue, (new_cost, q))
++    return distances
++def _select_target(m, distances):
++    start = m["pos"]
++    desired = 2 if m["keys"] < 2 else 4
++    goals = [
++        p for p in distances
++        if p != start and m["map"].get(p) == desired
++    ]
++    if not goals and m["keys"] >= 2 and not m["door_open"]:
++        goals = [
++            p for p in distances
++            if p != start and m["map"].get(p) == 3
++        ]
++    if goals:
++        return min(goals, key=lambda p: (distances[p], p))
++    frontiers = []
++    refresh = []
++    for p, cost in distances.items():
++        if p == start:
++            continue
++        gain = 0
++        stale = 0.0
++        for dy in range(-2, 3):
++            for dx in range(-2, 3):
++                q = _add(p, (dx, dy))
++                if q not in m["map"]:
++                    gain += 1
++                elif m["map"][q] != -1:
++                    age = m["step"] - m["seen"].get(q, 0)
++                    if age >= 25:
++                        stale += min(3.0, age / 25.0)
++        revisit = 0.04 * min(20, m["visits"].get(p, 0))
++        if gain:
++            frontiers.append(((cost + 0.5) / math.sqrt(gain) + revisit, p))
++        elif stale:
++            refresh.append(((cost + 1.0) / math.sqrt(stale) + revisit, p))
++    if frontiers:
++        return min(frontiers)[1]
++    if refresh:
++        return min(refresh)[1]
++    candidates = [p for p in distances if p != start]
++    if candidates:
++        return min(
++            candidates,
++            key=lambda p: (m["visits"].get(p, 0), distances[p], p)
++        )
++    return start
++def _distance_to_target(m, target, risk):
++    distances = {target: 0.0}
++    queue = [(0.0, target)]
++    while queue:
++        cost, q = heapq.heappop(queue)
++        if cost > distances[q] + 1e-10:
++            continue
++        for direction in WALK:
++            p = (q[0] - direction[0], q[1] - direction[1])
++            if not _passable(
++                m["map"], p, m["door_open"] or m["keys"] >= 2, False
++            ):
++                continue
++            if not _legal(m, p, direction):
++                continue
++            new_cost = cost + _spatial_cost(m, q, risk)
++            if new_cost + 1e-10 < distances.get(p, float("inf")):
++                distances[p] = new_cost
++                heapq.heappush(queue, (new_cost, p))
++    return distances
+ def planner(memory, local_obs):
+     m = memory
+     start = m["pos"]
+-    moves = [(x, y) for y in (-1, 0, 1) for x in (-1, 0, 1) if x or y]
+-    dist, first, queue = {start: 0.}, {}, [(0., start)]
+-    while queue:
+-        cost, p = heapq.heappop(queue)
+-        if cost != dist[p]:
+-            continue
+-        for d in moves:
+-            q = _add(p, d)
+-            if not _legal(m, p, d) or q in m["enemies"]:
+-                continue
+-            risk = m["risk"].get(q, .02) if local_obs.get("predictive_planning", True) else _fixed_risk(m, q)
+-            edge = (1.4 if d[0] and d[1] else 1.) + 45 * risk
+-            new = cost + edge + .06 * min(m["visits"].get(q, 0), 15)
+-            if new < dist.get(q, float("inf")):
+-                dist[q], first[q] = new, d if p == start else first[p]
+-                heapq.heappush(queue, (new, q))
+-    goals = [p for p in dist if p != start and m["map"].get(p) == (2 if m["keys"] < 2 else 4)]
+-    if not goals and m["keys"] == 2 and not m["door_open"]:
+-        goals = [p for p in dist if p != start and m["map"].get(p) == 3]
+-    if goals:
+-        target = min(goals, key=lambda p: (dist[p], p))
++    if local_obs.get("predictive_planning", True):
++        risk, collisions = m["risk"], m["collisions"]
+     else:
+-        frontier = []
+-        for p in dist:
+-            if p == start:
+-                continue
+-            gain = sum(_add(p, (dx, dy)) not in m["map"] for dx in range(-2, 3) for dy in range(-2, 3))
+-            if gain:
+-                frontier.append((dist[p] / math.sqrt(gain), p))
+-        if frontier:
+-            target = min(frontier)[1]
+-        elif first:
+-            target = min(first, key=lambda p: (m["visits"].get(p, 0), dist[p], p))
+-        else:
+-            target = start
+-    move = first.get(target, (0, 0))
+-    # If the immediate learned/fixed forecast is high, waiting is another
+-    # legitimate action; compare it to the chosen move plus a small delay cost.
+-    risk_fn = (lambda p: m["risk"].get(p, .02)) if local_obs.get("predictive_planning", True) else (lambda p: _fixed_risk(m, p))
+-    if move != (0, 0) and risk_fn(_add(start, move)) > risk_fn(start) + .12:
+-        move = (0, 0)
+-    return {"move": list(move), "interact": True}
+-
+-
++        # Prediction-use intervention retains geometry and the same planner.
++        risk, collisions, _ = _predict(m, UNIFORM)
++    distances = _reachable(m, risk)
++    target = _select_target(m, distances)
++    terminal = _distance_to_target(m, target, risk)
++    depth = len(collisions)
++    layers = [{start}]
++    transitions = {}
++    for t in range(depth):
++        following = set()
++        for p in layers[-1]:
++            options = []
++            for direction in MOVES:
++                if not _legal(m, p, direction):
++                    continue
++                q = _add(p, direction)
++                hazard = collisions[t].get(q, 0.02)
++                if t == 0 and q in m["enemies"]:
++                    continue
++                if hazard >= 1.0 - 1e-10:
++                    continue
++                options.append((direction, q, hazard))
++                following.add(q)
++            transitions[t, p] = options
++        layers.append(following)
++    remaining = max(1, 200 - m["step"])
++    risk_price = 75.0 if remaining >= 45 else max(
++        12.0, 75.0 * remaining / 45.0
++    )
++    values = {
++        p: terminal.get(p, 10000.0)
++        for p in layers[depth]
++    }
++    first_move = (0, 0)
++    for t in range(depth - 1, -1, -1):
++        current_values = {}
++        for p in layers[t]:
++            # Reaching a key/frontier ends this short planning subproblem.
++            if p == target and t > 0:
++                current_values[p] = 0.0
++                continue
++            best = float("inf")
++            selected = (0, 0)
++            for direction, q, hazard in transitions[t, p]:
++                collision_cost = -math.log(max(1e-9, 1.0 - hazard))
++                score = (
++                    1.0 + risk_price * collision_cost
++                    + 0.025 * min(12, m["visits"].get(q, 0))
++                    + values.get(q, 10000.0)
++                )
++                if direction == (0, 0):
++                    score += 0.03
++                if score < best - 1e-10:
++                    best, selected = score, direction
++            current_values[p] = best
++            if t == 0:
++                first_move = selected
++        values = current_values
++    # Even if every horizon branch fails, choose the safest legal first step.
++    if not math.isfinite(values.get(start, float("inf"))):
++        alternatives = []
++        for direction in MOVES:
++            if _legal(m, start, direction):
++                q = _add(start, direction)
++                hazard = 1.0 if q in m["enemies"] else collisions[0].get(q, 0.02)
++                alternatives.append((
++                    hazard, terminal.get(q, 10000.0),
++                    direction == (0, 0), direction
++                ))
++        if alternatives:
++            first_move = min(alternatives)[-1]
++    return {"move": list(first_move), "interact": True}
+ def export_model(memory, local_obs):
+     m = memory
+-    return {"enemy": [[x, y, p] for (x, y), p in m["risk"].items()],
+-            "default_enemy": .02,
+-            "terrain": [[x, y, c, m["seen"][x, y]] for (x, y), c in m["map"].items()],
+-            "position": list(m["pos"]),
+-            "learning": {"updates": m["updates"], "rates": {k: a/b for k, (a, b) in m["rates"].items()}}}
++    return {
++        "enemy": [[x, y, p] for (x, y), p in m["risk"].items()],
++        "default_enemy": m["default_enemy"],
++        "terrain": [
++            [x, y, cell, m["seen"][x, y]]
++            for (x, y), cell in m["map"].items()
++        ],
++        "position": list(m["pos"]),
++        "learning": {
++            "updates": m["updates"],
++            "effective_observations": m["samples"],
++            "attempt_law": [
++                [direction[0], direction[1], probability]
++                for direction, probability in zip(MOVES, m["theta"])
++            ],
++            "expert_weights": {
++                name: weight for name, weight in zip(
++                    ("uniform", "persistent", "responsive"), m["weights"]
++                )
++            },
++        },
++    }
+ # EVOLVE-BLOCK-END

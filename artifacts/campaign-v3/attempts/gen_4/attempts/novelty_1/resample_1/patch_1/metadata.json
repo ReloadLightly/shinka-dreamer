@@ -1,0 +1,15 @@
+{
+  "generation": 4,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "anonymous_law_safe_horizon",
+  "patch_description": "The seed uses six occupancy categories, prior strength 12, cumulative updates, risk weight 45, and a fixed waiting threshold of .12. This replacement infers attempted movement laws from anonymous occupancy transitions, including blocked attempts. It combines uniform, slow-learning, and fast-learning models with evidence-based weights; evidence retention is .985 and .86 per step.\nControl uses equal movement-time costs, persistent exploration targets, and three-step planning with explicit collision-before-movement and collision-after-movement risk. Immediate risk weight is 100, with future weights .55 and .25. Mapping remains separate from predictive learning and prediction-use interventions. These changes target safer, faster escapes; improvement requires evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:42:00.816757",
+  "llm_cost": 0.40786,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_4/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -44,21 +44,31 @@ def native_tool_audit(campaign, calls):
                 if first.get('type') != 'session_meta' or first.get('payload', {}).get('cwd') != str(campaign):
                     continue
                 tools = []
+                native_tokens = None
+                token_timestamp = None
                 for line in handle:
                     try:
                         event = json.loads(line)
                     except ValueError:
                         continue
                     payload = event.get('payload', {})
-                    if payload.get('type') in ('function_call', 'custom_tool_call'):
-                        content = payload.get('arguments') or payload.get('input') or ''
-                        tools.append({'name': payload.get('name'), 'input_excerpt': content[:1200],
+                    if event.get('type') == 'event_msg' and payload.get('type') == 'token_count':
+                        reported = (payload.get('info') or {}).get('total_token_usage')
+                        if reported:
+                            native_tokens = {k: reported.get(k, 0) for k in ('input_tokens', 'cached_input_tokens', 'output_tokens', 'reasoning_output_tokens', 'total_tokens')}
+                            token_timestamp = event.get('timestamp')
+                    if str(payload.get('type', '')).endswith('_call'):
+                        content = payload.get('arguments') or payload.get('input') or payload.get('action') or ''
+                        if not isinstance(content, str):
+                            content = json.dumps(content, sort_keys=True)
+                        tools.append({'name': payload.get('name', payload.get('type')), 'input_excerpt': content[:1200],
                             'input_sha256': hashlib.sha256(content.encode()).hexdigest(),
                             'input_characters': len(content),
                             'protected_pool_path_mentioned': bool(re.search(
                                 r'results/private|v3-selection-seeds|v3-fit-training|v3-assessment-seeds', content))})
                 sessions.append({'session_id': first['payload'].get('id'), 'session_timestamp': first['payload'].get('timestamp'),
-                                 'tool_calls': tools, 'tool_call_count': len(tools)})
+                                 'tool_calls': tools, 'tool_call_count': len(tools),
+                                 'latest_native_token_report': native_tokens, 'latest_native_token_timestamp': token_timestamp})
     return {'scope': 'Only native sessions whose recorded cwd equals this campaign; no assistant reasoning exported',
             'sessions': sessions, 'observed_tool_calls': sum(s['tool_call_count'] for s in sessions),
             'protected_pool_path_mentions': sum(t['protected_pool_path_mentioned'] for s in sessions for t in s['tool_calls']),
@@ -74,6 +84,8 @@ def main():
     with sqlite3.connect(f'file:{campaign / "programs.sqlite"}?mode=ro', uri=True) as db:
         db.row_factory = sqlite3.Row
         rows = [dict(r) for r in db.execute('select * from programs order by generation,timestamp,id')]
+    resolved = read_json(campaign / 'dreamer-resolved.json')
+    sampling_records = [read_json(p) for p in sorted(campaign.glob('gen_*/sampling-*.json'))]
     by_id = {r['id']: r for r in rows}
     unique = {r['generation']: r for r in reversed(rows)}
     request_attempts = {}
@@ -140,6 +152,9 @@ def main():
     meta_paths = sorted((campaign / 'meta').glob('meta_*.txt'))
     audit = {'updated_utc': datetime.now(timezone.utc).isoformat(), 'campaign_sha256': sha256(campaign / 'campaign-manifest.json'),
         'objective_name_note': 'The mutation prompt calls the unchanged formula absolute-task-v3; the canonical evaluator identity is absolute-task-v1 within namazu-unknown-dynamics-v3. This is a naming alias, not an objective change.',
+        'normal_checkpoint_requests': [read_json(p) for p in sorted(campaign.glob('checkpoint-request-*.json'))],
+        'transport_compatibility_amendment': read_json(campaign / 'transport-amendment.json') if (campaign / 'transport-amendment.json').exists() else None,
+        'recommendation_resume_evidence': read_json(ROOT / 'artifacts/campaign-v3/recommendation-resume-verification.json') if (ROOT / 'artifacts/campaign-v3/recommendation-resume-verification.json').exists() else None,
         'total_slots_budget': 50, 'persisted_slots': len(unique), 'native_rows_including_island_seed_copies': len(rows),
         'seed_slots': int(0 in unique), 'valid_descendants': sum(g>0 and bool(r['correct']) for g,r in unique.items()),
         'failed_slots': [g for g,r in unique.items() if not r['correct']],
@@ -167,7 +182,16 @@ def main():
         'features': {'native_islands': {'configured':4, 'rows_observed_by_island':dict(Counter(r['island_idx'] for r in rows))},
                      'native_migration': {'configured_interval':10, 'observed':migrations},
                      'inspirations': {'configured_archive':1,'configured_top_k':1,
-                                      'sampled_nonempty_requests':sum(bool(e['archive_inspiration_ids'] or e['top_k_inspiration_ids']) for e in request_evidence)},
+                                      'sampled_nonempty_requests':sum(bool(e['archive_inspiration_ids'] or e['top_k_inspiration_ids']) for e in request_evidence),
+                                      'sampled_archive_contexts':sum(bool(e['archive_inspiration_ids']) for e in sampling_records),
+                                      'sampled_top_k_contexts':sum(bool(e['top_k_inspiration_ids']) for e in sampling_records)},
+                     'native_sampling': {'configured_parent_strategy':resolved['database']['parent_selection_strategy'],
+                                         'configured_island_strategy':resolved['database']['island_selection_strategy'],
+                                         'sampled_parent_islands':dict(Counter(str(e['parent_island']) for e in sampling_records)),
+                                         'sampling_contexts':len(sampling_records)},
+                     'mutation_operators': {'configured':resolved['evolution']['patch_types'],
+                                            'configured_probabilities':resolved['evolution']['patch_type_probs'],
+                                            'observed_slot_operators':dict(Counter(json.loads(r['metadata'] or '{}').get('patch_type','unknown') for g,r in unique.items() if g>0))},
                      'recommendations': {'configured_interval':10,'outputs':[{'path':p.name,'sha256':sha256(p)} for p in meta_paths],
                                          'requests_with_recommendation':sum(e['restored_or_current_recommendation_present'] for e in request_evidence)},
                      'novelty': 'inactive: embeddings and novelty judge explicitly disabled; no novelty claim',

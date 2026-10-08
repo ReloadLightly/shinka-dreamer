@@ -1,0 +1,15 @@
+{
+  "generation": 2,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "censored_bayes_survival",
+  "patch_description": "This agent maintains a Bayesian distribution over complete enemy movement laws, updating it from anonymous, partially observed transitions with explicit blocked-attempt probabilities. Persistent enemy intensity tracks threats that leave view. A five-step survival planner accounts for collisions both before and after enemy movement, while global routing considers key collection order and exploration value. The approach aims to reduce dangerous commitments and adapt after unannounced dynamics changes; its performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:20:08.650303",
+  "llm_cost": 0.481668,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_2/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

@@ -122,6 +122,8 @@ def save_figure(fig, path: Path, formats=("svg", "pdf", "png")) -> None:
             temporary, dpi=DPI, bbox_inches="tight", pad_inches=PAD,
             transparent=False, facecolor=BACKGROUND, edgecolor=BACKGROUND, metadata=metadata,
         )
+        if extension == "svg":
+            temporary.write_text("\n".join(line.rstrip() for line in temporary.read_text().splitlines()) + "\n")
         temporary.replace(destination)
     plt.close(fig)
 

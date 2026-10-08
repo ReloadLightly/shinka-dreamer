@@ -1,0 +1,8 @@
+{
+  "raw_stdout": "results/campaign-v3/model-calls/20261008T164257924836Z-cee0de17.stdout",
+  "blank_lines_in_stdout": 15,
+  "blank_lines_in_native_reply": 0,
+  "raw_before_feature": "SEARCH\ndef _legal(m, p, d):\n    return (not _blocked(m, _add(p, d)) and not\n            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))\n\n\ndef _feature(terrain, enemies, p):",
+  "native_before_feature": "< SEARCH\ndef _legal(m, p, d):\n    return (not _blocked(m, _add(p, d)) and not\n            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))\ndef _feature(terrain, enemies, p):",
+  "upstream_parser": "lines = [line for line in stdout.splitlines() if line.strip()]; content = \"\\n\".join(lines[:-1]).strip()"
+}

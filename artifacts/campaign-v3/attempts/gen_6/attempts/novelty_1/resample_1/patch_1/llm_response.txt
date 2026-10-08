@@ -1,0 +1,214 @@
+<NAME>
+survival_conditioned_beam
+</NAME>
+<DESCRIPTION>
+Replace the planner’s sum of marginal collision penalties with survival-conditioned enemy trajectories. After each hypothetical agent move, remove enemy paths that would already have caused a collision and condition subsequent predictions on survival. This avoids repeatedly charging for the same dangerous trajectories across the planning horizon, while preserving both pre-movement and post-movement collision checks.
+A bounded beam retains alternatives for each first action, including waiting. Hidden-enemy risk remains conservative, and learned movement laws, anonymous dynamics updates, and prediction interventions remain intact. This targets the current agent’s long escape times and timeouts without lowering its immediate collision penalty. Performance gains require evaluation.
+</DESCRIPTION>
+<DIFF>
+<<<<<<< SEARCH
+    occupancy_fields = []
+    collision_fields = []
+    for _ in range(depth):
+=======
+    occupancy_fields = []
+    collision_fields = []
+    hidden_collision_fields = []
+    for _ in range(depth):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        next_known = []
+        for distribution in known:
+=======
+        hidden_collision_fields.append({
+            p: max(0.0, min(1.0, 1.0 - survival))
+            for p, survival in collision_survival.items()
+        })
+        next_known = []
+        for distribution in known:
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    return risk, collision_fields, default
+def world_model_step(memory, local_obs, last_action):
+=======
+    # These kernels use exactly the law selected for this prediction call.
+    # The prediction-use intervention therefore changes both forecasts and
+    # the survival-conditioned planning model together.
+    m["planning_kernels"] = kernels
+    m["hidden_collisions"] = hidden_collision_fields
+    return risk, collision_fields, default
+def world_model_step(memory, local_obs, last_action):
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    depth = len(collisions)
+    layers = [{start}]
+    transitions = {}
+    for t in range(depth):
+        following = set()
+        for p in layers[-1]:
+            options = []
+            for direction in MOVES:
+                if not _legal(m, p, direction):
+                    continue
+                q = _add(p, direction)
+                hazard = collisions[t].get(q, 0.02)
+                if t == 0 and q in m["enemies"]:
+                    continue
+                if hazard >= 1.0 - 1e-10:
+                    continue
+                options.append((direction, q, hazard))
+                following.add(q)
+            transitions[t, p] = options
+        layers.append(following)
+    remaining = max(1, 200 - m["step"])
+    risk_price = 75.0 if remaining >= 45 else max(
+        12.0, 75.0 * remaining / 45.0
+    )
+    values = {
+        p: terminal.get(p, 10000.0)
+        for p in layers[depth]
+    }
+    first_move = (0, 0)
+    for t in range(depth - 1, -1, -1):
+        current_values = {}
+        for p in layers[t]:
+            # Reaching a key/frontier ends this short planning subproblem.
+            if p == target and t > 0:
+                current_values[p] = 0.0
+                continue
+            best = float("inf")
+            selected = (0, 0)
+            for direction, q, hazard in transitions[t, p]:
+                collision_cost = -math.log(max(1e-9, 1.0 - hazard))
+                score = (
+                    1.0 + risk_price * collision_cost
+                    + 0.025 * min(12, m["visits"].get(q, 0))
+                    + values.get(q, 10000.0)
+                )
+                if direction == (0, 0):
+                    score += 0.03
+                if score < best - 1e-10:
+                    best, selected = score, direction
+            current_values[p] = best
+            if t == 0:
+                first_move = selected
+        values = current_values
+=======
+    depth = len(collisions)
+    remaining = max(1, 200 - m["step"])
+    risk_price = 75.0 if remaining >= 45 else max(
+        12.0, 75.0 * remaining / 45.0
+    )
+    kernels = m["planning_kernels"]
+    hidden_collisions = m["hidden_collisions"]
+    # Each distribution represents a currently observed anonymous source.
+    # Along a hypothetical path, it is conditioned on surviving every
+    # previous agent move. No cross-observation identity matching is used.
+    beliefs = tuple({p: 1.0} for p in sorted(m["enemies"]))
+    # Entries: estimated total cost, incurred cost, cell, first move, beliefs.
+    beam = [(terminal.get(start, 10000.0), 0.0,
+             start, (0, 0), beliefs)]
+    completed = []
+    for t in range(depth):
+        candidates = []
+        for _, cost, p, first, source_beliefs in beam:
+            # Cache unconditioned propagation once per parent path.
+            propagated = []
+            for distribution in source_beliefs:
+                following = {}
+                for source, mass in distribution.items():
+                    for destination, probability in kernels.get(source, ()):
+                        following[destination] = (
+                            following.get(destination, 0.0)
+                            + mass * probability
+                        )
+                propagated.append(following)
+            for direction in MOVES:
+                if not _legal(m, p, direction):
+                    continue
+                q = _add(p, direction)
+                if t == 0 and q in m["enemies"]:
+                    continue
+                hidden_hazard = hidden_collisions[t].get(q, 0.02)
+                if hidden_hazard >= 1.0 - 1e-10:
+                    continue
+                collision_cost = -math.log(
+                    max(1e-12, 1.0 - hidden_hazard)
+                )
+                conditioned = []
+                feasible = True
+                for distribution, following in zip(
+                    source_beliefs, propagated
+                ):
+                    # Stepping onto an enemy kills before it can move.
+                    # Remove all transitions from q, then remove arrivals
+                    # at q after enemy movement.
+                    pre_collision = distribution.get(q, 0.0)
+                    surviving = dict(following)
+                    if pre_collision:
+                        for destination, probability in kernels.get(q, ()):
+                            surviving[destination] = max(
+                                0.0,
+                                surviving.get(destination, 0.0)
+                                - pre_collision * probability
+                            )
+                    surviving.pop(q, None)
+                    survival = min(1.0, sum(surviving.values()))
+                    if survival <= 1e-12:
+                        feasible = False
+                        break
+                    collision_cost -= math.log(survival)
+                    conditioned.append({
+                        cell: mass / survival
+                        for cell, mass in surviving.items()
+                        if mass > 0.0
+                    })
+                if not feasible:
+                    continue
+                selected = direction if t == 0 else first
+                incurred = (
+                    cost + 1.0 + risk_price * collision_cost
+                    + 0.025 * min(12, m["visits"].get(q, 0))
+                    + (0.03 if direction == (0, 0) else 0.0)
+                )
+                if q == target:
+                    completed.append((
+                        incurred, incurred, q, selected, ()
+                    ))
+                    continue
+                score = incurred + terminal.get(q, 10000.0)
+                candidates.append((
+                    score, incurred, q, selected, tuple(conditioned)
+                ))
+        if not candidates:
+            beam = []
+            break
+        # Preserve first-action diversity. Different paths to the same
+        # cell can induce different surviving enemy distributions.
+        candidates.sort(key=lambda item: (
+            item[0], item[1], item[2], item[3]
+        ))
+        beam = []
+        per_first = {}
+        per_endpoint = {}
+        for entry in candidates:
+            first = entry[3]
+            endpoint = (entry[2], first)
+            if (per_first.get(first, 0) >= 4
+                    or per_endpoint.get(endpoint, 0) >= 2):
+                continue
+            beam.append(entry)
+            per_first[first] = per_first.get(first, 0) + 1
+            per_endpoint[endpoint] = per_endpoint.get(endpoint, 0) + 1
+        # At most nine first actions times four retained paths.
+    finalists = completed + beam
+    first_move = (0, 0)
+    best = float("inf")
+    if finalists:
+        winner = min(finalists, key=lambda item: (
+            item[0], item[1], item[2], item[3]
+        ))
+        best, first_move = winner[0], winner[3]
+    values = {start: best}
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,145 @@
+{
+  "actual_planning_risks": {
+    "conditioning_limitation": "Stages2/3 are unconditional marginal unions. They are not conditioned on surviving earlier chosen positions, and their summed negative logs are not a calibrated full-path death probability.",
+    "hazard_event": "At a proposed destination p at stage t, enemy occupancy at time t-1 OR time t; covers pre-enemy-move entry contact and post-enemy-move arrival.",
+    "hidden_union": "Poisson approximation with intensity before+after-before*P(stay at p).",
+    "immediate_equivalence": "First actions exclude currently visible occupied cells. Every allowed immediate destination is inside the observed neighborhood, so its before occupancy/intensity is zero; hazard[1] there should equal exported horizon1 occupancy in predictive mode. Validate numerically if selected. Future-stage hazards generally differ from occupancy.",
+    "lookahead": "Three action stages, weighted1.0/0.55/0.25, use -log(1-hazard) with a deadline/route-dependent risk multiplier55..100, then static path potential.",
+    "route_cost": "Uses exported horizon1 occupancy in a Dijkstra edge penalty16*risk plus visit cost and a5-unit currently visible occupancy penalty. Applying a fixed one-step map to distant traversal is a heuristic.",
+    "source_lines": {
+      "first_action_hazard": 429,
+      "planner": 381,
+      "recursive_hazard": 402
+    },
+    "visible_source_union": "For each enemy source, before+after-before*P(stay at p); combines sources independently. This corrects within-enemy temporal overlap under the represented Markov law."
+  },
+  "adaptive_state_audit": {
+    "additional_export_keys": [
+      "expert_weights",
+      "slow_law",
+      "fast_law",
+      "updates",
+      "effective_updates"
+    ],
+    "caveat": "The exported slow_law and fast_law are normalized means; concentrations can change while those means remain fixed. Effective-law constancy alone does not audit every internal adaptive quantity. An inspected isolated diagnostic export can hash raw concentrations/log weights without changing source or actions if selected.",
+    "effective_parameter_key": "attempted_movement_law",
+    "full_internal_keys_recommended_if_selected": [
+      "slow",
+      "fast",
+      "log_weights"
+    ]
+  },
+  "comparison_with_gen1": [
+    "Both model anonymous attempted-direction dynamics with blocked attempts retaining staying mass; neither requires enemy IDs.",
+    "Gen1 has one fading expected-count law (retention0.965, count cap45). Gen4 introduces uniform/slow/fast experts, posterior-information weighting and likelihood-based expert adaptation.",
+    "Gen1 uses per-visible-cell background heuristics and horizons1/2. Gen4 propagates a diffuse hidden intensity, infers bounds and plans over three stages.",
+    "Gen1 combines before/after occupancy as independent events in its continuation heuristic. Gen4 subtracts the within-source stay intersection, improving internal event consistency while still lacking survival-conditioned path predictions.",
+    "Both expose a coherent fixed-uniform-law planning substitution; neither no_planning flag removes all predictive reasoning."
+  ],
+  "execution": {
+    "assessment_or_selected_machinery_modified": false,
+    "candidate_source_modified": false,
+    "new_environment_episodes": 0,
+    "new_model_calls": 0
+  },
+  "forecast_contract": {
+    "action_conditioning": "Enemy distributions are propagated independently of candidate path, assuming the current always-True interaction opens any adjacent unlocked door. No future observations, survival conditioning, future door interactions or wall changes are simulated.",
+    "blocked_attempts": "All nine attempted-direction probabilities retained; blocked destination or blocked diagonal side sends its mass to source.",
+    "coordinates": "Relative to starting agent position, inferred from cumulative observed displacement.",
+    "exported_hidden_occupancy": "1 - product(visible source nonoccupancy) * exp(-hidden intensity).",
+    "exported_horizon": 1,
+    "exported_target": "At least one enemy occupies a cell after the next enemy movement tick.",
+    "source_lines": {
+      "export": 446,
+      "kernel": 192,
+      "occupancy_and_hazard": 222
+    }
+  },
+  "generation": 4,
+  "interventions": {
+    "expected_matched_pair": "no_planning versus frozen_no_planning should execute identical actions and full environment trajectories because both planners consume the same fixed-law outputs; verify actual hashes and map/localization state.",
+    "freeze": {
+      "flag": "learn=False",
+      "runtime_status": "not yet tested for this source",
+      "source_coherence": "_learn returns before forgetting, concentration updates and expert-weight updates. Other map/localization/occupancy computations still run. All three initial experts are uniform, giving a uniform effective law up to floating-point arithmetic."
+    },
+    "frozen_vs_uniform_note": "Frozen mixed-law arithmetic may differ from direct UNIFORM by rounding; do not presume exact action identity without checking.",
+    "prediction_use": {
+      "flag": "predictive_planning=False",
+      "name": "uniform-law planning substitution, not removal of all prediction",
+      "runtime_status": "not yet tested for this source",
+      "source_coherence": "Planner recomputes both one-step occupancy risk and all three hazard maps under fixed uniform law, while retaining the same controller, map, bounds, visits and observed enemies. The learner/exported forecast continue updating."
+    }
+  },
+  "lineage": {
+    "archive_inspirations": [],
+    "parent_generation": 0,
+    "parent_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+    "parent_island": 0,
+    "parent_source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+    "relationship_to_gen1": "Separate direct seed descendant; comparison below is architectural, not a claim that gen4 descends from gen1.",
+    "top_k_inspirations": []
+  },
+  "predictive_adaptation": {
+    "effective_law": "0.12 uniform +0.88 likelihood-weighted mixture of uniform/slow/fast directional laws.",
+    "expert_weighting": "Discount log weights by0.95, restore0.05 times log expert prior(0.30,0.45,0.25), add0.70 times log current occupancy likelihood, then normalize.",
+    "experts": [
+      "fixed uniform attempted law",
+      "slow directional posterior mean",
+      "fast directional posterior mean"
+    ],
+    "forgetting": {
+      "fast_retention": 0.86,
+      "fast_symmetric_prior": 0.35,
+      "slow_retention": 0.985,
+      "slow_symmetric_prior": 0.65
+    },
+    "likelihood_qualification": "Assignment enumeration permits multiple sources to end in one cell. Its exact likelihood is conditional on one enemy per previously visible occupied cell and the represented terrain; preexisting enemy overlaps and hidden state remain approximations.",
+    "observations": "Anonymous occupancy constraints on the prior center inner3 cells. Each previously visible occupied cell is one source; candidate directions that land on observed-empty safe cells are rejected and observed-occupied safe cells must be covered by the assignment union. Directions outside this safe region are censored.",
+    "source_lines": {
+      "combined_law": 158,
+      "learn": 115
+    },
+    "state": [
+      "slow: nine Dirichlet-like concentrations",
+      "fast: nine Dirichlet-like concentrations",
+      "log_weights: three expert mixture log weights"
+    ],
+    "updates": "Posterior direction responsibilities are weighted by min(1,L1 distance from the prior expert law), so fully censored observations do not add concentration. updates/effective_updates count slow-expert informative sources/weights. Posterior concentrations also relax toward priors without informative sightings.",
+    "wall_ticks": "Likelihood updates skipped across a25-step wall-phase boundary; forgetting still runs unless learning is disabled."
+  },
+  "preserved_gen1_evidence": "artifacts/campaign-v3/mechanism-gen1-smoke/",
+  "program": "results/campaign-v3/gen_4/main.py",
+  "program_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+  "risk_adapter_feasibility": {
+    "full_adapter": "For stage2/3, use an inspected isolated diagnostic accessor for risk/hazards and slow/fast/log_weights; preserve original executable source and verify actions/state before making causal claims. Alternatively reconstruct bounds and diffuse intensity from the observation history with source-specific validation.",
+    "gen1_adapter_reusable_unchanged": false,
+    "immediate_adapter": "A new source-hash-bound adapter can reconstruct chosen first-step risk from visible source positions, observed terrain/door geometry and attempted_movement_law; compare every reconstructed value against export and, through isolated instrumentation, hazards[1]. Uniform-law variants must separately score the probabilities used by planning.",
+    "implemented_now": false,
+    "reasons": [
+      "Different law export key and hidden/bounds model",
+      "Actual stage2/3 planning hazards differ from exported one-tick occupancy",
+      "Adaptive parameter state now includes mixture weights and concentrations"
+    ],
+    "same_experience_replay": "The world model computes forecasts before planner, and planner mutates target/target_kind only. A separately reviewed passive replay is feasible from observations and previous actual action; current comparator adapter deliberately rejects this unapproved source."
+  },
+  "scientific_claim_limits": [
+    "No new performance/prediction/learning benefit is established by this source review.",
+    "Gen4 rewrites both learner and planner; development leader status cannot attribute improvement to learning.",
+    "Do not transfer gen1 intervention results to gen4.",
+    "Preserve gen1 smoke finding: identical-experience prediction worsened1.59% despite better on-policy prediction; all variants11/12 escapes.",
+    "Final selected source and interventions still require review, development verification and frozen fresh assessment after50 total slots."
+  ],
+  "state_estimation_separate_from_adaptation": {
+    "hidden_intensity": "Remaining enemy count=3 minus number of visible occupied cells; density=hidden_count/max(45,130-free_visible), spread from unobserved traversable candidates. Candidate support is not normalized to a fixed total hidden count. Poisson survival approximates hidden occupancy.",
+    "localization": "Position accumulates observation feedback displacement.",
+    "mapping": "Terrain, seen times and inferred world bounds update from local observations independently of adaptive concentrations/weights.",
+    "occupancy_representation": "Every forecast resets visible source masses at currently observed occupied cells and constructs a fresh diffuse hidden intensity over remembered/nearby unseen cells. It does not maintain learned enemy identities or a persistent hidden occupancy filter.",
+    "ordinary_memory": "Visits, observed enemies, visible cells and previous-observation tuple continue updating; target and target_kind belong to controller memory.",
+    "source_lines": {
+      "forecast": 180,
+      "world_model_step": 264
+    }
+  },
+  "status": "source-only provisional review of development leader; not champion selection or mechanism evidence"
+}

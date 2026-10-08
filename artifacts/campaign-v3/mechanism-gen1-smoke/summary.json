@@ -1,0 +1,2764 @@
+{
+  "all_fixed_prediction_use_maps_match": true,
+  "all_fixed_prediction_use_trajectories_match": true,
+  "all_frozen_parameters_constant": true,
+  "candidate_cpu_seconds": 14.502719000000003,
+  "environment_steps": 2694,
+  "episode_seconds": 16.527405967877712,
+  "evaluator_cpu_seconds": 3.4408155380000003,
+  "invalid_condition_episodes": 0,
+  "manifest": {
+    "champion_selection": false,
+    "condition_episodes": 48,
+    "development_only": true,
+    "driver_sha256": "4108230a11fc8b14bc12c9e869857840e8abcb67e4e1e87ab1e3006527e83618",
+    "intervention_names": {
+      "frozen": "freeze expected counts and their decay at initial zero counts, hence uniform attempted law",
+      "frozen_no_planning": "frozen law and uniform-law planning",
+      "no_planning": "continue prediction learning but use uniform-law occupancy forecasts in the identical planner; not prediction-free planning",
+      "predictive": "learned attempted law used for occupancy forecasts/planning"
+    },
+    "layouts": 4,
+    "model_calls": 0,
+    "pool_sha256": "1d89a5d7b264ba156ff62fff1ee34530948300485e38f14eae8eb38ffe0d136c",
+    "program_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "review_sha256": "0c16b43de09e96d08b719c77ca523c9f60464b70e8fdb116bc8668f9943fb5e4",
+    "scope": "gen1 interface smoke",
+    "variants": [
+      "predictive",
+      "frozen",
+      "no_planning",
+      "frozen_no_planning"
+    ]
+  },
+  "matched_episodes": [
+    {
+      "case": 0,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          9.772800000000077,
+          432
+        ],
+        "base_near": [
+          0.1295999999999996,
+          324
+        ],
+        "brier_audit": [
+          9.786694176366813,
+          432
+        ],
+        "brier_audit_pre_switch": [
+          9.786694176366813,
+          432
+        ],
+        "brier_destination": [
+          0.0,
+          36
+        ],
+        "brier_near": [
+          0.01234567901234569,
+          324
+        ],
+        "brier_near_pre_switch": [
+          0.01234567901234569,
+          324
+        ],
+        "brier_threat": [
+          0.01234567901234569,
+          27
+        ],
+        "coverage": [
+          226.0,
+          432
+        ],
+        "map_age": [
+          1561.0,
+          226
+        ],
+        "persistence_audit": [
+          10.751200000000063,
+          432
+        ],
+        "persistence_near": [
+          0.0,
+          324
+        ],
+        "persistence_threat": [
+          0.0,
+          27
+        ],
+        "prevalence_audit": [
+          10.0,
+          432
+        ],
+        "prevalence_destination": [
+          0.0,
+          36
+        ],
+        "prevalence_near": [
+          0.0,
+          324
+        ],
+        "reconstruction": [
+          223.0,
+          432
+        ],
+        "reconstruction_stale": [
+          169.0,
+          172
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          206
+        ],
+        "reconstruction_visible": [
+          54.0,
+          54
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          9.772800000000077,
+          432
+        ],
+        "base_near": [
+          0.1295999999999996,
+          324
+        ],
+        "brier_audit": [
+          9.786694176366813,
+          432
+        ],
+        "brier_audit_pre_switch": [
+          9.786694176366813,
+          432
+        ],
+        "brier_destination": [
+          0.0,
+          36
+        ],
+        "brier_near": [
+          0.01234567901234569,
+          324
+        ],
+        "brier_near_pre_switch": [
+          0.01234567901234569,
+          324
+        ],
+        "brier_threat": [
+          0.01234567901234569,
+          27
+        ],
+        "coverage": [
+          226.0,
+          432
+        ],
+        "map_age": [
+          1561.0,
+          226
+        ],
+        "persistence_audit": [
+          10.751200000000063,
+          432
+        ],
+        "persistence_near": [
+          0.0,
+          324
+        ],
+        "persistence_threat": [
+          0.0,
+          27
+        ],
+        "prevalence_audit": [
+          10.0,
+          432
+        ],
+        "prevalence_destination": [
+          0.0,
+          36
+        ],
+        "prevalence_near": [
+          0.0,
+          324
+        ],
+        "reconstruction": [
+          223.0,
+          432
+        ],
+        "reconstruction_stale": [
+          169.0,
+          172
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          206
+        ],
+        "reconstruction_visible": [
+          54.0,
+          54
+        ]
+      },
+      "online_parameters_changed": false,
+      "regime": "stationary"
+    },
+    {
+      "case": 0,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          9.772800000000077,
+          432
+        ],
+        "base_near": [
+          0.1295999999999996,
+          324
+        ],
+        "brier_audit": [
+          9.784389992693347,
+          432
+        ],
+        "brier_audit_post_switch": [
+          1.0268624212647988,
+          72
+        ],
+        "brier_audit_pre_switch": [
+          8.757527571428579,
+          360
+        ],
+        "brier_destination": [
+          0.0,
+          36
+        ],
+        "brier_near": [
+          0.01234567901234569,
+          324
+        ],
+        "brier_near_post_switch": [
+          0.01234567901234569,
+          54
+        ],
+        "brier_near_pre_switch": [
+          0.0,
+          270
+        ],
+        "brier_threat": [
+          0.01234567901234569,
+          36
+        ],
+        "coverage": [
+          226.0,
+          432
+        ],
+        "map_age": [
+          1561.0,
+          226
+        ],
+        "persistence_audit": [
+          10.751200000000063,
+          432
+        ],
+        "persistence_near": [
+          0.0,
+          324
+        ],
+        "persistence_threat": [
+          0.0,
+          36
+        ],
+        "prevalence_audit": [
+          10.0,
+          432
+        ],
+        "prevalence_destination": [
+          0.0,
+          36
+        ],
+        "prevalence_near": [
+          0.0,
+          324
+        ],
+        "reconstruction": [
+          223.0,
+          432
+        ],
+        "reconstruction_stale": [
+          169.0,
+          172
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          206
+        ],
+        "reconstruction_visible": [
+          54.0,
+          54
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          9.772800000000077,
+          432
+        ],
+        "base_near": [
+          0.1295999999999996,
+          324
+        ],
+        "brier_audit": [
+          9.784389992693347,
+          432
+        ],
+        "brier_audit_post_switch": [
+          1.0268624212647988,
+          72
+        ],
+        "brier_audit_pre_switch": [
+          8.757527571428579,
+          360
+        ],
+        "brier_destination": [
+          0.0,
+          36
+        ],
+        "brier_near": [
+          0.01234567901234569,
+          324
+        ],
+        "brier_near_post_switch": [
+          0.01234567901234569,
+          54
+        ],
+        "brier_near_pre_switch": [
+          0.0,
+          270
+        ],
+        "brier_threat": [
+          0.01234567901234569,
+          36
+        ],
+        "coverage": [
+          226.0,
+          432
+        ],
+        "map_age": [
+          1561.0,
+          226
+        ],
+        "persistence_audit": [
+          10.751200000000063,
+          432
+        ],
+        "persistence_near": [
+          0.0,
+          324
+        ],
+        "persistence_threat": [
+          0.0,
+          36
+        ],
+        "prevalence_audit": [
+          10.0,
+          432
+        ],
+        "prevalence_destination": [
+          0.0,
+          36
+        ],
+        "prevalence_near": [
+          0.0,
+          324
+        ],
+        "reconstruction": [
+          223.0,
+          432
+        ],
+        "reconstruction_stale": [
+          169.0,
+          172
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          206
+        ],
+        "reconstruction_visible": [
+          54.0,
+          54
+        ]
+      },
+      "online_parameters_changed": false,
+      "regime": "switch"
+    },
+    {
+      "case": 0,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          11.702400000000052,
+          456
+        ],
+        "base_near": [
+          3.0167999999999973,
+          342
+        ],
+        "brier_audit": [
+          11.828627498362296,
+          456
+        ],
+        "brier_audit_pre_switch": [
+          11.828627498362296,
+          456
+        ],
+        "brier_destination": [
+          0.0,
+          38
+        ],
+        "brier_near": [
+          2.790123456790124,
+          342
+        ],
+        "brier_near_pre_switch": [
+          2.790123456790124,
+          342
+        ],
+        "brier_threat": [
+          2.790123456790124,
+          99
+        ],
+        "coverage": [
+          243.0,
+          456
+        ],
+        "map_age": [
+          1727.0,
+          243
+        ],
+        "persistence_audit": [
+          12.717200000000044,
+          456
+        ],
+        "persistence_near": [
+          7.0,
+          342
+        ],
+        "persistence_threat": [
+          7.0,
+          99
+        ],
+        "prevalence_audit": [
+          12.0,
+          456
+        ],
+        "prevalence_destination": [
+          0.0,
+          38
+        ],
+        "prevalence_near": [
+          3.0,
+          342
+        ],
+        "reconstruction": [
+          240.0,
+          456
+        ],
+        "reconstruction_stale": [
+          177.0,
+          180
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          213
+        ],
+        "reconstruction_visible": [
+          63.0,
+          63
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          11.702400000000052,
+          456
+        ],
+        "base_near": [
+          3.0167999999999973,
+          342
+        ],
+        "brier_audit": [
+          11.87532838404727,
+          456
+        ],
+        "brier_audit_pre_switch": [
+          11.87532838404727,
+          456
+        ],
+        "brier_destination": [
+          0.0,
+          38
+        ],
+        "brier_near": [
+          2.8064879527813513,
+          342
+        ],
+        "brier_near_pre_switch": [
+          2.8064879527813513,
+          342
+        ],
+        "brier_threat": [
+          2.8064879527813513,
+          99
+        ],
+        "coverage": [
+          243.0,
+          456
+        ],
+        "map_age": [
+          1727.0,
+          243
+        ],
+        "persistence_audit": [
+          12.717200000000044,
+          456
+        ],
+        "persistence_near": [
+          7.0,
+          342
+        ],
+        "persistence_threat": [
+          7.0,
+          99
+        ],
+        "prevalence_audit": [
+          12.0,
+          456
+        ],
+        "prevalence_destination": [
+          0.0,
+          38
+        ],
+        "prevalence_near": [
+          3.0,
+          342
+        ],
+        "reconstruction": [
+          240.0,
+          456
+        ],
+        "reconstruction_stale": [
+          177.0,
+          180
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          213
+        ],
+        "reconstruction_visible": [
+          63.0,
+          63
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "uniform"
+    },
+    {
+      "case": 1,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          10.814400000000044,
+          636
+        ],
+        "base_near": [
+          4.990799999999988,
+          477
+        ],
+        "brier_audit": [
+          10.81476786822876,
+          636
+        ],
+        "brier_audit_pre_switch": [
+          10.81476786822876,
+          636
+        ],
+        "brier_destination": [
+          0.01234567901234569,
+          53
+        ],
+        "brier_near": [
+          2.2592592592592595,
+          477
+        ],
+        "brier_near_pre_switch": [
+          2.2592592592592595,
+          477
+        ],
+        "brier_threat": [
+          2.2592592592592595,
+          135
+        ],
+        "coverage": [
+          396.0,
+          636
+        ],
+        "map_age": [
+          5990.0,
+          396
+        ],
+        "persistence_audit": [
+          10.823600000000038,
+          636
+        ],
+        "persistence_near": [
+          2.0,
+          477
+        ],
+        "persistence_threat": [
+          2.0,
+          135
+        ],
+        "prevalence_audit": [
+          11.0,
+          636
+        ],
+        "prevalence_destination": [
+          0.0,
+          53
+        ],
+        "prevalence_near": [
+          5.0,
+          477
+        ],
+        "reconstruction": [
+          392.0,
+          636
+        ],
+        "reconstruction_stale": [
+          315.0,
+          319
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          240
+        ],
+        "reconstruction_visible": [
+          77.0,
+          77
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          10.814400000000044,
+          636
+        ],
+        "base_near": [
+          4.990799999999988,
+          477
+        ],
+        "brier_audit": [
+          10.81476786822876,
+          636
+        ],
+        "brier_audit_pre_switch": [
+          10.81476786822876,
+          636
+        ],
+        "brier_destination": [
+          0.013061224489795928,
+          53
+        ],
+        "brier_near": [
+          2.23922577401824,
+          477
+        ],
+        "brier_near_pre_switch": [
+          2.23922577401824,
+          477
+        ],
+        "brier_threat": [
+          2.23922577401824,
+          135
+        ],
+        "coverage": [
+          396.0,
+          636
+        ],
+        "map_age": [
+          5990.0,
+          396
+        ],
+        "persistence_audit": [
+          10.823600000000038,
+          636
+        ],
+        "persistence_near": [
+          2.0,
+          477
+        ],
+        "persistence_threat": [
+          2.0,
+          135
+        ],
+        "prevalence_audit": [
+          11.0,
+          636
+        ],
+        "prevalence_destination": [
+          0.0,
+          53
+        ],
+        "prevalence_near": [
+          5.0,
+          477
+        ],
+        "reconstruction": [
+          392.0,
+          636
+        ],
+        "reconstruction_stale": [
+          315.0,
+          319
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          240
+        ],
+        "reconstruction_visible": [
+          77.0,
+          77
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "stationary"
+    },
+    {
+      "case": 1,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          13.69440000000013,
+          636
+        ],
+        "base_near": [
+          4.990799999999988,
+          477
+        ],
+        "brier_audit": [
+          13.687735317208286,
+          636
+        ],
+        "brier_audit_post_switch": [
+          7.743647918367366,
+          240
+        ],
+        "brier_audit_pre_switch": [
+          5.944087398841032,
+          396
+        ],
+        "brier_destination": [
+          0.01234567901234569,
+          53
+        ],
+        "brier_near": [
+          2.246913580246914,
+          477
+        ],
+        "brier_near_post_switch": [
+          0.0,
+          180
+        ],
+        "brier_near_pre_switch": [
+          2.246913580246914,
+          297
+        ],
+        "brier_threat": [
+          2.246913580246914,
+          126
+        ],
+        "coverage": [
+          396.0,
+          636
+        ],
+        "map_age": [
+          5990.0,
+          396
+        ],
+        "persistence_audit": [
+          13.70360000000011,
+          636
+        ],
+        "persistence_near": [
+          2.0,
+          477
+        ],
+        "persistence_threat": [
+          2.0,
+          126
+        ],
+        "prevalence_audit": [
+          14.0,
+          636
+        ],
+        "prevalence_destination": [
+          0.0,
+          53
+        ],
+        "prevalence_near": [
+          5.0,
+          477
+        ],
+        "reconstruction": [
+          392.0,
+          636
+        ],
+        "reconstruction_stale": [
+          315.0,
+          319
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          240
+        ],
+        "reconstruction_visible": [
+          77.0,
+          77
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          13.69440000000013,
+          636
+        ],
+        "base_near": [
+          4.990799999999988,
+          477
+        ],
+        "brier_audit": [
+          13.687735317208286,
+          636
+        ],
+        "brier_audit_post_switch": [
+          7.743647918367366,
+          240
+        ],
+        "brier_audit_pre_switch": [
+          5.944087398841032,
+          396
+        ],
+        "brier_destination": [
+          0.013061224489795928,
+          53
+        ],
+        "brier_near": [
+          2.229295001890889,
+          477
+        ],
+        "brier_near_post_switch": [
+          0.0,
+          180
+        ],
+        "brier_near_pre_switch": [
+          2.229295001890889,
+          297
+        ],
+        "brier_threat": [
+          2.229295001890889,
+          126
+        ],
+        "coverage": [
+          396.0,
+          636
+        ],
+        "map_age": [
+          5990.0,
+          396
+        ],
+        "persistence_audit": [
+          13.70360000000011,
+          636
+        ],
+        "persistence_near": [
+          2.0,
+          477
+        ],
+        "persistence_threat": [
+          2.0,
+          126
+        ],
+        "prevalence_audit": [
+          14.0,
+          636
+        ],
+        "prevalence_destination": [
+          0.0,
+          53
+        ],
+        "prevalence_near": [
+          5.0,
+          477
+        ],
+        "reconstruction": [
+          392.0,
+          636
+        ],
+        "reconstruction_stale": [
+          315.0,
+          319
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          240
+        ],
+        "reconstruction_visible": [
+          77.0,
+          77
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "switch"
+    },
+    {
+      "case": 1,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          8.899200000000025,
+          648
+        ],
+        "base_near": [
+          10.754400000000018,
+          486
+        ],
+        "brier_audit": [
+          7.219426035021401,
+          648
+        ],
+        "brier_audit_pre_switch": [
+          7.219426035021401,
+          648
+        ],
+        "brier_destination": [
+          0.7901234567901234,
+          54
+        ],
+        "brier_near": [
+          7.8498704465782705,
+          486
+        ],
+        "brier_near_pre_switch": [
+          7.8498704465782705,
+          486
+        ],
+        "brier_threat": [
+          7.8498704465782705,
+          315
+        ],
+        "coverage": [
+          399.0,
+          648
+        ],
+        "map_age": [
+          6721.0,
+          399
+        ],
+        "persistence_audit": [
+          7.0671999999999855,
+          648
+        ],
+        "persistence_near": [
+          11.0,
+          486
+        ],
+        "persistence_threat": [
+          11.0,
+          315
+        ],
+        "prevalence_audit": [
+          9.0,
+          648
+        ],
+        "prevalence_destination": [
+          1.0,
+          54
+        ],
+        "prevalence_near": [
+          11.0,
+          486
+        ],
+        "reconstruction": [
+          395.0,
+          648
+        ],
+        "reconstruction_stale": [
+          315.0,
+          319
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          249
+        ],
+        "reconstruction_visible": [
+          80.0,
+          80
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          8.899200000000025,
+          648
+        ],
+        "base_near": [
+          10.754400000000018,
+          486
+        ],
+        "brier_audit": [
+          7.202321422924277,
+          648
+        ],
+        "brier_audit_pre_switch": [
+          7.202321422924277,
+          648
+        ],
+        "brier_destination": [
+          0.8654284102065729,
+          54
+        ],
+        "brier_near": [
+          7.9588989192926585,
+          486
+        ],
+        "brier_near_pre_switch": [
+          7.9588989192926585,
+          486
+        ],
+        "brier_threat": [
+          7.9588989192926585,
+          315
+        ],
+        "coverage": [
+          399.0,
+          648
+        ],
+        "map_age": [
+          6721.0,
+          399
+        ],
+        "persistence_audit": [
+          7.0671999999999855,
+          648
+        ],
+        "persistence_near": [
+          11.0,
+          486
+        ],
+        "persistence_threat": [
+          11.0,
+          315
+        ],
+        "prevalence_audit": [
+          9.0,
+          648
+        ],
+        "prevalence_destination": [
+          1.0,
+          54
+        ],
+        "prevalence_near": [
+          11.0,
+          486
+        ],
+        "reconstruction": [
+          395.0,
+          648
+        ],
+        "reconstruction_stale": [
+          315.0,
+          319
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          249
+        ],
+        "reconstruction_visible": [
+          80.0,
+          80
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "uniform"
+    },
+    {
+      "case": 2,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          9.849600000000036,
+          624
+        ],
+        "base_near": [
+          1.1471999999999962,
+          468
+        ],
+        "brier_audit": [
+          9.78444146938773,
+          624
+        ],
+        "brier_audit_pre_switch": [
+          9.78444146938773,
+          624
+        ],
+        "brier_destination": [
+          0.0,
+          52
+        ],
+        "brier_near": [
+          0.03703703703703702,
+          468
+        ],
+        "brier_near_pre_switch": [
+          0.03703703703703702,
+          468
+        ],
+        "brier_threat": [
+          0.03703703703703702,
+          45
+        ],
+        "coverage": [
+          408.0,
+          624
+        ],
+        "map_age": [
+          3859.0,
+          408
+        ],
+        "persistence_audit": [
+          9.816800000000033,
+          624
+        ],
+        "persistence_near": [
+          0.0,
+          468
+        ],
+        "persistence_threat": [
+          0.0,
+          45
+        ],
+        "prevalence_audit": [
+          10.0,
+          624
+        ],
+        "prevalence_destination": [
+          0.0,
+          52
+        ],
+        "prevalence_near": [
+          1.0,
+          468
+        ],
+        "reconstruction": [
+          400.0,
+          624
+        ],
+        "reconstruction_stale": [
+          318.0,
+          326
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          216
+        ],
+        "reconstruction_visible": [
+          82.0,
+          82
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          9.849600000000036,
+          624
+        ],
+        "base_near": [
+          1.1471999999999962,
+          468
+        ],
+        "brier_audit": [
+          9.78444146938773,
+          624
+        ],
+        "brier_audit_pre_switch": [
+          9.78444146938773,
+          624
+        ],
+        "brier_destination": [
+          0.0,
+          52
+        ],
+        "brier_near": [
+          0.0283173069225569,
+          468
+        ],
+        "brier_near_pre_switch": [
+          0.0283173069225569,
+          468
+        ],
+        "brier_threat": [
+          0.0283173069225569,
+          45
+        ],
+        "coverage": [
+          408.0,
+          624
+        ],
+        "map_age": [
+          3859.0,
+          408
+        ],
+        "persistence_audit": [
+          9.816800000000033,
+          624
+        ],
+        "persistence_near": [
+          0.0,
+          468
+        ],
+        "persistence_threat": [
+          0.0,
+          45
+        ],
+        "prevalence_audit": [
+          10.0,
+          624
+        ],
+        "prevalence_destination": [
+          0.0,
+          52
+        ],
+        "prevalence_near": [
+          1.0,
+          468
+        ],
+        "reconstruction": [
+          400.0,
+          624
+        ],
+        "reconstruction_stale": [
+          318.0,
+          326
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          216
+        ],
+        "reconstruction_visible": [
+          82.0,
+          82
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "stationary"
+    },
+    {
+      "case": 2,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          8.88959999999998,
+          624
+        ],
+        "base_near": [
+          1.1471999999999962,
+          468
+        ],
+        "brier_audit": [
+          8.827298612244931,
+          624
+        ],
+        "brier_audit_post_switch": [
+          5.844420285714286,
+          324
+        ],
+        "brier_audit_pre_switch": [
+          2.982878326530615,
+          300
+        ],
+        "brier_destination": [
+          0.0,
+          52
+        ],
+        "brier_near": [
+          0.03703703703703702,
+          468
+        ],
+        "brier_near_post_switch": [
+          0.03703703703703702,
+          243
+        ],
+        "brier_near_pre_switch": [
+          0.0,
+          225
+        ],
+        "brier_threat": [
+          0.03703703703703702,
+          45
+        ],
+        "coverage": [
+          408.0,
+          624
+        ],
+        "map_age": [
+          3859.0,
+          408
+        ],
+        "persistence_audit": [
+          8.856799999999982,
+          624
+        ],
+        "persistence_near": [
+          0.0,
+          468
+        ],
+        "persistence_threat": [
+          0.0,
+          45
+        ],
+        "prevalence_audit": [
+          9.0,
+          624
+        ],
+        "prevalence_destination": [
+          0.0,
+          52
+        ],
+        "prevalence_near": [
+          1.0,
+          468
+        ],
+        "reconstruction": [
+          400.0,
+          624
+        ],
+        "reconstruction_stale": [
+          318.0,
+          326
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          216
+        ],
+        "reconstruction_visible": [
+          82.0,
+          82
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          8.88959999999998,
+          624
+        ],
+        "base_near": [
+          1.1471999999999962,
+          468
+        ],
+        "brier_audit": [
+          8.827298612244931,
+          624
+        ],
+        "brier_audit_post_switch": [
+          5.844420285714286,
+          324
+        ],
+        "brier_audit_pre_switch": [
+          2.982878326530615,
+          300
+        ],
+        "brier_destination": [
+          0.0,
+          52
+        ],
+        "brier_near": [
+          0.0283173069225569,
+          468
+        ],
+        "brier_near_post_switch": [
+          0.0283173069225569,
+          243
+        ],
+        "brier_near_pre_switch": [
+          0.0,
+          225
+        ],
+        "brier_threat": [
+          0.0283173069225569,
+          45
+        ],
+        "coverage": [
+          408.0,
+          624
+        ],
+        "map_age": [
+          3859.0,
+          408
+        ],
+        "persistence_audit": [
+          8.856799999999982,
+          624
+        ],
+        "persistence_near": [
+          0.0,
+          468
+        ],
+        "persistence_threat": [
+          0.0,
+          45
+        ],
+        "prevalence_audit": [
+          9.0,
+          624
+        ],
+        "prevalence_destination": [
+          0.0,
+          52
+        ],
+        "prevalence_near": [
+          1.0,
+          468
+        ],
+        "reconstruction": [
+          400.0,
+          624
+        ],
+        "reconstruction_stale": [
+          318.0,
+          326
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          216
+        ],
+        "reconstruction_visible": [
+          82.0,
+          82
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "switch"
+    },
+    {
+      "case": 2,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          29.29439999999972,
+          1236
+        ],
+        "base_near": [
+          17.650800000000014,
+          927
+        ],
+        "brier_audit": [
+          28.756797832703445,
+          1236
+        ],
+        "brier_audit_pre_switch": [
+          28.756797832703445,
+          1236
+        ],
+        "brier_destination": [
+          0.0,
+          103
+        ],
+        "brier_near": [
+          14.753086419753073,
+          927
+        ],
+        "brier_near_pre_switch": [
+          14.753086419753073,
+          927
+        ],
+        "brier_threat": [
+          14.753086419753073,
+          360
+        ],
+        "coverage": [
+          957.0,
+          1236
+        ],
+        "map_age": [
+          18846.0,
+          957
+        ],
+        "persistence_audit": [
+          30.31039999999973,
+          1236
+        ],
+        "persistence_near": [
+          22.0,
+          927
+        ],
+        "persistence_threat": [
+          22.0,
+          360
+        ],
+        "prevalence_audit": [
+          30.0,
+          1236
+        ],
+        "prevalence_destination": [
+          0.0,
+          103
+        ],
+        "prevalence_near": [
+          18.0,
+          927
+        ],
+        "reconstruction": [
+          939.0,
+          1236
+        ],
+        "reconstruction_stale": [
+          779.0,
+          797
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          279
+        ],
+        "reconstruction_visible": [
+          160.0,
+          160
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          29.29439999999972,
+          1236
+        ],
+        "base_near": [
+          17.650800000000014,
+          927
+        ],
+        "brier_audit": [
+          28.740071735783705,
+          1236
+        ],
+        "brier_audit_pre_switch": [
+          28.740071735783705,
+          1236
+        ],
+        "brier_destination": [
+          0.0,
+          103
+        ],
+        "brier_near": [
+          15.034007263843971,
+          927
+        ],
+        "brier_near_pre_switch": [
+          15.034007263843971,
+          927
+        ],
+        "brier_threat": [
+          15.034007263843971,
+          360
+        ],
+        "coverage": [
+          957.0,
+          1236
+        ],
+        "map_age": [
+          18846.0,
+          957
+        ],
+        "persistence_audit": [
+          30.31039999999973,
+          1236
+        ],
+        "persistence_near": [
+          22.0,
+          927
+        ],
+        "persistence_threat": [
+          22.0,
+          360
+        ],
+        "prevalence_audit": [
+          30.0,
+          1236
+        ],
+        "prevalence_destination": [
+          0.0,
+          103
+        ],
+        "prevalence_near": [
+          18.0,
+          927
+        ],
+        "reconstruction": [
+          939.0,
+          1236
+        ],
+        "reconstruction_stale": [
+          779.0,
+          797
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          279
+        ],
+        "reconstruction_visible": [
+          160.0,
+          160
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "uniform"
+    },
+    {
+      "case": 3,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          10.920000000000329,
+          900
+        ],
+        "base_near": [
+          12.750000000000076,
+          675
+        ],
+        "brier_audit": [
+          11.222284567646028,
+          900
+        ],
+        "brier_audit_pre_switch": [
+          11.222284567646028,
+          900
+        ],
+        "brier_destination": [
+          0.01234567901234569,
+          75
+        ],
+        "brier_near": [
+          9.318701417466846,
+          675
+        ],
+        "brier_near_pre_switch": [
+          9.318701417466846,
+          675
+        ],
+        "brier_threat": [
+          9.318701417466846,
+          297
+        ],
+        "coverage": [
+          559.0,
+          900
+        ],
+        "map_age": [
+          10234.0,
+          559
+        ],
+        "persistence_audit": [
+          11.875200000000302,
+          900
+        ],
+        "persistence_near": [
+          13.0,
+          675
+        ],
+        "persistence_threat": [
+          13.0,
+          297
+        ],
+        "prevalence_audit": [
+          11.0,
+          900
+        ],
+        "prevalence_destination": [
+          0.0,
+          75
+        ],
+        "prevalence_near": [
+          13.0,
+          675
+        ],
+        "reconstruction": [
+          554.0,
+          900
+        ],
+        "reconstruction_stale": [
+          442.0,
+          447
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          341
+        ],
+        "reconstruction_visible": [
+          112.0,
+          112
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          10.920000000000329,
+          900
+        ],
+        "base_near": [
+          12.750000000000076,
+          675
+        ],
+        "brier_audit": [
+          11.254577279490325,
+          900
+        ],
+        "brier_audit_pre_switch": [
+          11.254577279490325,
+          900
+        ],
+        "brier_destination": [
+          0.009999999999999995,
+          75
+        ],
+        "brier_near": [
+          9.41699970831935,
+          675
+        ],
+        "brier_near_pre_switch": [
+          9.41699970831935,
+          675
+        ],
+        "brier_threat": [
+          9.41699970831935,
+          297
+        ],
+        "coverage": [
+          559.0,
+          900
+        ],
+        "map_age": [
+          10234.0,
+          559
+        ],
+        "persistence_audit": [
+          11.875200000000302,
+          900
+        ],
+        "persistence_near": [
+          13.0,
+          675
+        ],
+        "persistence_threat": [
+          13.0,
+          297
+        ],
+        "prevalence_audit": [
+          11.0,
+          900
+        ],
+        "prevalence_destination": [
+          0.0,
+          75
+        ],
+        "prevalence_near": [
+          13.0,
+          675
+        ],
+        "reconstruction": [
+          554.0,
+          900
+        ],
+        "reconstruction_stale": [
+          442.0,
+          447
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          341
+        ],
+        "reconstruction_visible": [
+          112.0,
+          112
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "stationary"
+    },
+    {
+      "case": 3,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          12.792000000000193,
+          780
+        ],
+        "base_near": [
+          10.79400000000019,
+          585
+        ],
+        "brier_audit": [
+          12.847397027002353,
+          780
+        ],
+        "brier_audit_post_switch": [
+          4.9563157542653276,
+          324
+        ],
+        "brier_audit_pre_switch": [
+          7.89108127273718,
+          456
+        ],
+        "brier_destination": [
+          0.01234567901234569,
+          65
+        ],
+        "brier_near": [
+          8.087791495198902,
+          585
+        ],
+        "brier_near_post_switch": [
+          2.118122237463802,
+          243
+        ],
+        "brier_near_pre_switch": [
+          5.969669257735103,
+          342
+        ],
+        "brier_threat": [
+          8.087791495198902,
+          189
+        ],
+        "coverage": [
+          463.0,
+          780
+        ],
+        "map_age": [
+          7007.0,
+          463
+        ],
+        "persistence_audit": [
+          13.749600000000173,
+          780
+        ],
+        "persistence_near": [
+          12.0,
+          585
+        ],
+        "persistence_threat": [
+          12.0,
+          189
+        ],
+        "prevalence_audit": [
+          13.0,
+          780
+        ],
+        "prevalence_destination": [
+          0.0,
+          65
+        ],
+        "prevalence_near": [
+          11.0,
+          585
+        ],
+        "reconstruction": [
+          457.0,
+          780
+        ],
+        "reconstruction_stale": [
+          351.0,
+          357
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          317
+        ],
+        "reconstruction_visible": [
+          106.0,
+          106
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          12.792000000000193,
+          780
+        ],
+        "base_near": [
+          10.79400000000019,
+          585
+        ],
+        "brier_audit": [
+          12.936069961267805,
+          780
+        ],
+        "brier_audit_post_switch": [
+          5.048397030713379,
+          324
+        ],
+        "brier_audit_pre_switch": [
+          7.887672930554579,
+          456
+        ],
+        "brier_destination": [
+          0.009999999999999995,
+          65
+        ],
+        "brier_near": [
+          8.418536624741337,
+          585
+        ],
+        "brier_near_post_switch": [
+          2.1972512342030646,
+          243
+        ],
+        "brier_near_pre_switch": [
+          6.221285390538272,
+          342
+        ],
+        "brier_threat": [
+          8.418536624741337,
+          189
+        ],
+        "coverage": [
+          463.0,
+          780
+        ],
+        "map_age": [
+          7007.0,
+          463
+        ],
+        "persistence_audit": [
+          13.749600000000173,
+          780
+        ],
+        "persistence_near": [
+          12.0,
+          585
+        ],
+        "persistence_threat": [
+          12.0,
+          189
+        ],
+        "prevalence_audit": [
+          13.0,
+          780
+        ],
+        "prevalence_destination": [
+          0.0,
+          65
+        ],
+        "prevalence_near": [
+          11.0,
+          585
+        ],
+        "reconstruction": [
+          457.0,
+          780
+        ],
+        "reconstruction_stale": [
+          351.0,
+          357
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          317
+        ],
+        "reconstruction_visible": [
+          106.0,
+          106
+        ]
+      },
+      "online_parameters_changed": true,
+      "regime": "switch"
+    },
+    {
+      "case": 3,
+      "fixed_prediction_use_same_actions": true,
+      "fixed_prediction_use_same_map_localization": true,
+      "fixed_prediction_use_same_trajectory": true,
+      "frozen_parameters_constant": true,
+      "frozen_versus_frozen_fixed_same_trajectory": true,
+      "matched_frozen_stats": {
+        "base_audit": [
+          14.67360000000023,
+          684
+        ],
+        "base_near": [
+          2.125199999999988,
+          513
+        ],
+        "brier_audit": [
+          14.73386995866407,
+          684
+        ],
+        "brier_audit_pre_switch": [
+          14.73386995866407,
+          684
+        ],
+        "brier_destination": [
+          0.0,
+          57
+        ],
+        "brier_near": [
+          1.5942691662856276,
+          513
+        ],
+        "brier_near_pre_switch": [
+          1.5942691662856276,
+          513
+        ],
+        "brier_threat": [
+          1.5942691662856276,
+          63
+        ],
+        "coverage": [
+          417.0,
+          684
+        ],
+        "map_age": [
+          4701.0,
+          417
+        ],
+        "persistence_audit": [
+          15.638800000000229,
+          684
+        ],
+        "persistence_near": [
+          2.0,
+          513
+        ],
+        "persistence_threat": [
+          2.0,
+          63
+        ],
+        "prevalence_audit": [
+          15.0,
+          684
+        ],
+        "prevalence_destination": [
+          0.0,
+          57
+        ],
+        "prevalence_near": [
+          2.0,
+          513
+        ],
+        "reconstruction": [
+          408.0,
+          684
+        ],
+        "reconstruction_stale": [
+          321.0,
+          330
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          267
+        ],
+        "reconstruction_visible": [
+          87.0,
+          87
+        ]
+      },
+      "matched_online_stats": {
+        "base_audit": [
+          14.67360000000023,
+          684
+        ],
+        "base_near": [
+          2.125199999999988,
+          513
+        ],
+        "brier_audit": [
+          14.73386995866407,
+          684
+        ],
+        "brier_audit_pre_switch": [
+          14.73386995866407,
+          684
+        ],
+        "brier_destination": [
+          0.0,
+          57
+        ],
+        "brier_near": [
+          1.5942691662856276,
+          513
+        ],
+        "brier_near_pre_switch": [
+          1.5942691662856276,
+          513
+        ],
+        "brier_threat": [
+          1.5942691662856276,
+          63
+        ],
+        "coverage": [
+          417.0,
+          684
+        ],
+        "map_age": [
+          4701.0,
+          417
+        ],
+        "persistence_audit": [
+          15.638800000000229,
+          684
+        ],
+        "persistence_near": [
+          2.0,
+          513
+        ],
+        "persistence_threat": [
+          2.0,
+          63
+        ],
+        "prevalence_audit": [
+          15.0,
+          684
+        ],
+        "prevalence_destination": [
+          0.0,
+          57
+        ],
+        "prevalence_near": [
+          2.0,
+          513
+        ],
+        "reconstruction": [
+          408.0,
+          684
+        ],
+        "reconstruction_stale": [
+          321.0,
+          330
+        ],
+        "reconstruction_unseen": [
+          0.0,
+          267
+        ],
+        "reconstruction_visible": [
+          87.0,
+          87
+        ]
+      },
+      "online_parameters_changed": false,
+      "regime": "uniform"
+    }
+  ],
+  "matched_prediction_interpretation": "Identical experience only for pairs whose full trajectory and map/action checks pass; episode sums/counts retained",
+  "online_parameter_change_episodes": 9,
+  "session_seconds": 9.538018571998691,
+  "variants": {
+    "stationary": {
+      "frozen": {
+        "base_audit": 0.015955555555555744,
+        "base_near": 0.009782716049382746,
+        "brier_audit": 0.016052541698159464,
+        "brier_audit_pre_switch": 0.016052541698159464,
+        "brier_destination": 0.00011431184270690454,
+        "brier_near": 0.0059811437205635224,
+        "brier_near_pre_switch": 0.0059811437205635224,
+        "brier_threat": 0.023070125779316445,
+        "candidate_cpu_seconds": 0.2855752499999999,
+        "coverage": 0.6130401234567902,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 54.0,
+        "evaluator_cpu_seconds": 0.06973620799999997,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 13.62114537444934,
+        "model_score": 0.9891915930658348,
+        "persistence_audit": 0.016692438271605107,
+        "persistence_near": 0.007716049382716049,
+        "persistence_threat": 0.02976190476190476,
+        "prevalence_audit": 0.016203703703703703,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.00977366255144033,
+        "reconstruction": 0.6053240740740741,
+        "reconstruction_stale": 0.9841772151898734,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "stationary": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.9865000000000002
+          }
+        },
+        "seconds": 0.326651479001157,
+        "steps": 54.0,
+        "task": 0.9865000000000002,
+        "timeout": 0.0
+      },
+      "frozen_no_planning": {
+        "base_audit": 0.015955555555555744,
+        "base_near": 0.009782716049382746,
+        "brier_audit": 0.016052541698159464,
+        "brier_audit_pre_switch": 0.016052541698159464,
+        "brier_destination": 0.00011431184270690454,
+        "brier_near": 0.0059811437205635224,
+        "brier_near_pre_switch": 0.0059811437205635224,
+        "brier_threat": 0.023070125779316445,
+        "candidate_cpu_seconds": 0.28627400000000014,
+        "coverage": 0.6130401234567902,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 54.0,
+        "evaluator_cpu_seconds": 0.06917126675000002,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 13.62114537444934,
+        "model_score": 0.9891915930658348,
+        "persistence_audit": 0.016692438271605107,
+        "persistence_near": 0.007716049382716049,
+        "persistence_threat": 0.02976190476190476,
+        "prevalence_audit": 0.016203703703703703,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.00977366255144033,
+        "reconstruction": 0.6053240740740741,
+        "reconstruction_stale": 0.9841772151898734,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "stationary": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.9865000000000002
+          }
+        },
+        "seconds": 0.32785988199611893,
+        "steps": 54.0,
+        "task": 0.9865000000000002,
+        "timeout": 0.0
+      },
+      "no_planning": {
+        "base_audit": 0.015955555555555744,
+        "base_near": 0.009782716049382746,
+        "brier_audit": 0.016065000306124084,
+        "brier_audit_pre_switch": 0.016065000306124084,
+        "brier_destination": 0.00010676492819349965,
+        "brier_near": 0.006016917936354164,
+        "brier_near_pre_switch": 0.006016917936354164,
+        "brier_threat": 0.023208112040223203,
+        "candidate_cpu_seconds": 0.28748825000000006,
+        "coverage": 0.6130401234567902,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 54.0,
+        "evaluator_cpu_seconds": 0.06593580425000004,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 13.62114537444934,
+        "model_score": 0.989176483432622,
+        "persistence_audit": 0.016692438271605107,
+        "persistence_near": 0.007716049382716049,
+        "persistence_threat": 0.02976190476190476,
+        "prevalence_audit": 0.016203703703703703,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.00977366255144033,
+        "reconstruction": 0.6053240740740741,
+        "reconstruction_stale": 0.9841772151898734,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "stationary": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.9865000000000002
+          }
+        },
+        "seconds": 0.3257102472416591,
+        "steps": 54.0,
+        "task": 0.9865000000000002,
+        "timeout": 0.0
+      },
+      "predictive": {
+        "base_audit": 0.015955555555555744,
+        "base_near": 0.009782716049382746,
+        "brier_audit": 0.01606723562887885,
+        "brier_audit_pre_switch": 0.01606723562887885,
+        "brier_destination": 0.00010676492819349965,
+        "brier_near": 0.006151353849906626,
+        "brier_near_pre_switch": 0.006151353849906626,
+        "brier_threat": 0.023726650563925557,
+        "candidate_cpu_seconds": 0.2691085000000001,
+        "coverage": 0.6145833333333334,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 54.0,
+        "evaluator_cpu_seconds": 0.06575588975000007,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 13.601381042059009,
+        "model_score": 0.9891272817875514,
+        "persistence_audit": 0.016691666666666834,
+        "persistence_near": 0.00823045267489712,
+        "persistence_threat": 0.031746031746031744,
+        "prevalence_audit": 0.016203703703703703,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.00977366255144033,
+        "reconstruction": 0.6068672839506173,
+        "reconstruction_stale": 0.9841646872525732,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "stationary": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.9865000000000002
+          }
+        },
+        "seconds": 0.30852378948475234,
+        "steps": 54.0,
+        "task": 0.9865000000000002,
+        "timeout": 0.0
+      }
+    },
+    "switch": {
+      "frozen": {
+        "base_audit": 0.018264077669903067,
+        "base_near": 0.00920258899676385,
+        "brier_audit": 0.018263277082989044,
+        "brier_audit_post_switch": 0.02038671497876227,
+        "brier_audit_pre_switch": 0.016915062545990345,
+        "brier_destination": 0.00011986096128490962,
+        "brier_near": 0.005600910351399783,
+        "brier_near_post_switch": 0.0030104235465460904,
+        "brier_near_pre_switch": 0.00724566387829102,
+        "brier_threat": 0.026222443917917164,
+        "candidate_cpu_seconds": 0.2491415000000001,
+        "coverage": 0.6039644012944984,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 51.5,
+        "evaluator_cpu_seconds": 0.06398980125000003,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 12.33556597454789,
+        "model_score": 0.988319872599876,
+        "persistence_audit": 0.0190377022653723,
+        "persistence_near": 0.007551240560949299,
+        "persistence_threat": 0.03535353535353535,
+        "prevalence_audit": 0.0186084142394822,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.009169363538295576,
+        "reconstruction": 0.5954692556634305,
+        "reconstruction_stale": 0.9821124361158433,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "switch": {
+            "encountered_switch": 4,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 80,
+            "post_switch_visible_enemy_steps": 17,
+            "task": 0.9871250000000001
+          }
+        },
+        "seconds": 0.28858695074450225,
+        "steps": 51.5,
+        "task": 0.9871250000000001,
+        "timeout": 0.0
+      },
+      "frozen_no_planning": {
+        "base_audit": 0.018264077669903067,
+        "base_near": 0.00920258899676385,
+        "brier_audit": 0.018263277082989044,
+        "brier_audit_post_switch": 0.02038671497876227,
+        "brier_audit_pre_switch": 0.016915062545990345,
+        "brier_destination": 0.00011986096128490962,
+        "brier_near": 0.005600910351399783,
+        "brier_near_post_switch": 0.0030104235465460904,
+        "brier_near_pre_switch": 0.00724566387829102,
+        "brier_threat": 0.026222443917917164,
+        "candidate_cpu_seconds": 0.2631415000000002,
+        "coverage": 0.6039644012944984,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 51.5,
+        "evaluator_cpu_seconds": 0.06216206299999999,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 12.33556597454789,
+        "model_score": 0.988319872599876,
+        "persistence_audit": 0.0190377022653723,
+        "persistence_near": 0.007551240560949299,
+        "persistence_threat": 0.03535353535353535,
+        "prevalence_audit": 0.0186084142394822,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.009169363538295576,
+        "reconstruction": 0.5954692556634305,
+        "reconstruction_stale": 0.9821124361158433,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "switch": {
+            "encountered_switch": 4,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 80,
+            "post_switch_visible_enemy_steps": 17,
+            "task": 0.9871250000000001
+          }
+        },
+        "seconds": 0.30035309475351823,
+        "steps": 51.5,
+        "task": 0.9871250000000001,
+        "timeout": 0.0
+      },
+      "no_planning": {
+        "base_audit": 0.018264077669903067,
+        "base_near": 0.00920258899676385,
+        "brier_audit": 0.018299148011089957,
+        "brier_audit_post_switch": 0.020482632975062323,
+        "brier_audit_pre_switch": 0.016912808351425133,
+        "brier_destination": 0.00011194769169803846,
+        "brier_near": 0.005765099575278926,
+        "brier_near_post_switch": 0.0031082141946360657,
+        "brier_near_pre_switch": 0.007452010928068042,
+        "brier_threat": 0.026991148011533156,
+        "candidate_cpu_seconds": 0.26844324999999997,
+        "coverage": 0.6039644012944984,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 51.5,
+        "evaluator_cpu_seconds": 0.062425635749999986,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 12.33556597454789,
+        "model_score": 0.9882419361731319,
+        "persistence_audit": 0.0190377022653723,
+        "persistence_near": 0.007551240560949299,
+        "persistence_threat": 0.03535353535353535,
+        "prevalence_audit": 0.0186084142394822,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.009169363538295576,
+        "reconstruction": 0.5954692556634305,
+        "reconstruction_stale": 0.9821124361158433,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "switch": {
+            "encountered_switch": 4,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 80,
+            "post_switch_visible_enemy_steps": 17,
+            "task": 0.9871250000000001
+          }
+        },
+        "seconds": 0.3047124577642535,
+        "steps": 51.5,
+        "task": 0.9871250000000001,
+        "timeout": 0.0
+      },
+      "predictive": {
+        "base_audit": 0.018177777777777935,
+        "base_near": 0.010190660225442925,
+        "brier_audit": 0.018119294484052306,
+        "brier_audit_post_switch": 0.019978145817687684,
+        "brier_audit_pre_switch": 0.016924318626715455,
+        "brier_destination": 0.00014519586487719775,
+        "brier_near": 0.006527746957006658,
+        "brier_near_post_switch": 0.00474188658388039,
+        "brier_near_pre_switch": 0.0076758000540164085,
+        "brier_threat": 0.02937486130652996,
+        "candidate_cpu_seconds": 0.2529137499999998,
+        "coverage": 0.607085346215781,
+        "death": 0.0,
+        "door": 1.0,
+        "episodes": 4,
+        "escape": 1.0,
+        "escape_steps": 51.75,
+        "evaluator_cpu_seconds": 0.06274513875000004,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 12.431034482758621,
+        "model_score": 0.9880265437308371,
+        "persistence_audit": 0.01856006441223846,
+        "persistence_near": 0.00912506709608159,
+        "persistence_threat": 0.04106280193236715,
+        "prevalence_audit": 0.018518518518518517,
+        "prevalence_destination": 0.0,
+        "prevalence_near": 0.010198604401502952,
+        "reconstruction": 0.5986312399355878,
+        "reconstruction_stale": 0.9822335025380711,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "switch": {
+            "encountered_switch": 4,
+            "episodes": 4,
+            "escape": 1.0,
+            "post_switch_steps": 81,
+            "post_switch_visible_enemy_steps": 18,
+            "task": 0.9870625000000002
+          }
+        },
+        "seconds": 0.2907907007538597,
+        "steps": 51.75,
+        "task": 0.9870625000000002,
+        "timeout": 0.0
+      }
+    },
+    "uniform": {
+      "frozen": {
+        "base_audit": 0.02135238095238096,
+        "base_near": 0.014791534391534399,
+        "brier_audit": 0.020680794088872755,
+        "brier_audit_pre_switch": 0.020680794088872755,
+        "brier_destination": 0.0031354105428179502,
+        "brier_near": 0.011899184078221823,
+        "brier_near_pre_switch": 0.011899184078221823,
+        "brier_threat": 0.032242950405504296,
+        "candidate_cpu_seconds": 0.34763399999999994,
+        "coverage": 0.6666666666666666,
+        "death": 0.25,
+        "door": 0.75,
+        "episodes": 4,
+        "escape": 0.75,
+        "escape_steps": 66.0,
+        "evaluator_cpu_seconds": 0.08329282925,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 15.870535714285714,
+        "model_score": 0.9843474141081021,
+        "persistence_audit": 0.021737301587301586,
+        "persistence_near": 0.018518518518518517,
+        "persistence_threat": 0.05017921146953405,
+        "prevalence_audit": 0.021825396825396824,
+        "prevalence_destination": 0.003968253968253968,
+        "prevalence_near": 0.014991181657848324,
+        "reconstruction": 0.6554232804232805,
+        "reconstruction_stale": 0.9790897908979089,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "uniform": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 0.75,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.787625
+          }
+        },
+        "seconds": 0.3977752142454847,
+        "steps": 63.0,
+        "task": 0.787625,
+        "timeout": 0.0
+      },
+      "frozen_no_planning": {
+        "base_audit": 0.02135238095238096,
+        "base_near": 0.014791534391534399,
+        "brier_audit": 0.020680794088872755,
+        "brier_audit_pre_switch": 0.020680794088872755,
+        "brier_destination": 0.0031354105428179502,
+        "brier_near": 0.011899184078221823,
+        "brier_near_pre_switch": 0.011899184078221823,
+        "brier_threat": 0.032242950405504296,
+        "candidate_cpu_seconds": 0.3631392499999999,
+        "coverage": 0.6666666666666666,
+        "death": 0.25,
+        "door": 0.75,
+        "episodes": 4,
+        "escape": 0.75,
+        "escape_steps": 66.0,
+        "evaluator_cpu_seconds": 0.08599677599999997,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 15.870535714285714,
+        "model_score": 0.9843474141081021,
+        "persistence_audit": 0.021737301587301586,
+        "persistence_near": 0.018518518518518517,
+        "persistence_threat": 0.05017921146953405,
+        "prevalence_audit": 0.021825396825396824,
+        "prevalence_destination": 0.003968253968253968,
+        "prevalence_near": 0.014991181657848324,
+        "reconstruction": 0.6554232804232805,
+        "reconstruction_stale": 0.9790897908979089,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "uniform": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 0.75,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.787625
+          }
+        },
+        "seconds": 0.4135968807458994,
+        "steps": 63.0,
+        "task": 0.787625,
+        "timeout": 0.0
+      },
+      "no_planning": {
+        "base_audit": 0.02135238095238096,
+        "base_near": 0.014791534391534399,
+        "brier_audit": 0.0206850500996757,
+        "brier_audit_pre_switch": 0.0206850500996757,
+        "brier_destination": 0.003434239723041956,
+        "brier_near": 0.012078334789331398,
+        "brier_near_pre_switch": 0.012078334789331398,
+        "brier_threat": 0.03272839104205927,
+        "candidate_cpu_seconds": 0.37767025,
+        "coverage": 0.6666666666666666,
+        "death": 0.25,
+        "door": 0.75,
+        "episodes": 4,
+        "escape": 0.75,
+        "escape_steps": 66.0,
+        "evaluator_cpu_seconds": 0.08611815225000001,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 15.870535714285714,
+        "model_score": 0.9842676995353195,
+        "persistence_audit": 0.021737301587301586,
+        "persistence_near": 0.018518518518518517,
+        "persistence_threat": 0.05017921146953405,
+        "prevalence_audit": 0.021825396825396824,
+        "prevalence_destination": 0.003968253968253968,
+        "prevalence_near": 0.014991181657848324,
+        "reconstruction": 0.6554232804232805,
+        "reconstruction_stale": 0.9790897908979089,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "uniform": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 0.75,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.787625
+          }
+        },
+        "seconds": 0.4253424402413657,
+        "steps": 63.0,
+        "task": 0.787625,
+        "timeout": 0.0
+      },
+      "predictive": {
+        "base_audit": 0.020962248995983954,
+        "base_near": 0.01196626506024103,
+        "brier_audit": 0.020308240332831,
+        "brier_audit_pre_switch": 0.020308240332831,
+        "brier_destination": 0.0032907673542647235,
+        "brier_near": 0.009541205237100713,
+        "brier_near_pre_switch": 0.009541205237100713,
+        "brier_threat": 0.027307587402736522,
+        "candidate_cpu_seconds": 0.37515025,
+        "coverage": 0.6629852744310576,
+        "death": 0.25,
+        "door": 0.75,
+        "episodes": 4,
+        "escape": 0.75,
+        "escape_steps": 65.0,
+        "evaluator_cpu_seconds": 0.0828743195,
+        "invalid": 0,
+        "keys": 2.0,
+        "map_age": 15.340232205956587,
+        "model_score": 0.9851415750778103,
+        "persistence_audit": 0.021365327978580997,
+        "persistence_near": 0.015171798304328426,
+        "persistence_threat": 0.04342273307790549,
+        "prevalence_audit": 0.0214190093708166,
+        "prevalence_destination": 0.004016064257028112,
+        "prevalence_near": 0.012048192771084338,
+        "reconstruction": 0.6522757697456493,
+        "reconstruction_stale": 0.9798994974874372,
+        "reconstruction_unseen": 0.0,
+        "reconstruction_visible": 1.0,
+        "regimes": {
+          "uniform": {
+            "encountered_switch": 0,
+            "episodes": 4,
+            "escape": 0.75,
+            "post_switch_steps": 0,
+            "post_switch_visible_enemy_steps": 0,
+            "task": 0.7878125
+          }
+        },
+        "seconds": 0.42194835499685723,
+        "steps": 62.25,
+        "task": 0.7878125,
+        "timeout": 0.0
+      }
+    }
+  }
+}

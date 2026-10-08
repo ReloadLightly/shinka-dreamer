@@ -80,6 +80,20 @@ def search_report(campaign, out, target):
     proposals.mkdir(exist_ok=True)
     for source in campaign.glob('gen_*/main.py'):
         shutil.copy2(source, proposals/(source.parent.name+'.py'))
+    attempt_index=[]
+    for directory in sorted(campaign.glob('gen_*/attempts/**/patch_*')):
+        if not directory.is_dir(): continue
+        relative=directory.relative_to(campaign)
+        entry={'path':str(relative),'files':{}}
+        for name in ('llm_response.txt','patch.txt','metadata.json'):
+            source=directory/name
+            if not source.exists(): continue
+            destination=out/'attempts'/relative/name
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(source,destination)
+            entry['files'][name]=hashlib.sha256(source.read_bytes()).hexdigest()
+        attempt_index.append(entry)
+    write_json(out/'attempts.json',attempt_index)
     write_json(out/'lineage.json',lineage)
     write_json(out/'generation-metrics.json',metrics)
     with gzip.GzipFile(filename=str(out/'development-episodes.jsonl.gz'),mode='wb',mtime=0) as zipped:
@@ -87,7 +101,7 @@ def search_report(campaign, out, target):
             zipped.write((json.dumps(row,sort_keys=True,separators=(',',':'))+'\n').encode())
     fields = ('generation','correct','combined_score','episode_count','escape','task','model_score','brier_near','brier_audit','invalid','seconds','candidate_cpu_seconds')
     with (out/'search.csv').open('w') as handle:
-        writer = csv.DictWriter(handle,fieldnames=fields,extrasaction='ignore')
+        writer = csv.DictWriter(handle,fieldnames=fields,extrasaction='ignore',lineterminator='\n')
         writer.writeheader(); writer.writerows(metrics)
     summary = {'target_slots':target,'persisted_slots':len(unique),
                'complete':sorted(unique)==list(range(target)), 'seed_slots':int(0 in unique),
@@ -111,10 +125,13 @@ def search_report(campaign, out, target):
     axes[0,0].scatter(xs,scores,color=COBALT,s=25,label='Valid candidate')
     axes[0,0].step(xs,np.maximum.accumulate(scores),where='post',color=ORANGE,label='Best so far')
     axes[0,0].set(title='A  All native slots',ylabel='Absolute task fitness',xlabel='Slot (seed = 0)')
-    for m in metrics:
-        if not m['correct']: axes[0,0].scatter(m['generation'],0,marker='x',c=MAGENTA,s=45)
+    failed=[m for m in metrics if not m['correct']]
+    if failed:
+        axes[0,0].scatter([m['generation'] for m in failed],
+                          [m.get('combined_score') or 0 for m in failed],
+                          marker='x',c=MAGENTA,s=45,label='Failed slot (recorded score)')
     axes[0,0].legend(fontsize=9)
-    axes[0,1].scatter([m.get('task',0) for m in valid],[m.get('brier_near',np.nan) for m in valid],c=xs,cmap='plasma',s=27)
+    axes[0,1].scatter([m.get('task',0) for m in valid],[m.get('brier_near',np.nan) for m in valid],color=COBALT,s=27)
     axes[0,1].set(title='B  Task and prediction',xlabel='Mean task score',ylabel='On-policy near Brier loss')
     by_id={r['id']:r for r in lineage}
     for r in lineage:
@@ -125,7 +142,9 @@ def search_report(campaign, out, target):
     axes[1,0].set(title='C  Recorded parent ancestry',xlabel='Slot',ylabel='Recorded island',yticks=range(4))
     axes[1,1].scatter(xs,[m.get('candidate_cpu_seconds',0) for m in valid],color=ORANGE,s=27)
     axes[1,1].set(title='D  Computation by candidate',xlabel='Slot',ylabel='Mean candidate CPU seconds / episode')
-    fig.suptitle(f"Unknown dynamics · {len(unique)}/{target} slots · 72 development episodes each",fontsize=16,fontweight='bold')
+    from matplotlib.ticker import MaxNLocator
+    for ax in (axes[0,0],axes[1,0],axes[1,1]):ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    fig.suptitle(f"Unknown dynamics · {len(unique)}/{target} slots · 72-episode development pool",fontsize=16,fontweight='bold')
     save_figure(fig,out/'figures/search')
 
 

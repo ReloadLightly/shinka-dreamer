@@ -1,0 +1,34 @@
+{
+  "forecast": {
+    "action_conditioning": "independent of chosen move; assumes current interaction=True can open adjacent door; all returned actions interact",
+    "coordinates": "relative to episode origin, from cumulative observed displacement",
+    "hidden_state": "source mass for each visible anonymous occupied cell; heuristic unseen enemy background; no persistent enemy identities or hidden occupancy trajectories",
+    "horizon": 1,
+    "target": "at least one enemy at a grid coordinate after one enemy tick"
+  },
+  "generation": 1,
+  "interventions": {
+    "frozen": "freeze expected counts and their decay at initial zero counts, hence uniform attempted law",
+    "frozen_no_planning": "frozen law and uniform-law planning",
+    "no_planning": "continue prediction learning but use uniform-law occupancy forecasts in the identical planner; not prediction-free planning",
+    "predictive": "learned attempted law used for occupancy forecasts/planning"
+  },
+  "limitations": [
+    "Only this exact source is approved for risk reconstruction; reassess selected source after search.",
+    "Counts decay can change law without new informative observations; distinguish updates from parameter change.",
+    "Anonymous overlapping enemies and unseen terrain are approximated.",
+    "No prediction-use intervention removes all prediction: it replaces adaptive law with uniform-law prediction."
+  ],
+  "parameter_key": "attempt_probabilities",
+  "planner": {
+    "continuation": "Two-tick unconditional occupancy plus first-tick occupancy for entry, combined as independent hazards; not conditioned on survival and not a calibrated total collision probability. Static path potential is a heuristic.",
+    "immediate": "In predictive mode risk is the same horizon1 dictionary exported before environment transition. Uniform-law intervention recomputes this dictionary with law=1/9. Current visible occupied destinations excluded.",
+    "memory": "Target hysteresis and visit counts remain; fixed-law paired actions should be identical despite predictive learning."
+  },
+  "predictive_adaptation": "Anonymous feasible assignment marginalization yields expected attempted-direction counts, with .965 decay and count cap45, plus one pseudocount per direction. Parameter drift includes forgetting when enemies are not observed; updates counter measures informative sources.",
+  "program_sha256": "ffd4065f8468273cc9df39176294606b21e9f76e6afcfd08d5282dc166a33286",
+  "risk_adapter": "gen1_attempt_law",
+  "source": "results/campaign-v3/gen_1/main.py",
+  "state_separation": "Map, observation-based localization, last-seen steps, visits, observed occupancy and previous-frame buffer always update. These do not use expected counts. Counts update exclusively in _learn, suppressed by learn=False.",
+  "status": "early interface smoke, not selected-program evidence"
+}

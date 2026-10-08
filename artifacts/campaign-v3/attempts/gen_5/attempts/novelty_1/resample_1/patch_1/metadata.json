@@ -1,0 +1,15 @@
+{
+  "generation": 5,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": false,
+  "num_applied": 0,
+  "patch_name": "censored_motion_learning",
+  "patch_description": "Learn the shared attempted-movement law from unambiguous anonymous transitions, assigning blocked stays probabilistically to all compatible attempted directions. Forget older evidence gradually to adapt after switches. Forecast occupancy by propagating each visible enemy through terrain and combining independent arrival probabilities. This replaces coarse proximity averages with directional, obstacle-aware risk while retaining separate learning and planning interventions.\nUse equal costs for cardinal and diagonal actions, require cardinal approach to locked doors, and make waiting more conservative near predicted threats. These changes aim to improve survival and escape efficiency; their benefit requires evaluation.",
+  "error_msg": "SEARCH text not found in editable regions\n\nLooking for 13-line block starting with: 'def _legal(m, p, d):'\n\nFull search pattern:\n```\ndef _legal(m, p, d):\n    return (not _blocked(m, _add(p, d)) and not\n            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))\ndef _feature(terrain, enemies, p):\n    # Anonymous occupancy transitions: no matching or hidden enemy identities.\n    if terrain.get(p, 1) in (-1, 1, 3):\n        return \"blocked\"\n    if p in enemies:\n        openings = sum(terrain.get(_add(p, d), 1) not in (-1, 1, 3)\n                       for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n        return \"occupied_tight\" if openings <= 2 else \"occupied_open\"\n    neighbors = sum(max(abs(e[0]-p[0]), abs(e[1]-p[1])) == 1 for e in enemies)\n    return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nFound similar code block at line 16 (\u2713 editable):\n\nDifferences between search pattern and actual code:\n```diff\n-  def _legal(m, p, d):\n+  \n+  \n-      return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nEditable regions where you can make changes:\n  Region 1 (lines 2-142):\n    import heapq\n    import math\n    \n    ... (133 more lines)\n                \"terrain\": [[x, y, c, m[\"seen\"][x, y]] for (x, y), c in m[\"map\"].items()],\n                \"position\": list(m[\"pos\"]),\n                \"learning\": {\"updates\": m[\"updates\"], \"rates\": {k: a/b for k, (a, b) in m[\"rates\"].items()}}}\n\nQuick fixes:\n\u2022 Check indentation - search text must match exactly including spaces/tabs\n\u2022 Look for typos in the search text\n\u2022 Try searching for just the first line instead of the full block",
+  "timestamp": "2026-10-08T18:45:55.259332",
+  "llm_cost": 0.291408,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_5/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

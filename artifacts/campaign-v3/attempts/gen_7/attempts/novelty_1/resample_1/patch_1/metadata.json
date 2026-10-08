@@ -1,0 +1,15 @@
+{
+  "generation": 7,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "adaptive_law_progress",
+  "patch_description": "The current agent uses 113 fixed movement hypotheses, a five-step planning horizon, and a low delay cost; its lower death rate comes with substantially more timeouts. This proposal replaces the hypothesis catalog with continuous slow/fast categorical learners, using anonymous transition likelihoods and censored blocked attempts. Forgetting factors are .992 and .88, with evidence caps of 80 and 16.\nControl uses two-step survival calculations conditioned on surviving the first move, risk-aware routes, and a stagnation-sensitive risk penalty. This configuration aims to preserve enemy avoidance while reducing repeated waiting and improving escape efficiency. Mapping, predictive updates, and prediction use remain separately controllable. Performance improvements require evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:56:38.110279",
+  "llm_cost": 0.513338,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_7/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

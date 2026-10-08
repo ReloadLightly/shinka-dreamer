@@ -1,0 +1,15 @@
+{
+  "generation": 3,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "anonymous_motion_lookahead",
+  "patch_description": "Learns attempted movement laws from anonymous occupancy transitions, marginalizing blocked moves and ambiguous observations. A mixture of uniform, persistent, and rapidly adapting models handles stationary and changing dynamics. Planning compares movement, waiting, and retreat over four steps, accounting for collisions both before and after enemy movement. Mapping and predictive interventions remain separate. These improvements are proposed without claiming new evaluation results.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:31:16.035102",
+  "llm_cost": 0.743078,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_3/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

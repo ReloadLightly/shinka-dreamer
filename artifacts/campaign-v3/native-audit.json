@@ -1,28 +1,1534 @@
 {
-  "updated_utc": "2026-10-08T16:10:11.315194+00:00",
+  "updated_utc": "2026-10-08T17:03:23.756053+00:00",
   "campaign_sha256": "cb147fc6227f5d91b8d33ca525404113c2ee384c868191ab72e374686bf8b0a0",
+  "objective_name_note": "The mutation prompt calls the unchanged formula absolute-task-v3; the canonical evaluator identity is absolute-task-v1 within namazu-unknown-dynamics-v3. This is a naming alias, not an objective change.",
+  "normal_checkpoint_requests": [
+    {
+      "authorized_total_slots": 50,
+      "invocation_stop_after_pending_slots": 8,
+      "reason": "SIGUSR1 requested a normal native checkpoint; resume retains total budget"
+    }
+  ],
+  "transport_compatibility_amendment": {
+    "type": "transport compatibility bug fix, separate from predictive-learning extension",
+    "campaign_sha256": "cb147fc6227f5d91b8d33ca525404113c2ee384c868191ab72e374686bf8b0a0",
+    "preceding_prompt_amendment_sha256": "1c105d67e732c5c2267cfc17554ddc9c6cea964aa4525cc682a973e0d6bea59f",
+    "reason": "Pinned Headless _parse_stdout removes every blank line, corrupting exact-match SEARCH blocks and potentially multiline strings.",
+    "old_behavior": "Filter all blank lines before parsing usage and joining assistant content.",
+    "new_behavior": "Remove only trailing blank lines after usage; retain every interior assistant line.",
+    "upstream_parser_sha256": "b8c28f9792b611ec61ad4b256faed7044d505365315bdeae861d42d517dec37e",
+    "upstream_installed_files_unchanged": true,
+    "runtime_hook": "Only shinka.llm.providers.headless._parse_stdout is rebound in memory.",
+    "added_source_sha256": {
+      "scripts/resume_v3_transport.py": "c064828f99bb3c9ce3cef5c24752b0b5d8381ab57ce07f6c229f22bd1e9752c9",
+      "dreamer/headless_transport.py": "45bb98f19d4099c37cc401c01a9e38dfe13a27f1b126b2eba4af6d9a1627886c",
+      "tests/test_headless_transport.py": "4dc9700431fa77ef0bd89a1735a8a5f9fa1dcc5b95327017a58bed0695c8b235"
+    },
+    "unchanged": [
+      "environment",
+      "evaluator",
+      "objective",
+      "development_pool",
+      "models",
+      "effort",
+      "operators",
+      "islands",
+      "sampling",
+      "feedback",
+      "meta interval",
+      "total slot budget"
+    ],
+    "pre_fix_attempts": [
+      {
+        "generation": 1,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": true,
+        "metadata_sha256": "02292cf496ac56490885381a8bd6cf6f2472537ecb1b3aaf746f675f701e130c",
+        "error_msg": null
+      },
+      {
+        "generation": 2,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": true,
+        "metadata_sha256": "461ea2162b9f1911c089f801cea9531c41bcab8b95c3d4cacffdd7dbedcdd5e4",
+        "error_msg": null
+      },
+      {
+        "generation": 3,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": true,
+        "metadata_sha256": "3832f8b5111ede93c2535a984cf0fc7bda1594bd22600eacd017e6e3cd96b550",
+        "error_msg": null
+      },
+      {
+        "generation": 4,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": true,
+        "metadata_sha256": "109008385fa10096734710b99356c182327636f72554dd62e4604727ddd48718",
+        "error_msg": null
+      },
+      {
+        "generation": 5,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": false,
+        "metadata_sha256": "1558c4c2fb99bd2a164c7d998d37fe4f68a8fe0dc9b0e8cb5280e4afe5ca560f",
+        "error_msg": "SEARCH text not found in editable regions\n\nLooking for 13-line block starting with: 'def _legal(m, p, d):'\n\nFull search pattern:\n```\ndef _legal(m, p, d):\n    return (not _blocked(m, _add(p, d)) and not\n            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))\ndef _feature(terrain, enemies, p):\n    # Anonymous occupancy transitions: no matching or hidden enemy identities.\n    if terrain.get(p, 1) in (-1, 1, 3):\n        return \"blocked\"\n    if p in enemies:\n        openings = sum(terrain.get(_add(p, d), 1) not in (-1, 1, 3)\n                       for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n        return \"occupied_tight\" if openings <= 2 else \"occupied_open\"\n    neighbors = sum(max(abs(e[0]-p[0]), abs(e[1]-p[1])) == 1 for e in enemies)\n    return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nFound similar code block at line 16 (\u2713 editable):\n\nDifferences between search pattern and actual code:\n```diff\n-  def _legal(m, p, d):\n+  \n+  \n-      return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nEditable regions where you can make changes:\n  Region 1 (lines 2-142):\n    import heapq\n    import math\n    \n    ... (133 more lines)\n                \"terrain\": [[x, y, c, m[\"seen\"][x, y]] for (x, y), c in m[\"map\"].items()],\n                \"position\": list(m[\"pos\"]),\n                \"learning\": {\"updates\": m[\"updates\"], \"rates\": {k: a/b for k, (a, b) in m[\"rates\"].items()}}}\n\nQuick fixes:\n\u2022 Check indentation - search text must match exactly including spaces/tabs\n\u2022 Look for typos in the search text\n\u2022 Try searching for just the first line instead of the full block"
+      },
+      {
+        "generation": 5,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 2,
+        "success": true,
+        "metadata_sha256": "c43a2a281a41fba3eb37e366eda2b6eb87a7f53a21a519056eada94da0741357",
+        "error_msg": null
+      },
+      {
+        "generation": 6,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": true,
+        "metadata_sha256": "37571cffadcb78f878ce805a4e4f988f006e6b650f88f123ad10f88d69da5661",
+        "error_msg": null
+      },
+      {
+        "generation": 7,
+        "novelty_attempt": 1,
+        "resample_attempt": 1,
+        "patch_attempt": 1,
+        "success": true,
+        "metadata_sha256": "352841c876962d73d40fc30fd2c51be7f371696eed3101c4eea386a033e3d551",
+        "error_msg": null
+      }
+    ],
+    "confirmed_defect_evidence_sha256": "2783ee5d4f07698f6924834d3d853fcf9343d1c029e040df549b2b58f70e771a",
+    "checkpoint": {
+      "requested_utc": "2026-10-08T16:56:38.334597+00:00",
+      "pid": 1236936,
+      "signal": "SIGUSR1",
+      "signal_behavior": "Native normal checkpoint; drains pending evaluation/proposal and final meta calls, then returns normally.",
+      "active_model_calls_observed": 0,
+      "persisted_generations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "durable_pending_proposals": [
+        {
+          "generation": 7,
+          "source_sha256": "ea46c5a3c174f0a102ba6445c7687a9034bc6d73f107c7973a4ba0270d794f2c",
+          "checkpoint_sha256": "e2525f4762aa551ed9d639a269c33170ead18af5b54e1f21cac15bf1f0b7391c"
+        }
+      ],
+      "sampled_generations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "controller_lock_held": true,
+      "command_validated": true,
+      "semantics_evidence_sha256": "34c59cc9d799348ed4a8777a0b3ab5d4b19df4c52dc289e8d4456365a587d328",
+      "purpose": "Apply authorized whitespace-only Headless parser compatibility fix without losing a model response or pending candidate."
+    }
+  },
+  "recommendation_resume_evidence": {
+    "verified_utc": "2026-10-08T17:03:23.674327+00:00",
+    "configured_meta_interval": 10,
+    "saved_meta_trigger": "Native finalization of the necessary transport-fix checkpoint at eight total candidate slots; not the periodic interval10 trigger.",
+    "normal_checkpoint": {
+      "requested_utc": "2026-10-08T16:56:38.334597+00:00",
+      "pid": 1236936,
+      "signal": "SIGUSR1",
+      "signal_behavior": "Native normal checkpoint; drains pending evaluation/proposal and final meta calls, then returns normally.",
+      "active_model_calls_observed": 0,
+      "persisted_generations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "durable_pending_proposals": [
+        {
+          "generation": 7,
+          "source_sha256": "ea46c5a3c174f0a102ba6445c7687a9034bc6d73f107c7973a4ba0270d794f2c",
+          "checkpoint_sha256": "e2525f4762aa551ed9d639a269c33170ead18af5b54e1f21cac15bf1f0b7391c"
+        }
+      ],
+      "sampled_generations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "controller_lock_held": true,
+      "command_validated": true,
+      "semantics_evidence_sha256": "34c59cc9d799348ed4a8777a0b3ab5d4b19df4c52dc289e8d4456365a587d328",
+      "purpose": "Apply authorized whitespace-only Headless parser compatibility fix without losing a model response or pending candidate."
+    },
+    "saved_meta_file": "meta/meta_8.txt",
+    "saved_meta_sha256": "42ac207e55ef4f09cf619ca8da8045928d0406a22f125a388b030d2dd510a757",
+    "restored_native_meta_state": {
+      "source": "/home/roland/projects/shinka-dreamer/results/campaign-v3/meta/meta_8.txt",
+      "processed_generations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "pending_generations": [],
+      "recommendation_history_count": 1
+    },
+    "first_resumed_generation": 8,
+    "sampling_sha256": "58e877f6d5a3f9d227ab66be841c0ea61efc854a4ae9e42902d752e2fd704b5e",
+    "actual_request_id": "20261008T170242616753Z-02287234",
+    "actual_request_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+    "checks": {
+      "saved_recommendation_selected": true,
+      "selected_recommendation_in_actual_request": true,
+      "intended_task_in_request": true,
+      "corrected_key_count_description": true,
+      "parent_code_in_request": true,
+      "string_feedback": true,
+      "parent_feedback_in_request": true,
+      "inspiration_codes_in_request": true,
+      "transport_hook_notice": true
+    },
+    "selected_recommendation": "**Maintain enemy beliefs across visibility loss.** Replace the freshly initialized diffuse hidden intensity in `_forecast` with a persistent spatial belief propagated through the learned movement kernel, removing mass from currently observed empty cells and reconciling visible occupancy without assuming enemy identities. Preserve blocked-attempt behavior and separate occupancy from collision hazard; this extends the best program\u2019s successful forecasting while potentially reducing both blind spots and unnecessary avoidance around recently cleared areas.",
+    "transport_amendment_sha256": "5273ea8c5a207099bf015020007adaee8b22bdd1ca1784aec51150ddd9972df5",
+    "scope": "Verifies actual restored meta text/history and native selection of a saved recommendation into a real resumed mutation request; does not attribute candidate improvements to recommendations."
+  },
   "total_slots_budget": 50,
-  "persisted_slots": 1,
-  "native_rows_including_island_seed_copies": 4,
+  "persisted_slots": 8,
+  "native_rows_including_island_seed_copies": 11,
   "seed_slots": 1,
-  "valid_descendants": 0,
+  "valid_descendants": 7,
   "failed_slots": [],
-  "saved_evaluation_episodes": 72,
+  "saved_evaluation_episodes": 576,
   "invalid_saved_episodes": 0,
   "model_calls": [
     {
       "id": "20261008T160407360228Z-6cac4aa9",
       "started_utc": "2026-10-08T16:04:07.360321+00:00",
       "prompt_sha256": "8a76cc436dc436370ecb2ed5b436cfe20e19830be3c4044e6a4b4d69c65b925b",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 523.6171568450227,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 21280,
+        "cacheReadTokens": 85504,
+        "cacheWriteTokens": 0,
+        "outputTokens": 13359,
+        "reasoningOutputTokens": 5176,
+        "totalTokens": 120143,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.2128,
+          "cacheRead": 0.085504,
+          "cacheWrite": 0,
+          "output": 0.66795,
+          "total": 0.966254
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 21280,
+                "cacheReadTokens": 85504,
+                "cacheWriteTokens": 0,
+                "outputTokens": 13359,
+                "reasoningOutputTokens": 5176,
+                "totalTokens": 120143,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.2128,
+                  "cacheRead": 0.085504,
+                  "cacheWrite": 0,
+                  "output": 0.66795,
+                  "total": 0.966254
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 1,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T161507482677Z-8bce82ce",
+      "started_utc": "2026-10-08T16:15:07.482729+00:00",
+      "prompt_sha256": "541fcf72d7b2d41c4882884e33575e03ef8c155b289a530b23da2c4d83dc4819",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 274.32814583100844,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 11673,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 7053,
+        "reasoningOutputTokens": 2070,
+        "totalTokens": 31014,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.11673,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.35265,
+          "total": 0.481668
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 11673,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 7053,
+                "reasoningOutputTokens": 2070,
+                "totalTokens": 31014,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.11673,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.35265,
+                  "total": 0.481668
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 2,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T162113533830Z-eb97b7a4",
+      "started_utc": "2026-10-08T16:21:13.533883+00:00",
+      "prompt_sha256": "3eba6297da20d9b8cabd98665f0c95af81c196b11bc6fb87989f0b2f5e1b3946",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 552.8944889679842,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 6994,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 13217,
+        "reasoningOutputTokens": 8405,
+        "totalTokens": 32499,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.06994,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.66085,
+          "total": 0.743078
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 6994,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 13217,
+                "reasoningOutputTokens": 8405,
+                "totalTokens": 32499,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.06994,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.66085,
+                  "total": 0.743078
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 3,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T163239531167Z-3b6b2b7e",
+      "started_utc": "2026-10-08T16:32:39.531285+00:00",
+      "prompt_sha256": "ba2f24f7e1e14bfe0da0f82346770bfb91fca6b010bde993f7a8a5c1a6fe8396",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 511.86187078701914,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 5401,
+        "cacheReadTokens": 19200,
+        "cacheWriteTokens": 0,
+        "outputTokens": 6693,
+        "reasoningOutputTokens": 1501,
+        "totalTokens": 31294,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.05401,
+          "cacheRead": 0.0192,
+          "cacheWrite": 0,
+          "output": 0.33465,
+          "total": 0.40786
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 5401,
+                "cacheReadTokens": 19200,
+                "cacheWriteTokens": 0,
+                "outputTokens": 6693,
+                "reasoningOutputTokens": 1501,
+                "totalTokens": 31294,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.05401,
+                  "cacheRead": 0.0192,
+                  "cacheWrite": 0,
+                  "output": 0.33465,
+                  "total": 0.40786
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 4,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T164257924836Z-cee0de17",
+      "started_utc": "2026-10-08T16:42:57.924899+00:00",
+      "prompt_sha256": "de9725ca18dd9206ce116d43a648317713acff43262617da8242ac40e7d69bc8",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 162.37091267900541,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 7222,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 4138,
+        "reasoningOutputTokens": 1955,
+        "totalTokens": 23648,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.07222,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.2069,
+          "total": 0.291408
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 7222,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 4138,
+                "reasoningOutputTokens": 1955,
+                "totalTokens": 23648,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.07222,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.2069,
+                  "total": 0.291408
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 5,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": false
+    },
+    {
+      "id": "20261008T164555262908Z-1e6a2ebf",
+      "started_utc": "2026-10-08T16:45:55.262955+00:00",
+      "prompt_sha256": "97e53601a6f95ed7bdac0f47881f085f95355c9f00cb4e1fcc054035f3cd7e17",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 61.014184349012794,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 14930,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 2348,
+        "reasoningOutputTokens": 164,
+        "totalTokens": 29566,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.1493,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.1174,
+          "total": 0.278988
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 14930,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 2348,
+                "reasoningOutputTokens": 164,
+                "totalTokens": 29566,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.1493,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.1174,
+                  "total": 0.278988
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 5,
+      "patch_attempt": 2,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T164716345437Z-9aa5af2d",
+      "started_utc": "2026-10-08T16:47:16.345499+00:00",
+      "prompt_sha256": "4b20e944e02592f7c21dad26b0d52596718e8b095fb299823633900a12e93b0a",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 195.46453661701526,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 13169,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 4778,
+        "reasoningOutputTokens": 2879,
+        "totalTokens": 30235,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.13169,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.2389,
+          "total": 0.382878
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 13169,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 4778,
+                "reasoningOutputTokens": 2879,
+                "totalTokens": 30235,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.13169,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.2389,
+                  "total": 0.382878
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 6,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T165307374215Z-64fd559d",
+      "started_utc": "2026-10-08T16:53:07.374276+00:00",
+      "prompt_sha256": "9ffa6fcd6f2ffb03a3b8ac0ef9d8595230728f1395f3069162471ca772b10728",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 192.1555850970035,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 17905,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 6440,
+        "reasoningOutputTokens": 1381,
+        "totalTokens": 36633,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.17905,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.322,
+          "total": 0.513338
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 17905,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 6440,
+                "reasoningOutputTokens": 1381,
+                "totalTokens": 36633,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.17905,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.322,
+                  "total": 0.513338
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "mutation_or_repair",
+      "generation": 7,
+      "patch_attempt": 1,
+      "resample_attempt": 1,
+      "patch_application_success": true
+    },
+    {
+      "id": "20261008T165714575976Z-1017fbc3",
+      "started_utc": "2026-10-08T16:57:14.576023+00:00",
+      "prompt_sha256": "f1224b0fad80ee1f1307713d3a464bee305b99270ea66f0aab57d6f1549f30e3",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 15.530127785983495,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 6044,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 212,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 18544,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.06044,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.0106,
+          "total": 0.083328
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 6044,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 212,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 18544,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.06044,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.0106,
+                  "total": 0.083328
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165733298899Z-4499b97c",
+      "started_utc": "2026-10-08T16:57:33.298968+00:00",
+      "prompt_sha256": "dd83da4685f65043a33da6b7a18b132ebe5b163cc19032156edd3f6239ac6760",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 16.571807130996604,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 12338,
+        "cacheReadTokens": 7168,
+        "cacheWriteTokens": 0,
+        "outputTokens": 280,
+        "reasoningOutputTokens": 55,
+        "totalTokens": 19786,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.12338,
+          "cacheRead": 0.007168,
+          "cacheWrite": 0,
+          "output": 0.014,
+          "total": 0.144548
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 12338,
+                "cacheReadTokens": 7168,
+                "cacheWriteTokens": 0,
+                "outputTokens": 280,
+                "reasoningOutputTokens": 55,
+                "totalTokens": 19786,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.12338,
+                  "cacheRead": 0.007168,
+                  "cacheWrite": 0,
+                  "output": 0.014,
+                  "total": 0.144548
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165749872486Z-290d57aa",
+      "started_utc": "2026-10-08T16:57:49.872545+00:00",
+      "prompt_sha256": "7778804d4d192ca85330cb9e32adaec72e81e7cffb4ccd6dd66a3392128f2659",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 12.439592083974276,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 8992,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 224,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 21504,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.08992,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.0112,
+          "total": 0.113408
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 8992,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 224,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 21504,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.08992,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.0112,
+                  "total": 0.113408
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165802313447Z-64fee8d7",
+      "started_utc": "2026-10-08T16:58:02.313501+00:00",
+      "prompt_sha256": "172105fc0231620803dd9ccd765996040a8e1499ad98ba1cbfdc958d16ba1e2a",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 12.487177399016218,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 13623,
+        "cacheReadTokens": 7168,
+        "cacheWriteTokens": 0,
+        "outputTokens": 209,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 21000,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.13623,
+          "cacheRead": 0.007168,
+          "cacheWrite": 0,
+          "output": 0.01045,
+          "total": 0.153848
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 13623,
+                "cacheReadTokens": 7168,
+                "cacheWriteTokens": 0,
+                "outputTokens": 209,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 21000,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.13623,
+                  "cacheRead": 0.007168,
+                  "cacheWrite": 0,
+                  "output": 0.01045,
+                  "total": 0.153848
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165817915203Z-0a00a8c9",
+      "started_utc": "2026-10-08T16:58:17.915265+00:00",
+      "prompt_sha256": "66423c2361d18bce79aa6e81d241bf81abaadeaabfb2829476f2e3bc71cf2017",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 12.03512655600207,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 9125,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 222,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 21635,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.09125,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.0111,
+          "total": 0.114638
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 9125,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 222,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 21635,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.09125,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.0111,
+                  "total": 0.114638
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165829952910Z-7535f1f0",
+      "started_utc": "2026-10-08T16:58:29.952969+00:00",
+      "prompt_sha256": "5a49c7de5c84ae55f0678524430e2296be0675af8792fe47b4d2445b1b945e35",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 13.15721492501325,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 6318,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 233,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 18839,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.06318,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.01165,
+          "total": 0.087118
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 6318,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 233,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 18839,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.06318,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.01165,
+                  "total": 0.087118
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165846248843Z-1abfe02e",
+      "started_utc": "2026-10-08T16:58:46.248913+00:00",
+      "prompt_sha256": "bec480342ad495fbbcab03e916a08cb3f2f99ada215680b14fcd602ad031cf58",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 13.019695544993738,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 9389,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 296,
+        "reasoningOutputTokens": 36,
+        "totalTokens": 21973,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.09389,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.0148,
+          "total": 0.120978
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 9389,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 296,
+                "reasoningOutputTokens": 36,
+                "totalTokens": 21973,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.09389,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.0148,
+                  "total": 0.120978
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165859269939Z-9d79c164",
+      "started_utc": "2026-10-08T16:58:59.269998+00:00",
+      "prompt_sha256": "973e578177d5fcde583d5d3d8f9227dc150c1a432963f472888f0c85b91b552b",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 13.875256118015386,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 13469,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 235,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 25992,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.13469,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.01175,
+          "total": 0.158728
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 13469,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 235,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 25992,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.13469,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.01175,
+                  "total": 0.158728
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_program_summary",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T165913160839Z-cce0af1d",
+      "started_utc": "2026-10-08T16:59:13.160913+00:00",
+      "prompt_sha256": "490ed1f7a33b8ab46ab59ccbeef6af7c50893b0619faeff20edd2335f3cc054a",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 53.79131087701535,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 11338,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 1365,
+        "reasoningOutputTokens": 148,
+        "totalTokens": 24991,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.11338,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.06825,
+          "total": 0.193918
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 11338,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 1365,
+                "reasoningOutputTokens": 148,
+                "totalTokens": 24991,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.11338,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.06825,
+                  "total": 0.193918
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_global_insights",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T170013210473Z-d00168e4",
+      "started_utc": "2026-10-08T17:00:13.210526+00:00",
+      "prompt_sha256": "4b46757ed29a55296ca78e76ec398eba85419d51aebbcd2d4bd06b9fe137e3b1",
+      "status": "completed",
+      "billing_required": "subscription",
+      "elapsed_seconds": 36.769811217003735,
+      "returncode": 0,
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 10435,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 596,
+        "reasoningOutputTokens": 133,
+        "totalTokens": 23319,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.10435,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.0298,
+          "total": 0.146438
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 10435,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 596,
+                "reasoningOutputTokens": 133,
+                "totalTokens": 23319,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.10435,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.0298,
+                  "total": 0.146438
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      },
+      "role": "meta_recommendations",
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
+    },
+    {
+      "id": "20261008T170242616753Z-02287234",
+      "started_utc": "2026-10-08T17:02:42.616802+00:00",
+      "prompt_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
       "status": "started",
       "billing_required": "subscription",
       "role": "mutation_or_repair",
-      "generation": null
+      "generation": null,
+      "patch_attempt": null,
+      "resample_attempt": null,
+      "patch_application_success": null
     }
   ],
   "probe_calls": [
     {
       "source": "subscription-probe-20261008T160323501898Z.log",
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 2414,
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "outputTokens": 5,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 14707,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.02414,
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "output": 0.00025,
+          "total": 0.036678
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 2414,
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "outputTokens": 5,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 14707,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.02414,
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "output": 0.00025,
+                  "total": 0.036678
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "subscription-probe-20261008T161455667659Z.log",
+      "usage": {
+        "agent": "codex",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "inputTokens": 204,
+        "cacheReadTokens": 18944,
+        "cacheWriteTokens": 0,
+        "outputTokens": 5,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 19153,
+        "usageStatus": "reported",
+        "cost": {
+          "input": 0.00204,
+          "cacheRead": 0.018944,
+          "cacheWrite": 0,
+          "output": 0.00025,
+          "total": 0.021234
+        },
+        "costBasis": "api-list-price-estimate",
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "provider": "openai",
+                "model": "gpt-6-astra",
+                "inputTokens": 204,
+                "cacheReadTokens": 18944,
+                "cacheWriteTokens": 0,
+                "outputTokens": 5,
+                "reasoningOutputTokens": 0,
+                "totalTokens": 19153,
+                "usageStatus": "reported",
+                "cost": {
+                  "input": 0.00204,
+                  "cacheRead": 0.018944,
+                  "cacheWrite": 0,
+                  "output": 0.00025,
+                  "total": 0.021234
+                },
+                "costBasis": "api-list-price-estimate",
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "subscription-probe-20261008T170232416326Z.log",
       "usage": {
         "agent": "codex",
         "provider": "openai",
@@ -130,40 +1636,173 @@
       }
     }
   ],
-  "native_model_requests": 1,
-  "all_model_requests_including_probes": 3,
+  "native_model_requests": 19,
+  "all_model_requests_including_probes": 23,
   "model_requests_by_role": {
-    "mutation_or_repair": 1
+    "mutation_or_repair": 9,
+    "meta_program_summary": 8,
+    "meta_global_insights": 1,
+    "meta_recommendations": 1
   },
   "model_status_counts": {
+    "completed": 18,
     "started": 1
   },
+  "model_nonzero_returncodes": 0,
+  "patch_attempts": [
+    {
+      "generation": 1,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 1,
+      "patch_name": "anonymous_motion_survival",
+      "patch_description": "Learns a forgetting-weighted movement law through anonymous transition matching, including blocked attempts and overlapping enemies. Combines explicit occupancy forecasts with survival-aware routing, waiting, retreat, and cardinal door approaches. Predictive interventions remain separate from mapping. Synthetic validity checks and 200 decision cycles passed; improved task performance requires development evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:13:39.388967",
+      "llm_cost": 0.966254,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_1/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 2,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 1,
+      "patch_name": "censored_bayes_survival",
+      "patch_description": "This agent maintains a Bayesian distribution over complete enemy movement laws, updating it from anonymous, partially observed transitions with explicit blocked-attempt probabilities. Persistent enemy intensity tracks threats that leave view. A five-step survival planner accounts for collisions both before and after enemy movement, while global routing considers key collection order and exploration value. The approach aims to reduce dangerous commitments and adapt after unannounced dynamics changes; its performance remains to be evaluated.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:20:08.650303",
+      "llm_cost": 0.481668,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_2/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 3,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 1,
+      "patch_name": "anonymous_motion_lookahead",
+      "patch_description": "Learns attempted movement laws from anonymous occupancy transitions, marginalizing blocked moves and ambiguous observations. A mixture of uniform, persistent, and rapidly adapting models handles stationary and changing dynamics. Planning compares movement, waiting, and retreat over four steps, accounting for collisions both before and after enemy movement. Mapping and predictive interventions remain separate. These improvements are proposed without claiming new evaluation results.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:31:16.035102",
+      "llm_cost": 0.743078,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_3/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 4,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 1,
+      "patch_name": "anonymous_law_safe_horizon",
+      "patch_description": "The seed uses six occupancy categories, prior strength 12, cumulative updates, risk weight 45, and a fixed waiting threshold of .12. This replacement infers attempted movement laws from anonymous occupancy transitions, including blocked attempts. It combines uniform, slow-learning, and fast-learning models with evidence-based weights; evidence retention is .985 and .86 per step.\nControl uses equal movement-time costs, persistent exploration targets, and three-step planning with explicit collision-before-movement and collision-after-movement risk. Immediate risk weight is 100, with future weights .55 and .25. Mapping remains separate from predictive learning and prediction-use interventions. These changes target safer, faster escapes; improvement requires evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:42:00.816757",
+      "llm_cost": 0.40786,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_4/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 5,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": false,
+      "num_applied": 0,
+      "patch_name": "censored_motion_learning",
+      "patch_description": "Learn the shared attempted-movement law from unambiguous anonymous transitions, assigning blocked stays probabilistically to all compatible attempted directions. Forget older evidence gradually to adapt after switches. Forecast occupancy by propagating each visible enemy through terrain and combining independent arrival probabilities. This replaces coarse proximity averages with directional, obstacle-aware risk while retaining separate learning and planning interventions.\nUse equal costs for cardinal and diagonal actions, require cardinal approach to locked doors, and make waiting more conservative near predicted threats. These changes aim to improve survival and escape efficiency; their benefit requires evaluation.",
+      "error_msg": "SEARCH text not found in editable regions\n\nLooking for 13-line block starting with: 'def _legal(m, p, d):'\n\nFull search pattern:\n```\ndef _legal(m, p, d):\n    return (not _blocked(m, _add(p, d)) and not\n            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))\ndef _feature(terrain, enemies, p):\n    # Anonymous occupancy transitions: no matching or hidden enemy identities.\n    if terrain.get(p, 1) in (-1, 1, 3):\n        return \"blocked\"\n    if p in enemies:\n        openings = sum(terrain.get(_add(p, d), 1) not in (-1, 1, 3)\n                       for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n        return \"occupied_tight\" if openings <= 2 else \"occupied_open\"\n    neighbors = sum(max(abs(e[0]-p[0]), abs(e[1]-p[1])) == 1 for e in enemies)\n    return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nFound similar code block at line 16 (\u2713 editable):\n\nDifferences between search pattern and actual code:\n```diff\n-  def _legal(m, p, d):\n+  \n+  \n-      return \"near_many\" if neighbors > 1 else \"near\" if neighbors else \"far\"\n```\n\nEditable regions where you can make changes:\n  Region 1 (lines 2-142):\n    import heapq\n    import math\n    \n    ... (133 more lines)\n                \"terrain\": [[x, y, c, m[\"seen\"][x, y]] for (x, y), c in m[\"map\"].items()],\n                \"position\": list(m[\"pos\"]),\n                \"learning\": {\"updates\": m[\"updates\"], \"rates\": {k: a/b for k, (a, b) in m[\"rates\"].items()}}}\n\nQuick fixes:\n\u2022 Check indentation - search text must match exactly including spaces/tabs\n\u2022 Look for typos in the search text\n\u2022 Try searching for just the first line instead of the full block",
+      "timestamp": "2026-10-08T18:45:55.259332",
+      "llm_cost": 0.291408,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_5/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 5,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 2,
+      "success": true,
+      "num_applied": 7,
+      "patch_name": "censored_motion_learning",
+      "patch_description": "Correct the failed patch by matching individual functions separately, preserving the original blank lines. Learn the shared attempted-movement law from fully observed anonymous transitions, distributing blocked-stay evidence among compatible directions and gradually forgetting old evidence. Propagate visible enemies through terrain to obtain directional occupancy forecasts. Keep predictive updating separate from mapping and localization.\nUse equal costs for cardinal and diagonal actions, approach closed doors cardinally, and compare immediate movement risk against waiting. These changes target survival and escape efficiency; their performance remains to be evaluated.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:47:02.184089",
+      "llm_cost": 0.278988,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_5/attempts/novelty_1/resample_1/patch_2/headless_prompt.md"
+    },
+    {
+      "generation": 6,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 4,
+      "patch_name": "survival_conditioned_beam",
+      "patch_description": "Replace the planner\u2019s sum of marginal collision penalties with survival-conditioned enemy trajectories. After each hypothetical agent move, remove enemy paths that would already have caused a collision and condition subsequent predictions on survival. This avoids repeatedly charging for the same dangerous trajectories across the planning horizon, while preserving both pre-movement and post-movement collision checks.\nA bounded beam retains alternatives for each first action, including waiting. Hidden-enemy risk remains conservative, and learned movement laws, anonymous dynamics updates, and prediction interventions remain intact. This targets the current agent\u2019s long escape times and timeouts without lowering its immediate collision penalty. Performance gains require evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:50:49.368562",
+      "llm_cost": 0.382878,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_6/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    },
+    {
+      "generation": 7,
+      "novelty_attempt": 1,
+      "resample_attempt": 1,
+      "patch_attempt": 1,
+      "success": true,
+      "num_applied": 1,
+      "patch_name": "adaptive_law_progress",
+      "patch_description": "The current agent uses 113 fixed movement hypotheses, a five-step planning horizon, and a low delay cost; its lower death rate comes with substantially more timeouts. This proposal replaces the hypothesis catalog with continuous slow/fast categorical learners, using anonymous transition likelihoods and censored blocked attempts. Forgetting factors are .992 and .88, with evidence caps of 80 and 16.\nControl uses two-step survival calculations conditioned on surviving the first move, risk-aware routes, and a stagnation-sensitive risk penalty. This configuration aims to preserve enemy avoidance while reducing repeated waiting and improving escape efficiency. Mapping, predictive updates, and prediction use remain separately controllable. Performance improvements require evaluation.",
+      "error_msg": null,
+      "timestamp": "2026-10-08T18:56:38.110279",
+      "llm_cost": 0.513338,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_7/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+    }
+  ],
+  "patch_attempt_count": 8,
+  "patch_retry_attempts": 1,
+  "patch_application_failures": 1,
+  "parent_resamples": 0,
+  "native_fix_sample_events": 0,
+  "native_novelty_rejections": 0,
   "billing_attempt_routes": {
-    "subscription": 2
+    "subscription": 22
   },
   "reported_tokens": {
-    "inputTokens": 9274,
-    "cacheReadTokens": 24576,
+    "inputTokens": 211537,
+    "cacheReadTokens": 346880,
     "cacheWriteTokens": 0,
-    "outputTokens": 10,
-    "reasoningOutputTokens": 0,
-    "totalTokens": 33860
+    "outputTokens": 61918,
+    "reasoningOutputTokens": 23903,
+    "totalTokens": 620335
   },
   "cost_note": "All dollar figures in native logs are API-list-price estimates, not actual subscription charges.",
   "resources": {
-    "model_elapsed_seconds": 0,
-    "candidate_cpu_seconds": 12.172829000000002,
-    "evaluator_cpu_seconds": 3.1983313580000043,
-    "episode_wall_seconds": 14.462446613993961
+    "model_elapsed_seconds": 2673.3840008110856,
+    "candidate_cpu_seconds": 375.17567500000024,
+    "evaluator_cpu_seconds": 38.49458205200008,
+    "episode_wall_seconds": 380.68737945711473
   },
   "features": {
     "native_islands": {
       "configured": 4,
       "rows_observed_by_island": {
-        "1": 1,
-        "3": 1,
-        "0": 1,
-        "2": 1
+        "1": 4,
+        "3": 3,
+        "0": 2,
+        "2": 2
       }
     },
     "native_migration": {
@@ -173,11 +1812,43 @@
     "inspirations": {
       "configured_archive": 1,
       "configured_top_k": 1,
-      "sampled_nonempty_requests": 0
+      "sampled_nonempty_requests": 3,
+      "sampled_archive_contexts": 4,
+      "sampled_top_k_contexts": 1
+    },
+    "native_sampling": {
+      "configured_parent_strategy": "weighted",
+      "configured_island_strategy": "uniform",
+      "sampled_parent_islands": {
+        "1": 3,
+        "3": 2,
+        "0": 1,
+        "2": 2
+      },
+      "sampling_contexts": 8
+    },
+    "mutation_operators": {
+      "configured": [
+        "diff",
+        "full"
+      ],
+      "configured_probabilities": [
+        0.6,
+        0.4
+      ],
+      "observed_slot_operators": {
+        "full": 5,
+        "diff": 2
+      }
     },
     "recommendations": {
       "configured_interval": 10,
-      "outputs": [],
+      "outputs": [
+        {
+          "path": "meta_8.txt",
+          "sha256": "42ac207e55ef4f09cf619ca8da8045928d0406a22f125a388b030d2dd510a757"
+        }
+      ],
       "requests_with_recommendation": 0
     },
     "novelty": "inactive: embeddings and novelty judge explicitly disabled; no novelty claim",
@@ -185,7 +1856,433 @@
     "prompt_evolution": "disabled",
     "evaluator_llm": "none"
   },
-  "request_evidence": [],
+  "request_evidence": [
+    {
+      "generation": 1,
+      "request_sha256": "8a76cc436dc436370ecb2ed5b436cfe20e19830be3c4044e6a4b4d69c65b925b",
+      "parent_id": "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de",
+      "parent_island_when_sampled": 1,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {},
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": false
+    },
+    {
+      "generation": 2,
+      "request_sha256": "541fcf72d7b2d41c4882884e33575e03ef8c155b289a530b23da2c4d83dc4819",
+      "parent_id": "a1c631bd-c257-41ab-8d15-9a71a128d9d1",
+      "parent_island_when_sampled": 1,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+      ],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de": true
+      },
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 3,
+      "request_sha256": "3eba6297da20d9b8cabd98665f0c95af81c196b11bc6fb87989f0b2f5e1b3946",
+      "parent_id": "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80",
+      "parent_island_when_sampled": 3,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {},
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 4,
+      "request_sha256": "ba2f24f7e1e14bfe0da0f82346770bfb91fca6b010bde993f7a8a5c1a6fe8396",
+      "parent_id": "56ef1d30-ef54-47a4-bfc4-84024e5e110f",
+      "parent_island_when_sampled": 0,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {},
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 5,
+      "request_sha256": "de9725ca18dd9206ce116d43a648317713acff43262617da8242ac40e7d69bc8",
+      "parent_id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+      "parent_island_when_sampled": 2,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {},
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 5,
+      "request_sha256": "97e53601a6f95ed7bdac0f47881f085f95355c9f00cb4e1fcc054035f3cd7e17",
+      "parent_id": "c13ed547-b881-4de7-8c58-27c7f5aa83f1",
+      "parent_island_when_sampled": 2,
+      "parent_code_present": false,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": false,
+      "archive_inspiration_ids": [],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {},
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 6,
+      "request_sha256": "4b20e944e02592f7c21dad26b0d52596718e8b095fb299823633900a12e93b0a",
+      "parent_id": "41c9932e-ad3d-4df7-ad67-f531b6b68d21",
+      "parent_island_when_sampled": 3,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80"
+      ],
+      "top_k_inspiration_ids": [],
+      "inspiration_code_presence": {
+        "51c559f3-4fee-4b5c-b8d4-83fcffbf1c80": true
+      },
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    },
+    {
+      "generation": 7,
+      "request_sha256": "9ffa6fcd6f2ffb03a3b8ac0ef9d8595230728f1395f3069162471ca772b10728",
+      "parent_id": "d6e060db-3484-48d7-a330-330805071240",
+      "parent_island_when_sampled": 1,
+      "parent_code_present": true,
+      "task_present": true,
+      "string_feedback": true,
+      "feedback_present": true,
+      "archive_inspiration_ids": [
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de"
+      ],
+      "top_k_inspiration_ids": [
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1"
+      ],
+      "inspiration_code_presence": {
+        "4c288a23-ece2-4ebd-ab7d-bb7fe81c14de": true,
+        "a1c631bd-c257-41ab-8d15-9a71a128d9d1": true
+      },
+      "restored_or_current_recommendation_present": false,
+      "uses_corrected_keys_description": true
+    }
+  ],
+  "native_tool_activity": {
+    "scope": "Only native sessions whose recorded cwd equals this campaign; no assistant reasoning exported",
+    "sessions": [
+      {
+        "session_id": "01a11c41-fbcb-74c2-b8ae-8b954978c3e8",
+        "session_timestamp": "2026-10-08T16:04:08.803Z",
+        "tool_calls": [
+          {
+            "name": "exec",
+            "input_excerpt": "text(await tools.exec_command({cmd:\"pwd\",\"max_output_tokens\":500}));\ntext(await tools.exec_command({cmd:\"for f in /home/roland/projects/shinka-dreamer/CODEX_TASK.md /home/roland/projects/shinka-dreamer/docs/design.md; do if [ -f \\\"$f\\\" ]; then cat \\\"$f\\\"; fi; done\",\"max_output_tokens\":14000}));\n",
+            "input_sha256": "a937dee212dcaaadaf04b8ff55ab2a363f7624e45430fa4e6733684187100ab1",
+            "input_characters": 296,
+            "protected_pool_path_mentioned": false
+          },
+          {
+            "name": "exec",
+            "input_excerpt": "const source = `\"\"\"Predictive seed. Entire representation, learner and planner may evolve.\"\"\"\n# EVOLVE-BLOCK-START\nimport heapq\nimport math\n\nMOVES = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))\nSTEPS = tuple(d for d in MOVES if d != (0, 0))\n\n\ndef _add(p, d):\n    return p[0] + d[0], p[1] + d[1]\n\n\ndef _distance(a, b):\n    return max(abs(a[0] - b[0]), abs(a[1] - b[1]))\n\n\ndef _wall(terrain, p, opened=False, unknown=False):\n    c = terrain.get(p)\n    return unknown if c is None else c in (-1, 1) or (c == 3 and not opened)\n\n\ndef _destination(terrain, p, d, opened):\n    q = _add(p, d)\n    if _wall(terrain, q, opened):\n        return p\n    if d[0] and d[1]:\n        if (_wall(terrain, _add(p, (d[0], 0)), opened) or\n                _wall(terrain, _add(p, (0, d[1])), opened)):\n            return p\n    return q\n\n\ndef _legal(m, p, d):\n    q = _add(p, d)\n    terrain = m[\"map\"]\n    unlocked = m[\"keys\"] >= 2 or m[\"door_open\"]\n    if _wall(terrain, q, unlocked, True):\n        return False\n    if terrain.get(q) == 3 and not m[\"door_open\"]:\n        if d[0] and d[1]:\n            return False\n    if d[0] and d[1]:\n        # A closed door cannot serve as a diagonal corner before interaction.\n  ",
+            "input_sha256": "3140b044be89e2152ae368a9ffd3bd5b850b5aa1090378c2ed19686156cae88e",
+            "input_characters": 13274,
+            "protected_pool_path_mentioned": false
+          },
+          {
+            "name": "exec",
+            "input_excerpt": "let source=load(\"candidate_source\");\nsource=source.replace('    frontier = []\\n    tick =', '    frontier = []\\n    refresh_views = {}\\n    tick =');\nsource=source.replace('        if gain:\\n            score =', '        refresh_views[p] = refresh\\n        if gain:\\n            score =');\nsource=source.replace('score = dist[p] + .7 * m[\"visits\"].get(p, 0) - .08 * age', 'score = (dist[p] + .7 * m[\"visits\"].get(p, 0) - .08 * age\\n                 - .10 * refresh_views.get(p, 0.0))');\nstore(\"candidate_source\", source);\ntext(await tools.exec_command({cmd:\"python3 - <<'PY'\\nsource = \"+JSON.stringify(source)+\"\\nns={}\\nexec(compile(source,'<candidate>','exec'),ns)\\nimport time, json\\nterrain=[[0]*5 for _ in range(5)]\\ngrid=[[0]*5 for _ in range(5)]\\nfor x,y in ((1,1),(3,1),(3,3)): grid[y][x]=5\\nobs={'terrain':terrain,'grid':grid,'step':1,'health':1,'keys':0,'door_open':False,'feedback':{'displacement':[0,0],'collected':False,'opened':False}}\\nm=ns['world_model_step'](None,obs,None)\\nfor y in range(-7,8):\\n for x in range(-7,8):\\n  m['map'][(x,y)]=1 if abs(x)==7 or abs(y)==7 else 0\\n  m['seen'][(x,y)]=0\\nm['map'][(5,5)]=2\\nstart=time.process_time()\\nfor step in range(2,202):\\n obs['step']",
+            "input_sha256": "e0fa239ec1f60d1d461255bc20ef775435f5ca3150e25b787a27ddab78a473c5",
+            "input_characters": 1902,
+            "protected_pool_path_mentioned": false
+          }
+        ],
+        "tool_call_count": 3,
+        "latest_native_token_report": {
+          "input_tokens": 106784,
+          "cached_input_tokens": 85504,
+          "output_tokens": 13359,
+          "reasoning_output_tokens": 5176,
+          "total_tokens": 120143
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:13:38.384Z"
+      },
+      {
+        "session_id": "01a11c4c-0fde-7492-b5a7-df5ef97a0475",
+        "session_timestamp": "2026-10-08T16:15:09.330Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 23961,
+          "cached_input_tokens": 12288,
+          "output_tokens": 7053,
+          "reasoning_output_tokens": 2070,
+          "total_tokens": 31014
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:20:07.990Z"
+      },
+      {
+        "session_id": "01a11c51-a1e2-7452-9ab8-b845f7289987",
+        "session_timestamp": "2026-10-08T16:21:14.349Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 19282,
+          "cached_input_tokens": 12288,
+          "output_tokens": 13217,
+          "reasoning_output_tokens": 8405,
+          "total_tokens": 32499
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:31:15.510Z"
+      },
+      {
+        "session_id": "01a11c5c-1a81-7890-803c-ff4a5fbd15f8",
+        "session_timestamp": "2026-10-08T16:32:40.590Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 24601,
+          "cached_input_tokens": 19200,
+          "output_tokens": 6693,
+          "reasoning_output_tokens": 1501,
+          "total_tokens": 31294
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:42:00.233Z"
+      },
+      {
+        "session_id": "01a11c65-896d-70e1-81e7-f6759a7b1417",
+        "session_timestamp": "2026-10-08T16:42:58.809Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 19510,
+          "cached_input_tokens": 12288,
+          "output_tokens": 4138,
+          "reasoning_output_tokens": 1955,
+          "total_tokens": 23648
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:45:54.558Z"
+      },
+      {
+        "session_id": "01a11c68-3dc0-7e21-96bf-1e68d4c48d88",
+        "session_timestamp": "2026-10-08T16:45:57.278Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 27218,
+          "cached_input_tokens": 12288,
+          "output_tokens": 2348,
+          "reasoning_output_tokens": 164,
+          "total_tokens": 29566
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:47:00.731Z"
+      },
+      {
+        "session_id": "01a11c69-7a20-7410-80a3-dc7b8fdb634a",
+        "session_timestamp": "2026-10-08T16:47:17.038Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 25457,
+          "cached_input_tokens": 12288,
+          "output_tokens": 4778,
+          "reasoning_output_tokens": 2879,
+          "total_tokens": 30235
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:50:48.589Z"
+      },
+      {
+        "session_id": "01a11c6e-d4fc-7490-9e6b-aa6f62acd0d9",
+        "session_timestamp": "2026-10-08T16:53:07.977Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 30193,
+          "cached_input_tokens": 12288,
+          "output_tokens": 6440,
+          "reasoning_output_tokens": 1381,
+          "total_tokens": 36633
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:56:37.596Z"
+      },
+      {
+        "session_id": "01a11c72-9a96-75c2-a088-095455a6cbb3",
+        "session_timestamp": "2026-10-08T16:57:15.168Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 18332,
+          "cached_input_tokens": 12288,
+          "output_tokens": 212,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 18544
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:57:28.732Z"
+      },
+      {
+        "session_id": "01a11c72-e371-7453-82c4-4b045fbb9533",
+        "session_timestamp": "2026-10-08T16:57:33.820Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 19506,
+          "cached_input_tokens": 7168,
+          "output_tokens": 280,
+          "reasoning_output_tokens": 55,
+          "total_tokens": 19786
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:57:48.449Z"
+      },
+      {
+        "session_id": "01a11c73-240f-77f2-a0b0-90d662547c76",
+        "session_timestamp": "2026-10-08T16:57:50.363Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 21280,
+          "cached_input_tokens": 12288,
+          "output_tokens": 224,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 21504
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:58:00.933Z"
+      },
+      {
+        "session_id": "01a11c73-549c-7163-8d94-c1ab07744d71",
+        "session_timestamp": "2026-10-08T16:58:02.792Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 20791,
+          "cached_input_tokens": 7168,
+          "output_tokens": 209,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 21000
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:58:16.479Z"
+      },
+      {
+        "session_id": "01a11c73-9189-7bb0-972e-fc8ff18db3c1",
+        "session_timestamp": "2026-10-08T16:58:18.390Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 21413,
+          "cached_input_tokens": 12288,
+          "output_tokens": 222,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 21635
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:58:28.597Z"
+      },
+      {
+        "session_id": "01a11c73-c0a0-7850-af20-303848cdccca",
+        "session_timestamp": "2026-10-08T16:58:30.446Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 18606,
+          "cached_input_tokens": 12288,
+          "output_tokens": 233,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 18839
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:58:44.899Z"
+      },
+      {
+        "session_id": "01a11c74-0079-7561-ab7d-4e74110a78e8",
+        "session_timestamp": "2026-10-08T16:58:46.790Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 21677,
+          "cached_input_tokens": 12288,
+          "output_tokens": 296,
+          "reasoning_output_tokens": 36,
+          "total_tokens": 21973
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:58:57.916Z"
+      },
+      {
+        "session_id": "01a11c74-330e-7500-bb3f-5a4c4308c64e",
+        "session_timestamp": "2026-10-08T16:59:00.435Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 25757,
+          "cached_input_tokens": 12288,
+          "output_tokens": 235,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 25992
+        },
+        "latest_native_token_timestamp": "2026-10-08T16:59:11.756Z"
+      },
+      {
+        "session_id": "01a11c74-69b0-7b73-a619-bf13457b43ae",
+        "session_timestamp": "2026-10-08T16:59:13.724Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 23626,
+          "cached_input_tokens": 12288,
+          "output_tokens": 1365,
+          "reasoning_output_tokens": 148,
+          "total_tokens": 24991
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:00:11.867Z"
+      },
+      {
+        "session_id": "01a11c75-5427-7941-af3d-c5ac90dcdf46",
+        "session_timestamp": "2026-10-08T17:00:13.750Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": {
+          "input_tokens": 22723,
+          "cached_input_tokens": 12288,
+          "output_tokens": 596,
+          "reasoning_output_tokens": 133,
+          "total_tokens": 23319
+        },
+        "latest_native_token_timestamp": "2026-10-08T17:00:52.000Z"
+      },
+      {
+        "session_id": "01a11c77-9be3-76d3-8601-6275cbb9cc00",
+        "session_timestamp": "2026-10-08T17:02:43.184Z",
+        "tool_calls": [],
+        "tool_call_count": 0,
+        "latest_native_token_report": null,
+        "latest_native_token_timestamp": null
+      }
+    ],
+    "observed_tool_calls": 3,
+    "protected_pool_path_mentions": 0,
+    "limitation": "Observed tool requests are audited; read-only Headless policy is not a filesystem isolation guarantee."
+  },
   "upstream_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
   "headless_revision": "93cd9b06b85f848af1308c41e018991b33907c5e",
   "effective_model": "gpt-6-astra",

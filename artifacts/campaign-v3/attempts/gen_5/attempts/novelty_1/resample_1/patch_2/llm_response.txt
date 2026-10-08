@@ -1,0 +1,166 @@
+<NAME>
+censored_motion_learning
+</NAME>
+<DESCRIPTION>
+Correct the failed patch by matching individual functions separately, preserving the original blank lines. Learn the shared attempted-movement law from fully observed anonymous transitions, distributing blocked-stay evidence among compatible directions and gradually forgetting old evidence. Propagate visible enemies through terrain to obtain directional occupancy forecasts. Keep predictive updating separate from mapping and localization.
+Use equal costs for cardinal and diagonal actions, approach closed doors cardinally, and compare immediate movement risk against waiting. These changes target survival and escape efficiency; their performance remains to be evaluated.
+</DESCRIPTION>
+<DIFF>
+<<<<<<< SEARCH
+def _legal(m, p, d):
+    return (not _blocked(m, _add(p, d)) and not
+            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))
+=======
+def _legal(m, p, d):
+    q = _add(p, d)
+    if m["map"].get(q) == 3 and not m["door_open"] and d[0] and d[1]:
+        return False
+    return (not _blocked(m, q) and not
+            (d[0] and d[1] and (_blocked(m, _add(p, (d[0], 0))) or _blocked(m, _add(p, (0, d[1]))))))
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+def _feature(terrain, enemies, p):
+    # Anonymous occupancy transitions: no matching or hidden enemy identities.
+    if terrain.get(p, 1) in (-1, 1, 3):
+        return "blocked"
+    if p in enemies:
+        openings = sum(terrain.get(_add(p, d), 1) not in (-1, 1, 3)
+                       for d in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+        return "occupied_tight" if openings <= 2 else "occupied_open"
+    neighbors = sum(max(abs(e[0]-p[0]), abs(e[1]-p[1])) == 1 for e in enemies)
+    return "near_many" if neighbors > 1 else "near" if neighbors else "far"
+=======
+_DIRECTIONS = tuple((x, y) for y in (-1, 0, 1) for x in (-1, 0, 1))
+def _enemy_destination(terrain, p, d):
+    def blocked(q):
+        return terrain.get(q, 0) in (-1, 1, 3)
+    q = _add(p, d)
+    if blocked(q):
+        return p
+    if d[0] and d[1]:
+        if blocked(_add(p, (d[0], 0))) or blocked(_add(p, (0, d[1]))):
+            return p
+    return q
+def _motion_weights(m):
+    total = sum(m["motion"]) + 9.
+    # A uniform mixture guards against unobserved changes in the law.
+    return [.85 * (v + 1.) / total + .15 / 9. for v in m["motion"]]
+def _learn_motion(m, terrain, enemies):
+    m["motion"] = [v * .96 for v in m["motion"]]
+    if m["previous"] is None:
+        return
+    old_terrain, old_enemies, old_step = m["previous"]
+    # Skip transitions that may include scheduled geometry changes.
+    if m["step"] != old_step + 1 or m["step"] // 25 != old_step // 25:
+        return
+    weights = _motion_weights(m)
+    evidence = [0.] * 9
+    for source in sorted(old_enemies):
+        neighborhood = [_add(source, d) for d in _DIRECTIONS]
+        if not all(p in old_terrain and p in terrain for p in neighborhood):
+            continue
+        # Current terrain includes any door opened before enemy movement.
+        destinations = [_enemy_destination(terrain, source, d)
+                        for d in _DIRECTIONS]
+        possible = set(destinations) & enemies
+        if len(possible) != 1:
+            continue
+        # With every destination observed, this source must have reached
+        # the sole occupied destination. No enemy identity is required.
+        destination = next(iter(possible))
+        compatible = [i for i, q in enumerate(destinations) if q == destination]
+        normalizer = sum(weights[i] for i in compatible)
+        for i in compatible:
+            evidence[i] += weights[i] / normalizer
+        m["updates"] += 1
+    m["motion"] = [a + b for a, b in zip(m["motion"], evidence)]
+def _forecast(m, terrain, enemies):
+    weights = _motion_weights(m)
+    arrivals = {}
+    for source in sorted(enemies):
+        distribution = {}
+        for d, probability in zip(_DIRECTIONS, weights):
+            q = _enemy_destination(m["map"], source, d)
+            distribution[q] = distribution.get(q, 0.) + probability
+        for q, probability in distribution.items():
+            arrivals[q] = 1. - (1. - arrivals.get(q, 0.)) * (1. - probability)
+    risk = {}
+    unseen = max(0, 3 - len(enemies))
+    for p, cell in m["map"].items():
+        if cell in (-1, 1, 3):
+            risk[p] = 0.
+            continue
+        distance = max(abs(p[0] - m["pos"][0]), abs(p[1] - m["pos"][1]))
+        # Every predecessor of an inner-square cell is currently visible.
+        background = 0. if distance <= 1 else .008 * unseen
+        risk[p] = min(1., max(0., 1. - (1. - arrivals.get(p, 0.)) * (1. - background)))
+    return risk
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+        prior = {"occupied_tight": .65, "occupied_open": .4, "near": .08,
+                 "near_many": .16, "far": .005, "blocked": .001}
+        memory = {"map": {}, "seen": {}, "pos": (0, 0), "visits": {},
+                  "rates": {k: [v * 12, 12.] for k, v in prior.items()},
+                  "updates": 0, "previous": None}
+=======
+        memory = {"map": {}, "seen": {}, "pos": (0, 0), "visits": {},
+                  "motion": [0.] * 9,
+                  "updates": 0, "previous": None}
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    # FREEZE_PREDICTIVE_UPDATES: ordinary localization/mapping above always run.
+    if m["previous"] is not None and local_obs.get("learn", True):
+        prev_terrain, prev_enemies, center = m["previous"]
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                p = _add(center, (dx, dy))
+                # Prior 3x3 is fully surrounded by observable 5x5; next label is
+                # used ONLY now, after the previous forecast was scored.
+                if p in terrain and terrain[p] not in (-1, 1, 3):
+                    feature = _feature(prev_terrain, prev_enemies, p)
+                    if feature != "blocked":
+                        m["rates"][feature][0] += p in enemies
+                        m["rates"][feature][1] += 1
+                        m["updates"] += 1
+    m["previous"] = (terrain, enemies, m["pos"])
+    m["enemies"] = enemies
+    m["risk"] = {}
+    for p, cell in m["map"].items():
+        if max(abs(p[0]-m["pos"][0]), abs(p[1]-m["pos"][1])) <= 1:
+            feature = _feature(terrain, enemies, p)
+            n, d = m["rates"][feature]
+            m["risk"][p] = n / d if cell not in (-1, 1, 3) else 0.
+        elif p in terrain:
+            n, d = m["rates"][_feature(terrain, enemies, p)]
+            m["risk"][p] = n / d if cell not in (-1, 1, 3) else 0.
+        else:
+            m["risk"][p] = .02 if cell not in (-1, 1, 3) else 0.
+=======
+    # FREEZE_PREDICTIVE_UPDATES leaves mapping and localization intact.
+    if local_obs.get("learn", True):
+        _learn_motion(m, terrain, enemies)
+    m["previous"] = (terrain, enemies, m["step"])
+    m["enemies"] = enemies
+    m["risk"] = _forecast(m, terrain, enemies)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            edge = (1.4 if d[0] and d[1] else 1.) + 45 * risk
+=======
+            edge = 1. + 45 * risk
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+    if move != (0, 0) and risk_fn(_add(start, move)) > risk_fn(start) + .12:
+        move = (0, 0)
+=======
+    if (move != (0, 0) and start not in m["enemies"]
+            and risk_fn(_add(start, move)) > risk_fn(start) + .055):
+        move = (0, 0)
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+            "learning": {"updates": m["updates"], "rates": {k: a/b for k, (a, b) in m["rates"].items()}}}
+=======
+            "learning": {"updates": m["updates"],
+                         "attempted_motion": [[d[0], d[1], p]
+                                              for d, p in zip(_DIRECTIONS, _motion_weights(m))]}}
+>>>>>>> REPLACE
+</DIFF>

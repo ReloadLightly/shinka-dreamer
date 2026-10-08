@@ -1,0 +1,76 @@
+{
+  "verified_utc": "2026-10-08T17:03:23.674327+00:00",
+  "configured_meta_interval": 10,
+  "saved_meta_trigger": "Native finalization of the necessary transport-fix checkpoint at eight total candidate slots; not the periodic interval10 trigger.",
+  "normal_checkpoint": {
+    "requested_utc": "2026-10-08T16:56:38.334597+00:00",
+    "pid": 1236936,
+    "signal": "SIGUSR1",
+    "signal_behavior": "Native normal checkpoint; drains pending evaluation/proposal and final meta calls, then returns normally.",
+    "active_model_calls_observed": 0,
+    "persisted_generations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "durable_pending_proposals": [
+      {
+        "generation": 7,
+        "source_sha256": "ea46c5a3c174f0a102ba6445c7687a9034bc6d73f107c7973a4ba0270d794f2c",
+        "checkpoint_sha256": "e2525f4762aa551ed9d639a269c33170ead18af5b54e1f21cac15bf1f0b7391c"
+      }
+    ],
+    "sampled_generations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "controller_lock_held": true,
+    "command_validated": true,
+    "semantics_evidence_sha256": "34c59cc9d799348ed4a8777a0b3ab5d4b19df4c52dc289e8d4456365a587d328",
+    "purpose": "Apply authorized whitespace-only Headless parser compatibility fix without losing a model response or pending candidate."
+  },
+  "saved_meta_file": "meta/meta_8.txt",
+  "saved_meta_sha256": "42ac207e55ef4f09cf619ca8da8045928d0406a22f125a388b030d2dd510a757",
+  "restored_native_meta_state": {
+    "source": "/home/roland/projects/shinka-dreamer/results/campaign-v3/meta/meta_8.txt",
+    "processed_generations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "pending_generations": [],
+    "recommendation_history_count": 1
+  },
+  "first_resumed_generation": 8,
+  "sampling_sha256": "58e877f6d5a3f9d227ab66be841c0ea61efc854a4ae9e42902d752e2fd704b5e",
+  "actual_request_id": "20261008T170242616753Z-02287234",
+  "actual_request_sha256": "78e9e0c82f751cbb4202daf50e0845352c2cd9f6e9347f4e33c99e5c7fd5b95d",
+  "checks": {
+    "saved_recommendation_selected": true,
+    "selected_recommendation_in_actual_request": true,
+    "intended_task_in_request": true,
+    "corrected_key_count_description": true,
+    "parent_code_in_request": true,
+    "string_feedback": true,
+    "parent_feedback_in_request": true,
+    "inspiration_codes_in_request": true,
+    "transport_hook_notice": true
+  },
+  "selected_recommendation": "**Maintain enemy beliefs across visibility loss.** Replace the freshly initialized diffuse hidden intensity in `_forecast` with a persistent spatial belief propagated through the learned movement kernel, removing mass from currently observed empty cells and reconciling visible occupancy without assuming enemy identities. Preserve blocked-attempt behavior and separate occupancy from collision hazard; this extends the best program\u2019s successful forecasting while potentially reducing both blind spots and unnecessary avoidance around recently cleared areas.",
+  "transport_amendment_sha256": "5273ea8c5a207099bf015020007adaee8b22bdd1ca1784aec51150ddd9972df5",
+  "scope": "Verifies actual restored meta text/history and native selection of a saved recommendation into a real resumed mutation request; does not attribute candidate improvements to recommendations."
+}

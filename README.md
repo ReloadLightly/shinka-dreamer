@@ -1,6 +1,30 @@
 # ShinkaDreamer: prediction learning and control after evolutionary program search
 
-## Abstract
+## Unknown dynamics: current experiment
+
+A separate **v3 wave is running one 50-slot native ShinkaEvolve search**. Enemies
+retain nine attempted moves, including waiting; blocked moves become stays. The
+three equally weighted regimes are the original uniform law, a privately drawn
+stationary directional law, and an unannounced change of law. The maze, partial
+observation, keys, gating door, exit, dynamic walls and 200-action horizon remain.
+This search optimizes absolute task performance; proper prediction losses are
+diagnostics and textual feedback. It starts from the immutable original
+predictive seed, separately from the manually fitted directional comparator.
+
+The [live search record](artifacts/campaign-v3/search-summary.json),
+[every-candidate table](artifacts/campaign-v3/search.csv),
+[native execution audit](artifacts/campaign-v3/native-audit.json) and
+[methods](docs/v3-methods.md) distinguish completed work from planned assessment.
+The selected program, interventions and precision calculation will be frozen
+before drawing fresh assessment cases. Development leaders are not final results.
+One search cannot establish reliable discovery across independent runs.
+
+![V3 development search: all candidate slots, prediction diagnostics, native ancestry and CPU cost](artifacts/campaign-v3/figures/search.svg)
+
+The closed v2 study below retains its original source, data, numbers, figures and
+reproduction paths. Its historical cases are exposed and are not fresh v3 tests.
+
+## Closed v2 experiment: abstract
 
 How can evolution produce agents that learn how their world works and use that knowledge to act? ShinkaDreamer investigates this question in a changing maze where an agent must collect keys, unlock an exit and avoid moving enemies while seeing only its immediate surroundings. ShinkaEvolve evolves the agent’s code, jointly modifying its world model, learning rules and planner. Within each episode, the resulting agent learns from experience to predict enemy movement and uses those predictions when choosing actions.
 
@@ -59,6 +83,15 @@ not implement neural Dreamer. Its online optimizer follows AdaGrad's accumulated
 squared-gradient idea [4], and its forecast loss is binary Brier error [5]. The
 experiment tests this discovered learner's behavior rather than claiming a new
 optimizer or a new proper scoring rule.
+
+Executable world models and learned learning rules also have established
+precedents. [WorldCoder](https://arxiv.org/abs/2402.12275) builds Python world
+models from interaction and plans with them. [Learned Policy Gradient](https://arxiv.org/abs/2007.08794)
+and [DiscoRL](https://www.nature.com/articles/s41586-025-09761-x) discover prediction
+and update rules through meta-learning. ShinkaDreamer's present contribution is
+an empirical test of evolved online adaptation and its control benefit in this
+particular partially observed maze. It makes no priority claim for executable
+world models, learned RL algorithms or program evolution.
 
 ## Methods
 
@@ -450,12 +483,12 @@ hand/evolution-supplied priors and heuristic costs, with an approximate belief
 representation. Its update comparison does not show an advantage over a predictor
 well fitted on training data and then frozen.
 
-The [next-study design](CODEX_TASK.md) therefore specifies separately versioned
-stationary hidden laws and unannounced changes, a training-fitted frozen predictor,
-a known-law reference retaining partial observability, and eight independent
-searches for each joint, model-only and planner-only edit arm. The principal joint
-arm retains unrestricted representation and program evolution in the original
-maze. This is a design deliverable; that campaign has not been launched.
+The [current v3 wave](CODEX_TASK.md) tests separately versioned stationary hidden
+laws and unannounced changes, a training-fitted frozen predictor and a known-law
+reference retaining partial observability. Its joint search permits changes to
+representations, updates and planning. The earlier proposed 24-search mechanism
+study remains separate, unexecuted work; it is not a prerequisite for this wave's
+fresh assessment and does not support a reliable-discovery claim.
 
 ## Reproducibility
 

@@ -29,5 +29,29 @@
     "additional_environment_episodes": 0,
     "scope": "Selection biased; fits/rates selected on this subvalidation."
   },
-  "search": "Use search-summary.json and native-audit.json for exact ongoing counts."
+  "search": "Use search-summary.json and native-audit.json for exact ongoing counts.",
+  "matched_predictor_smoke": {
+    "condition_episodes": 8,
+    "shadow_predictor_episodes": 24,
+    "pool": "eight development switching cases under original memory policy",
+    "record_sha256": "3b61f0e7b4f03572cc2fda4e1d377f607aa2623e3f2191fc2f0303069b6c016b"
+  },
+  "matched_driver_integration_smoke": {
+    "condition_episodes": 1,
+    "shadow_predictor_episodes": 3,
+    "pool": "one development switching case under original memory policy",
+    "location": "/tmp/shinka-v3-matched-integration-development",
+    "purpose": "assessment driver integration; not inference"
+  },
+  "gen1_mechanism_smoke": {
+    "condition_episodes": 48,
+    "layouts": 4,
+    "regimes": 3,
+    "conditions": 4,
+    "environment_steps": 2694,
+    "candidate_cpu_seconds": 14.502719000000003,
+    "evaluator_cpu_seconds": 3.4408155380000003,
+    "record_sha256": "e4806ffa86f9d0188cb861d229bdb43972b6a270b1bf3a9da46e5083e27392ae",
+    "scope": "interface and source-specific risk smoke; not champion selection or final assessment"
+  }
 }

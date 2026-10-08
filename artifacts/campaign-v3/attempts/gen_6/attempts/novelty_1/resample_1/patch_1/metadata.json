@@ -1,0 +1,15 @@
+{
+  "generation": 6,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 4,
+  "patch_name": "survival_conditioned_beam",
+  "patch_description": "Replace the planner\u2019s sum of marginal collision penalties with survival-conditioned enemy trajectories. After each hypothetical agent move, remove enemy paths that would already have caused a collision and condition subsequent predictions on survival. This avoids repeatedly charging for the same dangerous trajectories across the planning horizon, while preserving both pre-movement and post-movement collision checks.\nA bounded beam retains alternatives for each first action, including waiting. Hidden-enemy risk remains conservative, and learned movement laws, anonymous dynamics updates, and prediction interventions remain intact. This targets the current agent\u2019s long escape times and timeouts without lowering its immediate collision penalty. Performance gains require evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:50:49.368562",
+  "llm_cost": 0.382878,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_6/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

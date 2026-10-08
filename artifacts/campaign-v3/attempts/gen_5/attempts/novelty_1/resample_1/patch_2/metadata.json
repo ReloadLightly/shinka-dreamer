@@ -1,0 +1,15 @@
+{
+  "generation": 5,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 2,
+  "success": true,
+  "num_applied": 7,
+  "patch_name": "censored_motion_learning",
+  "patch_description": "Correct the failed patch by matching individual functions separately, preserving the original blank lines. Learn the shared attempted-movement law from fully observed anonymous transitions, distributing blocked-stay evidence among compatible directions and gradually forgetting old evidence. Propagate visible enemies through terrain to obtain directional occupancy forecasts. Keep predictive updating separate from mapping and localization.\nUse equal costs for cardinal and diagonal actions, approach closed doors cardinally, and compare immediate movement risk against waiting. These changes target survival and escape efficiency; their performance remains to be evaluated.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:47:02.184089",
+  "llm_cost": 0.278988,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_5/attempts/novelty_1/resample_1/patch_2/headless_prompt.md"
+}

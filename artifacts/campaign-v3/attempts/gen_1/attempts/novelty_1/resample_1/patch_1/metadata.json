@@ -1,0 +1,15 @@
+{
+  "generation": 1,
+  "novelty_attempt": 1,
+  "resample_attempt": 1,
+  "patch_attempt": 1,
+  "success": true,
+  "num_applied": 1,
+  "patch_name": "anonymous_motion_survival",
+  "patch_description": "Learns a forgetting-weighted movement law through anonymous transition matching, including blocked attempts and overlapping enemies. Combines explicit occupancy forecasts with survival-aware routing, waiting, retreat, and cardinal door approaches. Predictive interventions remain separate from mapping. Synthetic validity checks and 200 decision cycles passed; improved task performance requires development evaluation.",
+  "error_msg": null,
+  "timestamp": "2026-10-08T18:13:39.388967",
+  "llm_cost": 0.966254,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "headless_prompt_path": "/home/roland/projects/shinka-dreamer/results/campaign-v3/gen_1/attempts/novelty_1/resample_1/patch_1/headless_prompt.md"
+}

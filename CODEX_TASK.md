@@ -1,4 +1,36 @@
-# Current research state and the next separately versioned experiment
+# Current research state and unknown-dynamics experiment
+
+## Authorized active work: v3 wave 1
+
+The 8 October 2026 instruction authorizes **one 50-total-slot native search**,
+followed by selection validation, frozen-program assessment and scientific
+reporting. It supersedes the earlier proposed 24-search execution requirement.
+Do not start another copy or extend the closed v2 database. The active campaign is
+`results/campaign-v3`; the frozen design and identities are in
+[docs/v3-protocol.md](docs/v3-protocol.md) and
+[artifacts/campaign-v3/protocol.json](artifacts/campaign-v3/protocol.json).
+The task-only objective, 24 development layouts × three regimes, original
+predictive seed and native settings were frozen before mutation.
+
+Use the compact [search summary](artifacts/campaign-v3/search-summary.json) and
+[native audit](artifacts/campaign-v3/native-audit.json) for the latest exported
+counts; inspect the actual database, lock and process before resuming. The exact
+command is:
+
+```bash
+HEADLESS_BILLING=subscription .venv/bin/python scripts/resume_v3_transport.py \
+  --results results/campaign-v3 --generations 50
+```
+
+Run only one controller. Original driver/configuration files are hash-frozen;
+the additive resume driver applies the preserved prompt-description correction.
+Follow [methods and execution](docs/v3-methods.md) for that correction, comparator
+fitting, matched prediction, checkpoints and remaining assessment gates. A final
+assessment pool must not be drawn until all sources/interventions, analysis and
+sample size are frozen. Existing v2 cases remain retired from fresh assessment.
+
+The older study design below remains context for later independent repetitions;
+it does not authorize or require launching 24 searches in this wave.
 
 Read [AGENTS.md](AGENTS.md), the [README](README.md), the
 [assessment design](docs/assessment-design.md), [development findings](docs/campaign-findings.md),
@@ -28,7 +60,7 @@ historical analysis. The assessment uses local execution and no model calls.
 
 ## Proposed next study: unknown enemy dynamics
 
-**Design deliverable only; not launched.** Give the next study its own protocol,
+**Original proposed design; v3 wave 1 is now launched under the scope above.** Give each study its own protocol,
 objective/evaluator fingerprints, directory and preregistration, for example
 `namazu-unknown-dynamics-v3`. Never append its scores to the completed v2 database.
 Its hypothesis is that online updating improves prediction and control when enemy
