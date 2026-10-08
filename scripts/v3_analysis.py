@@ -138,6 +138,47 @@ def outcome(row,event):
             row['keys']==2 if event=='two_keys' else bool(row['door']))
 
 
+def behavior_pair(left,right):
+    """Descriptive behavior changes; missing/invalid audits never imply equality."""
+    if len(left) != len(right):
+        raise ValueError('Behavior comparison requires paired cases')
+    n=len(left)
+    valid=[(a,b) for a,b in zip(left,right)
+           if a.get('error') is None and b.get('error') is None
+           and a.get('reason') != 'invalid' and b.get('reason') != 'invalid']
+    result={'cases':n,'invalid_pairs':n-len(valid),
+            'scope':'Descriptive sequence differences, not evidence of beneficial control or predictive adaptation.'}
+    for name,key in (('actions','actions_sha256'),('recorded_physical_states','recorded_physical_states_sha256'),
+                     ('physical_observations','observations_sha256')):
+        audited=[(a['audit'][key],b['audit'][key]) for a,b in valid
+                 if a.get('audit',{}).get(key) and b.get('audit',{}).get(key)]
+        different=sum(a != b for a,b in audited)
+        result[name]={'valid_audited_pairs':len(audited),'differing_pairs':different,
+                      'same_pairs':len(audited)-different,'unavailable_valid_pairs':len(valid)-len(audited),
+                      'differing_fraction_all_cases':different/n if n else None}
+    result['recorded_physical_states']['definition']='Recorded pre-action world snapshots and post-transition enemy occupancy; the final agent position is not separately recorded. Equality is not full terminal-state identity.'
+    return result
+
+
+def state_audit_summary(rows):
+    audits=[r.get('audit') for r in rows if r.get('audit') is not None]
+    exports=[a for a in audits if a.get('parameters_exported') is True]
+    checked=[a for a in audits if (a.get('localization_checks') or 0) > 0]
+    return {'episodes':len(rows),'available_episode_audits':len(audits),
+        'invalid_episodes':sum(r.get('error') is not None or r.get('reason') == 'invalid' for r in rows),
+        'parameters_exported_episodes':len(exports),
+        'parameters_constant_episodes':sum(a.get('parameters_constant') is True for a in exports),
+        'parameters_changed_episodes':sum((a.get('parameter_change_steps') or 0) > 0 for a in exports),
+        'parameters_unavailable_episodes':len(rows)-len(exports),
+        'parameter_change_steps':sum(a.get('parameter_change_steps') or 0 for a in exports),
+        'localization_audited_episodes':len(checked),
+        'localization_unavailable_episodes':len(rows)-len(checked),
+        'localization_checks':sum(a['localization_checks'] for a in checked),
+        'localization_errors':sum(a.get('localization_errors') or 0 for a in checked),
+        'episodes_with_localization_error':sum((a.get('localization_errors') or 0) > 0 for a in checked),
+        'scope':'Exported state only; absent exports are unavailable, not constant or correct. Invalid partial traces can contribute audits. Parameter change does not establish informative learning.'}
+
+
 def analyze(rows,plan):
     n=plan['sample_size']
     conditions=[c['name'] for c in plan['conditions']]
@@ -172,6 +213,7 @@ def analyze(rows,plan):
         success=[r['steps'] for r in group if r['reason']=='escaped']
         summary['successful_escape_steps']={'mean':float(np.mean(success)) if success else None,'episodes':len(success),'scope':'conditional on own success'}
         summary['forecasts']={key:pooled(group,key,weights) for key in FORECASTS}
+        summary['state_audit'] = state_audit_summary(group)
         summary['switch_exposure']={'encountered':sum(r.get('encountered_switch',False) for r in group),
             **{key:sum(r.get('exposure',{}).get(key,0) for r in group) for key in (
                'post_switch_steps','visible_enemy_steps','consecutive_visible_steps',
@@ -206,6 +248,7 @@ def analyze(rows,plan):
                 difference=np.array([x.get(key,0)-y.get(key,0) for x,y in zip(a,b)])
                 entry[key]={'difference':float(difference.mean()),'ci95':interval(weights@difference/n)}
             entry['on_policy_forecasts']={key:forecast_pair(a,b,key,weights) for key in FORECASTS}
+            entry['behavior'] = behavior_pair(a,b)
             result['pairs'][f'{regime}/{left}-minus-{right}']=entry
     for family in sorted({c.get('family','descriptive') for c in pairs}-{'descriptive'}):
         keys=[k for k,v in result['pairs'].items() if v['family']==family]

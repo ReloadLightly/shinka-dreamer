@@ -22,6 +22,33 @@ def test_holm_preserves_original_order():
     assert holm([.04,.001])==[.04,.002]
 
 
+def test_behavior_audits_separate_invalid_missing_and_actual_changes():
+    import copy
+    from scripts.v3_analysis import behavior_pair, state_audit_summary
+    left = [{'reason': 'escaped', 'error': None, 'audit': {
+        'actions_sha256': 'same', 'recorded_physical_states_sha256': 'same',
+        'observations_sha256': 'same', 'parameters_exported': True,
+        'parameters_constant': False, 'parameter_change_steps': 2,
+        'localization_checks': 4, 'localization_errors': 1}} for _ in range(4)]
+    right = copy.deepcopy(left)
+    right[0]['audit']['actions_sha256'] = 'different attempted action, same physical states'
+    right[1]['audit'] = {}
+    right[2]['reason'] = 'invalid'
+    right[2]['error'] = 'execution failed'
+    comparison = behavior_pair(left, right)
+    assert comparison['cases'] == 4 and comparison['invalid_pairs'] == 1
+    assert comparison['actions'] == {'valid_audited_pairs': 2, 'differing_pairs': 1,
+        'same_pairs': 1, 'unavailable_valid_pairs': 1, 'differing_fraction_all_cases': .25}
+    assert comparison['recorded_physical_states']['differing_pairs'] == 0
+    assert comparison['recorded_physical_states']['unavailable_valid_pairs'] == 1
+    summary = state_audit_summary(right)
+    assert summary['episodes'] == 4 and summary['invalid_episodes'] == 1
+    assert summary['parameters_exported_episodes'] == 3 and summary['parameters_unavailable_episodes'] == 1
+    assert summary['parameters_constant_episodes'] == 0 and summary['parameters_changed_episodes'] == 3
+    assert summary['localization_checks'] == 12 and summary['localization_errors'] == 3
+    assert summary['localization_unavailable_episodes'] == 1
+
+
 def test_paired_binary_confidence_level_is_explicit_and_widens():
     left = [True]*4 + [False]*16
     right = [False]*3 + [True]*2 + [False]*15

@@ -197,6 +197,7 @@ def compact_trace(row, parameter_key=None):
             localization_errors += [position[i]+world['origin'][i] for i in range(2)] != list(world['agent'])
     row['audit'] = {
         'trajectory_sha256': digest([{k: f[k] for k in ('world', 'action', 'next_enemies')} for f in trace]),
+        'recorded_physical_states_sha256': digest([{k: f[k] for k in ('world', 'next_enemies')} for f in trace]),
         'actions_sha256': digest([f['action'] for f in trace]),
         'observations_sha256': digest([{k: v for k, v in f.get('obs', {}).items()
             if k not in ('learn', 'predictive_planning', 'known_law')} for f in trace]),

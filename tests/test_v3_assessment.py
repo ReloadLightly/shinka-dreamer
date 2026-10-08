@@ -82,6 +82,19 @@ def test_arbitrary_nested_parameter_audit_missing_is_not_frozen():
     assert compact['audit']['first_parameters'] is None
 
 
+def test_recorded_physical_state_hash_excludes_attempted_actions():
+    import copy
+    original = {'trace': [{'world': {'agent': [2, 3], 'origin': [1, 1]},
+        'action': {'move': [0, 0]}, 'next_enemies': [], 'obs': {}, 'model': {}}]}
+    changed = copy.deepcopy(original)
+    changed['trace'][0]['action']['move'] = [1, 0]
+    first = assessment.compact_trace(original)['audit']
+    second = assessment.compact_trace(changed)['audit']
+    assert first['recorded_physical_states_sha256'] == second['recorded_physical_states_sha256']
+    assert first['actions_sha256'] != second['actions_sha256']
+    assert first['trajectory_sha256'] != second['trajectory_sha256']
+
+
 def plan_fixture(tmp_path, monkeypatch):
     monkeypatch.setattr(assessment, 'ROOT', tmp_path)
     private = tmp_path / 'results/private'

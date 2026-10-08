@@ -24,8 +24,13 @@ still lacks unseen terrain, hidden enemy positions, future innovations and the
 future switch schedule.
 
 The chosen-cell diagnostic predicts **post-transition enemy occupancy at the
-actual destination**. It excludes pre-movement enemy contact, and is not the
-probability of death. Ordinary near/audit forecasts use fixed cells in coordinates
+actual destination**. Its label excludes the pre-movement contact event, not
+transitions on which that event occurs, and is not the probability of death.
+The world records contact after agent movement, then advances all three enemies
+and updates dynamic walls before declaring death, escape or timeout. Thus every
+near, audit and destination label uses occupancy after the enemy transition,
+including terminal transitions; enemies do not freeze upon pre-movement contact.
+Ordinary near/audit forecasts use fixed cells in coordinates
 relative to the agent's initial position. Near targets surround the pre-action
 position. A planner's longer-horizon heuristic cost need not equal these forecasts.
 Memory's near/audit diagnostics use the evaluator's persistence reference;
