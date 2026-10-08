@@ -164,6 +164,8 @@ def main():
     if (out/'lineage.json').exists():
         from v3_source_changes import report
         report(out)
+        from v3_ancestry import render
+        render(out)
 
 
 if __name__=='__main__': main()

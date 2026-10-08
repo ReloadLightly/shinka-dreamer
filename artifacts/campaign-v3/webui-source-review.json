@@ -1,0 +1,154 @@
+{
+  "inspected_at_utc": "2026-10-08T18:56:15.776912+00:00",
+  "scope": "Read-only inspection of installed native UI and local browser availability; no server, tunnel, browser session, search, evaluation or LLM call started by this audit.",
+  "installed_shinka": {
+    "version": "0.0.7",
+    "revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+    "source_sha256": {
+      "visualization.py": "e40c924e1634ec7b0b5e0a8be870e7a1234a470aa6c8d61a28768264139f1ae9",
+      "viz_tree.html": "8774e11e355a855ce80cd508abe86b1819eedd20a74dd79a841781d2b590df7d",
+      "index.html": "99ae11d626d1a012055ddac97de427526e36495fa26451c703e424c89e5f37c7",
+      "compare.html": "7bc6877735dbce1369d8a0c5bf8f83f3c0fd8a538cf5a5aeb63ef3c4f9bcb277"
+    }
+  },
+  "native_cli": {
+    "entrypoint": ".venv/bin/shinka_visualize",
+    "positional_root": "results/campaign-v3",
+    "database": "programs.sqlite",
+    "default_port": 8000,
+    "bind_address": "0.0.0.0",
+    "host_flag_available": false,
+    "db_flag_scope": "Initial browser URL only; does not restrict accessible databases.",
+    "root_scope": "Recursive database discovery and path prefix; not a reliable access-control boundary."
+  },
+  "http_methods": {
+    "explicit_methods": [
+      "GET"
+    ],
+    "inherited_static_methods": [
+      "HEAD"
+    ],
+    "post_put_delete_handlers_present": false,
+    "database_reads": "ProgramDatabase and SystemPromptDatabase use read_only=True / mode=ro; failed-proposal and statistics helper queries use ordinary sqlite3.connect. Inspected handlers issue SELECT and PRAGMA statements; no search or mutation endpoint.",
+    "get_side_effect": "download_meta_pdf creates/removes temporary files and may spawn wkhtmltopdf/pandoc."
+  },
+  "endpoints": {
+    "/list_databases": "Recursively discovers .db/.sqlite below root; exclude this scan or constrain root to current campaign.",
+    "/get_programs": "Full program records, including code, metadata, private_metrics and text_feedback; five-second cache.",
+    "/get_programs_summary": "Code/embedding-free summaries but includes metadata, private_metrics and text_feedback.",
+    "/get_program_count": "Count and max timestamp; used for three-second change detection.",
+    "/get_program_details": "Selected source, diff, feedback and metadata; may resolve failed-proposal artifacts from recorded paths.",
+    "/get_system_prompts": "Sibling prompts.sqlite when present; currently optional UI capability.",
+    "/get_database_stats": "Aggregate count, best score, estimated cost and timing.",
+    "/get_meta_files": "Lists meta_*.txt and exposes absolute file paths.",
+    "/get_meta_content": "Reads recommendation/meta text; processed_count should be restricted to numeric values by wrapper.",
+    "/download_meta_pdf": "Temporary-file and subprocess work; unnecessary for live browsing.",
+    "/get_plots": "Lists gen_<generation>/results/plots raster files; generation should be validated numerically.",
+    "/plot_file/": "Reads arbitrary file bytes under string-prefix path check; extensions are not restricted."
+  },
+  "path_boundary_findings": [
+    "DB and metadata endpoints join search_root with caller db_path, without resolve/commonpath containment; absolute paths and parent traversals are accepted by the path construction.",
+    "plot_file uses abspath(...).startswith(abspath(root)), which does not enforce a directory boundary or resolve symlink targets.",
+    "Failed-proposal source paths can come from saved metadata and are not independently constrained by the native handler.",
+    "Static fallback serves package webui directory and inherits directory listing; a wrapper can restrict exact known assets instead."
+  ],
+  "recommended_local_access": {
+    "server": "Repository-owned wrapper importing the installed native DatabaseRequestHandler and serving the unchanged native HTML; bind127.0.0.1 only.",
+    "database_allowlist": [
+      "programs.sqlite"
+    ],
+    "asset_allowlist": [
+      "/",
+      "/index.html",
+      "/viz_tree.html",
+      "/compare.html",
+      "/favicon.png",
+      "/sakana.jpg"
+    ],
+    "required_live_endpoints": [
+      "/list_databases",
+      "/get_programs_summary",
+      "/get_program_count",
+      "/get_program_details",
+      "/get_database_stats",
+      "/get_system_prompts"
+    ],
+    "optional_review_endpoints": [
+      "/get_programs",
+      "/get_meta_files",
+      "/get_meta_content"
+    ],
+    "query_validation": "Require db_path exactly programs.sqlite; numeric generation/processed_count; known program IDs or validated native failed-node IDs; reject duplicate/unknown path parameters.",
+    "default_omit": [
+      "/plot_file/",
+      "/get_plots",
+      "/download_meta_pdf"
+    ],
+    "browser_url": "http://127.0.0.1:<port>/viz_tree.html?db_path=programs.sqlite",
+    "remote_access": "Do not publish raw upstream CLI. Root owns any subsequent access decision; local WSL localhost access can be tested first."
+  },
+  "live_and_visual_features": {
+    "tree_poll_seconds": 3,
+    "landing_database_scan_seconds": 30,
+    "get_programs_cache_seconds": 5,
+    "views": [
+      "ancestry tree with inspirations",
+      "program table/code/diff",
+      "metrics and best path",
+      "islands",
+      "meta recommendations",
+      "Pareto/metric comparisons",
+      "cost/timing/throughput",
+      "mutation effectiveness",
+      "embeddings/clusters when actual data exist"
+    ],
+    "exports": [
+      "individual source download",
+      "top-program ZIP client-side (requires loaded code)",
+      "Plotly chart images where modebar enabled",
+      "client-side meta PDF/text helpers",
+      "server meta PDF fallback"
+    ],
+    "dependencies": [
+      "D3 via d3js.org",
+      "Chart.js/marked/diff via jsdelivr",
+      "Plotly via cdn.plot.ly",
+      "highlight.js/JSZip/PDF helpers via cdnjs"
+    ],
+    "chromatic_field": "Native plots use upstream styling. Screenshots or browser-generated SVG/canvas inspection can document the UI; publication figures should continue using repository visual_theme.py and actual campaign data.",
+    "scientific_limits": [
+      "UI API cost fields are estimated metadata, not subscription charges.",
+      "One model does not establish model-bandit selection.",
+      "Embedding/novelty views need actual embedding and judge execution, absent here.",
+      "Native database row counts include seed island copies; candidate slots must come from campaign accounting."
+    ]
+  },
+  "browser_availability_at_inspection": {
+    "agent_browser": {
+      "path": "/tmp/slime-browser/node_modules/agent-browser/bin/agent-browser.js",
+      "version": "0.38.2",
+      "help_and_version_executed": true,
+      "implementation": "Bundled native Linux binary; daemon does not require Playwright or Node."
+    },
+    "python_playwright_selenium_pyppeteer": {
+      "system": false,
+      "venv": false
+    },
+    "chromium_chrome_firefox_on_path": false,
+    "browser_executable_found_in_checked_locations": false,
+    "checked_locations": [
+      "/tmp",
+      "/home/roland/.cache",
+      "/usr/local/bin",
+      "/usr/local/lib",
+      "/usr/bin browser names",
+      "/usr/lib/chromium",
+      "/opt/google/chrome",
+      "/opt"
+    ],
+    "needed_for_automated_render": "Provide a local Chrome/Chromium executable or download browser binaries under a task-local allowed path; root handles this. Use a separate session and temporary profile, without user authentication state or cloud/AI chat providers."
+  },
+  "new_environment_episodes": 0,
+  "new_model_calls": 0,
+  "upstream_modified": false
+}
