@@ -1,0 +1,72 @@
+{
+  "study": "bounded v3 development profiling and fixed-state dynamics-use diagnostic",
+  "authorization": "User: can we try this? 20-minute development diagnostic; no mutation-model calls; assessment remains paused.",
+  "started_utc": "2026-10-08T22:55:04+00:00",
+  "hard_task_deadline_utc": "2026-10-08T23:15:04+00:00",
+  "execution_deadline_utc": "2026-10-08T23:10:04+00:00",
+  "maximum_execution_seconds": 600,
+  "world_episode_cap": 0,
+  "recorded_replay_pass_cap": 48,
+  "frames_per_pass_cap": 80,
+  "recorded_frame_execution_cap": 3840,
+  "additional_known_law_planner_call_cap": 1920,
+  "per_worker_cpu_limit_seconds": 10,
+  "worker_timeout_seconds": 35,
+  "concurrent_workers": 2,
+  "regimes": [
+    "uniform",
+    "stationary",
+    "switch"
+  ],
+  "cases_per_regime": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "corpus": "existing development-only fitting-subvalidation memory-policy recordings; prior/rate tuning exposed; not validation of champion or fresh assessment",
+  "corpus_directory": "results/v3-comparator-fit/validation",
+  "corpus_sha256": {
+    "uniform-0000.json.gz": "ae4399aea30c23299c3a05372255ea3b2ee92671d20a09a90e189a97a2b555bf",
+    "uniform-0001.json.gz": "9af17c077efc9295e8f0755063fcb03134892976cda693222f44cc3c24f6f929",
+    "uniform-0002.json.gz": "770505efdcdc6ebaf13302638ae48f609fcb0978caff1b165323725a231c69e2",
+    "uniform-0003.json.gz": "285a05b6d61a3940712a4a34ce48da27b83121a6d35d04e995fb182f64da36cc",
+    "stationary-0000.json.gz": "8bd95e569fdabddda064972ad794037a175f0510bbcbfad98e59dfbac82f531d",
+    "stationary-0001.json.gz": "0e165c6d5c6dd69178be6d5da5b8f458098436adc98589fc5f069e995dbab8a6",
+    "stationary-0002.json.gz": "fc81de1f3494bf5ed6d80d4cfd437adfd41a3aaf903fb9eaaef0f61ce1e516c5",
+    "stationary-0003.json.gz": "ee3776dd51ff2e960b759d14984fabec3e22837a874d207502d8365f65fe9d2e",
+    "switch-0000.json.gz": "e26e066f2584ecc27a82fb25a9a3818e8afe4049496e51747b78c23cbf762585",
+    "switch-0001.json.gz": "aa243ba4ac1ca7b0cafe11006a65913aeb9f73a667041eee2425415de4fd94dd",
+    "switch-0002.json.gz": "8fc2ab5fc1b71c6eb9fd75283d30dee8bc45f472cb7decbed9fec147f716e94f",
+    "switch-0003.json.gz": "bef63b856bbd9809fafd65472533149a3fd7ffdedd854217dc997888f7b02047"
+  },
+  "private_pool_sha256": "d723aa726e4a915c5385ede035cfd9d65e926ace7bbed859c0a3450985e0573a",
+  "sources": {
+    "selected": {
+      "path": "artifacts/campaign-v3/selection/selected.py",
+      "sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c"
+    },
+    "comparator": {
+      "path": "controls/v3/directional.py",
+      "sha256": "a8dec56f17a61a05981d619b075475068ab8469de871fd44de76ac276c2eca78"
+    }
+  },
+  "passes_per_recording": [
+    "selected/plain",
+    "selected/profiled",
+    "comparator/plain",
+    "comparator/profiled"
+  ],
+  "profile_phases": [
+    "world_model_step",
+    "planner",
+    "export_model"
+  ],
+  "comparison": "fitted-frozen state cloned immediately after model update; current true law supplied only to cloned known-law reference, forecasts recomputed, same planner. Common frozen belief/map/location/history before this intervention; known clone never feeds back.",
+  "replay_semantics": "Public physical experience and preceding actions forced from memory recordings. Comparator waits and previous forecast center restored to recorded action after export; target history follows fitted planner. Selected uses its own planner history with recorded preceding actions. Diagnostic recommendations are not executed trajectories.",
+  "observer": "Source-bound planner-local observer in plain comparator pass only; profiled pass omits tracing. Require identical per-frame main action/export hashes and known-law actions.",
+  "analysis": "Report allattempts/failures, paired instrumentation equivalence, cProfile self/cumulative hotspots, phaseCPU and actual rank reversals/score margins/immediate-risk changes; no significance tests or escape-effect claims. At most a small source-specific optimization proposal; do not modify frozen sources.",
+  "model_calls": 0,
+  "new_assessment_cases": 0,
+  "simulation_resume_authorized": false
+}
