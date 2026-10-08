@@ -2,12 +2,26 @@
 
 ## Unknown dynamics: current experiment
 
-**Paused at the user's request.** The 50-slot search is complete; the final
-assessment stopped after 140 paired cases (4,200 world episodes and 2,100 passive
-prediction passes). All workers have exited and no automatic resumption is
-scheduled. Read the [checkpoint and decision report](docs/v3-checkpoint-report.md)
-for the early search plateau, current evidence, exact costs, design weaknesses
-and options for discussion. Fresh assessment effects have not been aggregated.
+**Interim result: online learning improves prediction under unknown dynamics;
+an escape benefit remains unestablished.** The user-requested saved-data
+[assessment and decision report](docs/v3-interim-assessment.md) covers 140 paired
+cases, 4,200 world episodes and 2,100 passive prediction passes. On identical
+memory-policy experience, the selected learner reduces near-cell Brier loss by
+1.21% [0.50, 2.05] under private stationary laws and 1.58% [0.63, 2.61] with a
+switch; under uniform dynamics it worsens loss by 0.93% [0.51, 1.34]. Selected
+online minus frozen escape is +3.57 percentage points [−2.79, +10.78] and +0.71
+[−5.89, +6.73] in stationary and switch cases. These are nominal, descriptive
+95% intervals from an unfinished assessment, not confirmatory conclusions.
+
+The 50-slot search is complete. Generation 4 captured 98.97% of its eventual
+best development-task gain; 45 later slots added no development escapes and
+selection retained generation 4. The full 1,536-case assessment remains paused:
+all workers exited and no automatic resumption is scheduled. This interim
+analysis added no episodes or experiment model calls. The recommended next step
+is a bounded development diagnostic of decision relevance and runtime, subject
+to a new scope decision. See the [full result tables](artifacts/campaign-v3/assessment-interim140/tables.md),
+[matched prediction tables](artifacts/campaign-v3/assessment-interim140/matched-tables.md)
+and [original checkpoint report](docs/v3-checkpoint-report.md).
 
 A separate **v3 wave completed one 50-slot native ShinkaEvolve search**. Enemies
 retain nine attempted moves, including waiting; blocked moves become stays. The
@@ -42,8 +56,17 @@ paired layout cases shared across all three regimes**, ten on-policy conditions 
 on identical recorded experience. The program, comparators, interventions,
 precision and analysis were frozen before drawing fresh cases. That assessment
 is incomplete and remains paused; development results do not establish
-generalization or a control benefit. One search cannot establish reliable
-discovery across independent runs.
+generalization or a control benefit. The separately recorded 140-case interim
+analysis preserves all invalids, uses whole-case paired resampling and retires
+the exposed cases from future fresh testing. One search cannot establish
+reliable discovery across independent runs.
+
+![Interim prediction on identical recorded experience](artifacts/campaign-v3/assessment-interim140/figures/matched-learning.svg)
+
+Reproduce the interim statistics with
+`OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/v3_interim_analysis.py --compact`.
+The [report](docs/v3-interim-assessment.md#reproduction-and-preserved-checkpoint)
+includes figure commands and the preserved, currently paused simulation command.
 
 ![V3 development search: all candidate slots, prediction diagnostics, native ancestry and CPU cost](artifacts/campaign-v3/figures/search.svg)
 

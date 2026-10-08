@@ -25,6 +25,37 @@ LABELS={'memory':'Original memory','v2_gen14':'v2 generation 14',
 def display(name): return LABELS.get(name,name.replace('_',' '))
 
 
+def interim_label(data):
+    interim=data.get('interim')
+    if not interim:return None
+    return (f"INTERIM · {interim['observed_cases']:,} / {interim['registered_cases']:,} "
+            'registered cases per regime')
+
+
+def save_evidence_figure(fig,path,data):
+    label=interim_label(data)
+    if label:
+        top=max(1.,fig._suptitle.get_position()[1] if fig._suptitle else 1.)
+        fig.text(.5,top+.20/fig.get_figheight(),label+'\n'
+                 'Nominal descriptive 95% intervals · not stopping-adjusted or confirmatory',
+                 ha='center',va='bottom',fontsize=10,fontweight='bold',color=MAGENTA,
+                 linespacing=1.45)
+    save_figure(fig,path)
+
+
+def write_evidence_tables(path,lines,data):
+    label=interim_label(data)
+    if label:
+        annotated=[]
+        for index,line in enumerate(lines):
+            if line.startswith('|') and index+1<len(lines) and lines[index+1].startswith('|:--'):
+                annotated.extend(['**'+label+'.** Nominal descriptive 95% intervals; '
+                    'not stopping-adjusted or confirmatory. The original sample-size power claim does not apply.',''])
+            annotated.append(line)
+        lines=annotated
+    path.write_text('\n'.join(lines)+'\n')
+
+
 def outcomes(data,out):
     regimes=('uniform','stationary','switch')
     names=[k.split('/',1)[1] for k in data['outcomes'] if k.startswith('uniform/')]
@@ -54,12 +85,13 @@ def outcomes(data,out):
         ax.tick_params(axis='y',labelsize=9,pad=7)
         ax.invert_yaxis()
     fig.suptitle('Unknown enemy dynamics · frozen-program assessment',fontsize=16,fontweight='bold',y=.995)
-    save_figure(fig,out/'outcomes-effects')
+    save_evidence_figure(fig,out/'outcomes-effects',data)
 
 
 def forecast_cost(data,out):
     names=[k.split('/',1)[1] for k in data['outcomes'] if k.startswith('uniform/')]
     fig,axes=plt.subplots(1,2,figsize=(10,6.5),gridspec_kw={'wspace':.65})
+    fig.subplots_adjust(top=.80)
     for index,regime in enumerate(('uniform','stationary','switch')):
         y=np.arange(len(names))+(index-1)*.23
         color=(SECONDARY,COBALT,MAGENTA)[index]
@@ -79,13 +111,14 @@ def forecast_cost(data,out):
         ax.grid(axis='x',alpha=.5)
     axes[0].set(title='On-policy predictions',xlabel='Pooled near-cell Brier loss')
     axes[1].set(title='Candidate computation',xlabel='CPU seconds per episode\n(measured executions only)')
-    axes[0].legend(fontsize=9)
+    handles,labels=axes[0].get_legend_handles_labels()
+    fig.legend(handles,labels,loc='upper center',bbox_to_anchor=(.5,.94),ncol=3,fontsize=9)
     fig.suptitle('Prediction quality and computation are separate endpoints',fontsize=16,fontweight='bold')
-    save_figure(fig,out/'prediction-cost')
+    save_evidence_figure(fig,out/'prediction-cost',data)
 
 
 def write_tables(data,out):
-    lines=['# Frozen v3 outcomes','','All outcome denominators include invalid executions. Forecast scores here are on-policy.','',
+    lines=['# '+('Interim' if interim_label(data) else 'Frozen')+' v3 outcomes','','All outcome denominators include invalid executions. Forecast scores here are on-policy.','',
            'Paired 95% intervals are pointwise, not Holm-adjusted simultaneous intervals. Holm p-values apply only to the registered test families. CPU means use measured executions only; unavailable measurements are counted separately and never treated as zero.','',
            '| Regime | Condition | Escape | Death | Timeout | Invalid | Mean task | Near Brier | CPU s/measured episode |',
            '|:--|:--|--:|--:|--:|--:|--:|--:|--:|']
@@ -110,7 +143,7 @@ def write_tables(data,out):
         for row in data['regime_interactions'].values():
             lo,hi=np.array(row['ci95_conservative'])*100
             lines.append(f"| {row['regime_a']} − {row['regime_b']} | {display(row['left'])} − {display(row['right'])} | {100*row['difference']:+.2f} [{lo:+.2f}, {hi:+.2f}] |")
-    (out.parent/'tables.md').write_text('\n'.join(lines)+'\n')
+    write_evidence_tables(out.parent/'tables.md',lines,data)
 
 
 def matched_available(group):
@@ -140,7 +173,7 @@ def matched_figure(data,out,name='matched-learning'):
         fig,ax=plt.subplots(figsize=(10,3.4));ax.axis('off')
         ax.text(.03,.65,'Matched prediction evidence unavailable',weight='bold',fontsize=14)
         ax.text(.03,.4,textwrap.fill(matched_unavailable_reason(data),90),fontsize=11)
-        save_figure(fig,out/name)
+        save_evidence_figure(fig,out/name,data)
         return
     if not any(matched_available(regimes[r]) for r in present):
         fig,ax=plt.subplots(figsize=(10,max(3.8,1.4+1.1*len(present))));ax.axis('off')
@@ -154,7 +187,7 @@ def matched_figure(data,out,name='matched-learning'):
                     fontsize=10,va='top',color=SECONDARY)
         fig.text(.04,.055,'Estimates are withheld unless every registered matching and coverage check passes.',
                  fontsize=9,color=SECONDARY)
-        save_figure(fig,out/name)
+        save_evidence_figure(fig,out/name,data)
         return
     fig,axes=plt.subplots(len(present),2,figsize=(11.6,max(5.8,4.2*len(present))),squeeze=False,
                           gridspec_kw={'width_ratios':[1.2,1],'wspace':.32,'hspace':.75})
@@ -213,7 +246,7 @@ def matched_figure(data,out,name='matched-learning'):
     fig.text(.09,.035,'Later bins select survivors. Online–frozen pairs test updating within a source.\n'
              'Cross-source and known-law pairs compare absolute losses; positive reductions favor the left predictor.',
              fontsize=9,color=SECONDARY)
-    save_figure(fig,out/name)
+    save_evidence_figure(fig,out/name,data)
 
 
 def write_matched_tables(fitted,selected,out):
@@ -244,7 +277,8 @@ def write_matched_tables(fitted,selected,out):
                     reduced=(f"{100*value:+.2f} [{100*ci[0]:+.2f}, {100*ci[1]:+.2f}]"
                              if value is not None and ci else 'Unavailable')
                     lines.append(f"| {experience} | {regime} | {key.replace('-minus-',' − ').replace('_',' ')} | {metric.replace('brier_','').replace('_',' ')} | {stat['left_loss']:.6f} / {stat['right_loss']:.6f} | {reduced} | {stat['left_targets']} / {stat['right_targets']} |")
-    (out.parent/'matched-tables.md').write_text('\n'.join(lines)+'\n')
+    write_evidence_tables(out.parent/'matched-tables.md',lines,
+                          fitted if fitted.get('interim') else selected)
 
 
 def exposure_figure(data,out):
@@ -254,6 +288,7 @@ def exposure_figure(data,out):
     if not groups:return
     fig,axes=plt.subplots(1,2,figsize=(11,max(5.4,len(groups)*.49)),
                           gridspec_kw={'wspace':.25})
+    fig.subplots_adjust(top=.77,bottom=.19)
     y=np.arange(len(groups))
     for offset,key,color,label in [(-.16,'encountered',COBALT,'Encountered replacement law'),
             (.16,'contrast',MAGENTA,'Observed a post-switch contrast')]:
@@ -275,13 +310,14 @@ def exposure_figure(data,out):
                 title='Observed learning opportunities')
     axes[1].set_xlim(0,max(means,default=0)*1.25 or 1)
     for ax in axes:ax.invert_yaxis()
-    axes[0].legend(loc='lower left',bbox_to_anchor=(0,1.13),fontsize=9)
+    handles,labels=axes[0].get_legend_handles_labels()
+    fig.legend(handles,labels,loc='upper center',bbox_to_anchor=(.54,.96),ncol=2,fontsize=9)
     fig.suptitle('An unannounced change does not guarantee informative experience',
-                 fontsize=15,fontweight='bold',y=1.08)
-    fig.text(.125,-.04,'All episode denominators include early endings and invalid execution.\n'
+                 fontsize=15,fontweight='bold',y=1.04)
+    fig.text(.125,.015,'All episode denominators include early endings and invalid execution.\n'
              'Anonymous occupancy contrasts are an observation proxy, not measured information gain.',
              fontsize=9,color=SECONDARY)
-    save_figure(fig,out/'switch-exposure')
+    save_evidence_figure(fig,out/'switch-exposure',data)
 
 
 def write_mechanism_tables(data,out):
@@ -306,7 +342,7 @@ def write_mechanism_tables(data,out):
         if not key.startswith('switch/'):continue
         a=row['observed_transition_opportunities'];s=a['post_switch_sums']
         lines.append(f"| {display(key.split('/',1)[1])} | {row['switch_exposure']['encountered']}/{row['episodes']} | {a['post_switch_episodes_with_observed_contrast']} | {s.get('observed_destination_contrast_opportunities',0)} | {s.get('fully_observed_transition_opportunities',0)} | {a['available_episode_audits']} |")
-    (out.parent/'mechanism-tables.md').write_text('\n'.join(lines)+'\n')
+    write_evidence_tables(out.parent/'mechanism-tables.md',lines,data)
 
 
 def main():
@@ -320,8 +356,11 @@ def main():
     exposure_figure(data,out);write_mechanism_tables(data,out)
     fitted=json.loads(Path(args.matched).read_text()) if Path(args.matched).exists() else {}
     if fitted: matched_figure(fitted,out)
-    if data.get('selected_matched'):matched_figure(data['selected_matched'],out,'selected-matched-learning')
-    write_matched_tables(fitted,data.get('selected_matched',{}),out)
+    selected={**data.get('selected_matched',{}),
+              'study':'Selected program · uniform-law planning',
+              'interim':data.get('interim')}
+    if data.get('selected_matched'):matched_figure(selected,out,'selected-matched-learning')
+    write_matched_tables(fitted,selected,out)
 
 
 if __name__=='__main__':main()

@@ -3,15 +3,29 @@
 ## Paused by the user: v3 wave 1
 
 On 8 October 2026 UTC / 9 October Europe/Berlin, the user requested a checkpoint
-and a full report before deciding direction. **Do not resume assessment, start
-another search, or launch automatic analysis until that scope is decided.** All
+and a full report before deciding direction. The subsequent request authorized
+a detailed assessment of saved results and recommendations; that interim
+analysis is now complete. **Do not resume assessment or start another search
+until the next scope is decided.** All
 assessment workers and its controller have exited; the reporting watcher is
 stopped. The completed checkpoint preserves 140 cases, 4,200 world episodes and
-2,100 passive prediction passes, with no unfinished attempts. No fresh treatment
-effects have been aggregated. See [the decision report](docs/v3-checkpoint-report.md)
+2,100 passive prediction passes, with no unfinished attempts. The saved-data
+interim analysis found improved matched prediction under stationary/switch laws,
+but no established escape benefit from updating. It launched no new episodes
+or experiment-route model calls. See [the interim report](docs/v3-interim-assessment.md),
+[the original checkpoint report](docs/v3-checkpoint-report.md)
 and [operator checkpoint](artifacts/campaign-v3/assessment/operator-checkpoint-complete.json).
 The full 1,536-case plan remains preserved but incomplete. Commands below are
 recovery documentation, not instructions to resume now.
+
+The separate interim protocol was committed as `a69110f` before aggregation.
+Results are in `artifacts/campaign-v3/assessment-interim140`; uncertainty is
+nominal and descriptive, not the completed 1,536-case assessment. Preserve the
+original frozen sources and the checkpoint as a historical snapshot. The exact
+saved-data reproduction command is
+`OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/v3_interim_analysis.py --compact`.
+Any new experiment or resumed inference must disclose this interim look. No
+20-minute diagnostic or new independent search has yet been authorized or run.
 
 ## Previously authorized execution: v3 wave 1
 

@@ -1,0 +1,5190 @@
+{
+  "all_interim_task_bottlenecks": {
+    "stationary/selected": {
+      "encountered_switch": 0,
+      "episodes": 140,
+      "episodes_with_post_switch_observed_contrast_proxy": 0,
+      "outcomes": {
+        "caught": 5,
+        "escaped": 132,
+        "timeout": 3
+      },
+      "post_switch_scope": "Survivor-conditioned experience; proxy counts observed occupancy contrasts, not identified enemy transitions.",
+      "post_switch_steps": 0,
+      "timeout_task_states": {
+        "keys=1;door=False": 1,
+        "keys=2;door=False": 2
+      }
+    },
+    "stationary/selected_frozen": {
+      "encountered_switch": 0,
+      "episodes": 140,
+      "episodes_with_post_switch_observed_contrast_proxy": 0,
+      "outcomes": {
+        "caught": 10,
+        "escaped": 127,
+        "timeout": 3
+      },
+      "post_switch_scope": "Survivor-conditioned experience; proxy counts observed occupancy contrasts, not identified enemy transitions.",
+      "post_switch_steps": 0,
+      "timeout_task_states": {
+        "keys=1;door=False": 1,
+        "keys=2;door=False": 2
+      }
+    },
+    "switch/selected": {
+      "encountered_switch": 75,
+      "episodes": 140,
+      "episodes_with_post_switch_observed_contrast_proxy": 40,
+      "outcomes": {
+        "caught": 4,
+        "escaped": 135,
+        "timeout": 1
+      },
+      "post_switch_scope": "Survivor-conditioned experience; proxy counts observed occupancy contrasts, not identified enemy transitions.",
+      "post_switch_steps": 2214,
+      "timeout_task_states": {
+        "keys=2;door=False": 1
+      }
+    },
+    "switch/selected_frozen": {
+      "encountered_switch": 75,
+      "episodes": 140,
+      "episodes_with_post_switch_observed_contrast_proxy": 43,
+      "outcomes": {
+        "caught": 4,
+        "escaped": 134,
+        "timeout": 2
+      },
+      "post_switch_scope": "Survivor-conditioned experience; proxy counts observed occupancy contrasts, not identified enemy transitions.",
+      "post_switch_steps": 2401,
+      "timeout_task_states": {
+        "keys=2;door=False": 2
+      }
+    },
+    "uniform/selected": {
+      "encountered_switch": 0,
+      "episodes": 140,
+      "episodes_with_post_switch_observed_contrast_proxy": 0,
+      "outcomes": {
+        "caught": 7,
+        "escaped": 132,
+        "timeout": 1
+      },
+      "post_switch_scope": "Survivor-conditioned experience; proxy counts observed occupancy contrasts, not identified enemy transitions.",
+      "post_switch_steps": 0,
+      "timeout_task_states": {
+        "keys=2;door=False": 1
+      }
+    },
+    "uniform/selected_frozen": {
+      "encountered_switch": 0,
+      "episodes": 140,
+      "episodes_with_post_switch_observed_contrast_proxy": 0,
+      "outcomes": {
+        "caught": 6,
+        "escaped": 133,
+        "timeout": 1
+      },
+      "post_switch_scope": "Survivor-conditioned experience; proxy counts observed occupancy contrasts, not identified enemy transitions.",
+      "post_switch_steps": 0,
+      "timeout_task_states": {
+        "keys=2;door=False": 1
+      }
+    }
+  },
+  "candidate_executions": 0,
+  "case_reviews": [
+    {
+      "case": 0,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 69
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 69
+        }
+      }
+    },
+    {
+      "case": 1,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 43
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 43
+        }
+      }
+    },
+    {
+      "case": 2,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 7.950632978022907,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 6.003281414274297,
+              "score": 8.990632978022907
+            },
+            "counterpart_minus_chosen_score": 0.14271730976189723,
+            "counterpart_move_under_this_model": {
+              "continuation": 8.113350287784804,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 8.103281414274297,
+              "score": 9.133350287784804
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.179569924154379,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 3.3718484440064493,
+              "score": 6.199569924154378
+            },
+            "counterpart_minus_chosen_score": 0.4414339750571372,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.601003899211515,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 5.4468484440064495,
+              "score": 6.6410038992115155
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.04381992071391583,
+        "online_effective_learning_updates": 7.717836106780372,
+        "online_learning_updates": 15,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 27
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 74
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 82
+        }
+      }
+    },
+    {
+      "case": 3,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 69
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 69
+        }
+      }
+    },
+    {
+      "case": 4,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 11.450431299891195,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 11.039639388344103,
+              "score": 12.450431299891195
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.450431299891195,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 11.039639388344103,
+              "score": 12.450431299891195
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 11.53530524695699,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 11.042323406434216,
+              "score": 12.53530524695699
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.53530524695699,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 11.066913180879373,
+              "score": 12.53530524695699
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.04038434570613758,
+        "online_effective_learning_updates": 6.361544557206232,
+        "online_learning_updates": 8,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 29
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 39
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 39
+        }
+      }
+    },
+    {
+      "case": 5,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 49
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 49
+        }
+      }
+    },
+    {
+      "case": 6,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 16
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 16
+        }
+      }
+    },
+    {
+      "case": 7,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 5.563318728179832,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 4.965207599253437,
+              "score": 6.563318728179832
+            },
+            "counterpart_minus_chosen_score": 0.013656769923185763,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.556975498103018,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 3.9402075992534367,
+              "score": 6.5769754981030175
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.456036566524347,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 3.9199889197881137,
+              "score": 6.476036566524346
+            },
+            "counterpart_minus_chosen_score": 0.01429867894706316,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.490335245471409,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 4.944988919788114,
+              "score": 6.490335245471409
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0011110298344183533,
+        "online_effective_learning_updates": 1.3010545256148305,
+        "online_learning_updates": 3,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 10
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 110
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 106
+        }
+      }
+    },
+    {
+      "case": 8,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 5.80106920122253,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 3.648601542236305,
+              "score": 6.80106920122253
+            },
+            "counterpart_minus_chosen_score": 0.005688924677993867,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.806758125900524,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 2.648601542236305,
+              "score": 6.806758125900524
+            },
+            "move": [
+              -1,
+              1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.941539779133732,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 6.941539779133732
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.941539779133732,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 3.777777777777777,
+              "score": 6.941539779133732
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.01833221843327526,
+        "online_effective_learning_updates": 1.386682234544213,
+        "online_learning_updates": 3,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 35
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": false,
+          "keys": 2,
+          "last25": {
+            "distinct_recorded_positions": 11,
+            "frames": 25,
+            "target_kinds": {
+              "goal": 25
+            },
+            "waiting_actions": 0
+          },
+          "reason": "timeout",
+          "steps": 200
+        },
+        "selected_frozen": {
+          "door": false,
+          "keys": 2,
+          "last25": {
+            "distinct_recorded_positions": 7,
+            "frames": 25,
+            "target_kinds": {
+              "goal": 25
+            },
+            "waiting_actions": 0
+          },
+          "reason": "timeout",
+          "steps": 200
+        }
+      }
+    },
+    {
+      "case": 9,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 12.84701185711455,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 10.206264317230856,
+              "score": 13.84701185711455
+            },
+            "counterpart_minus_chosen_score": 0.1435153680096395,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.99052722512419,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 11.231264317230856,
+              "score": 13.99052722512419
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 13.11947316274032,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 11.35833333333333,
+              "score": 14.11947316274032
+            },
+            "counterpart_minus_chosen_score": 0.006047903748456207,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.125521066488776,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 10.33333333333333,
+              "score": 14.125521066488776
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.04419698220884216,
+        "online_effective_learning_updates": 7.535334369243563,
+        "online_learning_updates": 9,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 29
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 37
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 45
+        }
+      }
+    },
+    {
+      "case": 10,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 23
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 23
+        }
+      }
+    },
+    {
+      "case": 11,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 35
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 35
+        }
+      }
+    },
+    {
+      "case": 12,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 11.10921778020208,
+              "hazard": 0.0,
+              "move": [
+                1,
+                1
+              ],
+              "potential": 7.499339709642145,
+              "score": 12.12921778020208
+            },
+            "counterpart_minus_chosen_score": 0.09564390481607887,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.204861685018159,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 7.499339709642145,
+              "score": 12.224861685018158
+            },
+            "move": [
+              1,
+              1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 11.899431116914242,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 8.43965889212957,
+              "score": 12.919431116914241
+            },
+            "counterpart_minus_chosen_score": 0.20206107681714514,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.101492193731387,
+              "hazard": 0.0,
+              "move": [
+                1,
+                1
+              ],
+              "potential": 8.43965889212957,
+              "score": 13.121492193731386
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.06264288253191952,
+        "online_effective_learning_updates": 3.0714453604616745,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 13
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 29
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 29
+        }
+      }
+    },
+    {
+      "case": 13,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 5.865377431556222,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 3.67970908799888,
+              "score": 6.865377431556222
+            },
+            "counterpart_minus_chosen_score": 0.013397415498499043,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.878774847054721,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 2.67970908799888,
+              "score": 6.878774847054721
+            },
+            "move": [
+              -1,
+              1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.122593890354768,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 2.1290320828825244,
+              "score": 6.122593890354768
+            },
+            "counterpart_minus_chosen_score": 0.15999999999999925,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.282593890354767,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 3.1290320828825244,
+              "score": 6.282593890354767
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0061292931111810445,
+        "online_effective_learning_updates": 0.4444444444444442,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 14
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 55
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 55
+        }
+      }
+    },
+    {
+      "case": 14,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 31
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 31
+        }
+      }
+    },
+    {
+      "case": 15,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 4.969882975552767,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.4510534405983044,
+              "score": 6.149882975552766
+            },
+            "counterpart_minus_chosen_score": 8.881784197001252e-16,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.129882975552767,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 3.4760534405983043,
+              "score": 6.149882975552767
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 2.3621644130903414,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 2.0949552100844464,
+              "score": 3.3821644130903414
+            },
+            "counterpart_minus_chosen_score": 1.0132219159437423,
+            "counterpart_move_under_this_model": {
+              "continuation": 3.2153863290340836,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 3.1199552100844463,
+              "score": 4.395386329034084
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.03253358829091346,
+        "online_effective_learning_updates": 4.660983667573674,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 13
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 79
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 79
+        }
+      }
+    },
+    {
+      "case": 16,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 39
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 39
+        }
+      }
+    },
+    {
+      "case": 17,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 49
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 49
+        }
+      }
+    },
+    {
+      "case": 18,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 33
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 33
+        }
+      }
+    },
+    {
+      "case": 19,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 5.286113508867134,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.540141132485642,
+              "score": 6.526113508867134
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.446113508867134,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 3.6401411324856423,
+              "score": 6.526113508867134
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.844937040469246,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 3.877777777777777,
+              "score": 6.924937040469246
+            },
+            "counterpart_minus_chosen_score": 8.881784197001252e-16,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.684937040469246,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 6.9249370404692465
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.06238371887617389,
+        "online_effective_learning_updates": 1.8575071099342944,
+        "online_learning_updates": 3,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 10
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 133
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 136
+        }
+      }
+    },
+    {
+      "case": 20,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 2.595538289800035,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 2.1201666698672645,
+              "score": 3.635538289800035
+            },
+            "counterpart_minus_chosen_score": 0.9546196975301289,
+            "counterpart_move_under_this_model": {
+              "continuation": 3.410157987330164,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 3.170166669867265,
+              "score": 4.590157987330164
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.467915628004389,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 6.647915628004388
+            },
+            "counterpart_minus_chosen_score": 0.020000000000000462,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.627915628004389,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 3.8027777777777767,
+              "score": 6.667915628004389
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0036289197743072377,
+        "online_effective_learning_updates": 1.5476634224695123,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 28
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "collision_class": "post_transition_only",
+          "door": false,
+          "keys": 2,
+          "reason": "caught",
+          "steps": 46
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 41
+        }
+      }
+    },
+    {
+      "case": 21,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 57
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 57
+        }
+      }
+    },
+    {
+      "case": 22,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 4.9026179088427915,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 3.788256233344558,
+              "score": 5.9026179088427915
+            },
+            "counterpart_minus_chosen_score": 0.18451849629503236,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.087136405137824,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 3.8215943491040973,
+              "score": 6.087136405137824
+            },
+            "move": [
+              -1,
+              1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 4.883342776098942,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 3.8190015411839258,
+              "score": 5.883342776098942
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 4.883342776098942,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 3.8190015411839258,
+              "score": 5.883342776098942
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.002884287814683084,
+        "online_effective_learning_updates": 3.5444789831630548,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 32
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 67
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 67
+        }
+      }
+    },
+    {
+      "case": 23,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 10.113478154393931,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 7.251010989758528,
+              "score": 11.13347815439393
+            },
+            "counterpart_minus_chosen_score": 0.029911700900608906,
+            "counterpart_move_under_this_model": {
+              "continuation": 10.16338985529454,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 6.251010989758528,
+              "score": 11.16338985529454
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 10.579194622555288,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 6.867763932525039,
+              "score": 11.579194622555288
+            },
+            "counterpart_minus_chosen_score": 0.019999999999999574,
+            "counterpart_move_under_this_model": {
+              "continuation": 10.579194622555288,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 7.867763932525039,
+              "score": 11.599194622555288
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.06317788561837545,
+        "online_effective_learning_updates": 2.444444444444444,
+        "online_learning_updates": 3,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 27
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 47
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 48
+        }
+      }
+    },
+    {
+      "case": 24,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 17.854361979895657,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 16.43329312542417,
+              "score": 18.854361979895657
+            },
+            "counterpart_minus_chosen_score": 0.001351539974010052,
+            "counterpart_move_under_this_model": {
+              "continuation": 17.855713519869667,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 16.43329312542417,
+              "score": 18.855713519869667
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 17.81950815285113,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 16.42643350295377,
+              "score": 18.81950815285113
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 17.81950815285113,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 16.42643350295377,
+              "score": 18.81950815285113
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0004735161591732373,
+        "online_effective_learning_updates": 0.8679594547756431,
+        "online_learning_updates": 3,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 29
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 45
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 45
+        }
+      }
+    },
+    {
+      "case": 25,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 12.368588374745748,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 12.340268885414277,
+              "score": 13.368588374745748
+            },
+            "counterpart_minus_chosen_score": 0.03999999999999915,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.368588374745748,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 10.240268885414276,
+              "score": 13.408588374745747
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 13.023163833490438,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.110742825989902,
+              "score": 14.063163833490439
+            },
+            "counterpart_minus_chosen_score": 0.16306851695473412,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.226232350445173,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 13.210742825989904,
+              "score": 14.226232350445173
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.09514718711676862,
+        "online_effective_learning_updates": 2.348697702642611,
+        "online_learning_updates": 4,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 14
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 72
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 77
+        }
+      }
+    },
+    {
+      "case": 26,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 41
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 41
+        }
+      }
+    },
+    {
+      "case": 27,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 5.753659050114181,
+              "hazard": 0.0,
+              "move": [
+                1,
+                1
+              ],
+              "potential": 3.851180066570546,
+              "score": 6.753659050114181
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.753659050114181,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 3.8761800665705457,
+              "score": 6.753659050114181
+            },
+            "move": [
+              1,
+              1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.497444403632879,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 3.8027777777777767,
+              "score": 6.497444403632879
+            },
+            "counterpart_minus_chosen_score": 0.0012032825548073944,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.498647686187686,
+              "hazard": 0.0,
+              "move": [
+                1,
+                1
+              ],
+              "potential": 3.777777777777777,
+              "score": 6.498647686187686
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.06945295318632516,
+        "online_effective_learning_updates": 7.039759409335316,
+        "online_learning_updates": 14,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 54
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 79
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 80
+        }
+      }
+    },
+    {
+      "case": 28,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 5.707815047566367,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.598849091831889,
+              "score": 6.887815047566367
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.867815047566366,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 3.623849091831889,
+              "score": 6.887815047566367
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 6.062350772029359,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 3.8027777777777767,
+              "score": 7.0823507720293595
+            },
+            "counterpart_minus_chosen_score": 0.1281196772155493,
+            "counterpart_move_under_this_model": {
+              "continuation": 6.030470449244909,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 7.210470449244909
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.011183042871617976,
+        "online_effective_learning_updates": 2.173087056109326,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 27
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 41
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        }
+      }
+    },
+    {
+      "case": 29,
+      "first_action_divergence": null,
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 22
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 22
+        }
+      }
+    },
+    {
+      "case": 30,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 10.790939329012245,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 9.304071127677286,
+              "score": 11.790939329012245
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 10.790939329012245,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 9.304071127677286,
+              "score": 11.790939329012245
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 10.808335639746005,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 9.31774942679038,
+              "score": 11.808335639746005
+            },
+            "counterpart_minus_chosen_score": 0.03701028937102535,
+            "counterpart_move_under_this_model": {
+              "continuation": 10.84534592911703,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 9.31774942679038,
+              "score": 11.84534592911703
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0013779191287051074,
+        "online_effective_learning_updates": 8.006961594590528,
+        "online_learning_updates": 13,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 44
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 52
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 66
+        }
+      }
+    },
+    {
+      "case": 31,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": false,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 2.6471749282684143,
+              "hazard": 0.07924619812329026,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 1.0115225686843008,
+              "score": 11.903434383960787
+            },
+            "counterpart_minus_chosen_score": 17.760556514691565,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.010955382390836,
+              "hazard": 0.14489443955939696,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 5.599185092097255,
+              "score": 29.663990898652354
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 2.7022321151251085,
+              "hazard": 0.11111111111111105,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 1.0484114607409545,
+              "score": 15.480535680763447
+            },
+            "counterpart_minus_chosen_score": 11.287435134628405,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.989667249753513,
+              "hazard": 0.11111111111111105,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 6.628967016296508,
+              "score": 26.767970815391852
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.08393940156405977,
+        "online_effective_learning_updates": 4.213277631157476,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 14
+      },
+      "regime": "uniform",
+      "terminal": {
+        "selected": {
+          "collision_class": "post_transition_only",
+          "door": false,
+          "keys": 0,
+          "reason": "caught",
+          "steps": 15
+        },
+        "selected_frozen": {
+          "collision_class": "post_transition_only",
+          "door": false,
+          "keys": 0,
+          "reason": "caught",
+          "steps": 15
+        }
+      }
+    },
+    {
+      "case": 0,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 6.59673684918474,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 4.387939494687378,
+              "score": 7.63673684918474
+            },
+            "counterpart_minus_chosen_score": 0.1704204725095897,
+            "counterpart_move_under_this_model": {
+              "continuation": 6.62715732169433,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 3.362939494687378,
+              "score": 7.80715732169433
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.554009630036587,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 6.734009630036587
+            },
+            "counterpart_minus_chosen_score": 0.020000000000000462,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.714009630036587,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 3.8027777777777767,
+              "score": 6.754009630036587
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.03657260730685008,
+        "online_effective_learning_updates": 1.6693068557705475,
+        "online_learning_updates": 4,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 30
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 66
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        }
+      }
+    },
+    {
+      "case": 1,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        }
+      }
+    },
+    {
+      "case": 2,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 11.457722065736093,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 8.175046852061012,
+              "score": 12.477722065736092
+            },
+            "counterpart_minus_chosen_score": 0.3324521330674912,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.790174198803584,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 8.175046852061012,
+              "score": 12.810174198803583
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 12.031991109858346,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 8.530628486708007,
+              "score": 13.051991109858346
+            },
+            "counterpart_minus_chosen_score": 0.06403402725656271,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.096025137114909,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 9.555628486708008,
+              "score": 13.116025137114908
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.18652405653157367,
+        "online_effective_learning_updates": 16.946934564991015,
+        "online_learning_updates": 26,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 51
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": false,
+          "keys": 2,
+          "last25": {
+            "distinct_recorded_positions": 6,
+            "frames": 25,
+            "target_kinds": {
+              "goal": 25
+            },
+            "waiting_actions": 0
+          },
+          "reason": "timeout",
+          "steps": 200
+        },
+        "selected_frozen": {
+          "door": false,
+          "keys": 2,
+          "last25": {
+            "distinct_recorded_positions": 7,
+            "frames": 25,
+            "target_kinds": {
+              "goal": 25
+            },
+            "waiting_actions": 15
+          },
+          "reason": "timeout",
+          "steps": 200
+        }
+      }
+    },
+    {
+      "case": 3,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 55
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 55
+        }
+      }
+    },
+    {
+      "case": 4,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 11.214026905454855,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 9.146904450707808,
+              "score": 12.294026905454855
+            },
+            "counterpart_minus_chosen_score": 0.27999999999999936,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.374026905454855,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 8.096904450707807,
+              "score": 12.574026905454854
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 12.400288348460979,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 8.865824399683191,
+              "score": 13.600288348460978
+            },
+            "counterpart_minus_chosen_score": 1.7763568394002505e-15,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.52028834846098,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 9.915824399683192,
+              "score": 13.60028834846098
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.08679625360697663,
+        "online_effective_learning_updates": 7.56707708962934,
+        "online_learning_updates": 19,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 29
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 86
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 87
+        }
+      }
+    },
+    {
+      "case": 5,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 53
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 53
+        }
+      }
+    },
+    {
+      "case": 6,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 16
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 16
+        }
+      }
+    },
+    {
+      "case": 7,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        }
+      }
+    },
+    {
+      "case": 8,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 40
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 40
+        }
+      }
+    },
+    {
+      "case": 9,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 10.516973661993742,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 7.402007360001839,
+              "score": 11.516973661993742
+            },
+            "counterpart_minus_chosen_score": 0.04151072676883061,
+            "counterpart_move_under_this_model": {
+              "continuation": 10.558484388762572,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 8.40200736000184,
+              "score": 11.558484388762572
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 11.07992528231802,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 8.851843305468307,
+              "score": 12.07992528231802
+            },
+            "counterpart_minus_chosen_score": 0.019999999999999574,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.09992528231802,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 7.851843305468307,
+              "score": 12.09992528231802
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.031962327860922124,
+        "online_effective_learning_updates": 8.943145275531002,
+        "online_learning_updates": 16,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 46
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "collision_class": "post_transition_only",
+          "door": false,
+          "keys": 2,
+          "reason": "caught",
+          "steps": 198
+        },
+        "selected_frozen": {
+          "collision_class": "post_transition_only",
+          "door": false,
+          "keys": 2,
+          "reason": "caught",
+          "steps": 198
+        }
+      }
+    },
+    {
+      "case": 10,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 23
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 23
+        }
+      }
+    },
+    {
+      "case": 11,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 36
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 36
+        }
+      }
+    },
+    {
+      "case": 12,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 19
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 19
+        }
+      }
+    },
+    {
+      "case": 13,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 12.155162998777122,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.043716627631266,
+              "score": 13.175162998777122
+            },
+            "counterpart_minus_chosen_score": 0.11290400491083297,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.288067003687955,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 12.068716627631266,
+              "score": 13.288067003687955
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 12.568879397008827,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 12.172335779061212,
+              "score": 13.568879397008827
+            },
+            "counterpart_minus_chosen_score": 0.019999999999999574,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.568879397008827,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.147335779061212,
+              "score": 13.588879397008826
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.08648375283710741,
+        "online_effective_learning_updates": 6.253069574311443,
+        "online_learning_updates": 9,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 41
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 56
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 57
+        }
+      }
+    },
+    {
+      "case": 14,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 31
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 31
+        }
+      }
+    },
+    {
+      "case": 15,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 1.0,
+              "score": 2.0
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 1.0,
+              "score": 2.0
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 5.8234642340226905e-05,
+        "online_effective_learning_updates": 0.22222222222222188,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 21
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 70
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 71
+        }
+      }
+    },
+    {
+      "case": 16,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        }
+      }
+    },
+    {
+      "case": 17,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 37
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 37
+        }
+      }
+    },
+    {
+      "case": 18,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 33
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 33
+        }
+      }
+    },
+    {
+      "case": 19,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 60
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 60
+        }
+      }
+    },
+    {
+      "case": 20,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 9.124304467907654,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.049583987325146,
+              "score": 10.144304467907654
+            },
+            "counterpart_minus_chosen_score": 0.12295555963138227,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.087260027539036,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 6.024583987325146,
+              "score": 10.267260027539036
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.517336416736933,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 6.697336416736933
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.677336416736933,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 3.8027777777777767,
+              "score": 6.697336416736933
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.059383013513470084,
+        "online_effective_learning_updates": 6.298086797059913,
+        "online_learning_updates": 8,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 48
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 93
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 92
+        }
+      }
+    },
+    {
+      "case": 21,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        }
+      }
+    },
+    {
+      "case": 22,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.1069567583027489,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.106956758302749,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 1.0,
+              "score": 2.106956758302749
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.092592592592593,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.092592592592593,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 1.0,
+              "score": 2.092592592592593
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.00290858882849232,
+        "online_effective_learning_updates": 3.9231803613548433,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 18
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 60
+        }
+      }
+    },
+    {
+      "case": 23,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 2.1006543652613248,
+            "counterpart_move_under_this_model": {
+              "continuation": 2.1006543652613248,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 2.0,
+              "score": 3.1006543652613248
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 2.8034071767445936,
+            "counterpart_move_under_this_model": {
+              "continuation": 2.8034071767445936,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 2.0,
+              "score": 3.8034071767445936
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.00491106105136796,
+        "online_effective_learning_updates": 1.5351101252700972,
+        "online_learning_updates": 4,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 19
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 66
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        }
+      }
+    },
+    {
+      "case": 24,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 17.827861567986456,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 16.429381554632144,
+              "score": 18.827861567986456
+            },
+            "counterpart_minus_chosen_score": 0.0005773474690080604,
+            "counterpart_move_under_this_model": {
+              "continuation": 17.828438915455465,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 16.429381554632144,
+              "score": 18.828438915455465
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 17.81950815285113,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 16.42643350295377,
+              "score": 18.81950815285113
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 17.81950815285113,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 16.42643350295377,
+              "score": 18.81950815285113
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.00010205110121064287,
+        "online_effective_learning_updates": 0.22222222222222188,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 30
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 47
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 47
+        }
+      }
+    },
+    {
+      "case": 25,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 9.820379141490248,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.687901746456051,
+              "score": 10.840379141490248
+            },
+            "counterpart_minus_chosen_score": 0.056550130938477494,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.896929272428725,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 6.6629017464560505,
+              "score": 10.896929272428725
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 9.911985635608527,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 6.7381666129239655,
+              "score": 10.911985635608527
+            },
+            "counterpart_minus_chosen_score": 0.005800735502678123,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.897786371111206,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.763166612923966,
+              "score": 10.917786371111205
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0028819682352601017,
+        "online_effective_learning_updates": 0.44538954239463746,
+        "online_learning_updates": 2,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 12
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 68
+        },
+        "selected_frozen": {
+          "collision_class": "post_transition_only",
+          "door": false,
+          "keys": 1,
+          "reason": "caught",
+          "steps": 49
+        }
+      }
+    },
+    {
+      "case": 26,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 52
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 52
+        }
+      }
+    },
+    {
+      "case": 27,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 12.635351787534804,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 9.84004019717516,
+              "score": 13.635351787534804
+            },
+            "counterpart_minus_chosen_score": 0.0015905714843160723,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.59694235901912,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 10.011129672517072,
+              "score": 13.63694235901912
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 13.121260077656473,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 10.38333333333333,
+              "score": 14.161260077656472
+            },
+            "counterpart_minus_chosen_score": 0.030420791161535732,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.191680868818008,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 10.33333333333333,
+              "score": 14.191680868818008
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.061018094165044445,
+        "online_effective_learning_updates": 8.990785834568134,
+        "online_learning_updates": 15,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 45
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 94
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 94
+        }
+      }
+    },
+    {
+      "case": 28,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 18
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 18
+        }
+      }
+    },
+    {
+      "case": 29,
+      "first_action_divergence": null,
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 30
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 30
+        }
+      }
+    },
+    {
+      "case": 30,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 13.463030827473217,
+              "hazard": 0.0,
+              "move": [
+                1,
+                1
+              ],
+              "potential": 11.056839722876168,
+              "score": 14.463030827473217
+            },
+            "counterpart_minus_chosen_score": 0.011045052629524932,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.474075880102742,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 12.056839722876168,
+              "score": 14.474075880102742
+            },
+            "move": [
+              1,
+              1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 13.516051071750082,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 12.05182356203625,
+              "score": 14.516051071750082
+            },
+            "counterpart_minus_chosen_score": 0.011465479278337298,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.52751655102842,
+              "hazard": 0.0,
+              "move": [
+                1,
+                1
+              ],
+              "potential": 11.05182356203625,
+              "score": 14.52751655102842
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.057625921910984035,
+        "online_effective_learning_updates": 1.5693430656934306,
+        "online_learning_updates": 2,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 35
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 50
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 52
+        }
+      }
+    },
+    {
+      "case": 31,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": false,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.09879752586990298,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 11.402532505487233
+            },
+            "counterpart_minus_chosen_score": 3.0712275717757063,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.47376007726294,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 6.959677102570867,
+              "score": 14.47376007726294
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 9.208826710611627,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 5.580555555555554,
+              "score": 10.208826710611627
+            },
+            "counterpart_minus_chosen_score": 2.5694768550267124,
+            "counterpart_move_under_this_model": {
+              "continuation": 0.0,
+              "hazard": 0.11111111111111105,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 12.778303565638339
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.09850868192966511,
+        "online_effective_learning_updates": 1.0,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 9
+      },
+      "regime": "stationary",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        }
+      }
+    },
+    {
+      "case": 0,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 63
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 63
+        }
+      }
+    },
+    {
+      "case": 1,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        }
+      }
+    },
+    {
+      "case": 2,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 11.457722065736093,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 8.175046852061012,
+              "score": 12.477722065736092
+            },
+            "counterpart_minus_chosen_score": 0.3324521330674912,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.790174198803584,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 8.175046852061012,
+              "score": 12.810174198803583
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 12.031991109858346,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                0
+              ],
+              "potential": 8.530628486708007,
+              "score": 13.051991109858346
+            },
+            "counterpart_minus_chosen_score": 0.06403402725656271,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.096025137114909,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 9.555628486708008,
+              "score": 13.116025137114908
+            },
+            "move": [
+              -1,
+              0
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.18652405653157367,
+        "online_effective_learning_updates": 16.946934564991015,
+        "online_learning_updates": 26,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 51
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 90
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 90
+        }
+      }
+    },
+    {
+      "case": 3,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 55
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 55
+        }
+      }
+    },
+    {
+      "case": 4,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 11.214026905454855,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 9.146904450707808,
+              "score": 12.294026905454855
+            },
+            "counterpart_minus_chosen_score": 0.27999999999999936,
+            "counterpart_move_under_this_model": {
+              "continuation": 11.374026905454855,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 8.096904450707807,
+              "score": 12.574026905454854
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 12.400288348460979,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 8.865824399683191,
+              "score": 13.600288348460978
+            },
+            "counterpart_minus_chosen_score": 1.7763568394002505e-15,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.52028834846098,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 9.915824399683192,
+              "score": 13.60028834846098
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.08679625360697663,
+        "online_effective_learning_updates": 7.56707708962934,
+        "online_learning_updates": 19,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 29
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 86
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 87
+        }
+      }
+    },
+    {
+      "case": 5,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 54
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 54
+        }
+      }
+    },
+    {
+      "case": 6,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 16
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 16
+        }
+      }
+    },
+    {
+      "case": 7,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 8.997483841606897,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 8.40601822246857,
+              "score": 9.997483841606897
+            },
+            "counterpart_minus_chosen_score": 0.038394717276716506,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.035878558883613,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 8.406217065628752,
+              "score": 10.035878558883613
+            },
+            "move": [
+              -1,
+              1
+            ],
+            "target_kind": "door"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 8.997536696005358,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 8.398265676933175,
+              "score": 9.997536696005358
+            },
+            "counterpart_minus_chosen_score": 0.08387565704019195,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.08141235304555,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                1
+              ],
+              "potential": 8.398265676933175,
+              "score": 10.08141235304555
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "door"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.03193132575316304,
+        "online_effective_learning_updates": 4.859186916956044,
+        "online_learning_updates": 8,
+        "replacement_outcome_already_observed": true,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 49
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 58
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 58
+        }
+      }
+    },
+    {
+      "case": 8,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 40
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 40
+        }
+      }
+    },
+    {
+      "case": 9,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 49
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 49
+        }
+      }
+    },
+    {
+      "case": 10,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 23
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 23
+        }
+      }
+    },
+    {
+      "case": 11,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 36
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 36
+        }
+      }
+    },
+    {
+      "case": 12,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 19
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 19
+        }
+      }
+    },
+    {
+      "case": 13,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 12.155162998777122,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.043716627631266,
+              "score": 13.175162998777122
+            },
+            "counterpart_minus_chosen_score": 0.11290400491083297,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.288067003687955,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 12.068716627631266,
+              "score": 13.288067003687955
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 12.568879397008827,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 12.172335779061212,
+              "score": 13.568879397008827
+            },
+            "counterpart_minus_chosen_score": 0.019999999999999574,
+            "counterpart_move_under_this_model": {
+              "continuation": 12.568879397008827,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.147335779061212,
+              "score": 13.588879397008826
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.08648375283710741,
+        "online_effective_learning_updates": 6.253069574311443,
+        "online_learning_updates": 9,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 41
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 56
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 57
+        }
+      }
+    },
+    {
+      "case": 14,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 31
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 31
+        }
+      }
+    },
+    {
+      "case": 15,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 1.0,
+              "score": 2.0
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 1.0,
+              "score": 2.0
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 5.8234642340226905e-05,
+        "online_effective_learning_updates": 0.22222222222222188,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 21
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 70
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 71
+        }
+      }
+    },
+    {
+      "case": 16,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 44
+        }
+      }
+    },
+    {
+      "case": 17,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 37
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 37
+        }
+      }
+    },
+    {
+      "case": 18,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 33
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 33
+        }
+      }
+    },
+    {
+      "case": 19,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 60
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 60
+        }
+      }
+    },
+    {
+      "case": 20,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 9.124304467907654,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.049583987325146,
+              "score": 10.144304467907654
+            },
+            "counterpart_minus_chosen_score": 0.12295555963138227,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.087260027539036,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 6.024583987325146,
+              "score": 10.267260027539036
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 5.517336416736933,
+              "hazard": 0.0,
+              "move": [
+                0,
+                0
+              ],
+              "potential": 2.777777777777777,
+              "score": 6.697336416736933
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 5.677336416736933,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 3.8027777777777767,
+              "score": 6.697336416736933
+            },
+            "move": [
+              0,
+              0
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.059383013513470084,
+        "online_effective_learning_updates": 6.298086797059913,
+        "online_learning_updates": 8,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 48
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 84
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 85
+        }
+      }
+    },
+    {
+      "case": 21,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        }
+      }
+    },
+    {
+      "case": 22,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.1069567583027489,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.106956758302749,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 1.0,
+              "score": 2.106956758302749
+            },
+            "move": [
+              1,
+              0
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 1.092592592592593,
+            "counterpart_move_under_this_model": {
+              "continuation": 1.092592592592593,
+              "hazard": 0.0,
+              "move": [
+                1,
+                0
+              ],
+              "potential": 1.0,
+              "score": 2.092592592592593
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.00290858882849232,
+        "online_effective_learning_updates": 3.9231803613548433,
+        "online_learning_updates": 5,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 18
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 60
+        }
+      }
+    },
+    {
+      "case": 23,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 2.1006543652613248,
+            "counterpart_move_under_this_model": {
+              "continuation": 2.1006543652613248,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 2.0,
+              "score": 3.1006543652613248
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 1.0
+            },
+            "counterpart_minus_chosen_score": 2.8034071767445936,
+            "counterpart_move_under_this_model": {
+              "continuation": 2.8034071767445936,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 2.0,
+              "score": 3.8034071767445936
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.00491106105136796,
+        "online_effective_learning_updates": 1.5351101252700972,
+        "online_learning_updates": 4,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": false,
+        "same_recorded_world": true,
+        "step": 19
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 71
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        }
+      }
+    },
+    {
+      "case": 24,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 17.827861567986456,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 16.429381554632144,
+              "score": 18.827861567986456
+            },
+            "counterpart_minus_chosen_score": 0.0005773474690080604,
+            "counterpart_move_under_this_model": {
+              "continuation": 17.828438915455465,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 16.429381554632144,
+              "score": 18.828438915455465
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 17.81950815285113,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 16.42643350295377,
+              "score": 18.81950815285113
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 17.81950815285113,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 16.42643350295377,
+              "score": 18.81950815285113
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.00010205110121064287,
+        "online_effective_learning_updates": 0.22222222222222188,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 30
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 47
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 47
+        }
+      }
+    },
+    {
+      "case": 25,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 9.820379141490248,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.687901746456051,
+              "score": 10.840379141490248
+            },
+            "counterpart_minus_chosen_score": 0.056550130938477494,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.896929272428725,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 6.6629017464560505,
+              "score": 10.896929272428725
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 9.911985635608527,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 6.7381666129239655,
+              "score": 10.911985635608527
+            },
+            "counterpart_minus_chosen_score": 0.005800735502678123,
+            "counterpart_move_under_this_model": {
+              "continuation": 9.897786371111206,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.763166612923966,
+              "score": 10.917786371111205
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0028819682352601017,
+        "online_effective_learning_updates": 0.44538954239463746,
+        "online_learning_updates": 2,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 12
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 73
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 78
+        }
+      }
+    },
+    {
+      "case": 26,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 52
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 52
+        }
+      }
+    },
+    {
+      "case": 27,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 13.195152932552269,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.083460460731844,
+              "score": 14.195152932552269
+            },
+            "counterpart_minus_chosen_score": 0.02485888824389626,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.220011820796165,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 11.510562490781815,
+              "score": 14.220011820796165
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 13.604340449242564,
+              "hazard": 0.0,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 11.909673823387461,
+              "score": 14.604340449242564
+            },
+            "counterpart_minus_chosen_score": 0.0,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.604340449242564,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 11.909673823387461,
+              "score": 14.604340449242564
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.024943685478680866,
+        "online_effective_learning_updates": 7.928097395535306,
+        "online_learning_updates": 12,
+        "replacement_outcome_already_observed": true,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 43
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 59
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 59
+        }
+      }
+    },
+    {
+      "case": 28,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 18
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 18
+        }
+      }
+    },
+    {
+      "case": 29,
+      "first_action_divergence": null,
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 30
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 30
+        }
+      }
+    },
+    {
+      "case": 30,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": true,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 8.06206135642457,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 6.558488128896283,
+              "score": 9.06206135642457
+            },
+            "counterpart_minus_chosen_score": 0.02101526947147825,
+            "counterpart_move_under_this_model": {
+              "continuation": 8.083076625896048,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.558488128896283,
+              "score": 9.083076625896048
+            },
+            "move": [
+              1,
+              -1
+            ],
+            "target_kind": "goal"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 8.145069914075426,
+              "hazard": 0.0,
+              "move": [
+                0,
+                -1
+              ],
+              "potential": 7.565456687158056,
+              "score": 9.145069914075426
+            },
+            "counterpart_minus_chosen_score": 0.019999999999999574,
+            "counterpart_move_under_this_model": {
+              "continuation": 8.165069914075426,
+              "hazard": 0.0,
+              "move": [
+                1,
+                -1
+              ],
+              "potential": 6.565456687158056,
+              "score": 9.165069914075426
+            },
+            "move": [
+              0,
+              -1
+            ],
+            "target_kind": "goal"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.0020585602454170626,
+        "online_effective_learning_updates": 1.5693430656934306,
+        "online_learning_updates": 2,
+        "replacement_outcome_already_observed": true,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 39
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 45
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 46
+        }
+      }
+    },
+    {
+      "case": 31,
+      "first_action_divergence": {
+        "all_compared_immediate_hazards_zero": false,
+        "decisions": {
+          "selected": {
+            "chosen": {
+              "continuation": 0.0,
+              "hazard": 0.09879752586990298,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 11.402532505487233
+            },
+            "counterpart_minus_chosen_score": 3.0712275717757063,
+            "counterpart_move_under_this_model": {
+              "continuation": 13.47376007726294,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 6.959677102570867,
+              "score": 14.47376007726294
+            },
+            "move": [
+              -1,
+              -1
+            ],
+            "target_kind": "frontier"
+          },
+          "selected_frozen": {
+            "chosen": {
+              "continuation": 9.208826710611627,
+              "hazard": 0.0,
+              "move": [
+                0,
+                1
+              ],
+              "potential": 5.580555555555554,
+              "score": 10.208826710611627
+            },
+            "counterpart_minus_chosen_score": 2.5694768550267124,
+            "counterpart_move_under_this_model": {
+              "continuation": 0.0,
+              "hazard": 0.11111111111111105,
+              "move": [
+                -1,
+                -1
+              ],
+              "potential": 0.0,
+              "score": 12.778303565638339
+            },
+            "move": [
+              0,
+              1
+            ],
+            "target_kind": "frontier"
+          }
+        },
+        "interpretation": "First different choice under identical physical history. Subsequent terminal outcome does not identify the local counterfactual value of this choice.",
+        "maximum_exported_occupancy_difference": 0.09850868192966511,
+        "online_effective_learning_updates": 1.0,
+        "online_learning_updates": 1,
+        "replacement_outcome_already_observed": false,
+        "same_map_and_localization": true,
+        "same_navigation_target": true,
+        "same_recorded_world": true,
+        "step": 9
+      },
+      "regime": "switch",
+      "terminal": {
+        "selected": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 51
+        },
+        "selected_frozen": {
+          "door": true,
+          "keys": 2,
+          "reason": "escaped",
+          "steps": 62
+        }
+      }
+    }
+  ],
+  "development_mechanism_context": {
+    "changed_action_pairs": {
+      "stationary": 17,
+      "switch": 16,
+      "uniform": 17
+    },
+    "choice_frames": 20958,
+    "choice_score_mismatches": 0,
+    "decision_checks": true,
+    "escape_discordant_pairs": {
+      "stationary": 0,
+      "switch": 0,
+      "uniform": 0
+    },
+    "scope": "Reused development cases; source-specific mechanism validation, not fresh performance or reliable-discovery evidence."
+  },
+  "inputs": {
+    "development_runtime_review_sha256": "8e363527f2ea8d0c4b8ff946be2d81542a7ed4714161d19171f65bfa61e729cf",
+    "interim_protocol_sha256": "cf5b894f75943f77478d532fc9c7809d3852233fdd5c9ffb0403e936867b9155",
+    "original_plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+    "publication_allowlist_sha256": "92145119e043e0277801e835b940619b7d6710ff0b8554b6a3b29f0c45da691d",
+    "retained_replay_inventory_sha256": "f5d4c4d7a1d83987f945b95bff5f0ce18233646a2217d23af5d3f94229ee7bb8",
+    "review_script_sha256": "c6602c38a09579b5bb3b4ed1989070463d70c78b696f3945dc652963d45fd49c"
+  },
+  "invalid_execution_review": {
+    "by_condition": {
+      "fitted_frozen": 7,
+      "fitted_online": 8,
+      "known_law": 6,
+      "v2_gen14": 6
+    },
+    "candidate_cpu_seconds_range": [
+      10.966759000000046,
+      11.509744999999992
+    ],
+    "classification": "Worker SIGKILL with CPU near the fixed10s cap is consistent with resource exhaustion; exit code alone does not prove its operating-system cause. Invalids remain in every task denominator.",
+    "episodes": 27,
+    "errors": {
+      "RuntimeError: Candidate worker exited (-9)": 27
+    }
+  },
+  "limitations": [
+    "Retained first32 cases are a small bounded prefix; review is exploratory and all these cases are exposed.",
+    "A changed choice establishes decision sensitivity, not beneficial control; later terminal outcomes do not identify a local action counterfactual.",
+    "Immediate horizon1 occupancy, entry-plus-post-transition collision hazard, and stage2/3 continuation costs are different quantities.",
+    "Most initial divergences in switch episodes can precede observed replacement-law experience.",
+    "No true movement laws, environment seeds, raw private traces or inferred-law vectors are published."
+  ],
+  "new_environment_episodes": 0,
+  "new_model_calls": 0,
+  "retained_prefix_summaries": {
+    "stationary": {
+      "divergences_after_replacement_outcome_observed": 0,
+      "divergences_with_changed_forecast_gt_1e12": 14,
+      "divergences_with_positive_learning_updates": 14,
+      "divergences_with_same_map_and_localization": 14,
+      "divergences_with_same_target": 10,
+      "divergences_with_zero_immediate_hazards_for_both_moves": 13,
+      "first_action_divergence_cases": 14,
+      "outcome_discordant_case_indices": [
+        25
+      ],
+      "paired_cases": 32,
+      "terminal_collision_classes": {
+        "selected": {
+          "post_transition_only": 1
+        },
+        "selected_frozen": {
+          "post_transition_only": 2
+        }
+      }
+    },
+    "switch": {
+      "divergences_after_replacement_outcome_observed": 3,
+      "divergences_with_changed_forecast_gt_1e12": 13,
+      "divergences_with_positive_learning_updates": 13,
+      "divergences_with_same_map_and_localization": 13,
+      "divergences_with_same_target": 9,
+      "divergences_with_zero_immediate_hazards_for_both_moves": 12,
+      "first_action_divergence_cases": 13,
+      "outcome_discordant_case_indices": [],
+      "paired_cases": 32,
+      "terminal_collision_classes": {
+        "selected": {},
+        "selected_frozen": {}
+      }
+    },
+    "uniform": {
+      "divergences_after_replacement_outcome_observed": 0,
+      "divergences_with_changed_forecast_gt_1e12": 18,
+      "divergences_with_positive_learning_updates": 18,
+      "divergences_with_same_map_and_localization": 18,
+      "divergences_with_same_target": 12,
+      "divergences_with_zero_immediate_hazards_for_both_moves": 17,
+      "first_action_divergence_cases": 18,
+      "outcome_discordant_case_indices": [
+        20
+      ],
+      "paired_cases": 32,
+      "terminal_collision_classes": {
+        "selected": {
+          "post_transition_only": 2
+        },
+        "selected_frozen": {
+          "post_transition_only": 1
+        }
+      }
+    }
+  },
+  "scope": {
+    "interim_cases": 140,
+    "regimes": [
+      "uniform",
+      "stationary",
+      "switch"
+    ],
+    "retained_condition_episodes": 192,
+    "retained_conditions": [
+      "selected",
+      "selected_frozen"
+    ],
+    "retained_prefix_cases_per_regime": 32
+  },
+  "status": "exploratory saved-data interim decision review; full preregistered assessment incomplete"
+}

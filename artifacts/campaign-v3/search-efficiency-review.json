@@ -1,0 +1,602 @@
+{
+  "created_utc": "2026-10-08T22:31:57.008906+00:00",
+  "scope": {
+    "completed_search_only": true,
+    "selection_and_preexisting_development_diagnostics_included": true,
+    "assessment_episodes_or_effects_accessed": false,
+    "new_world_episodes": 0,
+    "new_model_calls": 0,
+    "new_rollouts_or_tests": 0,
+    "files_written": [
+      "artifacts/campaign-v3/search-efficiency-review.json"
+    ],
+    "independent_searches": 1,
+    "note": "Saved-data exploratory resource and search review. Selection-validation remains selection-biased; no independent discovery replication or counterfactual stopping experiment."
+  },
+  "findings": [
+    "Generation 4, found in the first five candidate slots including seed, remained the winner of the prespecified five-candidate selection after all 50 slots.",
+    "Forty-five later slots improved best development task by 0.0015763889 at generation 46, without exceeding generation 4\u2019s 69/72 development escapes. No later shortlisted candidate beat generation 4 in selection.",
+    "Later search produced distinct representations and behavior, but source diversity did not guarantee active new mechanisms or improved selected performance.",
+    "Generation 20\u2019s added restart expert never activated in its 72 development or 192 selection episodes. Generations 18/20 have identical saved action, trajectory, observation and forecast hashes in all 192 selection pairs despite distinct source and AST hashes.",
+    "Observed post-generation 4 costs are substantial; they do not prove that a prospective five-slot budget or removal of meta work would reproduce this outcome."
+  ],
+  "development_progress": {
+    "record_breakers": [
+      {
+        "generation": 0,
+        "task": 0.7991562499999998,
+        "escape": 0.7777777777777778,
+        "brier_near": 0.006127493610904402,
+        "brier_audit": 0.016229963907654608,
+        "candidate_cpu_seconds": 0.16906706944444447,
+        "escapes": 56,
+        "episodes": 72
+      },
+      {
+        "generation": 1,
+        "task": 0.917045138888889,
+        "escape": 0.9166666666666666,
+        "brier_near": 0.00937925342528412,
+        "brier_audit": 0.0156027865280345,
+        "candidate_cpu_seconds": 0.3130926249999999,
+        "escapes": 66,
+        "episodes": 72
+      },
+      {
+        "generation": 4,
+        "task": 0.9509062499999997,
+        "escape": 0.9583333333333334,
+        "brier_near": 0.007606975216606772,
+        "brier_audit": 0.015386251143911333,
+        "candidate_cpu_seconds": 0.6657894027777778,
+        "escapes": 69,
+        "episodes": 72
+      },
+      {
+        "generation": 46,
+        "task": 0.9524826388888891,
+        "escape": 0.9583333333333334,
+        "brier_near": 0.007105703256520975,
+        "brier_audit": 0.016140843801880255,
+        "candidate_cpu_seconds": 0.6975634861111112,
+        "escapes": 69,
+        "episodes": 72
+      }
+    ],
+    "after_generation4": {
+      "additional_slots": 45,
+      "strictly_better_task_generations": [
+        46
+      ],
+      "maximum_escapes": 69,
+      "best_task_increment": 0.0015763888888893351,
+      "additional_escapes_at_best": 0,
+      "fraction_of_total_best_task_gain_already_present_at_gen4": 0.9897187372616485,
+      "generations_below_seed_task": [
+        6,
+        38
+      ]
+    },
+    "interpretation": "All50 candidates repeatedly used the same72 development episodes. The final small task increment reflects non-escape task components, not an additional escape. These are selected development results, not fresh causal estimates."
+  },
+  "cost": {
+    "all_native_calls_excluding_readiness_probes": {
+      "calls": 112,
+      "roles": {
+        "mutation_or_repair": 50,
+        "meta_program_summary": 50,
+        "meta_global_insights": 6,
+        "meta_recommendations": 6
+      },
+      "reported_tokens": {
+        "inputTokens": 1958049,
+        "cacheReadTokens": 1455360,
+        "cacheWriteTokens": 0,
+        "outputTokens": 330745,
+        "reasoningOutputTokens": 103212,
+        "totalTokens": 3744154
+      },
+      "summed_call_monotonic_seconds": 10972.704891077039
+    },
+    "readiness_probes": {
+      "calls": 4,
+      "reported_total_tokens": 67720,
+      "elapsed_seconds": null
+    },
+    "mutation_requests_for_generations1_to4": {
+      "calls": 4,
+      "roles": {
+        "mutation_or_repair": 4
+      },
+      "reported_tokens": {
+        "inputTokens": 45348,
+        "cacheReadTokens": 129280,
+        "cacheWriteTokens": 0,
+        "outputTokens": 40322,
+        "reasoningOutputTokens": 17152,
+        "totalTokens": 214950
+      },
+      "summed_call_monotonic_seconds": 1862.7016624310345
+    },
+    "mutation_and_repair_requests_for_generations5_to49": {
+      "calls": 46,
+      "roles": {
+        "mutation_or_repair": 46
+      },
+      "reported_tokens": {
+        "inputTokens": 1202863,
+        "cacheReadTokens": 558336,
+        "cacheWriteTokens": 0,
+        "outputTokens": 265071,
+        "reasoningOutputTokens": 82961,
+        "totalTokens": 2026270
+      },
+      "summed_call_monotonic_seconds": 7834.908484232059
+    },
+    "meta_all_chronologically_after_generation4": {
+      "calls": 62,
+      "roles": {
+        "meta_program_summary": 50,
+        "meta_global_insights": 6,
+        "meta_recommendations": 6
+      },
+      "reported_tokens": {
+        "inputTokens": 709838,
+        "cacheReadTokens": 767744,
+        "cacheWriteTokens": 0,
+        "outputTokens": 25352,
+        "reasoningOutputTokens": 3099,
+        "totalTokens": 1502934
+      },
+      "summed_call_monotonic_seconds": 1275.0947444139456
+    },
+    "meta_by_role": {
+      "meta_program_summary": {
+        "calls": 50,
+        "roles": {
+          "meta_program_summary": 50
+        },
+        "reported_tokens": {
+          "inputTokens": 546874,
+          "cacheReadTokens": 620288,
+          "cacheWriteTokens": 0,
+          "outputTokens": 11959,
+          "reasoningOutputTokens": 591,
+          "totalTokens": 1179121
+        },
+        "summed_call_monotonic_seconds": 737.3431723219401
+      },
+      "meta_global_insights": {
+        "calls": 6,
+        "roles": {
+          "meta_global_insights": 6
+        },
+        "reported_tokens": {
+          "inputTokens": 93016,
+          "cacheReadTokens": 73728,
+          "cacheWriteTokens": 0,
+          "outputTokens": 9402,
+          "reasoningOutputTokens": 1101,
+          "totalTokens": 176146
+        },
+        "summed_call_monotonic_seconds": 325.2010219039803
+      },
+      "meta_recommendations": {
+        "calls": 6,
+        "roles": {
+          "meta_recommendations": 6
+        },
+        "reported_tokens": {
+          "inputTokens": 69948,
+          "cacheReadTokens": 73728,
+          "cacheWriteTokens": 0,
+          "outputTokens": 3991,
+          "reasoningOutputTokens": 1407,
+          "totalTokens": 147667
+        },
+        "summed_call_monotonic_seconds": 212.55055018802523
+      }
+    },
+    "chronological_cutoff": {
+      "definition": "First mutation request for generation 5, after generation 4 evaluation.",
+      "started_utc": "2026-10-08T16:42:57.924899+00:00",
+      "all_requests_starting_at_or_after_cutoff": {
+        "calls": 108,
+        "roles": {
+          "mutation_or_repair": 46,
+          "meta_program_summary": 50,
+          "meta_global_insights": 6,
+          "meta_recommendations": 6
+        },
+        "reported_tokens": {
+          "inputTokens": 1912701,
+          "cacheReadTokens": 1326080,
+          "cacheWriteTokens": 0,
+          "outputTokens": 290423,
+          "reasoningOutputTokens": 86060,
+          "totalTokens": 3529204
+        },
+        "summed_call_monotonic_seconds": 9110.003228646005
+      },
+      "interpretation": "The 62 later meta calls include summaries of early programs; this chronological count is not an estimate of calls avoidable by stopping at generation 4. Native finalization of a shorter run could still invoke meta work."
+    },
+    "meta_share_of_native_reported_tokens": 0.4014081685742627,
+    "meta_share_of_summed_native_call_duration": 0.11620605466668912,
+    "development_evaluation_slots0_to4": {
+      "slots": 5,
+      "world_episodes": 360,
+      "candidate_cpu_seconds": 212.47536500000004,
+      "evaluator_cpu_seconds": 22.526050178000016,
+      "summed_episode_wall_seconds": 216.81039324929588
+    },
+    "development_evaluation_slots5_to49": {
+      "slots": 45,
+      "world_episodes": 3240,
+      "candidate_cpu_seconds": 3918.8863039999987,
+      "evaluator_cpu_seconds": 226.31604441000007,
+      "summed_episode_wall_seconds": 3806.164187479677
+    },
+    "later_accepted_descendant_observed_mean": {
+      "mutation_or_repair_tokens": 45028.22222222222,
+      "summed_mutation_or_repair_seconds": 174.10907742737908,
+      "evaluation_cpu_seconds": 92.11560774244442,
+      "evaluation_summed_episode_wall_seconds": 84.58142638843727,
+      "development_world_episodes": 72,
+      "scope": "Per accepted later descendant; includes one repair spread over 45 descendants, excludes meta overhead. These means are not independent-run cost guarantees."
+    },
+    "limitations": "All model calls used the subscription route. Tokens include cached input; reasoning tokens are an output subset, not added again. API-list-price estimates are not subscription charges. Summed model durations and evaluation wall durations may overlap and use different clocks; they are not added into campaign elapsed. Remote model CPU and full search-controller CPU are unmeasured."
+  },
+  "selection": {
+    "candidate_count": 5,
+    "episodes": 960,
+    "ranking": [
+      {
+        "generation": 4,
+        "program_sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+        "episodes": 192,
+        "invalid": 0,
+        "selection_task": 0.93088671875,
+        "selection_escapes": 180,
+        "mean_candidate_cpu_seconds": 1.4261378958333317,
+        "on_policy_brier_near": 0.007400270893677849,
+        "on_policy_brier_audit": 0.015687608671536873
+      },
+      {
+        "generation": 18,
+        "program_sha256": "1ea17d5f6e5403a1962c1d011602b2d026e72e7291bb312645cafaf1c2545bbb",
+        "episodes": 192,
+        "invalid": 0,
+        "selection_task": 0.9261822916666667,
+        "selection_escapes": 179,
+        "mean_candidate_cpu_seconds": 2.432767213541668,
+        "on_policy_brier_near": 0.007303788777506998,
+        "on_policy_brier_audit": 0.015758230648265627
+      },
+      {
+        "generation": 20,
+        "program_sha256": "7b3e543105a3e4e02522ec397549cad8eba6afe8969e6da66453191edd38e84b",
+        "episodes": 192,
+        "invalid": 0,
+        "selection_task": 0.9261822916666667,
+        "selection_escapes": 179,
+        "mean_candidate_cpu_seconds": 2.344837604166665,
+        "on_policy_brier_near": 0.007303788777506998,
+        "on_policy_brier_audit": 0.015758230648265627
+      },
+      {
+        "generation": 46,
+        "program_sha256": "c0011929926cd93bf6cf5b6b6e3deee5591bcf073655e33db469416185c785aa",
+        "episodes": 192,
+        "invalid": 0,
+        "selection_task": 0.926046875,
+        "selection_escapes": 179,
+        "mean_candidate_cpu_seconds": 1.5821652760416676,
+        "on_policy_brier_near": 0.007732687763105728,
+        "on_policy_brier_audit": 0.01572454686488137
+      },
+      {
+        "generation": 19,
+        "program_sha256": "fdb03d7e98e362bf07f0ab252ace7e15d28700892c5fd246924748a7430d330e",
+        "episodes": 192,
+        "invalid": 1,
+        "selection_task": 0.92573828125,
+        "selection_escapes": 179,
+        "mean_candidate_cpu_seconds": 2.366949598958334,
+        "on_policy_brier_near": 0.007338593099717575,
+        "on_policy_brier_audit": 0.015756684627436453
+      }
+    ],
+    "comparison_gen46_minus_gen4": {
+      "task": -0.004839843749999906,
+      "escapes": -1,
+      "escape_proportion": -0.005208333333333333
+    },
+    "limitation": "Only the prespecified shortlist was evaluated on selection data, so this review does not claim generation 4 would beat every unselected program. Small selection differences are not statistically established superiority."
+  },
+  "task_prediction_tradeoff": {
+    "gen4_relative_to_seed_on_development": {
+      "task_difference": 0.15174999999999994,
+      "escape_difference": 13,
+      "near_brier_relative_change": 0.2414497182125992,
+      "audit_brier_relative_change": -0.051984882316672976,
+      "candidate_cpu_ratio": 3.938019420136436
+    },
+    "gen46_relative_to_gen4_on_development": {
+      "near_brier_relative_change": -0.06589635772592906,
+      "audit_brier_relative_change": 0.049043308269898445,
+      "candidate_cpu_ratio": 1.0477239247136811
+    },
+    "generations_improving_both_task_and_near_brier_over_seed": [
+      2,
+      3,
+      5,
+      8,
+      9,
+      33,
+      36,
+      37,
+      41,
+      42
+    ],
+    "interpretation": "Brier losses decrease when prediction improves, but these cross-program losses are on different self-selected trajectories. They neither isolate model quality on identical experience nor demonstrate that adaptation improves control. The frozen objective was absolute task only; forecast losses were diagnostics."
+  },
+  "diversity": {
+    "candidate_slots": 50,
+    "distinct_source_hashes": 50,
+    "distinct_full_ast_hashes": 50,
+    "identical_source_groups": [],
+    "identical_ast_groups": [],
+    "ast_method": "Python ast.dump(ast.parse(source), include_attributes=False); ignores formatting/comments, retains identifiers and docstrings. Syntactic uniqueness is not semantic uniqueness.",
+    "parent_relative_function_body_changes": {
+      "world_model_step": 33,
+      "planner": 38,
+      "either": 43,
+      "scope": "Direct AST body comparison only. Helper-only changes can alter algorithms without either entrypoint changing."
+    },
+    "source_lines_range": [
+      142,
+      1262
+    ],
+    "verified_architecture_examples": [
+      {
+        "generation": 4,
+        "parent_generation": 0,
+        "description": "Slow/fast nine-direction evidence plus uniform expert; anonymous observation updates; freshly constructed hidden occupancy; three-stage marginal-hazard planning.",
+        "review": {
+          "path": "artifacts/campaign-v3/mechanism-gen4-review.json",
+          "sha256": "7c9f0c99e422ce509b5a3549ef1aee8602d9352721abaf5dce0f8053e108588f"
+        }
+      },
+      {
+        "generation": 46,
+        "parent_generation": 28,
+        "description": "Source-reviewed persistent anonymous occupancy, compact dynamics-change handling, and survival-conditioned three-stage control with branch-specific keys/door. Runtime benefit of these individual mechanisms was not established.",
+        "review": {
+          "path": "artifacts/campaign-v3/mechanism-gen46-provisional-review.json",
+          "sha256": "4eab7286235116dc1e588231e521a06d02b1381f5da5a9a6cd55f311383a2da5"
+        }
+      }
+    ],
+    "selection_behavior_hash_comparisons": [
+      {
+        "left": "slot_04",
+        "right": "slot_18",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 131,
+          "trajectory_sha256": 131,
+          "recorded_physical_states_sha256": 131,
+          "observations_sha256": 131,
+          "forecast_sha256": 0
+        }
+      },
+      {
+        "left": "slot_04",
+        "right": "slot_19",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 130,
+          "trajectory_sha256": 130,
+          "recorded_physical_states_sha256": 130,
+          "observations_sha256": 130,
+          "forecast_sha256": 0
+        }
+      },
+      {
+        "left": "slot_04",
+        "right": "slot_20",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 131,
+          "trajectory_sha256": 131,
+          "recorded_physical_states_sha256": 131,
+          "observations_sha256": 131,
+          "forecast_sha256": 0
+        }
+      },
+      {
+        "left": "slot_04",
+        "right": "slot_46",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 6,
+          "trajectory_sha256": 6,
+          "recorded_physical_states_sha256": 6,
+          "observations_sha256": 6,
+          "forecast_sha256": 0
+        }
+      },
+      {
+        "left": "slot_18",
+        "right": "slot_19",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 188,
+          "trajectory_sha256": 188,
+          "recorded_physical_states_sha256": 188,
+          "observations_sha256": 188,
+          "forecast_sha256": 188
+        }
+      },
+      {
+        "left": "slot_18",
+        "right": "slot_20",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 192,
+          "trajectory_sha256": 192,
+          "recorded_physical_states_sha256": 192,
+          "observations_sha256": 192,
+          "forecast_sha256": 192
+        }
+      },
+      {
+        "left": "slot_18",
+        "right": "slot_46",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 6,
+          "trajectory_sha256": 6,
+          "recorded_physical_states_sha256": 6,
+          "observations_sha256": 6,
+          "forecast_sha256": 0
+        }
+      },
+      {
+        "left": "slot_19",
+        "right": "slot_20",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 188,
+          "trajectory_sha256": 188,
+          "recorded_physical_states_sha256": 188,
+          "observations_sha256": 188,
+          "forecast_sha256": 188
+        }
+      },
+      {
+        "left": "slot_19",
+        "right": "slot_46",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 6,
+          "trajectory_sha256": 6,
+          "recorded_physical_states_sha256": 6,
+          "observations_sha256": 6,
+          "forecast_sha256": 0
+        }
+      },
+      {
+        "left": "slot_20",
+        "right": "slot_46",
+        "paired_episodes": 192,
+        "identical_hash_counts": {
+          "actions_sha256": 6,
+          "trajectory_sha256": 6,
+          "recorded_physical_states_sha256": 6,
+          "observations_sha256": 6,
+          "forecast_sha256": 0
+        }
+      }
+    ],
+    "hash_scope": "All 192 paired selection episodes per source. Search episode records do not contain corresponding full-trajectory hashes, so no claim of exhaustive behavioral deduplication of all 50 candidates is made.",
+    "hash_definitions": {
+      "actions_sha256": "Full saved attempted-action sequence.",
+      "trajectory_sha256": "Recorded evaluator trajectory digest.",
+      "recorded_physical_states_sha256": "Saved physical-world state sequence.",
+      "observations_sha256": "Saved candidate-visible observation sequence.",
+      "forecast_sha256": "Sequence of exported enemy and default_enemy values only; does not compare every internal parameter or diagnostic.",
+      "source": "scripts/v3_assessment.py:201-207"
+    },
+    "hash_compactor_source_sha256": "1892972346f178af599e579a8db730ea740c0def05701ebc58384a1024bbf6a6"
+  },
+  "inactive_restart_mechanism": {
+    "generation": 20,
+    "parent_generation": 18,
+    "development": {
+      "episodes": 72,
+      "restart_field_present": 72,
+      "reported_restart_events": 0,
+      "episodes_with_reported_restart": 0
+    },
+    "selection": {
+      "episodes": 192,
+      "restart_field_present": 192,
+      "reported_restart_events": 0,
+      "episodes_with_reported_restart": 0
+    },
+    "source_evidence": {
+      "path": "artifacts/campaign-v3/programs/gen_20.py",
+      "sha256": "7b3e543105a3e4e02522ec397549cad8eba6afe8969e6da66453191edd38e84b"
+    },
+    "development_record_evidence": {
+      "path": "results/campaign-v3/gen_20/results/episodes.json",
+      "sha256": "43140edafc4e469b462761281ea9f2184f70f078b586ca8f4cf09cdfeace4712"
+    },
+    "source_interpretation": "The inspected code accumulates surprise then requires evidence>=2.4, at least 4 supporting transitions, and at least 12 effective-update units plus cooldown before creating an additional directional expert. Until that trigger, the original experts and planner remain active. Final restart_events is a cumulative counter. Zero recorded activations and identical selection forecast/action hashes support an inactive added capability on these cases, not equivalence on all possible experience."
+  },
+  "existing_development_mechanism_evidence": {
+    "selected_gen4": "Four interventions escaped on the same 69/72 reused development cases despite online/frozen action differences on 50/72. Under fixed uniform-law control, matched near-Brier point changes favored learning by 1.56% stationary and 1.28% switching, and worsened by 0.072% uniform. This supports modest prediction-learning evidence on reused experience, not an observed development escape benefit.",
+    "evidence": {
+      "path": "artifacts/campaign-v3/mechanism-selected/runtime-review.json",
+      "sha256": "8e363527f2ea8d0c4b8ff946be2d81542a7ed4714161d19171f65bfa61e729cf"
+    },
+    "scope": "Already completed 288-world audit. This review adds zero world episodes and does not read unfinished/fresh assessment results."
+  },
+  "bounded_recommendations": [
+    {
+      "priority": 1,
+      "action": "Complete authorized saved-data interpretation before any further evolution.",
+      "cost": "Zero new model calls or world episodes.",
+      "reason": "The selected program was available at generation 4; later search did not improve the selected result. The unresolved claim is predictive adaptation and control, not whether additional syntactic variants can be generated."
+    },
+    {
+      "priority": 2,
+      "action": "For a future approved wave, record action/forecast fingerprints during existing development evaluations and expose inactive-mechanism diagnostics in feedback when coherently available.",
+      "cost": "Instrumentation/storage work; no extra worlds are intrinsically required.",
+      "constraint": "Do not retroactively change this selection or force candidate architectures into a fixed module family. Exact source deduplication alone would not have found generations 18/20 behavioral redundancy."
+    },
+    {
+      "priority": 3,
+      "action": "If reliable discovery becomes the next question, agree a prospective budget for independent short searches and a stopping rule using development information only.",
+      "cost": "Observed later descendant averages: about 45k mutation tokens, 174s summed mutation/repair duration and 92 CPU-seconds for 72 evaluations, before meta overhead. A 15\u201320 minute tranche on this route supports only a few mutations; it cannot establish broad discovery reliability.",
+      "constraint": "One successful early branch cannot justify a universal five-slot budget. Do not tune stopping to retired selection/assessment outcomes or automatically launch 24 searches."
+    },
+    {
+      "priority": 4,
+      "action": "If reducing search cost is the next controlled study, vary one native mechanism, such as summary/recommendation scheduling, while preserving task, seeds, budget and route.",
+      "cost": "Meta used 40.1% of native reported tokens but 11.6% of summed call duration in this run. Actual subscription charges remain unknown.",
+      "constraint": "No meta ablation was run; this audit cannot claim meta was useless or that disabling it preserves outcomes. Independent paired search replicates require a separately approved budget."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/campaign-v3/search.csv",
+      "sha256": "564676a73378bd31cb88560fdb479a32e720c7970dc22821e81b8176d80d99a1"
+    },
+    {
+      "path": "artifacts/campaign-v3/search-summary.json",
+      "sha256": "30e66ca279522726bfc197be2769516d0b63860d397029f169806f9317bda917"
+    },
+    {
+      "path": "artifacts/campaign-v3/native-audit.json",
+      "sha256": "603592e42d73fb8a3458a09af0a572ad96a006c30dfd89df73ac88a149e738dc"
+    },
+    {
+      "path": "artifacts/campaign-v3/lineage.json",
+      "sha256": "3595e60ea4ad49130db53122e7d3e1958495a543da0c8df6e798f0fe5c2353a5"
+    },
+    {
+      "path": "artifacts/campaign-v3/source-changes.json",
+      "sha256": "293a35a36f714a37124febba9e00177eb3d07a5a2aaf8e06f1862e25061da9d1"
+    },
+    {
+      "path": "artifacts/campaign-v3/selection/selection.json",
+      "sha256": "518a6a26432ad482dd08cbf26a943374cdae998996cbbefdf557f9c82fa4c451"
+    },
+    {
+      "path": "artifacts/campaign-v3/selection/episodes.jsonl.gz",
+      "sha256": "b676488a8509e83edde3621aac0dd40c4928e5ff2276aab34174e047c326aef5"
+    }
+  ]
+}

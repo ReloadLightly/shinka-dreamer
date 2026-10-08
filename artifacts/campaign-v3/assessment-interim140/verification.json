@@ -1,0 +1,47 @@
+{
+  "scope": "Saved-data interim assessment verification; no experimental executions",
+  "world_episodes_added": 0,
+  "experiment_model_calls_added": 0,
+  "statistics_tests": {
+    "command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_v3_statistics.py",
+    "passed": 15
+  },
+  "public_only_reproduction": {
+    "private_results_directory_present": false,
+    "command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/v3_interim_analysis.py --compact",
+    "all_four_evidence_hashes_identical": true,
+    "evidence_sha256": {
+      "episodes.jsonl.gz": "141f20c1926b803b84c7df82fd4d0094d2f9fb6d8dc00fcfc1747f1e1e370791",
+      "matched-episodes.jsonl.gz": "5b5fd3cce71cb0c9c671b8c7959c40b4984c4288a1c4ea573b2d97c08ee678af",
+      "analysis.json": "fa6d2c11e766bd204e37e7a3e7f5d3c9f5bd846d81792817f91c9a535b54f86a",
+      "matched-analysis.json": "0a38256b3295139884f824f2583b90d708d80c6e74605c6e1447eae51405614f"
+    }
+  },
+  "protected_historical_files": {
+    "checked": 85,
+    "changed": 0
+  },
+  "independent_review": {
+    "raw_case_hashes_checked": 140,
+    "matched_record_hashes_checked": 420,
+    "all_condition_outcome_counts_checked": true,
+    "all_registered_escape_pair_counts_and_exact_p_checked": true,
+    "discrepancies": 0
+  },
+  "host_process_check": {
+    "assessment_controller_workers_or_followthrough_present": false,
+    "read_only_dashboard_present": true
+  },
+  "figures": {
+    "sets": 5,
+    "formats": [
+      "SVG",
+      "PDF",
+      "PNG"
+    ],
+    "visually_inspected": true,
+    "interim_uncertainty_labels_present": true
+  },
+  "full_assessment_complete": false,
+  "simulation_resume_authorized": false
+}

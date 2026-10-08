@@ -1,0 +1,25 @@
+{
+  "observed_cases": 140,
+  "registered_cases": 1536,
+  "full_assessment_complete": false,
+  "simulation_resume_authorized": false,
+  "scope": "Nominal pointwise intervals; not stopping-adjusted or confirmatory. Administrative stop preceded escape/task/prediction aggregation, but observedN differsfromregisteredN and runtime can correlatewithdifficulty. No original80%power claim forN140.",
+  "protocol_sha256": "cf5b894f75943f77478d532fc9c7809d3852233fdd5c9ffb0403e936867b9155",
+  "new_world_episodes": 0,
+  "new_experiment_model_calls": 0,
+  "status": "completed saved-data interim analysis; original assessment paused",
+  "original_plan_sha256": "2b292e2373cc1d5b3c558a5339ed1588323272e2dbc606ead130640bfd1aae7d",
+  "analysis_source_sha256": "7b2becc143310999ad60190718bbcaa4c693e6d93c1d76313907d2d4953a8a8e",
+  "wrapper_sha256": "e822697910fd0bb43f34837a76205d88c80847fd80ec662c256bc0d8ecdcf181",
+  "condition_episodes": 4200,
+  "recorded_policy_episodes": 420,
+  "shadow_predictor_passes": 2100,
+  "files": {
+    "episodes.jsonl.gz": "141f20c1926b803b84c7df82fd4d0094d2f9fb6d8dc00fcfc1747f1e1e370791",
+    "matched-episodes.jsonl.gz": "5b5fd3cce71cb0c9c671b8c7959c40b4984c4288a1c4ea573b2d97c08ee678af",
+    "analysis.json": "fa6d2c11e766bd204e37e7a3e7f5d3c9f5bd846d81792817f91c9a535b54f86a",
+    "matched-analysis.json": "0a38256b3295139884f824f2583b90d708d80c6e74605c6e1447eae51405614f"
+  },
+  "analysis_cpu_seconds": 7.184378468999999,
+  "analysis_elapsed_seconds": 6.468045513000106
+}
