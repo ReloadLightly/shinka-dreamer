@@ -5,5 +5,15 @@
     "representation": "Replaces feature occupancy rates with separate terrain atlas, directional attempted-movement law, fast/slow evidence, anonymous enemy occupancy cloud and navigation state.",
     "scope": "Static inspection only; slot1 produced no measured episodes because the native scheduler charged proposal time against evaluation timeout. No empirical mechanism or performance conclusion is available.",
     "source_limitations": "Anonymous overlap, nuisance births and hidden occupancy are approximations. learn/predictive_planning flags are present but have not been behaviorally audited in RUN1. Static presence does not establish predictive adaptation benefit."
+  },
+  "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3": {
+    "detailed_review": "science/source-review-generation-002.json",
+    "evidence": "This descendant performed worse on the shared eight-layout/six-condition development panel. Positive self-reported update counts in38episodes do not establish improved prediction from learning or control benefit. No coherent intervention or matched-experience comparison has been executed for this source.",
+    "inactive_residue": "The old _feature function has no callers in this source. The old rates dictionary is initialized but never read by active update, planner or export code. These seed remnants do not contribute the evolved prediction.",
+    "intervention_feasibility": "Source supports freezing motion_counts separately from mapping/occupancy inference and switching learned-risk use to the original fixed heuristic. Neither behavior has been audited in RUN1.",
+    "planning": "An edge costs movement_length +45*(0.8**max(0,Chebyshev_distance_from_current_agent-1))*risk_at_destination plus visit cost. The whole route uses horizon-one risk with a distance discount; this is not a multi-step calibrated collision model. After route selection, wait if proposed destination risk exceeds current-cell risk by0.055+0.004*min(current_cell_visits,10).",
+    "predictive_updates": "When learn is true, multiply counts by0.92; use a0.75-per-direction pseudocount prior for anonymous assignment responsibilities; add expected attempted-direction counts; blend normalized law80% with uniform20%. Skip evidence on observations whose step is divisible by25, where terrain may have changed.",
+    "representation": "Replaces the active six-category occupancy-frequency predictor with nine attempted-direction pseudo-counts, an exponentially discounted motion-law estimator, and a propagated anonymous occupancy belief.",
+    "scope": "Source reading and already saved development episode metadata only. No program execution, new episode, intervention, matched replay or model call."
   }
 }

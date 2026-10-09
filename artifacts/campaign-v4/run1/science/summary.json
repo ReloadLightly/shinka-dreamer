@@ -10,23 +10,25 @@
   "episode_wall_seconds_unavailable_recorded_episodes": 0,
   "evaluator_cpu_seconds_recorded_sum": 4.787433084999998,
   "evaluator_cpu_seconds_unavailable_recorded_episodes": 0,
-  "exported_utc": "2026-10-09T01:37:18.421187+00:00",
+  "exported_utc": "2026-10-09T01:47:43.848078+00:00",
   "failed_persisted_slots": [
     1
   ],
-  "infrastructure_findings_sha256": "ff36a719a63a5aab70ea785ab26b11d142d40a15fae74b6e71f9cde10574f2e6",
+  "infrastructure_findings_sha256": "3985a3af883f6c7f8961cf33d971b8ce32041a0a1261cda02a28811db4d9561e",
   "input_episode_file_inventory_sha256": "a1fd909ace8aefc845339690291967bff8911321f76cb9aa61afc5a39434dd5c",
   "input_episode_files": 98,
   "new_candidate_executions": 0,
   "new_model_calls": 0,
   "new_world_episodes": 0,
-  "pending_slot_directories": [],
+  "pending_slot_directories": [
+    3
+  ],
   "persisted_unique_slots": 3,
   "private_pool_sha256": "c75a8d2c14bf6529718aeee7193d7c3da2489bd94cacafc383a2d47b2a0ee2e7",
   "recorded_condition_episodes": 96,
   "recorded_invalid_episodes": 0,
   "recorded_physical_transitions": 5084,
-  "reporter_sha256": "e4759b500244517b7fa0e7211d2ca30d4db376e558a688ad1dc05d1c0dabd57e",
+  "reporter_sha256": "d7ecb2b2cf14c262e44c33ab64eabda9b9f04abf7b8ace55016fdf106dd3bbbc",
   "scope": {
     "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias.",
     "control": "No selected-program freeze or prediction-use intervention was assessed in this RUN1 campaign. Predictive-adaptation control benefit remains untested.",
@@ -34,7 +36,7 @@
     "prediction": "On-policy forecast losses; actions and target exposure differ between programs. This is not matched-experience prediction-learning evidence.",
     "task": "One selected development panel, repeatedly exposed to evolutionary selection; no held-out assessment or independent-search replication."
   },
-  "source_review_notes_sha256": "7f51cf8cdf9722b2f2a74dff389f1f644a1da84dc7b910a8ce68c9ecbb2d2ef7",
+  "source_review_notes_sha256": "53c6251347d310bd500e68d6688fc9248b793ecfe57f49de2530d93c4d3db4b9",
   "target_slot_cap": 32,
   "valid_persisted_slots": 2
 }

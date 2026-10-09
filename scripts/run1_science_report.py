@@ -298,11 +298,11 @@ def generated_document(summary, candidates, paired, path):
              f"Current export: **{summary['persisted_unique_slots']} persisted slots**, including the seed; "
              f"{summary['recorded_condition_episodes']} saved condition-episodes. "
              f"{summary['administrative_seed_copy_rows']} administrative seed-copy rows are excluded from slot counts.", "",
-             "| Slot | Native valid | Recorded / expected | Mean task | Escape | Death | Timeout | Invalid | Missing |",
-             "|:--|:--|--:|--:|--:|--:|--:|--:|--:|"]
+             "| Slot | Status | Native valid | Recorded / expected | Mean task | Escape | Death | Timeout | Invalid | Missing |",
+             "|:--|:--|:--|--:|--:|--:|--:|--:|--:|--:|"]
     for row in candidates:
         score = f"{row['task']:.5f}" if row["task"] is not None else "Incomplete"
-        lines.append(f"| {row['generation']} | {row['native_correct']} | {row['recorded_episodes']}/{row['expected_episodes']} | {score} | {row['escape_count']} | {row['death_count']} | {row['timeout_count']} | {row['invalid_count']} | {row['missing_episodes']} |")
+        lines.append(f"| {row['generation']} | {row['status']} | {row['native_correct']} | {row['recorded_episodes']}/{row['expected_episodes']} | {score} | {row['escape_count']} | {row['death_count']} | {row['timeout_count']} | {row['invalid_count']} | {row['missing_episodes']} |")
     lines += ["", "Native eligibility additionally requires every episode to validate. Failed candidates remain in the slot and evidence records; their episode means retain invalid executions with score zero. Missing episodes are unavailable, not silently counted as successes or observed failures.", ""]
     for row in candidates:
         if row.get("infrastructure_failure"):

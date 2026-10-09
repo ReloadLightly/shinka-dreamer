@@ -4,11 +4,12 @@ One selected development panel, repeatedly exposed to evolutionary selection; no
 
 Current export: **3 persisted slots**, including the seed; 96 saved condition-episodes. 3 administrative seed-copy rows are excluded from slot counts.
 
-| Slot | Native valid | Recorded / expected | Mean task | Escape | Death | Timeout | Invalid | Missing |
-|:--|:--|--:|--:|--:|--:|--:|--:|--:|
-| 0 | True | 48/48 | 0.86111 | 41 | 7 | 0 | 0 | 0 |
-| 1 | False | 0/48 | Incomplete | 0 | 0 | 0 | 0 | 48 |
-| 2 | True | 48/48 | 0.81093 | 39 | 9 | 0 | 0 | 0 |
+| Slot | Status | Native valid | Recorded / expected | Mean task | Escape | Death | Timeout | Invalid | Missing |
+|:--|:--|:--|--:|--:|--:|--:|--:|--:|--:|
+| 0 | persisted_complete_panel | True | 48/48 | 0.86111 | 41 | 7 | 0 | 0 | 0 |
+| 1 | persisted_no_panel | False | 0/48 | Incomplete | 0 | 0 | 0 | 0 | 48 |
+| 2 | persisted_complete_panel | True | 48/48 | 0.81093 | 39 | 9 | 0 | 0 | 0 |
+| 3 | pending_native_slot | None | 0/48 | Incomplete | 0 | 0 | 0 | 0 | 48 |
 
 Native eligibility additionally requires every episode to validate. Failed candidates remain in the slot and evidence records; their episode means retain invalid executions with score zero. Missing episodes are unavailable, not silently counted as successes or observed failures.
 

@@ -1,0 +1,61 @@
+{
+  "actual_decision_signal": {
+    "action_conditioning": "The code conditions doors adjacent to the current agent on interact=True when two keys are held. All returned actions interact. It does not model candidate-specific future dynamic-wall changes.",
+    "forecast": "Independent-origin occupancy approximation: aggregate attempted directions leading to the same destination, then multiply absence probabilities across occupied origins. Unknown terrain is treated as passable; hidden occupancy uses propagated forecasts with a0.02 fallback.",
+    "precontact": "Visible current enemy destinations are excluded by the planner separately. Exported occupancy is not the total probability of death, which also includes pre-enemy-movement contact.",
+    "route_cost": "An edge costs movement_length +45*(0.8**max(0,Chebyshev_distance_from_current_agent-1))*risk_at_destination plus visit cost. The whole route uses horizon-one risk with a distance discount; this is not a multi-step calibrated collision model.",
+    "target": "Predicted anonymous enemy occupancy at coordinate p after one enemy movement transition; coordinates are relative to the initial agent origin.",
+    "waiting": "After route selection, wait if proposed destination risk exceeds current-cell risk by0.055+0.004*min(current_cell_visits,10)."
+  },
+  "already_saved_evidence": {
+    "candidate_reported_positive_update_episodes": 38,
+    "candidate_reported_update_range": [
+      0,
+      17
+    ],
+    "condition_episodes": 48,
+    "death": 9,
+    "escape": 39,
+    "interpretation": "This descendant performed worse on the shared eight-layout/six-condition development panel. Positive self-reported update counts in38episodes do not establish improved prediction from learning or control benefit. No coherent intervention or matched-experience comparison has been executed for this source.",
+    "seed_escape": 41,
+    "seed_task_mean": 0.8611093750000004,
+    "task_mean": 0.8109270833333335,
+    "timeout": 0,
+    "valid_episodes": 48
+  },
+  "approximations_and_inactive_residue": [
+    "Anonymous sources may overlap at one destination, but unexplained newly visible cells receive a fixed0.04 penalty; this is an approximate likelihood, not a proven exact partial-observation filter.",
+    "Occupancy beliefs are independent cell probabilities with no constraint that expected enemy count equals three. Correlations from each enemy having exactly one position are discarded.",
+    "Map cells may be stale and unobserved terrain is assumed traversable for prediction; future terrain changes are not predicted.",
+    "The old _feature function has no callers in this source. The old rates dictionary is initialized but never read by active update, planner or export code. These seed remnants do not contribute the evolved prediction.",
+    "The last_action argument and the stored previous center are unused. Localization instead follows public displacement feedback."
+  ],
+  "coherent_interventions_by_source": {
+    "learning_freeze": "learn=False skips both motion-count decay and evidence addition. From reset it keeps the nine counts atzero and the law uniform. Mapping, localization, observation updates and occupancy filtering still run. This is coherent by source reading; actual constancy and initialized-identically behavior require separate verification.",
+    "matched_experience": "Planner only reads memory and returns an action; it makes no memory writes. On forced identical observation/action sequences, world_model_step/export can be replayed without planner side effects. Source-bound selected online/frozen shadows are feasible but were not run.",
+    "prediction_use": "predictive_planning=False replaces risk lookups in route search and waiting with the unchanged fixed local avoidance heuristic. Learning and forecast export remain active. This tests use of this program's forecast versus this specific heuristic, not prediction versus no prediction.",
+    "recommended_audits_if_later_authorized": "Bind this exact source; expose raw motion_counts without altering computation; verify frozen count constancy, same initial counts, map/position identity under shared recorded experience, exported risk identity at planner reads, and actual action changes. Do not infer efficacy from flags or counters."
+  },
+  "generation": 2,
+  "native_id": "be884d31-8b39-4add-abce-c93d13595c75",
+  "new_candidate_executions": 0,
+  "new_model_calls": 0,
+  "new_world_episodes": 0,
+  "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+  "patch_name": "censored_motion_belief",
+  "predictive_state": {
+    "adaptive_parameters": "memory.motion_counts: nine nonnegative evidence values. memory.law is derived; no general ten-weight assumption is needed.",
+    "counter_limit": "updates counts calls returning admissible motion evidence, not identifiable transitions or measured information gain. Discounting changes nonzero parameters even without new evidence. effective_evidence is discounted count mass, not effective independent sample size.",
+    "retained_state_inference": "memory.forecast propagates occupancy into unobserved cells and is overwritten with the next forecast after each observation. memory.belief, map, seen, pos, visits and previous are observation/state history rather than fitted motion-law parameters.",
+    "update": "When learn is true, multiply counts by0.92; use a0.75-per-direction pseudocount prior for anonymous assignment responsibilities; add expected attempted-direction counts; blend normalized law80% with uniform20%. Skip evidence on observations whose step is divisible by25, where terrain may have changed."
+  },
+  "scope": "Source reading and already saved development episode metadata only. No program execution, new episode, intervention, matched replay or model call.",
+  "seed_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+  "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
+  "substantive_changes": [
+    "Replaces the active six-category occupancy-frequency predictor with nine attempted-direction pseudo-counts, an exponentially discounted motion-law estimator, and a propagated anonymous occupancy belief.",
+    "Adds censored anonymous transition enumeration over up to three observed enemy sources; blocked attempted moves contribute staying mass without legal-move renormalization.",
+    "Treats the outer observation ring as unobserved for enemies when the public sensor radius is one; continues to use all five-by-five terrain observations.",
+    "Retains the graph-search planner but geometrically discounts one-step risk with route distance, changes its wait threshold and disallows a first diagonal move into a locked door."
+  ]
+}
