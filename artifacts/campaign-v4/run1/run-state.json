@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "run_id": "v4-run1",
+  "authorization": "RUN 1 only; explicit user instruction required for subsequent runs",
+  "status": "implementation",
+  "start_utc": "2026-10-09T00:54:23Z",
+  "admission_deadline_utc": "2026-10-09T04:24:23Z",
+  "hard_deadline_utc": "2026-10-09T04:54:23Z",
+  "reviewed_commit": "ec7e4c339fea4b3eaf132e47d08f7ca6816f52f8",
+  "historical_assessment": "paused; do not resume automatically",
+  "primary_budget": {
+    "measure": "reported_uncached_input_plus_output_tokens_all_roles",
+    "limit": 1500000,
+    "request_boundary_overshoot_counted": true
+  },
+  "caps": {
+    "candidate_slots_including_seed_and_failures": 32,
+    "model_calls_all_roles": 120,
+    "summed_remote_seconds": 7200,
+    "request_seconds": 600,
+    "candidate_episodes": 1536,
+    "candidate_transitions": 307200,
+    "candidate_cpu_seconds": 15360,
+    "candidate_memory_mib": 192,
+    "proposal_concurrency": 1,
+    "evaluation_concurrency": 1,
+    "episode_concurrency": 2
+  },
+  "role_call_caps": {
+    "mutation_repair": 64,
+    "novelty": 16,
+    "summary": 32,
+    "global_insight": 8,
+    "recommendation": 8,
+    "prompt_mutation": 16,
+    "readiness": 4
+  },
+  "completed": [
+    "clean checkout and origin reconciliation",
+    "historical evidence read; no repetition",
+    "no active experiment workers on recovery",
+    "prospective protocol and roadmap recorded",
+    "bounded branch execution and analysis (23states,184futures,56validatorfailures preserved)",
+    "two distinct subscription model calls verified",
+    "genuine local CPU embedding service verified",
+    "four v4 physical/information checks plus invalid-denominator check"
+  ],
+  "remaining": [
+    "native adapter final focused verification and freeze",
+    "native evolutionary execution",
+    "analysis and visual migration",
+    "checkpoint commit and push"
+  ],
+  "actual": {
+    "new_candidate_slots": 0,
+    "new_model_calls": 3,
+    "new_scored_episodes": 0,
+    "branch_transitions": 2032,
+    "reconstructed_development_transitions": 449,
+    "branch_future_attempts": 184,
+    "branch_future_valid": 128
+  },
+  "next_authorized_action": "Implement and execute bounded RUN 1; checkpoint and stop",
+  "automatic_continuation": false
+}

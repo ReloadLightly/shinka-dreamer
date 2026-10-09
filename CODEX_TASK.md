@@ -1,3 +1,33 @@
+# Authorized current work: RUN 1 of the reviewed roadmap
+
+The user's 9 October 2026 instruction supersedes the earlier pause on **new** work,
+but leaves the large historical v3 assessment paused. Execute **RUN 1 only**, then
+checkpoint and stop. Later runs require a fresh user instruction. The durable
+plan is [docs/research-roadmap.md](docs/research-roadmap.md), prospective settings
+[docs/run1-protocol.md](docs/run1-protocol.md), and current machine state
+[artifacts/campaign-v4/run1/run-state.json](artifacts/campaign-v4/run1/run-state.json).
+
+RUN 1 is separately versioned wave v4: a bounded development branch-consequence
+experiment and full native Shinka machinery from the original predictive seed.
+The initial maximum is32slots including seed/failures,1.5Mreported uncached
+input-plus-output tokens across all roles,120calls and the four-hour wall ceiling.
+Admission stops by2026-10-09 04:24:23UTC; hard checkpoint by04:54:23UTC.
+Prospective saturation reviews may stop earlier. Preserve all v2/v3 scientific
+sources/data/statistics. Repository-wide Chromatic Fields restyling is now
+explicitly authorized, using saved data with separate rendering provenance.
+
+State recovery found current local and origin at reviewedcommit`ec7e4c3`, with
+completed v3 interim analysis and profiling diagnostic; neither is repeated.
+The new branch experiment completed23states/184futureattempts with56validator
+failures preserved, no retries and2,032branchtransitions. Its limited valid
+changed-action contrasts show no collision/escape improvement; see
+[docs/run1-branch-findings.md](docs/run1-branch-findings.md). This is development
+evidence, not an escape-population assessment. The subsequent search's actual
+status/counts belong in the machine state and README, never inferred from the
+configuration. Do not relaunch closed branch drivers or any historical campaign.
+
+---
+
 # Current research state and unknown-dynamics experiment
 
 ## Paused by the user: v3 wave 1
