@@ -1,0 +1,42 @@
+{
+  "source_sha256": "2f2afd676ce09f301136b4bfd140abb118de637e079d7436015ab090d0b7019b",
+  "theme_sha256": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+  "input_sha256": {
+    "artifacts/campaign-v4/run1/native/native-report.json": "e5bbcbc88ccf2c863b0fc62f5dcaeae90bf5b21997f756baa59d12e7412c14de",
+    "artifacts/campaign-v4/run1/native/lineage.json": "fa898f06a17457613fb6a84794516cf322f64270c53c2f321715652f8fd2bb70",
+    "artifacts/campaign-v4/run1/native/prompts.json": "c0e8cf6611c08e2f685e41fe97b9c88baee005e4082bef4911896fc012d4903c",
+    "artifacts/campaign-v4/run1/science/candidate-metrics.json": "b6f6fc0f95218544480d122cc10a35a225bc7a5233ae2be11739efcd1430ba5d",
+    "artifacts/campaign-v4/run1/science/resource-curve.json": "9d3951706cde60aca34c9e1fe919335686b6da249bf950e78fa3bfd691a1552b",
+    "artifacts/campaign-v4/run1/science/summary.json": "35ae02d925145548b7647192e271a05a9315b3e57b3d7125762c0f07579897ee"
+  },
+  "output_sha256": {
+    "artifacts/campaign-v4/run1/figures/search-progress.svg": "afcd132939e74b48bd7c451abfbfc076fb46647d3b03c6019edef042f1c81e30",
+    "artifacts/campaign-v4/run1/figures/search-progress.pdf": "012321adccb56332a7a0d77f5379c26b6a68be1c188303f02b872d05c2bf43a7",
+    "artifacts/campaign-v4/run1/figures/search-progress.png": "7eb83301b5d199f8e71482f871d5404558a7e8a197d2481c82f13480252c7a65",
+    "artifacts/campaign-v4/run1/figures/resources.svg": "a9d54ed225686f81b64d3f298027516dff214a00dd84aef13a030b85e539a398",
+    "artifacts/campaign-v4/run1/figures/resources.pdf": "153856e72002d13b52e18129328bea3731e3e6633c12f15226934d35fcbb0e04",
+    "artifacts/campaign-v4/run1/figures/resources.png": "4b2505808df526b7dfd25302c73dd992ac8aeb601d8e7869d2826d4e0ff25c8d",
+    "artifacts/campaign-v4/run1/figures/native-machinery.svg": "97e813477cd32e42004b6f9a6164e62aa17d20bccdf7936ecfafca957f78b4c0",
+    "artifacts/campaign-v4/run1/figures/native-machinery.pdf": "f6b43186b339f410cdb1156574f56e435a26162402458bf5807159a678752be6",
+    "artifacts/campaign-v4/run1/figures/native-machinery.png": "755c16d0eaa0eeb0071cd9c0712fe1df36cb791066b49d961562358f0c5d5fa8",
+    "artifacts/campaign-v4/run1/figures/ancestry.svg": "8a74b37f191a20db528be1552610ec6239ddd7d9f1985f866b29ab7eaebe0072",
+    "artifacts/campaign-v4/run1/figures/ancestry.pdf": "8a6fac200c63c68e54f82af026e2be1359adce2ba560a0166bf06537c1964be9",
+    "artifacts/campaign-v4/run1/figures/ancestry.png": "c020eead9a66dbaf0e2fc22f54ec0e88cd6cf4658f65f003b954b5eb4236b325"
+  },
+  "science_snapshot_utc": "2026-10-09T01:39:04.469173+00:00",
+  "native_snapshot_utc": "2026-10-09T01:41:30.076889+00:00",
+  "native_persisted_slots": 3,
+  "science_candidate_rows": 3,
+  "evidence_status": {
+    "task": "Reused development only",
+    "prediction": "On-policy diagnostics only",
+    "matched_prediction_learning": "Not established in RUN1",
+    "frozen_control_benefit": "Not established in RUN1",
+    "transfer_assessment": "Not performed in RUN1",
+    "reliable_discovery": "Not tested by one search"
+  },
+  "new_environment_episodes": 0,
+  "new_candidate_executions": 0,
+  "new_experiment_model_calls": 0,
+  "statistical_resampling": false
+}
