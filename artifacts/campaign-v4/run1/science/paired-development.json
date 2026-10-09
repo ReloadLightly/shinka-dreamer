@@ -1,0 +1,909 @@
+{
+  "available": true,
+  "best_generation": 0,
+  "bootstrap_draws": 1000,
+  "bootstrap_seed": 4137,
+  "cases": 8,
+  "comparison_is_identity": true,
+  "conditions": [
+    "uniform-full",
+    "stationary-full",
+    "switch-full",
+    "stationary-late",
+    "repeat25-full",
+    "repeat25-late"
+  ],
+  "groups": {
+    "all": {
+      "condition_episodes_per_program": 48,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.017286005929940396,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.017286005929940396
+        },
+        "brier_destination": {
+          "best": 0.0026213767456624,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0026213767456624
+        },
+        "brier_near": {
+          "best": 0.005742449637441384,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.005742449637441384
+        },
+        "brier_threat": {
+          "best": 0.02885108368038207,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.02885108368038207
+        },
+        "death": {
+          "best": 0.14583333333333334,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.14583333333333334
+        },
+        "door": {
+          "best": 0.8541666666666666,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.8541666666666666
+        },
+        "escape": {
+          "best": 0.8541666666666666,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.8541666666666666
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 1.8958333333333333,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.8958333333333333
+        },
+        "steps": {
+          "best": 53.395833333333336,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 53.395833333333336
+        },
+        "task": {
+          "best": 0.8611093750000004,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.8611093750000004
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    },
+    "repeat25-full": {
+      "condition_episodes_per_program": 8,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.017474016377167136,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.017474016377167136
+        },
+        "brier_destination": {
+          "best": 0.004259882337836472,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.004259882337836472
+        },
+        "brier_near": {
+          "best": 0.004350808942444519,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.004350808942444519
+        },
+        "brier_threat": {
+          "best": 0.021750097340608045,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.021750097340608045
+        },
+        "death": {
+          "best": 0.25,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.25
+        },
+        "door": {
+          "best": 0.75,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.75
+        },
+        "escape": {
+          "best": 0.75,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.75
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 1.75,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.75
+        },
+        "steps": {
+          "best": 53.125,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 53.125
+        },
+        "task": {
+          "best": 0.7643125,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.7643125
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    },
+    "repeat25-late": {
+      "condition_episodes_per_program": 8,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.016509118482596775,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.016509118482596775
+        },
+        "brier_destination": {
+          "best": 0.004555967451295676,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.004555967451295676
+        },
+        "brier_near": {
+          "best": 0.0070036743632649005,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0070036743632649005
+        },
+        "brier_threat": {
+          "best": 0.032925884932455615,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.032925884932455615
+        },
+        "death": {
+          "best": 0.25,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.25
+        },
+        "door": {
+          "best": 0.75,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.75
+        },
+        "escape": {
+          "best": 0.75,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.75
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 1.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.875
+        },
+        "steps": {
+          "best": 53.5,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 53.5
+        },
+        "task": {
+          "best": 0.7768125000000001,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.7768125000000001
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    },
+    "stationary-full": {
+      "condition_episodes_per_program": 8,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.018697586265499368,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.018697586265499368
+        },
+        "brier_destination": {
+          "best": 0.0021993961725864175,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0021993961725864175
+        },
+        "brier_near": {
+          "best": 0.004795566407902928,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.004795566407902928
+        },
+        "brier_threat": {
+          "best": 0.02904653210752536,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.02904653210752536
+        },
+        "death": {
+          "best": 0.125,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.125
+        },
+        "door": {
+          "best": 0.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.875
+        },
+        "escape": {
+          "best": 0.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.875
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 1.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.875
+        },
+        "steps": {
+          "best": 52.25,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 52.25
+        },
+        "task": {
+          "best": 0.8759687500000002,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.8759687500000002
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    },
+    "stationary-late": {
+      "condition_episodes_per_program": 8,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.017691367688256,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.017691367688256
+        },
+        "brier_destination": {
+          "best": 0.0022384482034244688,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0022384482034244688
+        },
+        "brier_near": {
+          "best": 0.006446936781188368,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.006446936781188368
+        },
+        "brier_threat": {
+          "best": 0.028232233654405532,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.028232233654405532
+        },
+        "death": {
+          "best": 0.125,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.125
+        },
+        "door": {
+          "best": 0.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.875
+        },
+        "escape": {
+          "best": 0.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.875
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 1.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.875
+        },
+        "steps": {
+          "best": 57.5,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 57.5
+        },
+        "task": {
+          "best": 0.8747187500000001,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.8747187500000001
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    },
+    "switch-full": {
+      "condition_episodes_per_program": 8,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.017600327417390725,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.017600327417390725
+        },
+        "brier_destination": {
+          "best": 0.00021998627156427728,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.00021998627156427728
+        },
+        "brier_near": {
+          "best": 0.004645621965807525,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.004645621965807525
+        },
+        "brier_threat": {
+          "best": 0.028981326284320062,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.028981326284320062
+        },
+        "death": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "door": {
+          "best": 1.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.0
+        },
+        "escape": {
+          "best": 1.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 1.0
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 2.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 2.0
+        },
+        "steps": {
+          "best": 55.375,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 55.375
+        },
+        "task": {
+          "best": 0.98615625,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.98615625
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    },
+    "uniform-full": {
+      "condition_episodes_per_program": 8,
+      "layout_cases": 8,
+      "metrics": {
+        "brier_audit": {
+          "best": 0.015581255234213895,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.015581255234213895
+        },
+        "brier_destination": {
+          "best": 0.002343693687347883,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.002343693687347883
+        },
+        "brier_near": {
+          "best": 0.007308698673632808,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.007308698673632808
+        },
+        "brier_threat": {
+          "best": 0.03194122987495676,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.03194122987495676
+        },
+        "death": {
+          "best": 0.125,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.125
+        },
+        "door": {
+          "best": 0.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.875
+        },
+        "escape": {
+          "best": 0.875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.875
+        },
+        "invalid": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        },
+        "keys": {
+          "best": 2.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 2.0
+        },
+        "steps": {
+          "best": 48.625,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 48.625
+        },
+        "task": {
+          "best": 0.8886875,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.8886875
+        },
+        "timeout": {
+          "best": 0.0,
+          "bootstrap_draws_available": 1000,
+          "ci95_descriptive_layout_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "difference_best_minus_seed": 0.0,
+          "seed": 0.0
+        }
+      }
+    }
+  },
+  "scope": {
+    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias.",
+    "control": "No selected-program freeze or prediction-use intervention was assessed in this RUN1 campaign. Predictive-adaptation control benefit remains untested.",
+    "cpu": "Candidate and evaluator episode-process CPU sums are disjoint; native host evaluation elapsed and summed episode wall time overlap and must not be added. Uncheckpointed work can be unavailable.",
+    "prediction": "On-policy forecast losses; actions and target exposure differ between programs. This is not matched-experience prediction-learning evidence.",
+    "task": "One selected development panel, repeatedly exposed to evolutionary selection; no held-out assessment or independent-search replication."
+  },
+  "seed_generation": 0,
+  "winner_selection_warning": "The winner was selected using these same development cases. Intervals describe observed case variability and are not confirmatory generalization or adaptation-control evidence."
+}

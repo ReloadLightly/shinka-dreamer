@@ -1,0 +1,40 @@
+{
+  "administrative_seed_copy_rows": 3,
+  "best_development_generation": 0,
+  "best_development_task": 0.8611093750000003,
+  "campaign": "namazu-persistence-information-v4-run1",
+  "campaign_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451",
+  "candidate_cpu_seconds_recorded_sum": 18.91993700000001,
+  "candidate_cpu_seconds_unavailable_recorded_episodes": 0,
+  "episode_wall_seconds_recorded_sum": 23.67123293413897,
+  "episode_wall_seconds_unavailable_recorded_episodes": 0,
+  "evaluator_cpu_seconds_recorded_sum": 4.787433084999998,
+  "evaluator_cpu_seconds_unavailable_recorded_episodes": 0,
+  "exported_utc": "2026-10-09T01:37:18.421187+00:00",
+  "failed_persisted_slots": [
+    1
+  ],
+  "infrastructure_findings_sha256": "ff36a719a63a5aab70ea785ab26b11d142d40a15fae74b6e71f9cde10574f2e6",
+  "input_episode_file_inventory_sha256": "a1fd909ace8aefc845339690291967bff8911321f76cb9aa61afc5a39434dd5c",
+  "input_episode_files": 98,
+  "new_candidate_executions": 0,
+  "new_model_calls": 0,
+  "new_world_episodes": 0,
+  "pending_slot_directories": [],
+  "persisted_unique_slots": 3,
+  "private_pool_sha256": "c75a8d2c14bf6529718aeee7193d7c3da2489bd94cacafc383a2d47b2a0ee2e7",
+  "recorded_condition_episodes": 96,
+  "recorded_invalid_episodes": 0,
+  "recorded_physical_transitions": 5084,
+  "reporter_sha256": "e4759b500244517b7fa0e7211d2ca30d4db376e558a688ad1dc05d1c0dabd57e",
+  "scope": {
+    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias.",
+    "control": "No selected-program freeze or prediction-use intervention was assessed in this RUN1 campaign. Predictive-adaptation control benefit remains untested.",
+    "cpu": "Candidate and evaluator episode-process CPU sums are disjoint; native host evaluation elapsed and summed episode wall time overlap and must not be added. Uncheckpointed work can be unavailable.",
+    "prediction": "On-policy forecast losses; actions and target exposure differ between programs. This is not matched-experience prediction-learning evidence.",
+    "task": "One selected development panel, repeatedly exposed to evolutionary selection; no held-out assessment or independent-search replication."
+  },
+  "source_review_notes_sha256": "7f51cf8cdf9722b2f2a74dff389f1f644a1da84dc7b910a8ce68c9ecbb2d2ef7",
+  "target_slot_cap": 32,
+  "valid_persisted_slots": 2
+}

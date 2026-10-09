@@ -1,0 +1,306 @@
+[
+  {
+    "ast_nodes": 1843,
+    "direct_named_call_graph": {
+      "_add": [],
+      "_blocked": [],
+      "_feature": [
+        "_add"
+      ],
+      "_fixed_risk": [],
+      "_legal": [
+        "_add",
+        "_blocked"
+      ],
+      "export_model": [],
+      "planner": [
+        "_add",
+        "_fixed_risk",
+        "_legal"
+      ],
+      "world_model_step": [
+        "_add",
+        "_feature"
+      ]
+    },
+    "entrypoints_changed_vs_parent": [],
+    "functions_added_vs_parent": [],
+    "functions_changed_vs_parent": [],
+    "functions_removed_vs_parent": [],
+    "functions_without_direct_named_path_from_entrypoints": [],
+    "generation": 0,
+    "native_id": "4716e8ed-fc9f-4f85-a08a-90ce737ee999",
+    "observation_flags_referenced": [
+      "learn",
+      "predictive_planning"
+    ],
+    "parent_id": null,
+    "predictive_mechanism_status": "Not behaviorally verified in RUN1; exported update counters or flags alone are insufficient.",
+    "public_source": "native/programs/generation-000.py",
+    "source_lines": 142,
+    "source_review": {
+      "new_sensor_limitation": "Original seed does not read enemy_visibility_radius; outer-ring absence in late-sensor conditions can therefore be misinterpreted. No manual compatibility architecture was inserted.",
+      "planner": "Risk-weighted graph search to keys, door, exit or exploration frontier; may wait if immediate risk difference exceeds a threshold.",
+      "predictor": "Updates beta-like occupancy frequencies for blocked/occupied/neighbor/distant features from consecutive observations; exports per-cell occupancy heuristics.",
+      "scope": "Static source inspection of immutable historical seed, not a new causal assessment."
+    },
+    "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+    "static_limit": "Named-call reachability is only a source-review hint; dynamic dispatch and callbacks may be missed. Structural change is not proof of predictive adaptation.",
+    "top_level_functions": [
+      "_add",
+      "_blocked",
+      "_feature",
+      "_fixed_risk",
+      "_legal",
+      "export_model",
+      "planner",
+      "world_model_step"
+    ]
+  },
+  {
+    "ast_nodes": 5275,
+    "direct_named_call_graph": {
+      "_add": [],
+      "_association_statistics": [
+        "_add",
+        "_attempt",
+        "_radius"
+      ],
+      "_attempt": [
+        "_add",
+        "_legal"
+      ],
+      "_background": [
+        "_solid"
+      ],
+      "_base_edge": [],
+      "_can_open": [
+        "_add"
+      ],
+      "_choose_target": [
+        "_add",
+        "_base_edge",
+        "_legal",
+        "_radius"
+      ],
+      "_control": [
+        "_add",
+        "_can_open",
+        "_legal",
+        "_potential"
+      ],
+      "_filter_occupancy": [
+        "_background"
+      ],
+      "_law": [],
+      "_layers": [
+        "_occupancy",
+        "_spread"
+      ],
+      "_learn": [
+        "_association_statistics",
+        "_law"
+      ],
+      "_legal": [
+        "_add",
+        "_solid"
+      ],
+      "_new_memory": [],
+      "_observe": [
+        "_add"
+      ],
+      "_occupancy": [],
+      "_potential": [
+        "_add",
+        "_base_edge",
+        "_legal",
+        "_solid"
+      ],
+      "_radius": [],
+      "_solid": [],
+      "_spread": [
+        "_attempt"
+      ],
+      "export_model": [
+        "_can_open",
+        "_layers"
+      ],
+      "planner": [
+        "_can_open",
+        "_choose_target",
+        "_control",
+        "_layers"
+      ],
+      "world_model_step": [
+        "_filter_occupancy",
+        "_learn",
+        "_new_memory",
+        "_observe"
+      ]
+    },
+    "entrypoints_changed_vs_parent": [
+      "world_model_step",
+      "planner",
+      "export_model"
+    ],
+    "functions_added_vs_parent": [
+      "_association_statistics",
+      "_attempt",
+      "_background",
+      "_base_edge",
+      "_can_open",
+      "_choose_target",
+      "_control",
+      "_filter_occupancy",
+      "_law",
+      "_layers",
+      "_learn",
+      "_new_memory",
+      "_observe",
+      "_occupancy",
+      "_potential",
+      "_radius",
+      "_solid",
+      "_spread"
+    ],
+    "functions_changed_vs_parent": [
+      "_add",
+      "_legal",
+      "export_model",
+      "planner",
+      "world_model_step"
+    ],
+    "functions_removed_vs_parent": [
+      "_blocked",
+      "_feature",
+      "_fixed_risk"
+    ],
+    "functions_without_direct_named_path_from_entrypoints": [],
+    "generation": 1,
+    "native_id": "385de283-f3d7-4e68-b774-3c44ebbf50f6",
+    "observation_flags_referenced": [
+      "learn",
+      "predictive_planning",
+      "enemy_visibility_radius"
+    ],
+    "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+    "predictive_mechanism_status": "Not behaviorally verified in RUN1; exported update counters or flags alone are insufficient.",
+    "public_source": "native/programs/generation-001.py",
+    "source_lines": 590,
+    "source_review": {
+      "planning": "Propagates component occupancy through three movement steps; risk-weighted goal/frontier search plus a short-horizon controller with immediate visible-contact avoidance and a distance potential.",
+      "predictive_updates": "Enumerates anonymous observable/censored matchings; sums blocked attempted directions into stay masks; decays fast/slow directional evidence; combines both with uniform shrinkage. Reads the public enemy visibility radius.",
+      "representation": "Replaces feature occupancy rates with separate terrain atlas, directional attempted-movement law, fast/slow evidence, anonymous enemy occupancy cloud and navigation state.",
+      "scope": "Static inspection only; slot1 produced no measured episodes because the native scheduler charged proposal time against evaluation timeout. No empirical mechanism or performance conclusion is available.",
+      "source_limitations": "Anonymous overlap, nuisance births and hidden occupancy are approximations. learn/predictive_planning flags are present but have not been behaviorally audited in RUN1. Static presence does not establish predictive adaptation benefit."
+    },
+    "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
+    "static_limit": "Named-call reachability is only a source-review hint; dynamic dispatch and callbacks may be missed. Structural change is not proof of predictive adaptation.",
+    "top_level_functions": [
+      "_add",
+      "_association_statistics",
+      "_attempt",
+      "_background",
+      "_base_edge",
+      "_can_open",
+      "_choose_target",
+      "_control",
+      "_filter_occupancy",
+      "_law",
+      "_layers",
+      "_learn",
+      "_legal",
+      "_new_memory",
+      "_observe",
+      "_occupancy",
+      "_potential",
+      "_radius",
+      "_solid",
+      "_spread",
+      "export_model",
+      "planner",
+      "world_model_step"
+    ]
+  },
+  {
+    "ast_nodes": 2734,
+    "direct_named_call_graph": {
+      "_add": [],
+      "_blocked": [],
+      "_enemy_destination": [
+        "_add"
+      ],
+      "_feature": [
+        "_add"
+      ],
+      "_fixed_risk": [],
+      "_legal": [
+        "_add",
+        "_blocked"
+      ],
+      "_motion_evidence": [
+        "_add",
+        "_enemy_destination"
+      ],
+      "_occupancy_forecast": [
+        "_enemy_destination"
+      ],
+      "export_model": [],
+      "planner": [
+        "_add",
+        "_fixed_risk",
+        "_legal"
+      ],
+      "world_model_step": [
+        "_add",
+        "_motion_evidence",
+        "_occupancy_forecast"
+      ]
+    },
+    "entrypoints_changed_vs_parent": [
+      "world_model_step",
+      "planner",
+      "export_model"
+    ],
+    "functions_added_vs_parent": [
+      "_enemy_destination",
+      "_motion_evidence",
+      "_occupancy_forecast"
+    ],
+    "functions_changed_vs_parent": [
+      "export_model",
+      "planner",
+      "world_model_step"
+    ],
+    "functions_removed_vs_parent": [],
+    "functions_without_direct_named_path_from_entrypoints": [
+      "_feature"
+    ],
+    "generation": 2,
+    "native_id": "be884d31-8b39-4add-abce-c93d13595c75",
+    "observation_flags_referenced": [
+      "learn",
+      "predictive_planning",
+      "enemy_visibility_radius"
+    ],
+    "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+    "predictive_mechanism_status": "Not behaviorally verified in RUN1; exported update counters or flags alone are insufficient.",
+    "public_source": "native/programs/generation-002.py",
+    "source_lines": 247,
+    "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
+    "static_limit": "Named-call reachability is only a source-review hint; dynamic dispatch and callbacks may be missed. Structural change is not proof of predictive adaptation.",
+    "top_level_functions": [
+      "_add",
+      "_blocked",
+      "_enemy_destination",
+      "_feature",
+      "_fixed_risk",
+      "_legal",
+      "_motion_evidence",
+      "_occupancy_forecast",
+      "export_model",
+      "planner",
+      "world_model_step"
+    ]
+  }
+]

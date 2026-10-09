@@ -1,0 +1,9 @@
+{
+  "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347": {
+    "planning": "Propagates component occupancy through three movement steps; risk-weighted goal/frontier search plus a short-horizon controller with immediate visible-contact avoidance and a distance potential.",
+    "predictive_updates": "Enumerates anonymous observable/censored matchings; sums blocked attempted directions into stay masks; decays fast/slow directional evidence; combines both with uniform shrinkage. Reads the public enemy visibility radius.",
+    "representation": "Replaces feature occupancy rates with separate terrain atlas, directional attempted-movement law, fast/slow evidence, anonymous enemy occupancy cloud and navigation state.",
+    "scope": "Static inspection only; slot1 produced no measured episodes because the native scheduler charged proposal time against evaluation timeout. No empirical mechanism or performance conclusion is available.",
+    "source_limitations": "Anonymous overlap, nuisance births and hidden occupancy are approximations. learn/predictive_planning flags are present but have not been behaviorally audited in RUN1. Static presence does not establish predictive adaptation benefit."
+  }
+}
