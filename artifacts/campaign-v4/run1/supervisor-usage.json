@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "run_id": "v4-run1",
+  "snapshot_utc": "2026-10-09T01:47:45.673950+00:00",
+  "start_utc": "2026-10-09T00:54:23+00:00",
+  "sessions": [
+    {
+      "role": "supervisor",
+      "session_id": "01a11c1a-3697-7a61-81ee-3ec1745ef2af",
+      "baseline": {
+        "timestamp": "2026-10-08T23:08:37.963000+00:00",
+        "usage": {
+          "input_tokens": 86680656,
+          "cached_input_tokens": 85384576,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 315122,
+          "reasoning_output_tokens": 163300,
+          "total_tokens": 86995778
+        }
+      },
+      "latest": {
+        "timestamp": "2026-10-09T01:47:31.040000+00:00",
+        "usage": {
+          "input_tokens": 101902724,
+          "cached_input_tokens": 100164352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 369491,
+          "reasoning_output_tokens": 180060,
+          "total_tokens": 102272215
+        }
+      },
+      "delta": {
+        "input_tokens": 15222068,
+        "cached_input_tokens": 14779776,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 54369,
+        "reasoning_output_tokens": 16760,
+        "total_tokens": 15276437,
+        "uncached_input_plus_output_tokens": 496661
+      }
+    },
+    {
+      "role": "native_audit",
+      "session_id": "01a11c38-ffc5-7f13-9b11-fd2beb0e70ef",
+      "baseline": {
+        "timestamp": "2026-10-08T23:05:21.025000+00:00",
+        "usage": {
+          "input_tokens": 79339531,
+          "cached_input_tokens": 78260736,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 235297,
+          "reasoning_output_tokens": 108084,
+          "total_tokens": 79574828
+        }
+      },
+      "latest": {
+        "timestamp": "2026-10-09T01:46:39.173000+00:00",
+        "usage": {
+          "input_tokens": 98150756,
+          "cached_input_tokens": 96520320,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 314054,
+          "reasoning_output_tokens": 128786,
+          "total_tokens": 98464810
+        }
+      },
+      "delta": {
+        "input_tokens": 18811225,
+        "cached_input_tokens": 18259584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 78757,
+        "reasoning_output_tokens": 20702,
+        "total_tokens": 18889982,
+        "uncached_input_plus_output_tokens": 630398
+      }
+    },
+    {
+      "role": "visualization",
+      "session_id": "01a11c38-e1d0-7793-a099-21166d52fed7",
+      "baseline": {
+        "timestamp": "2026-10-08T23:07:20.805000+00:00",
+        "usage": {
+          "input_tokens": 43452667,
+          "cached_input_tokens": 42430464,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 220326,
+          "reasoning_output_tokens": 73023,
+          "total_tokens": 43672993
+        }
+      },
+      "latest": {
+        "timestamp": "2026-10-09T01:43:01.222000+00:00",
+        "usage": {
+          "input_tokens": 57764817,
+          "cached_input_tokens": 56283264,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 284186,
+          "reasoning_output_tokens": 95276,
+          "total_tokens": 58049003
+        }
+      },
+      "delta": {
+        "input_tokens": 14312150,
+        "cached_input_tokens": 13852800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 63860,
+        "reasoning_output_tokens": 22253,
+        "total_tokens": 14376010,
+        "uncached_input_plus_output_tokens": 523210
+      }
+    },
+    {
+      "role": "environment",
+      "session_id": "01a11c38-bbd2-7e33-876c-b25ab55b976f",
+      "baseline": {
+        "timestamp": "2026-10-08T23:00:50.619000+00:00",
+        "usage": {
+          "input_tokens": 51796156,
+          "cached_input_tokens": 51146496,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 144549,
+          "reasoning_output_tokens": 43971,
+          "total_tokens": 51940705
+        }
+      },
+      "latest": {
+        "timestamp": "2026-10-09T01:47:43.901000+00:00",
+        "usage": {
+          "input_tokens": 63437048,
+          "cached_input_tokens": 62367488,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 217776,
+          "reasoning_output_tokens": 66459,
+          "total_tokens": 63654824
+        }
+      },
+      "delta": {
+        "input_tokens": 11640892,
+        "cached_input_tokens": 11220992,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 73227,
+        "reasoning_output_tokens": 22488,
+        "total_tokens": 11714119,
+        "uncached_input_plus_output_tokens": 493127
+      }
+    }
+  ],
+  "totals": {
+    "input_tokens": 59986335,
+    "cached_input_tokens": 58113152,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 270213,
+    "reasoning_output_tokens": 82203,
+    "total_tokens": 60256548,
+    "uncached_input_plus_output_tokens": 2143396
+  },
+  "scope": "Supervising conversation plus three explicitly identified delegated agents; excludes experiment model sessions.",
+  "limitations": [
+    "Reported cumulative metadata deltas, not a subscription allowance or bill.",
+    "Input includes cached input; uncached measure subtracts cached input once.",
+    "Reasoning output is already included in output and is not added twice.",
+    "The start boundary is the last reported event before start, so an event spanning the boundary cannot be apportioned.",
+    "The active turn and work after the latest reported event are not yet counted.",
+    "Approval-review agents and unreported service-side computation are outside these four session records."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "reference_commit": "ec7e4c339fea4b3eaf132e47d08f7ca6816f52f8",
+  "scope": "explicit scientific core and frozen render dependencies; restyled image provenance recorded separately",
+  "files": [
+    {
+      "path": "docs/namazu-proposal.md",
+      "unchanged": true,
+      "sha256": "501d02b0fea91caf472760688407b61751e7042baa896a34452bc6aa0ddcfa3d"
+    },
+    {
+      "path": "controls/v1/predictive.py",
+      "unchanged": true,
+      "sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3"
+    },
+    {
+      "path": "controls/v1/memory.py",
+      "unchanged": true,
+      "sha256": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    {
+      "path": "artifacts/campaign-v3/selection/selected.py",
+      "unchanged": true,
+      "sha256": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c"
+    },
+    {
+      "path": "dreamer/world.py",
+      "unchanged": true,
+      "sha256": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290"
+    },
+    {
+      "path": "dreamer/world_v3.py",
+      "unchanged": true,
+      "sha256": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950"
+    },
+    {
+      "path": "dreamer/evaluation_v3.py",
+      "unchanged": true,
+      "sha256": "0c6753e60212b8b8d4c3f4cd7bb93d20629225f62965ab4ba567eea120b0f3aa"
+    },
+    {
+      "path": "dreamer/worker_v3.py",
+      "unchanged": true,
+      "sha256": "7c8a71365fb4e2378a64e554e81624034c23e3bc41446ebce88ed735f7139f37"
+    },
+    {
+      "path": "scripts/visual_theme.py",
+      "unchanged": true,
+      "sha256": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+    },
+    {
+      "path": "scripts/v3_examples.py",
+      "unchanged": true,
+      "sha256": "92145119e043e0277801e835b940619b7d6710ff0b8554b6a3b29f0c45da691d"
+    }
+  ]
+}

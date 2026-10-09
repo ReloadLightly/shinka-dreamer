@@ -45,26 +45,38 @@
     "genuine local CPU embedding service verified",
     "four v4 physical/information checks plus invalid-denominator check",
     "full native configuration frozen at e8f4881",
-    "native seed evaluation and first real mutation request launched"
+    "native seed evaluation and first real mutation request launched",
+    "native adapter focused verification and freeze",
+    "historical and current published visual migration with rendering provenance",
+    "three persisted candidate slots; gen1 infrastructure loss retained",
+    "normal checkpoint and verified native state/recommendation restoration",
+    "runtime amendment: evaluation timeout begins at evaluation launch"
   ],
   "remaining": [
-    "native adapter final focused verification and freeze",
-    "native evolutionary execution",
-    "analysis and visual migration",
-    "checkpoint commit and push"
+    "bounded native evolutionary execution",
+    "final scientific and mechanism accounting and figures",
+    "checkpoint, stop and reap RUN1 services, commit and push"
   ],
   "actual": {
-    "new_candidate_slots": 1,
-    "new_model_calls": 3,
-    "new_scored_episodes": 48,
+    "new_candidate_slots": 3,
+    "new_model_calls": 11,
+    "new_scored_episodes": 96,
     "branch_transitions": 2032,
     "reconstructed_development_transitions": 449,
     "branch_future_attempts": 184,
     "branch_future_valid": 128,
     "seed_escape_count": 41,
-    "snapshot_note": "Seed completed; first mutation in flight. Runtime ledger is authoritative for later calls."
+    "snapshot_note": "Normal checkpoint before timer correction. Resumed generation3 is active; the runtime ledger is authoritative for subsequent calls.",
+    "unavailable_planned_episode_outcomes": 48,
+    "invalid_observed_candidate_episodes": 0,
+    "snapshot_utc": "2026-10-09T01:38:46Z",
+    "reported_uncached_input_plus_output_tokens": 125978,
+    "reported_cached_input_tokens": 135168,
+    "summed_remote_request_seconds": 854.635298759
   },
   "next_authorized_action": "Continue this bounded RUN 1 campaign to its first binding stop, report, checkpoint and stop",
   "automatic_continuation": false,
-  "search_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451"
+  "search_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451",
+  "resume_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/resume_v4_run1.py --run",
+  "runtime_amendment": "artifacts/campaign-v4/run1/runtime-amendment.json"
 }
