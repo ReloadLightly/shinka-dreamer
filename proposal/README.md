@@ -2,7 +2,7 @@
 
 This path implements the original [Sakana proposal](../docs/namazu-proposal.md),
 with joint evolution of `world_model_step` and `planner`. It is a separate
-`namazu-proposal-reconstruction-v 1` evaluator; historical forecast/task scores
+`namazu-proposal-reconstruction-v1` evaluator; historical forecast/task scores
 must never be inserted into its campaign database.
 
 ## Preserved design
@@ -70,6 +70,11 @@ reproduction. The original five-episode default remains the native search defaul
 
 ## Native search entrypoint — implemented, not launched
 
+The [staged plan](../docs/original-proposal-plan.md) specifies the proposed bounded
+full-native treatment. The preparation example below predates that integration;
+it is not the execution command for a stage of the plan. Await explicit stage
+authorization and the bounded launcher changes before starting a search.
+
 Prepare an explicit configuration with zero model calls:
 
 ```bash
@@ -90,5 +95,5 @@ UCB; one model does not demonstrate a bandit. Embedding novelty and prompt
 coevolution are not part of this initial proposal configuration. No capability
 is claimed exercised by preparation alone. Existing Headless blank-line and
 evaluation-clock fixes are reused; request timeout is 290 seconds inside 300 seconds.
-Timeouts do not invoke the v 4 token-accounting stop guard. Token usage may remain
+Timeouts do not invoke the v4 token-accounting stop guard. Token usage may remain
 unknown for failed requests; do not report unknown usage as zero.

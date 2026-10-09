@@ -1,5 +1,11 @@
 # Proposed implementation design
 
+> Historical predictive-learning extension. The current original-proposal track
+> is specified in [the staged implementation plan](original-proposal-plan.md) and
+> [proposal/README.md](../proposal/README.md). Its original current-map objective
+> takes precedence over the forecasting and unknown-dynamics requirements below.
+> This document remains preserved design history, not the active execution plan.
+
 This design preserves the submitted project and identifies one substantive extension: learned prediction used in planning. It is a specification for the next Codex implementation, not a report of completed experiments.
 
 ## Scientific core

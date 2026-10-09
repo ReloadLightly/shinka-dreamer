@@ -1,11 +1,28 @@
-# Current task: original proposal restored
+# Current task: original-proposal execution plan — awaiting instruction
+
+The latest request authorizes detailed planning and implementation research on
+ShinkaEvolve, not execution. Read [the staged plan](docs/original-proposal-plan.md)
+and [the source-level research](docs/shinkaevolve-research.md). The user chose
+budgets stage by stage. All future ceilings in the plan are proposed; no stage
+has been authorized by asking for the plan. Machine state is
+[proposal/plan-state.json](proposal/plan-state.json).
+
+The next recommended action is Stage 1: bounded adapter reuse followed by the
+first full-native search block on the original objective. Wait for the user's
+instruction. Do not launch the existing 100-slot default, historical RUN1/RUN2,
+or the paused v3 assessment. No new experiments or model-route probes were run
+during planning. The installed Shinka already supports the requested mechanisms;
+the research identifies the remaining original-track integration work.
+
+## Previous checkpoint: original proposal restored
 
 The user requested implementing the original Sakana proposal and a paper-style
 README containing only Chromatic Fields figures from that proposal's experiments.
 The active implementation is `proposal/`, evaluator
 `namazu-proposal-reconstruction-v1`: original0.6task+0.4current-map-accuracy.
-Predictive-learning requirements and full-machinery RUN1 plans below are historical,
-not prerequisites for this track. Preserve their evidence; do not resume them.
+Predictive-learning requirements and v4 RUN1 plans below are historical, not
+prerequisites for this track. Preserve their evidence; do not resume them. The
+new original-proposal plan requests full native machinery on the original task.
 
 This implementation step authorized local verification and an initial32-episode
 development characterization, not another mutation-model campaign. The initial

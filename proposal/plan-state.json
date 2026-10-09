@@ -1,0 +1,20 @@
+{
+  "plan": "docs/original-proposal-plan.md",
+  "research": "docs/shinkaevolve-research.md",
+  "date": "2026-10-09",
+  "status": "planning_complete_awaiting_user_instruction",
+  "authorization": "research_and_planning_only",
+  "budget_preference": "specify_stage_by_stage",
+  "evaluator_identity": "namazu-proposal-reconstruction-v1",
+  "implementation_checkpoint": "b1ebded",
+  "completed": ["original_task_implementation", "initial_32_case_characterization", "original_data_readme_figures", "native_source_research", "staged_execution_plan"],
+  "original_task_search_started": false,
+  "planning_task_new_experiment_model_calls": 0,
+  "planning_task_new_episodes": 0,
+  "next_proposed_stage": "1: bounded adapter reuse and first full-native block",
+  "next_stage_authorized": false,
+  "automatic_continuation": false,
+  "historical_campaigns": "preserve; do not resume",
+  "resume_command": null,
+  "resume_command_note": "The bounded full-native original-task launcher must be implemented in Stage 1; do not use the current unbounded --run default as this plan's command."
+}

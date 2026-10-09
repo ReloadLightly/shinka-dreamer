@@ -88,6 +88,13 @@ recommendations are configured. Models must be supplied explicitly through the
 subscription-only route. Configuration preparation makes no model calls;
 configuration is not evidence that search mechanisms have executed.
 
+The [staged implementation plan](docs/original-proposal-plan.md) proposes adding
+the complete native mechanisms with separately reviewed execution budgets. The
+[source-level Shinka study](docs/shinkaevolve-research.md) maps sampling, bandits,
+novelty, crossover, meta memory, prompt evolution and resumption to the installed
+code. The current launcher still lacks parts of that integration; this plan has
+not launched a search or added experimental results.
+
 ### 2.3 Original fitness
 
 For an episode with length $T$, collected-key count $K$, door indicator $D$, escape
@@ -224,4 +231,4 @@ model calls. No historical campaign or assessment is resumed by these commands.
 ## References
 
 1. Sakana ShinkaDreamer proposal. [Preserved original project description and example code](docs/namazu-proposal.md).
-2. Lange, R.T., Imajuku, Y., and Cetin, E. *ShinkaEvolve: Towards Open-Ended and Sample-Efficient Program Evolution.* [Paper](https://arxiv.org/abs/2509.19349); [official implementation](https://github.com/SakanaAI/ShinkaEvolve).
+2. Lange, R.T., Imajuku, Y., and Cetin, E. *ShinkaEvolve: Towards Open-Ended and Sample-Efficient Program Evolution.* [Final ICLR 2026 paper](https://proceedings.iclr.cc/paper_files/paper/2026/file/7886b9bafe76c52fd568db10ff9772df-Paper-Conference.pdf); [official implementation](https://github.com/SakanaAI/ShinkaEvolve).
