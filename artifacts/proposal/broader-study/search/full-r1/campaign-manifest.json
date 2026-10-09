@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "treatment": "original-proposal-independent-full-v1",
+  "arm": "full",
+  "allowed_roles": null,
+  "mutation_context": {
+    "work_dir": "/tmp/shinka-original-study-full-r1",
+    "project_doc_max_bytes": 0,
+    "global_config_sha256": "fbdb13fd86d536ce5cfa0a5f1cf935b9a9ca6916a74be463930c641400b7d768",
+    "tool_event_policy": "Reject and terminate on an observed tool event.",
+    "configuration_reference": "https://learn.chatgpt.com/docs/config-file/config-reference",
+    "limitation": "Restrictive per-invocation flags and raw event auditing, not an adversarial security guarantee."
+  },
+  "rewrite_model_offset": 0,
+  "run_id": "full-r1",
+  "evaluator": "namazu-proposal-reconstruction-v1",
+  "evolution": {
+    "task_sys_msg": "You are evolving an agent mind for a partially observable dynamic maze. The\nagent's world_model_step maintains an internal map from limited 5x5 views, and\nplanner chooses actions using that map. Improve escape and current believed-map\naccuracy. Consider spatial memory, anonymous enemy sightings, uncertainty,\npathfinding and dynamic walls. Both functions, representations and helpers may\nevolve freely inside the EVOLVE block.\n\nThe maze is 15x15, with two keys, a gating door, exit, three anonymous enemies,\nwalls toggling every25steps and a200step horizon. Nine attempted displacements\ninclude waiting; blocked moves stay and diagonal corner cutting is forbidden.\nInteraction opens an adjacent cardinal door before movement when both keys are\nheld; interaction also collects a key at the destination. Contact with an enemy\nbefore or after enemy movement is fatal. Enemies use uniform attempted moves.\n\nworld_model_step(memory,local_obs,last_action) returns memory; planner returns\n{'move':[dx,dy], 'interact':bool}. The fixed wrapper reads memory['believed_map'],\na dictionary {(x,y):cell_type} in coordinates relative to the initial agent\nposition. Other internal representations are unrestricted. Observations provide\ngrid,terrain,step,health,keys,door_open and feedback with actual displacement,\ncollected and opened. Enemy identities, hidden world and seeds are not supplied.\n\nThe original task reward is clip((.1*steps+20*keys+30*door_open+\n100*escaped-50*caught+50)/250,0,1). Model accuracy is the fraction of correct\nreported in-bounds map entries accumulated after observation and before action\noutcomes; enemy cells use code5. Episode fitness=.6*task+.4*accuracy; invalid\nexecutions score0. A population's score is its episode mean. Missing maps score0.\nCoverage and escape/death/timeout are reported separately. This is current-state\nreconstruction, not future prediction. No learned transition predictor is required.\n\nUse Python3.10 standard library,192MiB,10CPU-seconds/episode,3s/reply. Do not access\nthe environment, files, processes or network. Return the native requested patch\nor full module. Do not call tools or inspect the repository.\n",
+    "patch_types": [
+      "diff",
+      "full",
+      "cross"
+    ],
+    "patch_type_probs": [
+      0.4,
+      0.3,
+      0.3
+    ],
+    "num_generations": 25,
+    "max_patch_resamples": 1,
+    "max_patch_attempts": 2,
+    "job_type": "local",
+    "language": "python",
+    "llm_models": [
+      "headless/codex@gpt-6-astra?effort=high",
+      "headless/codex@gpt-6.1-sol?effort=high"
+    ],
+    "llm_dynamic_selection": "ucb",
+    "llm_dynamic_selection_kwargs": {
+      "cost_aware_coef": 0.0,
+      "seed": 7109261
+    },
+    "llm_kwargs": {
+      "headless_work_dir": "/tmp/shinka-original-study-full-r1"
+    },
+    "meta_rec_interval": 4,
+    "meta_llm_models": [
+      "headless/codex@gpt-6.1-sol?effort=high"
+    ],
+    "meta_llm_kwargs": {
+      "headless_work_dir": "/tmp/shinka-original-study-full-r1"
+    },
+    "meta_max_recommendations": 5,
+    "sample_single_meta_rec": true,
+    "embedding_model": "local/bge-small-code-chunks-v1@http://127.0.0.1:8771/v1",
+    "init_program_path": "/home/roland/projects/shinka-dreamer/proposal/initial.py",
+    "results_dir": "/home/roland/projects/shinka-dreamer/results/proposal-broader-study/search/full-r1",
+    "enable_wandb_logging": false,
+    "wandb_project": "shinka-evolve",
+    "wandb_entity": null,
+    "wandb_group": null,
+    "wandb_name": null,
+    "wandb_mode": null,
+    "wandb_tags": [],
+    "wandb_notes": null,
+    "wandb_dir": null,
+    "wandb_run_id": null,
+    "wandb_resume": "allow",
+    "wandb_config": {},
+    "max_novelty_attempts": 2,
+    "code_embed_sim_threshold": 0.95,
+    "novelty_llm_models": [
+      "headless/codex@gpt-6.1-sol?effort=high"
+    ],
+    "novelty_llm_kwargs": {
+      "headless_work_dir": "/tmp/shinka-original-study-full-r1"
+    },
+    "use_text_feedback": true,
+    "max_api_costs": null,
+    "inspiration_sort_order": "ascending",
+    "enable_controlled_oversubscription": false,
+    "proposal_target_mode": "adaptive",
+    "proposal_target_min_samples": 5,
+    "proposal_target_ratio_cap": 2.0,
+    "proposal_buffer_max": 2,
+    "proposal_target_hard_cap": null,
+    "proposal_target_ewma_alpha": 0.3,
+    "evolve_prompts": true,
+    "prompt_patch_types": [
+      "diff",
+      "full"
+    ],
+    "prompt_patch_type_probs": [
+      0.7,
+      0.3
+    ],
+    "prompt_evolution_interval": 4,
+    "prompt_archive_size": 10,
+    "prompt_llm_models": [
+      "headless/codex@gpt-6.1-sol?effort=high"
+    ],
+    "prompt_llm_kwargs": {
+      "headless_work_dir": "/tmp/shinka-original-study-full-r1"
+    },
+    "prompt_ucb_exploration_constant": 1.0,
+    "prompt_epsilon": 0.1,
+    "prompt_evo_top_k_programs": 3,
+    "prompt_percentile_recompute_interval": 4
+  },
+  "database": {
+    "db_path": null,
+    "num_islands": 4,
+    "archive_size": 40,
+    "max_stdout_log_chars": null,
+    "elite_selection_ratio": 0.3,
+    "num_archive_inspirations": 1,
+    "num_top_k_inspirations": 1,
+    "migration_interval": 4,
+    "migration_rate": 0.25,
+    "island_elitism": true,
+    "enforce_island_separation": true,
+    "island_selection_strategy": "uniform",
+    "enable_dynamic_islands": false,
+    "stagnation_threshold": 100,
+    "island_spawn_strategy": "initial",
+    "island_spawn_subtree_size": 1,
+    "parent_selection_strategy": "weighted",
+    "exploitation_alpha": 1.0,
+    "exploitation_ratio": 0.2,
+    "parent_selection_lambda": 10.0,
+    "num_beams": 5,
+    "archive_selection_strategy": "fitness",
+    "archive_criteria": {
+      "combined_score": 1.0
+    }
+  },
+  "job": {
+    "eval_program_path": "/home/roland/projects/shinka-dreamer/proposal/evaluate_full.py",
+    "extra_cmd_args": {
+      "episodes": 5,
+      "seed-start": 0,
+      "campaign-manifest": "/home/roland/projects/shinka-dreamer/results/proposal-broader-study/search/full-r1/campaign-manifest.json",
+      "record-first": "yes"
+    },
+    "eval_verbose": true,
+    "numeric_threads_per_job": 1,
+    "time": "00:02:00",
+    "conda_env": null,
+    "activate_script": null,
+    "python_executable": "/home/roland/projects/shinka-dreamer/.venv/bin/python"
+  },
+  "limits": {
+    "calls": 24,
+    "remote_elapsed_seconds": 5400.0,
+    "request_timeout_seconds": 500,
+    "role_caps": {
+      "mutation_repair": 24,
+      "novelty": 24,
+      "summary": 24,
+      "global_insight": 24,
+      "recommendation": 24,
+      "prompt_mutation": 24,
+      "readiness": 0
+    }
+  },
+  "wall_minutes": 120.0,
+  "checkpoint_reserve_seconds": 30,
+  "native_sampling_seed": 7109260,
+  "bandit_seed": 7109261,
+  "candidate_rng_seed": 712934,
+  "search_cases": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "rng_limitation": "Native SQLite RANDOM() and remote sampling are not seed-controlled.",
+  "shinka_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+  "headless_revision": "93cd9b06b85f848af1308c41e018991b33907c5e",
+  "headless_capacity_retries": 0,
+  "provider_retries": 1,
+  "child_timeout_seconds": 480,
+  "billing": "subscription only; no paid fallback",
+  "concurrency": {
+    "proposals": 1,
+    "evaluations": 1,
+    "database_workers": 1,
+    "numeric_threads": 1
+  },
+  "episode_cap": 125,
+  "transition_cap": 25000,
+  "candidate_cpu_seconds_cap": 1250,
+  "combined_rss_bytes_cap": 2147483648,
+  "source_sha256": {
+    "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "proposal/prompt.md": "34b0e4de2d0f829f5e3ae2602cf8042b62193b181cdf389df4db355f43686dca",
+    "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+    "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+    "proposal/evaluate_full.py": "b3993293a55f0059e9e6dd0dfa770390fc335a9d22b0a73d5ace41ad1abf2904",
+    "proposal/native_full.py": "d959e340d13b54e0b56299032cedaf266503dbf71420af18b26fb9a11f1f6076",
+    "proposal/evolve_full.py": "3c42a814372c3f122f0646df47eb56b6a9e3ccbda51f6ae8bb67dae57cc20965",
+    "proposal/study_native.py": "6f0f2582c9137f3ab8b6633c3d0788e5b0a4c614db6d38e68f54f4f33ff512f0",
+    "proposal/evolve_study.py": "302727a0a383e58b1848524c1882577b106133d1659a6414f7e339bfe43b6f41",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+    "dreamer/native.py": "4e457b8781a099482b7a497312a11812e069467b41a875805d7ea2e68f1f8cc0",
+    "dreamer/native_run1.py": "a495ee9e43c0faa3e5e2afd5a1d1a2eb5ecfe214d634dedf2919906ed13cfe51",
+    "dreamer/native_run1_runtime_fix.py": "01fe0f9538f90e6145282e648d9bd66717d14d431d099273ba1712b57e261ecf",
+    "dreamer/native_v3.py": "fa82ab358d8161e9661a98b3488bde629348905dc3b5d46af7a665b753462b67",
+    "dreamer/headless_transport.py": "45bb98f19d4099c37cc401c01a9e38dfe13a27f1b126b2eba4af6d9a1627886c",
+    "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e",
+    "scripts/subscription_headless.sh": "caedeafe87fcf0774838af0e9e8dfb965fcdfba9ce47a16b2b659359a1f0a04d",
+    "scripts/run1_embedding_server.py": "ca46afd874810583b8b48a77396964d66fae04d81c342164c40d22eaea2a43b1",
+    "scripts/recover_campaign.py": "094b9fb88e2a0b1ce6d77dbeae697f401f66ee1b535f189d08b2b3597d005afd",
+    "scripts/study_codex_bin/codex": "5080ed2b80230bc2984bf8e5c55eff4bd73554a116ebd3c169924c4b0fb5027c"
+  },
+  "missing_usage_policy": "Unknown tokens remain unknown; call/time/deadline budgets are authoritative.",
+  "unsupported_not_forwarded": [
+    "temperature",
+    "max_tokens"
+  ],
+  "resume_policy": "No automatic or blind resumption; every directory admits one execution only."
+}

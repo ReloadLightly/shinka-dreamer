@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "identity": "original-proposal-study-context-boundary-v1",
+  "verified_utc": "2026-10-09T11:33:04.660997+00:00",
+  "codex_version": "0.161.0",
+  "verification": "Installed package version; offline features list through the exact shim; no model request or maze episode.",
+  "effective_features": {
+    "apps": false,
+    "code_mode_host": false,
+    "goals": false,
+    "hooks": false,
+    "memories": false,
+    "multi_agent": false,
+    "plugins": false,
+    "remote_plugin": false,
+    "shell_tool": false,
+    "skill_search": false,
+    "skip_host_skill_discovery": true,
+    "unified_exec": true,
+    "view_image": false
+  },
+  "shell_tool_gate": {
+    "source": "https://github.com/openai/codex/blob/rust-v0.161.0/codex-rs/core/src/tools/spec_plan.rs#L1018",
+    "finding": "ShellTool=false returns before registering exec_command or write_stdin, independently of UnifiedExec."
+  },
+  "unified_exec_caveat": "The ordinary false override remains effectively true. The same versioned source states only managed requirements can keep this backend disabled. No managed setting was changed; shell_tool=false is the execution-tool gate.",
+  "other_controls": {
+    "project_doc_max_bytes": 0,
+    "web_search": "disabled",
+    "working_directory": "Separate /tmp/shinka-original-study-<run-id> for every model role, outside the research repository.",
+    "sandbox": "Preserve incoming read-only.",
+    "approval": "Preserve incoming never.",
+    "global_config_check": "No configured MCP servers or custom instruction fields; values and authentication are neither exported nor changed."
+  },
+  "remaining_tool_caveat": "apply_patch can remain registered from model metadata. This is a restrictive invocation with read-only enforcement and audited rejection, not an assertion that every tool is absent or an adversarial security guarantee.",
+  "event_policy": "Raw JSON events and their SHA256 are linked to each actual model-call ID. An observed tool event, missing audit, invalid audit or raw-event hash mismatch quarantines the response and stops the whole run before another dispatch.",
+  "offline_warning": "Codex could not create PATH aliases on the read-only filesystem; features listing returned zero. No filesystem or permission changes were made to suppress the warning.",
+  "source_sha256": {
+    "scripts/study_codex_bin/codex": "5080ed2b80230bc2984bf8e5c55eff4bd73554a116ebd3c169924c4b0fb5027c",
+    "proposal/study_native.py": "6f0f2582c9137f3ab8b6633c3d0788e5b0a4c614db6d38e68f54f4f33ff512f0",
+    "proposal/evolve_study.py": "302727a0a383e58b1848524c1882577b106133d1659a6414f7e339bfe43b6f41"
+  },
+  "experiment_model_calls": 0,
+  "world_episodes": 0
+}

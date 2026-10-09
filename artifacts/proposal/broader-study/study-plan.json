@@ -63,7 +63,7 @@
       "evaluation_workers": 1
     },
     "primary_budget": "Common maximum of24 actually dispatched all-role provider calls with shared wall/provider-time ceilings. Report realized shortfalls; equal call caps are not equal allowance consumption.",
-    "failure_policy": "Failures consume calls/time and remain in counts. Two consecutive provider transport failures stop the run; investigate a shared route/capacity failure before dispatching another repetition. No blind retry or deadline extension.",
+    "failure_policy": "Failures consume calls/time and remain in counts. Two consecutive provider transport failures stop the run; investigate a shared route/capacity failure before dispatching another repetition. No blind retry or deadline extension. Any missing, invalid or tool-violating context audit stops the run immediately and quarantines its response.",
     "independence": "Fresh database, original seed, model/session histories, Python/NumPy/bandit seeds and local request workspace per run. No candidates/recommendations transferred across runs. Native SQLite RANDOM and remote model sampling are not seed-controlled; report this limitation.",
     "training_cases": [
       0,

@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""Task-local restrictive Codex invocation; no global settings are changed."""
+import json
+import hashlib
+import os
+from pathlib import Path
+import signal
+import subprocess
+import sys
+import time
+import uuid
+
+FLAGS = [
+    'project_doc_max_bytes=0', 'features.shell_tool=false',
+    'features.unified_exec=false', 'web_search="disabled"', 'tools.view_image=false',
+    'features.view_image=false',
+    'features.apps=false', 'features.plugins=false', 'features.remote_plugin=false',
+    'features.multi_agent=false', 'features.code_mode_host=false', 'features.hooks=false',
+    'features.memories=false', 'features.skill_search=false', 'features.goals=false',
+    'features.skip_host_skill_discovery=true',
+]
+TOOL_ITEMS = {'command_execution', 'web_search', 'mcp_tool_call', 'file_change',
+    'image_view', 'image_generation', 'collab_tool_call', 'dynamic_tool_call',
+    'function_call', 'tool_call', 'custom_tool_call', 'computer_use', 'browser_use'}
+
+
+def main():
+    real = Path(os.environ['SHINKA_STUDY_CODEX_BIN'])
+    if not real.is_absolute() or real.resolve() == Path(__file__).resolve():
+        raise ValueError('Study Codex delegate must be an absolute, distinct executable')
+    incoming = sys.argv[1:]
+    # Headless may make this read-only local authentication-status query when the
+    # native credential store uses a keyring. It never changes authentication.
+    if incoming in (['login', 'status'], ['--version']):
+        os.execv(str(real), [str(real), *incoming])
+    # Offline configuration validation is allowed; it performs no model work.
+    offline = incoming == ['features', 'list']
+    if not offline:
+        for flag, value in (('--sandbox', 'read-only'), ('--ask-for-approval', 'never')):
+            if incoming.count(flag) != 1 or incoming[incoming.index(flag)+1:incoming.index(flag)+2] != [value]:
+                raise ValueError('Study invocation must retain Headless read-only sandbox and approval flags')
+        if 'exec' not in incoming or any(flag in incoming for flag in ('--dangerously-bypass-approvals-and-sandbox', '--full-auto', '--profile')):
+            raise ValueError('Unexpected study Codex execution mode')
+    args = [str(real)]
+    for flag in FLAGS:
+        args.extend(['-c', flag])
+    args.extend(arg for arg in incoming if arg != '--search')
+    if offline:
+        os.execv(str(real), args)
+    audit = Path(os.environ['SHINKA_STUDY_TOOL_AUDIT_DIR'])
+    audit.mkdir(parents=True, exist_ok=True)
+    stem = os.environ.get('SHINKA_STUDY_TOOL_AUDIT_ID', f'{time.time_ns()}-{uuid.uuid4().hex[:8]}')
+    if not stem or Path(stem).name != stem:
+        raise ValueError('Invalid per-call audit identifier')
+    process = subprocess.Popen(args, stdin=sys.stdin, stdout=subprocess.PIPE,
+                               stderr=sys.stderr, text=True, bufsize=1)
+    def forward(signum, _frame):
+        if process.poll() is None:
+            process.send_signal(signum)
+    for sig in (signal.SIGTERM, signal.SIGINT):
+        signal.signal(sig, forward)
+    violation = None
+    with (audit/(stem+'.events.jsonl')).open('x') as handle:
+        for line in process.stdout:
+            handle.write(line)
+            handle.flush()
+            try:
+                event = json.loads(line)
+            except ValueError:
+                event = {}
+            if not isinstance(event, dict):
+                event = {}
+            item = event.get('item') or {}
+            kind = item.get('type') if isinstance(item, dict) else None
+            event_type = str(event.get('type', ''))
+            normalized = event_type.lower()
+            if (kind in TOOL_ITEMS or event_type in TOOL_ITEMS or
+                    any(term in normalized for term in ('tool_call', 'exec_command', 'web_search', 'file_change',
+                                                       'execommand', 'execcommand', 'mcp_tool', 'mcptool'))):
+                violation = {'event_type': event_type, 'item_type': kind}
+                process.terminate()
+                break
+            sys.stdout.write(line)
+            sys.stdout.flush()
+    try:
+        code = process.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        code = process.wait()
+    (audit/(stem+'.summary.json')).write_text(json.dumps({
+        'flags': FLAGS, 'unauthorized_tool_event': violation,
+        'raw_events_file': stem+'.events.jsonl',
+        'raw_events_sha256': hashlib.sha256((audit/(stem+'.events.jsonl')).read_bytes()).hexdigest(),
+        'delegate_returncode': code,
+        'scope': 'Verified restrictive invocation flags and observed event audit; not an adversarial security guarantee.'}, indent=2)+'\n')
+    if violation:
+        print('Study Codex invocation rejected after an unauthorized tool event', file=sys.stderr)
+        return 78
+    return code
+
+
+if __name__ == '__main__':
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        print(f'Study Codex invocation blocked: {type(exc).__name__}: {exc}', file=sys.stderr)
+        raise SystemExit(78)

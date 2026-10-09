@@ -4,7 +4,7 @@
   "date": "2026-10-09",
   "status": "broader_study_controls_complete_search_preparation",
   "authorization": "User requested completing the broader research study before synthesis and selected up to2hours per block with checkpoints between blocks.",
-  "budget_preference": "specify_stage_by_stage",
+  "budget_preference": "up_to_two_hours_per_block_with_checkpoints",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
   "base_commit": "84a692882243fa630d0b85c42d844475d8bebf1a",
   "completed": [
@@ -99,8 +99,8 @@
     "proposal_workers": 1,
     "evaluation_workers": 1
   },
-  "next_stage_preparation": "Controls assessment complete. Verify per-invocation model context boundary, commit study plan and source freeze, then execute first independent full-native run.",
-  "next_execution_command": null,
+  "next_stage_preparation": "First independent full-native run prepared and source-frozen; subscription-only execution authorized within the declared two-hour block.",
+  "next_execution_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.evolve_study --results results/proposal-broader-study/search/full-r1 --run-id full-r1 --native-seed 7109260 --slots 25 --calls 24 --provider-seconds 5400 --minutes 120 --treatment full --run",
   "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
   "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment",
   "previous_stage1_checkpoint": {
@@ -309,6 +309,7 @@
     "automatic_continuation": false,
     "plan": "artifacts/proposal/broader-study/study-plan.json",
     "controls_assessment": "artifacts/proposal/broader-study/controls-assessment/summary.json",
-    "reporting_audit": "artifacts/proposal/broader-study/reporting-audit/summary.json"
+    "reporting_audit": "artifacts/proposal/broader-study/reporting-audit/summary.json",
+    "prepared_run": "full-r1"
   }
 }
