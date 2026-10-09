@@ -2,8 +2,8 @@
   "plan": "docs/original-proposal-plan.md",
   "research": "docs/shinkaevolve-research.md",
   "date": "2026-10-09",
-  "status": "broader_study_controls_implementation",
-  "authorization": "User explicitly requested completing the broader research study before paper-style synthesis; controls implementation and experiments proceed; subscription block budget preference requested.",
+  "status": "broader_study_controls_complete_search_preparation",
+  "authorization": "User requested completing the broader research study before synthesis and selected up to2hours per block with checkpoints between blocks.",
   "budget_preference": "specify_stage_by_stage",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
   "base_commit": "84a692882243fa630d0b85c42d844475d8bebf1a",
@@ -23,7 +23,9 @@
     "stage4_results_and_chromatic_fields_figures",
     "stage5_256_case_paired_frozen_program_assessment",
     "stage5_results_and_chromatic_fields_figures",
-    "stage5_saved_execution_recovery_and_independent_verification"
+    "stage5_saved_execution_recovery_and_independent_verification",
+    "broader_study_competent_comparator_and_mechanism_assessment",
+    "broader_study_passive_reporting_denominator_audit"
   ],
   "stage3": {
     "protocol": "artifacts/proposal/stage3-development/protocol.json",
@@ -83,20 +85,21 @@
     ],
     "invocation_minutes_through_report": 8.788772183333332
   },
-  "next_proposed_stage": "Competent comparator and source-specific mechanism assessment, followed by independent full-native and seed-only rewrite runs; synthesis last.",
+  "next_proposed_stage": "Independent full-native and original-seed rewrite comparison; six separately checkpointed runs under two-hour ceilings; synthesis after study.",
   "next_stage_authorized": true,
   "automatic_continuation": false,
   "historical_campaigns": "preserve; do not resume",
   "next_stage_budget": {
-    "experiment_model_calls": 0,
-    "development_new_episodes": 96,
-    "assessment_episodes": 1024,
-    "assessment_case_count": 256,
-    "assessment_workers": 1,
-    "assessment_total_cpu_seconds": 2400,
-    "local_block_elapsed_minutes": 30
+    "wall_minutes": 120,
+    "all_role_provider_calls": 24,
+    "provider_seconds": 5400,
+    "total_candidate_slots": 25,
+    "provider_request_timeout_seconds": 500,
+    "headless_child_timeout_seconds": 480,
+    "proposal_workers": 1,
+    "evaluation_workers": 1
   },
-  "next_stage_preparation": "Implement controls; validate on32 public development cases; freeze4programs and analysis before256 fresh paired cases. Earlier private panels retired.",
+  "next_stage_preparation": "Controls assessment complete. Verify per-invocation model context boundary, commit study plan and source freeze, then execute first independent full-native run.",
   "next_execution_command": null,
   "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
   "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment",
@@ -292,9 +295,9 @@
     "supervising_assistant_usage": "Two bounded read-only review subagents and supervising conversation; their token/allowance use is unavailable to the evaluator and excluded from experiment-model counts."
   },
   "broader_study": {
-    "status": "controls_implementation",
+    "status": "broader_study_controls_complete_search_preparation",
     "scope": "Original current-map reconstruction objective; no predictive-learning extension",
-    "subscription_block_budget": "awaiting user preference; prior stage-by-stage preference preserved",
+    "subscription_block_budget": "User selected up to2hours per block;24all-rolecall,5400provider-second,25slot caps chosen within it.",
     "completion_requirements": [
       "competent_comparator_and_source_specific_mechanism_assessment",
       "reconstruction_incentive_audit",
@@ -303,6 +306,9 @@
       "uncertainty_at_case_and_search_repetition_levels",
       "scientific_synthesis_after_experiments"
     ],
-    "automatic_continuation": false
+    "automatic_continuation": false,
+    "plan": "artifacts/proposal/broader-study/study-plan.json",
+    "controls_assessment": "artifacts/proposal/broader-study/controls-assessment/summary.json",
+    "reporting_audit": "artifacts/proposal/broader-study/reporting-audit/summary.json"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "style": "Chromatic Field v1 \u00b7 repository presentation 2",
+  "reproduction": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.control_report",
+  "scientific_execution": "No candidates, experiment models or private pools accessed; public saved-data analysis only.",
+  "input_sha256": {
+    "artifacts/proposal/broader-study/controls-assessment/protocol.json": "d91e9c4b732d15174240d87c0a313a7895129e2ba3a6bfbc1cabec5c6bf262ff",
+    "artifacts/proposal/broader-study/controls-assessment/pool-manifest.json": "d09e5386799328a00e7e0bb7b62cc2ecc422e66bacb5aa7bc8801fc23a8fb073",
+    "artifacts/proposal/broader-study/controls-assessment/execution.json": "1e613f9206369d9210d36e48fd05df624c2def09e8d31ac5dae37ffb8b43fa27",
+    "artifacts/proposal/broader-study/controls-assessment/generation_2/episodes.json": "d76678b8111f15b9d1234bdba0a04a4175a3a5c35d1983ab2ed66a2878756d2a",
+    "artifacts/proposal/broader-study/controls-assessment/generation_2/metrics.json": "85c5062cadb71dd4544ddc3d335c3de788d956b85c3d9d74b8ba5f1ad321c34b",
+    "artifacts/proposal/broader-study/controls-assessment/generation_2/resource.json": "5ca0465a03fe34d327b26dc7dd975ddbd7038238b1ba821f3cf5b51e30b6d8de",
+    "artifacts/proposal/broader-study/controls-assessment/generation_2/manifest.json": "317f6a98d1efa4a1963c49666118dd1e8c558c7347a906962f220621723e9ac5",
+    "artifacts/proposal/broader-study/controls-assessment/memory_pathfinder/episodes.json": "53b1af0a1662fdb39377a90a55d4288708e245b1f0c615a6964ad9c8ddb81066",
+    "artifacts/proposal/broader-study/controls-assessment/memory_pathfinder/metrics.json": "6d3b8630c53ea69f5f3ae783364039aa82f493b4296cf919a70abbdcf8f1734b",
+    "artifacts/proposal/broader-study/controls-assessment/memory_pathfinder/resource.json": "34b35df0223518c9d65de0d76e571c46df1f9fde9e54ae854688c518d45de6eb",
+    "artifacts/proposal/broader-study/controls-assessment/memory_pathfinder/manifest.json": "bfe47a759457dfd42f3f8a7a7e21c77c92cfb0392d5ede7d9dc1c2703c064270",
+    "artifacts/proposal/broader-study/controls-assessment/local_map/episodes.json": "e0ad291a67153405b815e66c9e6dea89f621326d76648f652a67392b88e259e8",
+    "artifacts/proposal/broader-study/controls-assessment/local_map/metrics.json": "eeefdcf2fe9667819a1e8952a2c5218169d8b52b2e3603ca0a1f656ec34cfe3a",
+    "artifacts/proposal/broader-study/controls-assessment/local_map/resource.json": "79012a12aad26b0f8537b9a0461558a74d49c450e678d9de9b429b376c8d3663",
+    "artifacts/proposal/broader-study/controls-assessment/local_map/manifest.json": "81b194f7f23e17720b2d8eed09498283a5157e8a036eb7b3ee114714f6499899",
+    "artifacts/proposal/broader-study/controls-assessment/no_risk/episodes.json": "f224e01a7a6394dfd5e0825be459c26d29437ea5d765b3c93de4498fc4aa77c7",
+    "artifacts/proposal/broader-study/controls-assessment/no_risk/metrics.json": "9e0cde5d3affcafa36a4cb54702f4b3f1412c0cc5c34edc52fff8232d5d5edeb",
+    "artifacts/proposal/broader-study/controls-assessment/no_risk/resource.json": "38b3a4eedab1012f60f44043b2b18bb03f072e590b307e99d5c3a6cabc413d69",
+    "artifacts/proposal/broader-study/controls-assessment/no_risk/manifest.json": "cbd0e06a50e181ed1c17ef6f7efc0e399568b18bdb2a57aed397e421f39cc91d"
+  },
+  "source_sha256": {
+    "proposal/control_report.py": "1ce7978543a25b39018caa42f8a487c19f0a82def1a991d143201a0b5c65fa6b",
+    "proposal/development_report.py": "5a76a973e34c2fe763af0a211c93543f930fb8cf813505264b1772001f90d580",
+    "scripts/chromatic_fields.py": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+  },
+  "output_sha256": {
+    "artifacts/proposal/broader-study/controls-assessment/summary.json": "a082ca5962c216cbb179266f53dc980e7848b72f2eb072bba5d225f58f50f391",
+    "artifacts/proposal/broader-study/controls-assessment/paired-episodes.csv": "b9d6c4b4a05bc2137fd9d4cba3f7392da92fd16f6fe4e707328ca9332587cb07",
+    "artifacts/proposal/broader-study/controls-assessment/captions.md": "9c46db8698d4fb877c70bd00eed27d51d9871f0f2efd18906976cd21c5bd77d8",
+    "artifacts/proposal/broader-study/controls-assessment/figures/control-effects.svg": "35fea9340aeeb1aec898608b6373eda36c0efaa392553380c6da13b57995f5a9",
+    "artifacts/proposal/broader-study/controls-assessment/figures/control-effects.pdf": "74fa22827cac70a1bfdcad75475762f96ae2ec0d0620a50ccc7ed6269963e7c9",
+    "artifacts/proposal/broader-study/controls-assessment/figures/control-effects.png": "5f9b205e3ec7eae34346732db22635e54b39ea32156e4976eb6030ab3f275a6b"
+  }
+}

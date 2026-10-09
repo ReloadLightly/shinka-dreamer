@@ -2,6 +2,10 @@
 
 *Scientific implementation report — original-proposal track, with a frozen-program assessment on 256 fresh paired cases.*
 
+The broader experimental study is in progress. Paper-style synthesis follows
+the competent-control, mechanism and independent-search comparisons; the first
+selected-agent assessment alone does not complete that study.
+
 ## Abstract
 
 We implement the original Sakana ShinkaDreamer proposal: evolve an executable
@@ -29,8 +33,11 @@ the frozen generation 2 on **256 fresh paired cases** found **239/256 escapes
 **0.4026 (paired 95% interval 0.3835–0.4201)**, almost entirely through task reward;
 the change in reported-cell accuracy was unresolved. All 512 assessment episodes
 took 64.06 seconds with no experiment-model calls. This establishes improvement
-over the original weak seed on the declared task distribution. Causal benefits
-of particular memory mechanisms and discovery reliability remain unmeasured.
+over the original weak seed on the declared task distribution. A subsequent
+256-case control experiment found source-specific benefits from persistent spatial
+maps and the hardcoded future-risk heuristic; fitness superiority over a competent
+handcrafted pathfinder remains unresolved. Independent discovery reliability is
+still under study.
 
 ## 1. Introduction
 
@@ -491,6 +498,65 @@ uncertainty and figure provenance are in the
 [Stage 5 results](artifacts/proposal/stage5-assessment/summary.json).
 Recovery verified these previously completed results without rerunning episodes.
 
+### 4.6 Competent comparator and mechanism interventions
+
+The next experiment was frozen in commit `7bc6949` before drawing another
+256 paired private cases. It compares unchanged generation 2 with the historical
+handcrafted memory/pathfinding agent and two source-specific interventions.
+The comparator retains fixed local enemy avoidance; its adapter adds the current-map
+export and repairs key-underfoot interaction and diagonal closed-door entry.
+The local-map intervention removes spatial maps outside the current 5×5 view,
+retaining localization, inventory and visitation history. The no-risk intervention
+removes the hardcoded next-enemy-move probability calculation while retaining
+occupied-cell exclusion. Neither intervention disables all memory or isolates
+learned dynamics. All three controls were checked on the existing 32 development
+cases before freezing; there were no subsequent outcome-driven edits.
+
+| Condition | Escapes | Capture / timeout / invalid | Mean $F$ | Mean $A$ | Final coverage |
+|:--|--:|--:|--:|--:|--:|
+| Generation 2 |243/256|12 / 1 / 0|0.911277|0.981869|80.47%|
+| Handcrafted memory pathfinder |230/256|26 / 0 / 0|0.888316|0.980385|82.35%|
+| Generation 2, current local map only |134/256|18 / 104 / 0|0.800794|1.000000|9.64%|
+| Generation 2, no next-step risk |154/256|102 / 0 / 0|0.743233|0.985432|70.30%|
+
+Three primary comparisons were specified: original $F$ against the handcrafted
+pathfinder, and escape against each intervention. Shared paired bootstrap draws
+give Bonferroni 98⅓% intervals for approximate 95% coverage of that family.
+The fitness advantage over the pathfinder is **0.022961 [−0.003703, 0.049810]**;
+the declared primary comparison does not establish superiority or the specified
+meaningful gain of 0.05. Its escape difference is +5.08 percentage points with
+an unadjusted secondary 95% interval of [0.39, 9.77].
+
+Access to remembered spatial maps increases escape by **42.58 [34.38, 50.78]
+percentage points** relative to the local-map intervention; using next-step risk
+increases it by **34.77 [26.95, 42.58] points** relative to no risk. Both family-adjusted
+intervals exclude zero, supported by exact paired binary tests. These are causal
+contrasts for the specified source changes on this task distribution. They do
+not show that Shinka reliably discovers these mechanisms or learns enemy dynamics.
+The local-only map achieves perfect reported-cell accuracy while escaping less
+often and covering far less terrain, illustrating the objective's denominator
+limitation.
+
+![Fresh competent-control and source-specific intervention effects](artifacts/proposal/broader-study/controls-assessment/figures/control-effects.svg)
+
+**Figure 13. Competent control and mechanism assessment.** All 1,024 episodes are
+included. Thick paired intervals are marginal 95%; thin intervals adjust for the
+three primary endpoints. The orange mark is the 0.05 meaningful fitness gain for
+the pathfinder comparison. Arm-level escape intervals use Wilson intervals.
+See the [protocol](artifacts/proposal/broader-study/controls-assessment/protocol.json),
+[all paired results](artifacts/proposal/broader-study/controls-assessment/summary.json)
+and [control provenance](proposal/study/programs/manifest.json).
+Execution used **79,582 transitions, 160.95 measured elapsed seconds and 164.28
+total CPU-seconds**, with zero experiment-model calls. Timing follows the saved
+controller fields; analysis and supervision are additional.
+
+A separate [passive audit](artifacts/proposal/broader-study/reporting-audit/summary.json)
+replayed the already exposed 79-frame generation-2 example, without new world
+transitions. Removing its stale-cell reporting withdrawal added 46 reported
+frame-cell claims, only four correct. Accuracy fell from 97.8163% to 97.4401%,
+while all 79 actions stayed identical. This is a reporting-denominator effect on
+one historical trajectory, not a population estimate or evidence of better control.
+
 ## 5. Discussion and limitations
 
 The seed accurately reconstructs the cells it reports, but rarely escapes.
@@ -513,14 +579,14 @@ as proof of understanding.
 The first two successful descendants are direct seed mutations with no
 inspirations. Their results therefore do not establish a benefit from accumulated
 evolutionary history. Persistent memory is used by their planners, but the
-contribution of mapping versus pathfinding versus risk heuristics is not isolated.
-Independent discovery reliability and a causal benefit of particular memory
-mechanisms remain unmeasured. The known uniform enemy law is
+contribution of mapping versus pathfinding versus risk heuristics is only partly
+isolated by the two specified interventions in section 4.6. Independent discovery
+reliability remains unmeasured. The known uniform enemy law is
 used as a heuristic; these results do not show learned transition dynamics.
 
 The seed comparison is deliberately faithful to the original proposal, but its
-greedy/random planner is a weak control. These experiments do not establish
-superiority over a competent manually engineered maze planner. The selection
+greedy/random planner is a weak control. The subsequent competent-control experiment
+does not establish a fitness advantage over the handcrafted pathfinder. The selection
 results also provide no clear basis for preferring one successful descendant's
 behavior over the other's, despite the required scalar ranking.
 
@@ -625,7 +691,13 @@ OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess \
 
 Its deadline is closed. Preserve the private pool and checkpoints; do not redraw
 or rerun the assessment. The [current checkpoint](CODEX_TASK.md) records recovery
-of the completed execution, checks and the remaining proposed synthesis stage.
+of the completed execution and the ongoing broader experimental study.
+
+Rebuild the competent-control analysis and figure without new episodes or models:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.control_report
+```
 
 ## References
 

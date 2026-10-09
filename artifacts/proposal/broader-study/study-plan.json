@@ -1,0 +1,110 @@
+{
+  "study": "original-proposal-broader-study-v1",
+  "created_utc": "2026-10-09T11:27:18.879723+00:00",
+  "authorization": "User requested completing the broader research study before synthesis and selected up to2hours per block with checkpoints between blocks.",
+  "scope": "Original dynamic partially observed maze and F=0.6S+0.4current-map accuracy; historical predictive tracks remain closed.",
+  "completed_components": [
+    "competent comparator and two source-specific mechanism interventions:96 development +1024 fresh assessment episodes",
+    "reporting denominator audit:158 passive replies on one exposed79-frame trajectory"
+  ],
+  "search_design": {
+    "repetitions_per_treatment": 3,
+    "treatments": [
+      "full native Shinka with islands, cumulative ancestry/inspirations, bandit, local embedding novelty, meta/prompt evolution",
+      "independent original-seed full rewrites with deterministic alternating model allocation and no accumulated candidate history or auxiliary calls"
+    ],
+    "interpretation": "Exploratory whole-search-strategy comparison, not a single-feature ablation. Three repetitions do not promise precise repeatability or treatment-effect inference.",
+    "order": [
+      {
+        "run_id": "full-r1",
+        "arm": "full",
+        "replicate": 1,
+        "native_seed": 7109260
+      },
+      {
+        "run_id": "rewrite-r1",
+        "arm": "rewrite",
+        "replicate": 1,
+        "native_seed": 8109261
+      },
+      {
+        "run_id": "rewrite-r2",
+        "arm": "rewrite",
+        "replicate": 2,
+        "native_seed": 8209260
+      },
+      {
+        "run_id": "full-r2",
+        "arm": "full",
+        "replicate": 2,
+        "native_seed": 7209261
+      },
+      {
+        "run_id": "full-r3",
+        "arm": "full",
+        "replicate": 3,
+        "native_seed": 7309262
+      },
+      {
+        "run_id": "rewrite-r3",
+        "arm": "rewrite",
+        "replicate": 3,
+        "native_seed": 8309261
+      }
+    ],
+    "per_run_limits": {
+      "wall_minutes": 120,
+      "all_role_provider_calls": 24,
+      "provider_seconds": 5400,
+      "total_candidate_slots": 25,
+      "provider_request_timeout_seconds": 500,
+      "headless_child_timeout_seconds": 480,
+      "proposal_workers": 1,
+      "evaluation_workers": 1
+    },
+    "primary_budget": "Common maximum of24 actually dispatched all-role provider calls with shared wall/provider-time ceilings. Report realized shortfalls; equal call caps are not equal allowance consumption.",
+    "failure_policy": "Failures consume calls/time and remain in counts. Two consecutive provider transport failures stop the run; investigate a shared route/capacity failure before dispatching another repetition. No blind retry or deadline extension.",
+    "independence": "Fresh database, original seed, model/session histories, Python/NumPy/bandit seeds and local request workspace per run. No candidates/recommendations transferred across runs. Native SQLite RANDOM and remote model sampling are not seed-controlled; report this limitation.",
+    "training_cases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "billing": "Strict subscription only for every model role, local cached embeddings, zero model calls by evaluator. No paid fallback.",
+    "boundary": "Per-invocation repository-context and tool restrictions must be verified before any new mutation; no global authentication/approval/sandbox configuration changes."
+  },
+  "selection": {
+    "cases": 64,
+    "pool": "results/private/proposal-broader-search-selection-seeds.json",
+    "draw_after": "All search attempts terminate and nomination manifests are frozen.",
+    "nominate_per_run": "Up to3 completed correct distinct sources: highest mean trainingF, highest trainingS, highest trainingescape; ties earlier generation. If no valid descendant, seed fallback retained and failed discovery reported.",
+    "choose": "Highest mean originalF on shared selection panel, thenS, then earlier generation.",
+    "call_prefix_secondary": "For replicate pair i set k_i=min(actual all-role dispatches in its two arms), before selection episodes. Separately nominate using the same rule among sources with acceptance-call count<=k_i; seed prefix0. This is a realized-budget-conditional secondary analysis, not a prespecified uniform call count across repetitions."
+  },
+  "assessment": {
+    "cases": 512,
+    "pool": "results/private/proposal-broader-search-assessment-seeds.json",
+    "draw_after": "All selected sources, primary and secondary manifests, and analysis are frozen; case pools excluded from all model contexts.",
+    "conditions": "Six full-budget winners, up to6 distinct common-call-prefix winners, original seed and handcrafted comparator; deduplicate identical source hashes for execution.",
+    "primary": "Equal-repetition mean paired testF difference, full-native minus independent-rewrite, across3 replicate pairs under declared resource ceilings.",
+    "secondary": [
+      "mean taskS",
+      "map accuracyA",
+      "coverage",
+      "escape/capture/timeout/invalid",
+      "keys/door/steps",
+      "realized common-call-prefix comparison",
+      "all-role counts/time/missing usage",
+      "native mechanisms actually observed"
+    ],
+    "uncertainty": "10000 crossed bootstrap draws, resampling3 paired repetition blocks and512 common case IDs independently, preserving each shared draw across arms/programs; seed7109512. Also show all3 individual run contrasts and paired case intervals. Small repetition count makes intervals exploratory, not precise population guarantees.",
+    "meaningful_F_difference": 0.05,
+    "no_optional_stopping": true,
+    "invalids": "Retain all cases and failures with original F=0; never drop an unsuccessful search.",
+    "case_retirement": "Exclude every earlier private pool including Stage5 and controls assessment; no further tuning or fresh confirmation on exposed cases."
+  },
+  "completion": "Execute declared control/mechanism experiment, reporting audit, six independent search attempts, shared selection and fresh assessment, with honest unresolved/negative findings and failure accounting; synthesis follows. A route failure or unexecuted repetitions must be reported as incomplete.",
+  "automatic_unbounded_continuation": false
+}

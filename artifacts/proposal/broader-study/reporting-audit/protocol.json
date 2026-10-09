@@ -1,0 +1,37 @@
+{
+  "identity": "proposal-passive-reporting-retention-v1",
+  "question": "On this fixed historical trajectory, does epoch-based withdrawal alter map-reporting accuracy or coverage?",
+  "replay": "artifacts/proposal/full-native-01/representative-replays.json.gz",
+  "replay_sha256": "83bd8d22e3581aa98215e0909c8651f8f6e410250ffaab6d0b56b72c53db0dae",
+  "record_selector": {
+    "generation": 2,
+    "case": 0
+  },
+  "frames": 79,
+  "selected": "artifacts/proposal/full-native-01/programs/generation-002.py",
+  "selected_sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+  "variant": "proposal/study/reporting_retention.py",
+  "variant_sha256": "01f102f081aeb9a80af81d0d91491d5d5bd1ed923567162991848983e82c5456",
+  "variant_derivation": "One exact source splice removes only the epoch-change for-loop calling believed.pop(pos, None); all terrain, unstable flags and planning stay unchanged.",
+  "driver_sha256": "8a78232deaa60e7bbafed71cacdc151aed0c03794ee7ddb692aa9f9973a86a4e",
+  "evaluator_sha256": {
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+    "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854"
+  },
+  "observation_reconstruction": "object.__new__(DynamicMaze), saved snapshot fields and previous-snapshot observable displacement/key/door differences, followed by unchanged observe(); no initialization, transitions or RNG draws.",
+  "validation": "Every selected-program action and ordered belief list must exactly match the saved frame; otherwise stop before the variant pass.",
+  "candidate_boundary": "Existing restricted proposal.evaluation.Candidate subprocess; observations only.",
+  "limits": {
+    "max_replies": 158,
+    "candidate_cpu_seconds_each": 10,
+    "candidate_memory_mib": 192,
+    "execution_wall_seconds": 60,
+    "model_calls": 0,
+    "new_world_episodes": 0,
+    "new_transitions": 0
+  },
+  "analysis": "Pooled reported-cell accuracy, per-frame coverage, extra claims and accuracy of extra claims; actions compared on identical observations. No variant action is followed.",
+  "inference": "One exposed historical representative trajectory; point diagnostic only, no population uncertainty or new performance estimate."
+}

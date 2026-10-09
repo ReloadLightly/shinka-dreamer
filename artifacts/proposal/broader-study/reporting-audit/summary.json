@@ -1,0 +1,41 @@
+{
+  "status": "complete",
+  "error": null,
+  "protocol_sha256": "f0829989d3b4f87eb8d23fa13b30ed1f50799e3f2174203e293349798f414ce5",
+  "started_utc": "2026-10-09T11:15:16.066530+00:00",
+  "ended_utc": "2026-10-09T11:15:16.569190+00:00",
+  "matched_recorded_frames": 79,
+  "compared_frames": 79,
+  "candidate_replies": 158,
+  "candidate_processes": 2,
+  "new_world_episodes": 0,
+  "new_transitions": 0,
+  "model_calls": 0,
+  "seconds": 0.5026891909999449,
+  "candidate_cpu_seconds": 0.402568,
+  "conditions": {
+    "selected": {
+      "correct": 10616,
+      "audited": 10853,
+      "pooled_accuracy": 0.9781627199852575,
+      "mean_frame_coverage": 0.610576652601969,
+      "final_coverage": 0.9333333333333333
+    },
+    "retained": {
+      "correct": 10620,
+      "audited": 10899,
+      "pooled_accuracy": 0.9744013212221305,
+      "mean_frame_coverage": 0.6131645569620254,
+      "final_coverage": 0.9511111111111111
+    }
+  },
+  "extra_claims": {
+    "correct": 4,
+    "audited": 46,
+    "accuracy": 0.08695652173913043
+  },
+  "frames_with_extra_claims": 29,
+  "changed_actions": 0,
+  "claim_limit": "One exposed historical representative trajectory; point diagnostic only, no population uncertainty or new performance estimate.",
+  "uncertainty": null
+}

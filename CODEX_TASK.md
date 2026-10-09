@@ -4,20 +4,30 @@ The latest user instruction explicitly moves paper-style synthesis **after** the
 broader experimental study. Continue the original current-map objective and maze.
 The previous Stage 6 writing step is deferred, not the next deliverable.
 
-The next experimental block adds the pre-existing competent memory/pathfinding
-control and source-specific generation-2 interventions on access to past terrain
-and next-enemy-risk planning. Develop only on the existing public 32-case panel;
-freeze sources, contrasts and analysis before drawing 256 new paired cases for
-four conditions. Zero experiment-model calls are needed for this block. Preserve
-all earlier frozen sources and retire every previous private assessment pool.
+The competent-control block is complete: 96 development episodes and 1,024 fresh
+assessment episodes on 256 pairs, with zero experiment-model calls. Generation 2
+escaped 243/256; handcrafted pathfinder 230/256; local-map intervention 134/256;
+no-risk intervention 154/256. Both mechanism escape effects survive the three-endpoint
+correction. The primary fitness advantage over the pathfinder is unresolved:
+0.022961 [−0.003703, 0.049810], family-adjusted interval. The local-map intervention
+affects reporting and planning and retains visitation/localization/inventory.
+The risk model is hardcoded, not learned. A 79-frame passive replay audit found
+stale-cell withdrawal raised reported accuracy by 0.376 percentage points with
+zero changed actions. README and compact evidence contain these results.
 
 The remaining study includes independent full-native searches and a controlled
 seed-only rewrite comparison (three repetitions per treatment proposed in the
 existing plan). Separate runs, call budgets, selection and fresh assessment are
-required; islands are not independent repetitions. The user's earlier preference
-was stage-by-stage budgets. A new subscription execution-budget preference has
-been requested while the zero-model controls block is implemented. Do not infer
-an unlimited subscription allocation or relaunch historical closed runs.
+required; islands are not independent repetitions. The user selected **up to two
+hours per block, with a checkpoint between blocks**. The finite design in
+`artifacts/proposal/broader-study/study-plan.json` specifies six independent run
+attempts (three per treatment), at most24 all-role calls,5,400 provider-seconds and
+25 slots per run. Bind each actual execution grant separately. Follow with64
+shared selection cases and512 fresh assessment cases under the frozen analysis.
+Before the first model call, verify the per-invocation model context boundary:
+the old Headless read-only route still enabled tools and repository AGENTS loading.
+No new mutation requests have yet run. Never change global authentication,
+approval policies or sandbox permissions, and never relaunch historical runs.
 
 Do not call the broader study complete on the strength of the existing two seed
 mutations, controls alone, infrastructure, test counts or a manuscript. Report
