@@ -1,0 +1,21 @@
+{
+  "classification": "no_response_native_attempt",
+  "error_msg": "LLM response content was None.",
+  "files": {},
+  "generation": 3,
+  "llm_cost": null,
+  "llm_model": null,
+  "novelty_attempt": 1,
+  "num_applied": 0,
+  "original_metadata": {
+    "bytes": 277,
+    "path": "results/campaign-v4-run1/gen_3/attempts/novelty_1/resample_1/patch_1/metadata.json",
+    "sha256": "5122554c6862a7a87414fd201848486b96926c885571401e83b9f2047e896189"
+  },
+  "patch_attempt": 1,
+  "patch_description": null,
+  "patch_name": null,
+  "resample_attempt": 1,
+  "success": false,
+  "timestamp": "2026-10-09T03:51:40.942019"
+}

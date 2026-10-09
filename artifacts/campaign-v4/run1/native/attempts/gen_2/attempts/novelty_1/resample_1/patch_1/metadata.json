@@ -1,4 +1,5 @@
 {
+  "classification": "successful_patch_application",
   "error_msg": null,
   "files": {
     "headless_prompt.md": {

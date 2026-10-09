@@ -102,6 +102,9 @@ def prompt_context(text):
 
 def totals(calls):
     result = {'calls': len(calls), 'status': dict(Counter(c['status'] for c in calls)),
+              'successful_process_returns': sum(c.get('status') == 'completed' and c.get('returncode') == 0 for c in calls),
+              'unsuccessful_process_returns': sum(c.get('status') == 'completed' and c.get('returncode', 0) != 0 for c in calls),
+              'timeout_process_returns': sum(c.get('returncode') == 124 for c in calls),
               'remote_elapsed_seconds': sum(c.get('elapsed_seconds', 0) for c in calls),
               'tokens': {key: 0 for key in ('inputTokens', 'cacheReadTokens', 'cacheWriteTokens',
                                           'outputTokens', 'reasoningOutputTokens', 'totalTokens')},
@@ -118,6 +121,9 @@ def totals(calls):
         result['api_list_price_estimate_usd'] += (usage.get('cost') or {}).get('total', 0) or 0
     result['billing_routes'] = dict(routes)
     result['uncached_input_plus_output_tokens'] = result['tokens']['inputTokens'] + result['tokens']['outputTokens']
+    result['reported_usage_calls'] = sum((c.get('usage') or {}).get('usageStatus') == 'reported' for c in calls)
+    result['token_total_exact_for_all_admitted_calls'] = result['reported_usage_calls'] == len(calls)
+    result['token_scope'] = 'Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.'
     return result
 
 
@@ -237,6 +243,8 @@ def run(campaign, out):
         compact = {k: meta.get(k) for k in ('generation', 'novelty_attempt', 'resample_attempt', 'patch_attempt',
             'success', 'num_applied', 'patch_name', 'patch_description', 'error_msg', 'timestamp', 'llm_cost', 'llm_model')}
         compact['files'] = files
+        compact['classification'] = ('successful_patch_application' if meta.get('success') else
+            'no_response_native_attempt' if meta.get('error_msg') == 'LLM response content was None.' else 'patch_application_rejection')
         compact['original_metadata'] = provenance(path)
         dump(directory / 'metadata.json', compact)
         attempts.append(compact)
@@ -268,6 +276,11 @@ def run(campaign, out):
             raise ValueError('Actual request hash mismatch')
         public['files'] = {suffix: provenance(path.with_suffix(suffix)) for suffix in ('.prompt.md', '.stdout', '.stderr')
                            if path.with_suffix(suffix).exists()}
+        public['successful_process_return'] = call.get('status') == 'completed' and call.get('returncode') == 0
+        public['outcome'] = ('timeout_without_response' if call.get('returncode') == 124 and
+            path.with_suffix('.stdout').exists() and not path.with_suffix('.stdout').read_bytes() else
+            'successful_return' if public['successful_process_return'] else
+            'active' if call.get('status') == 'started' else 'unsuccessful_return')
         linked = request_to_attempt.get(call['prompt_sha256'], [])
         public['native_patch_attempts'] = [{k: a.get(k) for k in ('generation', 'novelty_attempt', 'resample_attempt', 'patch_attempt', 'success')} for a in linked]
         # A started call has no attempt archive yet. Associate to the latest sampling event
@@ -347,6 +360,9 @@ def run(campaign, out):
     dump(out / 'native-state.json', compact_state)
     public_text(out / 'native-events.jsonl', ''.join(json.dumps(clean(e), sort_keys=True, allow_nan=False) + '\n' for e in events))
     held = [read(p) | {'provenance': provenance(p)} for p in sorted(campaign.glob('gen_*/held-proposal.json'))]
+    for item in held:
+        item['generated_source_available'] = bool(item.get('source_sha256'))
+        item['retained_material'] = 'generated program and context' if item['generated_source_available'] else 'sampled parent/inspiration/recommendation context and actual request; no generated program'
     accepted = []
     for path in sorted(campaign.glob('gen_*/accepted-proposal.json')):
         value = read(path)
@@ -395,12 +411,18 @@ def run(campaign, out):
     by_model = {model: totals([c for c in call_records if c['requested_model'] == model]) for model in sorted({c['requested_model'] for c in call_records})}
     meta_calls = [c for c in call_records if c['role'] in ('summary', 'global_insight', 'recommendation')]
     bandit = native_state.get('bandit_state') or {}
+    budget_ledger = read(campaign / 'call-budget-ledger.json', {})
+    blocked = budget_ledger.get('blocked_reason')
     arms_used = {c['requested_model'] for c in mutation_calls}
     executed_prompt = len(prompt_records) > 1
     report = {
         'schema': 'run1-native-report-v1', 'snapshot_utc': now,
         'campaign_manifest': provenance(campaign / 'campaign-manifest.json'),
         'runtime_compatibility_amendment': read(campaign / 'runtime-amendment.json'),
+        'execution_status': {'native_state_boundary': native_state.get('boundary'),
+            'budget_blocked_reason': blocked,
+            'automatic_restart_allowed': False if blocked else None,
+            'interpretation': 'A normal controller return/checkpoint does not mean the candidate budget was completed or every admitted model request succeeded.'},
         'source_scope': 'Saved runtime state only; no new worlds/model calls. Live files can advance between snapshots; per-file hashes and snapshot timestamp identify evidence.',
         'configured': {k: resolved.get(k) for k in ('evolution', 'database', 'max_evaluation_jobs', 'max_proposal_jobs', 'max_db_workers', 'episode_workers', 'budget', 'billing', 'deadline_utc', 'hard_checkpoint_utc', 'upstream', 'headless', 'effective_models', 'unsupported_not_forwarded', 'roles')},
         'counts': {'authorized_total_slots': native_state.get('authorized_total_slots', 32),
@@ -410,26 +432,36 @@ def run(campaign, out):
             'valid_descendants': sum(g > 0 and bool(r['correct']) for g, r in canonical.items()),
             'failed_slots': [g for g, r in canonical.items() if not r['correct']],
             'generated_proposals': len(branches), 'accepted_proposals': len(accepted), 'held_proposals': len(held),
+            'admitted_slots_including_held': len(set(canonical) | {e['generation'] for e in sampling} | {h['generation'] for h in held}),
+            'held_slot_ids': [h['generation'] for h in held],
+            'held_slots_with_generated_source': sum(h['generated_source_available'] for h in held),
+            'held_slots_without_generated_source': sum(not h['generated_source_available'] for h in held),
             'sampling_contexts': len(sampling), 'patch_attempts': len(attempts),
             'patch_rejections': sum(not a['success'] for a in attempts),
-            'patch_repairs': sum((a['patch_attempt'] or 1) > 1 for a in attempts),
+            'patch_application_rejections_with_response': sum(a['classification'] == 'patch_application_rejection' for a in attempts),
+            'no_response_native_patch_attempts': sum(a['classification'] == 'no_response_native_attempt' for a in attempts),
+            'native_patch_retry_attempts': sum((a['patch_attempt'] or 1) > 1 for a in attempts),
+            'patch_repairs': sum(c['role'] == 'repair' for c in call_records),
+            'actual_remote_repair_calls': sum(c['role'] == 'repair' for c in call_records),
             'parent_resamples': len({(a['generation'], a['novelty_attempt'], a['resample_attempt']) for a in attempts if (a['resample_attempt'] or 1) > 1}),
             'novelty_rejections': sum(not e['accepted'] for e in novelty)},
         'calls': {'all': totals(call_records), 'readiness_and_fixture': totals(readiness), 'discovery': totals(discovery), 'by_role': by_role, 'by_model': by_model,
             'mutation_model_admissions': dict(Counter(c['requested_model'] for c in mutation_calls)),
-            'semantics': 'Readiness contains two actual model-availability requests and one native novelty fixture; it consumes the shared budget but no candidate slots. Started calls are admissions, not completed responses.'},
+            'semantics': 'Readiness contains two actual model-availability requests and one native novelty fixture; it consumes the shared budget but no candidate slots. Raw status completed means the subprocess returned, including unsuccessful timeout exits; successful returns are counted separately. Native patch retries can occur locally after admission is blocked and are not additional remote repair calls.'},
         'codex_session_metadata': session_metadata,
         'mechanisms': {
             'islands': {'status': 'exercised' if programs else 'pending', 'configured': resolved.get('database', {}).get('num_islands'), 'rows_by_current_island': dict(Counter(r['island_idx'] for r in programs)), 'migrations': migrations},
+            'migration': {'configured': True, 'reachable': True, 'status': 'exercised' if migrations else 'unexercised_before_stop' if blocked else 'pending', 'observed_events': len(migrations), 'configured_interval': resolved.get('database', {}).get('migration_interval'), 'note': 'Four initialized islands are not evidence that a migration occurred.'},
             'inspirations': {'status': 'exercised' if any(e['archive_inspiration_ids'] or e['top_k_inspiration_ids'] for e in sampling) else 'pending', 'contexts_archive': sum(bool(e['archive_inspiration_ids']) for e in sampling), 'contexts_top_k': sum(bool(e['top_k_inspiration_ids']) for e in sampling)},
-            'operators': {'persisted_by_type': observed_types, 'configured_probabilities': dict(zip(resolved.get('evolution', {}).get('patch_types', []), resolved.get('evolution', {}).get('patch_type_probs', [])))},
+            'operators': {'persisted_by_type': observed_types, 'configured_probabilities': dict(zip(resolved.get('evolution', {}).get('patch_types', []), resolved.get('evolution', {}).get('patch_type_probs', []))), 'crossover': {'configured': True, 'reachable': True, 'status': 'exercised' if observed_types.get('cross') else 'unexercised_before_stop' if blocked else 'pending', 'observed_persisted_slots': observed_types.get('cross', 0)}},
             'model_bandit': {'status': 'two_arms_queried_with_outcome_feedback' if len(arms_used) == 2 and all(n > 0 for n in bandit.get('n_completed', [0])) else 'partially_exercised' if mutation_calls else 'pending', 'state': bandit, 'arm_models_queried': sorted(arms_used), 'snapshot_boundary': native_state.get('boundary'), 'reward_note': 'Native UCB with cost coefficient zero; submitted counts can include patch resamples. Shifted nonnegative rewards, not a controlled model comparison. Under exponential scaling s is log-sum-exp accumulated reward contributions, not mean reward. State is from the latest safe checkpoint, so an active call may not yet appear. Preserved infrastructure failures also supplied outcome feedback.'},
             'novelty': {'status': 'discovery_judge_exercised' if any(c['role'] == 'novelty' for c in call_records) else 'gate_exercised_without_discovery_judge' if novelty else 'pending', 'fixture': 'artifacts/campaign-v4/run1/novelty-fixture.json', 'decisions': novelty, 'embedding_calls': embeddings, 'limitations': 'Native embedding uses the first 10000 source characters; local general-English BGE is not validated as semantic code novelty. Native high-similarity gate is island-local. Fixture call is separate from discovery.'},
             'meta': {'status': 'recommendations_consumed' if any(e['recommendation'] for e in sampling) else 'calls_exercised' if meta_calls else 'pending', 'calls_by_role': dict(Counter(c['role'] for c in meta_calls)), 'sampling_contexts_with_recommendation': sum(bool(e['recommendation']) for e in sampling), 'state': meta_snapshot},
-            'prompt_coevolution': {'status': 'new_prompt_stored' if executed_prompt else 'call_exercised' if any(c['role'] == 'prompt_mutation' for c in call_records) else 'pending', 'prompt_rows': len(prompt_records), 'archive_rows': len(archive), 'programs_with_prompt_credit': sum(r['program_count'] for r in prompt_records), 'correct_programs_with_prompt_credit': sum(r['correct_program_count'] for r in prompt_records), 'counter': native_state.get('prompt_evolution_counter')},
+            'prompt_coevolution': {'configured': True, 'reachable': True, 'status': 'new_prompt_stored' if executed_prompt else 'call_exercised' if any(c['role'] == 'prompt_mutation' for c in call_records) else 'unexercised_before_stop' if blocked else 'pending', 'prompt_rows': len(prompt_records), 'archive_rows': len(archive), 'programs_with_prompt_credit': sum(r['program_count'] for r in prompt_records), 'correct_programs_with_prompt_credit': sum(r['correct_program_count'] for r in prompt_records), 'counter': native_state.get('prompt_evolution_counter'), 'note': 'Initial prompt selection and fitness credit were exercised; no prompt mutation call means prompt coevolution itself was not exercised.'},
             'resume': {'status': 'actually_restored' if any(e['kind'] == 'native_state_restored' for e in events) else 'checkpoint_available_not_live_resumed', 'events': [e for e in events if e['kind'] in ('native_state_restored', 'accepted_proposal_recovered', 'checkpoint_requested', 'proposal_held')], 'limitation': 'Accepted pending proposals can resume without repeated mutation/novelty. A generated pre-novelty held proposal is retained but requires explicit stage recovery; automatic blind continuation fails closed.'}},
         'saturation_reviews': [e for e in events if e['kind'] == 'development_saturation_review'],
         'infrastructure_findings': infrastructure,
+        'supervisor_usage': {'path': 'artifacts/campaign-v4/run1/supervisor-usage.json', 'scope': 'Separate supervising Codex sessions, outside experiment-route call budget. Never combine these with experiment calls as if they shared the same ledger.'},
         'accounting_notes': ['Uncached input plus output is the primary token budget. Cached input is separately reported; reasoning output is a subset of output and is not added twice.', 'Reported dollar costs are API-list-price estimates, not actual subscription charges. All observed billing attempts must remain subscription.', 'Remote elapsed sums per-call monotonic durations, including readiness and fixtures; these may overlap other local work. They are not controller wall time or model CPU.', 'Candidate/evaluator CPU and episode resources are exported by run1_science_report.py; do not add those metrics to themselves via native pipeline timing.', 'Effort high is requested and forwarded to Codex; usage reports model while aligned native turn_context metadata independently corroborates model and effort. Native temperature/max_tokens are not forwarded.', 'Bandit nonfinite unobserved extrema are encoded as null in public strict JSON. Runtime originals remain unchanged.'],
         'scientific_limits': ['One development search with reused cases; no independent-discovery reliability claim.', 'All mechanisms enabled together in a prospective ecosystem configuration; no individual mechanism causal attribution.', 'Task improvement, prediction improvement and control benefit from adaptive prediction remain separate hypotheses.', 'No fresh assessment or selection-validation evidence is created by this exporter.'],
         'runtime_provenance': {name: provenance(campaign / name) for name in ('dreamer-resolved.json', 'run1-native-state.json', 'run1-meta-state.json', 'call-budget-ledger.json', 'native-events.jsonl') if (campaign / name).exists()},

@@ -138,9 +138,43 @@
       "stage": "generated_before_novelty"
     }
   ],
-  "held": [],
+  "held": [
+    {
+      "authorized_total_slots": 32,
+      "counts_as_completed_slot": false,
+      "counts_as_reserved_slot": true,
+      "generated_source_available": false,
+      "generation": 3,
+      "held_utc": "2026-10-09T01:51:43.024693+00:00",
+      "provenance": {
+        "bytes": 4699,
+        "path": "results/campaign-v4-run1/gen_3/held-proposal.json",
+        "sha256": "9b453c672473c442bcb591e47ea4b4bc74c4e6d925dca5299d15a6f363027063"
+      },
+      "reason": "Reported usage unavailable; token budget cannot be verified",
+      "retained_material": "sampled parent/inspiration/recommendation context and actual request; no generated program",
+      "sampling": {
+        "archive_inspiration_ids": [
+          "be884d31-8b39-4add-abce-c93d13595c75"
+        ],
+        "generation": 3,
+        "novelty_attempt": 1,
+        "parent_feedback_is_string": true,
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "parent_island": 3,
+        "parent_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+        "parent_text_feedback": "namazu-persistence-information-v4-run1; absolute-task-v1. 48 paired development condition-episodes. Absolute task fitness; prediction losses are diagnostics: {\"episodes\": 48, \"escape\": 0.8541666666666666, \"death\": 0.14583333333333334, \"timeout\": 0.0, \"invalid\": 0, \"task\": 0.8611093750000004, \"keys\": 1.8958333333333333, \"door\": 0.8541666666666666, \"steps\": 53.395833333333336, \"model_score\": 0.9887326187532066, \"seconds\": 0.22787502025069747, \"candidate_cpu_seconds\": 0.1758874791666667, \"evaluator_cpu_seconds\": 0.05244417900000001, \"base_audit\": 0.017536168552477718, \"base_near\": 0.007391806476785009, \"brier_audit\": 0.017286005929940396, \"brier_audit_post_switch\": 0.016507599169363635, \"brier_audit_pre_switch\": 0.017480322975974114, \"brier_destination\": 0.0026213767456624, \"brier_near\": 0.005742449637441384, \"brier_near_post_switch\": 0.00869704098703402, \"brier_near_pre_switch\": 0.005004882221063309, \"brier_threat\": 0.02885108368038207, \"coverage\": 0.589315905839511, \"map_age\": 14.006124137931035, \"persistence_audit\": 0.01776804525946172, \"persistence_near\": 0.00836693111371223, \"persistence_threat\": 0.0420479302832244, \"prevalence_audit\": 0.017850175575497465, \"prevalence_destination\": 0.0027311744049941474, \"prevalence_near\": 0.0072831317466510595, \"reconstruction\": 0.5811548966055404, \"reconstruction_stale\": 0.9825524815793132, \"reconstruction_unseen\": 0.0, \"reconstruction_visible\": 1.0, \"escape_steps\": 55.292682926829265, \"regimes\": {\"uniform-full\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8886875, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"stationary-full\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8759687500000002, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"switch-full\": {\"episodes\": 8, \"escape\": 1.0, \"task\": 0.98615625, \"encountered_switch\": 2, \"post_switch_steps\": 65, \"post_switch_visible_enemy_steps\": 21}, \"stationary-late\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8747187500000001, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"repeat25-full\": {\"episodes\": 8, \"escape\": 0.75, \"task\": 0.7643125, \"encountered_switch\": 8, \"post_switch_steps\": 222, \"post_switch_visible_enemy_steps\": 55}, \"repeat25-late\": {\"episodes\": 8, \"escape\": 0.75, \"task\": 0.7768125000000001, \"encountered_switch\": 8, \"post_switch_steps\": 225, \"post_switch_visible_enemy_steps\": 27}}}. Improve escape/keys/door and escape efficiency under unknown stationary and switching attempted movement laws; blocked enemy attempts stay. Predictive feedback is horizon-1 occupancy at fixed cells in starting-agent coordinates: near targets surround the OLD agent position, audit targets sample interior cells; predictions precede outcomes. Threat losses condition on evaluator-known enemy proximity; audit prevalence is sparse. Sensor radius is public; outside it enemy absence is unobserved. Repeated law dwell times are privately drawn from 20..30 transitions; prediction adaptation may be too slow or decision-irrelevant. Check informative exposure before consequential choices. All representations, memory, updating, helpers and planning may evolve. Do not infer adaptive prediction from map accumulation, or control benefit from lower Brier.",
+        "recommendation": "**Add fast and slow occupancy estimators with evidence-driven switching.** Extend the successful feature-grouped learner with recent, decayed counts alongside its cumulative counts, blending toward the recent estimator when scored occupancy errors show sustained disagreement. Update this mechanism only from observable transition labels and respect `learn=False`; the higher post-switch near loss motivates adaptation without assuming a fixed switching schedule.\n",
+        "resample_attempt": 1,
+        "top_k_inspiration_ids": []
+      },
+      "source_sha256": null,
+      "stage": "before_valid_proposal"
+    }
+  ],
   "patch_attempts": [
     {
+      "classification": "successful_patch_application",
       "error_msg": null,
       "files": {
         "headless_prompt.md": {
@@ -179,6 +213,7 @@
       "timestamp": "2026-10-09T03:33:25.063656"
     },
     {
+      "classification": "successful_patch_application",
       "error_msg": null,
       "files": {
         "headless_prompt.md": {
@@ -215,6 +250,48 @@
       "resample_attempt": 1,
       "success": true,
       "timestamp": "2026-10-09T03:36:01.232829"
+    },
+    {
+      "classification": "no_response_native_attempt",
+      "error_msg": "LLM response content was None.",
+      "files": {},
+      "generation": 3,
+      "llm_cost": null,
+      "llm_model": null,
+      "novelty_attempt": 1,
+      "num_applied": 0,
+      "original_metadata": {
+        "bytes": 277,
+        "path": "results/campaign-v4-run1/gen_3/attempts/novelty_1/resample_1/patch_1/metadata.json",
+        "sha256": "5122554c6862a7a87414fd201848486b96926c885571401e83b9f2047e896189"
+      },
+      "patch_attempt": 1,
+      "patch_description": null,
+      "patch_name": null,
+      "resample_attempt": 1,
+      "success": false,
+      "timestamp": "2026-10-09T03:51:40.942019"
+    },
+    {
+      "classification": "no_response_native_attempt",
+      "error_msg": "LLM response content was None.",
+      "files": {},
+      "generation": 3,
+      "llm_cost": null,
+      "llm_model": null,
+      "novelty_attempt": 1,
+      "num_applied": 0,
+      "original_metadata": {
+        "bytes": 277,
+        "path": "results/campaign-v4-run1/gen_3/attempts/novelty_1/resample_1/patch_2/metadata.json",
+        "sha256": "d61d41f95a404c93d497a1ce85df9fa52ed8b6dedbc08aee2ab89877220ae45c"
+      },
+      "patch_attempt": 2,
+      "patch_description": null,
+      "patch_name": null,
+      "resample_attempt": 1,
+      "success": false,
+      "timestamp": "2026-10-09T03:51:43.017290"
     }
   ]
 }

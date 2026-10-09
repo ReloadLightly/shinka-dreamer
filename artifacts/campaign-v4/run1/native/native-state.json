@@ -11,18 +11,18 @@
       0.9025
     ],
     "max_cost_observed": 0.385618,
-    "min_cost_observed": 0.1683208,
+    "min_cost_observed": 0.0,
     "n_completed": [
       1.0,
       1.0
     ],
     "n_costs": [
       1.0,
-      1.0
+      2.0
     ],
     "n_submitted": [
       1.0,
-      1.0
+      2.0
     ],
     "obs_max": null,
     "obs_min": null,
@@ -35,18 +35,18 @@
       0.1683208
     ]
   },
-  "boundary": "parent_sampled",
+  "boundary": "launcher_finally",
   "meta_state_sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df",
   "prompt_api_cost": 0.0,
   "prompt_evolution_counter": 2,
   "prompt_percentile_recompute_counter": 1,
   "rng_state_sha256": {
     "bandit_rng": "86dce44c6767ac920ece73901b09edba27644366e1d6b2a52f28051db9d492a0",
-    "numpy_rng": "79d8e276854980ae68cf3af55084d9442b2917a75aa8762fa10da5953bb0a273",
-    "python_rng": "2db1e1b9bb69309096296668b0a9a3d80dfcb885c7ba4de4e994d3096d803b9e"
+    "numpy_rng": "37f50761d55fcf41cc029a9d9a88989a944d4fe9d8cd3079d0a055022698364c",
+    "python_rng": "6186c55283e45989c5262239aed4bfda2f30f2d6459b486a812bc776df7670cf"
   },
   "saturation_reviews": [],
-  "saved_utc": "2026-10-09T01:41:48.212647+00:00",
+  "saved_utc": "2026-10-09T01:51:46.681044+00:00",
   "side_effects_completed_program_ids": [
     "385de283-f3d7-4e68-b774-3c44ebbf50f6",
     "be884d31-8b39-4add-abce-c93d13595c75"

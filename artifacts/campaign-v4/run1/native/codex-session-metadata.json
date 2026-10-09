@@ -269,7 +269,7 @@
     {
       "alignment": "session start inside subprocess call interval; latest admission if nested",
       "call_id": "20261009T014148225052Z-83be6814",
-      "last_event_utc": "2026-10-09T01:43:32.037Z",
+      "last_event_utc": "2026-10-09T01:51:33.037Z",
       "latest_native_token_report": null,
       "latest_token_report_utc": null,
       "model_effort_contexts": [
@@ -284,6 +284,6 @@
       "tool_calls_by_name": {}
     }
   ],
-  "snapshot_utc": "2026-10-09T01:43:40.673166+00:00",
+  "snapshot_utc": "2026-10-09T01:55:18.104581+00:00",
   "token_note": "Native input_tokens includes cached input; Headless inputTokens excludes cache. This is corroboration of the same calls, never additional token usage."
 }

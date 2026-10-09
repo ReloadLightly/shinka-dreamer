@@ -24,6 +24,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T011056081633Z-e4c8dddb",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "37e19b467bd38f8f8fda2bc800eb2ab4986560720c0717b8eedd529a84b651d3",
       "record_provenance": {
         "bytes": 2281,
@@ -36,6 +37,7 @@
       "role": "readiness",
       "started_utc": "2026-10-09T01:10:56.081688+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -112,6 +114,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T011122444414Z-c34cb545",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "37e19b467bd38f8f8fda2bc800eb2ab4986560720c0717b8eedd529a84b651d3",
       "record_provenance": {
         "bytes": 2282,
@@ -124,6 +127,7 @@
       "role": "readiness",
       "started_utc": "2026-10-09T01:11:22.444451+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -200,6 +204,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T011646755206Z-7c86e4db",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "446f8f19a085ec05a2f62a058d3fa31c7c4b97ea488109151fe5c454f26ee0b2",
       "record_provenance": {
         "bytes": 2291,
@@ -212,6 +217,7 @@
       "role": "readiness",
       "started_utc": "2026-10-09T01:16:46.755273+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -297,6 +303,7 @@
           "success": true
         }
       ],
+      "outcome": "successful_return",
       "prompt_sha256": "86bd73ff8b82941a941d09d2d150c692aa0a46d52a5a43cbccebcf3459399eee",
       "record_provenance": {
         "bytes": 2302,
@@ -309,6 +316,7 @@
       "role": "mutation",
       "started_utc": "2026-10-09T01:24:47.940721+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -394,6 +402,7 @@
           "success": true
         }
       ],
+      "outcome": "successful_return",
       "prompt_sha256": "76ec7112aaa33e21c798d944f6aa4e7a8ef4e7745b1af32d0c5b6b7640024631",
       "record_provenance": {
         "bytes": 2292,
@@ -406,6 +415,7 @@
       "role": "mutation",
       "started_utc": "2026-10-09T01:33:34.629947+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -482,6 +492,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T013604664477Z-dbafe14c",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "4f630b593ccf11c96e225bcbfa2dd1f92350a38da668d0d5a65f7de76035e9e0",
       "record_provenance": {
         "bytes": 2294,
@@ -494,6 +505,7 @@
       "role": "novelty",
       "started_utc": "2026-10-09T01:36:04.664526+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -570,6 +582,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T013634388537Z-cb5c23f4",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "e4a13de27630bfab148be6ce787a97e3502c9143e0b3d0c753c684392463b018",
       "record_provenance": {
         "bytes": 2296,
@@ -582,6 +595,7 @@
       "role": "summary",
       "started_utc": "2026-10-09T01:36:34.388579+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -658,6 +672,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T013652569416Z-b5c167a9",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "e324431ac0f8e892186b196a6f5e9f1411622072486ed8e6f1d95e3102987229",
       "record_provenance": {
         "bytes": 2290,
@@ -670,6 +685,7 @@
       "role": "summary",
       "started_utc": "2026-10-09T01:36:52.569487+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -746,6 +762,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T013706745742Z-5fa13b9f",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "57b61bafe437805d221209996b4f17e5e31ca05175ad742f9f0f1747921ad98f",
       "record_provenance": {
         "bytes": 2292,
@@ -758,6 +775,7 @@
       "role": "summary",
       "started_utc": "2026-10-09T01:37:06.745818+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -834,6 +852,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T013723956046Z-2d46e315",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "4cfbc6d76e3d5b81bf01f41c95a86e202807cd2b17d488bbc234746eccee2317",
       "record_provenance": {
         "bytes": 2302,
@@ -846,6 +865,7 @@
       "role": "global_insight",
       "started_utc": "2026-10-09T01:37:23.956119+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -922,6 +942,7 @@
       "headless_child_timeout_seconds": null,
       "id": "20261009T013805873369Z-7130a019",
       "native_patch_attempts": [],
+      "outcome": "successful_return",
       "prompt_sha256": "eb666442808eab91921934ae16964c60b26040cb4e1dbf4ed0fc37e437994706",
       "record_provenance": {
         "bytes": 2300,
@@ -934,6 +955,7 @@
       "role": "recommendation",
       "started_utc": "2026-10-09T01:38:05.873410+00:00",
       "status": "completed",
+      "successful_process_return": true,
       "usage": {
         "agent": "codex",
         "billing": {
@@ -988,29 +1010,44 @@
     },
     {
       "billing_required": "subscription",
+      "elapsed_seconds": 590.599790784996,
+      "ended_utc": "2026-10-09T01:51:38.827681+00:00",
       "files": {
         ".prompt.md": {
           "bytes": 35301,
           "path": "results/campaign-v4-run1/model-calls/20261009T014148225052Z-83be6814.prompt.md",
           "sha256": "f9d3431a9808417a08bb95200ffc02e10c46cf7eec578e31dbdd54b22c31789b"
+        },
+        ".stderr": {
+          "bytes": 43,
+          "path": "results/campaign-v4-run1/model-calls/20261009T014148225052Z-83be6814.stderr",
+          "sha256": "b40f2401758e491971608a96f1fe78b6974f127c39618f6ee96eece07131171e"
+        },
+        ".stdout": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T014148225052Z-83be6814.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
       },
       "generation": 3,
       "headless_child_timeout_seconds": 590,
       "id": "20261009T014148225052Z-83be6814",
       "native_patch_attempts": [],
+      "outcome": "timeout_without_response",
       "prompt_sha256": "f9d3431a9808417a08bb95200ffc02e10c46cf7eec578e31dbdd54b22c31789b",
       "record_provenance": {
-        "bytes": 828,
+        "bytes": 941,
         "path": "results/campaign-v4-run1/model-calls/20261009T014148225052Z-83be6814.json",
-        "sha256": "a4c8d09743a22a608b02814f6c4e60f25c0506671df6603d0114f0416256dbf6"
+        "sha256": "8475ea9bfb2cf93e2ff0c2f3428630c42add45bd4f89a803bd1409df932f3eb4"
       },
       "requested_effort": "high",
       "requested_model": "gpt-6.1-sol",
+      "returncode": 124,
       "role": "mutation",
       "started_utc": "2026-10-09T01:41:48.225108+00:00",
-      "status": "started"
+      "status": "completed",
+      "successful_process_return": false
     }
   ],
-  "snapshot_utc": "2026-10-09T01:43:40.673166+00:00"
+  "snapshot_utc": "2026-10-09T01:55:18.104581+00:00"
 }

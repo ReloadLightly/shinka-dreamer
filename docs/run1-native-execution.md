@@ -14,6 +14,33 @@ The four native seed rows represent one evaluated slot and three administrative
 island copies. Generated proposals, patch failures, novelty rejections, completed
 candidate slots and actual model calls are separate counts.
 
+RUN1 stopped normally at **01:51:46 UTC on 9 October 2026**, after a remote
+request timed out and its token usage could not be recovered. There are **three
+persisted slots and a fourth admitted slot held before any valid proposal**.
+Generation 3 retains its sampled context and actual request; there is no generated
+generation-3 source, evaluation or outcome. The 32-slot ceiling was not completed.
+The automatic call gate is blocked; no restart or additional call is authorized.
+
+Across both invocations there were **12 actual model requests: 11 successful
+returns and one timeout exit 124 without a response**. Raw ledger status
+`completed` means the subprocess returned; it does not mean the request succeeded.
+The 125,978 uncached input-plus-output tokens and 135,168 cached tokens cover only
+the 11 calls with reported usage and are **lower bounds**, not exact totals for all
+12 requests. The timed-out call's native session also lacks a token report.
+Summed measured remote elapsed time is **1,445.235 seconds**, including its
+590.600-second failed request. Eleven usage reports independently confirm
+subscription billing; all twelve commands used the strict subscription wrapper.
+Separate [supervisor usage](../artifacts/campaign-v4/run1/supervisor-usage.json)
+must not be conflated with this experiment-route budget.
+
+Native patch metadata contains four attempt records: two successful applications
+and two generation-3 no-response failures. The latter include one local retry
+after the call gate had blocked admission. There were **zero actual remote repair
+calls**, zero returned-patch application rejections and zero discovery novelty
+rejections. The duplicate-source rejection belongs to the separate readiness
+fixture. Neither the local retry nor the held context is an extra remote request
+or an evaluated candidate.
+
 At the first normal checkpoint, three slots had persisted: the seed, generation
 1 with an infrastructure failure, and a valid generation 2. There were 96 measured
 world episodes; generation 1 produced no episode records. Eleven model calls
@@ -41,8 +68,13 @@ percentile counter 1 and one recommendation-history entry. The generation-3
 contains its full parent, generation-2 inspiration, string feedback, a recommendation
 from the saved meta text and the fixed experiment boundary. Its
 [audit](../artifacts/campaign-v4/run1/native/request-audit.json) records exact hashes.
-Later migration and prompt-evolution activity must be read from the observed
-ledger rather than inferred from enabled settings.
+Migration, crossover and prompt mutation were configured and reachable but
+**unexercised before the stop**. The initial prompt received native fitness credit,
+but that is not an observed prompt-coevolution step. One archive inspiration was
+actually supplied; no top-k inspiration was supplied. Model selection, local
+embedding, conditional discovery judging, meta recommendations and actual
+recommendation/state restoration were exercised. Their small number of events
+does not establish that the complete mechanism ecosystem improves discovery.
 
 Native Codex session metadata corroborates actual model and `high` effort.
 Only session IDs, model/effort context, tool counts and token totals are exported;
@@ -69,7 +101,9 @@ child-process cleanup inside the unchanged outer 600-second cap. A factual note
 about generation 1 is appended to future mutation/fix context without rewriting
 historical feedback or meta text. Three deterministic fixtures checked these
 changes with no model calls or world episodes. Frozen original files and installed
-upstream files remain byte-identical.
+upstream files remain byte-identical. The amended child timeout was exercised by
+the final request; no post-amendment candidate evaluation completed, so the
+corrected evaluation clock has fixture evidence only in this RUN1.
 
 ## Reproduction and limited recovery
 
@@ -92,9 +126,9 @@ The same-run corrected launcher is:
 OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/resume_v4_run1.py --run
 ```
 
-Use only one controller and only within the already authorized RUN1 budgets and
-deadline. This command is documentation, not authorization for RUN2 or a renewed
-budget. Original state and database snapshots are retained under
+**Do not run this command now:** the missing-usage gate blocks automatic restart.
+It documents the launcher used for the actual earlier resume, not authorization
+for another request, RUN2 or a renewed budget. Original state and database snapshots are retained under
 `results/campaign-v4-run1/checkpoints/before-runtime-fix`.
 
 Automatic recovery covers a saved proposal **after native novelty acceptance**:
@@ -105,3 +139,10 @@ rejects blind continuation in that case. A later authorized recovery must comple
 that saved proposal's novelty stage with its recorded context, count any actual
 calls, and then evaluate it; regenerating or bypassing the gate would change the
 experiment. No universal automatic-resume claim is made.
+
+The actual held generation 3 is an earlier case: it has no generated source at
+all. Its unknown token cost must first be resolved or explicitly bounded under a
+new authorized accounting decision. A future authorized request must retain and
+count the failed admission and its context; no completed program can be recovered
+from an absent response. This stop is a preserved resource/accounting limitation,
+not a negative evaluation of a generation-3 algorithm.
