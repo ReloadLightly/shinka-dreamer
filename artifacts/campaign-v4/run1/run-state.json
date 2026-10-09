@@ -2,7 +2,7 @@
   "schema": 1,
   "run_id": "v4-run1",
   "authorization": "RUN 1 only; explicit user instruction required for subsequent runs",
-  "status": "running-native-search",
+  "status": "checkpointed-incomplete-stopped",
   "start_utc": "2026-10-09T00:54:23Z",
   "admission_deadline_utc": "2026-10-09T04:24:23Z",
   "hard_deadline_utc": "2026-10-09T04:54:23Z",
@@ -50,33 +50,52 @@
     "historical and current published visual migration with rendering provenance",
     "three persisted candidate slots; gen1 infrastructure loss retained",
     "normal checkpoint and verified native state/recommendation restoration",
-    "runtime amendment: evaluation timeout begins at evaluation launch"
+    "runtime amendment: evaluation timeout begins at evaluation launch",
+    "two substantive native mutant sources saved; one evaluated",
+    "generation3 timeout stopped cleanly; native state and incomplete proposal context preserved",
+    "RUN1 controller and services stopped and reaped",
+    "complete private final checkpoint created with database integrity checks",
+    "Final scientific/native reports and visual snapshots saved; all further delegated work stopped."
   ],
   "remaining": [
-    "bounded native evolutionary execution",
-    "final scientific and mechanism accounting and figures",
-    "checkpoint, stop and reap RUN1 services, commit and push"
+    "Unfulfilled RUN1 search and mechanisms; no further work authorized in this invocation."
   ],
   "actual": {
     "new_candidate_slots": 3,
-    "new_model_calls": 11,
+    "new_model_calls": 12,
     "new_scored_episodes": 96,
     "branch_transitions": 2032,
     "reconstructed_development_transitions": 449,
     "branch_future_attempts": 184,
     "branch_future_valid": 128,
     "seed_escape_count": 41,
-    "snapshot_note": "Normal checkpoint before timer correction. Resumed generation3 is active; the runtime ledger is authoritative for subsequent calls.",
+    "snapshot_note": "Controller exited normally. Token totals cover11/12calls only; one590stimeout has unknown usage. Fourth slot is reserved/held, not a completed or evaluated program.",
     "unavailable_planned_episode_outcomes": 48,
     "invalid_observed_candidate_episodes": 0,
-    "snapshot_utc": "2026-10-09T01:38:46Z",
+    "snapshot_utc": "2026-10-09T01:51:46.684608Z",
     "reported_uncached_input_plus_output_tokens": 125978,
     "reported_cached_input_tokens": 135168,
-    "summed_remote_request_seconds": 854.635298759
+    "summed_remote_request_seconds": 1445.2350895440322,
+    "admitted_slots_including_seed": 4,
+    "persisted_slots": 3,
+    "held_slots": 1,
+    "successful_model_responses": 11,
+    "timed_out_model_calls": 1,
+    "calls_without_usage": 1,
+    "held_unattempted_episode_outcomes": 48
   },
-  "next_authorized_action": "Continue this bounded RUN 1 campaign to its first binding stop, report, checkpoint and stop",
+  "next_authorized_action": "Wait for user instruction. No automatic research, reporting, recovery or subsequent run.",
   "automatic_continuation": false,
   "search_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451",
   "resume_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/resume_v4_run1.py --run",
-  "runtime_amendment": "artifacts/campaign-v4/run1/runtime-amendment.json"
+  "runtime_amendment": "artifacts/campaign-v4/run1/runtime-amendment.json",
+  "controller_stopped_utc": "2026-10-09T01:51:46.684608+00:00",
+  "stop_reason": "A590s mutation timeout returned no usage; the prospectively declared token-accounting guard blocked further admissions.",
+  "recovery_blockers": [
+    "The missing usage must be resolved or a prospective revised resource protocol explicitly authorized; do not silently count it as zero.",
+    "Generation3 was held before a valid source existed. Restore its saved sampling context/stage rather than overwriting it; automatic recovery for this stage is not implemented.",
+    "Original wall deadline remains binding; restarting does not renew the budget."
+  ],
+  "private_checkpoint": "results/campaign-v4-run1/checkpoints/run1-final",
+  "checkpoint_manifest": "artifacts/campaign-v4/run1/checkpoint.json"
 }

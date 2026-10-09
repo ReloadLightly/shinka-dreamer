@@ -1,0 +1,25 @@
+{
+  "run_id": "v4-run1",
+  "saved_utc": "2026-10-09T01:56:01.196745+00:00",
+  "controller_exit_utc": "2026-10-09T01:51:46.684608+00:00",
+  "status": "checkpointed_incomplete_usage_unavailable",
+  "private_checkpoint": "results/campaign-v4-run1/checkpoints/run1-final",
+  "automatic_continuation": false,
+  "processes": {
+    "controller": "exited normally; exec session67730 reaped exit0",
+    "embedding": "PID1442631 terminated; session70055 reaped143",
+    "run1_ui": "PID1457188 port8002 terminated; session36205 reaped143",
+    "preexisting_ui": "port8000 left unchanged"
+  },
+  "pending": {
+    "generation": 3,
+    "stage": "before_valid_proposal",
+    "valid_source_saved": false,
+    "sampling_context_saved": true,
+    "reason": "Headless child timed out590s; no token usage in Headless or native session metadata"
+  },
+  "file_count": 289,
+  "total_bytes": 3087056,
+  "private_file_manifest_sha256": "5eb0d4415a72953b40421ef620cd39dcb163efdf707caea6be2534406f192e82",
+  "private_file_manifest": "results/campaign-v4-run1/checkpoints/run1-final/file-manifest.json"
+}

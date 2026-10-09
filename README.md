@@ -1,32 +1,51 @@
 # ShinkaDreamer: prediction learning and control after evolutionary program search
 
+**RUN 1 stopped incomplete. No automatic continuation is enabled.** The native
+controller stopped on 9 October 2026 at 01:51:46 UTC after a 590-second mutation
+timeout returned no token usage. The registered accounting guard then blocked
+further calls. The four-hour allowance was not exhausted. This was an execution
+and accounting failure, not a scientific stopping result.
 
-RUN 1 is active in the separately versioned **v4 persistence/information wave**.
-The original seed escaped **41/48 development episodes** (task0.8611; zero invalid
-executions); native mutations are now running. This is one discovery execution,
-not held-out confirmation or reliable-discovery evidence. The full configuration
-uses four islands, migration, a two-model reward-only bandit, genuine local
-embeddings and conditional novelty judging, diff/full/crossover, meta feedback
-and prompt evolution. Limits:32total slots including failures,1.5Mreported
-uncached input+output tokens across all roles,120calls, and a four-hour ceiling;
-a prespecified development-saturation rule can stop earlier.
+Three slots persisted: the original seed, one generated program whose evaluation
+was lost to a scheduler timing defect, and one evaluated mutant. A fourth slot
+is held with its sampling context but no generated source. The seed escaped in
+41/48 development episodes; the evaluated mutant escaped in 39/48. Its paired
+escape difference was −4.17 percentage points (descriptive 95% interval −20.83
+to +12.50, resampling eight whole layouts). Neither useful predictive adaptation
+nor a control benefit was established by this run.
 
-The preceding bounded branch diagnostic found **no collision/escape benefit in
-its valid changed-action comparisons**, with one lost-key consequence for the
-learned recommendation. Five disagreement states were unavailable after a
-validator failure; all failures remain recorded. This is limited12-step
-**development** evidence, not a population escape effect or a test ruling out
-useful adaptation. [Branch results](docs/run1-branch-findings.md) ·
-[RUN1 protocol](docs/run1-protocol.md) · [Research roadmap](docs/research-roadmap.md) ·
-[Machine-readable state](artifacts/campaign-v4/run1/run-state.json).
+Actual execution: 96 world episodes, 5,084 transitions, two generated mutant
+sources, and 12 experiment-model requests (11 returned, one timed out). Reported
+uncached input plus output is **at least 125,978 tokens**; the timeout's usage is
+unknown. Summed request time was 1,445 seconds. Supervision and implementation
+consumed substantial additional resources, reported separately. Full native
+machinery was configured, but migration, crossover and prompt mutation did not
+execute before the stop. This is not a completed full-machinery experiment.
 
-The historical v3 assessment remains paused; its already completed interim
-analysis and profiling diagnostic are preserved below. Subsequent numbered
-runs require a new user instruction. Historical visual restyling uses saved
-results only, with separate rendering provenance.
+The bounded branch diagnostic also remains limited negative development evidence.
+Historical v2/v3 evidence is preserved, and the large v3 assessment stays paused.
+All RUN1 workers and its local services are stopped. Completed visual migration
+used saved data and has separate rendering provenance.
 
-Live local dashboard while this run is active:
-`http://localhost:8002/viz_tree.html?db_path=programs.sqlite`.
+[Scientific results](docs/run1-scientific-results.md) ·
+[Native execution and recovery limits](docs/run1-native-execution.md) ·
+[Branch findings](docs/run1-branch-findings.md) ·
+[Figures and resource scopes](artifacts/campaign-v4/run1/figures/README.md) ·
+[Recorded protocol](docs/run1-protocol.md) ·
+[Machine-readable checkpoint](artifacts/campaign-v4/run1/run-state.json).
+
+Saved-data reproduction, with no model calls or candidate execution:
+
+```bash
+.venv/bin/python scripts/run1_native_report.py
+.venv/bin/python scripts/run1_science_report.py
+.venv/bin/python scripts/run1_figures.py
+```
+
+The preserved same-run launcher is `OPENBLAS_NUM_THREADS=1 .venv/bin/python
+scripts/resume_v4_run1.py --run`; it currently refuses continuation because usage
+is unresolved and the held stage needs explicit recovery. It is not an instruction
+to restart. Any recovery or later numbered run requires a new user instruction.
 
 ---
 

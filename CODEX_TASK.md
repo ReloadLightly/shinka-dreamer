@@ -1,3 +1,15 @@
+# Current checkpoint: RUN 1 stopped incomplete
+
+RUN1 stopped at 2026-10-09 01:51:46 UTC after a mutation timeout with missing
+usage triggered its accounting guard. All RUN1 workers/services are stopped.
+The user has objected to further allowance spent on infrastructure and reporting.
+Do not restart, launch RUN2, resume v3 assessment, or perform additional analysis
+without a new instruction. Completed results and recovery limitations are in the
+README and artifacts/campaign-v4/run1/run-state.json. Earlier instructions below
+are preserved history, not current authorization to continue execution.
+
+---
+
 # Authorized current work: RUN 1 of the reviewed roadmap
 
 The user's 9 October 2026 instruction supersedes the earlier pause on **new** work,
