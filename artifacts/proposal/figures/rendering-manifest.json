@@ -1,0 +1,65 @@
+{
+  "purpose": "Saved-data rendering of the initial original-proposal seed only",
+  "style": "Chromatic Field v1 \u00b7 repository presentation 2",
+  "command": ".venv/bin/python -m proposal.figures",
+  "inputs_sha256": {
+    "artifacts/proposal/initial-evaluation/episodes.json": "76c6c1fa00c893cae1152f4f00bddba27b9900b71dc6a607d4ac3afbb4cea9e4",
+    "artifacts/proposal/initial-evaluation/metrics.json": "9b6b285d4e943af9f3f7d2f0a039308aa117987b4d50280b71ff70e15fad25b7",
+    "artifacts/proposal/initial-evaluation/manifest.json": "608e0799326cb22fe3ce0be17caab21e897cec537405dd20112d76e01d43ad22"
+  },
+  "sources_sha256": {
+    "proposal/figures.py": "f936bccce4cbf83f6c7acc841354b0b05c9dc3261428125523948a8fa1e49124",
+    "scripts/chromatic_fields.py": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+  },
+  "outputs_sha256": {
+    "initial-outcomes.svg": "bcca9090b27d8289503664a4dbf8e24cc708f2e225fa9721729594786f23b040",
+    "initial-outcomes.pdf": "fb6b527b3b48aa3725e8211ca6ab676fb61300698bff96679b4621681847677d",
+    "initial-outcomes.png": "9d9bd11e70ea1d42c19e8b53d4a7cd2ddef7a6ae1ab69792d167a2db98831b8d",
+    "initial-replay.svg": "8e7a7d4b58ce8e6402e40d942ddd0647de777c8b34ba8b55c2da6e4d6070ed45",
+    "initial-replay.pdf": "61c3ca26986b0d08b9a734299cec25108eafaf1cc119344b558aaf5f466a6f91",
+    "initial-replay.png": "bac21f815fccc208a6f5aca7e57987973d5f4b1a8a05ba95963210a072a68497",
+    "captions.json": "e705ce7e59fb0695e46508085b199ad83080bf89f2bac30452b4de1c6e8b92c1"
+  },
+  "episodes": 32,
+  "outcomes": {
+    "escaped": 0,
+    "caught": 20,
+    "timeout": 12,
+    "invalid": 0
+  },
+  "replay_case": 0,
+  "replay_records": [
+    {
+      "trace_index": 0,
+      "step": 0,
+      "correct": 25,
+      "audited": 25,
+      "world_cells": 225,
+      "origin": [
+        5,
+        5
+      ],
+      "agent": [
+        5,
+        5
+      ]
+    },
+    {
+      "trace_index": 85,
+      "step": 85,
+      "correct": 111,
+      "audited": 113,
+      "world_cells": 225,
+      "origin": [
+        5,
+        5
+      ],
+      "agent": [
+        10,
+        12
+      ]
+    }
+  ],
+  "execution": "No agents, environments, model calls, resampling, or evolutionary search executed"
+}
