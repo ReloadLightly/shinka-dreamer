@@ -2,7 +2,7 @@
   "schema": 1,
   "run_id": "v4-run1",
   "authorization": "RUN 1 only; explicit user instruction required for subsequent runs",
-  "status": "implementation",
+  "status": "running-native-search",
   "start_utc": "2026-10-09T00:54:23Z",
   "admission_deadline_utc": "2026-10-09T04:24:23Z",
   "hard_deadline_utc": "2026-10-09T04:54:23Z",
@@ -43,7 +43,9 @@
     "bounded branch execution and analysis (23states,184futures,56validatorfailures preserved)",
     "two distinct subscription model calls verified",
     "genuine local CPU embedding service verified",
-    "four v4 physical/information checks plus invalid-denominator check"
+    "four v4 physical/information checks plus invalid-denominator check",
+    "full native configuration frozen at e8f4881",
+    "native seed evaluation and first real mutation request launched"
   ],
   "remaining": [
     "native adapter final focused verification and freeze",
@@ -52,14 +54,17 @@
     "checkpoint commit and push"
   ],
   "actual": {
-    "new_candidate_slots": 0,
+    "new_candidate_slots": 1,
     "new_model_calls": 3,
-    "new_scored_episodes": 0,
+    "new_scored_episodes": 48,
     "branch_transitions": 2032,
     "reconstructed_development_transitions": 449,
     "branch_future_attempts": 184,
-    "branch_future_valid": 128
+    "branch_future_valid": 128,
+    "seed_escape_count": 41,
+    "snapshot_note": "Seed completed; first mutation in flight. Runtime ledger is authoritative for later calls."
   },
-  "next_authorized_action": "Implement and execute bounded RUN 1; checkpoint and stop",
-  "automatic_continuation": false
+  "next_authorized_action": "Continue this bounded RUN 1 campaign to its first binding stop, report, checkpoint and stop",
+  "automatic_continuation": false,
+  "search_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451"
 }

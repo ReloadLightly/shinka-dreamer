@@ -1,5 +1,36 @@
 # ShinkaDreamer: prediction learning and control after evolutionary program search
 
+
+RUN 1 is active in the separately versioned **v4 persistence/information wave**.
+The original seed escaped **41/48 development episodes** (task0.8611; zero invalid
+executions); native mutations are now running. This is one discovery execution,
+not held-out confirmation or reliable-discovery evidence. The full configuration
+uses four islands, migration, a two-model reward-only bandit, genuine local
+embeddings and conditional novelty judging, diff/full/crossover, meta feedback
+and prompt evolution. Limits:32total slots including failures,1.5Mreported
+uncached input+output tokens across all roles,120calls, and a four-hour ceiling;
+a prespecified development-saturation rule can stop earlier.
+
+The preceding bounded branch diagnostic found **no collision/escape benefit in
+its valid changed-action comparisons**, with one lost-key consequence for the
+learned recommendation. Five disagreement states were unavailable after a
+validator failure; all failures remain recorded. This is limited12-step
+**development** evidence, not a population escape effect or a test ruling out
+useful adaptation. [Branch results](docs/run1-branch-findings.md) ·
+[RUN1 protocol](docs/run1-protocol.md) · [Research roadmap](docs/research-roadmap.md) ·
+[Machine-readable state](artifacts/campaign-v4/run1/run-state.json).
+
+The historical v3 assessment remains paused; its already completed interim
+analysis and profiling diagnostic are preserved below. Subsequent numbered
+runs require a new user instruction. Historical visual restyling uses saved
+results only, with separate rendering provenance.
+
+Live local dashboard while this run is active:
+`http://localhost:8002/viz_tree.html?db_path=programs.sqlite`.
+
+---
+
+
 ## Unknown dynamics: current experiment
 
 **Interim result: online learning improves prediction under unknown dynamics;
