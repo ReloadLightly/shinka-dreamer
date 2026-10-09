@@ -34,7 +34,10 @@ Generation 8 was generated but held before novelty at the call cap: it is neithe
 accepted nor evaluated. Runtime was 44.93 measured wall-minutes. Independent audit
 verified hashes, episodes, lineage, budgets and cleanup. Never relaunch this run.
 
-The next authorized block is the separately prepared `rewrite-r1`, then
+The first rewrite block, `rewrite-r1`, is running from source freeze `f4de683`.
+Its one-shot grant began 2026-10-09 at 12:27:36 UTC, hard end 14:27:36 UTC.
+Inspect its ledger and terminal resource record; never launch that directory again.
+The remaining authorized blocks are
 `rewrite-r2`, `full-r2`, `full-r3`, `rewrite-r3` in the frozen order. Each uses the
 same 120-minute/24-call/5,400-provider-second maximum and a new one-shot grant.
 Checkpoint, audit, commit and push between blocks. All six manifests and the

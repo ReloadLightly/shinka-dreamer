@@ -603,7 +603,15 @@ resource and route audits are in the
 [compact checkpoint](artifacts/proposal/broader-study/search/full-r1/summary.json).
 [Native search guidance](artifacts/proposal/broader-study/search/full-r1/guidance.json)
 is exported as model-produced guidance, not validated scientific findings.
-Five independent blocks, selection and fresh assessment remain.
+A [source inspection](artifacts/proposal/broader-study/search/full-r1/source-inspection.json)
+shows that sparse exported maps coexist with persistent internal terrain and enemy
+beliefs used by the planners. The risk propagation uses hardcoded transition
+assumptions, not learned dynamics. Generation 5 also includes conditional waiting
+near the exit. On these saved training cases its 0.0012 fitness advantage over
+generation 2 follows exactly from five additional mean steps, because the original
+reward assigns a positive step contribution. This arithmetic does not establish
+whether that waiting branch activated. Five independent blocks, selection and
+fresh assessment remain.
 
 ## 5. Discussion and limitations
 

@@ -1,0 +1,82 @@
+{
+  "scope": "Read-only source inspection and arithmetic from saved training results; no causal or fresh-case inference.",
+  "source_sha256": {
+    "artifacts/proposal/broader-study/search/full-r1/programs/generation-002.py": "ac6994efa3befbad8ad7001871d75138c229c5d23250a000014f1534cc57c290",
+    "artifacts/proposal/broader-study/search/full-r1/programs/generation-005.py": "01d5b1cc08358a8d9d29d07a616d0bc37ff3706a648ae5ba1f9ace6eb111fcac",
+    "artifacts/proposal/broader-study/search/full-r1/programs/generation-007.py": "5069b06ea4d2cb386cd9141e8856fe4eba6d020c9f0c580a6f7261bb33fb4163",
+    "artifacts/proposal/broader-study/search/full-r1/slots.json": "7fe089f85a8c38210e3b28222e6dbf9a47024d4052fb489806c589b3db102d06",
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442"
+  },
+  "new_episodes": 0,
+  "model_calls": 0,
+  "findings": [
+    {
+      "generation": 2,
+      "internal_memory": "Persistent terrain, timestamps, visits, inventory, bounds and anonymous enemy occupancy mass.",
+      "reported_map": "Only current visible grid; reported coverage does not measure internal memory.",
+      "risk": "Hardcoded uniform nine attempted moves with observation-conditioned occupancy inference; no estimated transition-law parameters.",
+      "planner": "Weighted graph routing, key ordering, exploration goals and five-step time-expanded control.",
+      "source_lines": [
+        34,
+        81,
+        173,
+        200,
+        205,
+        298,
+        382
+      ]
+    },
+    {
+      "generation": 5,
+      "internal_memory": "Persistent terrain and enemy distributions.",
+      "reported_map": "Current visible cells plus same-epoch walls.",
+      "risk": "Hardcoded nine attempted moves; hidden mass rebalanced toward assumed three-enemy total.",
+      "planner": "Wavefront routing, joint next-enemy scenarios and expected next-action trap risk. Includes conditional exit waiting until step185 or enemy sighting.",
+      "source_lines": [
+        100,
+        132,
+        284,
+        304,
+        315,
+        432,
+        508,
+        568
+      ]
+    },
+    {
+      "generation": 7,
+      "internal_memory": "Persistent terrain and landmarks; possible-arena rectangle hypotheses.",
+      "reported_map": "Current observation only.",
+      "risk": "Fixed passability heuristics and uniform attempted moves; no estimated transition-law parameters.",
+      "planner": "Risk-weighted Dijkstra and five-step beam search tracking position, key mask and door state.",
+      "source_lines": [
+        94,
+        147,
+        176,
+        231,
+        322,
+        390,
+        602
+      ]
+    }
+  ],
+  "scoring": {
+    "source": "proposal/evaluation.py",
+    "lines": [
+      27,
+      34,
+      63
+    ],
+    "observation": "Only reported in-bounds cells enter accuracy; coverage is outside F. Task reward includes a positive 0.1 per elapsed step.",
+    "saved_training_arithmetic": {
+      "generation2_mean_steps": 61.2,
+      "generation5_mean_steps": 66.2,
+      "both_escape_count": 5,
+      "both_episode_count": 5,
+      "both_mean_map_accuracy": 1.0,
+      "fitness_per_extra_step": 0.00024,
+      "generation5_minus_generation2_F": 0.0012
+    },
+    "limit": "The score difference follows exactly from mean step count given these equal outcomes. Source inspection does not establish whether exit-camping activated or caused the extra steps."
+  }
+}

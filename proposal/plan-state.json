@@ -2,7 +2,7 @@
   "plan": "docs/original-proposal-plan.md",
   "research": "docs/shinkaevolve-research.md",
   "date": "2026-10-09",
-  "status": "broader_study_full_r1_checkpointed",
+  "status": "broader_study_rewrite_r1_running",
   "authorization": "User requested completing the broader research study before synthesis and selected up to2hours per block with checkpoints between blocks.",
   "budget_preference": "up_to_two_hours_per_block_with_checkpoints",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
@@ -100,8 +100,8 @@
     "proposal_workers": 1,
     "evaluation_workers": 1
   },
-  "next_stage_preparation": "Full-r1 completed and independently audited. Start the separately prepared rewrite-r1 once this checkpoint is committed and pushed; never relaunch full-r1.",
-  "next_execution_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.evolve_study --results results/proposal-broader-study/search/rewrite-r1 --run-id rewrite-r1 --native-seed 8109261 --slots 25 --calls 24 --provider-seconds 5400 --minutes 120 --treatment rewrite --run",
+  "next_stage_preparation": "Monitor active rewrite-r1, audit terminal results and checkpoint before rewrite-r2. Never relaunch a one-shot directory.",
+  "next_execution_command": null,
   "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
   "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment",
   "previous_stage1_checkpoint": {
@@ -296,7 +296,7 @@
     "supervising_assistant_usage": "Two bounded read-only review subagents and supervising conversation; their token/allowance use is unavailable to the evaluator and excluded from experiment-model counts."
   },
   "broader_study": {
-    "status": "broader_study_full_r1_checkpointed",
+    "status": "broader_study_rewrite_r1_running",
     "scope": "Original current-map reconstruction objective; no predictive-learning extension",
     "subscription_block_budget": "User selected up to2hours per block;24all-rolecall,5400provider-second,25slot caps chosen within it.",
     "completion_requirements": [
@@ -343,7 +343,19 @@
         "terminal_audit": "Source, lineage, acceptance prefixes, all 40 episode rows, 24 raw context audits and cleanup independently verified; no anomalies."
       }
     ],
-    "active_run": null,
+    "active_run": {
+      "run_id": "rewrite-r1",
+      "results": "results/proposal-broader-study/search/rewrite-r1",
+      "source_freeze_commit": "f4de683",
+      "grant": {
+        "started_utc": "2026-10-09T12:27:36.439667+00:00",
+        "hard_end_utc": "2026-10-09T14:27:36.439667+00:00",
+        "admission_end_utc": "2026-10-09T14:27:06.439667+00:00",
+        "manifest_sha256": "26e417c7b7cd1adf16c971d95c120baf89544df5320dcf20a9bb5c865255b430",
+        "automatic_continuation": false,
+        "supervisor_pid": 69096
+      }
+    },
     "remaining_searches": [
       "rewrite-r1",
       "rewrite-r2",
