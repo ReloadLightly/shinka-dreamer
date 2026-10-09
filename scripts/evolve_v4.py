@@ -58,7 +58,7 @@ def main():
         task_sys_msg=(ROOT/'docs/mutation-prompt-v4.md').read_text(),
         num_generations=32,init_program_path=str(control_path('predictive')),
         results_dir=str(results),llm_models=MODELS,llm_dynamic_selection='ucb',
-        llm_dynamic_selection_kwargs={'cost_aware_coef':0.0},llm_kwargs={},
+        llm_dynamic_selection_kwargs={'cost_aware_coef':0.0,'seed':4017392},llm_kwargs={},
         meta_rec_interval=4,meta_llm_models=[MODELS[1]],meta_llm_kwargs={},
         meta_max_recommendations=5,sample_single_meta_rec=True,
         embedding_model='local/bge-small-code-chunks-v1@http://127.0.0.1:8771/v1',

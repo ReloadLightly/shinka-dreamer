@@ -1,0 +1,199 @@
+{
+  "campaign": "namazu-persistence-information-v4-run1",
+  "total_candidate_slots": 32,
+  "primary_budget": {
+    "uncached_input_plus_output_tokens": 1500000,
+    "calls": 120,
+    "remote_elapsed_seconds": 7200,
+    "request_timeout_seconds": 600,
+    "role_caps": {
+      "mutation_repair": 64,
+      "novelty": 16,
+      "summary": 32,
+      "global_insight": 8,
+      "recommendation": 8,
+      "prompt_mutation": 16,
+      "readiness": 4
+    }
+  },
+  "evaluation": {
+    "protocol": "namazu-persistence-information-v4-run1",
+    "objective": "absolute-task-v1",
+    "objective_formula": ".65*escape+.10*keys+.10*door+.05*escape*(1-steps/200); invalid=0",
+    "regimes": [
+      "uniform-full",
+      "stationary-full",
+      "switch-full",
+      "stationary-late",
+      "repeat25-full",
+      "repeat25-late"
+    ],
+    "regime_weights": [
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666
+    ],
+    "enemy_visibility_radius": {
+      "uniform-full": 2,
+      "stationary-full": 2,
+      "switch-full": 2,
+      "stationary-late": 1,
+      "repeat25-full": 2,
+      "repeat25-late": 1
+    },
+    "repeat_law_dwell_uniform_inclusive": [
+      20,
+      30
+    ],
+    "episode_horizon": 200,
+    "law_distribution": {
+      "dirichlet_alpha": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "entropy_min_nats": 1.2,
+      "max_component": 0.6,
+      "switch_min_tv": 0.3,
+      "switch_first_transition_inclusive": [
+        25,
+        75
+      ]
+    },
+    "rng": {
+      "layout": "layout (unchanged v2 generation)",
+      "initial_law": "v3:law:initial",
+      "replacement_law": "v3:law:replacement",
+      "repeated_laws": "v4:law:segment:{i>=1}",
+      "repeated_timing": "v4:switch-time:segment:{i>=0}",
+      "switch_time": "v3:switch-time",
+      "enemy_innovations": "v3:enemy-innovations",
+      "forecast_targets": "v3:forecast-targets",
+      "candidate": "v3:candidate",
+      "enemy_draws_per_tick": 3,
+      "sampler": "one uniform innovation, inverse CDF per enemy"
+    },
+    "source_sha256": {
+      "evaluate_v4.py": "b8e9075255055598079bcee4560c81d9ac4c4efcdc0edd58eec5fa5a9e1e1391",
+      "dreamer/evaluation_v4.py": "68a278d61a13aeb7cd1faca86a94db9e50e43f531a4585095211d9d5bde7a0c1",
+      "dreamer/world_v4.py": "bf1cf2a984bd76dc6b14f58773a1e8827b2b3dcc2d3d58535b343ae334c72c1b",
+      "dreamer/world_v3.py": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/worker_v3.py": "7c8a71365fb4e2378a64e554e81624034c23e3bc41446ebce88ed735f7139f37",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/bridge_v4.py": "fc6de4dac924f15ce85d81d08a8f3649d60cc13f63a283dda2534b656ffe69ce",
+      "dreamer/provenance.py": "6aa2a3041120ab8033bace631caaf6abcdb3998f35b36fb0d4f5e9b4d0b6cb0e"
+    },
+    "controls": {
+      "predictive": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+      "memory": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e"
+    },
+    "runtime": {
+      "evaluator_python": "3.10.12",
+      "candidate_executable": "/usr/bin/python3",
+      "candidate_executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "candidate_args": [
+        "-s",
+        "-S"
+      ],
+      "hash_seed": 0,
+      "agent_random_seed_before_exec": "stream_seed(case, 'v3:candidate')",
+      "limits": {
+        "address_space_mib": 192,
+        "cpu_seconds": 10,
+        "evaluator_cpu_seconds_per_process": 60,
+        "evaluator_processes": 3,
+        "episode_workers": 2,
+        "evaluation_wall_seconds": 480,
+        "reply_seconds": 3,
+        "source_kib": 512,
+        "reply_mib": 2,
+        "file_descriptors": 64
+      },
+      "isolation": "Landlock + seccomp, unchanged from v2"
+    }
+  },
+  "development_pool": {
+    "path": "/home/roland/projects/shinka-dreamer/results/private/v4-run1-development-seeds.json",
+    "sha256": "c75a8d2c14bf6529718aeee7193d7c3da2489bd94cacafc383a2d47b2a0ee2e7",
+    "episodes": 8
+  },
+  "regimes": [
+    "uniform-full",
+    "stationary-full",
+    "switch-full",
+    "stationary-late",
+    "repeat25-full",
+    "repeat25-late"
+  ],
+  "candidate_episodes": 48,
+  "seed_program_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+  "seed_source": "immutable original predictive seed; no hand-engineered comparator or v3 champion incorporated",
+  "protocol_sha256": "738116c4be6ac3d1008c764d711dcf4a8d6617b5a40f59f2338a5535f97a5d0c",
+  "resolved_sha256": "ff3495626d12f22b3db6a8292ad9e880174fe80ce93b7e81bcde1694908b98ad",
+  "embedding": {
+    "repository": "qdrant/bge-small-en-v1.5-onnx-q",
+    "revision": "aa8f8b060edb00e03bfdd08813a2949946c8ba55",
+    "files": [
+      "vocab.txt",
+      "special_tokens_map.json",
+      "config.json",
+      "ort_config.json",
+      "tokenizer.json",
+      "model_optimized.onnx",
+      "tokenizer_config.json"
+    ],
+    "model": "BAAI/bge-small-en-v1.5",
+    "endpoint_model": "bge-small-code-chunks-v1",
+    "dim": 384,
+    "threads": 1,
+    "device": "CPUExecutionProvider",
+    "aggregation": "source-offset chunks <=480 wordpiece tokens; unweighted mean, L2 normalize",
+    "limitation": "general English encoder on code; upstream first10000characters",
+    "packages": {
+      "fastembed": "0.7.3",
+      "onnxruntime": "1.23.2",
+      "tokenizers": "0.23.2",
+      "numpy": "2.2.6"
+    },
+    "source_sha256": "ca46afd874810583b8b48a77396964d66fae04d81c342164c40d22eaea2a43b1",
+    "file_sha256": {
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "special_tokens_map.json": "5d5b662e421ea9fac075174bb0688ee0d9431699900b90662acd44b2a350503a",
+      "config.json": "13582bcf2effc85b7bf3d3f5532e686bc1c9ce86bb009d10f0ec33cbe92299dd",
+      "ort_config.json": "99881c45e073696289224931dd48694398bc6bcd1fe7cb7018bca1e0cc00e1fc",
+      "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+      "model_optimized.onnx": "51f1bd0addd6e859e42c2c8021a5e5461385bb676a649f4b269aa445449f2431",
+      "tokenizer_config.json": "0b29c7bfc889e53b36d9dd3e686dd4300f6525110eaa98c76a5dafceb2029f53"
+    }
+  },
+  "worker_instruction_sha256": "a4cf5c3307406c9f7008bf7cfff4b8c35b48d07770c4660efa1f6f12bea3836c",
+  "subscription_readiness_sha256": "e89dfbb8c46aff8c317b2dcf3901be85e96850d55b8eec80553f6ac94b62d89b",
+  "driver_sha256": {
+    "scripts/evolve_v4.py": "7df3c4ba3d099f31200e96910befec9915dcb09bd402d68b1b68c08f2d49e937",
+    "scripts/run1_readiness.py": "b1445099a4f9022b2160f3d2a5cba180b5ee7729938928ef7ca3050b6685ebf9",
+    "dreamer/native_run1.py": "a495ee9e43c0faa3e5e2afd5a1d1a2eb5ecfe214d634dedf2919906ed13cfe51",
+    "dreamer/native.py": "4e457b8781a099482b7a497312a11812e069467b41a875805d7ea2e68f1f8cc0",
+    "dreamer/headless_transport.py": "45bb98f19d4099c37cc401c01a9e38dfe13a27f1b126b2eba4af6d9a1627886c",
+    "scripts/subscription_headless.sh": "caedeafe87fcf0774838af0e9e8dfb965fcdfba9ce47a16b2b659359a1f0a04d",
+    "scripts/run1_embedding_server.py": "ca46afd874810583b8b48a77396964d66fae04d81c342164c40d22eaea2a43b1",
+    "docs/mutation-prompt-v4.md": "ecb33b5c16a9d55c5b7e4e6ee9a4da22f17d019bfc090f20ccdac22ade33bd3d"
+  },
+  "installed": {
+    "shinka_revision": "9912af12d423504b8d580f4179fd15f5f88b8c50",
+    "shinka_version": "0.0.7",
+    "shinka_python_sha256": "1dcc5fb99df0ca7957d0e0f74803e64ab1bf8c80a5c31abe78070444a5139ff4",
+    "headless_revision": "93cd9b06b85f848af1308c41e018991b33907c5e",
+    "headless_js_sha256": "61fcadcb61d04661aecffb84ef24480c3ca0e3d44fbc693ecd0035bcb9fde0ab",
+    "codex": "codex-cli 0.161.0"
+  }
+}
