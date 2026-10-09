@@ -1,0 +1,93 @@
+{
+  "created_utc": "2026-10-09T13:03:28.840461+00:00",
+  "scope": "Saved-evidence accountability checkpoint. Historical search spans may start before the20-hour supervision window; do not treat campaign totals as a precise20-hour quota ledger.",
+  "supervision_accounting": "supervision-usage-review.json",
+  "source_sha256": {
+    "artifacts/campaign-v3/native-audit.json": "603592e42d73fb8a3458a09af0a572ad96a006c30dfd89df73ac88a149e738dc",
+    "docs/v3-interim-assessment.md": "206496543c44affa5b5855312f2397d6b700d3efe4522cdf3a51fbf584b16b65",
+    "artifacts/campaign-v4/run1/run-state.json": "0d85b7ddee7e068b8ace5751fc4edf89ece8fe4ecfe4f06142e52cfb9570ec64",
+    "artifacts/campaign-v4/run1/science/summary.json": "e90cc409cacd9546d08b302e942c4318eb2e8ba7698accb4aa9324ac64f8573f",
+    "artifacts/proposal/full-native-01/summary.json": "657d2c004c62048fa5fb42c8ed75f6999bfe0d28eaf96f5130cd5335c8904916",
+    "artifacts/proposal/stage5-assessment/summary.json": "02b4b248ca39f0ddd83eed180e580852f45b59317115c987d91e5b0d7f2e3422",
+    "artifacts/proposal/broader-study/controls-assessment/summary.json": "a082ca5962c216cbb179266f53dc980e7848b72f2eb072bba5d225f58f50f391",
+    "artifacts/proposal/broader-study/search/full-r1/summary.json": "610861835db0696bb24147d88e759b9612f68c823b34fec63b06dca6ca8ea4fe",
+    "artifacts/proposal/broader-study/search/full-r1/source-inspection.json": "f0fc1163422033cb98c9e77fda4971804b57b9cb76e97a7927f3f9b80cdac14a",
+    "artifacts/proposal/broader-study/search/full-r1/guidance.json": "41ca7ce570e7276b01078ccbe05c9f8fc4f546e0bf19d9ed7b426575c8f0998d",
+    "artifacts/proposal/broader-study/search/rewrite-r1/summary.json": "dfe3be9327814db22e7fbdae72a45a4737f4d661810530e648f8d2f3ae3f1048",
+    "artifacts/proposal/broader-study/supervision-usage-review.json": "e2ee61bc374107fccb13ff5cc74d230b938272352cdefacff50db79db9298ead"
+  },
+  "runs": [
+    {
+      "run": "unknown-dynamics v3",
+      "experiment_requests": 112,
+      "separate_readiness_probes": 4,
+      "requests_by_role": {
+        "mutation_or_repair": 50,
+        "program_summary": 50,
+        "global_insights": 6,
+        "recommendations": 6
+      },
+      "valid_descendants": 49,
+      "contribution": "Selected generation4 replaces categorical occupancy-rate estimates with uniform/slow/fast directional experts, online expert mixing and three-stage hazard planning.",
+      "training_change": "Seed56/72escapes; selected69/72.",
+      "assessment": "399/420escapes across140cases\u00d73regimes; learning improves matched prediction under stationary/switch laws, but no established escape benefit from updating. Original1536-case assessment incomplete.",
+      "diminishing_return": "Generation4 captured98.97%of eventual training task-score gain. Later45slots cost46mutation/repaircalls and2,026,270reportedtokens without improving the ultimately selected program.",
+      "evidence": "docs/v3-interim-assessment.md"
+    },
+    {
+      "run": "v4 RUN1",
+      "experiment_requests": 12,
+      "contribution": "Two mutant sources generated; one evaluated descendant, one infrastructure-lost evaluation and a later held timeout.",
+      "outcome": "No evaluated descendant surpassed the seed. Search incomplete.",
+      "evidence": "artifacts/campaign-v4/run1/science/summary.json"
+    },
+    {
+      "run": "original-task initial native search",
+      "experiment_requests": 5,
+      "valid_descendants": 2,
+      "contribution": "Replaces greedy/random navigation with persistent terrain tracking, graph pathfinding, key/door goals, exploration and hardcoded next-step enemy risk.",
+      "assessment": "Frozen generation2 escaped239/256fresh cases vs2/256originalseed; mean Fdifference0.402573,95%CI[0.383537,0.420061].",
+      "limit": "Improvement against weak seed; not learned transition dynamics or proof of reliable evolutionary discovery.",
+      "competent_control": "Separate256cases:243escapes vs230handcrafted; primaryFadvantage0.022961 familyCI[-0.003703,0.049810], unresolved.",
+      "evidence": "artifacts/proposal/stage5-assessment/summary.json"
+    },
+    {
+      "run": "full-r1 independent native",
+      "experiment_requests": 24,
+      "valid_descendants": 7,
+      "contribution": "Substantive routing, enemy-belief and lookahead programs, including ancestry/inspirations and native guidance.",
+      "outcome": "Trainingbest5/5escapes,F0.943888. No fresh selection/assessment.",
+      "diminishing_return": "Aftergeneration2 atprefix3,21morecalls improvedbestFby0.0012, entirely due to5additionalmeansteps rewarded by unchanged objective.",
+      "evidence": "artifacts/proposal/broader-study/search/full-r1/summary.json"
+    },
+    {
+      "run": "rewrite-r1 independent seed rewrites",
+      "experiment_requests": 6,
+      "valid_descendants": 4,
+      "contribution": "Four valid independent full rewrites from original seed.",
+      "outcome": "All four escaped5/5trainingcases; no fresh selection/assessment. One timeout and one operator-interrupted request. Stopped early for accountability review.",
+      "evidence": "artifacts/proposal/broader-study/search/rewrite-r1/summary.json"
+    }
+  ],
+  "guidance_return": {
+    "actual_ideas": [
+      "Separate navigation memory from reported current map",
+      "Risk-weight distant routing",
+      "Inventory-aware key/door planning",
+      "Preserve diffuse hidden-enemy uncertainty",
+      "Extend planning horizons near hazards"
+    ],
+    "observed_code_changes": "Inventory-aware continuation and risk-weighted beam planning appeared in later sources; adaptive7/9-step horizons did not. Later presence does not establish guidance caused the change.",
+    "measured_limit": "No fresh-case benefit from guidance established. Reporting sparsely raises reported-cell accuracy without establishing better internal world modeling."
+  },
+  "management_failures": [
+    "High-effort model choice not calibrated against faster settings.",
+    "Supervision/subagent consumption excluded from headline experimental call counts.",
+    "Known early plateaus did not lead to a visible efficiency decision before further allocation.",
+    "Infrastructure, audits and rendering presented as progress without consistently connecting calls to program changes and measured outcomes.",
+    "Broader independent-search study remains unfinished; neither scaffolding nor visualizations establish completion."
+  ],
+  "now": "All experiment processes stopped; no further model calibration or search launched. No new world episodes during this review.",
+  "new_experiment_model_calls": 0,
+  "new_episodes": 0
+}

@@ -1,3 +1,26 @@
+# Current checkpoint: experiments stopped for accountability review
+
+The latest user challenged the accumulated subscription/Ultra usage and lack of
+clear explanations of what the LLM calls contributed. The active `rewrite-r1`
+experiment was stopped on 2026-10-09 at 12:58:53 UTC. Its six requests produced
+four valid rewrites; one timed out and the final request was operator-interrupted.
+The seed plus four descendants completed25trainingepisodes/1,849transitions.
+The controller lock is free and matching workers are gone. Do not relaunch this
+one-shot directory. No calibration calls were made; the proposed calibration is
+cancelled. No new search or assessment is authorized by this review.
+
+The broader original-proposal study remains incomplete. `full-r1` is complete;
+`rewrite-r1` is interrupted; four planned runs and fresh selection/assessment are
+unexecuted. All historical programs, source freezes and case pools remain intact.
+Read `artifacts/proposal/broader-study/accountability-review.json`, the separate
+`supervision-usage-review.json`, and `proposal/plan-state.json`. The supervision
+metadata covers20hours, but cannot translate tokens into weekly-limit percentage.
+No new experiment-model calls or world episodes were needed for the review.
+Wait for the user's direction; do not silently continue the previous plan or
+launch the cancelled calibration. Paper synthesis still follows completed study.
+
+## Previous active instructions (superseded by the stop above)
+
 # Active work: complete the broader original-proposal study before synthesis
 
 The latest user instruction explicitly moves paper-style synthesis **after** the

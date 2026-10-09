@@ -1,0 +1,14 @@
+{
+  "admission_end_utc": "2026-10-09T14:27:06.439667+00:00",
+  "automatic_continuation": false,
+  "combined_rss_bytes": 785088512,
+  "ended_utc": "2026-10-09T12:58:53.515749+00:00",
+  "hard_end_utc": "2026-10-09T14:27:36.439667+00:00",
+  "returncode": 0,
+  "started_utc": "2026-10-09T12:27:36.439667+00:00",
+  "status": "interrupted_or_failed",
+  "stop_reason": "supervisor_signal:SIGTERM",
+  "stop_reason_sha256": "543a3098f7ce6b484bed534f3fa74f1d8b980fbed1b7ea80a289d2bbf76ae5af",
+  "supervising_assistant_usage": "Additional; not measurable by this experiment ledger.",
+  "supervisor_wall_seconds": 1812.0417577480002
+}

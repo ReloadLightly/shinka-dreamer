@@ -1,0 +1,45 @@
+{
+  "blocked_reason": "Codex context audit failed: missing_or_invalid_audit:FileNotFoundError",
+  "blocked_reason_sha256": "74b721babdf1b784c8667cbd548c4fb10fec47f01189370aebab2671f4419625",
+  "cli_lock_wait_seconds": 0.0027408570022089407,
+  "deadline_utc": "2026-10-09T14:27:06.439667+00:00",
+  "dollars": "Native dollar estimates are API list-price estimates, never subscription charges.",
+  "elapsed_definition": "Sum of monotonic elapsed around actual Headless requests; local embedding CPU is separate.",
+  "limits": {
+    "calls": 24,
+    "remote_elapsed_seconds": 5400.0,
+    "request_timeout_seconds": 500,
+    "role_caps": {
+      "global_insight": 0,
+      "mutation_repair": 24,
+      "novelty": 0,
+      "prompt_mutation": 0,
+      "readiness": 0,
+      "recommendation": 0,
+      "summary": 0
+    }
+  },
+  "primary_budgets": [
+    "actual_all_role_calls",
+    "provider_elapsed_seconds",
+    "deadline"
+  ],
+  "token_budget_enforced": false,
+  "token_definition": "Headless reported inputTokens (uncached) + outputTokens; cached input is separate; reasoning output is included in output.",
+  "totals": {
+    "cache_write_tokens": 0,
+    "cached_input_tokens": 57472,
+    "calls": 6,
+    "remote_elapsed_seconds": 1767.8218546740009,
+    "reported_total_tokens": 117136,
+    "role_groups": {
+      "mutation_repair": 6
+    },
+    "roles": {
+      "mutation": 6
+    },
+    "uncached_input_plus_output_tokens": 59664,
+    "usage_unavailable_calls": 2
+  },
+  "updated_utc": "2026-10-09T12:58:49.642444+00:00"
+}

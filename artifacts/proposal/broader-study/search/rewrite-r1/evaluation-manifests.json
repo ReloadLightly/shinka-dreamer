@@ -1,0 +1,87 @@
+[
+  {
+    "candidate_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "episodes": 5,
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "generation": 0,
+    "purpose": "Development evaluation; no held-out or evolutionary claim",
+    "seed_start": 0,
+    "source_sha256": {
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301"
+    }
+  },
+  {
+    "candidate_sha256": "88dbe4604e34a34361604922b6de0978a8183626e765d4680395bd3be1f1b3c6",
+    "episodes": 5,
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "generation": 1,
+    "purpose": "Development evaluation; no held-out or evolutionary claim",
+    "seed_start": 0,
+    "source_sha256": {
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301"
+    }
+  },
+  {
+    "candidate_sha256": "46e496b4464743969ba80db83c631dda69529657aba6f29f133e93a16616adf1",
+    "episodes": 5,
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "generation": 2,
+    "purpose": "Development evaluation; no held-out or evolutionary claim",
+    "seed_start": 0,
+    "source_sha256": {
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301"
+    }
+  },
+  {
+    "candidate_sha256": "9bf81bd4f93ab0f37f7f122ac387a490d8b6c0a023e69f6707452fb9303a3427",
+    "episodes": 5,
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "generation": 4,
+    "purpose": "Development evaluation; no held-out or evolutionary claim",
+    "seed_start": 0,
+    "source_sha256": {
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301"
+    }
+  },
+  {
+    "candidate_sha256": "06af3a445044ec9b408a8461db9c7d5a2186d0722beb68e58c1ec2ef7c9969e5",
+    "episodes": 5,
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "generation": 5,
+    "purpose": "Development evaluation; no held-out or evolutionary claim",
+    "seed_start": 0,
+    "source_sha256": {
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301"
+    }
+  }
+]

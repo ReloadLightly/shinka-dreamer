@@ -1,0 +1,119 @@
+{
+  "audit_ids_without_model_call": [],
+  "calls": [
+    {
+      "call_id": "20261009T122757100522Z-1e75483a",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "d10530dc34838746448356fdc09f1df007bba0eab061239626d678c8119b0bdc",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T123516385582Z-a23f6490",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 2,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 2
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "5dc4cc73d32bb7f31263d56ad656211c0ce180a2a8ea52fdb53172f6e415dbc9",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T123909166781Z-98582825",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 2,
+        "thread.started": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 2
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "2ab1b65c948cf1615d7e3c9b5fb7764660a2e75b0a5c7dc1281f66714bb4e180",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T124733739690Z-64b3026f",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "0c5264b2921ad8f569e4e542d74b34f8139a70c11ee5826eb5fe6f87de12b444",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T125058115468Z-aa4bdb4b",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "ba80bca36ab9e0c5099c55956d0d737624f81d7cb2adcb05c015e3989a355eba",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T125624804336Z-8eec944a",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "thread.started": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {},
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "997aceba07873f75fe31fb94c139af048d12ef6d645fd319885e3ac3d83d4374",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    }
+  ],
+  "model_call_ids_without_completed_audit": [],
+  "model_call_ids_without_raw_audit": [],
+  "observed_tool_event_records": 0,
+  "scope": "Observed event counts, not unique executed tools. Missing/incomplete raw audits cannot establish tool absence. No raw event payloads, prompts, reasoning, command arguments or outputs exported.",
+  "wrapper_rejections": 0
+}

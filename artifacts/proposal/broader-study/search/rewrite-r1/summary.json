@@ -1,0 +1,454 @@
+{
+  "acceptance_prefixes": [
+    {
+      "all_role_call_prefix": 0,
+      "best_fitness": 0.5363616738311696,
+      "best_generation": 0,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0
+      ]
+    },
+    {
+      "all_role_call_prefix": 1,
+      "best_fitness": 0.939328,
+      "best_generation": 1,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1
+      ]
+    },
+    {
+      "all_role_call_prefix": 2,
+      "best_fitness": 0.939328,
+      "best_generation": 1,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "all_role_call_prefix": 4,
+      "best_fitness": 0.9435329727524348,
+      "best_generation": 4,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "all_role_call_prefix": 5,
+      "best_fitness": 0.9435329727524348,
+      "best_generation": 4,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ]
+    }
+  ],
+  "all_role_calls": {
+    "api_list_price_estimate_usd": 1.0767136,
+    "billing_routes": {
+      "subscription": 5
+    },
+    "calls": 6,
+    "completed_without_reported_usage": 2,
+    "remote_elapsed_seconds": 1767.8218546740009,
+    "reported_usage_calls": 4,
+    "status": {
+      "completed": 6
+    },
+    "successful_process_returns": 4,
+    "timeout_process_returns": 1,
+    "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+    "token_total_exact_for_all_admitted_calls": false,
+    "tokens": {
+      "cacheReadTokens": 57472,
+      "cacheWriteTokens": 0,
+      "inputTokens": 25852,
+      "outputTokens": 33812,
+      "reasoningOutputTokens": 18394,
+      "totalTokens": 117136
+    },
+    "uncached_input_plus_output_tokens": 59664,
+    "unsuccessful_process_returns": 2
+  },
+  "arm": "rewrite",
+  "claim_limits": [
+    "Development-case selection only; no assessment results or search-repeatability inference.",
+    "Configured mechanisms and observed events are separate; events alone do not establish causal benefit.",
+    "Empty/failed searches and missing usage remain explicit; unknown tokens are not zero.",
+    "API list-price estimates are not subscription charges; assistant supervision usage is outside the ledger."
+  ],
+  "embedding_audit": {
+    "call_status_counts": {},
+    "calls_without_resource_measurements": 0,
+    "configured_model": null,
+    "identity_file": "embedding-identity.json",
+    "identity_file_hashes": 0,
+    "identity_recorded": false,
+    "model": null,
+    "native_endpoint_calls": 0,
+    "peak_rss_kib": null,
+    "recorded_chunks": 0,
+    "recorded_endpoint_cpu_seconds": 0,
+    "recorded_endpoint_wall_seconds": 0,
+    "recorded_inputs": 0,
+    "recorded_local_tokens": 0,
+    "repository": null,
+    "revision": null,
+    "scope": "Cached local CPU embedding endpoint only; no paid API route. Local tokens/CPU are separate from subscription-role counts. Startup fixture is infrastructure verification, not evolutionary evidence; its resource use is separate. Do not add wrapper elapsed time to overlapping endpoint wall time. Error calls missing measurements remain explicitly incomplete.",
+    "startup_fixture_present": false,
+    "status": "disabled_by_rewrite_treatment",
+    "unexpected_evidence_in_disabled_treatment": false
+  },
+  "execution_status": "interrupted_or_failed",
+  "mechanisms": {
+    "embeddings": {
+      "configured": null,
+      "observed": {
+        "native_embedding_events": 0,
+        "successful_nonzero_events": 0
+      },
+      "status": "disabled_by_rewrite_treatment"
+    },
+    "inspirations": {
+      "configured": {
+        "num_archive_inspirations": 0,
+        "num_top_k_inspirations": 0
+      },
+      "observed": {
+        "samples_with_inspirations": 0
+      },
+      "status": "disabled_by_rewrite_treatment"
+    },
+    "islands_and_parent_sampling": {
+      "configured": {
+        "num_islands": 1,
+        "parent_selection_strategy": "best_of_n"
+      },
+      "observed": {
+        "sampled_island_counts": {
+          "0": 6
+        },
+        "samples": 6
+      },
+      "status": "enabled"
+    },
+    "meta_recommendations": {
+      "configured": {
+        "meta_llm_models": null,
+        "meta_rec_interval": null
+      },
+      "observed": {
+        "calls": {
+          "global_insight": 0,
+          "recommendation": 0,
+          "summary": 0
+        },
+        "programs_processed": 0,
+        "samples_with_recommendation_text": 0
+      },
+      "status": "disabled_by_rewrite_treatment"
+    },
+    "migration": {
+      "configured": {
+        "migration_interval": 4,
+        "migration_rate": 0.0
+      },
+      "observed": {
+        "recorded_moves": 0
+      },
+      "status": "disabled_by_rewrite_treatment"
+    },
+    "mutation_bandit": {
+      "configured": null,
+      "observed": {
+        "native_arm_counts": {},
+        "requested_model_call_counts": {
+          "gpt-6-astra": 3,
+          "gpt-6.1-sol": 3
+        },
+        "selection_policy": "deterministic alternating model assignment, seed-only independent rewrites"
+      },
+      "status": "disabled_by_rewrite_treatment"
+    },
+    "novelty": {
+      "configured": {
+        "code_embed_sim_threshold": 0.95,
+        "max_novelty_attempts": 1,
+        "novelty_llm_models": null
+      },
+      "observed": {
+        "judge_calls": 0,
+        "native_decisions": 0
+      },
+      "status": "disabled_by_rewrite_treatment"
+    },
+    "operators": {
+      "configured": {
+        "probabilities": [
+          1.0
+        ],
+        "types": [
+          "full"
+        ]
+      },
+      "observed": {
+        "valid_descendant_patch_types": {
+          "full": 4
+        }
+      },
+      "status": "enabled"
+    },
+    "prompt_evolution": {
+      "configured": {
+        "evolve_prompts": false,
+        "prompt_evolution_interval": 4
+      },
+      "observed": {
+        "mutation_calls": 0,
+        "prompt_records": 0
+      },
+      "status": "disabled_by_rewrite_treatment"
+    }
+  },
+  "native_event_counts": {
+    "checkpoint_requested": 2,
+    "failed_slot_counted": 1,
+    "proposal_acceptance_budget": 5,
+    "proposal_held": 1,
+    "sampling": 6
+  },
+  "new_model_calls": 0,
+  "new_world_episodes": 0,
+  "persisted_canonical_slots": 6,
+  "raw_tool_audit": {
+    "audit_ids_without_model_call": [],
+    "model_call_ids_without_completed_audit": [],
+    "model_call_ids_without_raw_audit": [],
+    "observed_tool_event_records": 0,
+    "scope": "Observed event counts, not unique executed tools. Missing/incomplete raw audits cannot establish tool absence. No raw event payloads, prompts, reasoning, command arguments or outputs exported.",
+    "wrapper_rejections": 0
+  },
+  "roles": {
+    "global_insight": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "mutation": {
+      "api_list_price_estimate_usd": 1.0767136,
+      "billing_routes": {
+        "subscription": 5
+      },
+      "calls": 6,
+      "completed_without_reported_usage": 2,
+      "remote_elapsed_seconds": 1767.8218546740009,
+      "reported_usage_calls": 4,
+      "status": {
+        "completed": 6
+      },
+      "successful_process_returns": 4,
+      "timeout_process_returns": 1,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": false,
+      "tokens": {
+        "cacheReadTokens": 57472,
+        "cacheWriteTokens": 0,
+        "inputTokens": 25852,
+        "outputTokens": 33812,
+        "reasoningOutputTokens": 18394,
+        "totalTokens": 117136
+      },
+      "uncached_input_plus_output_tokens": 59664,
+      "unsuccessful_process_returns": 2
+    },
+    "novelty": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "prompt_mutation": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "readiness": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "recommendation": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "repair": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "summary": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    }
+  },
+  "run_id": "rewrite-r1",
+  "saved_episodes": 25,
+  "schema": "proposal-independent-search-checkpoint-v1",
+  "slot_counts": {
+    "failed": 1,
+    "held": 1,
+    "valid": 5
+  },
+  "snapshot_utc": "2026-10-09T12:59:23.689149+00:00",
+  "stop_reason": "supervisor_signal:SIGTERM",
+  "termination_cause": {
+    "class": "other",
+    "note": null,
+    "reason": "supervisor_signal:SIGTERM",
+    "reason_sha256": "543a3098f7ce6b484bed534f3fa74f1d8b980fbed1b7ea80a289d2bbf76ae5af",
+    "recorded": true,
+    "source": "execution-resources"
+  },
+  "transitions": 1849,
+  "valid_descendants": 4
+}

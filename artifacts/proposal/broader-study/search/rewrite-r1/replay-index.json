@@ -1,0 +1,41 @@
+{
+  "file": "representative-replays.json.gz",
+  "replays": [
+    {
+      "candidate_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "case": 0,
+      "frames": 86,
+      "generation": 0,
+      "reason": "caught"
+    },
+    {
+      "candidate_sha256": "88dbe4604e34a34361604922b6de0978a8183626e765d4680395bd3be1f1b3c6",
+      "case": 0,
+      "frames": 46,
+      "generation": 1,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "46e496b4464743969ba80db83c631dda69529657aba6f29f133e93a16616adf1",
+      "case": 0,
+      "frames": 37,
+      "generation": 2,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "9bf81bd4f93ab0f37f7f122ac387a490d8b6c0a023e69f6707452fb9303a3427",
+      "case": 0,
+      "frames": 59,
+      "generation": 4,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "06af3a445044ec9b408a8461db9c7d5a2186d0722beb68e58c1ec2ef7c9969e5",
+      "case": 0,
+      "frames": 44,
+      "generation": 5,
+      "reason": "escaped"
+    }
+  ],
+  "selection": "First saved public-training replay in each valid canonical generation; no episodes rerun."
+}

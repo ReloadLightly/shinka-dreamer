@@ -1,0 +1,289 @@
+{
+  "snapshot_utc": "2026-10-09T12:55:09.460979+00:00",
+  "scope": "Read-only diagnosis prompted by user efficiency critique; no new calls or world episodes. Current rewrite run may still be active.",
+  "input_sha256": {
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T113406698212Z-a44ce567.json": "39484e1c8bcca6493f17fa1a3d85929cf9baa1e2558cddb85abc683c5ba2feef",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T113825651437Z-ff356cf1.json": "e1bd35b3f62d1f14adba1a632ea21b06e9e421f2a9a496ee51480ff8934caa96",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114146563065Z-eadcf09d.json": "76f5bb165d662bb18e306104a0619a65c21718215f8f1e4686537e6accd281cb",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114204957167Z-6826fb26.json": "2fcca82da2f8c7d3c12fb6da346cd25735161297a792e80fcd4526bc4933c122",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114605286869Z-9025e1aa.json": "e218b3c29ecb930e3143d522f36df4a0fdc95dd18ceb9f97c693bad726c26eb4",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114624855398Z-cee3d366.json": "ab9f4cbe86de6403c6235cf001bf6de5a412fdbd9a8be7910637c04823e6ce4c",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114640984453Z-f67ec5b2.json": "2956852ad056389ded21a2ee41d457acd041ed48b29f98adc623e94ae0dda26a",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114657483443Z-c819be45.json": "94c6b7d41bf8395eba601eac31c8927638cb14f4eac722f225a567cbde815bd8",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114715561697Z-4b4b9942.json": "f7d5a90246770b3b2fabf649ff7037edde3770cd592cbecc89fce51838dc5c5e",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114924117429Z-b2f370ed.json": "05f241f10b70a4c3574cf6cd4ceacdb7995b8a68e30b58f65a813dff8dcfe241",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115015758008Z-6ca10c0a.json": "21ef29c00900cf3d5b0cc05baf33f156371210f69840f496ff2cfb1eb74a548b",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115026476544Z-57f20fc4.json": "dd63788afc2ce320c43baf316bab8bd715a58a756b464c9d3d4e4e27e556c90b",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115118103777Z-f9337f9d.json": "2cdfa3b861c4dd13ca5917cd0ed803c4e73e1a8b83c53b88040bda388cb08729",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115212877325Z-0e8e7db7.json": "77bb4375d3bb3c3d8ac6fe327180957fee32c724a59e5cd290ba6fd27e03e15f",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120016395471Z-4efdcf55.json": "47467cbf8b0a855c2bfbc958f3c5a24dc7ac08bb83086a4ff6bcb178b1d9f123",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120033288855Z-ec894876.json": "df379422a8e19ac260eb7b1b4d8d0160a950bf1193214c1835391ab6a1caaf5b",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120141276629Z-1acc2a3a.json": "e496d9d60da15dd588921a9a53fdf81cc03670f54a402b8d87bee119140d03ce",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120159227100Z-a51abf4b.json": "bf66570d465889476ee2307d03a7039f5a093aa22e78934c588d15c3bfe44aee",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121022109665Z-7437783f.json": "5833512f1c9d4e200d245dbe207be04ea16a2ae68b2a0eb2f96250803fa35460",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121642684233Z-a9945d47.json": "199902d58c697ccab63e0faf6cd296fbb0f09f9be5f4ca947bf51536d887f7be",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121659038363Z-77707d9d.json": "9e051bf608128e0fd78a9fe3ee274eb1bfaccf9e128b4b67cc82d8b969f148a9",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121719676058Z-6e6c1339.json": "be7c1cf0e69e665d2dbe776eb3e3536bb9ef0a6d0ccc41478bd62acedb58a3c4",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121737937227Z-1ca545ac.json": "00939394d685d71336aaadaa28633bf8b159b296afd8c6174db550fe3511e550",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121758445075Z-fd53793d.json": "e64d1f402d7a5cf06299db2c8254996afa8c02e6de69736ce24550f4d90aceb7",
+    "results/proposal-broader-study/search/rewrite-r1/model-calls/20261009T122757100522Z-1e75483a.json": "0397bbdda3e570d702a42eed9c0c1e9279f39e581eb26a38d11cf62b76600137",
+    "results/proposal-broader-study/search/rewrite-r1/model-calls/20261009T123516385582Z-a23f6490.json": "022a94a7358063cdbf39eb9337a3eca0cee46ea332f1d0702cac0ab900cdef3c",
+    "results/proposal-broader-study/search/rewrite-r1/model-calls/20261009T123909166781Z-98582825.json": "f5d0c034b6d70200cb36f4cb718585916b1cd47d63fcd23959b4b3872e75da35",
+    "results/proposal-broader-study/search/rewrite-r1/model-calls/20261009T124733739690Z-64b3026f.json": "e6d31147846472135532772f1893b115b9d8fa85da48c37920d23e4d9dfdfea6"
+  },
+  "runs": {
+    "full-r1": {
+      "completed_groups": [
+        {
+          "model": "gpt-6.1-sol",
+          "role": "mutation",
+          "completed_requests": 5,
+          "timeouts": 1,
+          "success_durations_seconds": [
+            242.47638110700018,
+            227.36998290500014,
+            456.8112438160001,
+            347.89558677399964
+          ],
+          "successful_duration_median_seconds": 295.1859839404999,
+          "total_elapsed_seconds": 1755.037338313
+        },
+        {
+          "model": "gpt-6-astra",
+          "role": "mutation",
+          "completed_requests": 4,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            188.83153146999985,
+            124.47957104099987,
+            61.284304754999994,
+            133.61250344000018
+          ],
+          "successful_duration_median_seconds": 129.04603724050003,
+          "total_elapsed_seconds": 508.2079107059999
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "role": "novelty",
+          "completed_requests": 4,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            13.281783874000212,
+            10.70422944899974,
+            13.807030466000015,
+            11.826298020000195
+          ],
+          "successful_duration_median_seconds": 12.554040947000203,
+          "total_elapsed_seconds": 49.61934180900016
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "role": "summary",
+          "completed_requests": 8,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            18.17812805299991,
+            14.782865782000044,
+            16.493570823000027,
+            16.73176625899987,
+            16.348304502000246,
+            19.17253710099976,
+            18.25679731300079,
+            19.03346997999961
+          ],
+          "successful_duration_median_seconds": 17.45494715599989,
+          "total_elapsed_seconds": 138.99743981300026
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "role": "global_insight",
+          "completed_requests": 1,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            48.85830215799979
+          ],
+          "successful_duration_median_seconds": 48.85830215799979,
+          "total_elapsed_seconds": 48.85830215799979
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "role": "recommendation",
+          "completed_requests": 1,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            48.63854139800014
+          ],
+          "successful_duration_median_seconds": 48.63854139800014,
+          "total_elapsed_seconds": 48.63854139800014
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "role": "prompt_mutation",
+          "completed_requests": 1,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            53.40536000699967
+          ],
+          "successful_duration_median_seconds": 53.40536000699967,
+          "total_elapsed_seconds": 53.40536000699967
+        }
+      ],
+      "pending_call_ids_at_snapshot": []
+    },
+    "rewrite-r1": {
+      "completed_groups": [
+        {
+          "model": "gpt-6.1-sol",
+          "role": "mutation",
+          "completed_requests": 2,
+          "timeouts": 1,
+          "success_durations_seconds": [
+            423.71874290100004
+          ],
+          "successful_duration_median_seconds": 423.71874290100004,
+          "total_elapsed_seconds": 904.544464218
+        },
+        {
+          "model": "gpt-6-astra",
+          "role": "mutation",
+          "completed_requests": 2,
+          "timeouts": 0,
+          "success_durations_seconds": [
+            221.04556763899927,
+            191.96433088200047
+          ],
+          "successful_duration_median_seconds": 206.50494926049987,
+          "total_elapsed_seconds": 413.00989852099974
+        }
+      ],
+      "pending_call_ids_at_snapshot": [
+        "20261009T125058115468Z-aa4bdb4b"
+      ]
+    }
+  },
+  "timeout_diagnosis": {
+    "observed": "Both unfinished mutation requests were terminated by the configured Headless480-second child timer with exit124. Raw streams contain started events and messages but no completed-turn or provider error event.",
+    "not_observed": [
+      "capacity error",
+      "rate-limit error",
+      "authentication error",
+      "network error"
+    ],
+    "unknown": "Remote computation versus slow finalization or hang; live provider demand is not exposed.",
+    "terminology_correction": "Local request timeout; do not infer provider outage or overload."
+  },
+  "separate_integration_issue": {
+    "location": "Pinned Shinka database/display.py:162",
+    "cause": "Nullable patch_name is sliced; default argument to dict.get does not replace explicit None.",
+    "effect": "Ancillary summary display failed after generation3 failure row was persisted. Slot/call and F=0 retained; next proposal still used original seed. No observed scientific outcome loss.",
+    "future_fix": "Normalize null display label in a versioned additive adapter; do not mutate currently frozen execution sources."
+  },
+  "efficiency_review": {
+    "selection_weakness": "No prior calibration established that high reasoning effort or these models were necessary.",
+    "later_full_run_return": "After generation2 at all-role prefix3, remaining21 calls improved best training F by0.0012, exactly explained by5additionalmeansteps. No fresh-case benefit established.",
+    "overhead": "Full-native auxiliary roles consumed15/24calls but only5.66/43.38provider-minutes; mutation latency dominates.",
+    "uncontrolled_comparison": "Different models received different prompts, sources and operators; observed durations do not establish intrinsic model-speed ranking.",
+    "candidate_revision": "Small bounded same-input calibration of faster/lower-effort models and auxiliary roles before further allocation; preserve and label any interrupted frozen run."
+  },
+  "available_model_metadata": {
+    "cache_fetched_at": "2026-10-09T12:54:28.505068347Z",
+    "models": [
+      {
+        "slug": "gpt-6.1-sol",
+        "description": "Latest workhorse model for coding and everyday work.",
+        "default_reasoning_level": "low",
+        "supported_reasoning_levels": [
+          {
+            "effort": "low",
+            "description": "Fast responses with lighter reasoning"
+          },
+          {
+            "effort": "medium",
+            "description": "Balances speed and reasoning depth for everyday tasks"
+          },
+          {
+            "effort": "high",
+            "description": "Greater reasoning depth for complex problems"
+          },
+          {
+            "effort": "xhigh",
+            "description": "Extra high reasoning depth for complex problems"
+          },
+          {
+            "effort": "max",
+            "description": "Maximum reasoning depth for the hardest problems"
+          },
+          {
+            "effort": "ultra",
+            "description": "Maximum reasoning with automatic task delegation"
+          }
+        ]
+      },
+      {
+        "slug": "gpt-6-luna",
+        "description": "Fast and affordable model for easier tasks.",
+        "default_reasoning_level": "medium",
+        "supported_reasoning_levels": [
+          {
+            "effort": "low",
+            "description": "Fast responses with lighter reasoning"
+          },
+          {
+            "effort": "medium",
+            "description": "Balances speed and reasoning depth for everyday tasks"
+          },
+          {
+            "effort": "high",
+            "description": "Greater reasoning depth for complex problems"
+          },
+          {
+            "effort": "xhigh",
+            "description": "Extra high reasoning depth for complex problems"
+          },
+          {
+            "effort": "max",
+            "description": "Maximum reasoning depth for the hardest problems"
+          }
+        ]
+      },
+      {
+        "slug": "gpt-5.6-sol",
+        "description": "Older generation workhorse model.",
+        "default_reasoning_level": "low",
+        "supported_reasoning_levels": [
+          {
+            "effort": "low",
+            "description": "Fast responses with lighter reasoning"
+          },
+          {
+            "effort": "medium",
+            "description": "Balances speed and reasoning depth for everyday tasks"
+          },
+          {
+            "effort": "high",
+            "description": "Greater reasoning depth for complex problems"
+          },
+          {
+            "effort": "xhigh",
+            "description": "Extra high reasoning depth for complex problems"
+          },
+          {
+            "effort": "max",
+            "description": "Maximum reasoning depth for the hardest problems"
+          },
+          {
+            "effort": "ultra",
+            "description": "Maximum reasoning with automatic task delegation"
+          }
+        ]
+      }
+    ],
+    "limit": "Catalog presence does not prove successful strict-subscription dispatch or latency/quality on this workload."
+  },
+  "official_guidance": [
+    "https://developers.openai.com/api/docs/guides/model-selection",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+  ],
+  "new_model_calls": 0,
+  "new_episodes": 0
+}

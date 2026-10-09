@@ -1,0 +1,80 @@
+[
+  {
+    "archive_inspiration_ids": [],
+    "generation": 1,
+    "novelty_attempt": 1,
+    "parent_feedback_is_string": true,
+    "parent_id": "e162c965-67ff-4ee2-9b71-c1f86e16415c",
+    "parent_island": 0,
+    "parent_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "recommendation_present": false,
+    "resample_attempt": 1,
+    "top_k_inspiration_ids": [],
+    "utc": "2026-10-09T12:27:57.088157+00:00"
+  },
+  {
+    "archive_inspiration_ids": [],
+    "generation": 2,
+    "novelty_attempt": 1,
+    "parent_feedback_is_string": true,
+    "parent_id": "e162c965-67ff-4ee2-9b71-c1f86e16415c",
+    "parent_island": 0,
+    "parent_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "recommendation_present": false,
+    "resample_attempt": 1,
+    "top_k_inspiration_ids": [],
+    "utc": "2026-10-09T12:35:16.379947+00:00"
+  },
+  {
+    "archive_inspiration_ids": [],
+    "generation": 3,
+    "novelty_attempt": 1,
+    "parent_feedback_is_string": true,
+    "parent_id": "e162c965-67ff-4ee2-9b71-c1f86e16415c",
+    "parent_island": 0,
+    "parent_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "recommendation_present": false,
+    "resample_attempt": 1,
+    "top_k_inspiration_ids": [],
+    "utc": "2026-10-09T12:39:09.104556+00:00"
+  },
+  {
+    "archive_inspiration_ids": [],
+    "generation": 4,
+    "novelty_attempt": 1,
+    "parent_feedback_is_string": true,
+    "parent_id": "e162c965-67ff-4ee2-9b71-c1f86e16415c",
+    "parent_island": 0,
+    "parent_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "recommendation_present": false,
+    "resample_attempt": 1,
+    "top_k_inspiration_ids": [],
+    "utc": "2026-10-09T12:47:33.725984+00:00"
+  },
+  {
+    "archive_inspiration_ids": [],
+    "generation": 5,
+    "novelty_attempt": 1,
+    "parent_feedback_is_string": true,
+    "parent_id": "e162c965-67ff-4ee2-9b71-c1f86e16415c",
+    "parent_island": 0,
+    "parent_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "recommendation_present": false,
+    "resample_attempt": 1,
+    "top_k_inspiration_ids": [],
+    "utc": "2026-10-09T12:50:58.107774+00:00"
+  },
+  {
+    "archive_inspiration_ids": [],
+    "generation": 6,
+    "novelty_attempt": 1,
+    "parent_feedback_is_string": true,
+    "parent_id": "e162c965-67ff-4ee2-9b71-c1f86e16415c",
+    "parent_island": 0,
+    "parent_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "recommendation_present": false,
+    "resample_attempt": 1,
+    "top_k_inspiration_ids": [],
+    "utc": "2026-10-09T12:56:24.782410+00:00"
+  }
+]

@@ -2,9 +2,13 @@
 
 *Scientific implementation report — original-proposal track, with a frozen-program assessment on 256 fresh paired cases.*
 
-The broader experimental study is in progress. Paper-style synthesis follows
-the competent-control, mechanism and independent-search comparisons; the first
-selected-agent assessment alone does not complete that study.
+**Experiments are stopped for an accountability review.** The broader study is
+incomplete; no calibration or further search is running. The
+[contribution record](artifacts/proposal/broader-study/accountability-review.json)
+connects calls to executable changes and measured results. A separate
+[supervision audit](artifacts/proposal/broader-study/supervision-usage-review.json)
+records usage omitted from experimental call totals. Paper synthesis follows
+completion of the study.
 
 ## Abstract
 
@@ -610,8 +614,33 @@ assumptions, not learned dynamics. Generation 5 also includes conditional waitin
 near the exit. On these saved training cases its 0.0012 fitness advantage over
 generation 2 follows exactly from five additional mean steps, because the original
 reward assigns a positive step contribution. This arithmetic does not establish
-whether that waiting branch activated. Five independent blocks, selection and
-fresh assessment remain.
+whether that waiting branch activated. One rewrite block was subsequently
+interrupted after four valid descendants; four planned searches and fresh
+selection/assessment remain unexecuted.
+
+### 4.8 Interrupted rewrite block and accountability checkpoint
+
+The first independent rewrite block was stopped during request6 after the user
+challenged allowance consumption and the clarity of scientific contributions.
+Four returned rewrites each escaped5/5training cases; generation4 has the best
+trainingF=0.943533. The seed and four descendants completed25episodes and1,849
+transitions. Request3 hit the local480-second timeout; request6 was interrupted
+by the operator. This is an interrupted attempt, not a completed budget-matched
+comparison. Its measured runtime was30.20wall-minutes; summed request time was
+29.46minutes. [Programs, outcomes and audit](artifacts/proposal/broader-study/search/rewrite-r1/summary.json)
+and the [operator checkpoint](artifacts/proposal/broader-study/search/rewrite-r1/operator-checkpoint.json)
+are preserved. No fresh selection/assessment or calibration followed.
+
+The [accountability review](artifacts/proposal/broader-study/accountability-review.json)
+records the larger management problem: expensive model settings were not
+calibrated, diminishing returns were already evident, and headline experiment
+counts excluded supervising and delegated assistant work. Local metadata for
+8October17:00 through9October13:00UTC shows two supervisor sessions and42subagent
+sessions with observed usage; both supervisors and16subagents used Ultra.
+Recorded uncached input plus output was3,342,956tokens for supervision and
+7,903,680for subagents. These are partial local token records, not an authoritative
+weekly subscription meter. They cannot be converted to a weekly-limit percentage.
+No claim about productive versus unproductive tokens follows from the aggregate.
 
 ## 5. Discussion and limitations
 

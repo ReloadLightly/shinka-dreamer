@@ -1,0 +1,232 @@
+[
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0006439440003305208,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 423.71874290100004,
+    "ended_utc": "2026-10-09T12:35:14.364684+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T122757100522Z-1e75483a",
+    "mutation_context_validated": true,
+    "prompt_sha256": "967a7b0c29fc211b574ab62946dc996732704a6f085fb61c4fe0d4370fd88fe9",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:27:57.100587+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.1364348
+      },
+      "inputTokens": 8583,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 11804,
+      "reasoningOutputTokens": 7611,
+      "totalTokens": 32675,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.00026233800053887535,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 221.04556763899927,
+    "ended_utc": "2026-10-09T12:39:04.318270+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T123516385582Z-a23f6490",
+    "mutation_context_validated": true,
+    "prompt_sha256": "967a7b0c29fc211b574ab62946dc996732704a6f085fb61c4fe0d4370fd88fe9",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:35:16.385617+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.439028
+      },
+      "inputTokens": 8519,
+      "model": "gpt-6-astra",
+      "outputTokens": 6831,
+      "reasoningOutputTokens": 3106,
+      "totalTokens": 27638,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0007300289998966036,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 480.825721317,
+    "ended_utc": "2026-10-09T12:47:27.303739+00:00",
+    "error_sha256": null,
+    "failure_class": "timeout",
+    "has_error": false,
+    "id": "20261009T123909166781Z-98582825",
+    "mutation_context_validated": true,
+    "prompt_sha256": "b3c168eee726ecdae20afbda0bae44f13c40b1c2f3c70f98e5cdce072e551d5b",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 124,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:39:09.167025+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "cost": {},
+      "inputTokens": 0,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 0,
+      "reasoningOutputTokens": 0,
+      "totalTokens": 0,
+      "usageStatus": "missing"
+    },
+    "usage_missing": true
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.000343854000675492,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 191.96433088200047,
+    "ended_utc": "2026-10-09T12:50:52.560192+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T124733739690Z-64b3026f",
+    "mutation_context_validated": true,
+    "prompt_sha256": "b3c168eee726ecdae20afbda0bae44f13c40b1c2f3c70f98e5cdce072e551d5b",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:47:33.739760+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.409328
+      },
+      "inputTokens": 8514,
+      "model": "gpt-6-astra",
+      "outputTokens": 6238,
+      "reasoningOutputTokens": 2588,
+      "totalTokens": 27040,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0003531600004862412,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 312.4965956900005,
+    "ended_utc": "2026-10-09T12:56:22.128747+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T125058115468Z-aa4bdb4b",
+    "mutation_context_validated": true,
+    "prompt_sha256": "a46ab1734639a83c5c301e4c3692cdfa2f0d1be310c18629b120484b1317f9d3",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:50:58.115508+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 20608,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0919228
+      },
+      "inputTokens": 236,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 8939,
+      "reasoningOutputTokens": 5089,
+      "totalTokens": 29783,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.00040753200028120773,
+    "context_audit_failure": "missing_or_invalid_audit:FileNotFoundError",
+    "context_audit_failure_sha256": "bb646a3d774006825c22563cf1e3efd7c8eccbb8eeeaa4538fe306e01c7fb767",
+    "elapsed_seconds": 137.77089624500059,
+    "ended_utc": "2026-10-09T12:58:48.792804+00:00",
+    "error_sha256": null,
+    "failure_class": "context-audit",
+    "has_error": false,
+    "id": "20261009T125624804336Z-8eec944a",
+    "mutation_context_validated": false,
+    "prompt_sha256": "84b716f755a56f1a1c4a541df22d47be4f9e76c3e048f9281ad54c7f7b5ac9d2",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": -15,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:56:24.804468+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": []
+      },
+      "cost": {}
+    },
+    "usage_missing": true
+  }
+]

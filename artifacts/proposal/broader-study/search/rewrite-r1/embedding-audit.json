@@ -1,0 +1,26 @@
+{
+  "calls": [],
+  "startup_fixture": {},
+  "summary": {
+    "call_status_counts": {},
+    "calls_without_resource_measurements": 0,
+    "configured_model": null,
+    "identity_file": "embedding-identity.json",
+    "identity_file_hashes": 0,
+    "identity_recorded": false,
+    "model": null,
+    "native_endpoint_calls": 0,
+    "peak_rss_kib": null,
+    "recorded_chunks": 0,
+    "recorded_endpoint_cpu_seconds": 0,
+    "recorded_endpoint_wall_seconds": 0,
+    "recorded_inputs": 0,
+    "recorded_local_tokens": 0,
+    "repository": null,
+    "revision": null,
+    "scope": "Cached local CPU embedding endpoint only; no paid API route. Local tokens/CPU are separate from subscription-role counts. Startup fixture is infrastructure verification, not evolutionary evidence; its resource use is separate. Do not add wrapper elapsed time to overlapping endpoint wall time. Error calls missing measurements remain explicitly incomplete.",
+    "startup_fixture_present": false,
+    "status": "disabled_by_rewrite_treatment",
+    "unexpected_evidence_in_disabled_treatment": false
+  }
+}

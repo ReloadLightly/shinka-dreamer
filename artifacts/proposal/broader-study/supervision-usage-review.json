@@ -1,0 +1,43 @@
+{
+  "window_start_utc": "2026-10-08T17:00:00Z",
+  "window_end_utc": "2026-10-09T13:00:00Z",
+  "scope": "Metadata-only local Codex sessions whose recorded CWD is this project, source supervisor(vscode) or subagent. Counts positive changes in cumulative token records inside window; duplicated unchanged records ignored. Does not read or export message content.",
+  "limitations": [
+    "Not an authoritative subscription meter or conversion to weekly-limit percentage.",
+    "Excludes experiment exec sessions, other CWDs, missing/unreported calls and work outside the window.",
+    "Cached input is part of input; reasoning output is part of output. Do not add either twice.",
+    "This aggregate does not assign each supervision turn to scientific gain, infrastructure, reporting or waiting."
+  ],
+  "groups": {
+    "supervisor": {
+      "sessions": 2,
+      "ultra_sessions": 2,
+      "observed_usage_increments": 1209,
+      "recorded_token_deltas": {
+        "input_tokens": 144087397,
+        "cached_input_tokens": 141303552,
+        "output_tokens": 559111,
+        "reasoning_output_tokens": 256215,
+        "total_tokens": 144646508
+      },
+      "recorded_uncached_input_plus_output": 3342956
+    },
+    "subagent": {
+      "sessions": 42,
+      "ultra_sessions": 16,
+      "observed_usage_increments": 2265,
+      "recorded_token_deltas": {
+        "input_tokens": 244466351,
+        "cached_input_tokens": 237483008,
+        "output_tokens": 920337,
+        "reasoning_output_tokens": 293284,
+        "total_tokens": 245386688
+      },
+      "recorded_uncached_input_plus_output": 7903680
+    }
+  },
+  "session_count": 44,
+  "counter_resets": 0,
+  "new_experiment_model_calls": 0,
+  "new_episodes": 0
+}
