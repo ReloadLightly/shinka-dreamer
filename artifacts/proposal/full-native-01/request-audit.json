@@ -1,0 +1,50 @@
+[
+  {
+    "call_id": "20261009T025217855284Z-66ea45e7",
+    "feedback_is_string": true,
+    "feedback_present": true,
+    "generation": 1,
+    "history_decoded": true,
+    "inspiration_code_presence": {},
+    "parent_code_present": true,
+    "parent_id": "294fee0e-a520-4e59-b04a-348d68b00a8b",
+    "recommendation_present": false,
+    "request_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8"
+  },
+  {
+    "call_id": "20261009T025441950660Z-40a34b12",
+    "feedback_is_string": true,
+    "feedback_present": true,
+    "generation": 2,
+    "history_decoded": true,
+    "inspiration_code_presence": {},
+    "parent_code_present": true,
+    "parent_id": "bdbed344-a006-4f45-aa25-f16708ed6748",
+    "recommendation_present": false,
+    "request_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8"
+  },
+  {
+    "call_id": "20261009T025804666702Z-708c4bbe",
+    "feedback_is_string": true,
+    "feedback_present": true,
+    "generation": 3,
+    "history_decoded": true,
+    "inspiration_code_presence": {},
+    "parent_code_present": true,
+    "parent_id": "77728d03-ec8f-40aa-bb78-b99e851c02de",
+    "recommendation_present": false,
+    "request_sha256": "b3c168eee726ecdae20afbda0bae44f13c40b1c2f3c70f98e5cdce072e551d5b"
+  },
+  {
+    "call_id": "20261009T030205037371Z-f416af55",
+    "feedback_is_string": true,
+    "feedback_present": false,
+    "generation": 3,
+    "history_decoded": true,
+    "inspiration_code_presence": {},
+    "parent_code_present": false,
+    "parent_id": "77728d03-ec8f-40aa-bb78-b99e851c02de",
+    "recommendation_present": false,
+    "request_sha256": "2843e1fa9b313e4585f97f92c45bdc104a2f75edbc67c68bc3f786363adeb4df"
+  }
+]

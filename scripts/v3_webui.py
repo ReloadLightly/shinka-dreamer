@@ -158,6 +158,8 @@ class CampaignUI(native.DatabaseRequestHandler):
         parsed = urlsplit(self.path)
         query = parse_qs(parsed.query)
         if parsed.path in LOCAL_ASSETS or parsed.path == '/assessment_progress':
+            if self.campaign_task != 'campaign-v3':
+                return self.send_error(404, 'Historical assessment resources belong to the v3 campaign')
             if parsed.query:
                 return self.send_error(400, 'This campaign resource takes no parameters')
             return self.local_response(parsed.path)
@@ -169,7 +171,7 @@ class CampaignUI(native.DatabaseRequestHandler):
             return self.native_asset_response(parsed.path)
         if parsed.path in READ_ROUTES:
             if query.get('db_path') != ['programs.sqlite']:
-                return self.send_error(403, 'Only the active v3 campaign is available')
+                return self.send_error(403, 'Only the selected campaign is available')
             for key in ('generation', 'processed_count'):
                 if key in query and (len(query[key]) != 1 or not re.fullmatch(r'\d+', query[key][0])):
                     return self.send_error(400, 'Integer generation required')
@@ -180,6 +182,8 @@ class CampaignUI(native.DatabaseRequestHandler):
     def do_HEAD(self):
         parsed = urlsplit(self.path)
         if parsed.path in LOCAL_ASSETS or parsed.path == '/assessment_progress':
+            if self.campaign_task != 'campaign-v3':
+                return self.send_error(404)
             if parsed.query:
                 return self.send_error(400)
             return self.local_response(parsed.path, head=True)
@@ -202,6 +206,7 @@ def main():
     args = parser.parse_args()
     campaign = args.campaign.resolve()
     allowed = {(ROOT/'results/campaign-v3').resolve(): ('Unknown dynamics · v3 wave 1','campaign-v3'),
+               (ROOT/'results/proposal-full-native-01').resolve(): ('Original proposal · Stage 1','proposal-full-native-01'),
                (ROOT/'results/campaign-v4-run1').resolve(): ('Unknown dynamics · RUN1','campaign-v4-run1')}
     if campaign not in allowed or not (campaign/'programs.sqlite').is_file():
         raise ValueError('This launcher serves an existing allowlisted campaign database only')
@@ -210,7 +215,8 @@ def main():
     handler = partial(CampaignUI, search_root=str(campaign), directory=str(assets))
     with ThreadingHTTPServer(('127.0.0.1', args.port), handler) as server:
         print(f'Native Shinka UI: http://localhost:{args.port}/viz_tree.html?db_path=programs.sqlite', flush=True)
-        print(f'Assessment counts: http://localhost:{args.port}/assessment.html', flush=True)
+        if CampaignUI.campaign_task == 'campaign-v3':
+            print(f'Assessment counts: http://localhost:{args.port}/assessment.html', flush=True)
         print('Loopback only; live reads from the existing campaign. Auto-refresh is native.', flush=True)
         server.serve_forever()
 

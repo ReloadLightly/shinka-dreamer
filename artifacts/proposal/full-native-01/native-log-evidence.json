@@ -1,0 +1,46 @@
+{
+  "lines": [
+    {
+      "line": 103,
+      "text": "2026-10-09 04:52:17 - shinka.core.async_runner - INFO - Generated patch type: diff"
+    },
+    {
+      "line": 196,
+      "text": "2026-10-09 04:54:41 - shinka.core.async_runner - INFO - Generated patch type: diff"
+    },
+    {
+      "line": 291,
+      "text": "2026-10-09 04:58:04 - shinka.core.async_runner - INFO - Generated patch type: full"
+    },
+    {
+      "line": 325,
+      "text": "2026-10-09 05:06:07 - shinka.core.async_summarizer - INFO - Performing final meta summary for 3 remaining programs..."
+    },
+    {
+      "line": 332,
+      "text": "2026-10-09 05:06:08 - shinka.llm.llm - INFO - 1/1 Error in query: Two consecutive provider transport failures"
+    },
+    {
+      "line": 333,
+      "text": "2026-10-09 05:06:08 - shinka.llm.llm - INFO - 1/1 Error in query: Two consecutive provider transport failures"
+    },
+    {
+      "line": 334,
+      "text": "2026-10-09 05:06:08 - shinka.llm.llm - INFO - 1/1 Error in query: Two consecutive provider transport failures"
+    },
+    {
+      "line": 338,
+      "text": "2026-10-09 05:06:08 - shinka.core.async_summarizer - ERROR - Step 1 failed - no individual summaries generated"
+    },
+    {
+      "line": 344,
+      "text": "2026-10-09 05:06:08 - shinka.database.prompt_dbase - INFO - Percentile recomputation complete"
+    }
+  ],
+  "source": {
+    "bytes": 62651,
+    "path": "results/proposal-full-native-01/evolution_run.log",
+    "sha256": "13edb54776b510c928d6fc981f681665c93a3b6792af5d49e39dcfa915215200"
+  },
+  "timestamp_note": "Native human log timestamps retain their original local timezone; structured event timestamps are UTC."
+}

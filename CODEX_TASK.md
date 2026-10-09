@@ -1,14 +1,26 @@
-# Active authorization: original-proposal Stage 1 only
+# Checkpoint: original-proposal Stage 1 stopped; await instruction
 
-The user authorized execution of the staged plan on 9 October 2026. Execute Stage 1,
-then checkpoint and stop. Started 02:45:07 UTC; hard checkpoint 03:25:07 UTC.
-Integration is bounded at 12 minutes; scientific execution ends no later than
-03:14:07 UTC in this invocation. Limits: six total slots including seed/failures,
-30 actual all-role calls, 1,200 provider seconds, 30 episodes/6,000 transitions,
-300 candidate CPU-seconds. Use `proposal/evolve_full.py --run`; its saved caps and
-deadline apply to every role. No next stage or historical assessment is authorized.
-The evaluator and original seed remain unchanged. Full native settings and hashes
-are in `artifacts/proposal/full-native-01/protocol.json`.
+Stage 1 executed under the user's authorization and checkpointed at
+2026-10-09 03:06:08 UTC after two consecutive 240-second provider timeouts,
+as prospectively specified. Four slots were reserved: seed and two valid
+five-episode descendants, plus held slot 3 before a valid source. Slots 4–5
+were never started. Both descendants escaped 5/5 development cases; this is
+not held-out evidence. All 15 episodes were valid (1,489 transitions).
+Five actual model calls: two successful mutations, two full-rewrite timeouts,
+one novelty judgment. Unknown timeout tokens remain unknown. The two working
+programs and all measurements are preserved; no automatic continuation.
+
+Search/embedding workers and this run's viewer are stopped and reaped. The
+frozen driver retains its original budget/deadline and must not be bypassed.
+Full configuration was only partially exercised: no migration, crossover,
+meta provider calls or prompt mutation occurred. Do not claim otherwise.
+
+Read README, `artifacts/proposal/full-native-01/summary.json` and
+`proposal/plan-state.json`. The recommended next action is Stage 3's bounded
+32-case development check of generation 2 with zero model calls, after explicit
+user instruction. Do not resume the historical assessments or launch Stage 2.
+Before any future evolution continuation, explicitly grant new resources and
+reconcile the held pre-source slot; the generic inherited resume cannot do that.
 
 ---
 

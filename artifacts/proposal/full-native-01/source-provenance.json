@@ -1,0 +1,162 @@
+{
+  "configuration_references": {
+    "call-budget-ledger.json": "artifacts/proposal/full-native-01/call-budget-ledger.json",
+    "campaign-manifest.json": "artifacts/proposal/full-native-01/protocol.json",
+    "embedding-identity.json": "artifacts/proposal/full-native-01/embedding-identity.json",
+    "execution-resources.json": "artifacts/proposal/full-native-01/execution-resources.json",
+    "resolved-config.json": "artifacts/proposal/full-native-01/protocol.json"
+  },
+  "database_snapshot": {
+    "program_rows_sha256": "64da56d1394a8d4256097408a594dbc7c39b6a4ac816c8a739565f93c6356939",
+    "prompt_rows_sha256": "01d4ddad29f6b8615819dae648aa8fe96aac689ddc2047090f1c7b549138919d"
+  },
+  "inputs": [
+    {
+      "bytes": 8851,
+      "path": "results/proposal-full-native-01/gen_1/proposal-sources/novelty-1-resample-1.py",
+      "sha256": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6"
+    },
+    {
+      "bytes": 9914,
+      "path": "results/proposal-full-native-01/gen_2/proposal-sources/novelty-1-resample-1.py",
+      "sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    },
+    {
+      "bytes": 167285,
+      "path": "results/proposal-full-native-01/gen_0/results/episodes.json",
+      "sha256": "dca9c85b1de215ab1c962d38ea039eaab773db70ea325172efaf7f1b7c0ee066"
+    },
+    {
+      "bytes": 924,
+      "path": "results/proposal-full-native-01/gen_0/results/metrics.json",
+      "sha256": "54d592cbd289de8074303c9c907a840145e1adbf99fcc53c42d860d15283b74c"
+    },
+    {
+      "bytes": 33,
+      "path": "results/proposal-full-native-01/gen_0/results/correct.json",
+      "sha256": "701e09f15ff4172d43caa5cbbcd6d903011475e6e84efbfd68342378c50bbded"
+    },
+    {
+      "bytes": 948,
+      "path": "results/proposal-full-native-01/gen_0/results/manifest.json",
+      "sha256": "10fa81f57b0232b0a52ff912041862bcce169c1daab81f60e271fbf1b277323e"
+    },
+    {
+      "bytes": 754,
+      "path": "results/proposal-full-native-01/gen_0/results/resource.json",
+      "sha256": "84af9500fe233428d5f27a4ef744b71278f782c7ec5a789056a153d192b4952b"
+    },
+    {
+      "bytes": 101895,
+      "path": "results/proposal-full-native-01/gen_1/results/episodes.json",
+      "sha256": "888526d94d762868e1b1a213a56ddd589bf95cbc947e211022f2a80c3cfabe28"
+    },
+    {
+      "bytes": 918,
+      "path": "results/proposal-full-native-01/gen_1/results/metrics.json",
+      "sha256": "f1ede9fc870693edcfbd0d8d0531974dc1d4f780c2b166fd358aea1b4b923303"
+    },
+    {
+      "bytes": 33,
+      "path": "results/proposal-full-native-01/gen_1/results/correct.json",
+      "sha256": "701e09f15ff4172d43caa5cbbcd6d903011475e6e84efbfd68342378c50bbded"
+    },
+    {
+      "bytes": 948,
+      "path": "results/proposal-full-native-01/gen_1/results/manifest.json",
+      "sha256": "ec2722a893e8cfee54abf00b9265bbda44d69b338b1e3ecf2d227585ddcf17c9"
+    },
+    {
+      "bytes": 762,
+      "path": "results/proposal-full-native-01/gen_1/results/resource.json",
+      "sha256": "1419c9e06d9017c966a0695479acbae32b0c2b3a3a339954f5d39bda6597d893"
+    },
+    {
+      "bytes": 173674,
+      "path": "results/proposal-full-native-01/gen_2/results/episodes.json",
+      "sha256": "a9b6ed0a4a95f87d094cc0af1a34ad0d8c54c22b8cfb18ad723a6c98553ea20e"
+    },
+    {
+      "bytes": 898,
+      "path": "results/proposal-full-native-01/gen_2/results/metrics.json",
+      "sha256": "a8ed44c604510c2b4e9ee12917e7a7dc208797f66844afc6f3b4325ea5d0741e"
+    },
+    {
+      "bytes": 33,
+      "path": "results/proposal-full-native-01/gen_2/results/correct.json",
+      "sha256": "701e09f15ff4172d43caa5cbbcd6d903011475e6e84efbfd68342378c50bbded"
+    },
+    {
+      "bytes": 948,
+      "path": "results/proposal-full-native-01/gen_2/results/manifest.json",
+      "sha256": "76f9bf4068eb2223846bb22e25f70b78114d1de4e698d8618db2ceef82ff6a34"
+    },
+    {
+      "bytes": 732,
+      "path": "results/proposal-full-native-01/gen_2/results/resource.json",
+      "sha256": "1333504508adf62bc231ac64e59f173da6339cd1b6d105d6eafccbb2bdb6abb7"
+    },
+    {
+      "bytes": 2411,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025217855284Z-66ea45e7.json",
+      "sha256": "4d3984ada28a9f6ffcc59f4c7eff3c0914e5bb914c98890990077051f6281b43"
+    },
+    {
+      "bytes": 2406,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025427192928Z-10349f5e.json",
+      "sha256": "2e0abe515fd3b0005c31e0b48d17d35c246acb79cf93e4212d579f5d565fe2d6"
+    },
+    {
+      "bytes": 2416,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025441950660Z-40a34b12.json",
+      "sha256": "c7b88884e3615e6dad709cbefae1cb1c269e042b37ce5bd9dde5874445639413"
+    },
+    {
+      "bytes": 1031,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025804666702Z-708c4bbe.json",
+      "sha256": "6b4fd8781ef9f19315305b09943baedc7b9dedcbbe45fa88eecb9a6fefaf6e85"
+    },
+    {
+      "bytes": 1032,
+      "path": "results/proposal-full-native-01/model-calls/20261009T030205037371Z-f416af55.json",
+      "sha256": "54896b2416030cf6616b99cf3c094d54653cebdf95f1260a0fe0f6cd34110356"
+    },
+    {
+      "bytes": 8986,
+      "path": "results/proposal-full-native-01/campaign-manifest.json",
+      "sha256": "c07c1ff5c78c8ecb83c69bb01dc8c0b69f17815ea95dd34b3a2a4dcc5b5cd5d8"
+    },
+    {
+      "bytes": 8986,
+      "path": "results/proposal-full-native-01/resolved-config.json",
+      "sha256": "c07c1ff5c78c8ecb83c69bb01dc8c0b69f17815ea95dd34b3a2a4dcc5b5cd5d8"
+    },
+    {
+      "bytes": 1506,
+      "path": "results/proposal-full-native-01/embedding-identity.json",
+      "sha256": "9fa139fa5d30a3b7e44e54942dea075c0d1deca623461764e7127d11ffcdb6c4"
+    },
+    {
+      "bytes": 1564,
+      "path": "results/proposal-full-native-01/call-budget-ledger.json",
+      "sha256": "bedebd33b56e92c4b3fc2defa078a2be0c49399e2c7d92c6e6a139b80b304a2f"
+    },
+    {
+      "bytes": 750,
+      "path": "results/proposal-full-native-01/execution-resources.json",
+      "sha256": "ada8a92fb398fac9fa781e05386d55214656c8c063111def11c93fc3f12264d3"
+    },
+    {
+      "bytes": 264,
+      "path": "results/proposal-full-native-01/embedding-fixture.json",
+      "sha256": "7930c96cc964af1db6aabf0345f5f9d62b9be9a4508d0c35a0c376dc9fd84fb2"
+    },
+    {
+      "bytes": 830,
+      "path": "results/proposal-full-native-01/embedding-calls.jsonl",
+      "sha256": "ea161325c5e7e9adaa11fc8a78c650b2f6b30a91580b2007fd4f81357fcfec44"
+    }
+  ],
+  "native_events_sha256": "8cb188a10fab6c601878624bc54533a87cdf310bd2b6bc7e053e0dcd3348abeb",
+  "snapshot_utc": "2026-10-09T03:10:32.456983+00:00"
+}

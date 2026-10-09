@@ -1,6 +1,6 @@
 # ShinkaDreamer: Joint Evolution of Map Memory and Planning in a Partially Observed Dynamic Maze
 
-*Scientific implementation report — original-proposal track. Evolutionary results are pending.*
+*Scientific implementation report — original-proposal track. Search results are development evidence.*
 
 ## Abstract
 
@@ -15,8 +15,11 @@ characterization, the unevolved seed completed 32 valid episodes and escaped in
 none;20 ended in capture and 12 timed out. Mean map accuracy was 98.31%, with 32.90%
 mean final map coverage. These results characterize the starting agent and show
 that accurate remembered cells alone do not establish successful navigation.
-Native ShinkaEvolve integration is implemented and prepared; no evolutionary
-search has yet executed under this restored objective.
+The first native ShinkaEvolve descendant escaped all five search cases, increasing
+mean fitness from 0.5364 to 0.9378. Its reported-cell accuracy decreased slightly
+while coverage and task performance improved. This establishes executable program
+improvement on a small development panel; held-out performance, causal benefits
+of particular memory mechanisms and discovery reliability remain unmeasured.
 
 ## 1. Introduction
 
@@ -81,19 +84,22 @@ already under the agent.
 
 The [native launcher](proposal/evolve.py) uses upstream ShinkaEvolve revision
 [`9912af1`](https://github.com/SakanaAI/ShinkaEvolve/tree/9912af12d423504b8d580f4179fd15f5f88b8c50).
-The proposal's configuration is 100 total slots, including the seed, four islands
-and five development episodes per evaluated program. Native parent/archive
-sampling, inspirations, migration, diff/full/crossover operators and meta
-recommendations are configured. Models must be supplied explicitly through the
-subscription-only route. Configuration preparation makes no model calls;
-configuration is not evidence that search mechanisms have executed.
+The proposal's nominal configuration has 100 total slots, four islands and five
+development episodes per evaluated program. We implement it in separately reviewed
+blocks. The first block has a six-slot ceiling, including the seed and failures,
+30 actual provider calls across all roles, 1,200 summed provider seconds and a
+40-minute invocation ceiling. It does not automatically continue toward 100 slots.
 
-The [staged implementation plan](docs/original-proposal-plan.md) proposes adding
-the complete native mechanisms with separately reviewed execution budgets. The
-[source-level Shinka study](docs/shinkaevolve-research.md) maps sampling, bandits,
-novelty, crossover, meta memory, prompt evolution and resumption to the installed
-code. The current launcher still lacks parts of that integration; this plan has
-not launched a search or added experimental results.
+The [bounded launcher](proposal/evolve_full.py) retains native weighted parent
+selection, archive/top inspirations, migration, diff/full/crossover operators,
+reward-only model allocation, real local BGE embeddings, conditional novelty
+judging, summaries/recommendations and prompt coevolution. Mutation allocation uses
+Astra/high and Sol 6.1/high through the strict subscription route; all auxiliary
+roles use that same route, and embeddings run locally. Configured mechanisms and
+actual events are reported separately. See the
+[frozen protocol](artifacts/proposal/full-native-01/protocol.json),
+[staged plan](docs/original-proposal-plan.md) and
+[source-level Shinka study](docs/shinkaevolve-research.md).
 
 ### 2.3 Original fitness
 
@@ -142,6 +148,8 @@ experiment's data.
 
 ## 4. Results
 
+### 4.1 Initial seed characterization
+
 | Measurement | Initial seed,32 episodes |
 |:--|--:|
 | Escape |0/32 (0%)|
@@ -175,16 +183,113 @@ the terminal action and is not a post-capture reconstruction.
 
 Execution used 4,386 transitions. Summed measured episode wall time was 2.84 seconds
 on the current host, including candidate execution; this excludes implementation,
-tests and figure rendering. There were zero experiment-model calls. Supervising
-assistant work is separate from that call count. Evolutionary throughput and
-resource efficiency have not yet been measured for this objective.
+tests and figure rendering. That initial characterization used zero experiment-model
+calls. The subsequent search has its own measurements below.
+
+### 4.2 First native evolutionary block
+
+The search reused development cases 0–4 for every evaluated program. It reserved
+four of the six permitted slots: the seed, two valid descendants and one unfinished
+full-rewrite proposal. Both full-rewrite attempts timed out at the declared
+240-second request boundary, triggering the prospective two-failure checkpoint.
+No valid source or episode result exists for that reserved slot. Three additional
+database rows are administrative island copies of the seed, not evaluated programs.
+
+| Program | Episodes | Escape | Capture / timeout | Task $S$ | Accuracy $A$ | Fitness $F$ | Coverage | Mean steps |
+|:--|--:|--:|:--|--:|--:|--:|--:|--:|
+| Seed, slot 0 |5|0/5|3 / 2|0.236000|0.986904|0.536362|34.31%|150.0|
+| [Generation 1](artifacts/proposal/full-native-01/programs/generation-001.py) |5|5/5|0 / 0|0.908240|0.982192|0.937821|88.89%|70.6|
+| [Generation 2](artifacts/proposal/full-native-01/programs/generation-002.py) |5|5/5|0 / 0|0.910880|0.982193|0.939405|90.58%|77.2|
+| Slot 3, unfinished rewrite |0|—|—|—|—|—|—|—|
+
+All 15 executed episodes were valid, with 1,489 transitions. Generation 2 is the
+search-fitness leader, not a held-out selected champion. Its paired mean fitness
+gain over the seed is **0.403044**: the task term contributes **+0.404928** and the
+accuracy term **−0.001884**. These gains are attributable to task performance in
+the objective, not improved reconstruction accuracy.
+
+Generation 2 exceeds generation 1 by only 0.001584 fitness. Almost all of that
+difference comes from taking 6.6 more steps on average: the original objective
+rewards elapsed steps. Both escape all five cases, so this ranking does not
+establish superior navigation efficiency. We retain the proposed reward and
+disclose this limitation.
+
+![Every original-task candidate, objective components and coverage](artifacts/proposal/full-native-01/figures/search-scores.svg)
+
+**Figure 3. Search outcomes under the original objective.** Episode points and
+program means use the same five development cases. The unfinished slot has no
+invented score. Accuracy and coverage remain separate; these are selection data.
+
+Both successful programs are direct seed mutations without inspirations.
+They separate persistent terrain from transient enemy occupancy, add visit
+history and frontier exploration, and replace direct target movement with
+shortest-path planning through keys, door and exit. Their planners use accumulated
+map memory and fixed danger estimates based on the known uniform enemy movement
+rule. They also omit some stale dynamic cells from the scored map while retaining
+them internally for navigation. This selective export and its denominator matter
+when interpreting accuracy. No learned transition law or isolated causal effect
+of memory is established by this code inspection.
+
+![Actual native lineage, operator events and model-role calls](artifacts/proposal/full-native-01/figures/search-native.svg)
+
+**Figure 4. Actual native search activity.** Both mutation models were selected.
+Real local embeddings and conditional novelty comparisons ran; one comparison
+exceeded the 0.95 threshold and invoked the subscription-backed judge, which
+accepted generation 1. Generation 2's similarity was below threshold and required
+no judge. Neither result is a scientific novelty claim.
+
+The full configuration was enabled, but this short execution did not exercise
+every mechanism. Diff produced both valid descendants; full rewrite produced two
+timeouts. No inspiration or crossover was used, no migration occurred, and no
+summary, insight, recommendation or prompt-mutation provider call ran. The initial
+prompt archive received native descendant credit; it did not evolve a new prompt.
+Three programs remain pending in meta memory. At finalization the shared budget
+gate rejected further dispatch after the two transport failures. We therefore
+report a **partially exercised full-native configuration**, not a demonstration
+of benefits from the complete machinery.
+
+![Development escape outcomes and measured search resource use](artifacts/proposal/full-native-01/figures/search-outcomes-costs.svg)
+
+**Figure 5. Outcomes and computational cost.** Outcome intervals are nominal 95%
+Wilson intervals on the development panel; 5/5 gives 56.6–100%. Reusing and
+selecting on these cases prevents interpreting that interval as held-out
+generalization evidence. Timed-out requests remain in resource totals; their
+unreported tokens are unknown.
+
+![Recorded first-case replay of the search-fitness leader](artifacts/proposal/full-native-01/figures/search-replay.svg)
+
+**Figure 6. Leader replay, development case 0.** The case is chosen by index,
+not outcome. Evaluator truth and the reported map are shown retrospectively;
+hidden truth was never supplied to the agent. All recorded replay frames and
+nonwinning candidate sources are preserved in the
+[compact results](artifacts/proposal/full-native-01/summary.json).
+
+The controller ran for **846.11 seconds (14.10 minutes)**, excluding implementation
+and reporting. Five provider requests consumed **818.03 seconds**: two successful
+mutations, two timed-out rewrite attempts and one successful novelty judgment.
+Reported usage from the three successful requests was 30,416 uncached input plus
+output tokens and 36,864 cached input tokens. Usage for the two timeouts is unknown;
+these are incomplete totals, not an estimate of subscription allowance.
+
+The 15 episodes consumed **2.915 evaluator-plus-candidate CPU-seconds**, of which
+2.110 were candidate CPU-seconds. Separately sampled controller and embedding
+process CPU were 17.71 and 9.59 seconds; peak sampled combined resident memory was
+1.09 GiB. The latter CPU samples are not a complete machine-wide resource audit.
+Supervising-assistant work is additional and is not converted into a weekly
+allowance percentage. Native API price estimates are not subscription charges.
+
+The run is checkpointed with workers stopped. The recommended next stage is the
+plan's bounded development comparison of the leader on the existing 32-case panel,
+with no model calls, before deciding whether more evolution is useful. It has not
+been launched. The historical assessments remain paused.
 
 ## 5. Discussion and limitations
 
 The seed accurately reconstructs the cells it reports, but it does not escape.
 Its greedy planner can become blocked or pursue an unsuitable remembered target.
-The result establishes an executable starting point with room for behavioral
-improvement; it does not show that evolution succeeds or fails.
+The initial characterization establishes room for behavioral improvement. The
+subsequent search demonstrates improvement on its five development cases, whose
+scores are kept separate from the initial 32-case panel.
 
 The original accuracy term has specific limitations. An agent can obtain high
 accuracy by retaining easy or recently observed cells while covering little of
@@ -194,12 +299,13 @@ positive contribution to elapsed steps. We disclose these properties while
 preserving the requested objective. High composite fitness must not be described
 as proof of understanding.
 
-The next scientific result must come from actual native program evolution under
-this objective, with program changes, task outcomes and reconstruction reported
-together. That search has not been launched in this implementation step.
-Independent discovery reliability, held-out performance and any causal benefit
-of a particular memory mechanism remain unmeasured. No publication or novelty
-claim is made from these initial results.
+The first two successful descendants are direct seed mutations with no
+inspirations. Their results therefore do not establish a benefit from accumulated
+evolutionary history. Persistent memory is used by their planners, but the
+contribution of mapping versus pathfinding versus risk heuristics is not isolated.
+Independent discovery reliability, held-out performance and a causal benefit of
+particular memory mechanisms remain unmeasured. The known uniform enemy law is
+used as a heuristic; these results do not show learned transition dynamics.
 
 ## 6. Reproduction
 
@@ -227,6 +333,25 @@ OPENBLAS_NUM_THREADS=1 .venv/bin/python proposal/figures.py
 See [proposal/README.md](proposal/README.md) for preparation and explicit native
 launch commands. The launcher defaults to preparation; `--run` is required for
 model calls. No historical campaign or assessment is resumed by these commands.
+
+Rebuild the Stage 1 figures from the committed compact evidence, without the
+private runtime database or any new episodes/model calls:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.search_report --render-export
+```
+
+The original bounded invocation was `.venv/bin/python proposal/evolve_full.py --run`.
+Its saved failure gate and deadline prevent further model work; this is not an
+instruction to restart it. A future evolutionary continuation requires a new
+explicit resource grant and reconciliation of the held pre-source slot. The
+[run state](proposal/plan-state.json) records the exact boundary. The local native
+dashboard can be reopened without model calls:
+
+```bash
+.venv/bin/python scripts/v3_webui.py \
+  --campaign results/proposal-full-native-01 --port 8001
+```
 
 ## References
 

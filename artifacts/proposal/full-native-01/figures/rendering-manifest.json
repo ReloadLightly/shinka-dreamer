@@ -1,0 +1,145 @@
+{
+  "command": ".venv/bin/python -m proposal.search_report --render-export --out artifacts/proposal/full-native-01",
+  "execution": "Saved-data aggregation and rendering only; no agents, environments, LLM calls or resampling.",
+  "inputs": [
+    {
+      "bytes": 19030,
+      "path": "artifacts/proposal/full-native-01/summary.json",
+      "sha256": "657d2c004c62048fa5fb42c8ed75f6999bfe0d28eaf96f5130cd5335c8904916"
+    },
+    {
+      "bytes": 5578,
+      "path": "artifacts/proposal/full-native-01/slots.json",
+      "sha256": "d89ae27175a76486962b5d7baf73c2efd5e38067bada80ee673a46db273c8c4d"
+    },
+    {
+      "bytes": 6701,
+      "path": "artifacts/proposal/full-native-01/episodes.json",
+      "sha256": "75ce65676d648b11059473b55bd96ea080374a850ae94131b57a42d1b061119d"
+    },
+    {
+      "bytes": 16560,
+      "path": "artifacts/proposal/full-native-01/lineage.json",
+      "sha256": "212b600f01bd5db10df2d33f89c9313645dbeb47ee501c73ceb99d740d2cde6f"
+    },
+    {
+      "bytes": 8663,
+      "path": "artifacts/proposal/full-native-01/model-calls.json",
+      "sha256": "391a4c30c545653cb1b70e93cd4aabb20cccecfc3574c5c9a2036e1b39fc049c"
+    },
+    {
+      "bytes": 6578,
+      "path": "artifacts/proposal/full-native-01/source-provenance.json",
+      "sha256": "7f537bd66821a641a163117ab12e7988fcccbf237fe61ed4b1ac67436d71f6e8"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 21374,
+      "path": "artifacts/proposal/full-native-01/figures/search-native.pdf",
+      "sha256": "e865650aadca28488ef646b5ff1cd1901be555e5b1ca15d7ec8effb4ce36331b"
+    },
+    {
+      "bytes": 134444,
+      "path": "artifacts/proposal/full-native-01/figures/search-native.png",
+      "sha256": "4d65c64da74562410762a086dd0505fde99adbcf008100a5137b42a9cebfec85"
+    },
+    {
+      "bytes": 22050,
+      "path": "artifacts/proposal/full-native-01/figures/search-native.svg",
+      "sha256": "24839054048f5e887f80e77a707ce2df58af178f9546858554ded9bd7ecebb66"
+    },
+    {
+      "bytes": 26388,
+      "path": "artifacts/proposal/full-native-01/figures/search-outcomes-costs.pdf",
+      "sha256": "ac77088122233bd2a07ad0a015c393d7492acbce2b60e7b6985bc9c2cc6cca77"
+    },
+    {
+      "bytes": 195030,
+      "path": "artifacts/proposal/full-native-01/figures/search-outcomes-costs.png",
+      "sha256": "9d3adca692a6a38b878fccf6cb2f242f3c5b4918e668f51c47f0db59777757ab"
+    },
+    {
+      "bytes": 38642,
+      "path": "artifacts/proposal/full-native-01/figures/search-outcomes-costs.svg",
+      "sha256": "60d1848c7a119a73dc1b20f32cf4118656a01093c1941ea3e6046fe5d004b569"
+    },
+    {
+      "bytes": 29839,
+      "path": "artifacts/proposal/full-native-01/figures/search-replay.pdf",
+      "sha256": "1ccc697afafb38159014af82dc7351deadb1aeccf9e85e15d034d13dc64ec7cc"
+    },
+    {
+      "bytes": 151827,
+      "path": "artifacts/proposal/full-native-01/figures/search-replay.png",
+      "sha256": "4cc2878f90312d091d50b95290d7c5e647b1f83d1f9b5a23ccded9be3549be35"
+    },
+    {
+      "bytes": 69917,
+      "path": "artifacts/proposal/full-native-01/figures/search-replay.svg",
+      "sha256": "897c618d17ddd8916a9de6e5f29b2b1fdccf774ab3a38899908e0f8b2b13d4b6"
+    },
+    {
+      "bytes": 27882,
+      "path": "artifacts/proposal/full-native-01/figures/search-scores.pdf",
+      "sha256": "cbb92e0d974b371472504e76c89da68981fed958677b2c759365df6c38113a28"
+    },
+    {
+      "bytes": 144782,
+      "path": "artifacts/proposal/full-native-01/figures/search-scores.png",
+      "sha256": "2fcd33c405eb91d837485d0894762677d8793e9aa7a2a04c6ad06786f97f907c"
+    },
+    {
+      "bytes": 37609,
+      "path": "artifacts/proposal/full-native-01/figures/search-scores.svg",
+      "sha256": "d41ada1fcd2f0346baae0a0df118455185ba5d1795d6c07941962748edfb03dc"
+    }
+  ],
+  "selected_replay": {
+    "case": 0,
+    "generation": 2,
+    "records": 79,
+    "shown_records": [
+      {
+        "audited": 25,
+        "correct": 25,
+        "step": 0,
+        "trace_index": 0
+      },
+      {
+        "audited": 210,
+        "correct": 205,
+        "step": 78,
+        "trace_index": 78
+      }
+    ]
+  },
+  "sources": [
+    {
+      "bytes": 50156,
+      "path": "proposal/search_report.py",
+      "sha256": "dbd89cb12ab497e0d50dd0bb7b4c3f0f3e446dd7afc34309e72bb51845b7c80f"
+    },
+    {
+      "bytes": 13760,
+      "path": "proposal/figures.py",
+      "sha256": "f936bccce4cbf83f6c7acc841354b0b05c9dc3261428125523948a8fa1e49124"
+    },
+    {
+      "bytes": 36320,
+      "path": "scripts/run1_native_report.py",
+      "sha256": "c0273d176df17ea4477852c5ec7b0e767dcff4fc7fbd9395991e3a1d6d4ac601"
+    },
+    {
+      "bytes": 6653,
+      "path": "scripts/chromatic_fields.py",
+      "sha256": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e"
+    },
+    {
+      "bytes": 4592,
+      "path": "scripts/visual_theme.py",
+      "sha256": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+    }
+  ],
+  "style": "Chromatic Field v1 \u00b7 repository presentation 2"
+}

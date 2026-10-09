@@ -1,0 +1,46 @@
+[
+  {
+    "best_valid_fitness": 0.5363616738311696,
+    "completed_all_role_calls": 0,
+    "completed_provider_seconds": 0,
+    "cumulative_candidate_cpu_seconds": 0.2885,
+    "fitness": 0.5363616738311696,
+    "generation": 0,
+    "native_timestamp_utc": "2026-10-09T02:52:17.703471+00:00",
+    "status": "valid",
+    "timestamp_kind": "native_program_saved"
+  },
+  {
+    "best_valid_fitness": 0.9378208974456248,
+    "completed_all_role_calls": 2,
+    "completed_provider_seconds": 139.62861592398258,
+    "cumulative_candidate_cpu_seconds": 1.204726,
+    "fitness": 0.9378208974456248,
+    "generation": 1,
+    "native_timestamp_utc": "2026-10-09T02:54:41.820238+00:00",
+    "status": "valid",
+    "timestamp_kind": "native_program_saved"
+  },
+  {
+    "best_valid_fitness": 0.9394051885774474,
+    "completed_all_role_calls": 3,
+    "completed_provider_seconds": 337.3264009539853,
+    "cumulative_candidate_cpu_seconds": 2.110107,
+    "fitness": 0.9394051885774474,
+    "generation": 2,
+    "native_timestamp_utc": "2026-10-09T02:58:04.287104+00:00",
+    "status": "valid",
+    "timestamp_kind": "native_program_saved"
+  },
+  {
+    "best_valid_fitness": 0.9394051885774474,
+    "completed_all_role_calls": 5,
+    "completed_provider_seconds": 818.0345623119792,
+    "cumulative_candidate_cpu_seconds": 2.110107,
+    "fitness": null,
+    "generation": 3,
+    "native_timestamp_utc": "2026-10-09T03:06:05.413387+00:00",
+    "status": "held",
+    "timestamp_kind": "proposal_held"
+  }
+]

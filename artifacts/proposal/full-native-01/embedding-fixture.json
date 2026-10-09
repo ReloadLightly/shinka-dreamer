@@ -1,0 +1,9 @@
+{
+  "cpu_seconds": 0.05983485200000005,
+  "different_cosine": 0.5506216273813688,
+  "dimensions": 384,
+  "identical_exact": true,
+  "kind": "local deterministic fixture, not evolutionary evidence",
+  "peak_rss_kib": 302540,
+  "wall_seconds": 0.06253271500463597
+}

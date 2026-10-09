@@ -2,8 +2,8 @@
   "plan": "docs/original-proposal-plan.md",
   "research": "docs/shinkaevolve-research.md",
   "date": "2026-10-09",
-  "status": "stage1_authorized_implementation_complete_execution_pending",
-  "authorization": "Stage 1 only, user instruction 2026-10-09",
+  "status": "stage1_checkpointed_after_transport_failures",
+  "authorization": "Stage 1 completed invocation; no further execution authorized",
   "budget_preference": "specify_stage_by_stage",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
   "implementation_checkpoint": "b1ebded",
@@ -12,17 +12,20 @@
     "initial_32_case_characterization",
     "original_data_readme_figures",
     "native_source_research",
-    "staged_execution_plan"
+    "staged_execution_plan",
+    "stage1_full_native_adapter",
+    "two_valid_evolved_descendants",
+    "stage1_results_and_chromatic_fields_figures"
   ],
-  "original_task_search_started": false,
+  "original_task_search_started": true,
   "planning_task_new_experiment_model_calls": 0,
   "planning_task_new_episodes": 0,
-  "next_proposed_stage": "1: bounded adapter reuse and first full-native block",
-  "next_stage_authorized": true,
+  "next_proposed_stage": "Stage 3: development check of generation 2 on the existing 32 cases; zero model calls",
+  "next_stage_authorized": false,
   "automatic_continuation": false,
   "historical_campaigns": "preserve; do not resume",
   "resume_command": ".venv/bin/python proposal/evolve_full.py --run",
-  "resume_command_note": "This command enforces the saved Stage 1 deadline and caps; future authorization requires a separately recorded resource grant.",
+  "resume_command_note": "Reproduction of the invocation only: existing failure gate/deadline block further dispatch. Do not clear guards. Evolutionary continuation needs a new authorized resource grant and recovery of gen_3 before_valid_proposal; generic resume currently cannot reconcile that existing directory.",
   "stage_start_utc": "2026-10-09T02:45:07Z",
   "hard_checkpoint_utc": "2026-10-09T03:25:07Z",
   "execution_end_utc": "2026-10-09T03:14:07Z",
@@ -30,5 +33,40 @@
   "all_role_call_cap": 30,
   "provider_seconds_cap": 1200,
   "episode_cap": 30,
-  "transition_cap": 6000
+  "transition_cap": 6000,
+  "checkpoint_utc": "2026-10-09T03:06:08.798530+00:00",
+  "actual": {
+    "reserved_slots": 4,
+    "completed_evaluated_programs": 3,
+    "valid_descendants": 2,
+    "held_slots": [
+      3
+    ],
+    "unstarted_slots": [
+      4,
+      5
+    ],
+    "administrative_seed_copies": 3,
+    "episodes": 15,
+    "transitions": 1489,
+    "invalid_episodes": 0,
+    "all_role_calls": 5,
+    "successful_mutations": 2,
+    "timed_out_full_rewrite_requests": 2,
+    "novelty_judge_calls": 1,
+    "remote_elapsed_seconds": 818.0345623119792,
+    "controller_execution_wall_seconds": 846.111047421,
+    "known_uncached_input_plus_output_tokens": 30416,
+    "known_cached_input_tokens": 36864,
+    "calls_with_unknown_usage": 2
+  },
+  "processes": {
+    "controller": "reaped",
+    "embedding_service": "reaped",
+    "stage1_dashboard": "stopped and reaped",
+    "remaining_campaign_workers": 0
+  },
+  "local_dashboard_command": ".venv/bin/python scripts/v3_webui.py --campaign results/proposal-full-native-01 --port 8001",
+  "development_command_after_authorization": "OPENBLAS_NUM_THREADS=1 .venv/bin/python proposal/evaluate.py --program_path artifacts/proposal/full-native-01/programs/generation-002.py --results_dir results/proposal-stage3-gen2 --episodes 32 --replay-first",
+  "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.search_report --render-export"
 }

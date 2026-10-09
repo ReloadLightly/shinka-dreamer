@@ -1,0 +1,26 @@
+{
+  "ended_utc": "2026-10-09T03:06:08.798530+00:00",
+  "controller_execution_wall_seconds": 846.111047421,
+  "combined_rss_bytes": 1165537280,
+  "controller_cpu_seconds": 17.71,
+  "embedding_cpu_seconds": 9.59,
+  "all_role_calls": {
+    "calls": 5,
+    "roles": {
+      "mutation": 4,
+      "novelty": 1
+    },
+    "remote_elapsed_seconds": 818.0345623119792,
+    "uncached_input_plus_output_tokens": 30416,
+    "cached_input_tokens": 36864,
+    "cache_write_tokens": 0,
+    "reported_total_tokens": 67280,
+    "usage_unavailable_calls": 2,
+    "role_groups": {
+      "mutation_repair": 4,
+      "novelty": 1
+    }
+  },
+  "automatic_continuation": false,
+  "supervising_assistant_usage": "additional; not measurable as subscription allowance here"
+}

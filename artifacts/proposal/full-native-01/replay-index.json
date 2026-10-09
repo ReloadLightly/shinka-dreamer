@@ -1,0 +1,30 @@
+{
+  "file": "representative-replays.json.gz",
+  "replays": [
+    {
+      "case": 0,
+      "first_step": 0,
+      "generation": 0,
+      "last_step": 85,
+      "reason": "caught",
+      "records": 86
+    },
+    {
+      "case": 0,
+      "first_step": 0,
+      "generation": 1,
+      "last_step": 45,
+      "reason": "escaped",
+      "records": 46
+    },
+    {
+      "case": 0,
+      "first_step": 0,
+      "generation": 2,
+      "last_step": 78,
+      "reason": "escaped",
+      "records": 79
+    }
+  ],
+  "selection": "First saved case for each evaluated slot; all recorded frames retained in their original order."
+}

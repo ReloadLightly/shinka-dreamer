@@ -1,0 +1,41 @@
+[
+  {
+    "chunks": 3,
+    "cpu_seconds": 1.633603557,
+    "inputs": 1,
+    "peak_rss_kib": 335436,
+    "status": "ok",
+    "text_sha256": [
+      "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177"
+    ],
+    "tokens": 1202,
+    "utc": "2026-10-09T02:52:17.689700+00:00",
+    "wall_seconds": 1.6336794909730088
+  },
+  {
+    "chunks": 6,
+    "cpu_seconds": 2.98509492,
+    "inputs": 1,
+    "peak_rss_kib": 346572,
+    "status": "ok",
+    "text_sha256": [
+      "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6"
+    ],
+    "tokens": 2452,
+    "utc": "2026-10-09T02:54:27.176870+00:00",
+    "wall_seconds": 2.9852078989788424
+  },
+  {
+    "chunks": 6,
+    "cpu_seconds": 3.1068419560000002,
+    "inputs": 1,
+    "peak_rss_kib": 395084,
+    "status": "ok",
+    "text_sha256": [
+      "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    ],
+    "tokens": 2590,
+    "utc": "2026-10-09T02:58:02.855415+00:00",
+    "wall_seconds": 3.141376795974793
+  }
+]

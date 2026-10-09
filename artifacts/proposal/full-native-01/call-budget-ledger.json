@@ -1,0 +1,47 @@
+{
+  "updated_utc": "2026-10-09T03:06:08.725384+00:00",
+  "limits": {
+    "calls": 30,
+    "remote_elapsed_seconds": 1200,
+    "request_timeout_seconds": 250,
+    "role_caps": {
+      "mutation_repair": 30,
+      "novelty": 30,
+      "summary": 30,
+      "global_insight": 30,
+      "recommendation": 30,
+      "prompt_mutation": 30,
+      "readiness": 0
+    }
+  },
+  "totals": {
+    "calls": 5,
+    "roles": {
+      "mutation": 4,
+      "novelty": 1
+    },
+    "remote_elapsed_seconds": 818.0345623119792,
+    "uncached_input_plus_output_tokens": 30416,
+    "cached_input_tokens": 36864,
+    "cache_write_tokens": 0,
+    "reported_total_tokens": 67280,
+    "usage_unavailable_calls": 2,
+    "role_groups": {
+      "mutation_repair": 4,
+      "novelty": 1
+    }
+  },
+  "deadline_utc": "2026-10-09T03:14:07+00:00",
+  "blocked_reason": "Two consecutive provider transport failures",
+  "token_definition": "Headless reported inputTokens (uncached) + outputTokens; cached input is separate; reasoning output is included in output.",
+  "elapsed_definition": "Sum of monotonic elapsed around actual Headless requests; local embedding CPU is separate.",
+  "dollars": "Native dollar estimates are API list-price estimates, never subscription charges.",
+  "admission": "Reserve maximum request duration before actual dispatch; unknown tokens are not zero and do not alone stop work.",
+  "primary_budgets": [
+    "actual_all_role_calls",
+    "provider_elapsed_seconds",
+    "deadline"
+  ],
+  "token_budget_enforced": false,
+  "cli_lock_wait_seconds": 0.0027643769863061607
+}

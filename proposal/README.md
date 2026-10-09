@@ -5,6 +5,13 @@ with joint evolution of `world_model_step` and `planner`. It is a separate
 `namazu-proposal-reconstruction-v1` evaluator; historical forecast/task scores
 must never be inserted into its campaign database.
 
+The first bounded full-native block has now executed through
+[`evolve_full.py`](evolve_full.py). It produced two valid descendants, each escaping
+all five development cases, before two successive full-rewrite timeouts triggered
+the declared checkpoint. The six-slot ceiling was not filled. See the
+[scientific results](../README.md#42-first-native-evolutionary-block) and
+[run state](plan-state.json). Further execution awaits instruction.
+
 ## Preserved design
 
 The world is 15×15 with a 5×5 local view, two keys, a gating door, exit, three
@@ -68,12 +75,12 @@ OPENBLAS_NUM_THREADS=1 .venv/bin/python proposal/evaluate.py \
 The evaluator refuses to overwrite completed results; use a new directory for
 reproduction. The original five-episode default remains the native search default.
 
-## Native search entrypoint — implemented, not launched
+## Original preparation entrypoint — retained separately
 
 The [staged plan](../docs/original-proposal-plan.md) specifies the proposed bounded
 full-native treatment. The preparation example below predates that integration;
-it is not the execution command for a stage of the plan. Await explicit stage
-authorization and the bounded launcher changes before starting a search.
+it is not the execution command for a stage of the plan. Stage 1 used the separate
+bounded launcher; do not use this unbounded example to continue its checkpoint.
 
 Prepare an explicit configuration with zero model calls:
 

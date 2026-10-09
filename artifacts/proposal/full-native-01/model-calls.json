@@ -1,0 +1,264 @@
+[
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0004401110054459423,
+    "elapsed_seconds": 126.29092064697761,
+    "ended_utc": "2026-10-09T02:54:24.147816+00:00",
+    "generation": 1,
+    "id": "20261009T025217855284Z-66ea45e7",
+    "prompt_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "response_stdout": {
+      "bytes": 11239,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025217855284Z-66ea45e7.stdout",
+      "sha256": "8d09b0f4ef2790b11b733551c477c53e27f72b348fa983c9389ac710143c59d5"
+    },
+    "response_stdout_empty": false,
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T02:52:17.855336+00:00",
+    "status": "completed",
+    "usage": {
+      "agent": "codex",
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription",
+            "usage": {
+              "agent": "codex",
+              "cacheReadTokens": 12288,
+              "cacheWriteTokens": 0,
+              "cost": {
+                "cacheRead": 0.012288,
+                "cacheWrite": 0,
+                "input": 0.09299,
+                "output": 0.21005,
+                "total": 0.315328
+              },
+              "costBasis": "api-list-price-estimate",
+              "inputTokens": 9299,
+              "model": "gpt-6-astra",
+              "outputTokens": 4201,
+              "pricingSource": "models.dev",
+              "pricingStatus": "priced",
+              "provider": "openai",
+              "reasoningOutputTokens": 1545,
+              "totalTokens": 25788,
+              "usageStatus": "reported"
+            }
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "cacheRead": 0.012288,
+        "cacheWrite": 0,
+        "input": 0.09299,
+        "output": 0.21005,
+        "total": 0.315328
+      },
+      "costBasis": "api-list-price-estimate",
+      "inputTokens": 9299,
+      "model": "gpt-6-astra",
+      "outputTokens": 4201,
+      "pricingSource": "models.dev",
+      "pricingStatus": "priced",
+      "provider": "openai",
+      "reasoningOutputTokens": 1545,
+      "totalTokens": 25788,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0003436169936321676,
+    "elapsed_seconds": 13.337695277004968,
+    "ended_utc": "2026-10-09T02:54:40.546249+00:00",
+    "id": "20261009T025427192928Z-10349f5e",
+    "prompt_sha256": "c8e7154e3ef35c53d272db7f62ed2dfdd583cdb18e5a8a432313c360153ede33",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "response_stdout": {
+      "bytes": 1355,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025427192928Z-10349f5e.stdout",
+      "sha256": "a39829c063e361ff3d48d42d2a3b7be1354b8a36bdf12cbdf9d8ab37b0e7395c"
+    },
+    "response_stdout_empty": false,
+    "returncode": 0,
+    "role": "novelty",
+    "started_utc": "2026-10-09T02:54:27.192999+00:00",
+    "status": "completed",
+    "usage": {
+      "agent": "codex",
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription",
+            "usage": {
+              "agent": "codex",
+              "cacheReadTokens": 12288,
+              "cacheWriteTokens": 0,
+              "cost": {
+                "cacheRead": 0.0012288,
+                "cacheWrite": 0,
+                "input": 0.012158,
+                "output": 0.00088,
+                "total": 0.0142668
+              },
+              "costBasis": "api-list-price-estimate",
+              "inputTokens": 6079,
+              "model": "gpt-6.1-sol",
+              "outputTokens": 88,
+              "pricingSource": "models.dev",
+              "pricingStatus": "priced",
+              "provider": "openai",
+              "reasoningOutputTokens": 0,
+              "totalTokens": 18455,
+              "usageStatus": "reported"
+            }
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "cacheRead": 0.0012288,
+        "cacheWrite": 0,
+        "input": 0.012158,
+        "output": 0.00088,
+        "total": 0.0142668
+      },
+      "costBasis": "api-list-price-estimate",
+      "inputTokens": 6079,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 88,
+      "pricingSource": "models.dev",
+      "pricingStatus": "priced",
+      "provider": "openai",
+      "reasoningOutputTokens": 0,
+      "totalTokens": 18455,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0008836810011416674,
+    "elapsed_seconds": 197.6977850300027,
+    "ended_utc": "2026-10-09T02:57:59.651006+00:00",
+    "generation": 2,
+    "id": "20261009T025441950660Z-40a34b12",
+    "prompt_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "response_stdout": {
+      "bytes": 12612,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025441950660Z-40a34b12.stdout",
+      "sha256": "5e8cbd400baece5aafe3f8da43c507f22c05e3f49d8e6739905d8932e8262401"
+    },
+    "response_stdout_empty": false,
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T02:54:41.950846+00:00",
+    "status": "completed",
+    "usage": {
+      "agent": "codex",
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription",
+            "usage": {
+              "agent": "codex",
+              "cacheReadTokens": 12288,
+              "cacheWriteTokens": 0,
+              "cost": {
+                "cacheRead": 0.0012288,
+                "cacheWrite": 0,
+                "input": 0.009834,
+                "output": 0.05832,
+                "total": 0.0693828
+              },
+              "costBasis": "api-list-price-estimate",
+              "inputTokens": 4917,
+              "model": "gpt-6.1-sol",
+              "outputTokens": 5832,
+              "pricingSource": "models.dev",
+              "pricingStatus": "priced",
+              "provider": "openai",
+              "reasoningOutputTokens": 3016,
+              "totalTokens": 23037,
+              "usageStatus": "reported"
+            }
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "cacheRead": 0.0012288,
+        "cacheWrite": 0,
+        "input": 0.009834,
+        "output": 0.05832,
+        "total": 0.0693828
+      },
+      "costBasis": "api-list-price-estimate",
+      "inputTokens": 4917,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 5832,
+      "pricingSource": "models.dev",
+      "pricingStatus": "priced",
+      "provider": "openai",
+      "reasoningOutputTokens": 3016,
+      "totalTokens": 23037,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0006519749877043068,
+    "elapsed_seconds": 240.3537461660162,
+    "ended_utc": "2026-10-09T03:02:05.023618+00:00",
+    "generation": 3,
+    "id": "20261009T025804666702Z-708c4bbe",
+    "prompt_sha256": "b3c168eee726ecdae20afbda0bae44f13c40b1c2f3c70f98e5cdce072e551d5b",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "response_stdout": {
+      "bytes": 0,
+      "path": "results/proposal-full-native-01/model-calls/20261009T025804666702Z-708c4bbe.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "response_stdout_empty": true,
+    "returncode": 124,
+    "role": "mutation",
+    "started_utc": "2026-10-09T02:58:04.666738+00:00",
+    "status": "completed",
+    "usage_missing": true
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0004449929983820766,
+    "elapsed_seconds": 240.35441519197775,
+    "ended_utc": "2026-10-09T03:06:05.393060+00:00",
+    "generation": 3,
+    "id": "20261009T030205037371Z-f416af55",
+    "prompt_sha256": "2843e1fa9b313e4585f97f92c45bdc104a2f75edbc67c68bc3f786363adeb4df",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "response_stdout": {
+      "bytes": 0,
+      "path": "results/proposal-full-native-01/model-calls/20261009T030205037371Z-f416af55.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "response_stdout_empty": true,
+    "returncode": 124,
+    "role": "mutation",
+    "started_utc": "2026-10-09T03:02:05.037411+00:00",
+    "status": "completed",
+    "usage_missing": true
+  }
+]

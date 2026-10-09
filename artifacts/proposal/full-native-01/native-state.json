@@ -1,0 +1,55 @@
+{
+  "authorized_total_slots": 6,
+  "bandit_state": {
+    "arm_names": [
+      "headless/codex@gpt-6-astra?effort=high",
+      "headless/codex@gpt-6.1-sol?effort=high"
+    ],
+    "baseline": 0.5363616738311696,
+    "divs": [
+      0.9025,
+      0.95
+    ],
+    "max_cost_observed": 0.315328,
+    "min_cost_observed": 0.0,
+    "n_completed": [
+      1.0,
+      1.0
+    ],
+    "n_costs": [
+      1.0,
+      2.0
+    ],
+    "n_submitted": [
+      1.0,
+      2.0
+    ],
+    "obs_max": -0.7249452458488451,
+    "obs_min": null,
+    "s": [
+      -0.8548412011862198,
+      -0.7762385402363957
+    ],
+    "total_costs": [
+      0.315328,
+      0.0693828
+    ]
+  },
+  "boundary": "original_stage1_finally",
+  "meta_state_sha256": "305ab017dcd63f8b30eb437ecc1d3537a44597df46071473fd77f4e27d5b7ebe",
+  "prompt_api_cost": 0.0,
+  "prompt_evolution_counter": 2,
+  "prompt_percentile_recompute_counter": 2,
+  "rng_state_sha256": {
+    "bandit_rng": "d922eb422267d4ab0c164dc5a08df91b0f24442c64cc29958dfb50f82cd92944",
+    "numpy_rng": "fd56bec233f260d296f21096c27b9f037eeaa99e8a8e257e9410c3ba2dbfdd2b",
+    "python_rng": "cad815c2119d58b002f401338921e533d69f819223199557e10f7d6cf5cbaead"
+  },
+  "saturation_reviews": [],
+  "saved_utc": "2026-10-09T03:06:08.714714+00:00",
+  "side_effects_completed_program_ids": [
+    "8fa36864-3135-44c5-9fe8-9db850c655bf",
+    "9643a873-d27f-4e0f-a058-b2be39851d1c"
+  ],
+  "version": 1
+}

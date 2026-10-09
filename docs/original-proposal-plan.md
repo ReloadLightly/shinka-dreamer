@@ -1,10 +1,21 @@
 # Implementing the original Sakana proposal, step by step
 
-**Status: proposed execution plan, 9 October 2026.** The current instruction
-authorizes research and planning. It does not launch a search. The user chose
-budgets **stage by stage**; the ceilings below are proposals for review, not
-spending authorization. Each execution ends at a checkpoint and awaits a new
-instruction. There is no unattended sequence of stages.
+**Prospective plan recorded 9 October 2026; subsequent Stage 1 checkpoint below.**
+The plan was originally commissioned as research and planning only. The user chose
+budgets **stage by stage** and subsequently authorized Stage 1. Later-stage
+ceilings remain proposals for review, not spending authorization. Each execution
+ends at a checkpoint and awaits a new instruction. There is no unattended sequence
+of stages.
+
+## Execution checkpoint
+
+The user subsequently authorized Stage 1. Its invocation is now checkpointed;
+see the [results](../README.md#42-first-native-evolutionary-block) and
+[machine state](../proposal/plan-state.json). Two valid descendants escaped all
+five development cases. The run stopped after two successive full-rewrite
+request timeouts, before reaching six completed slots. No subsequent stage is
+authorized. The proposed next action is the zero-model-call development check
+in Stage 3, rather than another mutation block.
 
 ## 1. Destination and fixed scope
 
@@ -316,5 +327,6 @@ invocation and resume command, and stop. Do not invent a command for features no
 implemented yet: the current launcher lacks the proposed bounded full-native
 options. Stage 1 must supply that command after the adapter changes.
 
-**Next action:** wait for the user's instruction to execute Stage 1, or revise its
-proposed scope/budget. Planning itself authorizes none of the future calls above.
+**Next action after the Stage 1 checkpoint:** await the user's instruction for
+the proposed Stage 3 development check. No further mutation or historical
+assessment is authorized. The prospective stage budgets above remain preserved.
