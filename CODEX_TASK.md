@@ -1,3 +1,17 @@
+# Active authorization: original-proposal Stage 1 only
+
+The user authorized execution of the staged plan on 9 October 2026. Execute Stage 1,
+then checkpoint and stop. Started 02:45:07 UTC; hard checkpoint 03:25:07 UTC.
+Integration is bounded at 12 minutes; scientific execution ends no later than
+03:14:07 UTC in this invocation. Limits: six total slots including seed/failures,
+30 actual all-role calls, 1,200 provider seconds, 30 episodes/6,000 transitions,
+300 candidate CPU-seconds. Use `proposal/evolve_full.py --run`; its saved caps and
+deadline apply to every role. No next stage or historical assessment is authorized.
+The evaluator and original seed remain unchanged. Full native settings and hashes
+are in `artifacts/proposal/full-native-01/protocol.json`.
+
+---
+
 # Current task: original-proposal execution plan — awaiting instruction
 
 The latest request authorizes detailed planning and implementation research on
