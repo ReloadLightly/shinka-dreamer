@@ -1,4 +1,5 @@
-generation,evaluation_finished_epoch,elapsed_since_first_evaluation_seconds,candidate_cpu_seconds_cumulative_recorded_sum,evaluator_cpu_seconds_cumulative_recorded_sum,native_correct,task,bestsofar_generation,bestsofar_task,completed_calls,uncached_input_plus_output_tokens,cached_input_tokens,remote_elapsed_seconds,usage_unavailable_completed_calls,readiness_fixture_calls
-0,1791509083.0015666,10.039253950119019,8.442599000000001,2.5173205919999995,True,0.8611093750000003,0,0.8611093750000003,3,25036,36864,47.69556249101879,0,3
-1,1791509614.263577,541.3012642860413,8.442599000000001,2.5173205919999995,False,,0,0.8611093750000003,4,51618,49152,564.7164861560159,0,3
-2,1791509789.5026758,716.540363073349,18.919937,4.787433085,True,0.8109270833333332,0,0.8611093750000003,6,81455,73728,723.4434913260047,0,3
+point_kind,generation,evaluation_finished_epoch,elapsed_since_first_evaluation_seconds,candidate_cpu_seconds_cumulative_recorded_sum,evaluator_cpu_seconds_cumulative_recorded_sum,native_correct,task,bestsofar_generation,bestsofar_task,admitted_calls,completed_calls,uncached_input_plus_output_tokens,cached_input_tokens,remote_elapsed_seconds,usage_unavailable_completed_calls,reported_token_sum_is_partial,readiness_fixture_calls
+candidate_completion,0,1791509083.0015666,10.039253950119019,8.442599000000001,2.5173205919999995,True,0.8611093750000003,0,0.8611093750000003,3,3,25036,36864,47.69556249101879,0,False,3
+candidate_completion,1,1791509614.263577,541.3012642860413,8.442599000000001,2.5173205919999995,False,,0,0.8611093750000003,4,4,51618,49152,564.7164861560159,0,False,3
+candidate_completion,2,1791509789.5026758,716.540363073349,18.919937,4.787433085,True,0.8109270833333332,0,0.8611093750000003,6,6,81455,73728,723.4434913260047,0,False,3
+checkpoint_tail,,1791510698.827681,1625.8653683662415,18.919937,4.787433085,,,0,0.8611093750000003,12,12,125978,135168,1445.2350895440322,1,True,3

@@ -10,9 +10,12 @@
   "episode_wall_seconds_unavailable_recorded_episodes": 0,
   "evaluator_cpu_seconds_recorded_sum": 4.787433084999998,
   "evaluator_cpu_seconds_unavailable_recorded_episodes": 0,
-  "exported_utc": "2026-10-09T01:47:43.848078+00:00",
+  "exported_utc": "2026-10-09T01:55:27.011206+00:00",
   "failed_persisted_slots": [
     1
+  ],
+  "held_without_generated_source": [
+    3
   ],
   "infrastructure_findings_sha256": "3985a3af883f6c7f8961cf33d971b8ce32041a0a1261cda02a28811db4d9561e",
   "input_episode_file_inventory_sha256": "a1fd909ace8aefc845339690291967bff8911321f76cb9aa61afc5a39434dd5c",
@@ -28,9 +31,9 @@
   "recorded_condition_episodes": 96,
   "recorded_invalid_episodes": 0,
   "recorded_physical_transitions": 5084,
-  "reporter_sha256": "d7ecb2b2cf14c262e44c33ab64eabda9b9f04abf7b8ace55016fdf106dd3bbbc",
+  "reporter_sha256": "6fc4ca3ae2fc4b4b8ff33cf15620bd74f1f01228110ca59217d62d1e0ed2df18",
   "scope": {
-    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias.",
+    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias. With only8 layouts and sparse discordance, intervals may be unstable or degenerate; a zero-width interval does not establish equivalence.",
     "control": "No selected-program freeze or prediction-use intervention was assessed in this RUN1 campaign. Predictive-adaptation control benefit remains untested.",
     "cpu": "Candidate and evaluator episode-process CPU sums are disjoint; native host evaluation elapsed and summed episode wall time overlap and must not be added. Uncheckpointed work can be unavailable.",
     "prediction": "On-policy forecast losses; actions and target exposure differ between programs. This is not matched-experience prediction-learning evidence.",
@@ -38,5 +41,7 @@
   },
   "source_review_notes_sha256": "53c6251347d310bd500e68d6688fc9248b793ecfe57f49de2530d93c4d3db4b9",
   "target_slot_cap": 32,
+  "unattempted_held_proposal_outcomes": 48,
+  "unavailable_planned_outcomes_persisted_slots": 48,
   "valid_persisted_slots": 2
 }

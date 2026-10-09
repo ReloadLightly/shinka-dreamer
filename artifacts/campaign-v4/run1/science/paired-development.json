@@ -3,8 +3,10 @@
   "best_generation": 0,
   "bootstrap_draws": 1000,
   "bootstrap_seed": 4137,
+  "candidate_generation": 0,
   "cases": 8,
   "comparison_is_identity": true,
+  "comparison_role": "development_winner",
   "conditions": [
     "uniform-full",
     "stationary-full",
@@ -898,12 +900,12 @@
     }
   },
   "scope": {
-    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias.",
+    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias. With only8 layouts and sparse discordance, intervals may be unstable or degenerate; a zero-width interval does not establish equivalence.",
     "control": "No selected-program freeze or prediction-use intervention was assessed in this RUN1 campaign. Predictive-adaptation control benefit remains untested.",
     "cpu": "Candidate and evaluator episode-process CPU sums are disjoint; native host evaluation elapsed and summed episode wall time overlap and must not be added. Uncheckpointed work can be unavailable.",
     "prediction": "On-policy forecast losses; actions and target exposure differ between programs. This is not matched-experience prediction-learning evidence.",
     "task": "One selected development panel, repeatedly exposed to evolutionary selection; no held-out assessment or independent-search replication."
   },
   "seed_generation": 0,
-  "winner_selection_warning": "The winner was selected using these same development cases. Intervals describe observed case variability and are not confirmatory generalization or adaptation-control evidence."
+  "winner_selection_warning": "All compared descendants and the winner were evaluated on reused development cases. Intervals describe observed case variability and are not confirmatory generalization or adaptation-control evidence."
 }

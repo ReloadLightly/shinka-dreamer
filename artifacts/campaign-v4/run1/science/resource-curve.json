@@ -1,5 +1,6 @@
 [
   {
+    "admitted_calls": 3,
     "bestsofar_generation": 0,
     "bestsofar_task": 0.8611093750000003,
     "cached_input_tokens": 36864,
@@ -10,13 +11,16 @@
     "evaluator_cpu_seconds_cumulative_recorded_sum": 2.5173205919999995,
     "generation": 0,
     "native_correct": true,
+    "point_kind": "candidate_completion",
     "readiness_fixture_calls": 3,
     "remote_elapsed_seconds": 47.69556249101879,
+    "reported_token_sum_is_partial": false,
     "task": 0.8611093750000003,
     "uncached_input_plus_output_tokens": 25036,
     "usage_unavailable_completed_calls": 0
   },
   {
+    "admitted_calls": 4,
     "bestsofar_generation": 0,
     "bestsofar_task": 0.8611093750000003,
     "cached_input_tokens": 49152,
@@ -27,13 +31,16 @@
     "evaluator_cpu_seconds_cumulative_recorded_sum": 2.5173205919999995,
     "generation": 1,
     "native_correct": false,
+    "point_kind": "candidate_completion",
     "readiness_fixture_calls": 3,
     "remote_elapsed_seconds": 564.7164861560159,
+    "reported_token_sum_is_partial": false,
     "task": null,
     "uncached_input_plus_output_tokens": 51618,
     "usage_unavailable_completed_calls": 0
   },
   {
+    "admitted_calls": 6,
     "bestsofar_generation": 0,
     "bestsofar_task": 0.8611093750000003,
     "cached_input_tokens": 73728,
@@ -44,10 +51,32 @@
     "evaluator_cpu_seconds_cumulative_recorded_sum": 4.787433085,
     "generation": 2,
     "native_correct": true,
+    "point_kind": "candidate_completion",
     "readiness_fixture_calls": 3,
     "remote_elapsed_seconds": 723.4434913260047,
+    "reported_token_sum_is_partial": false,
     "task": 0.8109270833333332,
     "uncached_input_plus_output_tokens": 81455,
     "usage_unavailable_completed_calls": 0
+  },
+  {
+    "admitted_calls": 12,
+    "bestsofar_generation": 0,
+    "bestsofar_task": 0.8611093750000003,
+    "cached_input_tokens": 135168,
+    "candidate_cpu_seconds_cumulative_recorded_sum": 18.919937,
+    "completed_calls": 12,
+    "elapsed_since_first_evaluation_seconds": 1625.8653683662415,
+    "evaluation_finished_epoch": 1791510698.827681,
+    "evaluator_cpu_seconds_cumulative_recorded_sum": 4.787433085,
+    "generation": null,
+    "native_correct": null,
+    "point_kind": "checkpoint_tail",
+    "readiness_fixture_calls": 3,
+    "remote_elapsed_seconds": 1445.2350895440322,
+    "reported_token_sum_is_partial": true,
+    "task": null,
+    "uncached_input_plus_output_tokens": 125978,
+    "usage_unavailable_completed_calls": 1
   }
 ]

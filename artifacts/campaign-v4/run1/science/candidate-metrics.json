@@ -15,6 +15,7 @@
     "candidate_cpu_seconds_measured_episodes": 48,
     "candidate_cpu_seconds_sum": 8.442599000000001,
     "candidate_cpu_seconds_unavailable_recorded_episodes": 0,
+    "consecutive_visible_steps": 244,
     "death_count": 7,
     "death_rate": 0.14583333333333334,
     "death_rate_lower_bound": 0.14583333333333334,
@@ -42,6 +43,7 @@
     "native_score": 0.8611093750000004,
     "post_switch_steps": 512,
     "post_switch_visible_enemy_steps": 103,
+    "proposal_hold": null,
     "recorded_episodes": 48,
     "replacements_encountered": 26,
     "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
@@ -52,7 +54,9 @@
     "timeout_count": 0,
     "timeout_rate": 0.0,
     "timeout_rate_lower_bound": 0.0,
-    "transitions_recorded": 2563
+    "transitions_recorded": 2563,
+    "visible_enemy_cells": 434,
+    "visible_enemy_steps": 382
   },
   {
     "brier_audit": null,
@@ -70,6 +74,7 @@
     "candidate_cpu_seconds_measured_episodes": 0,
     "candidate_cpu_seconds_sum": 0,
     "candidate_cpu_seconds_unavailable_recorded_episodes": 0,
+    "consecutive_visible_steps": 0,
     "death_count": 0,
     "death_rate": null,
     "death_rate_lower_bound": 0.0,
@@ -100,6 +105,7 @@
     "native_score": 0.0,
     "post_switch_steps": 0,
     "post_switch_visible_enemy_steps": 0,
+    "proposal_hold": null,
     "recorded_episodes": 0,
     "replacements_encountered": 0,
     "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
@@ -110,7 +116,9 @@
     "timeout_count": 0,
     "timeout_rate": null,
     "timeout_rate_lower_bound": 0.0,
-    "transitions_recorded": 0
+    "transitions_recorded": 0,
+    "visible_enemy_cells": 0,
+    "visible_enemy_steps": 0
   },
   {
     "brier_audit": 0.017020363193043196,
@@ -128,6 +136,7 @@
     "candidate_cpu_seconds_measured_episodes": 48,
     "candidate_cpu_seconds_sum": 10.477338,
     "candidate_cpu_seconds_unavailable_recorded_episodes": 0,
+    "consecutive_visible_steps": 297,
     "death_count": 9,
     "death_rate": 0.1875,
     "death_rate_lower_bound": 0.1875,
@@ -155,6 +164,7 @@
     "native_score": 0.8109270833333335,
     "post_switch_steps": 554,
     "post_switch_visible_enemy_steps": 113,
+    "proposal_hold": null,
     "recorded_episodes": 48,
     "replacements_encountered": 29,
     "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
@@ -165,7 +175,9 @@
     "timeout_count": 0,
     "timeout_rate": 0.0,
     "timeout_rate_lower_bound": 0.0,
-    "transitions_recorded": 2521
+    "transitions_recorded": 2521,
+    "visible_enemy_cells": 504,
+    "visible_enemy_steps": 439
   },
   {
     "brier_audit": null,
@@ -183,6 +195,7 @@
     "candidate_cpu_seconds_measured_episodes": 0,
     "candidate_cpu_seconds_sum": 0,
     "candidate_cpu_seconds_unavailable_recorded_episodes": 0,
+    "consecutive_visible_steps": 0,
     "death_count": 0,
     "death_rate": null,
     "death_rate_lower_bound": 0.0,
@@ -210,16 +223,23 @@
     "native_score": null,
     "post_switch_steps": 0,
     "post_switch_visible_enemy_steps": 0,
+    "proposal_hold": {
+      "generated_source_available": false,
+      "reason": "Reported usage unavailable; token budget cannot be verified",
+      "stage": "before_valid_proposal"
+    },
     "recorded_episodes": 0,
     "replacements_encountered": 0,
     "source_sha256": null,
-    "status": "pending_native_slot",
+    "status": "held_before_valid_proposal",
     "task": null,
     "task_lower_bound": 0.0,
     "task_upper_bound": 1.0,
     "timeout_count": 0,
     "timeout_rate": null,
     "timeout_rate_lower_bound": 0.0,
-    "transitions_recorded": 0
+    "transitions_recorded": 0,
+    "visible_enemy_cells": 0,
+    "visible_enemy_steps": 0
   }
 ]

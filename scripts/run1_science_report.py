@@ -26,7 +26,7 @@ SCOPES = {
     "task": "One selected development panel, repeatedly exposed to evolutionary selection; no held-out assessment or independent-search replication.",
     "prediction": "On-policy forecast losses; actions and target exposure differ between programs. This is not matched-experience prediction-learning evidence.",
     "control": "No selected-program freeze or prediction-use intervention was assessed in this RUN1 campaign. Predictive-adaptation control benefit remains untested.",
-    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias.",
+    "bootstrap": "1000 percentile bootstrap draws, fixed seed4137, resampling all8 layout cases with all6 conditions and both programs kept together. Nominal descriptive uncertainty; it does not remove winner-selection bias. With only8 layouts and sparse discordance, intervals may be unstable or degenerate; a zero-width interval does not establish equivalence.",
     "cpu": "Candidate and evaluator episode-process CPU sums are disjoint; native host evaluation elapsed and summed episode wall time overlap and must not be added. Uncheckpointed work can be unavailable.",
 }
 
@@ -173,6 +173,9 @@ def metrics(rows, expected):
         result[field + "_unavailable_recorded_episodes"] = n - len(measured)
     result.update(encountered_switch_episodes=sum(r["encountered_switch"] for r in rows),
                   replacements_encountered=sum(r["replacements_encountered"] for r in rows),
+                  visible_enemy_steps=sum(r["exposure"].get("visible_enemy_steps", 0) for r in rows),
+                  visible_enemy_cells=sum(r["exposure"].get("visible_enemy_cells", 0) for r in rows),
+                  consecutive_visible_steps=sum(r["exposure"].get("consecutive_visible_steps", 0) for r in rows),
                   post_switch_steps=sum(r["exposure"].get("post_switch_steps", 0) for r in rows),
                   post_switch_visible_enemy_steps=sum(r["exposure"].get("post_switch_visible_enemy_steps", 0) for r in rows))
     return result
@@ -236,11 +239,14 @@ def program_changes(row, by_id, manual_notes):
 def call_snapshot(calls, cutoff):
     completed = [call for call in calls if epoch(call.get("ended_utc")) is not None and epoch(call["ended_utc"]) <= cutoff]
     usages = [c["usage"] for c in completed if isinstance(c.get("usage"), dict)]
-    return {"completed_calls": len(completed),
+    unavailable = sum(not c.get("usage") or c["usage"].get("usageStatus") != "reported" for c in completed)
+    return {"admitted_calls": sum(epoch(call.get("started_utc")) is not None and epoch(call["started_utc"]) <= cutoff for call in calls),
+            "completed_calls": len(completed),
             "uncached_input_plus_output_tokens": sum(u.get("inputTokens", 0) + u.get("outputTokens", 0) for u in usages),
             "cached_input_tokens": sum(u.get("cacheReadTokens", 0) for u in usages),
             "remote_elapsed_seconds": sum(c.get("elapsed_seconds", 0.) for c in completed),
-            "usage_unavailable_completed_calls": sum(not c.get("usage") or c["usage"].get("usageStatus") != "reported" for c in completed),
+            "usage_unavailable_completed_calls": unavailable,
+            "reported_token_sum_is_partial": unavailable > 0,
             "readiness_fixture_calls": sum(c.get("role") == "readiness" for c in completed)}
 
 
@@ -251,7 +257,7 @@ def percentiles(values):
     return [values[int(.025 * (len(values) - 1))], values[int(.975 * (len(values) - 1))]]
 
 
-def paired_comparison(episodes, seed_generation, best_generation, conditions, cases=8):
+def paired_comparison(episodes, seed_generation, best_generation, conditions, cases=8, comparison_role="development_winner"):
     lookup = {(r["generation"], r["case"], r["condition"]): r for r in episodes}
     required = [(g, c, condition) for g in {seed_generation, best_generation} for c in range(cases) for condition in conditions]
     if any(key not in lookup for key in required):
@@ -287,13 +293,14 @@ def paired_comparison(episodes, seed_generation, best_generation, conditions, ca
                                       "bootstrap_draws_available": sum(x is not None for x in bootstrap[key])}
         groups[name] = group
     return {"available": True, "seed_generation": seed_generation, "best_generation": best_generation,
+            "candidate_generation": best_generation, "comparison_role": comparison_role,
             "comparison_is_identity": seed_generation == best_generation,
             "cases": cases, "conditions": list(conditions), "bootstrap_draws": 1000, "bootstrap_seed": 4137,
             "groups": groups, "scope": SCOPES,
-            "winner_selection_warning": "The winner was selected using these same development cases. Intervals describe observed case variability and are not confirmatory generalization or adaptation-control evidence."}
+            "winner_selection_warning": "All compared descendants and the winner were evaluated on reused development cases. Intervals describe observed case variability and are not confirmatory generalization or adaptation-control evidence."}
 
 
-def generated_document(summary, candidates, paired, path):
+def generated_document(summary, candidates, paired, descendants, path):
     lines = ["# RUN1 saved development results", "", SCOPES["task"], "",
              f"Current export: **{summary['persisted_unique_slots']} persisted slots**, including the seed; "
              f"{summary['recorded_condition_episodes']} saved condition-episodes. "
@@ -307,6 +314,8 @@ def generated_document(summary, candidates, paired, path):
     for row in candidates:
         if row.get("infrastructure_failure"):
             lines += [f"Slot{row['generation']} infrastructure finding: {row['infrastructure_failure']['interpretation']}", ""]
+        if row.get("proposal_hold"):
+            lines += [f"Reserved slot{row['generation']} is held at `{row['proposal_hold']['stage']}` with generated source available: {row['proposal_hold']['generated_source_available']}. Its {row['missing_episodes']} planned episodes were unattempted. Reason: {row['proposal_hold']['reason']}. It is not a completed candidate slot.", ""]
     if paired.get("available") and paired["best_generation"] == paired["seed_generation"]:
         lines += ["The seed remains the best eligible development program. The paired export is therefore an identity comparison, not evidence about a new program.", ""]
     elif paired.get("available"):
@@ -317,6 +326,20 @@ def generated_document(summary, candidates, paired, path):
                   f"{100*effect['difference_best_minus_seed']:+.2f} percentage points "
                   f"(descriptive layout-bootstrap interval {100*lo:+.2f} to {100*hi:+.2f}). "
                   "The same cases selected this winner; this interval does not establish out-of-sample improvement.", ""]
+    for comparison in descendants:
+        generation = comparison["candidate_generation"]
+        task = comparison["groups"]["all"]["metrics"]["task"]
+        escape = comparison["groups"]["all"]["metrics"]["escape"]
+        task_ci, escape_ci = task["ci95_descriptive_layout_bootstrap"], escape["ci95_descriptive_layout_bootstrap"]
+        lines += [f"The evaluated descendant at slot{generation} versus the seed has paired task difference {task['difference_best_minus_seed']:+.5f} "
+                  f"(descriptive 95% layout-bootstrap interval {task_ci[0]:+.5f} to {task_ci[1]:+.5f}) and escape difference "
+                  f"{100*escape['difference_best_minus_seed']:+.2f} percentage points ({100*escape_ci[0]:+.2f} to {100*escape_ci[1]:+.2f}). "
+                  "This is a development comparison, not a frozen-adaptation causal contrast.", "",
+                  "| Condition | Task difference | Escape difference (pp) |", "|:--|--:|--:|"]
+        for condition in comparison["conditions"]:
+            effects = comparison["groups"][condition]["metrics"]
+            lines.append(f"| {condition} | {effects['task']['difference_best_minus_seed']:+.5f} | {100*effects['escape']['difference_best_minus_seed']:+.1f} |")
+        lines += ["", "The condition-specific intervals and pooled forecast ratios are in `paired-descendants.json`; all six conditions from each layout remain together in resampling. Exposure counts are in `exposure-by-condition.csv`. Visibility and consecutive visibility are opportunity proxies, not identified enemy transitions or measured information gain. Post-switch experience is only available for episodes that survive to a replacement; unconditional task outcomes remain primary.", ""]
     lines += [SCOPES["prediction"], "", SCOPES["control"], "", SCOPES["bootstrap"], "", SCOPES["cpu"], "",
               "Program changes are reported from source hashes and structural AST comparisons. Named-call reachability flags possible unused helpers but does not prove inactivity or useful learning. Source-specific causal analysis remains separate.", "",
               "Reproduce this saved-data export without executing candidates, worlds or model calls:", "", "```bash",
@@ -368,10 +391,13 @@ def main():
         inputs.update(provenance)
         clean = [compact_episode(r, generation, case, source) for (case, condition), r in sorted(raw.items())]
         compact.extend(clean)
+        hold_path = campaign / f"gen_{generation}/held-proposal.json"
+        hold = json.loads(hold_path.read_text()) if hold_path.exists() else None
         metric = {"generation": generation, "native_id": row["id"] if row else None,
                   "source_sha256": source, "native_correct": bool(row["correct"]) if row else None,
                   "native_score": row["combined_score"] if row else None,
-                  "status": ("persisted_complete_panel" if len(clean) == expected else "persisted_no_panel" if not clean else "persisted_incomplete_panel") if row else "pending_native_slot",
+                  "status": ("persisted_complete_panel" if len(clean) == expected else "persisted_no_panel" if not clean else "persisted_incomplete_panel") if row else ("held_" + hold["stage"] if hold else "pending_native_slot"),
+                  "proposal_hold": {"stage": hold["stage"], "reason": hold["reason"], "generated_source_available": source is not None} if hold else None,
                   "evaluation_started": (folder / "evaluation-manifest.json").exists(),
                   "infrastructure_failure": infrastructure.get(generation),
                   "native_evaluation_elapsed_seconds": meta.get("evaluation_seconds"), **metrics(clean, expected)}
@@ -395,18 +421,30 @@ def main():
                 best = metric
         for field in cumulative_cpu:
             cumulative_cpu[field] += metric[field + "_sum"]
-        curve.append({"generation": metric["generation"], "evaluation_finished_epoch": cutoff,
+        curve.append({"point_kind": "candidate_completion", "generation": metric["generation"], "evaluation_finished_epoch": cutoff,
                       "elapsed_since_first_evaluation_seconds": cutoff - first_evaluation if first_evaluation is not None else None,
                       **{field + "_cumulative_recorded_sum": value for field, value in cumulative_cpu.items()},
                       "native_correct": metric["native_correct"], "task": metric["task"],
                       "bestsofar_generation": best["generation"] if best else None,
                       "bestsofar_task": best["task"] if best else None,
                       **call_snapshot(calls, cutoff)})
+    last_call = max((epoch(call.get("ended_utc")) for call in calls if epoch(call.get("ended_utc")) is not None), default=None)
+    if curve and last_call is not None and last_call > curve[-1]["evaluation_finished_epoch"]:
+        curve.append({**curve[-1], "point_kind": "checkpoint_tail", "generation": None,
+                      "evaluation_finished_epoch": last_call, "native_correct": None, "task": None,
+                      "elapsed_since_first_evaluation_seconds": last_call - first_evaluation if first_evaluation is not None else None,
+                      **call_snapshot(calls, last_call)})
     paired = paired_comparison(compact, 0, best["generation"], conditions) if best and 0 in slots else {"available": False, "reason": "Seed and eligible complete winner not both available", "scope": SCOPES}
+    descendants = [paired_comparison(compact, 0, row["generation"], conditions,
+                   comparison_role="evaluated_descendant_nonwinning" if row["generation"] != best["generation"] else "development_winner")
+                   for row in candidates if row["generation"] != 0 and row["native_correct"] and row["recorded_episodes"] == expected] if best and 0 in slots else []
     summary = {"campaign": manifest["campaign"], "exported_utc": datetime.now(timezone.utc).isoformat(),
                "target_slot_cap": manifest["total_candidate_slots"], "persisted_unique_slots": len(slots),
                "administrative_seed_copy_rows": sum(bool(r["metadata"].get("_is_island_copy")) for r in native_rows),
                "pending_slot_directories": sorted(generations - set(slots)),
+               "unavailable_planned_outcomes_persisted_slots": sum(r["missing_episodes"] for r in candidates if r["generation"] in slots),
+               "unattempted_held_proposal_outcomes": sum(r["missing_episodes"] for r in candidates if r["proposal_hold"] and not r["evaluation_started"]),
+               "held_without_generated_source": [r["generation"] for r in candidates if r["proposal_hold"] and not r["proposal_hold"]["generated_source_available"]],
                "valid_persisted_slots": sum(bool(row["correct"]) for row in slots.values()),
                "failed_persisted_slots": sorted(g for g, row in slots.items() if not row["correct"]),
                "recorded_condition_episodes": len(compact), "recorded_physical_transitions": sum(r["steps"] for r in compact),
@@ -430,11 +468,20 @@ def main():
     write_json(out / "resource-curve.json", curve)
     write_csv(out / "resource-curve.csv", curve)
     write_json(out / "paired-development.json", paired)
+    write_json(out / "paired-descendants.json", {"comparisons": descendants, "scope": SCOPES})
+    effects = [{"generation": comparison["candidate_generation"], "condition": condition, "metric": name,
+                "seed": effect["seed"], "descendant": effect["best"], "difference": effect["difference_best_minus_seed"],
+                "ci95_low": effect["ci95_descriptive_layout_bootstrap"][0] if effect["ci95_descriptive_layout_bootstrap"] else None,
+                "ci95_high": effect["ci95_descriptive_layout_bootstrap"][1] if effect["ci95_descriptive_layout_bootstrap"] else None}
+               for comparison in descendants for condition, group in comparison["groups"].items() for name, effect in group["metrics"].items()]
+    write_csv(out / "paired-descendant-effects.csv", effects)
+    exposure_fields = ("generation", "condition", "expected_episodes", "recorded_episodes", "missing_episodes", "encountered_switch_episodes", "replacements_encountered", "visible_enemy_steps", "visible_enemy_cells", "consecutive_visible_steps", "post_switch_steps", "post_switch_visible_enemy_steps")
+    write_csv(out / "exposure-by-condition.csv", [{key: row[key] for key in exposure_fields} for row in condition_metrics])
     write_json(out / "program-analysis.json", analyses)
     with gzip.GzipFile(filename=str(out / "development-episodes.jsonl.gz"), mode="wb", mtime=0) as stream:
         for row in compact:
             stream.write((json.dumps(row, sort_keys=True, separators=(",", ":"), allow_nan=False) + "\n").encode())
-    generated_document(summary, candidates, paired, ROOT / args.document)
+    generated_document(summary, candidates, paired, descendants, ROOT / args.document)
     print(json.dumps({key: summary[key] for key in ("persisted_unique_slots", "recorded_condition_episodes", "best_development_generation", "recorded_invalid_episodes")}))
 
 
