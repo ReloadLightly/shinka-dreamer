@@ -1,0 +1,18 @@
+[
+  {
+    "classification": "native_evaluation_timeout",
+    "episode_file_present": false,
+    "evaluation_started_at": 1791509614.2336438,
+    "generation": 1,
+    "interpretation": "Original native local scheduler uses job.start_time, which this job records as proposal start. A timeout before evaluation can complete is infrastructure evidence, not an empirical failure of the candidate algorithm.",
+    "job_start_time": 1791509087.9034789,
+    "logged_evidence": "Process 1457508 exceeded timeout of 00:08:00. Killing. => Gen. 1",
+    "metrics_file_present": false,
+    "pre_evaluation_seconds_charged_by_original_timer": 526.3301649093628,
+    "source_log": {
+      "bytes": 62022,
+      "path": "results/campaign-v4-run1/controller.log",
+      "sha256": "c12c575fc510d7a5d401ffc360ae9e1b88c1d806ca9f54bde7bdff5273d830b1"
+    }
+  }
+]

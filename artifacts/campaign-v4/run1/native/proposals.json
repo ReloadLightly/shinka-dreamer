@@ -1,0 +1,220 @@
+{
+  "accepted": [
+    {
+      "embedding_evidence": {
+        "dimensions": 384,
+        "elapsed_seconds": 9.057682215003297,
+        "embedded_characters": 10000,
+        "embedded_prefix_sha256": "aa50f630750c0527d168ac8e7ec3b39d5928cf3c2aca202e52e67390a0a4648f",
+        "native_estimated_api_cost": 0.0,
+        "source_characters": 20564,
+        "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347"
+      },
+      "generation": 1,
+      "job": {
+        "archive_insp_ids": [],
+        "evaluation_started_at": 1791509614.2336438,
+        "evaluation_submitted_at": 1791509614.2336438,
+        "generation": 1,
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "proposal_started_at": 1791509087.9034789,
+        "start_time": 1791509087.9034789,
+        "top_k_insp_ids": []
+      },
+      "novelty_evidence": {
+        "accepted": true,
+        "metadata": {
+          "max_similarity": 0.9231391549110413,
+          "novelty_checks_performed": 0,
+          "novelty_explanation": "",
+          "novelty_total_cost": 0.0,
+          "similarity_scores": [
+            0.9231391549110413
+          ]
+        },
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347"
+      },
+      "provenance": {
+        "bytes": 120084,
+        "path": "results/campaign-v4-run1/gen_1/accepted-proposal.json",
+        "sha256": "1d59769ee78924e40f2fa906ab2872135a85b619573dc69546a93ed4b7a0e309"
+      },
+      "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
+      "stage": "accepted_after_native_novelty"
+    },
+    {
+      "embedding_evidence": {
+        "dimensions": 384,
+        "elapsed_seconds": 3.40183762399829,
+        "embedded_characters": 10000,
+        "embedded_prefix_sha256": "fb0ba2efb7ece4922029c800151cc78c066bf44faadfde7943a42aaeb9746750",
+        "native_estimated_api_cost": 0.0,
+        "source_characters": 10194,
+        "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3"
+      },
+      "generation": 2,
+      "job": {
+        "archive_insp_ids": [],
+        "evaluation_started_at": 1791509776.8300905,
+        "evaluation_submitted_at": 1791509776.8300905,
+        "generation": 2,
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "proposal_started_at": 1791509614.566042,
+        "start_time": 1791509614.566042,
+        "top_k_insp_ids": []
+      },
+      "novelty_evidence": {
+        "accepted": true,
+        "metadata": {
+          "max_similarity": 0.9796172976493835,
+          "novelty_checks_performed": 1,
+          "novelty_explanation": "NOVEL\n\nThe proposal replaces feature-based occupancy rates with a learned directional motion model, using probabilistic assignments to infer movement from anonymous enemy observations. It also preserves and propagates enemy beliefs outside visibility and accounts for blocked moves and door opening.\n\nPlanning changes include distance-decayed risk penalties, a new diagonal-door restriction, and a visit-dependent waiting threshold. These materially change prediction, memory, computation, and action selection; whether they improve performance requires empirical testing.",
+          "novelty_total_cost": 0.0270208,
+          "similarity_scores": [
+            0.9796172976493835,
+            0.9352851510047913
+          ]
+        },
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3"
+      },
+      "provenance": {
+        "bytes": 81056,
+        "path": "results/campaign-v4-run1/gen_2/accepted-proposal.json",
+        "sha256": "488f4928b396f3cbe05ffe093444bd987e2a486e7d236db12c4aeeb98c890ffc"
+      },
+      "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
+      "stage": "accepted_after_native_novelty"
+    }
+  ],
+  "generated_branches": [
+    {
+      "generation": 1,
+      "original_metadata": {
+        "bytes": 110993,
+        "path": "results/campaign-v4-run1/gen_1/proposal-sources/novelty-1-resample-1.json",
+        "sha256": "cb98827b56616628ad19c6e4df7735271049355ed2b4d8f9972412fdc62a52d5"
+      },
+      "sampling": {
+        "archive_inspiration_ids": [],
+        "generation": 1,
+        "novelty_attempt": 1,
+        "parent_feedback_is_string": true,
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "parent_island": 3,
+        "parent_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+        "parent_text_feedback": "namazu-persistence-information-v4-run1; absolute-task-v1. 48 paired development condition-episodes. Absolute task fitness; prediction losses are diagnostics: {\"episodes\": 48, \"escape\": 0.8541666666666666, \"death\": 0.14583333333333334, \"timeout\": 0.0, \"invalid\": 0, \"task\": 0.8611093750000004, \"keys\": 1.8958333333333333, \"door\": 0.8541666666666666, \"steps\": 53.395833333333336, \"model_score\": 0.9887326187532066, \"seconds\": 0.22787502025069747, \"candidate_cpu_seconds\": 0.1758874791666667, \"evaluator_cpu_seconds\": 0.05244417900000001, \"base_audit\": 0.017536168552477718, \"base_near\": 0.007391806476785009, \"brier_audit\": 0.017286005929940396, \"brier_audit_post_switch\": 0.016507599169363635, \"brier_audit_pre_switch\": 0.017480322975974114, \"brier_destination\": 0.0026213767456624, \"brier_near\": 0.005742449637441384, \"brier_near_post_switch\": 0.00869704098703402, \"brier_near_pre_switch\": 0.005004882221063309, \"brier_threat\": 0.02885108368038207, \"coverage\": 0.589315905839511, \"map_age\": 14.006124137931035, \"persistence_audit\": 0.01776804525946172, \"persistence_near\": 0.00836693111371223, \"persistence_threat\": 0.0420479302832244, \"prevalence_audit\": 0.017850175575497465, \"prevalence_destination\": 0.0027311744049941474, \"prevalence_near\": 0.0072831317466510595, \"reconstruction\": 0.5811548966055404, \"reconstruction_stale\": 0.9825524815793132, \"reconstruction_unseen\": 0.0, \"reconstruction_visible\": 1.0, \"escape_steps\": 55.292682926829265, \"regimes\": {\"uniform-full\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8886875, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"stationary-full\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8759687500000002, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"switch-full\": {\"episodes\": 8, \"escape\": 1.0, \"task\": 0.98615625, \"encountered_switch\": 2, \"post_switch_steps\": 65, \"post_switch_visible_enemy_steps\": 21}, \"stationary-late\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8747187500000001, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"repeat25-full\": {\"episodes\": 8, \"escape\": 0.75, \"task\": 0.7643125, \"encountered_switch\": 8, \"post_switch_steps\": 222, \"post_switch_visible_enemy_steps\": 55}, \"repeat25-late\": {\"episodes\": 8, \"escape\": 0.75, \"task\": 0.7768125000000001, \"encountered_switch\": 8, \"post_switch_steps\": 225, \"post_switch_visible_enemy_steps\": 27}}}. Improve escape/keys/door and escape efficiency under unknown stationary and switching attempted movement laws; blocked enemy attempts stay. Predictive feedback is horizon-1 occupancy at fixed cells in starting-agent coordinates: near targets surround the OLD agent position, audit targets sample interior cells; predictions precede outcomes. Threat losses condition on evaluator-known enemy proximity; audit prevalence is sparse. Sensor radius is public; outside it enemy absence is unobserved. Repeated law dwell times are privately drawn from 20..30 transitions; prediction adaptation may be too slow or decision-irrelevant. Check informative exposure before consequential choices. All representations, memory, updating, helpers and planning may evolve. Do not infer adaptive prediction from map accumulation, or control benefit from lower Brier.",
+        "recommendation": null,
+        "resample_attempt": 1,
+        "top_k_inspiration_ids": []
+      },
+      "source": "artifacts/campaign-v4/run1/native/proposal-sources/gen_1/novelty-1-resample-1.py",
+      "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
+      "stage": "generated_before_novelty"
+    },
+    {
+      "generation": 2,
+      "original_metadata": {
+        "bytes": 70790,
+        "path": "results/campaign-v4-run1/gen_2/proposal-sources/novelty-1-resample-1.json",
+        "sha256": "69e713a65ab1404d3bee020c5a4c7091c5445968795a6ba93fb84caba5a3fe02"
+      },
+      "sampling": {
+        "archive_inspiration_ids": [],
+        "generation": 2,
+        "novelty_attempt": 1,
+        "parent_feedback_is_string": true,
+        "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+        "parent_island": 3,
+        "parent_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+        "parent_text_feedback": "namazu-persistence-information-v4-run1; absolute-task-v1. 48 paired development condition-episodes. Absolute task fitness; prediction losses are diagnostics: {\"episodes\": 48, \"escape\": 0.8541666666666666, \"death\": 0.14583333333333334, \"timeout\": 0.0, \"invalid\": 0, \"task\": 0.8611093750000004, \"keys\": 1.8958333333333333, \"door\": 0.8541666666666666, \"steps\": 53.395833333333336, \"model_score\": 0.9887326187532066, \"seconds\": 0.22787502025069747, \"candidate_cpu_seconds\": 0.1758874791666667, \"evaluator_cpu_seconds\": 0.05244417900000001, \"base_audit\": 0.017536168552477718, \"base_near\": 0.007391806476785009, \"brier_audit\": 0.017286005929940396, \"brier_audit_post_switch\": 0.016507599169363635, \"brier_audit_pre_switch\": 0.017480322975974114, \"brier_destination\": 0.0026213767456624, \"brier_near\": 0.005742449637441384, \"brier_near_post_switch\": 0.00869704098703402, \"brier_near_pre_switch\": 0.005004882221063309, \"brier_threat\": 0.02885108368038207, \"coverage\": 0.589315905839511, \"map_age\": 14.006124137931035, \"persistence_audit\": 0.01776804525946172, \"persistence_near\": 0.00836693111371223, \"persistence_threat\": 0.0420479302832244, \"prevalence_audit\": 0.017850175575497465, \"prevalence_destination\": 0.0027311744049941474, \"prevalence_near\": 0.0072831317466510595, \"reconstruction\": 0.5811548966055404, \"reconstruction_stale\": 0.9825524815793132, \"reconstruction_unseen\": 0.0, \"reconstruction_visible\": 1.0, \"escape_steps\": 55.292682926829265, \"regimes\": {\"uniform-full\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8886875, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"stationary-full\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8759687500000002, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"switch-full\": {\"episodes\": 8, \"escape\": 1.0, \"task\": 0.98615625, \"encountered_switch\": 2, \"post_switch_steps\": 65, \"post_switch_visible_enemy_steps\": 21}, \"stationary-late\": {\"episodes\": 8, \"escape\": 0.875, \"task\": 0.8747187500000001, \"encountered_switch\": 0, \"post_switch_steps\": 0, \"post_switch_visible_enemy_steps\": 0}, \"repeat25-full\": {\"episodes\": 8, \"escape\": 0.75, \"task\": 0.7643125, \"encountered_switch\": 8, \"post_switch_steps\": 222, \"post_switch_visible_enemy_steps\": 55}, \"repeat25-late\": {\"episodes\": 8, \"escape\": 0.75, \"task\": 0.7768125000000001, \"encountered_switch\": 8, \"post_switch_steps\": 225, \"post_switch_visible_enemy_steps\": 27}}}. Improve escape/keys/door and escape efficiency under unknown stationary and switching attempted movement laws; blocked enemy attempts stay. Predictive feedback is horizon-1 occupancy at fixed cells in starting-agent coordinates: near targets surround the OLD agent position, audit targets sample interior cells; predictions precede outcomes. Threat losses condition on evaluator-known enemy proximity; audit prevalence is sparse. Sensor radius is public; outside it enemy absence is unobserved. Repeated law dwell times are privately drawn from 20..30 transitions; prediction adaptation may be too slow or decision-irrelevant. Check informative exposure before consequential choices. All representations, memory, updating, helpers and planning may evolve. Do not infer adaptive prediction from map accumulation, or control benefit from lower Brier.",
+        "recommendation": null,
+        "resample_attempt": 1,
+        "top_k_inspiration_ids": []
+      },
+      "source": "artifacts/campaign-v4/run1/native/proposal-sources/gen_2/novelty-1-resample-1.py",
+      "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
+      "stage": "generated_before_novelty"
+    }
+  ],
+  "held": [],
+  "patch_attempts": [
+    {
+      "error_msg": null,
+      "files": {
+        "headless_prompt.md": {
+          "bytes": 19166,
+          "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/headless_prompt.md",
+          "sha256": "86bd73ff8b82941a941d09d2d150c692aa0a46d52a5a43cbccebcf3459399eee"
+        },
+        "llm_response.txt": {
+          "bytes": 21149,
+          "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+          "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_1/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+          "sha256": "416290a4c6bc2611611be3a81aaa3e216445fba95ba3d61bcd699a7c2cd613a1"
+        },
+        "patch.txt": {
+          "bytes": 27182,
+          "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/patch.txt",
+          "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_1/attempts/novelty_1/resample_1/patch_1/patch.txt",
+          "sha256": "68dfa59759f7320ff0bf38c26176b5be03e20d73f84b50c89c3faab24ef99424"
+        }
+      },
+      "generation": 1,
+      "llm_cost": 0.1683208,
+      "llm_model": "headless/codex@gpt-6.1-sol?effort=high",
+      "novelty_attempt": 1,
+      "num_applied": 1,
+      "original_metadata": {
+        "bytes": 984,
+        "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/metadata.json",
+        "sha256": "d38b1890fca40ea3b2219b6a21e95c1e23f6b006d14e56291614a7625dc5d29c"
+      },
+      "patch_attempt": 1,
+      "patch_description": "Separates mapping, censored anonymous motion learning, occupancy filtering, forecasting, and control. The learner estimates attempted directions while retaining blocked-attempt probability at the origin. Hidden occupancy persists outside the declared sensor radius. A short-horizon planner combines immediate contact avoidance, future occupancy forecasts, and global navigation. Fast and slow evidence stores limit stale-law influence. Performance improvements require evaluation.",
+      "patch_name": "censored_flow_controller",
+      "resample_attempt": 1,
+      "success": true,
+      "timestamp": "2026-10-09T03:33:25.063656"
+    },
+    {
+      "error_msg": null,
+      "files": {
+        "headless_prompt.md": {
+          "bytes": 19894,
+          "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/headless_prompt.md",
+          "sha256": "76ec7112aaa33e21c798d944f6aa4e7a8ef4e7745b1af32d0c5b6b7640024631"
+        },
+        "llm_response.txt": {
+          "bytes": 8962,
+          "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+          "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_2/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+          "sha256": "79a7f9b0142221be29db9921dd160221bbfb7848b2b739a8ce62480f8067efaa"
+        },
+        "patch.txt": {
+          "bytes": 12192,
+          "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/patch.txt",
+          "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_2/attempts/novelty_1/resample_1/patch_1/patch.txt",
+          "sha256": "3ca740cec450600f0bb3b4b47265fbfaef9e5dfa44a6a025b152484b00406604"
+        }
+      },
+      "generation": 2,
+      "llm_cost": 0.385618,
+      "llm_model": "headless/codex@gpt-6-astra?effort=high",
+      "novelty_attempt": 1,
+      "num_applied": 7,
+      "original_metadata": {
+        "bytes": 1162,
+        "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/metadata.json",
+        "sha256": "7b3b108eddb9357f16184a6b9362cdfabe13845230eb77939ef1d9cc795dec45"
+      },
+      "patch_attempt": 1,
+      "patch_description": "Replace pooled occupancy rates with an adaptive attempted-direction model and a propagated anonymous occupancy belief. The learner marginalizes over compatible anonymous transitions, preserves blocked-attempt probability as staying, and treats observations outside the enemy sensor radius as missing. Discounted evidence allows adaptation after switches.\n\nForecasts combine visible enemies with uncertain unseen occupancy. Planning uses these forecasts, discounts their relevance along distant route segments, and considers waiting at a smaller immediate risk difference. These changes target avoidable collisions; improved performance remains to be measured.",
+      "patch_name": "censored_motion_belief",
+      "resample_attempt": 1,
+      "success": true,
+      "timestamp": "2026-10-09T03:36:01.232829"
+    }
+  ]
+}

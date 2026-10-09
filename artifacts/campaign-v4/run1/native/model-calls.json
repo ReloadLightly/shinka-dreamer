@@ -1,0 +1,1016 @@
+{
+  "calls": [
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 26.35891352102044,
+      "ended_utc": "2026-10-09T01:11:22.441867+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 132,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011056081633Z-e4c8dddb.prompt.md",
+          "sha256": "37e19b467bd38f8f8fda2bc800eb2ab4986560720c0717b8eedd529a84b651d3"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011056081633Z-e4c8dddb.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 872,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011056081633Z-e4c8dddb.stdout",
+          "sha256": "a40aa946d0dda3a5a6a5f28c0e523cc8186fbcdc0a0d7425ad048eed693d7797"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T011056081633Z-e4c8dddb",
+      "native_patch_attempts": [],
+      "prompt_sha256": "37e19b467bd38f8f8fda2bc800eb2ab4986560720c0717b8eedd529a84b651d3",
+      "record_provenance": {
+        "bytes": 2281,
+        "path": "results/campaign-v4-run1/model-calls/20261009T011056081633Z-e4c8dddb.json",
+        "sha256": "57e2850b475ffb65cad912b209e72d047bf3c89be4f62fc189f4755f55b2e15c"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6-astra",
+      "returncode": 0,
+      "role": "readiness",
+      "started_utc": "2026-10-09T01:10:56.081688+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "input": 0.06921,
+                  "output": 0.00025,
+                  "total": 0.081748
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 6921,
+                "model": "gpt-6-astra",
+                "outputTokens": 5,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 0,
+                "totalTokens": 19214,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "input": 0.06921,
+          "output": 0.00025,
+          "total": 0.081748
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 6921,
+        "model": "gpt-6-astra",
+        "outputTokens": 5,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 0,
+        "totalTokens": 19214,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 12.774359764007386,
+      "ended_utc": "2026-10-09T01:11:35.219520+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 132,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011122444414Z-c34cb545.prompt.md",
+          "sha256": "37e19b467bd38f8f8fda2bc800eb2ab4986560720c0717b8eedd529a84b651d3"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011122444414Z-c34cb545.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 876,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011122444414Z-c34cb545.stdout",
+          "sha256": "972a1caf3c00c16ec261c81cacd56a2665fba5baac5f875e275b0a75650aff62"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T011122444414Z-c34cb545",
+      "native_patch_attempts": [],
+      "prompt_sha256": "37e19b467bd38f8f8fda2bc800eb2ab4986560720c0717b8eedd529a84b651d3",
+      "record_provenance": {
+        "bytes": 2282,
+        "path": "results/campaign-v4-run1/model-calls/20261009T011122444414Z-c34cb545.json",
+        "sha256": "f7d4f0ee06c8de2ac9d92e2a6da1cc3d8193ec56395a01a33548f7c8ba964047"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "readiness",
+      "started_utc": "2026-10-09T01:11:22.444451+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.01397,
+                  "output": 5e-05,
+                  "total": 0.0152488
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 6985,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 5,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 0,
+                "totalTokens": 19278,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.01397,
+          "output": 5e-05,
+          "total": 0.0152488
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 6985,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 5,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 0,
+        "totalTokens": 19278,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 8.562289205990965,
+      "ended_utc": "2026-10-09T01:16:55.318506+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 13792,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011646755206Z-7c86e4db.prompt.md",
+          "sha256": "446f8f19a085ec05a2f62a058d3fa31c7c4b97ea488109151fe5c454f26ee0b2"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011646755206Z-7c86e4db.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 1077,
+          "path": "results/campaign-v4-run1/model-calls/20261009T011646755206Z-7c86e4db.stdout",
+          "sha256": "8027567e8690bbe8e7df64727e210ec57fa8ad455847c6c52266e36812bfa1c0"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T011646755206Z-7c86e4db",
+      "native_patch_attempts": [],
+      "prompt_sha256": "446f8f19a085ec05a2f62a058d3fa31c7c4b97ea488109151fe5c454f26ee0b2",
+      "record_provenance": {
+        "bytes": 2291,
+        "path": "results/campaign-v4-run1/model-calls/20261009T011646755206Z-7c86e4db.json",
+        "sha256": "08cdd87b1533b55831f0ae5cca64ed6a396df68d36f61393c2890da7049d4389"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "readiness",
+      "started_utc": "2026-10-09T01:16:46.755273+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.022152,
+                  "output": 0.00044,
+                  "total": 0.0238208
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 11076,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 44,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 0,
+                "totalTokens": 23408,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.022152,
+          "output": 0.00044,
+          "total": 0.0238208
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 11076,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 44,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 0,
+        "totalTokens": 23408,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 517.0209236649971,
+      "ended_utc": "2026-10-09T01:33:24.963865+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 19166,
+          "path": "results/campaign-v4-run1/model-calls/20261009T012447940669Z-59af0354.prompt.md",
+          "sha256": "86bd73ff8b82941a941d09d2d150c692aa0a46d52a5a43cbccebcf3459399eee"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T012447940669Z-59af0354.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 22038,
+          "path": "results/campaign-v4-run1/model-calls/20261009T012447940669Z-59af0354.stdout",
+          "sha256": "a6472bb0a4c2ca36a2ba40c98b211456826f8e4ce2789b991c4d0b3b725b9432"
+        }
+      },
+      "generation": 1,
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T012447940669Z-59af0354",
+      "native_patch_attempts": [
+        {
+          "generation": 1,
+          "novelty_attempt": 1,
+          "patch_attempt": 1,
+          "resample_attempt": 1,
+          "success": true
+        }
+      ],
+      "prompt_sha256": "86bd73ff8b82941a941d09d2d150c692aa0a46d52a5a43cbccebcf3459399eee",
+      "record_provenance": {
+        "bytes": 2302,
+        "path": "results/campaign-v4-run1/model-calls/20261009T012447940669Z-59af0354.json",
+        "sha256": "8fbebe44c920d71280c04dfbfe28dcafe003069adc7eed80ca283402143e1df4"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "mutation",
+      "started_utc": "2026-10-09T01:24:47.940721+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.024682,
+                  "output": 0.14241,
+                  "total": 0.1683208
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 12341,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 14241,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 8600,
+                "totalTokens": 38870,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.024682,
+          "output": 0.14241,
+          "total": 0.1683208
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 12341,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 14241,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 8600,
+        "totalTokens": 38870,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 146.5711803069862,
+      "ended_utc": "2026-10-09T01:36:01.202549+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 19894,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013334629870Z-359e4751.prompt.md",
+          "sha256": "76ec7112aaa33e21c798d944f6aa4e7a8ef4e7745b1af32d0c5b6b7640024631"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013334629870Z-359e4751.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 9841,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013334629870Z-359e4751.stdout",
+          "sha256": "ccf332bbc550e80dee6c04dc1ae9373a9c033ebc393c4f443b2be5deefa0034a"
+        }
+      },
+      "generation": 2,
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013334629870Z-359e4751",
+      "native_patch_attempts": [
+        {
+          "generation": 2,
+          "novelty_attempt": 1,
+          "patch_attempt": 1,
+          "resample_attempt": 1,
+          "success": true
+        }
+      ],
+      "prompt_sha256": "76ec7112aaa33e21c798d944f6aa4e7a8ef4e7745b1af32d0c5b6b7640024631",
+      "record_provenance": {
+        "bytes": 2292,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013334629870Z-359e4751.json",
+        "sha256": "fba9847f9b488abe7b8c561ccb6972433d24d5d142a368b8375721f27cb30e70"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6-astra",
+      "returncode": 0,
+      "role": "mutation",
+      "started_utc": "2026-10-09T01:33:34.629947+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.012288,
+                  "cacheWrite": 0,
+                  "input": 0.12483,
+                  "output": 0.2485,
+                  "total": 0.385618
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 12483,
+                "model": "gpt-6-astra",
+                "outputTokens": 4970,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 2588,
+                "totalTokens": 29741,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.012288,
+          "cacheWrite": 0,
+          "input": 0.12483,
+          "output": 0.2485,
+          "total": 0.385618
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 12483,
+        "model": "gpt-6-astra",
+        "outputTokens": 4970,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 2588,
+        "totalTokens": 29741,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 12.155824863002636,
+      "ended_utc": "2026-10-09T01:36:16.821338+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 17811,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013604664477Z-dbafe14c.prompt.md",
+          "sha256": "4f630b593ccf11c96e225bcbfa2dd1f92350a38da668d0d5a65f7de76035e9e0"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013604664477Z-dbafe14c.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 1453,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013604664477Z-dbafe14c.stdout",
+          "sha256": "4ca711ce4c77572615a75dd96a306265e37c6e9a9ffcc76f5b2b9422078efe0f"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013604664477Z-dbafe14c",
+      "native_patch_attempts": [],
+      "prompt_sha256": "4f630b593ccf11c96e225bcbfa2dd1f92350a38da668d0d5a65f7de76035e9e0",
+      "record_provenance": {
+        "bytes": 2294,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013604664477Z-dbafe14c.json",
+        "sha256": "17564be3a83d00cc29c42b2e65c4b38b623ea8fb738315e42867f36d3cad15d0"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "novelty",
+      "started_utc": "2026-10-09T01:36:04.664526+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.024512,
+                  "output": 0.00128,
+                  "total": 0.0270208
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 12256,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 128,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 31,
+                "totalTokens": 24672,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.024512,
+          "output": 0.00128,
+          "total": 0.0270208
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 12256,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 128,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 31,
+        "totalTokens": 24672,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 18.177602396986913,
+      "ended_utc": "2026-10-09T01:36:52.566936+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 12355,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013634388537Z-cb5c23f4.prompt.md",
+          "sha256": "e4a13de27630bfab148be6ce787a97e3502c9143e0b3d0c753c684392463b018"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013634388537Z-cb5c23f4.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 1847,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013634388537Z-cb5c23f4.stdout",
+          "sha256": "343baa6435881e9d2234a8a583957f795d99d3e6459d0935cd7ecf6bf1ef24df"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013634388537Z-cb5c23f4",
+      "native_patch_attempts": [],
+      "prompt_sha256": "e4a13de27630bfab148be6ce787a97e3502c9143e0b3d0c753c684392463b018",
+      "record_provenance": {
+        "bytes": 2296,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013634388537Z-cb5c23f4.json",
+        "sha256": "787f63bed7a43b6f375c26606545b1ad7e29e1dda4c286ae6f5ddec70464b856"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "summary",
+      "started_utc": "2026-10-09T01:36:34.388579+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.021898,
+                  "output": 0.00296,
+                  "total": 0.0260868
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 10949,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 296,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 100,
+                "totalTokens": 23533,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.021898,
+          "output": 0.00296,
+          "total": 0.0260868
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 10949,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 296,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 100,
+        "totalTokens": 23533,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 14.172982429998228,
+      "ended_utc": "2026-10-09T01:37:06.744170+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 21704,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013652569416Z-b5c167a9.prompt.md",
+          "sha256": "e324431ac0f8e892186b196a6f5e9f1411622072486ed8e6f1d95e3102987229"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013652569416Z-b5c167a9.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 1606,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013652569416Z-b5c167a9.stdout",
+          "sha256": "63150b38c5d33139b551dced1306fe45d18e9d24af234fcd52cd4a454f5dfbef"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013652569416Z-b5c167a9",
+      "native_patch_attempts": [],
+      "prompt_sha256": "e324431ac0f8e892186b196a6f5e9f1411622072486ed8e6f1d95e3102987229",
+      "record_provenance": {
+        "bytes": 2290,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013652569416Z-b5c167a9.json",
+        "sha256": "5e2e6d16c2c64c4265d7cd8c220d4bc6136983e6c26585cc954839b297d8053b"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "summary",
+      "started_utc": "2026-10-09T01:36:52.569487+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.016752,
+                  "output": 0.0024,
+                  "total": 0.0203808
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 8376,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 240,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 95,
+                "totalTokens": 20904,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.016752,
+          "output": 0.0024,
+          "total": 0.0203808
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 8376,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 240,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 95,
+        "totalTokens": 20904,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 17.178475477005122,
+      "ended_utc": "2026-10-09T01:37:23.939915+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 16322,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013706745742Z-5fa13b9f.prompt.md",
+          "sha256": "57b61bafe437805d221209996b4f17e5e31ca05175ad742f9f0f1747921ad98f"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013706745742Z-5fa13b9f.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 2004,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013706745742Z-5fa13b9f.stdout",
+          "sha256": "89b6c1e5259d71a3fd96bfe1579ba694716b35b4ba7dd8daf1123ed2f8d7c4ba"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013706745742Z-5fa13b9f",
+      "native_patch_attempts": [],
+      "prompt_sha256": "57b61bafe437805d221209996b4f17e5e31ca05175ad742f9f0f1747921ad98f",
+      "record_provenance": {
+        "bytes": 2292,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013706745742Z-5fa13b9f.json",
+        "sha256": "4dce9544752da70d38fe26212f16826046287504205d4495084256e1ebee0e04"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "summary",
+      "started_utc": "2026-10-09T01:37:06.745818+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.01502,
+                  "output": 0.00335,
+                  "total": 0.0195988
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 7510,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 335,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 105,
+                "totalTokens": 20133,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.01502,
+          "output": 0.00335,
+          "total": 0.0195988
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 7510,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 335,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 105,
+        "totalTokens": 20133,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 41.84754429102759,
+      "ended_utc": "2026-10-09T01:38:05.805212+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 17120,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013723956046Z-2d46e315.prompt.md",
+          "sha256": "4cfbc6d76e3d5b81bf01f41c95a86e202807cd2b17d488bbc234746eccee2317"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013723956046Z-2d46e315.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 5395,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013723956046Z-2d46e315.stdout",
+          "sha256": "1cf17d8e7c310ff89719b577856134f54118a9330a8cb5c751b07181d0c0d0fb"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013723956046Z-2d46e315",
+      "native_patch_attempts": [],
+      "prompt_sha256": "4cfbc6d76e3d5b81bf01f41c95a86e202807cd2b17d488bbc234746eccee2317",
+      "record_provenance": {
+        "bytes": 2302,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013723956046Z-2d46e315.json",
+        "sha256": "ad5ee16ac61115d09c2caa15f8051576a2a659935b06395dd9070cf0b7e5884a"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "global_insight",
+      "started_utc": "2026-10-09T01:37:23.956119+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.014758,
+                  "output": 0.01281,
+                  "total": 0.0287968
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 7379,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 1281,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 364,
+                "totalTokens": 20948,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.014758,
+          "output": 0.01281,
+          "total": 0.0287968
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 7379,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 1281,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 364,
+        "totalTokens": 20948,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "elapsed_seconds": 39.81520283801365,
+      "ended_utc": "2026-10-09T01:38:45.689863+00:00",
+      "files": {
+        ".prompt.md": {
+          "bytes": 17403,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013805873369Z-7130a019.prompt.md",
+          "sha256": "eb666442808eab91921934ae16964c60b26040cb4e1dbf4ed0fc37e437994706"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013805873369Z-7130a019.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stdout": {
+          "bytes": 3357,
+          "path": "results/campaign-v4-run1/model-calls/20261009T013805873369Z-7130a019.stdout",
+          "sha256": "325d0450c8e87fd3591a9c8c7ab78ace03f4ae134a26ff1d50d5db5a46e58f5b"
+        }
+      },
+      "headless_child_timeout_seconds": null,
+      "id": "20261009T013805873369Z-7130a019",
+      "native_patch_attempts": [],
+      "prompt_sha256": "eb666442808eab91921934ae16964c60b26040cb4e1dbf4ed0fc37e437994706",
+      "record_provenance": {
+        "bytes": 2300,
+        "path": "results/campaign-v4-run1/model-calls/20261009T013805873369Z-7130a019.json",
+        "sha256": "b41f97842e4fb251e0c470a9f05991daef868a156d2b2a8af5f24859f6526f20"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "returncode": 0,
+      "role": "recommendation",
+      "started_utc": "2026-10-09T01:38:05.873410+00:00",
+      "status": "completed",
+      "usage": {
+        "agent": "codex",
+        "billing": {
+          "attempts": [
+            {
+              "route": "subscription",
+              "usage": {
+                "agent": "codex",
+                "cacheReadTokens": 12288,
+                "cacheWriteTokens": 0,
+                "cost": {
+                  "cacheRead": 0.0012288,
+                  "cacheWrite": 0,
+                  "input": 0.014964,
+                  "output": 0.00675,
+                  "total": 0.0229428
+                },
+                "costBasis": "api-list-price-estimate",
+                "inputTokens": 7482,
+                "model": "gpt-6.1-sol",
+                "outputTokens": 675,
+                "pricingSource": "models.dev",
+                "pricingStatus": "priced",
+                "provider": "openai",
+                "reasoningOutputTokens": 268,
+                "totalTokens": 20445,
+                "usageStatus": "reported"
+              }
+            }
+          ]
+        },
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "cost": {
+          "cacheRead": 0.0012288,
+          "cacheWrite": 0,
+          "input": 0.014964,
+          "output": 0.00675,
+          "total": 0.0229428
+        },
+        "costBasis": "api-list-price-estimate",
+        "inputTokens": 7482,
+        "model": "gpt-6.1-sol",
+        "outputTokens": 675,
+        "pricingSource": "models.dev",
+        "pricingStatus": "priced",
+        "provider": "openai",
+        "reasoningOutputTokens": 268,
+        "totalTokens": 20445,
+        "usageStatus": "reported"
+      }
+    },
+    {
+      "billing_required": "subscription",
+      "files": {
+        ".prompt.md": {
+          "bytes": 35301,
+          "path": "results/campaign-v4-run1/model-calls/20261009T014148225052Z-83be6814.prompt.md",
+          "sha256": "f9d3431a9808417a08bb95200ffc02e10c46cf7eec578e31dbdd54b22c31789b"
+        }
+      },
+      "generation": 3,
+      "headless_child_timeout_seconds": 590,
+      "id": "20261009T014148225052Z-83be6814",
+      "native_patch_attempts": [],
+      "prompt_sha256": "f9d3431a9808417a08bb95200ffc02e10c46cf7eec578e31dbdd54b22c31789b",
+      "record_provenance": {
+        "bytes": 828,
+        "path": "results/campaign-v4-run1/model-calls/20261009T014148225052Z-83be6814.json",
+        "sha256": "a4c8d09743a22a608b02814f6c4e60f25c0506671df6603d0114f0416256dbf6"
+      },
+      "requested_effort": "high",
+      "requested_model": "gpt-6.1-sol",
+      "role": "mutation",
+      "started_utc": "2026-10-09T01:41:48.225108+00:00",
+      "status": "started"
+    }
+  ],
+  "snapshot_utc": "2026-10-09T01:43:40.673166+00:00"
+}

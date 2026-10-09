@@ -1,0 +1,38 @@
+{
+  "error_msg": null,
+  "files": {
+    "headless_prompt.md": {
+      "bytes": 19894,
+      "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/headless_prompt.md",
+      "sha256": "76ec7112aaa33e21c798d944f6aa4e7a8ef4e7745b1af32d0c5b6b7640024631"
+    },
+    "llm_response.txt": {
+      "bytes": 8962,
+      "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+      "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_2/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+      "sha256": "79a7f9b0142221be29db9921dd160221bbfb7848b2b739a8ce62480f8067efaa"
+    },
+    "patch.txt": {
+      "bytes": 12192,
+      "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/patch.txt",
+      "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_2/attempts/novelty_1/resample_1/patch_1/patch.txt",
+      "sha256": "3ca740cec450600f0bb3b4b47265fbfaef9e5dfa44a6a025b152484b00406604"
+    }
+  },
+  "generation": 2,
+  "llm_cost": 0.385618,
+  "llm_model": "headless/codex@gpt-6-astra?effort=high",
+  "novelty_attempt": 1,
+  "num_applied": 7,
+  "original_metadata": {
+    "bytes": 1162,
+    "path": "results/campaign-v4-run1/gen_2/attempts/novelty_1/resample_1/patch_1/metadata.json",
+    "sha256": "7b3b108eddb9357f16184a6b9362cdfabe13845230eb77939ef1d9cc795dec45"
+  },
+  "patch_attempt": 1,
+  "patch_description": "Replace pooled occupancy rates with an adaptive attempted-direction model and a propagated anonymous occupancy belief. The learner marginalizes over compatible anonymous transitions, preserves blocked-attempt probability as staying, and treats observations outside the enemy sensor radius as missing. Discounted evidence allows adaptation after switches.\n\nForecasts combine visible enemies with uncertain unseen occupancy. Planning uses these forecasts, discounts their relevance along distant route segments, and considers waiting at a smaller immediate risk difference. These changes target avoidable collisions; improved performance remains to be measured.",
+  "patch_name": "censored_motion_belief",
+  "resample_attempt": 1,
+  "success": true,
+  "timestamp": "2026-10-09T03:36:01.232829"
+}

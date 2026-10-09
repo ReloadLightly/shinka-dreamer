@@ -1,0 +1,38 @@
+{
+  "error_msg": null,
+  "files": {
+    "headless_prompt.md": {
+      "bytes": 19166,
+      "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/headless_prompt.md",
+      "sha256": "86bd73ff8b82941a941d09d2d150c692aa0a46d52a5a43cbccebcf3459399eee"
+    },
+    "llm_response.txt": {
+      "bytes": 21149,
+      "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+      "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_1/attempts/novelty_1/resample_1/patch_1/llm_response.txt",
+      "sha256": "416290a4c6bc2611611be3a81aaa3e216445fba95ba3d61bcd699a7c2cd613a1"
+    },
+    "patch.txt": {
+      "bytes": 27182,
+      "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/patch.txt",
+      "public_path": "artifacts/campaign-v4/run1/native/attempts/gen_1/attempts/novelty_1/resample_1/patch_1/patch.txt",
+      "sha256": "68dfa59759f7320ff0bf38c26176b5be03e20d73f84b50c89c3faab24ef99424"
+    }
+  },
+  "generation": 1,
+  "llm_cost": 0.1683208,
+  "llm_model": "headless/codex@gpt-6.1-sol?effort=high",
+  "novelty_attempt": 1,
+  "num_applied": 1,
+  "original_metadata": {
+    "bytes": 984,
+    "path": "results/campaign-v4-run1/gen_1/attempts/novelty_1/resample_1/patch_1/metadata.json",
+    "sha256": "d38b1890fca40ea3b2219b6a21e95c1e23f6b006d14e56291614a7625dc5d29c"
+  },
+  "patch_attempt": 1,
+  "patch_description": "Separates mapping, censored anonymous motion learning, occupancy filtering, forecasting, and control. The learner estimates attempted directions while retaining blocked-attempt probability at the origin. Hidden occupancy persists outside the declared sensor radius. A short-horizon planner combines immediate contact avoidance, future occupancy forecasts, and global navigation. Fast and slow evidence stores limit stale-law influence. Performance improvements require evaluation.",
+  "patch_name": "censored_flow_controller",
+  "resample_attempt": 1,
+  "success": true,
+  "timestamp": "2026-10-09T03:33:25.063656"
+}

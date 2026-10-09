@@ -1,0 +1,65 @@
+# INDIVIDUAL PROGRAM SUMMARIES
+
+The following are summaries of individual programs evaluated since the last meta update:
+
+**Program Name: Feature-Based Occupancy Learning with Risk-Aware Dijkstra**
+- **Implementation**: Maintains a persistent terrain map and learns anonymous next-step enemy occupancy probabilities using prior-smoothed counts grouped by occupancy, nearby enemies, and corridor openness. Eight-direction Dijkstra planning combines movement, predicted risk, and revisit costs, prioritizes keys and exit access, explores information-rich frontiers, and waits when the next move appears substantially riskier.
+- **Performance**: Achieved a 0.861 score and 85.4% escape rate across 48 development episodes, averaging 1.90 keys and 53.4 steps, with no timeouts or invalid actions.
+- **Feedback**: Prediction losses modestly improve on baseline diagnostics, but do not establish a control benefit from learning. Escape falls to 75% under repeated switching; cumulative counts may adapt too slowly, while limited switch exposure weakens conclusions about switching robustness.
+**Program Identifier:** Generation 0 - Patch Name initial_program - Correct Program: True
+
+**Program Name: Adaptive Enemy Inference with Risk-Aware Maze Planning**
+- **Implementation**: Maintains a terrain atlas and hidden-enemy occupancy beliefs, learning enemy movement probabilities through anonymous matchings, decayed evidence, and surprise-triggered forgetting. Three-step forecasts guide risk-weighted pathfinding, key/exit targeting, frontier exploration, and door interaction.
+- **Performance**: Combined score was 0.0, and the program failed validation.
+- **Feedback**: The evaluation reports incorrectness without identifying failing tests or causes, so predictive accuracy and planning benefits are unproven. Fixed assumptions of three enemies and a 15×15 board are relevant compatibility points to examine.
+**Program Identifier:** Generation 1 - Patch Name censored_flow_controller - Correct Program: False
+
+**Program Name: Anonymous Motion Learning with Risk-Aware Maze Planning**
+- **Implementation**: Learns nine attempted enemy movement probabilities from anonymous occupancy observations using decayed evidence, smoothed priors, and a uniform residual; blocked attempts remain in place, and unobserved enemy occupancy persists through forecasting. Dijkstra planning combines predicted collision risk, movement and revisit costs, key/door/exit priorities, frontier exploration, and risk-based waiting.
+- **Performance**: Achieved 0.8109 task fitness and 39/48 escapes (81.25%), with 18.75% deaths, no timeouts or invalid actions, 59.03 steps per successful escape, and all validation tests passing.
+- **Feedback**: Escape reached 100% in switch-full and repeat25-full conditions but only 62.5% in both late-visibility conditions, suggesting limited informative exposure before consequential choices. Prediction losses improved over persistence, but sparse occupancy and lower Brier scores do not establish adaptive control benefit; skipping evidence every 25 steps also mismatches privately varying 20–30-step switch intervals.
+**Program Identifier:** Generation 2 - Patch Name censored_motion_belief - Correct Program: True
+
+# GLOBAL INSIGHTS SCRATCHPAD
+
+The following are global insights about optimization approaches and their effectiveness:
+
+## Successful Algorithmic Patterns
+
+- **The current best, Feature-Based Occupancy Learning with Risk-Aware Dijkstra, achieved 0.8611 fitness and 41/48 escapes (85.4%).** Its anonymous, feature-grouped occupancy learner outperformed Anonymous Motion Learning with Risk-Aware Maze Planning, which achieved 0.8109 and 39/48 escapes. The simpler representation was effective overall, although these bundled implementations do not isolate its causal contribution.
+- The best program combines persistent mapping, eight-direction Dijkstra, key/exit priorities, information-gain frontier selection, and modest revisit penalties. This combination collected **1.90 keys per episode**, opened the door in **85.4%**, and produced no timeouts or invalid actions.
+- Its local occupancy forecasts improved diagnostic accuracy: near-cell Brier loss was **0.00574 versus 0.00837 for persistence**, and threat loss was **0.02885 versus 0.04205**. These support predictive usefulness, but do not establish that learning improved escape outcomes.
+
+## Ineffective Approaches
+
+- **Adaptive Enemy Inference with Risk-Aware Maze Planning scored 0.0 and failed validation.** Its anonymous matching, decayed evidence, surprise-triggered forgetting, and three-step forecasts therefore have no demonstrated performance benefit. Fixed assumptions of three enemies and a 15×15 board are compatibility concerns, but the supplied feedback does not identify the failure’s cause.
+- **Anonymous Motion Learning scored 0.0502 below the best program**, with deaths increasing from **14.6% to 18.75%**. Modeling nine attempted movements, blocked attempts, and persistent hidden occupancy did not improve aggregate control. Its **62.5% escape rate in both late-visibility conditions** indicates a weakness when informative observations arrive late.
+- The best program’s cumulative counts retain old evidence indefinitely. Both repeated-switch conditions yielded **75% escape**, consistent with the feedback’s concern about slow adaptation. The motion learner’s fixed 25-step evidence skipping also mismatched privately varying 20–30-step dwell times, although its full-visibility repeated-switch result was stronger.
+
+## Implementation Insights
+
+- **The best learner avoids enemy identity matching.** It pools observations into occupied-tight, occupied-open, near, near-many, and far categories, with 12 pseudo-observations per prior. This provides a compact estimator that remains usable with sparse observations.
+- Training uses cells in the **previous position’s central 3×3**, labeling their subsequent occupancy only after the forecast was scored. Localization and terrain mapping continue when predictive updates are frozen, allowing mapping behavior to remain distinct from learning.
+- The planner excludes currently occupied destinations, charges **45 × predicted risk**, and waits when destination risk exceeds current-cell risk by **0.12**. These mechanisms connect forecasts directly to action selection; their individual contributions were not measured.
+- The planner applies the same horizon-one risk field throughout Dijkstra and assigns **0.02 risk outside current visibility**. Consequently, its route costs approximate future exposure rather than explicitly forecasting enemies at each arrival time.
+
+## Performance Analysis
+
+- **The best program leads the valid alternatives by 0.0502 fitness and two escapes out of 48.** Successful escapes averaged **55.29 steps**, compared with **59.03** for Anonymous Motion Learning—approximately 3.74 fewer steps, with potentially different successful episode subsets.
+- Aggregate superiority does not imply superiority in every regime. Anonymous Motion Learning achieved **100% escape in repeat25-full**, versus the best program’s **75%**. Both achieved **100% in switch-full**, but the best encountered switches in only **2/8 episodes**, limiting evidence for switching robustness.
+- The best program’s **0.9887 model score** coexists with **14.6% mortality**. Audit Brier loss improved only slightly over its baseline (**0.01729 versus 0.01754**), while post-switch near loss increased from **0.00500 to 0.00870**. Prediction quality and control success therefore remain separate findings.
+- Each regime contains only **eight episodes**, so one escape changes its reported rate by **12.5 percentage points**. The aggregate advantage and condition-specific differences are observed results; statistical reliability cannot be established from the supplied summaries alone.
+
+# META RECOMMENDATIONS
+
+The following are actionable recommendations for the next program generations:
+
+1. **Add fast and slow occupancy estimators with evidence-driven switching.** Extend the successful feature-grouped learner with recent, decayed counts alongside its cumulative counts, blending toward the recent estimator when scored occupancy errors show sustained disagreement. Update this mechanism only from observable transition labels and respect `learn=False`; the higher post-switch near loss motivates adaptation without assuming a fixed switching schedule.
+
+2. **Refine anonymous features around movement constraints.** Split the current categories using corridor orientation, legal neighboring cells, and the relative arrangement of nearby enemies, while backing sparse categories off to the existing pooled estimates. This extends the best program’s compact representation to distinguish blocked-stay opportunities and directional exposure without introducing enemy identity matching or assumed board dimensions.
+
+3. **Replace the final waiting threshold with short-horizon action planning.** Search a small tree containing legal moves and waits, scoring cumulative predicted exposure, objective progress, and repeated waiting; retain Dijkstra’s key, door, exit, and frontier targets as terminal guidance. Begin with the successful horizon-one estimates and extend anonymous occupancy propagation with terrain-constrained movement and retained blocked-attempt mass, addressing the current reuse of one risk field across every route arrival time.
+
+4. **Maintain an uncertainty-aware occupancy field outside visibility.** Replace the uniform unseen-cell risk of `0.02` with memory of previously observed occupancy propagated through traversable terrain, tracking uncertainty as observations age. Clear occupancy only where cells are actually observed empty, and combine this field with the existing local learner; this targets hidden approaches and late visibility while preserving persistent mapping.
+
+5. **Make exploration sensitive to information needed for consequential moves.** Extend frontier selection to reward safe vantage points that reveal enemy approaches to the next key, door, or narrow passage, using alternative occupancy hypotheses to estimate whether another observation could change the chosen action. Keep objective progress and exposure costs in the same planner so information gathering remains purposeful; the best program’s successful frontier strategy provides a foundation, while sparse informative exposure motivates this extension.

@@ -1,0 +1,1093 @@
+{
+  "accounting_notes": [
+    "Uncached input plus output is the primary token budget. Cached input is separately reported; reasoning output is a subset of output and is not added twice.",
+    "Reported dollar costs are API-list-price estimates, not actual subscription charges. All observed billing attempts must remain subscription.",
+    "Remote elapsed sums per-call monotonic durations, including readiness and fixtures; these may overlap other local work. They are not controller wall time or model CPU.",
+    "Candidate/evaluator CPU and episode resources are exported by run1_science_report.py; do not add those metrics to themselves via native pipeline timing.",
+    "Effort high is requested and forwarded to Codex; usage reports model while aligned native turn_context metadata independently corroborates model and effort. Native temperature/max_tokens are not forwarded.",
+    "Bandit nonfinite unobserved extrema are encoded as null in public strict JSON. Runtime originals remain unchanged."
+  ],
+  "calls": {
+    "all": {
+      "api_list_price_estimate_usd": 0.8195832,
+      "billing_routes": {
+        "subscription": 11
+      },
+      "calls": 12,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 854.6352987590362,
+      "status": {
+        "completed": 11,
+        "started": 1
+      },
+      "tokens": {
+        "cacheReadTokens": 135168,
+        "cacheWriteTokens": 0,
+        "inputTokens": 103758,
+        "outputTokens": 22220,
+        "reasoningOutputTokens": 12151,
+        "totalTokens": 261146
+      },
+      "uncached_input_plus_output_tokens": 125978
+    },
+    "by_model": {
+      "gpt-6-astra": {
+        "api_list_price_estimate_usd": 0.467366,
+        "billing_routes": {
+          "subscription": 2
+        },
+        "calls": 2,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 172.93009382800665,
+        "status": {
+          "completed": 2
+        },
+        "tokens": {
+          "cacheReadTokens": 24576,
+          "cacheWriteTokens": 0,
+          "inputTokens": 19404,
+          "outputTokens": 4975,
+          "reasoningOutputTokens": 2588,
+          "totalTokens": 48955
+        },
+        "uncached_input_plus_output_tokens": 24379
+      },
+      "gpt-6.1-sol": {
+        "api_list_price_estimate_usd": 0.3522172,
+        "billing_routes": {
+          "subscription": 9
+        },
+        "calls": 10,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 681.7052049310296,
+        "status": {
+          "completed": 9,
+          "started": 1
+        },
+        "tokens": {
+          "cacheReadTokens": 110592,
+          "cacheWriteTokens": 0,
+          "inputTokens": 84354,
+          "outputTokens": 17245,
+          "reasoningOutputTokens": 9563,
+          "totalTokens": 212191
+        },
+        "uncached_input_plus_output_tokens": 101599
+      }
+    },
+    "by_role": {
+      "global_insight": {
+        "api_list_price_estimate_usd": 0.0287968,
+        "billing_routes": {
+          "subscription": 1
+        },
+        "calls": 1,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 41.84754429102759,
+        "status": {
+          "completed": 1
+        },
+        "tokens": {
+          "cacheReadTokens": 12288,
+          "cacheWriteTokens": 0,
+          "inputTokens": 7379,
+          "outputTokens": 1281,
+          "reasoningOutputTokens": 364,
+          "totalTokens": 20948
+        },
+        "uncached_input_plus_output_tokens": 8660
+      },
+      "mutation": {
+        "api_list_price_estimate_usd": 0.5539388000000001,
+        "billing_routes": {
+          "subscription": 2
+        },
+        "calls": 3,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 663.5921039719833,
+        "status": {
+          "completed": 2,
+          "started": 1
+        },
+        "tokens": {
+          "cacheReadTokens": 24576,
+          "cacheWriteTokens": 0,
+          "inputTokens": 24824,
+          "outputTokens": 19211,
+          "reasoningOutputTokens": 11188,
+          "totalTokens": 68611
+        },
+        "uncached_input_plus_output_tokens": 44035
+      },
+      "novelty": {
+        "api_list_price_estimate_usd": 0.0270208,
+        "billing_routes": {
+          "subscription": 1
+        },
+        "calls": 1,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 12.155824863002636,
+        "status": {
+          "completed": 1
+        },
+        "tokens": {
+          "cacheReadTokens": 12288,
+          "cacheWriteTokens": 0,
+          "inputTokens": 12256,
+          "outputTokens": 128,
+          "reasoningOutputTokens": 31,
+          "totalTokens": 24672
+        },
+        "uncached_input_plus_output_tokens": 12384
+      },
+      "readiness": {
+        "api_list_price_estimate_usd": 0.1208176,
+        "billing_routes": {
+          "subscription": 3
+        },
+        "calls": 3,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 47.69556249101879,
+        "status": {
+          "completed": 3
+        },
+        "tokens": {
+          "cacheReadTokens": 36864,
+          "cacheWriteTokens": 0,
+          "inputTokens": 24982,
+          "outputTokens": 54,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 61900
+        },
+        "uncached_input_plus_output_tokens": 25036
+      },
+      "recommendation": {
+        "api_list_price_estimate_usd": 0.0229428,
+        "billing_routes": {
+          "subscription": 1
+        },
+        "calls": 1,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 39.81520283801365,
+        "status": {
+          "completed": 1
+        },
+        "tokens": {
+          "cacheReadTokens": 12288,
+          "cacheWriteTokens": 0,
+          "inputTokens": 7482,
+          "outputTokens": 675,
+          "reasoningOutputTokens": 268,
+          "totalTokens": 20445
+        },
+        "uncached_input_plus_output_tokens": 8157
+      },
+      "summary": {
+        "api_list_price_estimate_usd": 0.0660664,
+        "billing_routes": {
+          "subscription": 3
+        },
+        "calls": 3,
+        "completed_without_reported_usage": 0,
+        "remote_elapsed_seconds": 49.52906030399026,
+        "status": {
+          "completed": 3
+        },
+        "tokens": {
+          "cacheReadTokens": 36864,
+          "cacheWriteTokens": 0,
+          "inputTokens": 26835,
+          "outputTokens": 871,
+          "reasoningOutputTokens": 300,
+          "totalTokens": 64570
+        },
+        "uncached_input_plus_output_tokens": 27706
+      }
+    },
+    "discovery": {
+      "api_list_price_estimate_usd": 0.6987656,
+      "billing_routes": {
+        "subscription": 8
+      },
+      "calls": 9,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 806.9397362680174,
+      "status": {
+        "completed": 8,
+        "started": 1
+      },
+      "tokens": {
+        "cacheReadTokens": 98304,
+        "cacheWriteTokens": 0,
+        "inputTokens": 78776,
+        "outputTokens": 22166,
+        "reasoningOutputTokens": 12151,
+        "totalTokens": 199246
+      },
+      "uncached_input_plus_output_tokens": 100942
+    },
+    "mutation_model_admissions": {
+      "gpt-6-astra": 1,
+      "gpt-6.1-sol": 2
+    },
+    "readiness_and_fixture": {
+      "api_list_price_estimate_usd": 0.1208176,
+      "billing_routes": {
+        "subscription": 3
+      },
+      "calls": 3,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 47.69556249101879,
+      "status": {
+        "completed": 3
+      },
+      "tokens": {
+        "cacheReadTokens": 36864,
+        "cacheWriteTokens": 0,
+        "inputTokens": 24982,
+        "outputTokens": 54,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 61900
+      },
+      "uncached_input_plus_output_tokens": 25036
+    },
+    "semantics": "Readiness contains two actual model-availability requests and one native novelty fixture; it consumes the shared budget but no candidate slots. Started calls are admissions, not completed responses."
+  },
+  "campaign_manifest": {
+    "bytes": 7896,
+    "path": "results/campaign-v4-run1/campaign-manifest.json",
+    "sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451"
+  },
+  "codex_session_metadata": {
+    "observed_tool_calls": 0,
+    "scope": "Only sessions whose session_meta.cwd exactly equals this campaign. Allowlisted metadata, context model/effort, tool counts and usage totals; no messages, tool arguments, reasoning or raw rollouts exported.",
+    "sessions": [
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T011056081633Z-e4c8dddb",
+        "last_event_utc": "2026-10-09T01:11:20.768Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 19209,
+          "output_tokens": 5,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 19214
+        },
+        "latest_token_report_utc": "2026-10-09T01:11:19.961Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6-astra"
+          }
+        ],
+        "session_id": "01a11e36-aeb9-76b1-93ab-a1a1d3af6317",
+        "session_started_utc": "2026-10-09T01:11:03.716Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T011122444414Z-c34cb545",
+        "last_event_utc": "2026-10-09T01:11:33.596Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 19273,
+          "output_tokens": 5,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 19278
+        },
+        "latest_token_report_utc": "2026-10-09T01:11:33.573Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e37-106d-7551-ad8a-cb02dcff627c",
+        "session_started_utc": "2026-10-09T01:11:27.617Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T011646755206Z-7c86e4db",
+        "last_event_utc": "2026-10-09T01:16:53.766Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 23364,
+          "output_tokens": 44,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 23408
+        },
+        "latest_token_report_utc": "2026-10-09T01:16:53.630Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e3b-f43e-7300-8932-745649be893f",
+        "session_started_utc": "2026-10-09T01:16:49.105Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T012447940669Z-59af0354",
+        "last_event_utc": "2026-10-09T01:33:23.974Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 24629,
+          "output_tokens": 14241,
+          "reasoning_output_tokens": 8600,
+          "total_tokens": 38870
+        },
+        "latest_token_report_utc": "2026-10-09T01:33:23.907Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e43-4ec4-76a2-8698-1093cc3c07a6",
+        "session_started_utc": "2026-10-09T01:24:50.743Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013334629870Z-359e4751",
+        "last_event_utc": "2026-10-09T01:36:00.645Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 24771,
+          "output_tokens": 4970,
+          "reasoning_output_tokens": 2588,
+          "total_tokens": 29741
+        },
+        "latest_token_report_utc": "2026-10-09T01:36:00.634Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6-astra"
+          }
+        ],
+        "session_id": "01a11e4b-66f5-7ef1-aa21-1a81b3cd329f",
+        "session_started_utc": "2026-10-09T01:33:41.366Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013604664477Z-dbafe14c",
+        "last_event_utc": "2026-10-09T01:36:15.322Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 24544,
+          "output_tokens": 128,
+          "reasoning_output_tokens": 31,
+          "total_tokens": 24672
+        },
+        "latest_token_report_utc": "2026-10-09T01:36:15.312Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e4d-a064-73c2-8a92-d0c734c02240",
+        "session_started_utc": "2026-10-09T01:36:06.960Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013634388537Z-cb5c23f4",
+        "last_event_utc": "2026-10-09T01:36:50.922Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 23237,
+          "output_tokens": 296,
+          "reasoning_output_tokens": 100,
+          "total_tokens": 23533
+        },
+        "latest_token_report_utc": "2026-10-09T01:36:50.913Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e4e-1216-7601-bbc3-70b62bf69f1d",
+        "session_started_utc": "2026-10-09T01:36:35.374Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013652569416Z-b5c167a9",
+        "last_event_utc": "2026-10-09T01:37:05.232Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 20664,
+          "output_tokens": 240,
+          "reasoning_output_tokens": 95,
+          "total_tokens": 20904
+        },
+        "latest_token_report_utc": "2026-10-09T01:37:05.218Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e4e-590c-78f3-b344-f36950f3bb66",
+        "session_started_utc": "2026-10-09T01:36:53.530Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013706745742Z-5fa13b9f",
+        "last_event_utc": "2026-10-09T01:37:22.409Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 19798,
+          "output_tokens": 335,
+          "reasoning_output_tokens": 105,
+          "total_tokens": 20133
+        },
+        "latest_token_report_utc": "2026-10-09T01:37:22.396Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e4e-9036-7202-aa62-a5073a2ffbea",
+        "session_started_utc": "2026-10-09T01:37:07.658Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013723956046Z-2d46e315",
+        "last_event_utc": "2026-10-09T01:38:03.640Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 19667,
+          "output_tokens": 1281,
+          "reasoning_output_tokens": 364,
+          "total_tokens": 20948
+        },
+        "latest_token_report_utc": "2026-10-09T01:38:03.627Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e4e-d305-7291-8522-0bb61b3a939e",
+        "session_started_utc": "2026-10-09T01:37:24.757Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T013805873369Z-7130a019",
+        "last_event_utc": "2026-10-09T01:38:43.884Z",
+        "latest_native_token_report": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 12288,
+          "input_tokens": 19770,
+          "output_tokens": 675,
+          "reasoning_output_tokens": 268,
+          "total_tokens": 20445
+        },
+        "latest_token_report_utc": "2026-10-09T01:38:43.874Z",
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e4f-7995-7fe0-9a8d-c17e8f055342",
+        "session_started_utc": "2026-10-09T01:38:07.394Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      },
+      {
+        "alignment": "session start inside subprocess call interval; latest admission if nested",
+        "call_id": "20261009T014148225052Z-83be6814",
+        "last_event_utc": "2026-10-09T01:43:32.037Z",
+        "latest_native_token_report": null,
+        "latest_token_report_utc": null,
+        "model_effort_contexts": [
+          {
+            "effort": "high",
+            "model": "gpt-6.1-sol"
+          }
+        ],
+        "session_id": "01a11e52-de80-7883-81c7-2267b008aa96",
+        "session_started_utc": "2026-10-09T01:41:51.018Z",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {}
+      }
+    ],
+    "token_note": "Native input_tokens includes cached input; Headless inputTokens excludes cache. This is corroboration of the same calls, never additional token usage."
+  },
+  "configured": {
+    "billing": "subscription",
+    "budget": {
+      "calls": 120,
+      "remote_elapsed_seconds": 7200,
+      "request_timeout_seconds": 600,
+      "role_caps": {
+        "global_insight": 8,
+        "mutation_repair": 64,
+        "novelty": 16,
+        "prompt_mutation": 16,
+        "readiness": 4,
+        "recommendation": 8,
+        "summary": 32
+      },
+      "uncached_input_plus_output_tokens": 1500000
+    },
+    "database": {
+      "archive_criteria": {
+        "combined_score": 1.0
+      },
+      "archive_selection_strategy": "fitness",
+      "archive_size": 32,
+      "db_path": null,
+      "elite_selection_ratio": 0.3,
+      "enable_dynamic_islands": false,
+      "enforce_island_separation": true,
+      "exploitation_alpha": 1.0,
+      "exploitation_ratio": 0.2,
+      "island_elitism": true,
+      "island_selection_strategy": "uniform",
+      "island_spawn_strategy": "initial",
+      "island_spawn_subtree_size": 1,
+      "max_stdout_log_chars": null,
+      "migration_interval": 4,
+      "migration_rate": 0.25,
+      "num_archive_inspirations": 1,
+      "num_beams": 5,
+      "num_islands": 4,
+      "num_top_k_inspirations": 1,
+      "parent_selection_lambda": 10.0,
+      "parent_selection_strategy": "weighted",
+      "stagnation_threshold": 100
+    },
+    "deadline_utc": "2026-10-09T04:24:23Z",
+    "effective_models": [
+      {
+        "effort": "high",
+        "model": "gpt-6-astra"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-6.1-sol"
+      }
+    ],
+    "episode_workers": 2,
+    "evolution": {
+      "code_embed_sim_threshold": 0.95,
+      "embedding_model": "local/bge-small-code-chunks-v1@http://127.0.0.1:8771/v1",
+      "enable_controlled_oversubscription": false,
+      "enable_wandb_logging": false,
+      "evolve_prompts": true,
+      "init_program_path": "/home/roland/projects/shinka-dreamer/controls/v1/predictive.py",
+      "inspiration_sort_order": "ascending",
+      "job_type": "local",
+      "language": "python",
+      "llm_dynamic_selection": "ucb",
+      "llm_dynamic_selection_kwargs": {
+        "cost_aware_coef": 0.0,
+        "seed": 4017392
+      },
+      "llm_kwargs": {},
+      "llm_models": [
+        "headless/codex@gpt-6-astra?effort=high",
+        "headless/codex@gpt-6.1-sol?effort=high"
+      ],
+      "max_api_costs": null,
+      "max_novelty_attempts": 3,
+      "max_patch_attempts": 2,
+      "max_patch_resamples": 2,
+      "meta_llm_kwargs": {},
+      "meta_llm_models": [
+        "headless/codex@gpt-6.1-sol?effort=high"
+      ],
+      "meta_max_recommendations": 5,
+      "meta_rec_interval": 4,
+      "novelty_llm_kwargs": {},
+      "novelty_llm_models": [
+        "headless/codex@gpt-6.1-sol?effort=high"
+      ],
+      "num_generations": 32,
+      "patch_type_probs": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "patch_types": [
+        "diff",
+        "full",
+        "cross"
+      ],
+      "prompt_archive_size": 8,
+      "prompt_epsilon": 0.1,
+      "prompt_evo_top_k_programs": 3,
+      "prompt_evolution_interval": 4,
+      "prompt_llm_kwargs": {},
+      "prompt_llm_models": [
+        "headless/codex@gpt-6.1-sol?effort=high"
+      ],
+      "prompt_patch_type_probs": [
+        0.7,
+        0.3
+      ],
+      "prompt_patch_types": [
+        "diff",
+        "full"
+      ],
+      "prompt_percentile_recompute_interval": 4,
+      "prompt_ucb_exploration_constant": 1.0,
+      "proposal_buffer_max": 2,
+      "proposal_target_ewma_alpha": 0.3,
+      "proposal_target_hard_cap": null,
+      "proposal_target_min_samples": 5,
+      "proposal_target_mode": "adaptive",
+      "proposal_target_ratio_cap": 2.0,
+      "results_dir": "/home/roland/projects/shinka-dreamer/results/campaign-v4-run1",
+      "sample_single_meta_rec": true,
+      "task_sys_msg": "Evolve a complete executable Python world-model learner and planner for the\nNamazu persistence/information maze experiment (wave v4 RUN 1). Jointly change\nworld_model_step(memory, local_obs, last_action), planner(memory, local_obs),\nexport_model, helpers, representations, inference, learning and planning.\nSubstantive new programs are permitted, not an algorithm catalog or weight-only\nsearch. Start from and improve the supplied parent using native inspirations.\n\nPhysical task: 15x15 dynamic maze, 5x5 terrain observation, two keys, a gating door\nand exit, three anonymous enemies, 200 transitions. Walls change every25steps.\nActions {'move':[dx,dy], 'interact':bool} with integer dx,dy in[-1,1], including\nwaiting. No diagonal corner cutting. Interact opens a cardinally adjacent door\nwhen both keys have been collected, before movement. Keys are collected after\nmovement. Entering a currently occupied enemy cell kills BEFORE enemies move;\nthen all enemies attempt their movement, including on the terminal tick. Blocked\nenemy attempts STAY; never renormalize their law over legal moves. Enemies share\none unknown categorical law over the nine attempted directions. They have no\nobservable identities. Occupied dynamic-wall closures are skipped until the\nnext scheduled tick. Terrain and anonymous occupancy must remain distinct.\n\nSix equally weighted development conditions: uniform/full enemy observation,\nstationary/full, one-switch/full, stationary/late, repeated-25/full and\nrepeated-25/late. Full means radius2; late means radius1 enemy visibility, while\nterrain remains visible throughout the5x5window. The ordinary observation\nexplicitly provides enemy_visibility_radius. Outside it, grid equals terrain,\nso lack of enemy overlay is NOT evidence of an empty cell. Stationary laws are\nprivately drawn from Dirichlet(1,...,1), rejecting entropy<1.2nats or max>.6.\nOne-switch first replacement transition is privately uniform25..75. Repeated\nlaws persist for privately drawn integer20..30transitions (mean25). Consecutive laws differ by total\nvariation>=.3. Ordinary candidates receive no laws, identities, seeds, actual switch\nschedule, future innovations, private files or hidden world positions.\n\nObservation fields: grid(enemy=5), terrain(0empty,1wall,2key,3locked door,4exit,\n-1outside), enemy_visibility_radius, step, health, keys(integer0..2), door_open,\nfeedback(displacement,collected,opened), learn, predictive_planning. Memory\nresets to None per episode. Mapping/localization/occupancy inference alone are\nnot evidence of predictive adaptation. Generic intervention flags need not\nforce a new representation into a fixed family; preserve coherent hooks if\nnatural, but your absolute task score governs selection.\n\nPrimary fitness is the mean absolute task score over a fixed48episode panel:\n.65*escape+.10*number_of_keys+.10*door_open+.05*escape*(1-steps/200).\nThe two keys contribute at most.20; invalid execution scores0. No reward for\nmerely waiting. Never maximize advantage over your own disabled counterpart.\nPrediction loss is diagnostic textual feedback, not part of fitness.\n\nexport_model(memory,local_obs) runs after planning, BEFORE the transition.\nExport enemy=[[x,y,p],...] and default_enemy=p in[0,1] for NEXT-transition\nanonymous occupancy at FIXED cells in initial-agent coordinates (initial\nposition=(0,0)). Export terrain=[[x,y,cell,last_seen_step],...] and optionally\nposition=[x,y]. Missing cell forecasts use default_enemy, default.5. Near Brier\nscores cover the OLD agent-centered3x3; audit samples12interiorcells. Destination\nBrier measures enemy occupancy AFTER enemy movement at the actual destination,\nnot total collision probability: entry-contact risk is separate. Forecast\ncoordinates/horizon/conditioning may differ from internal planning risks; be\nprecise about how prediction informs choices. Malformed actions/exports fail.\n\nDevelopment evidence motivating this wave (not assessment results): historical\nv3 task performance improved rapidly, but many learned-vs-prior action changes\noccurred where both actions had zero immediate estimated risk. A bounded new\nselected-planner branch diagnostic held the learned state fixed, changed only\none first action, then used the same observation-only continuation for12steps.\nFor40 valid learned-vs-prior changed-action/future pairs, there was no collision\nor escape difference;39returns were identical and one lost a key under the\nlearned recommendation. Only6disagreementstates had valid consequences and\n5others were missing because a memory-check validator failed. This small,\nselected, short-horizon negative result does not exclude useful adaptation.\nLook for consequential ranking errors, uncertainty, stale evidence, anonymous\nmatching ambiguity and observations arriving too late to learn. A better generic\noccupancy loss need not improve control. Track/update useful dynamics only where\nits learning/inference cost and persistence make it relevant. All algorithms\nremain open, including active information acquisition and uncertainty-aware\nplanning. No particular hand-designed adaptation architecture is required.\n\nRuntime: Python3.10 standard library only, 192MiB address space,10CPU seconds per\nepisode,3wall seconds per reply,512KiB source,2MiB reply. Isolation denies network,\nprocess creation, repository/private files and evaluator inspection. These\nlimits regulate execution rather than permissible algorithm families. Use the\nprovided task, parent/inspiration code, development feedback and native meta\nrecommendations. Return the patch/full code requested by the native operator.\n",
+      "use_text_feedback": true,
+      "wandb_config": {},
+      "wandb_dir": null,
+      "wandb_entity": null,
+      "wandb_group": null,
+      "wandb_mode": null,
+      "wandb_name": null,
+      "wandb_notes": null,
+      "wandb_project": "shinka-evolve",
+      "wandb_resume": "allow",
+      "wandb_run_id": null,
+      "wandb_tags": []
+    },
+    "hard_checkpoint_utc": "2026-10-09T04:54:23Z",
+    "headless": "93cd9b06b85f848af1308c41e018991b33907c5e",
+    "max_db_workers": 1,
+    "max_evaluation_jobs": 1,
+    "max_proposal_jobs": 1,
+    "roles": {
+      "embedding": "CPU-only local quantized BGE chunks; no model API",
+      "evaluator": "local Python; no LLM",
+      "mutation_repair": [
+        "headless/codex@gpt-6-astra?effort=high",
+        "headless/codex@gpt-6.1-sol?effort=high"
+      ],
+      "novelty": "headless/codex@gpt-6.1-sol?effort=high",
+      "prompt_mutation": "headless/codex@gpt-6.1-sol?effort=high",
+      "summary_insight_recommendation": "headless/codex@gpt-6.1-sol?effort=high"
+    },
+    "unsupported_not_forwarded": [
+      "temperature",
+      "max_tokens"
+    ],
+    "upstream": "9912af12d423504b8d580f4179fd15f5f88b8c50"
+  },
+  "counts": {
+    "accepted_proposals": 2,
+    "administrative_seed_copies": 3,
+    "authorized_total_slots": 32,
+    "failed_slots": [
+      1
+    ],
+    "generated_proposals": 2,
+    "held_proposals": 0,
+    "native_rows": 6,
+    "novelty_rejections": 0,
+    "parent_resamples": 0,
+    "patch_attempts": 2,
+    "patch_rejections": 0,
+    "patch_repairs": 0,
+    "persisted_slots": 3,
+    "sampling_contexts": 3,
+    "seed_slots": 1,
+    "valid_descendants": 1
+  },
+  "infrastructure_findings": [
+    {
+      "classification": "native_evaluation_timeout",
+      "episode_file_present": false,
+      "evaluation_started_at": 1791509614.2336438,
+      "generation": 1,
+      "interpretation": "Original native local scheduler uses job.start_time, which this job records as proposal start. A timeout before evaluation can complete is infrastructure evidence, not an empirical failure of the candidate algorithm.",
+      "job_start_time": 1791509087.9034789,
+      "logged_evidence": "Process 1457508 exceeded timeout of 00:08:00. Killing. => Gen. 1",
+      "metrics_file_present": false,
+      "pre_evaluation_seconds_charged_by_original_timer": 526.3301649093628,
+      "source_log": {
+        "bytes": 62022,
+        "path": "results/campaign-v4-run1/controller.log",
+        "sha256": "c12c575fc510d7a5d401ffc360ae9e1b88c1d806ca9f54bde7bdff5273d830b1"
+      }
+    }
+  ],
+  "mechanisms": {
+    "inspirations": {
+      "contexts_archive": 1,
+      "contexts_top_k": 0,
+      "status": "exercised"
+    },
+    "islands": {
+      "configured": 4,
+      "migrations": [],
+      "rows_by_current_island": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 3
+      },
+      "status": "exercised"
+    },
+    "meta": {
+      "calls_by_role": {
+        "global_insight": 1,
+        "recommendation": 1,
+        "summary": 3
+      },
+      "sampling_contexts_with_recommendation": 1,
+      "state": {
+        "meta_recommendations": "1. **Add fast and slow occupancy estimators with evidence-driven switching.** Extend the successful feature-grouped learner with recent, decayed counts alongside its cumulative counts, blending toward the recent estimator when scored occupancy errors show sustained disagreement. Update this mechanism only from observable transition labels and respect `learn=False`; the higher post-switch near loss motivates adaptation without assuming a fixed switching schedule.\n\n2. **Refine anonymous features around movement constraints.** Split the current categories using corridor orientation, legal neighboring cells, and the relative arrangement of nearby enemies, while backing sparse categories off to the existing pooled estimates. This extends the best program\u2019s compact representation to distinguish blocked-stay opportunities and directional exposure without introducing enemy identity matching or assumed board dimensions.\n\n3. **Replace the final waiting threshold with short-horizon action planning.** Search a small tree containing legal moves and waits, scoring cumulative predicted exposure, objective progress, and repeated waiting; retain Dijkstra\u2019s key, door, exit, and frontier targets as terminal guidance. Begin with the successful horizon-one estimates and extend anonymous occupancy propagation with terrain-constrained movement and retained blocked-attempt mass, addressing the current reuse of one risk field across every route arrival time.\n\n4. **Maintain an uncertainty-aware occupancy field outside visibility.** Replace the uniform unseen-cell risk of `0.02` with memory of previously observed occupancy propagated through traversable terrain, tracking uncertainty as observations age. Clear occupancy only where cells are actually observed empty, and combine this field with the existing local learner; this targets hidden approaches and late visibility while preserving persistent mapping.\n\n5. **Make exploration sensitive to information needed for consequential moves.** Extend frontier selection to reward safe vantage points that reveal enemy approaches to the next key, door, or narrow passage, using alternative occupancy hypotheses to estimate whether another observation could change the chosen action. Keep objective progress and exposure costs in the same planner so information gathering remains purposeful; the best program\u2019s successful frontier strategy provides a foundation, while sparse informative exposure motivates this extension.",
+        "meta_recommendations_history": [
+          "1. **Add fast and slow occupancy estimators with evidence-driven switching.** Extend the successful feature-grouped learner with recent, decayed counts alongside its cumulative counts, blending toward the recent estimator when scored occupancy errors show sustained disagreement. Update this mechanism only from observable transition labels and respect `learn=False`; the higher post-switch near loss motivates adaptation without assuming a fixed switching schedule.\n\n2. **Refine anonymous features around movement constraints.** Split the current categories using corridor orientation, legal neighboring cells, and the relative arrangement of nearby enemies, while backing sparse categories off to the existing pooled estimates. This extends the best program\u2019s compact representation to distinguish blocked-stay opportunities and directional exposure without introducing enemy identity matching or assumed board dimensions.\n\n3. **Replace the final waiting threshold with short-horizon action planning.** Search a small tree containing legal moves and waits, scoring cumulative predicted exposure, objective progress, and repeated waiting; retain Dijkstra\u2019s key, door, exit, and frontier targets as terminal guidance. Begin with the successful horizon-one estimates and extend anonymous occupancy propagation with terrain-constrained movement and retained blocked-attempt mass, addressing the current reuse of one risk field across every route arrival time.\n\n4. **Maintain an uncertainty-aware occupancy field outside visibility.** Replace the uniform unseen-cell risk of `0.02` with memory of previously observed occupancy propagated through traversable terrain, tracking uncertainty as observations age. Clear occupancy only where cells are actually observed empty, and combine this field with the existing local learner; this targets hidden approaches and late visibility while preserving persistent mapping.\n\n5. **Make exploration sensitive to information needed for consequential moves.** Extend frontier selection to reward safe vantage points that reveal enemy approaches to the next key, door, or narrow passage, using alternative occupancy hypotheses to estimate whether another observation could change the chosen action. Keep objective progress and exposure costs in the same planner so information gathering remains purposeful; the best program\u2019s successful frontier strategy provides a foundation, while sparse informative exposure motivates this extension."
+        ],
+        "meta_scratch_pad": "## Successful Algorithmic Patterns\n\n- **The current best, Feature-Based Occupancy Learning with Risk-Aware Dijkstra, achieved 0.8611 fitness and 41/48 escapes (85.4%).** Its anonymous, feature-grouped occupancy learner outperformed Anonymous Motion Learning with Risk-Aware Maze Planning, which achieved 0.8109 and 39/48 escapes. The simpler representation was effective overall, although these bundled implementations do not isolate its causal contribution.\n- The best program combines persistent mapping, eight-direction Dijkstra, key/exit priorities, information-gain frontier selection, and modest revisit penalties. This combination collected **1.90 keys per episode**, opened the door in **85.4%**, and produced no timeouts or invalid actions.\n- Its local occupancy forecasts improved diagnostic accuracy: near-cell Brier loss was **0.00574 versus 0.00837 for persistence**, and threat loss was **0.02885 versus 0.04205**. These support predictive usefulness, but do not establish that learning improved escape outcomes.\n\n## Ineffective Approaches\n\n- **Adaptive Enemy Inference with Risk-Aware Maze Planning scored 0.0 and failed validation.** Its anonymous matching, decayed evidence, surprise-triggered forgetting, and three-step forecasts therefore have no demonstrated performance benefit. Fixed assumptions of three enemies and a 15\u00d715 board are compatibility concerns, but the supplied feedback does not identify the failure\u2019s cause.\n- **Anonymous Motion Learning scored 0.0502 below the best program**, with deaths increasing from **14.6% to 18.75%**. Modeling nine attempted movements, blocked attempts, and persistent hidden occupancy did not improve aggregate control. Its **62.5% escape rate in both late-visibility conditions** indicates a weakness when informative observations arrive late.\n- The best program\u2019s cumulative counts retain old evidence indefinitely. Both repeated-switch conditions yielded **75% escape**, consistent with the feedback\u2019s concern about slow adaptation. The motion learner\u2019s fixed 25-step evidence skipping also mismatched privately varying 20\u201330-step dwell times, although its full-visibility repeated-switch result was stronger.\n\n## Implementation Insights\n\n- **The best learner avoids enemy identity matching.** It pools observations into occupied-tight, occupied-open, near, near-many, and far categories, with 12 pseudo-observations per prior. This provides a compact estimator that remains usable with sparse observations.\n- Training uses cells in the **previous position\u2019s central 3\u00d73**, labeling their subsequent occupancy only after the forecast was scored. Localization and terrain mapping continue when predictive updates are frozen, allowing mapping behavior to remain distinct from learning.\n- The planner excludes currently occupied destinations, charges **45 \u00d7 predicted risk**, and waits when destination risk exceeds current-cell risk by **0.12**. These mechanisms connect forecasts directly to action selection; their individual contributions were not measured.\n- The planner applies the same horizon-one risk field throughout Dijkstra and assigns **0.02 risk outside current visibility**. Consequently, its route costs approximate future exposure rather than explicitly forecasting enemies at each arrival time.\n\n## Performance Analysis\n\n- **The best program leads the valid alternatives by 0.0502 fitness and two escapes out of 48.** Successful escapes averaged **55.29 steps**, compared with **59.03** for Anonymous Motion Learning\u2014approximately 3.74 fewer steps, with potentially different successful episode subsets.\n- Aggregate superiority does not imply superiority in every regime. Anonymous Motion Learning achieved **100% escape in repeat25-full**, versus the best program\u2019s **75%**. Both achieved **100% in switch-full**, but the best encountered switches in only **2/8 episodes**, limiting evidence for switching robustness.\n- The best program\u2019s **0.9887 model score** coexists with **14.6% mortality**. Audit Brier loss improved only slightly over its baseline (**0.01729 versus 0.01754**), while post-switch near loss increased from **0.00500 to 0.00870**. Prediction quality and control success therefore remain separate findings.\n- Each regime contains only **eight episodes**, so one escape changes its reported rate by **12.5 percentage points**. The aggregate advantage and condition-specific differences are observed results; statistical reliability cannot be established from the supplied summaries alone.",
+        "meta_summary": "**Program Name: Feature-Based Occupancy Learning with Risk-Aware Dijkstra**\n- **Implementation**: Maintains a persistent terrain map and learns anonymous next-step enemy occupancy probabilities using prior-smoothed counts grouped by occupancy, nearby enemies, and corridor openness. Eight-direction Dijkstra planning combines movement, predicted risk, and revisit costs, prioritizes keys and exit access, explores information-rich frontiers, and waits when the next move appears substantially riskier.\n- **Performance**: Achieved a 0.861 score and 85.4% escape rate across 48 development episodes, averaging 1.90 keys and 53.4 steps, with no timeouts or invalid actions.\n- **Feedback**: Prediction losses modestly improve on baseline diagnostics, but do not establish a control benefit from learning. Escape falls to 75% under repeated switching; cumulative counts may adapt too slowly, while limited switch exposure weakens conclusions about switching robustness.\n**Program Identifier:** Generation 0 - Patch Name initial_program - Correct Program: True\n\n**Program Name: Adaptive Enemy Inference with Risk-Aware Maze Planning**\n- **Implementation**: Maintains a terrain atlas and hidden-enemy occupancy beliefs, learning enemy movement probabilities through anonymous matchings, decayed evidence, and surprise-triggered forgetting. Three-step forecasts guide risk-weighted pathfinding, key/exit targeting, frontier exploration, and door interaction.\n- **Performance**: Combined score was 0.0, and the program failed validation.\n- **Feedback**: The evaluation reports incorrectness without identifying failing tests or causes, so predictive accuracy and planning benefits are unproven. Fixed assumptions of three enemies and a 15\u00d715 board are relevant compatibility points to examine.\n**Program Identifier:** Generation 1 - Patch Name censored_flow_controller - Correct Program: False\n\n**Program Name: Anonymous Motion Learning with Risk-Aware Maze Planning**\n- **Implementation**: Learns nine attempted enemy movement probabilities from anonymous occupancy observations using decayed evidence, smoothed priors, and a uniform residual; blocked attempts remain in place, and unobserved enemy occupancy persists through forecasting. Dijkstra planning combines predicted collision risk, movement and revisit costs, key/door/exit priorities, frontier exploration, and risk-based waiting.\n- **Performance**: Achieved 0.8109 task fitness and 39/48 escapes (81.25%), with 18.75% deaths, no timeouts or invalid actions, 59.03 steps per successful escape, and all validation tests passing.\n- **Feedback**: Escape reached 100% in switch-full and repeat25-full conditions but only 62.5% in both late-visibility conditions, suggesting limited informative exposure before consequential choices. Prediction losses improved over persistence, but sparse occupancy and lower Brier scores do not establish adaptive control benefit; skipping evidence every 25 steps also mismatches privately varying 20\u201330-step switch intervals.\n**Program Identifier:** Generation 2 - Patch Name censored_motion_belief - Correct Program: True",
+        "total_programs_meta_processed": 3,
+        "unprocessed_program_ids": []
+      },
+      "status": "recommendations_consumed"
+    },
+    "model_bandit": {
+      "arm_models_queried": [
+        "gpt-6-astra",
+        "gpt-6.1-sol"
+      ],
+      "reward_note": "Native UCB with cost coefficient zero; submitted counts can include patch resamples. Shifted nonnegative rewards, not a controlled model comparison. Under exponential scaling s is log-sum-exp accumulated reward contributions, not mean reward. State is from the latest safe checkpoint, so an active call may not yet appear. Preserved infrastructure failures also supplied outcome feedback.",
+      "snapshot_boundary": "parent_sampled",
+      "state": {
+        "arm_names": [
+          "headless/codex@gpt-6-astra?effort=high",
+          "headless/codex@gpt-6.1-sol?effort=high"
+        ],
+        "baseline": 0.8611093750000004,
+        "divs": [
+          0.95,
+          0.9025
+        ],
+        "max_cost_observed": 0.385618,
+        "min_cost_observed": 0.1683208,
+        "n_completed": [
+          1.0,
+          1.0
+        ],
+        "n_costs": [
+          1.0,
+          1.0
+        ],
+        "n_submitted": [
+          1.0,
+          1.0
+        ],
+        "obs_max": null,
+        "obs_min": null,
+        "s": [
+          null,
+          null
+        ],
+        "total_costs": [
+          0.385618,
+          0.1683208
+        ]
+      },
+      "status": "two_arms_queried_with_outcome_feedback"
+    },
+    "novelty": {
+      "decisions": [
+        {
+          "accepted": true,
+          "kind": "novelty_decision",
+          "metadata": {
+            "max_similarity": 0.9231391549110413,
+            "novelty_checks_performed": 0,
+            "novelty_explanation": "",
+            "novelty_total_cost": 0.0,
+            "similarity_scores": [
+              0.9231391549110413
+            ]
+          },
+          "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+          "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
+          "utc": "2026-10-09T01:33:34.212494+00:00"
+        },
+        {
+          "accepted": true,
+          "kind": "novelty_decision",
+          "metadata": {
+            "max_similarity": 0.9796172976493835,
+            "novelty_checks_performed": 1,
+            "novelty_explanation": "NOVEL\n\nThe proposal replaces feature-based occupancy rates with a learned directional motion model, using probabilistic assignments to infer movement from anonymous enemy observations. It also preserves and propagates enemy beliefs outside visibility and accounts for blocked moves and door opening.\n\nPlanning changes include distance-decayed risk penalties, a new diagonal-door restriction, and a visit-dependent waiting threshold. These materially change prediction, memory, computation, and action selection; whether they improve performance requires empirical testing.",
+            "novelty_total_cost": 0.0270208,
+            "similarity_scores": [
+              0.9796172976493835,
+              0.9352851510047913
+            ]
+          },
+          "parent_id": "9d0564c2-3740-48c3-9619-b2d9ad873fa6",
+          "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
+          "utc": "2026-10-09T01:36:16.825663+00:00"
+        }
+      ],
+      "embedding_calls": [
+        {
+          "dimensions": 384,
+          "elapsed_seconds": 4.815598840010352,
+          "embedded_characters": 6175,
+          "embedded_prefix_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+          "kind": "local_embedding",
+          "native_estimated_api_cost": 0.0,
+          "source_characters": 6175,
+          "source_sha256": "9e727876845e84d3b323b8210ba79f15ae1686912cd136a437c237f39bc097b3",
+          "utc": "2026-10-09T01:24:47.818532+00:00"
+        },
+        {
+          "dimensions": 384,
+          "elapsed_seconds": 9.057682215003297,
+          "embedded_characters": 10000,
+          "embedded_prefix_sha256": "aa50f630750c0527d168ac8e7ec3b39d5928cf3c2aca202e52e67390a0a4648f",
+          "kind": "local_embedding",
+          "native_estimated_api_cost": 0.0,
+          "source_characters": 20564,
+          "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
+          "utc": "2026-10-09T01:33:34.185041+00:00"
+        },
+        {
+          "dimensions": 384,
+          "elapsed_seconds": 3.40183762399829,
+          "embedded_characters": 10000,
+          "embedded_prefix_sha256": "fb0ba2efb7ece4922029c800151cc78c066bf44faadfde7943a42aaeb9746750",
+          "kind": "local_embedding",
+          "native_estimated_api_cost": 0.0,
+          "source_characters": 10194,
+          "source_sha256": "e4d5de3da3812e0fe860c2b850d06056aa2329f0e2c314667d13eef2e88d5ba3",
+          "utc": "2026-10-09T01:36:04.652197+00:00"
+        }
+      ],
+      "fixture": "artifacts/campaign-v4/run1/novelty-fixture.json",
+      "limitations": "Native embedding uses the first 10000 source characters; local general-English BGE is not validated as semantic code novelty. Native high-similarity gate is island-local. Fixture call is separate from discovery.",
+      "status": "discovery_judge_exercised"
+    },
+    "operators": {
+      "configured_probabilities": {
+        "cross": 0.3,
+        "diff": 0.4,
+        "full": 0.3
+      },
+      "persisted_by_type": {
+        "diff": 1,
+        "full": 1
+      }
+    },
+    "prompt_coevolution": {
+      "archive_rows": 1,
+      "correct_programs_with_prompt_credit": 1,
+      "counter": 2,
+      "programs_with_prompt_credit": 2,
+      "prompt_rows": 1,
+      "status": "pending"
+    },
+    "resume": {
+      "events": [
+        {
+          "authorized_total_slots": 32,
+          "drain_through_total_slots": 3,
+          "kind": "checkpoint_requested",
+          "reason": "signal:SIGTERM",
+          "utc": "2026-10-09T01:35:48.705174+00:00"
+        },
+        {
+          "bandit_rng_restored": true,
+          "kind": "native_state_restored",
+          "prompt_evolution_counter": 2,
+          "recommendation_history_count": 1,
+          "source_sha256": "50509ba9ed4c518f6939c3043ec37a118017eb62016e6580c1ef1bde0a86296d",
+          "utc": "2026-10-09T01:41:48.140841+00:00"
+        }
+      ],
+      "limitation": "Accepted pending proposals can resume without repeated mutation/novelty. A generated pre-novelty held proposal is retained but requires explicit stage recovery; automatic blind continuation fails closed.",
+      "status": "actually_restored"
+    }
+  },
+  "runtime_compatibility_amendment": {
+    "added_source_sha256": {
+      "dreamer/native_run1_runtime_fix.py": "01fe0f9538f90e6145282e648d9bd66717d14d431d099273ba1712b57e261ecf",
+      "scripts/resume_v4_run1.py": "c84a1b3613d16b52d0ebf4313953f5c63841aba65bd4030ba5571623379af24a",
+      "tests/test_native_run1_runtime_fix.py": "cc733c2e73911ac2de211c3c6e92f291d33604f57c588a97cc31fdd1c0d4aa69"
+    },
+    "campaign_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451",
+    "checkpoint_call_ledger_sha256": "4b2b695460ab2edd1b9ec732f62e48b1732d4eae7498afd3e8ec492f56635d18",
+    "checkpoint_meta_state_sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df",
+    "checkpoint_native_state_sha256": "50509ba9ed4c518f6939c3043ec37a118017eb62016e6580c1ef1bde0a86296d",
+    "fixes": [
+      {
+        "new": "Only the scheduler receives dataclasses.replace(job,start_time=job.evaluation_started_at), falling back to evaluation_submitted_at. Original job and pipeline metrics remain unchanged.",
+        "old": "Local JobScheduler.check_job_status compared now minus job.start_time (proposal start) to480s.",
+        "scope": "The RUN1 runner instance local scheduler only; candidate CPU/reply/memory limits and480s evaluation allowance unchanged."
+      },
+      {
+        "new": "Append native supported --timeout590 to every RUN1 Headless command. Headless owns a child process group and performs graceful termination/escalation before the outer600s ceiling.",
+        "old": "Only provider600s outer timeout; SIGKILL of Headless could leave Codex child alive.",
+        "scope": "All actual calls remain audited subscription calls. No authentication, approval, sandbox, model, effort or fallback setting changed."
+      }
+    ],
+    "generation_1_preserved": {
+      "accepted_proposal_sha256": "1d59769ee78924e40f2fa906ab2872135a85b619573dc69546a93ed4b7a0e309",
+      "correct": false,
+      "failure": "Native scheduler charged 526.33s proposal/embedding time against480s evaluation deadline, killed evaluator after approximately.03s before episode output.",
+      "id": "385de283-f3d7-4e68-b774-3c44ebbf50f6",
+      "policy": "Keep original failure row, code, reward credit and consumed calls. No automatic retry or reclassification as an empirical algorithm failure.",
+      "score": 0,
+      "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347"
+    },
+    "manual_infrastructure_feedback": {
+      "placement": "Appended after native mutation/fix operator-specific prompt composition, alongside the non-evolving boundary. Existing DB feedback, scores and saved meta text remain untouched.",
+      "sha256": "4734e5ed8bab2c6f099a29f682a04c001b972de7f81e532f4f9669d8914d515a",
+      "text": "Generation1 was killed by a scheduler timing bug before any episodes; its score0 is an infrastructure failure, not evidence about its algorithm. The timer now starts at evaluation launch."
+    },
+    "original_driver_sha256": {
+      "docs/mutation-prompt-v4.md": "ecb33b5c16a9d55c5b7e4e6ee9a4da22f17d019bfc090f20ccdac22ade33bd3d",
+      "dreamer/headless_transport.py": "45bb98f19d4099c37cc401c01a9e38dfe13a27f1b126b2eba4af6d9a1627886c",
+      "dreamer/native.py": "4e457b8781a099482b7a497312a11812e069467b41a875805d7ea2e68f1f8cc0",
+      "dreamer/native_run1.py": "a495ee9e43c0faa3e5e2afd5a1d1a2eb5ecfe214d634dedf2919906ed13cfe51",
+      "scripts/evolve_v4.py": "7df3c4ba3d099f31200e96910befec9915dcb09bd402d68b1b68c08f2d49e937",
+      "scripts/run1_embedding_server.py": "ca46afd874810583b8b48a77396964d66fae04d81c342164c40d22eaea2a43b1",
+      "scripts/run1_readiness.py": "b1445099a4f9022b2160f3d2a5cba180b5ee7729938928ef7ca3050b6685ebf9",
+      "scripts/subscription_headless.sh": "caedeafe87fcf0774838af0e9e8dfb965fcdfba9ce47a16b2b659359a1f0a04d"
+    },
+    "original_resolved_sha256": "ff3495626d12f22b3db6a8292ad9e880174fe80ce93b7e81bcde1694908b98ad",
+    "persisted_slots_before_resume": [
+      0,
+      1,
+      2
+    ],
+    "preserved_checkpoint_files": {
+      "call-budget-ledger.json": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/call-budget-ledger.json",
+        "sha256": "4b2b695460ab2edd1b9ec732f62e48b1732d4eae7498afd3e8ec492f56635d18"
+      },
+      "controller.log": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/controller.log",
+        "sha256": "c12c575fc510d7a5d401ffc360ae9e1b88c1d806ca9f54bde7bdff5273d830b1"
+      },
+      "native-events.jsonl": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/native-events.jsonl",
+        "sha256": "ec9440cb1ab1350aa933b11aa8703e7c60eb00b86fa9f218566c628a25566352"
+      },
+      "programs.sqlite": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/programs.sqlite",
+        "sha256": "f1045a74b453dffca3c85aed59ab865350c7c6e9d792fc7d54e2ac2d34804e21"
+      },
+      "prompts.sqlite": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/prompts.sqlite",
+        "sha256": "a554e3d28d8fda22c3378df2a87ae96f3297ed2c0a61ec6ec65777738213a0f8"
+      },
+      "run1-meta-state.json": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/run1-meta-state.json",
+        "sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df"
+      },
+      "run1-native-state.json": {
+        "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/run1-native-state.json",
+        "sha256": "50509ba9ed4c518f6939c3043ec37a118017eb62016e6580c1ef1bde0a86296d"
+      }
+    },
+    "recorded_utc": "2026-10-09T01:40:17.425043+00:00",
+    "resume_limit": "Previously accepted pending proposals recover natively. Generated but not novelty-accepted held proposals remain preserved and require explicit stage recovery; do not blindly regenerate.",
+    "type": "runtime compatibility bug fixes; no candidate/evaluator/selection change",
+    "unchanged": [
+      "original manifest/config/source files",
+      "native installed revision/files",
+      "objective",
+      "environment",
+      "case panel",
+      "seed",
+      "candidate resource boundaries",
+      "total32slot ceiling",
+      "all-call token/time/role budgets",
+      "deadline",
+      "operators",
+      "parent/inspiration sampling",
+      "islands/migration",
+      "bandit",
+      "novelty",
+      "prompt coevolution",
+      "meta recommendations",
+      "saved native state"
+    ],
+    "upstream_function_sha256": {
+      "JobScheduler.check_job_status": "77e64e2eb3e37cef6530b445a810074688e5533757e0866fcfd5e1f9acfab6f9",
+      "headless._build_headless_command": "4fba9d6b406f9487ec508389a6b5de0d8e7ff1bfd8633da4b7a12bcb11fd1c89"
+    }
+  },
+  "runtime_provenance": {
+    "call-budget-ledger.json": {
+      "bytes": 1577,
+      "path": "results/campaign-v4-run1/call-budget-ledger.json",
+      "sha256": "1eadf497782aa6cd7259dd4f0f1b4f135195d4ec8c25964c8a307f651d24ca19"
+    },
+    "dreamer-resolved.json": {
+      "bytes": 10903,
+      "path": "results/campaign-v4-run1/dreamer-resolved.json",
+      "sha256": "ff3495626d12f22b3db6a8292ad9e880174fe80ce93b7e81bcde1694908b98ad"
+    },
+    "native-events.jsonl": {
+      "bytes": 15158,
+      "path": "results/campaign-v4-run1/native-events.jsonl",
+      "sha256": "4655e12112fc71806a4f54a4ac48afaa121e1d8933bebf0ccb57baf23d13c02b"
+    },
+    "run1-meta-state.json": {
+      "bytes": 12889,
+      "path": "results/campaign-v4-run1/run1-meta-state.json",
+      "sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df"
+    },
+    "run1-native-state.json": {
+      "bytes": 23621,
+      "path": "results/campaign-v4-run1/run1-native-state.json",
+      "sha256": "2bc12abec6228aa9a2f9a81929e648adcadd3c09fd4e001c9bac4f3d39c17a6e"
+    }
+  },
+  "saturation_reviews": [],
+  "schema": "run1-native-report-v1",
+  "scientific_limits": [
+    "One development search with reused cases; no independent-discovery reliability claim.",
+    "All mechanisms enabled together in a prospective ecosystem configuration; no individual mechanism causal attribution.",
+    "Task improvement, prediction improvement and control benefit from adaptive prediction remain separate hypotheses.",
+    "No fresh assessment or selection-validation evidence is created by this exporter."
+  ],
+  "snapshot_utc": "2026-10-09T01:43:40.673166+00:00",
+  "source_scope": "Saved runtime state only; no new worlds/model calls. Live files can advance between snapshots; per-file hashes and snapshot timestamp identify evidence."
+}

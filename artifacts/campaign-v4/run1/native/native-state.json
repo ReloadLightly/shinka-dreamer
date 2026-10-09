@@ -1,0 +1,55 @@
+{
+  "authorized_total_slots": 32,
+  "bandit_state": {
+    "arm_names": [
+      "headless/codex@gpt-6-astra?effort=high",
+      "headless/codex@gpt-6.1-sol?effort=high"
+    ],
+    "baseline": 0.8611093750000004,
+    "divs": [
+      0.95,
+      0.9025
+    ],
+    "max_cost_observed": 0.385618,
+    "min_cost_observed": 0.1683208,
+    "n_completed": [
+      1.0,
+      1.0
+    ],
+    "n_costs": [
+      1.0,
+      1.0
+    ],
+    "n_submitted": [
+      1.0,
+      1.0
+    ],
+    "obs_max": null,
+    "obs_min": null,
+    "s": [
+      null,
+      null
+    ],
+    "total_costs": [
+      0.385618,
+      0.1683208
+    ]
+  },
+  "boundary": "parent_sampled",
+  "meta_state_sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df",
+  "prompt_api_cost": 0.0,
+  "prompt_evolution_counter": 2,
+  "prompt_percentile_recompute_counter": 1,
+  "rng_state_sha256": {
+    "bandit_rng": "86dce44c6767ac920ece73901b09edba27644366e1d6b2a52f28051db9d492a0",
+    "numpy_rng": "79d8e276854980ae68cf3af55084d9442b2917a75aa8762fa10da5953bb0a273",
+    "python_rng": "2db1e1b9bb69309096296668b0a9a3d80dfcb885c7ba4de4e994d3096d803b9e"
+  },
+  "saturation_reviews": [],
+  "saved_utc": "2026-10-09T01:41:48.212647+00:00",
+  "side_effects_completed_program_ids": [
+    "385de283-f3d7-4e68-b774-3c44ebbf50f6",
+    "be884d31-8b39-4add-abce-c93d13595c75"
+  ],
+  "version": 1
+}

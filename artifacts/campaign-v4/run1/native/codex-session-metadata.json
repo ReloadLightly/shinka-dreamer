@@ -1,0 +1,289 @@
+{
+  "observed_tool_calls": 0,
+  "scope": "Only sessions whose session_meta.cwd exactly equals this campaign. Allowlisted metadata, context model/effort, tool counts and usage totals; no messages, tool arguments, reasoning or raw rollouts exported.",
+  "sessions": [
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T011056081633Z-e4c8dddb",
+      "last_event_utc": "2026-10-09T01:11:20.768Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 19209,
+        "output_tokens": 5,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 19214
+      },
+      "latest_token_report_utc": "2026-10-09T01:11:19.961Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6-astra"
+        }
+      ],
+      "session_id": "01a11e36-aeb9-76b1-93ab-a1a1d3af6317",
+      "session_started_utc": "2026-10-09T01:11:03.716Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T011122444414Z-c34cb545",
+      "last_event_utc": "2026-10-09T01:11:33.596Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 19273,
+        "output_tokens": 5,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 19278
+      },
+      "latest_token_report_utc": "2026-10-09T01:11:33.573Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e37-106d-7551-ad8a-cb02dcff627c",
+      "session_started_utc": "2026-10-09T01:11:27.617Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T011646755206Z-7c86e4db",
+      "last_event_utc": "2026-10-09T01:16:53.766Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 23364,
+        "output_tokens": 44,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 23408
+      },
+      "latest_token_report_utc": "2026-10-09T01:16:53.630Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e3b-f43e-7300-8932-745649be893f",
+      "session_started_utc": "2026-10-09T01:16:49.105Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T012447940669Z-59af0354",
+      "last_event_utc": "2026-10-09T01:33:23.974Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 24629,
+        "output_tokens": 14241,
+        "reasoning_output_tokens": 8600,
+        "total_tokens": 38870
+      },
+      "latest_token_report_utc": "2026-10-09T01:33:23.907Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e43-4ec4-76a2-8698-1093cc3c07a6",
+      "session_started_utc": "2026-10-09T01:24:50.743Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013334629870Z-359e4751",
+      "last_event_utc": "2026-10-09T01:36:00.645Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 24771,
+        "output_tokens": 4970,
+        "reasoning_output_tokens": 2588,
+        "total_tokens": 29741
+      },
+      "latest_token_report_utc": "2026-10-09T01:36:00.634Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6-astra"
+        }
+      ],
+      "session_id": "01a11e4b-66f5-7ef1-aa21-1a81b3cd329f",
+      "session_started_utc": "2026-10-09T01:33:41.366Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013604664477Z-dbafe14c",
+      "last_event_utc": "2026-10-09T01:36:15.322Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 24544,
+        "output_tokens": 128,
+        "reasoning_output_tokens": 31,
+        "total_tokens": 24672
+      },
+      "latest_token_report_utc": "2026-10-09T01:36:15.312Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e4d-a064-73c2-8a92-d0c734c02240",
+      "session_started_utc": "2026-10-09T01:36:06.960Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013634388537Z-cb5c23f4",
+      "last_event_utc": "2026-10-09T01:36:50.922Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 23237,
+        "output_tokens": 296,
+        "reasoning_output_tokens": 100,
+        "total_tokens": 23533
+      },
+      "latest_token_report_utc": "2026-10-09T01:36:50.913Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e4e-1216-7601-bbc3-70b62bf69f1d",
+      "session_started_utc": "2026-10-09T01:36:35.374Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013652569416Z-b5c167a9",
+      "last_event_utc": "2026-10-09T01:37:05.232Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 20664,
+        "output_tokens": 240,
+        "reasoning_output_tokens": 95,
+        "total_tokens": 20904
+      },
+      "latest_token_report_utc": "2026-10-09T01:37:05.218Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e4e-590c-78f3-b344-f36950f3bb66",
+      "session_started_utc": "2026-10-09T01:36:53.530Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013706745742Z-5fa13b9f",
+      "last_event_utc": "2026-10-09T01:37:22.409Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 19798,
+        "output_tokens": 335,
+        "reasoning_output_tokens": 105,
+        "total_tokens": 20133
+      },
+      "latest_token_report_utc": "2026-10-09T01:37:22.396Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e4e-9036-7202-aa62-a5073a2ffbea",
+      "session_started_utc": "2026-10-09T01:37:07.658Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013723956046Z-2d46e315",
+      "last_event_utc": "2026-10-09T01:38:03.640Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 19667,
+        "output_tokens": 1281,
+        "reasoning_output_tokens": 364,
+        "total_tokens": 20948
+      },
+      "latest_token_report_utc": "2026-10-09T01:38:03.627Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e4e-d305-7291-8522-0bb61b3a939e",
+      "session_started_utc": "2026-10-09T01:37:24.757Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T013805873369Z-7130a019",
+      "last_event_utc": "2026-10-09T01:38:43.884Z",
+      "latest_native_token_report": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 12288,
+        "input_tokens": 19770,
+        "output_tokens": 675,
+        "reasoning_output_tokens": 268,
+        "total_tokens": 20445
+      },
+      "latest_token_report_utc": "2026-10-09T01:38:43.874Z",
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e4f-7995-7fe0-9a8d-c17e8f055342",
+      "session_started_utc": "2026-10-09T01:38:07.394Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    },
+    {
+      "alignment": "session start inside subprocess call interval; latest admission if nested",
+      "call_id": "20261009T014148225052Z-83be6814",
+      "last_event_utc": "2026-10-09T01:43:32.037Z",
+      "latest_native_token_report": null,
+      "latest_token_report_utc": null,
+      "model_effort_contexts": [
+        {
+          "effort": "high",
+          "model": "gpt-6.1-sol"
+        }
+      ],
+      "session_id": "01a11e52-de80-7883-81c7-2267b008aa96",
+      "session_started_utc": "2026-10-09T01:41:51.018Z",
+      "tool_call_count": 0,
+      "tool_calls_by_name": {}
+    }
+  ],
+  "snapshot_utc": "2026-10-09T01:43:40.673166+00:00",
+  "token_note": "Native input_tokens includes cached input; Headless inputTokens excludes cache. This is corroboration of the same calls, never additional token usage."
+}
