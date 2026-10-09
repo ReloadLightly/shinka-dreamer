@@ -17,6 +17,7 @@ from urllib.parse import parse_qs, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from shinka.webui import visualization as native
+from scripts.web_presentation import native_html, local_html
 
 ASSETS = {'/', '/index.html', '/viz_tree.html', '/compare.html', '/favicon.png', '/sakana.jpg'}
 READ_ROUTES = {'/get_programs', '/get_programs_summary', '/get_program_count',
@@ -79,6 +80,19 @@ def assessment_progress():
                       'frozen_plan_matches': matches}
         except (OSError, ValueError):
             launch['status'] = 'Launch metadata update in progress'
+    paused_by_user = False
+    checkpoint = PLAN.parent / 'operator-checkpoint-complete.json'
+    if checkpoint.is_file():
+        try:
+            closure = json.loads(checkpoint.read_text())
+            same_plan = closure.get('plan_sha256') == PLAN_SHA256
+            closed_at = datetime.fromisoformat(closure['recorded_utc'].replace('Z', '+00:00'))
+            started = launch.get('started_utc')
+            later_launch = bool(started and datetime.fromisoformat(started.replace('Z', '+00:00')) > closed_at)
+            paused_by_user = same_plan and closure.get('status') == 'paused-by-user' and not later_launch
+            if paused_by_user: launch['status'] = 'Checkpointed and paused at user request'
+        except (OSError, ValueError, KeyError):
+            pass
     complete = (ASSESSMENT / 'execution-complete.json').is_file()
     closed = (PLAN.parent / 'analysis-closure.json').is_file()
     reports = (ASSESSMENT / 'report-follow-through-complete.json').is_file()
@@ -93,7 +107,7 @@ def assessment_progress():
         'shadows_per_group': shadow_count,
         'shadow_scope': 'Recorded replay groups only. Files may record failures; group count is not a count of valid or completed individual shadow passes.',
         'launch': launch,
-        'markers': {'execution_complete': complete, 'analysis_closed': closed,
+        'markers': {'paused_by_user': paused_by_user, 'execution_complete': complete, 'analysis_closed': closed,
                     'saved_data_reports_complete': reports},
         'status_scope': 'Marker existence and launcher metadata; not a process heartbeat or outcome inspection.',
         'count_scope': 'Durable files include failed executions. Counts may advance at different checkpoint boundaries; a paired case is saved after all its conditions and replay groups.',
@@ -103,6 +117,21 @@ def assessment_progress():
 
 
 class CampaignUI(native.DatabaseRequestHandler):
+    campaign_label = 'Unknown dynamics · v3 wave 1'
+    campaign_task = 'campaign-v3'
+
+    def native_asset_response(self, path, head=False):
+        name = 'index.html' if path == '/' else path.lstrip('/')
+        asset = Path(native.__file__).resolve().parent / name
+        payload = native_html(asset.read_text()).encode('utf-8')
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Content-Length', str(len(payload)))
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        self.end_headers()
+        if not head: self.wfile.write(payload)
+
     def local_response(self, path, head=False):
         if path == '/assessment_progress':
             try:
@@ -112,7 +141,7 @@ class CampaignUI(native.DatabaseRequestHandler):
             content_type = 'application/json; charset=utf-8'
         else:
             try:
-                payload = LOCAL_ASSETS[path].read_bytes()
+                payload = local_html(LOCAL_ASSETS[path].read_text()).encode('utf-8')
             except OSError:
                 return self.send_error(404, 'Saved campaign page unavailable')
             content_type = 'text/html; charset=utf-8'
@@ -134,8 +163,10 @@ class CampaignUI(native.DatabaseRequestHandler):
             return self.local_response(parsed.path)
         if parsed.path == '/list_databases':
             return self.send_json_response([{'path':'programs.sqlite',
-                'actual_path':'programs.sqlite', 'name':'Unknown dynamics · v3 wave 1',
-                'task':'campaign-v3'}])
+                'actual_path':'programs.sqlite', 'name':self.campaign_label,
+                'task':self.campaign_task}])
+        if parsed.path in ('/', '/index.html', '/viz_tree.html', '/compare.html'):
+            return self.native_asset_response(parsed.path)
         if parsed.path in READ_ROUTES:
             if query.get('db_path') != ['programs.sqlite']:
                 return self.send_error(403, 'Only the active v3 campaign is available')
@@ -152,6 +183,8 @@ class CampaignUI(native.DatabaseRequestHandler):
             if parsed.query:
                 return self.send_error(400)
             return self.local_response(parsed.path, head=True)
+        if parsed.path in ('/', '/index.html', '/viz_tree.html', '/compare.html'):
+            return self.native_asset_response(parsed.path, head=True)
         if urlsplit(self.path).path not in ASSETS:
             return self.send_error(404)
         if self.path == '/':
@@ -168,8 +201,11 @@ def main():
     parser.add_argument('--port', type=int, default=8000)
     args = parser.parse_args()
     campaign = args.campaign.resolve()
-    if campaign != (ROOT/'results/campaign-v3').resolve() or not (campaign/'programs.sqlite').is_file():
-        raise ValueError('This launcher serves the existing v3 campaign only')
+    allowed = {(ROOT/'results/campaign-v3').resolve(): ('Unknown dynamics · v3 wave 1','campaign-v3'),
+               (ROOT/'results/campaign-v4-run1').resolve(): ('Unknown dynamics · RUN1','campaign-v4-run1')}
+    if campaign not in allowed or not (campaign/'programs.sqlite').is_file():
+        raise ValueError('This launcher serves an existing allowlisted campaign database only')
+    CampaignUI.campaign_label, CampaignUI.campaign_task = allowed[campaign]
     assets = Path(native.__file__).resolve().parent
     handler = partial(CampaignUI, search_root=str(campaign), directory=str(assets))
     with ThreadingHTTPServer(('127.0.0.1', args.port), handler) as server:

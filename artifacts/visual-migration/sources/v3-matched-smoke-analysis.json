@@ -1,0 +1,1818 @@
+{
+  "study": "Development smoke only",
+  "cases_per_regime": 8,
+  "recorded_policy_episodes": 8,
+  "scope": "Passive predictors receive identical recorded public observations and preceding actions; no new policy rollouts.",
+  "known_law_scope": "Privileged current dynamics with the same partial observations; not an optimal-policy bound.",
+  "post_switch_scope": "Conditional on the recorded memory policy reaching the switch/window; no unconditional control inference.",
+  "bootstrap": {
+    "seed": 7219517,
+    "replicates": 5000,
+    "unit": "whole case, same resamples for every regime and shadow; recompute pooled loss ratios"
+  },
+  "regimes": {
+    "switch": {
+      "episodes": 8,
+      "policy_frames": 494,
+      "encountered_switch_episodes": 7,
+      "terminal_transition_episodes": 8,
+      "audits": {
+        "policy_trajectory_verified_against_outcomes": 0,
+        "policy_outcomes_supplied": false,
+        "physical_observation_matched_episodes": 8,
+        "map_position_matched_episodes": 8,
+        "frozen_parameter_export_episodes": 8,
+        "frozen_parameters_constant_episodes": 8,
+        "identical_initial_parameter_episodes": 8,
+        "online_parameter_change_episodes": 8,
+        "shadow_error_episodes": {
+          "fitted_frozen": 0,
+          "fitted_online": 0,
+          "known_law": 0
+        },
+        "missing_forecast_frames": {
+          "fitted_frozen": 0,
+          "fitted_online": 0,
+          "known_law": 0
+        },
+        "missing_records": []
+      },
+      "complete_matched_prediction_evidence": true,
+      "failure_handling": "Worker errors retain all targets using the frozen .5 fallback; missing whole records make comparisons unavailable.",
+      "forecasts": {
+        "fitted_frozen": {
+          "brier_near": {
+            "loss": 0.003440874240033043,
+            "sum": 15.29812687118691,
+            "targets": 4446,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0013398568714844794,
+              0.006170141459224477
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit": {
+            "loss": 0.017369620559711,
+            "sum": 102.9671106779668,
+            "targets": 5928,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.014474575924704013,
+              0.02072936368422421
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_threat": {
+            "loss": 0.017344815046697177,
+            "sum": 15.29812687118691,
+            "targets": 882,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.008305737552219647,
+              0.024893304135281877
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination": {
+            "loss": 4.7709570452384345e-05,
+            "sum": 0.023568527803477866,
+            "targets": 494,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.00011755048322108643
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_post_switch": {
+            "loss": 9.692222736281956e-05,
+            "sum": 0.15788630837403306,
+            "targets": 1629,
+            "contributing_episodes": 7,
+            "ci95": [
+              1.9110797156107713e-05,
+              0.0003618575496282585
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_post_switch": {
+            "loss": 0.015448912277795029,
+            "sum": 33.5550374673708,
+            "targets": 2172,
+            "contributing_episodes": 7,
+            "ci95": [
+              0.00967617410979445,
+              0.02070145718485245
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_pre_switch": {
+            "loss": 0.005374597288893459,
+            "sum": 15.140240562812874,
+            "targets": 2817,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0020874880914849084,
+              0.008778755015792864
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_pre_switch": {
+            "loss": 0.018480317681202323,
+            "sum": 69.41207321059592,
+            "targets": 3756,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.014600367399464399,
+              0.022483720130011823
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination_post_switch": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 181,
+            "contributing_episodes": 7,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_terminal": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 72,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_terminal": {
+            "loss": 0.020565365909617196,
+            "sum": 1.9742751273232508,
+            "targets": 96,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.00010486127139519784,
+              0.05096659747036611
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination_terminal": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 8,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          }
+        },
+        "fitted_online": {
+          "brier_near": {
+            "loss": 0.0034745894547960595,
+            "sum": 15.44802471602328,
+            "targets": 4446,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0013312000005222717,
+              0.006309868206383797
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit": {
+            "loss": 0.017374171273509806,
+            "sum": 102.99408730936612,
+            "targets": 5928,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.014526909672368096,
+              0.020711489938821787
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_threat": {
+            "loss": 0.017514767251727074,
+            "sum": 15.44802471602328,
+            "targets": 882,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.008282573365596438,
+              0.0253448184431087
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination": {
+            "loss": 4.3653839009798754e-05,
+            "sum": 0.021564996470840585,
+            "targets": 494,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.00010755849332933771
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_post_switch": {
+            "loss": 9.582242579795854e-05,
+            "sum": 0.15609473162487447,
+            "targets": 1629,
+            "contributing_episodes": 7,
+            "ci95": [
+              1.820890755643053e-05,
+              0.0003552231510861219
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_post_switch": {
+            "loss": 0.015404975234798446,
+            "sum": 33.459606209982226,
+            "targets": 2172,
+            "contributing_episodes": 7,
+            "ci95": [
+              0.009681060001226063,
+              0.02069305939522373
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_pre_switch": {
+            "loss": 0.005428445148881223,
+            "sum": 15.291929984398404,
+            "targets": 2817,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0020821753441555395,
+              0.00897572562559103
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_pre_switch": {
+            "loss": 0.018512907640943523,
+            "sum": 69.53448109938387,
+            "targets": 3756,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.014668260296223446,
+              0.022506257993328907
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination_post_switch": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 181,
+            "contributing_episodes": 7,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_terminal": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 72,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_terminal": {
+            "loss": 0.02056261708698675,
+            "sum": 1.974011240350728,
+            "targets": 96,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.00010290555984911342,
+              0.05096179080817776
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination_terminal": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 8,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          }
+        },
+        "known_law": {
+          "brier_near": {
+            "loss": 0.0035485721991671383,
+            "sum": 15.776951997497097,
+            "targets": 4446,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.001455547218386316,
+              0.006193417633064553
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit": {
+            "loss": 0.01703376718715771,
+            "sum": 100.97617188547092,
+            "targets": 5928,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.01420330141962815,
+              0.020435810473574026
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_threat": {
+            "loss": 0.01788770067743435,
+            "sum": 15.776951997497097,
+            "targets": 882,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.008921886562993954,
+              0.0250679787932211
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination": {
+            "loss": 1.1935867232264737e-05,
+            "sum": 0.00589631841273878,
+            "targets": 494,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              3.2357062351660526e-05
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_post_switch": {
+            "loss": 0.00018692525927958107,
+            "sum": 0.3045012473664376,
+            "targets": 1629,
+            "contributing_episodes": 7,
+            "ci95": [
+              3.3088214500239305e-06,
+              0.0009587214557779819
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_post_switch": {
+            "loss": 0.014911348988879471,
+            "sum": 32.38745000384621,
+            "targets": 2172,
+            "contributing_episodes": 7,
+            "ci95": [
+              0.009189423991415903,
+              0.02029294996903979
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_pre_switch": {
+            "loss": 0.00549252777782416,
+            "sum": 15.472450750130658,
+            "targets": 2817,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0022942030494532083,
+              0.009044082169085215
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_pre_switch": {
+            "loss": 0.01826110806220037,
+            "sum": 68.5887218816246,
+            "targets": 3756,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.014506917807893148,
+              0.022192223918893195
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination_post_switch": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 181,
+            "contributing_episodes": 7,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_near_terminal": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 72,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_audit_terminal": {
+            "loss": 0.020562388268937297,
+            "sum": 1.9739892738179805,
+            "targets": 96,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0001084192381770605,
+              0.051144249939481204
+            ],
+            "bootstrap_retained": 5000
+          },
+          "brier_destination_terminal": {
+            "loss": 0.0,
+            "sum": 0.0,
+            "targets": 8,
+            "contributing_episodes": 8,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_retained": 5000
+          }
+        }
+      },
+      "pairs": {
+        "fitted_online-minus-fitted_frozen": {
+          "left": "fitted_online",
+          "right": "fitted_frozen",
+          "forecasts": {
+            "brier_near": {
+              "left_loss": 0.0034745894547960586,
+              "right_loss": 0.003440874240033043,
+              "difference": 3.3715214763015665e-05,
+              "ci95": [
+                -4.0328302845287975e-05,
+                0.00015399513549659735
+              ],
+              "relative_reduction": -0.009798444351948099,
+              "relative_reduction_ci95": [
+                -0.029918715913522475,
+                0.015672763202655548
+              ],
+              "left_targets": 4446,
+              "right_targets": 4446,
+              "left_loss_sum": 15.448024716023276,
+              "right_loss_sum": 15.29812687118691,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_audit": {
+              "left_loss": 0.017374171273509806,
+              "right_loss": 0.017369620559711,
+              "difference": 4.550713798807254e-06,
+              "ci95": [
+                -5.068051844178854e-05,
+                6.850512128890414e-05
+              ],
+              "relative_reduction": -0.0002619927005984568,
+              "relative_reduction_ci95": [
+                -0.0043413792780653175,
+                0.0029408051179753295
+              ],
+              "left_targets": 5928,
+              "right_targets": 5928,
+              "left_loss_sum": 102.99408730936614,
+              "right_loss_sum": 102.9671106779668,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_threat": {
+              "left_loss": 0.01751476725172707,
+              "right_loss": 0.017344815046697177,
+              "difference": 0.00016995220502989336,
+              "ci95": [
+                -0.00022592386139028836,
+                0.0006413253350043301
+              ],
+              "relative_reduction": -0.009798444351948099,
+              "relative_reduction_ci95": [
+                -0.02991871591352258,
+                0.01567276320265546
+              ],
+              "left_targets": 882,
+              "right_targets": 882,
+              "left_loss_sum": 15.448024716023276,
+              "right_loss_sum": 15.29812687118691,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination": {
+              "left_loss": 4.3653839009798754e-05,
+              "right_loss": 4.7709570452384345e-05,
+              "difference": -4.0557314425855915e-06,
+              "ci95": [
+                -1.0272079443118551e-05,
+                0.0
+              ],
+              "relative_reduction": 0.08500876038348193,
+              "relative_reduction_ci95": [
+                0.07689834554868535,
+                0.09413103362385145
+              ],
+              "left_targets": 494,
+              "right_targets": 494,
+              "left_loss_sum": 0.021564996470840585,
+              "right_loss_sum": 0.023568527803477866,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 4509
+            },
+            "brier_near_post_switch": {
+              "left_loss": 9.582242579795854e-05,
+              "right_loss": 9.692222736281956e-05,
+              "difference": -1.0998015648610194e-06,
+              "ci95": [
+                -1.3411597188578358e-05,
+                4.108791144129721e-06
+              ],
+              "relative_reduction": 0.011347258464707077,
+              "relative_reduction_ci95": [
+                -0.07357160020132485,
+                0.10153462596888983
+              ],
+              "left_targets": 1629,
+              "right_targets": 1629,
+              "left_loss_sum": 0.15609473162487447,
+              "right_loss_sum": 0.15788630837403306,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 4974
+            },
+            "brier_audit_post_switch": {
+              "left_loss": 0.015404975234798446,
+              "right_loss": 0.015448912277795029,
+              "difference": -4.3937042996582826e-05,
+              "ci95": [
+                -0.0001235838536852184,
+                9.427479660972793e-05
+              ],
+              "relative_reduction": 0.0028440217800792533,
+              "relative_reduction_ci95": [
+                -0.007430335663727618,
+                0.007744521049523874
+              ],
+              "left_targets": 2172,
+              "right_targets": 2172,
+              "left_loss_sum": 33.459606209982226,
+              "right_loss_sum": 33.5550374673708,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_near_pre_switch": {
+              "left_loss": 0.005428445148881223,
+              "right_loss": 0.005374597288893459,
+              "difference": 5.384785998776426e-05,
+              "ci95": [
+                -6.059817258606487e-05,
+                0.00022808615425113157
+              ],
+              "relative_reduction": -0.010018957159644293,
+              "relative_reduction_ci95": [
+                -0.03082120070100799,
+                0.01592995982514367
+              ],
+              "left_targets": 2817,
+              "right_targets": 2817,
+              "left_loss_sum": 15.291929984398404,
+              "right_loss_sum": 15.140240562812874,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_audit_pre_switch": {
+              "left_loss": 0.01851290764094352,
+              "right_loss": 0.018480317681202327,
+              "difference": 3.2589959741192304e-05,
+              "ci95": [
+                -9.263653065992063e-06,
+                7.456330709190968e-05
+              ],
+              "relative_reduction": -0.0017634956445766736,
+              "relative_reduction_ci95": [
+                -0.004491167055011211,
+                0.00046477796635286094
+              ],
+              "left_targets": 3756,
+              "right_targets": 3756,
+              "left_loss_sum": 69.53448109938385,
+              "right_loss_sum": 69.41207321059593,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination_post_switch": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 181,
+              "right_targets": 181,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            },
+            "brier_near_terminal": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 72,
+              "right_targets": 72,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            },
+            "brier_audit_terminal": {
+              "left_loss": 0.020562617086986746,
+              "right_loss": 0.0205653659096172,
+              "difference": -2.7488226304536734e-06,
+              "ci95": [
+                -7.150839945087306e-06,
+                1.3688142632990036e-06
+              ],
+              "relative_reduction": 0.00013366271441672684,
+              "relative_reduction_ci95": [
+                -0.004643964910647829,
+                0.02240361071984163
+              ],
+              "left_targets": 96,
+              "right_targets": 96,
+              "left_loss_sum": 1.9740112403507277,
+              "right_loss_sum": 1.974275127323251,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination_terminal": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 8,
+              "right_targets": 8,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            }
+          }
+        },
+        "known_law-minus-fitted_frozen": {
+          "left": "known_law",
+          "right": "fitted_frozen",
+          "forecasts": {
+            "brier_near": {
+              "left_loss": 0.0035485721991671383,
+              "right_loss": 0.003440874240033043,
+              "difference": 0.00010769795913409541,
+              "ci95": [
+                -0.00030609340267135943,
+                0.0004893728948057773
+              ],
+              "relative_reduction": -0.0312995917959098,
+              "relative_reduction_ci95": [
+                -0.22503985261664147,
+                0.09238765145682391
+              ],
+              "left_targets": 4446,
+              "right_targets": 4446,
+              "left_loss_sum": 15.776951997497097,
+              "right_loss_sum": 15.29812687118691,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_audit": {
+              "left_loss": 0.01703376718715771,
+              "right_loss": 0.017369620559711,
+              "difference": -0.00033585337255328737,
+              "ci95": [
+                -0.0006489125462271913,
+                1.4735160532030508e-05
+              ],
+              "relative_reduction": 0.019335676988379458,
+              "relative_reduction_ci95": [
+                -0.0009223271357383982,
+                0.03774619703628598
+              ],
+              "left_targets": 5928,
+              "right_targets": 5928,
+              "left_loss_sum": 100.9761718854709,
+              "right_loss_sum": 102.9671106779668,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_threat": {
+              "left_loss": 0.01788770067743435,
+              "right_loss": 0.017344815046697177,
+              "difference": 0.0005428856307371742,
+              "ci95": [
+                -0.0015148920659995401,
+                0.0027513399178544055
+              ],
+              "relative_reduction": -0.0312995917959098,
+              "relative_reduction_ci95": [
+                -0.22503985261664158,
+                0.09238765145682402
+              ],
+              "left_targets": 882,
+              "right_targets": 882,
+              "left_loss_sum": 15.776951997497097,
+              "right_loss_sum": 15.29812687118691,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination": {
+              "left_loss": 1.1935867232264737e-05,
+              "right_loss": 4.7709570452384345e-05,
+              "difference": -3.577370322011961e-05,
+              "ci95": [
+                -8.819969655264927e-05,
+                0.0
+              ],
+              "relative_reduction": 0.7498223706671787,
+              "relative_reduction_ci95": [
+                0.6683880075008033,
+                0.8222238927092909
+              ],
+              "left_targets": 494,
+              "right_targets": 494,
+              "left_loss_sum": 0.00589631841273878,
+              "right_loss_sum": 0.023568527803477866,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 4509
+            },
+            "brier_near_post_switch": {
+              "left_loss": 0.00018692525927958107,
+              "right_loss": 9.692222736281956e-05,
+              "difference": 9.000303191676151e-05,
+              "ci95": [
+                -0.00011117002898797799,
+                0.0006358730241859192
+              ],
+              "relative_reduction": -0.928610849808923,
+              "relative_reduction_ci95": [
+                -2.7882207490844375,
+                0.9374276257772383
+              ],
+              "left_targets": 1629,
+              "right_targets": 1629,
+              "left_loss_sum": 0.3045012473664376,
+              "right_loss_sum": 0.15788630837403306,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 4974
+            },
+            "brier_audit_post_switch": {
+              "left_loss": 0.014911348988879471,
+              "right_loss": 0.015448912277795029,
+              "difference": -0.0005375632889155577,
+              "ci95": [
+                -0.0008925469818069215,
+                -0.00011051321256595584
+              ],
+              "relative_reduction": 0.03479619012972235,
+              "relative_reduction_ci95": [
+                0.006968905125650994,
+                0.06645185054251594
+              ],
+              "left_targets": 2172,
+              "right_targets": 2172,
+              "left_loss_sum": 32.38745000384621,
+              "right_loss_sum": 33.5550374673708,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_near_pre_switch": {
+              "left_loss": 0.005492527777824161,
+              "right_loss": 0.005374597288893459,
+              "difference": 0.00011793048893070195,
+              "ci95": [
+                -0.00047624859952402794,
+                0.0008331864982548147
+              ],
+              "relative_reduction": -0.021942200055510064,
+              "relative_reduction_ci95": [
+                -0.22329026118217946,
+                0.11295740899610171
+              ],
+              "left_targets": 2817,
+              "right_targets": 2817,
+              "left_loss_sum": 15.47245075013066,
+              "right_loss_sum": 15.140240562812874,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_audit_pre_switch": {
+              "left_loss": 0.01826110806220037,
+              "right_loss": 0.018480317681202327,
+              "difference": -0.00021920961900195532,
+              "ci95": [
+                -0.0007839219730519376,
+                0.00016369860957046603
+              ],
+              "relative_reduction": 0.011861788459671896,
+              "relative_reduction_ci95": [
+                -0.009825804356537382,
+                0.04137581567374678
+              ],
+              "left_targets": 3756,
+              "right_targets": 3756,
+              "left_loss_sum": 68.5887218816246,
+              "right_loss_sum": 69.41207321059593,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination_post_switch": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 181,
+              "right_targets": 181,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            },
+            "brier_near_terminal": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 72,
+              "right_targets": 72,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            },
+            "brier_audit_terminal": {
+              "left_loss": 0.020562388268937297,
+              "right_loss": 0.0205653659096172,
+              "difference": -2.977640679902721e-06,
+              "ci95": [
+                -0.0002247400100140056,
+                0.00019146956761827532
+              ],
+              "relative_reduction": 0.00014478909312820587,
+              "relative_reduction_ci95": [
+                -0.35648725830174033,
+                0.010181442239315722
+              ],
+              "left_targets": 96,
+              "right_targets": 96,
+              "left_loss_sum": 1.9739892738179805,
+              "right_loss_sum": 1.974275127323251,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination_terminal": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 8,
+              "right_targets": 8,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            }
+          }
+        },
+        "known_law-minus-fitted_online": {
+          "left": "known_law",
+          "right": "fitted_online",
+          "forecasts": {
+            "brier_near": {
+              "left_loss": 0.0035485721991671383,
+              "right_loss": 0.0034745894547960586,
+              "difference": 7.398274437107975e-05,
+              "ci95": [
+                -0.0003010750276566665,
+                0.00045475455175676737
+              ],
+              "relative_reduction": -0.02129251393109466,
+              "relative_reduction_ci95": [
+                -0.23284522949358644,
+                0.08220502003776765
+              ],
+              "left_targets": 4446,
+              "right_targets": 4446,
+              "left_loss_sum": 15.776951997497097,
+              "right_loss_sum": 15.448024716023276,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_audit": {
+              "left_loss": 0.01703376718715771,
+              "right_loss": 0.017374171273509806,
+              "difference": -0.0003404040863520946,
+              "ci95": [
+                -0.0006425099155162164,
+                -2.4344017348520985e-05
+              ],
+              "relative_reduction": 0.019592536587405784,
+              "relative_reduction_ci95": [
+                0.0013552496745530265,
+                0.037550145530096106
+              ],
+              "left_targets": 5928,
+              "right_targets": 5928,
+              "left_loss_sum": 100.9761718854709,
+              "right_loss_sum": 102.99408730936614,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_threat": {
+              "left_loss": 0.01788770067743435,
+              "right_loss": 0.01751476725172707,
+              "difference": 0.00037293342570728083,
+              "ci95": [
+                -0.0014644239188349492,
+                0.002639998419128535
+              ],
+              "relative_reduction": -0.02129251393109466,
+              "relative_reduction_ci95": [
+                -0.23284522949358652,
+                0.08220502003776764
+              ],
+              "left_targets": 882,
+              "right_targets": 882,
+              "left_loss_sum": 15.776951997497097,
+              "right_loss_sum": 15.448024716023276,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination": {
+              "left_loss": 1.1935867232264737e-05,
+              "right_loss": 4.3653839009798754e-05,
+              "difference": -3.171797177753402e-05,
+              "ci95": [
+                -7.895471615855351e-05,
+                0.0
+              ],
+              "relative_reduction": 0.7265792080832671,
+              "relative_reduction_ci95": [
+                0.6339294039117135,
+                0.8074143769178075
+              ],
+              "left_targets": 494,
+              "right_targets": 494,
+              "left_loss_sum": 0.00589631841273878,
+              "right_loss_sum": 0.021564996470840585,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 4509
+            },
+            "brier_near_post_switch": {
+              "left_loss": 0.00018692525927958107,
+              "right_loss": 9.582242579795854e-05,
+              "difference": 9.110283348162253e-05,
+              "ci95": [
+                -0.000102426816312926,
+                0.0006315105890350572
+              ],
+              "relative_reduction": -0.9507464742513692,
+              "relative_reduction_ci95": [
+                -2.659652909045452,
+                0.9342846871645223
+              ],
+              "left_targets": 1629,
+              "right_targets": 1629,
+              "left_loss_sum": 0.3045012473664376,
+              "right_loss_sum": 0.15609473162487447,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 4974
+            },
+            "brier_audit_post_switch": {
+              "left_loss": 0.014911348988879471,
+              "right_loss": 0.015404975234798446,
+              "difference": -0.0004936262459189749,
+              "ci95": [
+                -0.0008872901899401667,
+                -0.00011253110239317979
+              ],
+              "relative_reduction": 0.032043300193298485,
+              "relative_reduction_ci95": [
+                0.007210196097982255,
+                0.06937134060139646
+              ],
+              "left_targets": 2172,
+              "right_targets": 2172,
+              "left_loss_sum": 32.38745000384621,
+              "right_loss_sum": 33.459606209982226,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_near_pre_switch": {
+              "left_loss": 0.005492527777824161,
+              "right_loss": 0.005428445148881223,
+              "difference": 6.408262894293769e-05,
+              "ci95": [
+                -0.00046605397537224143,
+                0.0007787933301235989
+              ],
+              "relative_reduction": -0.01180496941304554,
+              "relative_reduction_ci95": [
+                -0.23151533698703072,
+                0.10312795444300889
+              ],
+              "left_targets": 2817,
+              "right_targets": 2817,
+              "left_loss_sum": 15.47245075013066,
+              "right_loss_sum": 15.291929984398404,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_audit_pre_switch": {
+              "left_loss": 0.01826110806220037,
+              "right_loss": 0.01851290764094352,
+              "difference": -0.0002517995787431476,
+              "ci95": [
+                -0.0007928294476129277,
+                0.00010101919826467066
+              ],
+              "relative_reduction": 0.01360129827398171,
+              "relative_reduction_ci95": [
+                -0.006130940725365867,
+                0.04164093268577629
+              ],
+              "left_targets": 3756,
+              "right_targets": 3756,
+              "left_loss_sum": 68.5887218816246,
+              "right_loss_sum": 69.53448109938385,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination_post_switch": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 181,
+              "right_targets": 181,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 7,
+              "right_contributing_episodes": 7,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            },
+            "brier_near_terminal": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 72,
+              "right_targets": 72,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            },
+            "brier_audit_terminal": {
+              "left_loss": 0.020562388268937297,
+              "right_loss": 0.020562617086986746,
+              "difference": -2.288180494490477e-07,
+              "ci95": [
+                -0.00021988171997783246,
+                0.00019237355067053637
+              ],
+              "relative_reduction": 1.1127866092142114e-05,
+              "relative_reduction_ci95": [
+                -0.35071804839582416,
+                0.00928765705161708
+              ],
+              "left_targets": 96,
+              "right_targets": 96,
+              "left_loss_sum": 1.9739892738179805,
+              "right_loss_sum": 1.9740112403507277,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "brier_destination_terminal": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 8,
+              "right_targets": 8,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 0
+            }
+          }
+        }
+      },
+      "bins": [
+        {
+          "bin": 0,
+          "start_step": 0,
+          "end_step": 24,
+          "midpoint": 12.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": {
+              "loss": 0.003844005729400567,
+              "sum": 6.91921031292102,
+              "targets": 1800,
+              "contributing_episodes": 8,
+              "ci95": [
+                0.0009175115420585632,
+                0.007061340285226262
+              ],
+              "bootstrap_retained": 5000
+            },
+            "fitted_online": {
+              "loss": 0.003852165662787833,
+              "sum": 6.933898193018099,
+              "targets": 1800,
+              "contributing_episodes": 8,
+              "ci95": [
+                0.0009149870736189821,
+                0.007175456630011353
+              ],
+              "bootstrap_retained": 5000
+            },
+            "known_law": {
+              "loss": 0.003900412820796194,
+              "sum": 7.020743077433149,
+              "targets": 1800,
+              "contributing_episodes": 8,
+              "ci95": [
+                0.0010828538391408453,
+                0.006969716817503399
+              ],
+              "bootstrap_retained": 5000
+            }
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": {
+              "left_loss": 0.003852165662787833,
+              "right_loss": 0.003844005729400567,
+              "difference": 8.15993338726612e-06,
+              "ci95": [
+                -9.791930980768785e-05,
+                0.00012402390151261544
+              ],
+              "relative_reduction": -0.0021227682687503524,
+              "relative_reduction_ci95": [
+                -0.022969810683107543,
+                0.03241774662411255
+              ],
+              "left_targets": 1800,
+              "right_targets": 1800,
+              "left_loss_sum": 6.933898193018099,
+              "right_loss_sum": 6.91921031292102,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "known_law-minus-fitted_frozen": {
+              "left_loss": 0.003900412820796193,
+              "right_loss": 0.003844005729400567,
+              "difference": 5.640709139562595e-05,
+              "ci95": [
+                -0.0007555284781612702,
+                0.001176598626109427
+              ],
+              "relative_reduction": -0.014674039365810687,
+              "relative_reduction_ci95": [
+                -0.4520029522508377,
+                0.21697233523324244
+              ],
+              "left_targets": 1800,
+              "right_targets": 1800,
+              "left_loss_sum": 7.020743077433147,
+              "right_loss_sum": 6.91921031292102,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "known_law-minus-fitted_online": {
+              "left_loss": 0.003900412820796193,
+              "right_loss": 0.003852165662787833,
+              "difference": 4.824715800835983e-05,
+              "ci95": [
+                -0.0007489533842837508,
+                0.0011709825734885029
+              ],
+              "relative_reduction": -0.012524684095087224,
+              "relative_reduction_ci95": [
+                -0.46511620174284257,
+                0.20222158041652255
+              ],
+              "left_targets": 1800,
+              "right_targets": 1800,
+              "left_loss_sum": 7.020743077433147,
+              "right_loss_sum": 6.933898193018099,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            }
+          }
+        },
+        {
+          "bin": 1,
+          "start_step": 25,
+          "end_step": 49,
+          "midpoint": 37.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": {
+              "loss": 0.005002827965645817,
+              "sum": 8.284683111109473,
+              "targets": 1656,
+              "contributing_episodes": 8,
+              "ci95": [
+                0.0012155465243774593,
+                0.0091928889050465
+              ],
+              "bootstrap_retained": 5000
+            },
+            "fitted_online": {
+              "loss": 0.005082189490192811,
+              "sum": 8.416105795759295,
+              "targets": 1656,
+              "contributing_episodes": 8,
+              "ci95": [
+                0.0012305305488350114,
+                0.009333834104623923
+              ],
+              "bootstrap_retained": 5000
+            },
+            "known_law": {
+              "loss": 0.005104829235364996,
+              "sum": 8.453597213764432,
+              "targets": 1656,
+              "contributing_episodes": 8,
+              "ci95": [
+                0.0013062349578858044,
+                0.009316791167762992
+              ],
+              "bootstrap_retained": 5000
+            }
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": {
+              "left_loss": 0.005082189490192812,
+              "right_loss": 0.005002827965645817,
+              "difference": 7.93615245469944e-05,
+              "ci95": [
+                -8.261732389297793e-05,
+                0.000277298775357944
+              ],
+              "relative_reduction": -0.01586333271740825,
+              "relative_reduction_ci95": [
+                -0.04749724585120627,
+                0.019775054629791084
+              ],
+              "left_targets": 1656,
+              "right_targets": 1656,
+              "left_loss_sum": 8.416105795759297,
+              "right_loss_sum": 8.284683111109473,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "known_law-minus-fitted_frozen": {
+              "left_loss": 0.005104829235364994,
+              "right_loss": 0.005002827965645817,
+              "difference": 0.00010200126971917668,
+              "ci95": [
+                -0.0007306138842235483,
+                0.0008402152671049677
+              ],
+              "relative_reduction": -0.02038872222263377,
+              "relative_reduction_ci95": [
+                -0.17516802075996135,
+                0.17573933937704547
+              ],
+              "left_targets": 1656,
+              "right_targets": 1656,
+              "left_loss_sum": 8.45359721376443,
+              "right_loss_sum": 8.284683111109473,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            },
+            "known_law-minus-fitted_online": {
+              "left_loss": 0.005104829235364994,
+              "right_loss": 0.005082189490192812,
+              "difference": 2.2639745172182285e-05,
+              "ci95": [
+                -0.0007215884220623584,
+                0.0006934882806861286
+              ],
+              "relative_reduction": -0.0044547227559834646,
+              "relative_reduction_ci95": [
+                -0.16336718857209592,
+                0.16846043571202854
+              ],
+              "left_targets": 1656,
+              "right_targets": 1656,
+              "left_loss_sum": 8.45359721376443,
+              "right_loss_sum": 8.416105795759297,
+              "left_contributing_episodes": 8,
+              "right_contributing_episodes": 8,
+              "bootstrap_retained": 5000,
+              "relative_bootstrap_retained": 5000
+            }
+          }
+        },
+        {
+          "bin": 2,
+          "start_step": 50,
+          "end_step": 74,
+          "midpoint": 62.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": {
+              "loss": 0.000156274373393723,
+              "sum": 0.09423344715641498,
+              "targets": 603,
+              "contributing_episodes": 4,
+              "ci95": [
+                1.2324803026658543e-05,
+                0.0005562362944116555
+              ],
+              "bootstrap_retained": 4985
+            },
+            "fitted_online": {
+              "loss": 0.0001625551032269996,
+              "sum": 0.09802072724588076,
+              "targets": 603,
+              "contributing_episodes": 4,
+              "ci95": [
+                1.4557240636008413e-05,
+                0.0005687792697820654
+              ],
+              "bootstrap_retained": 4985
+            },
+            "known_law": {
+              "loss": 0.0005018436257040142,
+              "sum": 0.30261170629952056,
+              "targets": 603,
+              "contributing_episodes": 4,
+              "ci95": [
+                7.370164550675686e-06,
+                0.0021006650553978307
+              ],
+              "bootstrap_retained": 4985
+            }
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": {
+              "left_loss": 0.0001625551032269996,
+              "right_loss": 0.000156274373393723,
+              "difference": 6.280729833276605e-06,
+              "ci95": [
+                8.074409367157568e-08,
+                1.2542975370409917e-05
+              ],
+              "relative_reduction": -0.0401904016434782,
+              "relative_reduction_ci95": [
+                -0.18113373532389188,
+                -0.005110052706530146
+              ],
+              "left_targets": 603,
+              "right_targets": 603,
+              "left_loss_sum": 0.09802072724588076,
+              "right_loss_sum": 0.09423344715641498,
+              "left_contributing_episodes": 4,
+              "right_contributing_episodes": 4,
+              "bootstrap_retained": 4985,
+              "relative_bootstrap_retained": 4880
+            },
+            "known_law-minus-fitted_frozen": {
+              "left_loss": 0.0005018436257040142,
+              "right_loss": 0.000156274373393723,
+              "difference": 0.00034556925231029115,
+              "ci95": [
+                -5.802418832763096e-05,
+                0.0015444287609861751
+              ],
+              "relative_reduction": -2.211298274987494,
+              "relative_reduction_ci95": [
+                -3.0313765195726683,
+                0.5335642819530229
+              ],
+              "left_targets": 603,
+              "right_targets": 603,
+              "left_loss_sum": 0.30261170629952056,
+              "right_loss_sum": 0.09423344715641498,
+              "left_contributing_episodes": 4,
+              "right_contributing_episodes": 4,
+              "bootstrap_retained": 4985,
+              "relative_bootstrap_retained": 4880
+            },
+            "known_law-minus-fitted_online": {
+              "left_loss": 0.0005018436257040142,
+              "right_loss": 0.0001625551032269996,
+              "difference": 0.00033928852247701454,
+              "ci95": [
+                -6.476635263269961e-05,
+                0.0015318857856157653
+              ],
+              "relative_reduction": -2.0872215989627594,
+              "relative_reduction_ci95": [
+                -2.9373056523994543,
+                0.5359356751124187
+              ],
+              "left_targets": 603,
+              "right_targets": 603,
+              "left_loss_sum": 0.30261170629952056,
+              "right_loss_sum": 0.09802072724588076,
+              "left_contributing_episodes": 4,
+              "right_contributing_episodes": 4,
+              "bootstrap_retained": 4985,
+              "relative_bootstrap_retained": 4880
+            }
+          }
+        },
+        {
+          "bin": 3,
+          "start_step": 75,
+          "end_step": 99,
+          "midpoint": 87.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": {
+              "loss": 0.0,
+              "sum": 0.0,
+              "targets": 315,
+              "contributing_episodes": 2,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "bootstrap_retained": 4526
+            },
+            "fitted_online": {
+              "loss": 0.0,
+              "sum": 0.0,
+              "targets": 315,
+              "contributing_episodes": 2,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "bootstrap_retained": 4526
+            },
+            "known_law": {
+              "loss": 0.0,
+              "sum": 0.0,
+              "targets": 315,
+              "contributing_episodes": 2,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "bootstrap_retained": 4526
+            }
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 315,
+              "right_targets": 315,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 2,
+              "right_contributing_episodes": 2,
+              "bootstrap_retained": 4526,
+              "relative_bootstrap_retained": 0
+            },
+            "known_law-minus-fitted_frozen": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 315,
+              "right_targets": 315,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 2,
+              "right_contributing_episodes": 2,
+              "bootstrap_retained": 4526,
+              "relative_bootstrap_retained": 0
+            },
+            "known_law-minus-fitted_online": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 315,
+              "right_targets": 315,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 2,
+              "right_contributing_episodes": 2,
+              "bootstrap_retained": 4526,
+              "relative_bootstrap_retained": 0
+            }
+          }
+        },
+        {
+          "bin": 4,
+          "start_step": 100,
+          "end_step": 124,
+          "midpoint": 112.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": {
+              "loss": 0.0,
+              "sum": 0.0,
+              "targets": 72,
+              "contributing_episodes": 1,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "bootstrap_retained": 3324
+            },
+            "fitted_online": {
+              "loss": 0.0,
+              "sum": 0.0,
+              "targets": 72,
+              "contributing_episodes": 1,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "bootstrap_retained": 3324
+            },
+            "known_law": {
+              "loss": 0.0,
+              "sum": 0.0,
+              "targets": 72,
+              "contributing_episodes": 1,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "bootstrap_retained": 3324
+            }
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 72,
+              "right_targets": 72,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 1,
+              "right_contributing_episodes": 1,
+              "bootstrap_retained": 3324,
+              "relative_bootstrap_retained": 0
+            },
+            "known_law-minus-fitted_frozen": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 72,
+              "right_targets": 72,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 1,
+              "right_contributing_episodes": 1,
+              "bootstrap_retained": 3324,
+              "relative_bootstrap_retained": 0
+            },
+            "known_law-minus-fitted_online": {
+              "left_loss": 0.0,
+              "right_loss": 0.0,
+              "difference": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "relative_reduction": null,
+              "relative_reduction_ci95": null,
+              "left_targets": 72,
+              "right_targets": 72,
+              "left_loss_sum": 0.0,
+              "right_loss_sum": 0.0,
+              "left_contributing_episodes": 1,
+              "right_contributing_episodes": 1,
+              "bootstrap_retained": 3324,
+              "relative_bootstrap_retained": 0
+            }
+          }
+        },
+        {
+          "bin": 5,
+          "start_step": 125,
+          "end_step": 149,
+          "midpoint": 137.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": null,
+            "fitted_online": null,
+            "known_law": null
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": null,
+            "known_law-minus-fitted_frozen": null,
+            "known_law-minus-fitted_online": null
+          }
+        },
+        {
+          "bin": 6,
+          "start_step": 150,
+          "end_step": 174,
+          "midpoint": 162.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": null,
+            "fitted_online": null,
+            "known_law": null
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": null,
+            "known_law-minus-fitted_frozen": null,
+            "known_law-minus-fitted_online": null
+          }
+        },
+        {
+          "bin": 7,
+          "start_step": 175,
+          "end_step": 199,
+          "midpoint": 187.5,
+          "scope": "Survivor-conditioned on the shared recorded policy reaching this window.",
+          "conditions": {
+            "fitted_frozen": null,
+            "fitted_online": null,
+            "known_law": null
+          },
+          "pairs": {
+            "fitted_online-minus-fitted_frozen": null,
+            "known_law-minus-fitted_frozen": null,
+            "known_law-minus-fitted_online": null
+          }
+        }
+      ]
+    }
+  }
+}

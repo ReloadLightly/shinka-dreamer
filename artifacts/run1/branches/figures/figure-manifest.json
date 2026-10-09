@@ -1,0 +1,11 @@
+{
+  "future_files_sha256": "fbc42d97df3857dbce29d1f294abbf3d256a005489b04c61d49535c4aaa8fd26",
+  "new_candidate_executions": 0,
+  "new_model_calls": 0,
+  "new_world_transitions": 0,
+  "renderer_sha256": "3d6f3a64b55560ff463b3f32aad64db82dda4a36f50a684c19c08b38215f7f06",
+  "reviewed_summary_sha256": "a0107fa287a44d44b6f7e6a5d6c1c16cf86e736041e8c7f63c22fac682ce28ea",
+  "selection_sha256": "8a5e5622546b2a75360a9ffb3c7ea07d087c3f3c128e58a80eb20e4730489584",
+  "statistical_scope": "Exact descriptive state means and pair counts; no independently resampled future confidence intervals; unavailable states remain unavailable.",
+  "theme_sha256": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e"
+}

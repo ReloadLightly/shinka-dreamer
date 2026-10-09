@@ -120,3 +120,26 @@ def test_http_routes_are_read_only_and_exact(campaign):
                        ('/get_program_count?db_path=../other.sqlite', 403)):
         assert request(path)[0] == code
     assert request('/assessment_progress', 'POST')[0] == 501
+
+
+def test_public_pause_marker_does_not_override_a_later_launch(campaign):
+    raw, plan, digest = campaign
+    marker = plan.parent/'operator-checkpoint-complete.json'
+    marker.write_text(json.dumps({'plan_sha256':digest,'status':'paused-by-user',
+        'recorded_utc':'2026-10-09T00:00:00+00:00','unused':'NOT-FOR-HTTP'}))
+    result=ui.assessment_progress()
+    assert result['markers']['paused_by_user'] is True
+    assert result['launch']['status']=='Checkpointed and paused at user request'
+    assert 'NOT-FOR-HTTP' not in json.dumps(result)
+    touch(raw,'launch-later.started.json',json.dumps({'plan_sha256':digest,
+        'started_utc':'2026-10-09T00:01:00+00:00'}))
+    assert ui.assessment_progress()['markers']['paused_by_user'] is False
+
+
+def test_native_presentation_preserves_escaped_apostrophes_and_numeric_data():
+    from scripts.web_presentation import native_html
+    source='<html><head></head><body><style>color:#3498db</style><script>const x=0.952483; const y="&#039;";</script></body></html>'
+    themed=native_html(source)
+    assert 'const x=0.952483;' in themed and 'const y="&#039;";' in themed
+    assert 'color:#3534CF' in themed
+    assert 'chromatic-field-presentation' in themed

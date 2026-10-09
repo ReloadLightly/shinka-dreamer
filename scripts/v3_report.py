@@ -13,7 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 os.environ.setdefault('MPLCONFIGDIR', str(ROOT / '.cache/matplotlib'))
-from visual_theme import apply_theme, save_figure, COBALT, MAGENTA, ORANGE, SECONDARY
+from chromatic_fields import apply_theme, save_figure, COBALT, MAGENTA, ORANGE, SECONDARY, ISLAND_COLORS, OPERATOR_MARKERS
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -50,6 +50,7 @@ def objective_figure(out):
     names = list(data['metrics'])
     labels = ['Memory', 'Search seed', 'v2 generation 14', 'v2 frozen', 'v2 fixed risk']
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.8), gridspec_kw={'wspace': .55})
+    fig.subplots_adjust(top=.78,bottom=.24)
     y = np.arange(len(names))
     axes[0].barh(y, [data['metrics'][n]['absolute_task'] for n in names], color=COBALT)
     axes[0].set(yticks=y, yticklabels=labels, xlabel='Mean absolute task score', xlim=(0, 1.04), title='A  Task determines most variation')
@@ -61,7 +62,7 @@ def objective_figure(out):
         axes[1].annotate(str(i+1), (data['metrics'][n]['absolute_task'], data['metrics'][n]['brier_near']), xytext=(5,5),textcoords='offset points')
     axes[1].set(xlabel='Absolute task score',ylabel='On-policy near-cell Brier loss',title='B  Forecast quality is separate')
     fig.suptitle('Development objective check · 8 cases × 3 regimes', fontsize=16,fontweight='bold')
-    fig.text(.12, -.04, 'Numbers follow bar order. Historical weighted ranges: task 0.0792; forecast 0.000676.\nThese reused development comparisons are not matched prediction-learning evidence.', fontsize=10,color=SECONDARY)
+    fig.text(.12, .015, 'Numbers follow bar order. Historical weighted ranges: task 0.0792; forecast 0.000676.\nThese reused development comparisons are not matched prediction-learning evidence.', fontsize=10,color=SECONDARY)
     save_figure(fig,out/'figures/objective-check')
 
 
@@ -170,7 +171,7 @@ def search_figure(lineage, metrics, out, target):
         p=by_id.get(r['parent_id'])
         if p:
             axes[1,0].plot([p['generation'],r['generation']],[p['birth_island'],r['birth_island']],color=SECONDARY,alpha=.3,lw=.7)
-        axes[1,0].scatter(r['generation'],r['birth_island'],c=COBALT if r['correct'] else MAGENTA,marker='o' if r['correct'] else 'x',s=18)
+        axes[1,0].scatter(r['generation'],r['birth_island'],c=ISLAND_COLORS[r['birth_island']] if r['correct'] else MAGENTA,marker=OPERATOR_MARKERS['full' if r['correct'] else 'failure'],s=18)
     axes[1,0].set(title='C  Recorded parent ancestry',xlabel='Slot',ylabel='Island at source creation',yticks=range(4))
     axes[1,1].scatter(xs,[m.get('candidate_cpu_seconds',0) for m in valid],color=ORANGE,s=27)
     axes[1,1].set(title='D  Computation by candidate',xlabel='Slot',ylabel='Mean candidate CPU seconds / episode')

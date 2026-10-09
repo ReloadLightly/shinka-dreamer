@@ -5,6 +5,7 @@ No database, private pools, model services, or environment execution is used.
 import argparse
 import hashlib
 import json
+from chromatic_fields import css_tokens, javascript_tokens
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -135,20 +136,30 @@ choose(chosen,false);
 </script></body></html>'''
 
 
+def render(directory, destination=None):
+    """Compile shared tokens and saved public records into portable offline HTML."""
+    data = load_evidence(directory)
+    encoded = json.dumps(data, sort_keys=True, separators=(',', ':'), allow_nan=False)
+    encoded = encoded.replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
+    destination = destination or directory/'search-explorer.html'
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    import re
+    rendered = HTML.replace('__DATA__', encoded)
+    rendered = re.sub(r':root\{[^}]+\}', css_tokens().strip(), rendered, count=1)
+    rendered = rendered.replace("const C=['#3534CF','#C93683','#F26A37','#6F6A78'], ink='#161625',rule='#DCD7E0';",
+        'const CF='+javascript_tokens()+";const C=CF.islands,ink=CF.colors.ink,rule=CF.colors.rule;")
+    destination.write_text(rendered)
+    return {'path': str(destination), 'bytes': destination.stat().st_size,
+        'candidate_slots': len(data['metrics']), 'native_rows': len(data['rows']),
+        'new_model_calls': 0, 'new_environment_episodes': 0, 'runtime_database_used': False}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--artifacts', type=Path, default=ROOT/'artifacts/campaign-v3')
     parser.add_argument('--out', type=Path)
     args = parser.parse_args()
-    data = load_evidence(args.artifacts)
-    encoded = json.dumps(data, sort_keys=True, separators=(',', ':'), allow_nan=False)
-    encoded = encoded.replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
-    destination = args.out or args.artifacts/'search-explorer.html'
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(HTML.replace('__DATA__', encoded))
-    print(json.dumps({'path': str(destination), 'bytes': destination.stat().st_size,
-        'candidate_slots': len(data['metrics']), 'native_rows': len(data['rows']),
-        'new_model_calls': 0, 'new_environment_episodes': 0, 'runtime_database_used': False}))
+    print(json.dumps(render(args.artifacts, args.out)))
 
 
 if __name__ == '__main__':

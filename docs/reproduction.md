@@ -1,5 +1,18 @@
 # Reproduction and saved artifacts
 
+## Render the current visual presentation
+
+```bash
+.venv/bin/python scripts/visual_migration.py --group all
+```
+
+This saved-data-only command renders all published historical and v3 charts and
+the three archived replay animations in Chromatic Field. It does not recompute
+statistics, run candidate programs or call models. Original numerical records
+and source identities remain bound in the [rendering manifest](../artifacts/visual-migration/rendering-manifest.json).
+The historical plotting entrypoints below are scientific reproduction paths;
+follow them with the presentation command when publishing their results.
+
 ## Recompute the published analysis
 
 The central generation-14 assessment has 1,024 paired mazes and six conditions.
@@ -11,7 +24,7 @@ then run from the repository root:
 ```bash
 OPENBLAS_NUM_THREADS=1 python scripts/assessment_analysis.py
 python scripts/assessment_tables.py
-python scripts/assessment_figures.py
+python scripts/visual_migration.py --group legacy
 ```
 
 The analysis command checks that recomputed statistics exactly match the closed
@@ -29,6 +42,7 @@ and Matplotlib installed, run from the repository root:
 
 ```bash
 python scripts/research_figure.py
+python scripts/visual_migration.py --group legacy
 ```
 
 This recomputes paired intervals and score decomposition from committed records,

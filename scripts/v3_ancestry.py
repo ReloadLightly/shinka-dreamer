@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 os.environ.setdefault('MPLCONFIGDIR', str(Path(__file__).resolve().parents[1]/'.cache/matplotlib'))
-from visual_theme import apply_theme, save_figure, COBALT, MAGENTA, ORANGE, SECONDARY, TEXT, RULE
+from chromatic_fields import apply_theme, save_figure, COBALT, MAGENTA, ORANGE, SECONDARY, TEXT, RULE, ISLAND_COLORS, OPERATOR_MARKERS
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.path import Path as DrawingPath
@@ -53,7 +53,7 @@ def render(directory):
             node = by_id.get(node['parent_id'])
     apply_theme()
     fig, ax = plt.subplots(figsize=(12,max(7,cursor*.28)))
-    colors = (COBALT,MAGENTA,ORANGE,SECONDARY)
+    colors = ISLAND_COLORS
     for row in rows:
         child = coordinates[row['id']]
         if row['parent_id']:
@@ -64,9 +64,9 @@ def render(directory):
             emphasis = row['id'] in highlighted
             ax.add_patch(PathPatch(path,facecolor='none',edgecolor=TEXT if emphasis else RULE,
                                    linewidth=2.1 if emphasis else 1.2,zorder=1))
-        marker = 'D' if not row['parent_id'] else 's' if row['metadata'].get('patch_type') == 'diff' else 'o'
+        marker = OPERATOR_MARKERS['seed' if not row['parent_id'] else 'diff' if row['metadata'].get('patch_type') == 'diff' else 'full']
         if not row['correct']:
-            marker = 'X'
+            marker = OPERATOR_MARKERS['failure']
         selected = bool(selection and row['id'] == selection['native_id'])
         ax.scatter(*child,s=260 if selected else 165,marker=marker,
                    c=colors[row['birth_island']],edgecolors=TEXT if selected else 'white',

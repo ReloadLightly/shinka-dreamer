@@ -9,7 +9,7 @@ import textwrap
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'.cache/matplotlib'))
-from visual_theme import apply_theme,save_figure,COBALT,MAGENTA,ORANGE,SECONDARY,RULE
+from chromatic_fields import apply_theme,save_figure,COBALT,MAGENTA,ORANGE,SECONDARY,RULE,CONDITIONS,REGIMES,OUTCOMES
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -94,7 +94,7 @@ def forecast_cost(data,out):
     fig.subplots_adjust(top=.80)
     for index,regime in enumerate(('uniform','stationary','switch')):
         y=np.arange(len(names))+(index-1)*.23
-        color=(SECONDARY,COBALT,MAGENTA)[index]
+        color=REGIMES[regime]['color']
         for ax,key in zip(axes,('forecast','cost')):
             values=[]; low=[]; high=[]
             for name in names:
@@ -105,7 +105,7 @@ def forecast_cost(data,out):
                     continue
                 value=stat['loss'] if key=='forecast' else stat['mean']
                 values.append(value); low.append(value-stat['ci95'][0]); high.append(stat['ci95'][1]-value)
-            ax.errorbar(values,y,xerr=[low,high],fmt='o',color=color,markersize=4,capsize=2,label=regime.title())
+            ax.errorbar(values,y,xerr=[low,high],fmt=REGIMES[regime]['marker'],color=color,markersize=4,capsize=2,label=regime.title())
     for ax in axes:
         ax.set(yticks=range(len(names)),yticklabels=[display(n) for n in names]);ax.invert_yaxis()
         ax.grid(axis='x',alpha=.5)
@@ -215,8 +215,8 @@ def matched_figure(data,out,name='matched-learning'):
             if not points: continue
             x=[b['midpoint'] for b in points];stats=[b['conditions'][condition] for b in points]
             y=[s['loss'] for s in stats];color=colors.get(condition,(COBALT,MAGENTA,ORANGE)[i%3])
-            style = 's--' if condition.startswith('fitted_') else 'o-'
-            ax.plot(x,y,style,color=color,label=display(condition),markersize=3)
+            style=CONDITIONS.get(condition,{'color':color,'marker':'o','linestyle':'-'})
+            ax.plot(x,y,color=style['color'],marker=style['marker'],linestyle=style['linestyle'],label=display(condition),markersize=3)
             ax.fill_between(x,[s['ci95'][0] for s in stats],[s['ci95'][1] for s in stats],color=color,alpha=.1)
         if conditions:
             counts=[str((b.get('conditions',{}).get(conditions[0]) or {}).get('contributing_episodes',0)) for b in bins]
@@ -231,7 +231,12 @@ def matched_figure(data,out,name='matched-learning'):
             stat=pair.get('forecasts',{}).get('brier_near')
             if not stat or stat.get('relative_reduction') is None:continue
             value=100*stat['relative_reduction'];lo,hi=np.array(stat['relative_reduction_ci95'])*100
-            ax.errorbar(value,i,xerr=[[value-lo],[hi-value]],fmt='o',color=COBALT if i==0 else ORANGE,capsize=3)
+            color=COBALT if i==0 else ORANGE
+            # Percentile intervals need not contain the point estimate. Draw the
+            # saved endpoints directly, without clipping or changing the interval.
+            ax.hlines(i,lo,hi,color=color)
+            ax.plot([lo,hi],[i,i],linestyle='none',marker='|',color=color,markersize=6)
+            ax.plot(value,i,linestyle='none',marker='o',color=color)
         ax.axvline(0,color=SECONDARY,lw=.8)
         ax.set(yticks=range(len(pairs)),yticklabels=['\n− '.join(display(p) for p in k.split('-minus-')) for k in pairs],
                xlabel='Pooled Brier reduction (%)',title='Paired reductions\nWhole-episode 95% intervals')

@@ -8,6 +8,10 @@ than after the prior/known-law recommendation. Five other disagreement states
 are unavailable because a state validator rejected their copied memories.
 This small, incomplete diagnostic does not establish that adaptation is useless.
 
+![Branch coverage, paired returns and component counts](../artifacts/run1/branches/figures/branch-consequences.png)
+
+[Vector figure and CSV tables](../artifacts/run1/branches/figures/README.md)
+
 The protocol was committed as `edf9c1f` before execution. It reused the first
 four fitting-subvalidation memory recordings per original v3 regime, limited
 to their first 80 frames. These are exposed development data, not assessment.

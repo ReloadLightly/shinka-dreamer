@@ -1,0 +1,10 @@
+regime,left,right,valid_changed_action_future_pairs,invalid_future_pairs_all_selected_states,collision_left_better,collision_left_worse,collision_equal,escape_left_better,escape_left_worse,escape_equal,keys_left_better,keys_left_worse,keys_equal,door_left_better,door_left_worse,door_equal,return_left_better,return_left_worse,return_equal,scope
+uniform,learned,frozen_prior,8,32,0,0,8,0,0,8,0,1,7,0,0,8,0,1,7,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+uniform,known_law,learned,8,32,0,0,8,0,0,8,1,0,7,0,0,8,1,0,7,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+uniform,known_law,frozen_prior,0,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+stationary,learned,frozen_prior,16,16,0,0,16,0,0,16,0,0,16,0,0,16,0,0,16,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+stationary,known_law,learned,8,16,0,0,8,0,0,8,0,0,8,0,0,8,0,0,8,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+stationary,known_law,frozen_prior,8,16,0,0,8,0,0,8,0,0,8,0,0,8,0,0,8,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+switch,learned,frozen_prior,16,8,0,0,16,0,0,16,0,0,16,0,0,16,0,0,16,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+switch,known_law,learned,16,8,0,0,16,0,0,16,0,0,16,0,0,16,0,0,16,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
+switch,known_law,frozen_prior,16,8,0,0,16,0,0,16,0,0,16,0,0,16,0,0,16,Exact descriptive counts on valid changed-action pairs; futures are dependent within states/cases.
