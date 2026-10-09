@@ -1,0 +1,110 @@
+{
+  "type": "runtime compatibility bug fixes; no candidate/evaluator/selection change",
+  "recorded_utc": "2026-10-09T01:40:17.425043+00:00",
+  "campaign_manifest_sha256": "25a892f9540683e69f42bb9cdc35669fe00ab3d06bf1e5d815360fb73bd64451",
+  "original_resolved_sha256": "ff3495626d12f22b3db6a8292ad9e880174fe80ce93b7e81bcde1694908b98ad",
+  "original_driver_sha256": {
+    "scripts/evolve_v4.py": "7df3c4ba3d099f31200e96910befec9915dcb09bd402d68b1b68c08f2d49e937",
+    "scripts/run1_readiness.py": "b1445099a4f9022b2160f3d2a5cba180b5ee7729938928ef7ca3050b6685ebf9",
+    "dreamer/native_run1.py": "a495ee9e43c0faa3e5e2afd5a1d1a2eb5ecfe214d634dedf2919906ed13cfe51",
+    "dreamer/native.py": "4e457b8781a099482b7a497312a11812e069467b41a875805d7ea2e68f1f8cc0",
+    "dreamer/headless_transport.py": "45bb98f19d4099c37cc401c01a9e38dfe13a27f1b126b2eba4af6d9a1627886c",
+    "scripts/subscription_headless.sh": "caedeafe87fcf0774838af0e9e8dfb965fcdfba9ce47a16b2b659359a1f0a04d",
+    "scripts/run1_embedding_server.py": "ca46afd874810583b8b48a77396964d66fae04d81c342164c40d22eaea2a43b1",
+    "docs/mutation-prompt-v4.md": "ecb33b5c16a9d55c5b7e4e6ee9a4da22f17d019bfc090f20ccdac22ade33bd3d"
+  },
+  "added_source_sha256": {
+    "dreamer/native_run1_runtime_fix.py": "01fe0f9538f90e6145282e648d9bd66717d14d431d099273ba1712b57e261ecf",
+    "scripts/resume_v4_run1.py": "c84a1b3613d16b52d0ebf4313953f5c63841aba65bd4030ba5571623379af24a",
+    "tests/test_native_run1_runtime_fix.py": "cc733c2e73911ac2de211c3c6e92f291d33604f57c588a97cc31fdd1c0d4aa69"
+  },
+  "upstream_function_sha256": {
+    "JobScheduler.check_job_status": "77e64e2eb3e37cef6530b445a810074688e5533757e0866fcfd5e1f9acfab6f9",
+    "headless._build_headless_command": "4fba9d6b406f9487ec508389a6b5de0d8e7ff1bfd8633da4b7a12bcb11fd1c89"
+  },
+  "checkpoint_native_state_sha256": "50509ba9ed4c518f6939c3043ec37a118017eb62016e6580c1ef1bde0a86296d",
+  "checkpoint_meta_state_sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df",
+  "checkpoint_call_ledger_sha256": "4b2b695460ab2edd1b9ec732f62e48b1732d4eae7498afd3e8ec492f56635d18",
+  "preserved_checkpoint_files": {
+    "run1-native-state.json": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/run1-native-state.json",
+      "sha256": "50509ba9ed4c518f6939c3043ec37a118017eb62016e6580c1ef1bde0a86296d"
+    },
+    "run1-meta-state.json": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/run1-meta-state.json",
+      "sha256": "90a823aee2243326df37368e8348fb4c7b026794c0e11fe56ec64bd4cc74c7df"
+    },
+    "call-budget-ledger.json": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/call-budget-ledger.json",
+      "sha256": "4b2b695460ab2edd1b9ec732f62e48b1732d4eae7498afd3e8ec492f56635d18"
+    },
+    "native-events.jsonl": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/native-events.jsonl",
+      "sha256": "ec9440cb1ab1350aa933b11aa8703e7c60eb00b86fa9f218566c628a25566352"
+    },
+    "controller.log": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/controller.log",
+      "sha256": "c12c575fc510d7a5d401ffc360ae9e1b88c1d806ca9f54bde7bdff5273d830b1"
+    },
+    "programs.sqlite": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/programs.sqlite",
+      "sha256": "f1045a74b453dffca3c85aed59ab865350c7c6e9d792fc7d54e2ac2d34804e21"
+    },
+    "prompts.sqlite": {
+      "path": "results/campaign-v4-run1/checkpoints/before-runtime-fix/prompts.sqlite",
+      "sha256": "a554e3d28d8fda22c3378df2a87ae96f3297ed2c0a61ec6ec65777738213a0f8"
+    }
+  },
+  "persisted_slots_before_resume": [
+    0,
+    1,
+    2
+  ],
+  "generation_1_preserved": {
+    "id": "385de283-f3d7-4e68-b774-3c44ebbf50f6",
+    "correct": false,
+    "score": 0,
+    "source_sha256": "6e60f6c946c617a0f7c2cf7bea85ce39fafb041300ee3ac09098400676d41347",
+    "accepted_proposal_sha256": "1d59769ee78924e40f2fa906ab2872135a85b619573dc69546a93ed4b7a0e309",
+    "failure": "Native scheduler charged 526.33s proposal/embedding time against480s evaluation deadline, killed evaluator after approximately.03s before episode output.",
+    "policy": "Keep original failure row, code, reward credit and consumed calls. No automatic retry or reclassification as an empirical algorithm failure."
+  },
+  "fixes": [
+    {
+      "old": "Local JobScheduler.check_job_status compared now minus job.start_time (proposal start) to480s.",
+      "new": "Only the scheduler receives dataclasses.replace(job,start_time=job.evaluation_started_at), falling back to evaluation_submitted_at. Original job and pipeline metrics remain unchanged.",
+      "scope": "The RUN1 runner instance local scheduler only; candidate CPU/reply/memory limits and480s evaluation allowance unchanged."
+    },
+    {
+      "old": "Only provider600s outer timeout; SIGKILL of Headless could leave Codex child alive.",
+      "new": "Append native supported --timeout590 to every RUN1 Headless command. Headless owns a child process group and performs graceful termination/escalation before the outer600s ceiling.",
+      "scope": "All actual calls remain audited subscription calls. No authentication, approval, sandbox, model, effort or fallback setting changed."
+    }
+  ],
+  "manual_infrastructure_feedback": {
+    "text": "Generation1 was killed by a scheduler timing bug before any episodes; its score0 is an infrastructure failure, not evidence about its algorithm. The timer now starts at evaluation launch.",
+    "sha256": "4734e5ed8bab2c6f099a29f682a04c001b972de7f81e532f4f9669d8914d515a",
+    "placement": "Appended after native mutation/fix operator-specific prompt composition, alongside the non-evolving boundary. Existing DB feedback, scores and saved meta text remain untouched."
+  },
+  "unchanged": [
+    "original manifest/config/source files",
+    "native installed revision/files",
+    "objective",
+    "environment",
+    "case panel",
+    "seed",
+    "candidate resource boundaries",
+    "total32slot ceiling",
+    "all-call token/time/role budgets",
+    "deadline",
+    "operators",
+    "parent/inspiration sampling",
+    "islands/migration",
+    "bandit",
+    "novelty",
+    "prompt coevolution",
+    "meta recommendations",
+    "saved native state"
+  ],
+  "resume_limit": "Previously accepted pending proposals recover natively. Generated but not novelty-accepted held proposals remain preserved and require explicit stage recovery; do not blindly regenerate."
+}
