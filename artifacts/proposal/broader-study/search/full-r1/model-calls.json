@@ -1,0 +1,984 @@
+[
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.00035991499998999643,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 242.47638110700018,
+    "ended_utc": "2026-10-09T11:38:18.581301+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T113406698212Z-a44ce567",
+    "mutation_context_validated": true,
+    "prompt_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T11:34:06.698247+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 20864,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0652284
+      },
+      "inputTokens": 771,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 6160,
+      "reasoningOutputTokens": 3106,
+      "totalTokens": 27795,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0006057739997231693,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 188.83153146999985,
+    "ended_utc": "2026-10-09T11:41:43.226182+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T113825651437Z-ff356cf1",
+    "mutation_context_validated": true,
+    "prompt_sha256": "80dfd51cdd15b21764822ed4e2b7451305809517730504efaff23f46277adf83",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T11:38:25.651637+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.466978
+      },
+      "inputTokens": 11329,
+      "model": "gpt-6-astra",
+      "outputTokens": 6828,
+      "reasoningOutputTokens": 3106,
+      "totalTokens": 30445,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0006200470002113434,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 13.281783874000212,
+    "ended_utc": "2026-10-09T11:41:59.847449+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114146563065Z-eadcf09d",
+    "mutation_context_validated": true,
+    "prompt_sha256": "4364cf8daa00c9a9f876691a04279f5b914406936215bf9a4768255f2236cf78",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "novelty",
+    "started_utc": "2026-10-09T11:41:46.563169+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0287968
+      },
+      "inputTokens": 12979,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 161,
+      "reasoningOutputTokens": 48,
+      "totalTokens": 25428,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0005215569999563741,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 227.36998290500014,
+    "ended_utc": "2026-10-09T11:46:01.421126+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114204957167Z-6826fb26",
+    "mutation_context_validated": true,
+    "prompt_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T11:42:04.957211+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0798608
+      },
+      "inputTokens": 4336,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 6996,
+      "reasoningOutputTokens": 4077,
+      "totalTokens": 23620,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.00564886199981629,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 18.17812805299991,
+    "ended_utc": "2026-10-09T11:46:24.852604+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114605286869Z-9025e1aa",
+    "mutation_context_validated": true,
+    "prompt_sha256": "d5ecae4869b60332e70df053f87b636d8618d8699781d2e702a3374997faf7d4",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T11:46:05.286905+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0198368
+      },
+      "inputTokens": 7869,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 287,
+      "reasoningOutputTokens": 77,
+      "totalTokens": 20444,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 18.186045121000006,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 14.782865782000044,
+    "ended_utc": "2026-10-09T11:46:40.982294+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114624855398Z-cee3d366",
+    "mutation_context_validated": true,
+    "prompt_sha256": "da6de07fb44688d6b5b3cb881850243e00875a3a715c6ebde8a256bd50b0f213",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T11:46:24.855454+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0137348
+      },
+      "inputTokens": 4963,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 258,
+      "reasoningOutputTokens": 63,
+      "totalTokens": 17509,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 32.971526324000024,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 16.493570823000027,
+    "ended_utc": "2026-10-09T11:46:57.479975+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114640984453Z-f67ec5b2",
+    "mutation_context_validated": true,
+    "prompt_sha256": "f99998b4585e67d47b654dc14a1ab3dad603935115a1e4aa8d5561adda787dd2",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T11:46:40.984488+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0161428
+      },
+      "inputTokens": 6127,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 266,
+      "reasoningOutputTokens": 61,
+      "totalTokens": 18681,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 49.46856132999983,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 16.73176625899987,
+    "ended_utc": "2026-10-09T11:47:15.551926+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114657483443Z-c819be45",
+    "mutation_context_validated": true,
+    "prompt_sha256": "b1b9d4dda87c71336e864da54c0c26df55260dd05239e337c57bb41aa68bf2cc",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T11:46:57.483481+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0137768
+      },
+      "inputTokens": 4819,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 291,
+      "reasoningOutputTokens": 89,
+      "totalTokens": 17398,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 62.10618799699978,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 124.47957104099987,
+    "ended_utc": "2026-10-09T11:49:24.095080+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114715561697Z-4b4b9942",
+    "mutation_context_validated": true,
+    "prompt_sha256": "c755d93f64a278b371ca69fe37418f4ccc682e2115b987006c4aa34888a5fac8",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T11:47:15.561780+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.275758
+      },
+      "inputTokens": 4272,
+      "model": "gpt-6-astra",
+      "outputTokens": 4415,
+      "reasoningOutputTokens": 1530,
+      "totalTokens": 20975,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 124.50493147999987,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 48.85830215799979,
+    "ended_utc": "2026-10-09T11:50:15.746851+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T114924117429Z-b2f370ed",
+    "mutation_context_validated": true,
+    "prompt_sha256": "b724c7cf5cf8d81f11ccc72b539aa8ba12a579f10235e0829827688314dffc4d",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "global_insight",
+    "started_utc": "2026-10-09T11:49:24.117504+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0365788
+      },
+      "inputTokens": 11705,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 1194,
+      "reasoningOutputTokens": 216,
+      "totalTokens": 25187,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 45.70956853400003,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 10.70422944899974,
+    "ended_utc": "2026-10-09T11:50:26.464177+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T115015758008Z-6ca10c0a",
+    "mutation_context_validated": true,
+    "prompt_sha256": "be6464f95bc40024e196b6e88d6ae57b2d986981c4193e49418646de3ebcfd98",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "novelty",
+    "started_utc": "2026-10-09T11:50:15.758070+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0140608
+      },
+      "inputTokens": 5721,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 139,
+      "reasoningOutputTokens": 34,
+      "totalTokens": 18148,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 10.718844699999863,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 48.63854139800014,
+    "ended_utc": "2026-10-09T11:51:17.826707+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T115026476544Z-57f20fc4",
+    "mutation_context_validated": true,
+    "prompt_sha256": "0b0dfaf2757ee912a9941e90961a0c8609bdf678f575223fb2c5161c50d3cd9f",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "recommendation",
+    "started_utc": "2026-10-09T11:50:26.476650+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0245748
+      },
+      "inputTokens": 7198,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 895,
+      "reasoningOutputTokens": 516,
+      "totalTokens": 20381,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.001053454999691894,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 53.40536000699967,
+    "ended_utc": "2026-10-09T11:52:12.857367+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T115118103777Z-f9337f9d",
+    "mutation_context_validated": true,
+    "prompt_sha256": "b7d829c7fb4e6a0bac7a3887748820a65d43fe656cf5f3cbbfa99fef880a3715",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "prompt_mutation",
+    "started_utc": "2026-10-09T11:51:18.103852+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0415308
+      },
+      "inputTokens": 13221,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 1386,
+      "reasoningOutputTokens": 269,
+      "totalTokens": 26895,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 48.562482961000114,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 456.8112438160001,
+    "ended_utc": "2026-10-09T12:00:10.154106+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T115212877325Z-0e8e7db7",
+    "mutation_context_validated": true,
+    "prompt_sha256": "b24fb4b3ed3ab0e15e1c0f9a1481e776ec8c47abf5657e0817c17490c599b2a7",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T11:52:12.877391+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.1453508
+      },
+      "inputTokens": 9701,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 12472,
+      "reasoningOutputTokens": 7532,
+      "totalTokens": 34461,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0003455500000200118,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 13.807030466000015,
+    "ended_utc": "2026-10-09T12:00:30.205635+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T120016395471Z-4efdcf55",
+    "mutation_context_validated": true,
+    "prompt_sha256": "a3c6ba67d0dc25842f6cd6bb450c2acc549e0b63bac86702506a616cc422b346",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "novelty",
+    "started_utc": "2026-10-09T12:00:16.395514+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0309388
+      },
+      "inputTokens": 14085,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 154,
+      "reasoningOutputTokens": 39,
+      "totalTokens": 26527,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0006284080000114045,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 61.284304754999994,
+    "ended_utc": "2026-10-09T12:01:37.494865+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T120033288855Z-ec894876",
+    "mutation_context_validated": true,
+    "prompt_sha256": "68da9bc77a80569ee32999c41a0d8baa276523f23a9f413b43045f262864dadb",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:00:33.288926+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.197228
+      },
+      "inputTokens": 8809,
+      "model": "gpt-6-astra",
+      "outputTokens": 1937,
+      "reasoningOutputTokens": 1034,
+      "totalTokens": 23034,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0005988860002617002,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 11.826298020000195,
+    "ended_utc": "2026-10-09T12:01:54.674362+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T120141276629Z-1acc2a3a",
+    "mutation_context_validated": true,
+    "prompt_sha256": "24ece42ffc3f799e9438007b9139b5f54ef088bdc890e0e6487c175479d367c9",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "novelty",
+    "started_utc": "2026-10-09T12:01:41.276782+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0223708
+      },
+      "inputTokens": 9886,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 137,
+      "reasoningOutputTokens": 33,
+      "totalTokens": 22311,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0004727690002255258,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 480.4841437109999,
+    "ended_utc": "2026-10-09T12:10:22.084080+00:00",
+    "error_sha256": null,
+    "failure_class": "timeout",
+    "has_error": false,
+    "id": "20261009T120159227100Z-a51abf4b",
+    "mutation_context_validated": true,
+    "prompt_sha256": "2c20c14710646c21d5839ad592bb1a38e54a3ed7077fbde22d6343993aba4174",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 124,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:01:59.227136+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "cost": {},
+      "inputTokens": 0,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 0,
+      "reasoningOutputTokens": 0,
+      "totalTokens": 0,
+      "usageStatus": "missing"
+    },
+    "usage_missing": true
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.0015494500003114808,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 347.89558677399964,
+    "ended_utc": "2026-10-09T12:16:25.250672+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T121022109665Z-7437783f",
+    "mutation_context_validated": true,
+    "prompt_sha256": "32fe87dfd86fb83bc61824f4a1de982ef194af5a4ec2473b09f049905edcc5c0",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:10:22.109945+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.1193548
+      },
+      "inputTokens": 7783,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 10256,
+      "reasoningOutputTokens": 4401,
+      "totalTokens": 30327,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 0.009626613999898836,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 16.348304502000246,
+    "ended_utc": "2026-10-09T12:16:59.034620+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T121642684233Z-a9945d47",
+    "mutation_context_validated": true,
+    "prompt_sha256": "2b447eefb8fd4664a52262fefa4cf482d2f5fcabf468a63a1fdadd256d265c5c",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T12:16:42.684275+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0137108
+      },
+      "inputTokens": 4861,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 276,
+      "reasoningOutputTokens": 79,
+      "totalTokens": 17425,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 16.35982667099961,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 19.17253710099976,
+    "ended_utc": "2026-10-09T12:17:19.669921+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T121659038363Z-77707d9d",
+    "mutation_context_validated": true,
+    "prompt_sha256": "62fe012a9754160078a35bf05cea779b784c50b8dfa5e0e739c7d68252b8e7ab",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T12:16:59.038406+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0272588
+      },
+      "inputTokens": 11675,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 268,
+      "reasoningOutputTokens": 63,
+      "totalTokens": 24231,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 35.53840971199952,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 18.25679731300079,
+    "ended_utc": "2026-10-09T12:17:37.934828+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T121719676058Z-6e6c1339",
+    "mutation_context_validated": true,
+    "prompt_sha256": "cde39a6519793a210389c4bc4a2d4bef1b947372a50b6b57d91c38503d56a4d3",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T12:17:19.676107+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0256848
+      },
+      "inputTokens": 10758,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 294,
+      "reasoningOutputTokens": 95,
+      "totalTokens": 23340,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 53.79687101700074,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 19.03346997999961,
+    "ended_utc": "2026-10-09T12:17:58.434760+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T121737937227Z-1ca545ac",
+    "mutation_context_validated": true,
+    "prompt_sha256": "2138a45e19562d9e7b3b539fac31b3c950a5eb5b2f7c76a5464f71ae0b14b417",
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "role": "summary",
+    "started_utc": "2026-10-09T12:17:37.937271+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.0206728
+      },
+      "inputTokens": 8252,
+      "model": "gpt-6.1-sol",
+      "outputTokens": 294,
+      "reasoningOutputTokens": 91,
+      "totalTokens": 20834,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  },
+  {
+    "billing_required": "subscription",
+    "cli_lock_wait_seconds": 70.18305396100004,
+    "context_audit_failure": null,
+    "context_audit_failure_sha256": null,
+    "elapsed_seconds": 133.61250344000018,
+    "ended_utc": "2026-10-09T12:20:17.919688+00:00",
+    "error_sha256": null,
+    "failure_class": null,
+    "has_error": false,
+    "id": "20261009T121758445075Z-fd53793d",
+    "mutation_context_validated": true,
+    "prompt_sha256": "a4b6bcd8612155dbe0e755ffebd2b676f5d876b19754a26409357170f8e11e62",
+    "requested_effort": "high",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "role": "mutation",
+    "started_utc": "2026-10-09T12:17:58.445134+00:00",
+    "status": "completed",
+    "usage": {
+      "billing": {
+        "attempts": [
+          {
+            "route": "subscription"
+          }
+        ]
+      },
+      "cacheReadTokens": 12288,
+      "cacheWriteTokens": 0,
+      "cost": {
+        "total": 0.458848
+      },
+      "inputTokens": 16711,
+      "model": "gpt-6-astra",
+      "outputTokens": 5589,
+      "reasoningOutputTokens": 1034,
+      "totalTokens": 34588,
+      "usageStatus": "reported"
+    },
+    "usage_missing": false
+  }
+]

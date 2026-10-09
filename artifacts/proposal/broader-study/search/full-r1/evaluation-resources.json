@@ -1,0 +1,74 @@
+[
+  {
+    "candidate_cpu_seconds": 0.254722,
+    "completed": true,
+    "elapsed_seconds": 0.4872946469999988,
+    "ended_utc": "2026-10-09T11:34:02.280672+00:00",
+    "evaluator_cpu_seconds": 0.23816299999999999,
+    "generation": 0,
+    "started_utc": "2026-10-09T11:34:01.793373+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 2.5548879999999996,
+    "completed": true,
+    "elapsed_seconds": 2.621582729000238,
+    "ended_utc": "2026-10-09T11:38:25.185001+00:00",
+    "evaluator_cpu_seconds": 0.176312,
+    "generation": 1,
+    "started_utc": "2026-10-09T11:38:22.563464+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 4.8333070000000005,
+    "completed": true,
+    "elapsed_seconds": 4.780926453999655,
+    "ended_utc": "2026-10-09T11:42:04.674875+00:00",
+    "evaluator_cpu_seconds": 0.13491400000000003,
+    "generation": 2,
+    "started_utc": "2026-10-09T11:41:59.893940+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 0.7371059999999999,
+    "completed": true,
+    "elapsed_seconds": 0.8527795599998171,
+    "ended_utc": "2026-10-09T11:46:05.177068+00:00",
+    "evaluator_cpu_seconds": 0.13799799999999998,
+    "generation": 3,
+    "started_utc": "2026-10-09T11:46:04.324283+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 1.2181300000000002,
+    "completed": true,
+    "elapsed_seconds": 1.395435095999801,
+    "ended_utc": "2026-10-09T11:50:27.909789+00:00",
+    "evaluator_cpu_seconds": 0.19983199999999998,
+    "generation": 4,
+    "started_utc": "2026-10-09T11:50:26.514347+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 2.687121,
+    "completed": true,
+    "elapsed_seconds": 2.728975519999949,
+    "ended_utc": "2026-10-09T12:00:32.985994+00:00",
+    "evaluator_cpu_seconds": 0.136867,
+    "generation": 5,
+    "started_utc": "2026-10-09T12:00:30.257008+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 4.460788999999999,
+    "completed": true,
+    "elapsed_seconds": 4.284791769000094,
+    "ended_utc": "2026-10-09T12:01:58.998568+00:00",
+    "evaluator_cpu_seconds": 0.131078,
+    "generation": 6,
+    "started_utc": "2026-10-09T12:01:54.713767+00:00"
+  },
+  {
+    "candidate_cpu_seconds": 7.300314999999999,
+    "completed": true,
+    "elapsed_seconds": 7.129334421000749,
+    "ended_utc": "2026-10-09T12:16:42.355449+00:00",
+    "evaluator_cpu_seconds": 0.131769,
+    "generation": 7,
+    "started_utc": "2026-10-09T12:16:33.757741+00:00"
+  }
+]

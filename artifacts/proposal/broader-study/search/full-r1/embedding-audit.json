@@ -1,0 +1,181 @@
+{
+  "calls": [
+    {
+      "chunks": 3,
+      "cpu_seconds": 1.5396409919999998,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 335160,
+      "status": "ok",
+      "text_sha256": [
+        "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177"
+      ],
+      "tokens": 1202,
+      "utc": "2026-10-09T11:34:06.558594+00:00",
+      "wall_seconds": 1.5419403330001842
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 3.9820254319999995,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 379192,
+      "status": "ok",
+      "text_sha256": [
+        "f91386ad89433b620026af443c7c3ff49c80409d3223512dd54e60045eba9652"
+      ],
+      "tokens": 2644,
+      "utc": "2026-10-09T11:38:22.453152+00:00",
+      "wall_seconds": 3.8228997340002024
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 3.386078221,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "a8832a37d98947d906553f56981c6f3dc070df7a8185d080560f650da306d89a"
+      ],
+      "tokens": 2714,
+      "utc": "2026-10-09T11:41:46.539911+00:00",
+      "wall_seconds": 3.250159960000019
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 2.911248156000001,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "f4f918d5bc35d4c0416399ee2a6d6c8554a45c811af739234066347da165c258"
+      ],
+      "tokens": 2693,
+      "utc": "2026-10-09T11:46:04.259929+00:00",
+      "wall_seconds": 2.7949107709996497
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 3.2361028079999983,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "d50248cf7b4a2140f68aed7a431e29e4cf84aaf836c630a66bcf9fe18cc50f7a"
+      ],
+      "tokens": 2689,
+      "utc": "2026-10-09T11:49:27.268964+00:00",
+      "wall_seconds": 3.101230862000193
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 6.259499980000001,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "019084ceffeeb938f4709ed173d12d6bf27f21d538d9664f06cd5d2033c11903"
+      ],
+      "tokens": 2728,
+      "utc": "2026-10-09T12:00:16.324322+00:00",
+      "wall_seconds": 5.975242715999684
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 3.814877985999999,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "f8d760f63b96f8a692f48e2bf347146a95b666547ece16a03f6c7fad30810cdb"
+      ],
+      "tokens": 2698,
+      "utc": "2026-10-09T12:01:41.246695+00:00",
+      "wall_seconds": 3.6620257439999477
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 8.350717136999997,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "f8a071a1702dd4c5037d3b6fb56ef8a27b61d9fa21f1c538d3e77378c22c94f7"
+      ],
+      "tokens": 2759,
+      "utc": "2026-10-09T12:16:33.668636+00:00",
+      "wall_seconds": 7.992524549999871
+    },
+    {
+      "chunks": 6,
+      "cpu_seconds": 6.3408021599999955,
+      "error_sha256": null,
+      "failure_class": null,
+      "has_error": false,
+      "inputs": 1,
+      "peak_rss_kib": 395704,
+      "status": "ok",
+      "text_sha256": [
+        "d171ddd8cb669ec5fc20919f9e809b59b4070e8416cf41bf75ab0cfec8a9bfc3"
+      ],
+      "tokens": 2704,
+      "utc": "2026-10-09T12:20:24.407547+00:00",
+      "wall_seconds": 6.040920992999418
+    }
+  ],
+  "startup_fixture": {
+    "cpu_seconds": 0.044623320000000355,
+    "different_cosine": 0.5506216273813688,
+    "dimensions": 384,
+    "identical_exact": true,
+    "kind": "local deterministic fixture, not evolutionary evidence",
+    "peak_rss_kib": 303288,
+    "wall_seconds": 0.07411458299975493
+  },
+  "summary": {
+    "call_status_counts": {
+      "ok": 9
+    },
+    "calls_without_resource_measurements": 0,
+    "configured_model": "local/bge-small-code-chunks-v1@http://127.0.0.1:8771/v1",
+    "identity_file": "embedding-identity.json",
+    "identity_file_hashes": 7,
+    "identity_recorded": true,
+    "model": "BAAI/bge-small-en-v1.5",
+    "native_endpoint_calls": 9,
+    "peak_rss_kib": 395704,
+    "recorded_chunks": 51,
+    "recorded_endpoint_cpu_seconds": 39.82099287199999,
+    "recorded_endpoint_wall_seconds": 38.18185566299917,
+    "recorded_inputs": 9,
+    "recorded_local_tokens": 22831,
+    "repository": "qdrant/bge-small-en-v1.5-onnx-q",
+    "revision": "aa8f8b060edb00e03bfdd08813a2949946c8ba55",
+    "scope": "Cached local CPU embedding endpoint only; no paid API route. Local tokens/CPU are separate from subscription-role counts. Startup fixture is infrastructure verification, not evolutionary evidence; its resource use is separate. Do not add wrapper elapsed time to overlapping endpoint wall time. Error calls missing measurements remain explicitly incomplete.",
+    "startup_fixture_present": true,
+    "status": "enabled",
+    "unexpected_evidence_in_disabled_treatment": false
+  }
+}

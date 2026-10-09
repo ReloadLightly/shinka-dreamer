@@ -2,7 +2,7 @@
   "plan": "docs/original-proposal-plan.md",
   "research": "docs/shinkaevolve-research.md",
   "date": "2026-10-09",
-  "status": "broader_study_controls_complete_search_preparation",
+  "status": "broader_study_full_r1_checkpointed",
   "authorization": "User requested completing the broader research study before synthesis and selected up to2hours per block with checkpoints between blocks.",
   "budget_preference": "up_to_two_hours_per_block_with_checkpoints",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
@@ -25,7 +25,8 @@
     "stage5_results_and_chromatic_fields_figures",
     "stage5_saved_execution_recovery_and_independent_verification",
     "broader_study_competent_comparator_and_mechanism_assessment",
-    "broader_study_passive_reporting_denominator_audit"
+    "broader_study_passive_reporting_denominator_audit",
+    "broader_study_first_independent_full_native_search"
   ],
   "stage3": {
     "protocol": "artifacts/proposal/stage3-development/protocol.json",
@@ -99,8 +100,8 @@
     "proposal_workers": 1,
     "evaluation_workers": 1
   },
-  "next_stage_preparation": "First independent full-native run prepared and source-frozen; subscription-only execution authorized within the declared two-hour block.",
-  "next_execution_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.evolve_study --results results/proposal-broader-study/search/full-r1 --run-id full-r1 --native-seed 7109260 --slots 25 --calls 24 --provider-seconds 5400 --minutes 120 --treatment full --run",
+  "next_stage_preparation": "Full-r1 completed and independently audited. Start the separately prepared rewrite-r1 once this checkpoint is committed and pushed; never relaunch full-r1.",
+  "next_execution_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.evolve_study --results results/proposal-broader-study/search/rewrite-r1 --run-id rewrite-r1 --native-seed 8109261 --slots 25 --calls 24 --provider-seconds 5400 --minutes 120 --treatment rewrite --run",
   "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
   "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment",
   "previous_stage1_checkpoint": {
@@ -295,7 +296,7 @@
     "supervising_assistant_usage": "Two bounded read-only review subagents and supervising conversation; their token/allowance use is unavailable to the evaluator and excluded from experiment-model counts."
   },
   "broader_study": {
-    "status": "broader_study_controls_complete_search_preparation",
+    "status": "broader_study_full_r1_checkpointed",
     "scope": "Original current-map reconstruction objective; no predictive-learning extension",
     "subscription_block_budget": "User selected up to2hours per block;24all-rolecall,5400provider-second,25slot caps chosen within it.",
     "completion_requirements": [
@@ -310,6 +311,45 @@
     "plan": "artifacts/proposal/broader-study/study-plan.json",
     "controls_assessment": "artifacts/proposal/broader-study/controls-assessment/summary.json",
     "reporting_audit": "artifacts/proposal/broader-study/reporting-audit/summary.json",
-    "prepared_run": "full-r1"
+    "prepared_run": "rewrite-r1",
+    "completed_searches": [
+      {
+        "run_id": "full-r1",
+        "results": "results/proposal-broader-study/search/full-r1",
+        "source_freeze_commit": "30431a7",
+        "grant": {
+          "started_utc": "2026-10-09T11:33:44.277218+00:00",
+          "hard_end_utc": "2026-10-09T13:33:44.277218+00:00",
+          "admission_end_utc": "2026-10-09T13:33:14.277218+00:00",
+          "manifest_sha256": "161091eb77f169bd380a4dcfc9614dfdcad1d152990ce1cd45a28d6984cd56f6",
+          "automatic_continuation": false,
+          "supervisor_pid": 26148
+        },
+        "status": "completed_at_all_role_call_cap",
+        "summary": "artifacts/proposal/broader-study/search/full-r1/summary.json",
+        "actual": {
+          "all_role_calls": 24,
+          "calls_with_unavailable_usage": 1,
+          "valid_descendants": 7,
+          "episodes": 40,
+          "transitions": 2869,
+          "invalid_episodes": 0,
+          "execution_wall_seconds": 2695.882031517,
+          "provider_seconds": 2602.764234204,
+          "held_unevaluated_generations": [
+            8
+          ]
+        },
+        "terminal_audit": "Source, lineage, acceptance prefixes, all 40 episode rows, 24 raw context audits and cleanup independently verified; no anomalies."
+      }
+    ],
+    "active_run": null,
+    "remaining_searches": [
+      "rewrite-r1",
+      "rewrite-r2",
+      "full-r2",
+      "full-r3",
+      "rewrite-r3"
+    ]
   }
 }

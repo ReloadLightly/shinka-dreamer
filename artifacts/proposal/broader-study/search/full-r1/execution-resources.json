@@ -1,0 +1,14 @@
+{
+  "admission_end_utc": "2026-10-09T13:33:14.277218+00:00",
+  "automatic_continuation": false,
+  "combined_rss_bytes": 1178075136,
+  "ended_utc": "2026-10-09T12:20:37.884467+00:00",
+  "hard_end_utc": "2026-10-09T13:33:44.277218+00:00",
+  "returncode": 0,
+  "started_utc": "2026-10-09T11:33:44.277218+00:00",
+  "status": "worker_returned",
+  "stop_reason": null,
+  "stop_reason_sha256": null,
+  "supervising_assistant_usage": "Additional; not measurable by this experiment ledger.",
+  "supervisor_wall_seconds": 2695.882031517
+}

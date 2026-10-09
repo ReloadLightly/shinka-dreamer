@@ -24,10 +24,27 @@ hours per block, with a checkpoint between blocks**. The finite design in
 attempts (three per treatment), at most24 all-role calls,5,400 provider-seconds and
 25 slots per run. Bind each actual execution grant separately. Follow with64
 shared selection cases and512 fresh assessment cases under the frozen analysis.
-Before the first model call, verify the per-invocation model context boundary:
-the old Headless read-only route still enabled tools and repository AGENTS loading.
-No new mutation requests have yet run. Never change global authentication,
-approval policies or sandbox permissions, and never relaunch historical runs.
+The per-invocation context boundary is frozen and verified. The first independent
+full-native run, `full-r1`, completed from source freeze `30431a7` at the 24-call
+cap on 2026-10-09 at 12:20:37 UTC. It produced seven valid descendants plus the
+seed: 40 training episodes, 2,869 transitions, no invalid executions. Generation 5
+has the highest training F=0.943888 with 5/5 escapes; this is not fresh assessment.
+One request timed out with usage unavailable; all 24 context audits passed.
+Generation 8 was generated but held before novelty at the call cap: it is neither
+accepted nor evaluated. Runtime was 44.93 measured wall-minutes. Independent audit
+verified hashes, episodes, lineage, budgets and cleanup. Never relaunch this run.
+
+The next authorized block is the separately prepared `rewrite-r1`, then
+`rewrite-r2`, `full-r2`, `full-r3`, `rewrite-r3` in the frozen order. Each uses the
+same 120-minute/24-call/5,400-provider-second maximum and a new one-shot grant.
+Checkpoint, audit, commit and push between blocks. All six manifests and the
+selection/assessment analysis were committed before the first rewrite. Exact next
+command and completed-run evidence are in `proposal/plan-state.json`. No fresh
+selection or final assessment pool has been drawn. Continue those after all six
+runs terminate and nominations are frozen. Model requests use external contexts,
+disabled shell tools and mandatory raw-event audits. Never change global
+authentication, approval policies or sandbox permissions; historical runs stay
+closed.
 
 Do not call the broader study complete on the strength of the existing two seed
 mutations, controls alone, infrastructure, test counts or a manuscript. Report

@@ -1,0 +1,543 @@
+{
+  "acceptance_prefixes": [
+    {
+      "all_role_call_prefix": 0,
+      "best_fitness": 0.5363616738311696,
+      "best_generation": 0,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0
+      ]
+    },
+    {
+      "all_role_call_prefix": 1,
+      "best_fitness": 0.8417305602978786,
+      "best_generation": 1,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1
+      ]
+    },
+    {
+      "all_role_call_prefix": 3,
+      "best_fitness": 0.9426880000000001,
+      "best_generation": 2,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "all_role_call_prefix": 4,
+      "best_fitness": 0.9426880000000001,
+      "best_generation": 2,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "all_role_call_prefix": 11,
+      "best_fitness": 0.9426880000000001,
+      "best_generation": 2,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "all_role_call_prefix": 15,
+      "best_fitness": 0.9438880000000001,
+      "best_generation": 5,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "all_role_call_prefix": 17,
+      "best_fitness": 0.9438880000000001,
+      "best_generation": 5,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "all_role_call_prefix": 19,
+      "best_fitness": 0.9438880000000001,
+      "best_generation": 5,
+      "note": "Acceptance-time prefix; evaluations may complete later. Missing acceptance records are not inferred.",
+      "valid_generation_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "all_role_calls": {
+    "api_list_price_estimate_usd": 2.1582768,
+    "billing_routes": {
+      "subscription": 24
+    },
+    "calls": 24,
+    "completed_without_reported_usage": 1,
+    "remote_elapsed_seconds": 2602.764234204,
+    "reported_usage_calls": 23,
+    "status": {
+      "completed": 24
+    },
+    "successful_process_returns": 23,
+    "timeout_process_returns": 1,
+    "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+    "token_total_exact_for_all_admitted_calls": false,
+    "tokens": {
+      "cacheReadTokens": 291200,
+      "cacheWriteTokens": 0,
+      "inputTokens": 197831,
+      "outputTokens": 60953,
+      "reasoningOutputTokens": 27593,
+      "totalTokens": 549984
+    },
+    "uncached_input_plus_output_tokens": 258784,
+    "unsuccessful_process_returns": 1
+  },
+  "arm": "full",
+  "claim_limits": [
+    "Development-case selection only; no assessment results or search-repeatability inference.",
+    "Configured mechanisms and observed events are separate; events alone do not establish causal benefit.",
+    "Empty/failed searches and missing usage remain explicit; unknown tokens are not zero.",
+    "API list-price estimates are not subscription charges; assistant supervision usage is outside the ledger."
+  ],
+  "embedding_audit": {
+    "call_status_counts": {
+      "ok": 9
+    },
+    "calls_without_resource_measurements": 0,
+    "configured_model": "local/bge-small-code-chunks-v1@http://127.0.0.1:8771/v1",
+    "identity_file": "embedding-identity.json",
+    "identity_file_hashes": 7,
+    "identity_recorded": true,
+    "model": "BAAI/bge-small-en-v1.5",
+    "native_endpoint_calls": 9,
+    "peak_rss_kib": 395704,
+    "recorded_chunks": 51,
+    "recorded_endpoint_cpu_seconds": 39.82099287199999,
+    "recorded_endpoint_wall_seconds": 38.18185566299917,
+    "recorded_inputs": 9,
+    "recorded_local_tokens": 22831,
+    "repository": "qdrant/bge-small-en-v1.5-onnx-q",
+    "revision": "aa8f8b060edb00e03bfdd08813a2949946c8ba55",
+    "scope": "Cached local CPU embedding endpoint only; no paid API route. Local tokens/CPU are separate from subscription-role counts. Startup fixture is infrastructure verification, not evolutionary evidence; its resource use is separate. Do not add wrapper elapsed time to overlapping endpoint wall time. Error calls missing measurements remain explicitly incomplete.",
+    "startup_fixture_present": true,
+    "status": "enabled",
+    "unexpected_evidence_in_disabled_treatment": false
+  },
+  "execution_status": "worker_returned",
+  "mechanisms": {
+    "embeddings": {
+      "configured": "local/bge-small-code-chunks-v1@http://127.0.0.1:8771/v1",
+      "observed": {
+        "native_embedding_events": 9,
+        "successful_nonzero_events": 9
+      },
+      "status": "enabled"
+    },
+    "inspirations": {
+      "configured": {
+        "num_archive_inspirations": 1,
+        "num_top_k_inspirations": 1
+      },
+      "observed": {
+        "samples_with_inspirations": 4
+      },
+      "status": "enabled"
+    },
+    "islands_and_parent_sampling": {
+      "configured": {
+        "num_islands": 4,
+        "parent_selection_strategy": "weighted"
+      },
+      "observed": {
+        "sampled_island_counts": {
+          "0": 1,
+          "1": 2,
+          "2": 4,
+          "3": 1
+        },
+        "samples": 8
+      },
+      "status": "enabled"
+    },
+    "meta_recommendations": {
+      "configured": {
+        "meta_llm_models": [
+          "headless/codex@gpt-6.1-sol?effort=high"
+        ],
+        "meta_rec_interval": 4
+      },
+      "observed": {
+        "calls": {
+          "global_insight": 1,
+          "recommendation": 1,
+          "summary": 8
+        },
+        "programs_processed": 4,
+        "samples_with_recommendation_text": 4
+      },
+      "status": "enabled"
+    },
+    "migration": {
+      "configured": {
+        "migration_interval": 4,
+        "migration_rate": 0.25
+      },
+      "observed": {
+        "recorded_moves": 1
+      },
+      "status": "enabled"
+    },
+    "mutation_bandit": {
+      "configured": "ucb",
+      "observed": {
+        "native_arm_counts": {
+          "headless/codex@gpt-6-astra?effort=high": {
+            "completed": 3.0,
+            "submitted": 4.0
+          },
+          "headless/codex@gpt-6.1-sol?effort=high": {
+            "completed": 4.0,
+            "submitted": 4.0
+          }
+        },
+        "requested_model_call_counts": {
+          "gpt-6-astra": 4,
+          "gpt-6.1-sol": 5
+        },
+        "selection_policy": "configured native dynamic selection"
+      },
+      "status": "enabled"
+    },
+    "novelty": {
+      "configured": {
+        "code_embed_sim_threshold": 0.95,
+        "max_novelty_attempts": 2,
+        "novelty_llm_models": [
+          "headless/codex@gpt-6.1-sol?effort=high"
+        ]
+      },
+      "observed": {
+        "judge_calls": 4,
+        "native_decisions": 7
+      },
+      "status": "enabled"
+    },
+    "operators": {
+      "configured": {
+        "probabilities": [
+          0.4,
+          0.3,
+          0.3
+        ],
+        "types": [
+          "diff",
+          "full",
+          "cross"
+        ]
+      },
+      "observed": {
+        "valid_descendant_patch_types": {
+          "diff": 4,
+          "full": 3
+        }
+      },
+      "status": "enabled"
+    },
+    "prompt_evolution": {
+      "configured": {
+        "evolve_prompts": true,
+        "prompt_evolution_interval": 4
+      },
+      "observed": {
+        "mutation_calls": 1,
+        "prompt_records": 2
+      },
+      "status": "enabled"
+    }
+  },
+  "native_event_counts": {
+    "checkpoint_requested": 1,
+    "local_embedding": 9,
+    "novelty_decision": 7,
+    "partial_meta_batch_rejected": 1,
+    "proposal_acceptance_budget": 8,
+    "proposal_held": 1,
+    "sampling": 8
+  },
+  "new_model_calls": 0,
+  "new_world_episodes": 0,
+  "persisted_canonical_slots": 8,
+  "raw_tool_audit": {
+    "audit_ids_without_model_call": [],
+    "model_call_ids_without_completed_audit": [],
+    "model_call_ids_without_raw_audit": [],
+    "observed_tool_event_records": 0,
+    "scope": "Observed event counts, not unique executed tools. Missing/incomplete raw audits cannot establish tool absence. No raw event payloads, prompts, reasoning, command arguments or outputs exported.",
+    "wrapper_rejections": 0
+  },
+  "roles": {
+    "global_insight": {
+      "api_list_price_estimate_usd": 0.0365788,
+      "billing_routes": {
+        "subscription": 1
+      },
+      "calls": 1,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 48.85830215799979,
+      "reported_usage_calls": 1,
+      "status": {
+        "completed": 1
+      },
+      "successful_process_returns": 1,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "inputTokens": 11705,
+        "outputTokens": 1194,
+        "reasoningOutputTokens": 216,
+        "totalTokens": 25187
+      },
+      "uncached_input_plus_output_tokens": 12899,
+      "unsuccessful_process_returns": 0
+    },
+    "mutation": {
+      "api_list_price_estimate_usd": 1.8086068,
+      "billing_routes": {
+        "subscription": 9
+      },
+      "calls": 9,
+      "completed_without_reported_usage": 1,
+      "remote_elapsed_seconds": 2263.245249019,
+      "reported_usage_calls": 8,
+      "status": {
+        "completed": 9
+      },
+      "successful_process_returns": 8,
+      "timeout_process_returns": 1,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": false,
+      "tokens": {
+        "cacheReadTokens": 106880,
+        "cacheWriteTokens": 0,
+        "inputTokens": 63712,
+        "outputTokens": 54653,
+        "reasoningOutputTokens": 25820,
+        "totalTokens": 225245
+      },
+      "uncached_input_plus_output_tokens": 118365,
+      "unsuccessful_process_returns": 1
+    },
+    "novelty": {
+      "api_list_price_estimate_usd": 0.0961672,
+      "billing_routes": {
+        "subscription": 4
+      },
+      "calls": 4,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 49.61934180900016,
+      "reported_usage_calls": 4,
+      "status": {
+        "completed": 4
+      },
+      "successful_process_returns": 4,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 49152,
+        "cacheWriteTokens": 0,
+        "inputTokens": 42671,
+        "outputTokens": 591,
+        "reasoningOutputTokens": 154,
+        "totalTokens": 92414
+      },
+      "uncached_input_plus_output_tokens": 43262,
+      "unsuccessful_process_returns": 0
+    },
+    "prompt_mutation": {
+      "api_list_price_estimate_usd": 0.0415308,
+      "billing_routes": {
+        "subscription": 1
+      },
+      "calls": 1,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 53.40536000699967,
+      "reported_usage_calls": 1,
+      "status": {
+        "completed": 1
+      },
+      "successful_process_returns": 1,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "inputTokens": 13221,
+        "outputTokens": 1386,
+        "reasoningOutputTokens": 269,
+        "totalTokens": 26895
+      },
+      "uncached_input_plus_output_tokens": 14607,
+      "unsuccessful_process_returns": 0
+    },
+    "readiness": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "recommendation": {
+      "api_list_price_estimate_usd": 0.0245748,
+      "billing_routes": {
+        "subscription": 1
+      },
+      "calls": 1,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 48.63854139800014,
+      "reported_usage_calls": 1,
+      "status": {
+        "completed": 1
+      },
+      "successful_process_returns": 1,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 12288,
+        "cacheWriteTokens": 0,
+        "inputTokens": 7198,
+        "outputTokens": 895,
+        "reasoningOutputTokens": 516,
+        "totalTokens": 20381
+      },
+      "uncached_input_plus_output_tokens": 8093,
+      "unsuccessful_process_returns": 0
+    },
+    "repair": {
+      "api_list_price_estimate_usd": 0.0,
+      "billing_routes": {},
+      "calls": 0,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 0,
+      "reported_usage_calls": 0,
+      "status": {},
+      "successful_process_returns": 0,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "reasoningOutputTokens": 0,
+        "totalTokens": 0
+      },
+      "uncached_input_plus_output_tokens": 0,
+      "unsuccessful_process_returns": 0
+    },
+    "summary": {
+      "api_list_price_estimate_usd": 0.1508184,
+      "billing_routes": {
+        "subscription": 8
+      },
+      "calls": 8,
+      "completed_without_reported_usage": 0,
+      "remote_elapsed_seconds": 138.99743981300026,
+      "reported_usage_calls": 8,
+      "status": {
+        "completed": 8
+      },
+      "successful_process_returns": 8,
+      "timeout_process_returns": 0,
+      "token_scope": "Sum over reported calls only; a lower bound when any admitted call has unavailable usage. Missing usage is not zero.",
+      "token_total_exact_for_all_admitted_calls": true,
+      "tokens": {
+        "cacheReadTokens": 98304,
+        "cacheWriteTokens": 0,
+        "inputTokens": 59324,
+        "outputTokens": 2234,
+        "reasoningOutputTokens": 618,
+        "totalTokens": 159862
+      },
+      "uncached_input_plus_output_tokens": 61558,
+      "unsuccessful_process_returns": 0
+    }
+  },
+  "run_id": "full-r1",
+  "saved_episodes": 40,
+  "schema": "proposal-independent-search-checkpoint-v1",
+  "slot_counts": {
+    "held": 1,
+    "valid": 8
+  },
+  "snapshot_utc": "2026-10-09T12:26:33.523444+00:00",
+  "stop_reason": "All-role call cap reached",
+  "termination_cause": {
+    "class": "other",
+    "note": null,
+    "reason": "All-role call cap reached",
+    "reason_sha256": "9c200a40643672a63a9d084212cda5a67c369340699c20fb6b247d2c7419fd6d",
+    "recorded": true,
+    "source": "budget-ledger"
+  },
+  "transitions": 2869,
+  "valid_descendants": 7
+}

@@ -1,0 +1,232 @@
+[
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 0,
+      "definition": "Original seed before any search-model request.",
+      "provider_elapsed_seconds_at_acceptance": 0.0
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.5363616738311696,
+    "generation": 0,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.5363616738311696,
+    "mean_map_accuracy": 0.9869041845779242,
+    "mean_task": 0.23600000000000004,
+    "outcomes": {
+      "caught": 3,
+      "timeout": 2
+    },
+    "program_id": "2da2bd97-c6aa-42bd-aadb-3bb808578f28",
+    "source_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "status": "valid",
+    "transitions": 750
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 1,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 242.47638110700018
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.8417305602978786,
+    "generation": 1,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.8417305602978786,
+    "mean_map_accuracy": 0.993726400744696,
+    "mean_task": 0.7404000000000001,
+    "outcomes": {
+      "caught": 1,
+      "escaped": 4
+    },
+    "program_id": "b39d3458-c21e-4d7e-9ed8-644cdbeec45c",
+    "source_sha256": "c2475563354eaeb4f621810e7e7c68e73619929c2dfd16ecb73d18fc5e552164",
+    "status": "valid",
+    "transitions": 255
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 3,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 444.58969645100024
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.9426880000000001,
+    "generation": 2,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.9426880000000001,
+    "mean_map_accuracy": 1.0,
+    "mean_task": 0.9044800000000001,
+    "outcomes": {
+      "escaped": 5
+    },
+    "program_id": "5dc9380c-60fd-4790-8cea-242ceb3a5415",
+    "source_sha256": "ac6994efa3befbad8ad7001871d75138c229c5d23250a000014f1534cc57c290",
+    "status": "valid",
+    "transitions": 306
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 4,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 671.9596793560004
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.9379480123618261,
+    "generation": 3,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.9379480123618261,
+    "mean_map_accuracy": 0.9899500309045652,
+    "mean_task": 0.90328,
+    "outcomes": {
+      "escaped": 5
+    },
+    "program_id": "6511d387-b125-499f-a0fb-d61dda7daf7b",
+    "source_sha256": "f4f918d5bc35d4c0416399ee2a6d6c8554a45c811af739234066347da165c258",
+    "status": "valid",
+    "transitions": 291
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 11,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 922.1881129209996
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.9413287354985842,
+    "generation": 4,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.9413287354985842,
+    "mean_map_accuracy": 0.9918018387464607,
+    "mean_task": 0.9076799999999998,
+    "outcomes": {
+      "escaped": 5
+    },
+    "program_id": "2c8cd28e-b3b4-4a3c-97e2-e79aee70e9bf",
+    "source_sha256": "d50248cf7b4a2140f68aed7a431e29e4cf84aaf836c630a66bcf9fe18cc50f7a",
+    "status": "valid",
+    "transitions": 346
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 15,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 1494.8502886079996
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.9438880000000001,
+    "generation": 5,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.9438880000000001,
+    "mean_map_accuracy": 1.0,
+    "mean_task": 0.90648,
+    "outcomes": {
+      "escaped": 5
+    },
+    "program_id": "12430c29-90d5-4743-89b9-c653f4ef18fb",
+    "source_sha256": "01d5b1cc08358a8d9d29d07a616d0bc37ff3706a648ae5ba1f9ace6eb111fcac",
+    "status": "valid",
+    "transitions": 331
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 17,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 1567.9608913829998
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.9426880000000001,
+    "generation": 6,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.9426880000000001,
+    "mean_map_accuracy": 1.0,
+    "mean_task": 0.9044800000000001,
+    "outcomes": {
+      "escaped": 5
+    },
+    "program_id": "e11f122b-8013-4c6d-a9e3-83afec3c96cf",
+    "source_sha256": "8eb081cd8e9a1ddf56d05ad545dc2e192de3a015b81d56054c5460cacb54188f",
+    "status": "valid",
+    "transitions": 306
+  },
+  {
+    "acceptance_budget": {
+      "all_role_calls_at_acceptance": 19,
+      "definition": "All actually dispatched role calls before evaluation submission, including failures and any auxiliary request already in flight.",
+      "provider_elapsed_seconds_at_acceptance": 2396.3406218679993
+    },
+    "accepted_for_evaluation": true,
+    "episodes": 5,
+    "evaluated": true,
+    "evaluator_correct": true,
+    "fitness": 0.941632,
+    "generation": 7,
+    "held_reason_sha256": null,
+    "held_source": null,
+    "held_stage": null,
+    "mean_fitness": 0.941632,
+    "mean_map_accuracy": 1.0,
+    "mean_task": 0.9027200000000001,
+    "outcomes": {
+      "escaped": 5
+    },
+    "program_id": "dc9aa247-18ee-4e8a-b7d9-c447d431849c",
+    "source_sha256": "5069b06ea4d2cb386cd9141e8856fe4eba6d020c9f0c580a6f7261bb33fb4163",
+    "status": "valid",
+    "transitions": 284
+  },
+  {
+    "acceptance_budget": {},
+    "accepted_for_evaluation": false,
+    "episodes": 0,
+    "evaluated": false,
+    "evaluator_correct": null,
+    "fitness": null,
+    "generation": 8,
+    "held_reason_sha256": "9c200a40643672a63a9d084212cda5a67c369340699c20fb6b247d2c7419fd6d",
+    "held_source": "programs/held-008.py",
+    "held_stage": "generated_before_novelty",
+    "mean_fitness": null,
+    "mean_map_accuracy": null,
+    "mean_task": null,
+    "outcomes": {},
+    "program_id": null,
+    "source_sha256": "09fd90ecff56b25845c7f1f33db88702471a6278a93e4569b90993f8ca0ccde4",
+    "status": "held",
+    "transitions": 0
+  }
+]

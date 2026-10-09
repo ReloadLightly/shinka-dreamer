@@ -323,10 +323,20 @@ def export(campaign, out):
             if accepted.get("source_sha256") != digest(source):
                 raise ValueError("Accepted pending source hash differs")
             public_text(out / "programs" / f"accepted-pending-{generation:03d}.py", source)
+        held_source = None
+        if held.get("source_sha256") and not row and not accepted and not episodes:
+            source_path = directory / "main.py"
+            source = source_path.read_text()
+            if digest(source_path.read_bytes()) != held["source_sha256"]:
+                raise ValueError("Held generated source hash differs")
+            held_source = f"programs/held-{generation:03d}.py"
+            public_text(out / held_source, source)
+            candidate_hash = held["source_sha256"]
         status = ("valid" if row.get("correct") else "failed" if row else
                   "evaluated_pending_native_record" if episodes else "accepted_pending" if accepted else
                   "held" if held else "pending")
         slots.append({"generation": generation, "status": status, "program_id": row.get("id"),
+            "source_sha256": candidate_hash, "held_source": held_source,
             "fitness": row.get("combined_score"), "episodes": len(episodes),
             "transitions": sum(e.get("steps", 0) for e in episodes),
             "outcomes": dict(Counter(e.get("reason", "unknown") for e in episodes)),
@@ -334,6 +344,7 @@ def export(campaign, out):
             "mean_task": sum(e["task"] for e in episodes) / len(episodes) if episodes else None,
             "mean_map_accuracy": sum(e["model_accuracy"] for e in episodes) / len(episodes) if episodes else None,
             "accepted_for_evaluation": bool(acceptance or accepted),
+            "evaluated": bool(episodes),
             "acceptance_budget": pick(acceptance, ("all_role_calls_at_acceptance",
                 "provider_elapsed_seconds_at_acceptance", "definition")),
             "held_stage": held.get("stage"),

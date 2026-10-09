@@ -1,0 +1,62 @@
+{
+  "file": "representative-replays.json.gz",
+  "replays": [
+    {
+      "candidate_sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "case": 0,
+      "frames": 86,
+      "generation": 0,
+      "reason": "caught"
+    },
+    {
+      "candidate_sha256": "c2475563354eaeb4f621810e7e7c68e73619929c2dfd16ecb73d18fc5e552164",
+      "case": 0,
+      "frames": 38,
+      "generation": 1,
+      "reason": "caught"
+    },
+    {
+      "candidate_sha256": "ac6994efa3befbad8ad7001871d75138c229c5d23250a000014f1534cc57c290",
+      "case": 0,
+      "frames": 46,
+      "generation": 2,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "f4f918d5bc35d4c0416399ee2a6d6c8554a45c811af739234066347da165c258",
+      "case": 0,
+      "frames": 50,
+      "generation": 3,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "d50248cf7b4a2140f68aed7a431e29e4cf84aaf836c630a66bcf9fe18cc50f7a",
+      "case": 0,
+      "frames": 91,
+      "generation": 4,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "01d5b1cc08358a8d9d29d07a616d0bc37ff3706a648ae5ba1f9ace6eb111fcac",
+      "case": 0,
+      "frames": 37,
+      "generation": 5,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "8eb081cd8e9a1ddf56d05ad545dc2e192de3a015b81d56054c5460cacb54188f",
+      "case": 0,
+      "frames": 46,
+      "generation": 6,
+      "reason": "escaped"
+    },
+    {
+      "candidate_sha256": "5069b06ea4d2cb386cd9141e8856fe4eba6d020c9f0c580a6f7261bb33fb4163",
+      "case": 0,
+      "frames": 60,
+      "generation": 7,
+      "reason": "escaped"
+    }
+  ],
+  "selection": "First saved public-training replay in each valid canonical generation; no episodes rerun."
+}

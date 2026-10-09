@@ -7,12 +7,12 @@ import hashlib
 import json
 from pathlib import Path
 
+from scripts import chromatic_fields as style
+
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 from matplotlib.ticker import MaxNLocator
-
-from scripts import chromatic_fields as style
 
 
 def read(path):
@@ -92,7 +92,8 @@ def render(directory):
                        loc='upper left', bbox_to_anchor=(0, -.15), fontsize=8)
     failed = sum(c.get('has_error') or c.get('returncode') not in (0, None) for c in calls)
     seconds = sum(c.get('elapsed_seconds', 0) for c in calls)
-    fig.text(.03, .19, f'{len(calls)}/{cap} requests · {failed} failed requests · {seconds/60:.1f} provider-minutes · '
+    failure_label = 'failed request' if failed == 1 else 'failed requests'
+    fig.text(.03, .19, f'{len(calls)}/{cap} requests · {failed} {failure_label} · {seconds/60:.1f} provider-minutes · '
              f'{summary["valid_descendants"]} valid descendants · {summary["saved_episodes"]} training episodes',
              fontsize=10, color=style.SECONDARY)
     fig.text(.03, .12, 'Numbers at source points are generation IDs. Dotted line marks actual request consumption; unused allowance stays visible.',

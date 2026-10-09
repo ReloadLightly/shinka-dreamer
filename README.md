@@ -557,6 +557,54 @@ frame-cell claims, only four correct. Accuracy fell from 97.8163% to 97.4401%,
 while all 79 actions stayed identical. This is a reporting-denominator effect on
 one historical trajectory, not a population estimate or evidence of better control.
 
+### 4.7 Independent-search study: first completed block
+
+The [frozen broader-study design](artifacts/proposal/broader-study/study-plan.json)
+compares three independent full-native searches with three original-seed rewrite
+searches. Each has a maximum of 24 provider calls across all roles, 5,400 provider
+seconds and two hours. Full-native search retains ancestry, islands, inspirations,
+two-model bandit selection, local embedding novelty and meta/prompt evolution.
+The rewrite arm draws independent full programs from the original seed with
+alternating models and no auxiliary calls. This compares whole search strategies;
+common ceilings do not imply equal realized computation. After all six searches,
+64 fresh shared cases select frozen nominees and 512 further cases assess winners.
+Neither fresh pool has been drawn.
+
+The first full-native repetition (`full-r1`) is complete. It evaluated the seed
+and seven valid descendants on the same five public training cases: **40 episodes,
+2,869 transitions, zero invalid executions**. The highest training fitness belongs
+to generation 5: **F=0.943888, S=0.90648, A=1.000000, 5/5 escapes**, with **17.07%**
+final reported-map coverage. The seed had F=0.536362 and 0/5 escapes. These are
+training results under adaptive search; they do not establish generalization or
+search-strategy superiority. Perfect reported-cell accuracy with sparse coverage
+again illustrates the reconstruction objective's limitation.
+
+![First independent full-native search and all-role request allocation](artifacts/proposal/broader-study/search/full-r1/figures/search-checkpoint.svg)
+
+**Figure 14. First independent full-native search checkpoint.** The incumbent
+curve uses the all-role call count when each proposal was accepted for evaluation.
+The right panel counts every dispatched provider request, including one timeout.
+All four islands were sampled, one migration occurred, four samples used
+inspirations and four used recommendations. Both mutation models were used;
+local embeddings, four novelty-judge calls and an evolved prompt were observed.
+These events establish mechanism execution, not their causal benefit.
+
+The run stopped normally at **24 calls**: nine mutation, four novelty, eight
+summary, one global-insight, one recommendation and one prompt-mutation request.
+One mutation request timed out; its usage is unknown and remains outside the
+reported token lower bound. All calls required subscription billing and passed
+the raw context audit; 23 returned reported subscription usage. Local CPU
+embeddings made nine calls separately. Execution consumed **44.93 measured
+wall-minutes**, **43.38 provider-minutes** and **1.10 GiB peak combined RSS**.
+A final generated generation-8 proposal was held before its required novelty
+check because the call cap had been reached. It is preserved as unevaluated and
+cannot enter selection. Native lineage, sources, representative saved replays,
+resource and route audits are in the
+[compact checkpoint](artifacts/proposal/broader-study/search/full-r1/summary.json).
+[Native search guidance](artifacts/proposal/broader-study/search/full-r1/guidance.json)
+is exported as model-produced guidance, not validated scientific findings.
+Five independent blocks, selection and fresh assessment remain.
+
 ## 5. Discussion and limitations
 
 The seed accurately reconstructs the cells it reports, but rarely escapes.
@@ -576,9 +624,9 @@ positive contribution to elapsed steps. We disclose these properties while
 preserving the requested objective. High composite fitness must not be described
 as proof of understanding.
 
-The first two successful descendants are direct seed mutations with no
-inspirations. Their results therefore do not establish a benefit from accumulated
-evolutionary history. Persistent memory is used by their planners, but the
+The two historical successful descendants are direct seed mutations with no
+inspirations. The new independent run uses accumulated ancestry and inspirations,
+but neither observation establishes their causal benefit. Persistent memory is used by their planners, but the
 contribution of mapping versus pathfinding versus risk heuristics is only partly
 isolated by the two specified interventions in section 4.6. Independent discovery
 reliability remains unmeasured. The known uniform enemy law is

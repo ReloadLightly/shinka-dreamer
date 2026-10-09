@@ -63,6 +63,33 @@ class StudySearchReportTests(unittest.TestCase):
             for forbidden in ("do-not-export-secret", "private-prompt-body", "private-error-body", "987654321987654321"):
                 self.assertNotIn(forbidden, output)
 
+    def test_held_generated_source_is_hash_verified_and_never_counted_as_evaluated(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            campaign = self.fixture(root, "full")
+            source = "def planner(): return 8\n"
+            source_hash = hashlib.sha256(source.encode()).hexdigest()
+            save(campaign / "gen_8/held-proposal.json", {"generation": 8,
+                "stage": "generated_before_novelty", "source_sha256": source_hash,
+                "reason": "All-role call cap reached"})
+            (campaign / "gen_8/main.py").write_text(source)
+            summary = export(campaign, root / "public")
+            slot, = json.loads((root / "public/slots.json").read_text())
+            self.assertEqual(slot["status"], "held")
+            self.assertEqual(slot["held_stage"], "generated_before_novelty")
+            self.assertEqual(slot["source_sha256"], source_hash)
+            self.assertEqual((root / "public" / slot["held_source"]).read_text(), source)
+            self.assertFalse(slot["accepted_for_evaluation"])
+            self.assertFalse(slot["evaluated"])
+            self.assertIsNone(slot["fitness"])
+            self.assertIsNone(slot["mean_fitness"])
+            self.assertEqual(summary["saved_episodes"], 0)
+            self.assertEqual(summary["valid_descendants"], 0)
+            self.assertFalse(summary["acceptance_prefixes"])
+            (campaign / "gen_8/main.py").write_text(source + "# changed\n")
+            with self.assertRaisesRegex(ValueError, "Held generated source hash differs"):
+                export(campaign, root / "mismatched")
+
     def test_accepted_prefix_lineage_and_raw_tools_counted_without_payloads(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

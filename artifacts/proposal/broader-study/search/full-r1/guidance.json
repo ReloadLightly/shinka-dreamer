@@ -1,0 +1,293 @@
+{
+  "run_id": "full-r1",
+  "arm": "full",
+  "scope": "Intended model-produced search guidance, not validated scientific findings. Native global-insight output is an explicit requested artifact, not a private reasoning channel. Descriptions may use local context program numbering.",
+  "excluded": "No unprocessed program objects, arbitrary metadata, provider streams, hidden reasoning, authentication data or assessment cases.",
+  "meta": {
+    "processed_program_count": 4,
+    "pending_program_count": 4,
+    "generated_program_summaries": "**Program Name: Relative Map Memory with Greedy Target Navigation**\n- **Implementation**: Updates a persistent relative map from observed displacement and 5×5 observations, recording collected keys, inventory, door state, and anonymous enemy sightings. Planning moves toward the Manhattan-nearest key, exit, or eligible door, enables nearby interaction, and uses random movement with five-step enemy-location avoidance, without obstacle-aware pathfinding.\n- **Performance**: Combined score was 0.54 across 5 valid episodes, with 0.236 task score, 0.987 map accuracy, 34.3% coverage, 1.2 keys per episode, and no escapes; 3 episodes ended in capture and 2 timed out.\n- **Feedback**: Accurate reconstruction of reported cells did not translate into successful navigation, and limited coverage qualifies the high map accuracy. Evaluation recommends improving map updating and planning, assessing escapes and failures separately from the weighted score, and treating map accuracy as current-state reconstruction rather than future prediction.\n**Program Identifier:** Generation 0 - Patch Name initial_program - Correct Program: True\n\n**Program Name: Relative Map Memory with Risk-Aware Frontier Planning**\n- **Implementation**: Updates relative coordinates from actual displacement, stores persistent terrain, and reports current-phase cells plus landmarks while tracking anonymous enemy occupancy through uniform move propagation. Risk-weighted Dijkstra routing respects walls, doors, and diagonal constraints, prioritizes keys and escape, explores informative frontiers, and always enables interaction.\n- **Performance**: Combined score was 0.84 across 5 valid episodes, with 0.74 mean task score, 0.99 map accuracy, 44% coverage, 51 average steps, 1.8 average keys, 4 escapes, and 1 capture.\n- **Feedback**: Selective reporting maintained high reconstruction accuracy despite limited coverage, while risk-aware planning still allowed one capture. Evaluation recommends improving mapping and planning, assessing escapes and failures separately, and treating map accuracy as reconstruction after observation rather than future prediction.\n**Program Identifier:** Generation 1 - Patch Name terrain_memory_and_risk_aware_paths - Correct Program: True\n\n**Program Name: Map Memory with Risk-Aware Receding-Horizon Planning**\n- **Implementation**: Updates persistent terrain memory using actual displacement, collection feedback, door state, and observations, while reporting only currently visible cells for reconstruction. Uses weighted graph search for key itineraries and exploration, plus a five-turn controller that penalizes contact risk forecast from anonymous enemy random walks.\n- **Performance**: Combined score was 0.94 across five episodes, with 0.90448 mean task score, 1.00 model accuracy, 61.2 average steps, two keys per episode, and five escapes without catches, timeouts, or invalid actions; all validation tests passed.\n- **Feedback**: Current-observation reconstruction achieved perfect reported-cell accuracy, while map coverage remained low at 8.89%; coverage is diagnostic rather than part of the accuracy score. All episodes escaped successfully, supporting the planning approach, though the five-episode evaluation provides limited evidence of broader robustness.\n**Program Identifier:** Generation 2 - Patch Name survival_horizon - Correct Program: True\n\n**Program Name: Epoch-Aware Mapping with Risk-Filtered Dijkstra Planning**\n- **Implementation**: Updates relative coordinates using actual displacement, stores terrain separately from anonymous enemy sightings, and excludes stale mutable cells from the reported map every 25-step epoch. Planning restricts first moves to minimum collision risk, then uses Dijkstra with visit/staleness penalties to pursue keys, doors, exits, or information-rich observation positions.\n- **Performance**: Achieved a combined score of 0.94, with 0.90 task score, 0.99 map accuracy, and 5/5 escapes averaging 58.2 steps and two keys, with no catches, timeouts, or invalid actions.\n- **Feedback**: All validation tests passed; strong map accuracy accompanied only 33% coverage, since accuracy measures reported in-bounds cells after observation rather than future predictions. Evaluation recommends improving mapping and planning while assessing escape and failure outcomes separately from the weighted score.\n**Program Identifier:** Generation 3 - Patch Name safe_frontier_paths - Correct Program: True",
+    "generated_global_insights": "## Successful Algorithmic Patterns\n\n- **Obstacle-aware, risk-aware routing produced the largest improvement.** Generation 1, *Relative Map Memory with Risk-Aware Frontier Planning*, replaced Generation 0’s Manhattan targeting and random movement with Dijkstra routing, diagonal constraints, enemy-risk estimates, and informative frontier exploration. Combined score rose **0.54 → 0.84**, task score **0.236 → 0.74**, and escapes **0/5 → 4/5**. These changes were evaluated together, so their individual contributions are not isolated.\n- **The current best’s five-turn survival controller accompanied perfect escape outcomes.** Generation 2, *Map Memory with Risk-Aware Receding-Horizon Planning*, combined key itineraries with a time-expanded controller penalizing forecast enemy contact. It achieved **0.94 combined score, 0.90448 task score, and 5/5 escapes**, with no captures, timeouts, or invalid actions.\n- **Generation 3 supports the broader value of explicit collision-risk control.** *Epoch-Aware Mapping with Risk-Filtered Dijkstra Planning* also achieved **0.94 and 5/5 escapes**, using minimum-risk first moves and visit/staleness penalties. Both strongest programs explicitly integrated survival into movement selection.\n\n## Ineffective Approaches\n\n- **Manhattan-nearest targeting without obstacle-aware paths performed poorly.** Generation 0 achieved only **0.236 task score**, collected **1.2 keys per episode**, and never escaped. Its target heuristic did not account for walls, doors, or feasible diagonal movement; accurate mapping alone could not resolve those navigation limitations.\n- **Random movement with five-step enemy-location avoidance was insufficient in Generation 0.** Its **three captures and two timeouts** show that the overall strategy failed both survival and completion. Later programs propagated anonymous enemy occupancy and evaluated routes or action sequences, although the evaluations do not isolate the avoidance change from their other improvements.\n- **High reported-cell accuracy was ineffective as a standalone success indicator.** Generation 0 already had **0.987 map accuracy** despite zero escapes. The feedback explicitly qualifies this accuracy by limited coverage and its measurement of reconstruction after observation.\n\n## Implementation Insights\n\n- **The current best separates reporting, navigation memory, and risk forecasts.** `believed_map = visible` reports current observations, while `terrain` and `seen` retain information for planning and `enemy_mass` supports forecasting. This achieved **1.00 reported-cell accuracy at only 8.89% coverage**, while still supporting successful navigation.\n- **Its memory updates use observed outcomes.** Position changes follow actual displacement, collection feedback clears collected-key locations, and door feedback updates terrain. Enemy sightings remain anonymous, and negative observations remove visible occupancy hypotheses. These mechanisms keep planning state grounded in observations rather than attempted actions.\n- **Its controller evaluates future action sequences and executes the first move.** A five-turn backward dynamic program includes waiting, legal movement, terminal goal distance, and contact penalties using `-risk_price * log1p(-probability)`. It excludes currently occupied destinations on the first move and increases survival weighting when sufficient time remains. This implementation accompanied **zero captures across five episodes**; forecast accuracy itself was not separately measured.\n- **Goal selection accounts for the remaining task.** With no keys, the current best evaluates first-key travel plus a second-key continuation and an exit/door anchor cost. Exploration scores unknown and stale observations against travel and visits. Always enabling interaction also supports collection and door use, including after diagonal arrival on a key.\n\n## Performance Analysis\n\n- **Most score improvement came from task completion.** Across Generations 0, 1, and the current best, task scores rose **0.236 → 0.74 → 0.90448**, while map accuracy moved only **0.987 → approximately 0.99 → 1.00**. Under the evaluator’s **60% task / 40% accuracy** weighting, the best program’s unrounded combined score is approximately **0.9427**.\n- **Generation 3 matched the current best’s rounded score and escape count.** It averaged **58.2 steps versus 61.2**, with approximately **0.99 versus 1.00 map accuracy** and **33% versus 8.89% coverage**. These results demonstrate a different tradeoff; the supplied rounded metrics do not establish a meaningful overall regression.\n- **Coverage and average steps require outcome context.** The current best had lower reported coverage than Generations 0 and 1 but stronger task results. Generation 1’s **51 average steps** included a capture, so its shorter episodes do not establish faster successful completion. Five episodes per program provide limited evidence of broader robustness.",
+    "recommendation_history": [
+      {
+        "sha256": "20d531e3afd15534b4d057947e68518a8a57a96051e60c2f986616d150a07a67",
+        "text": "1. **Include risk in long-range goal selection.** Add forecast contact penalties to Dijkstra edge costs when ranking keys, exits, and exploration targets, while retaining the current five-turn survival controller. Both strongest programs integrate collision risk into movement; extending that reasoning to goal selection could prevent repeatedly choosing a short route through a dangerous corridor.\n\n2. **Plan key itineraries with inventory-dependent door access.** Evaluate routes over states such as `(position, collected_key_mask)`, enabling door traversal after the second key and enforcing cardinal entry into closed doors. The current itinerary heuristic successfully considers subsequent objectives, but its fixed-inventory graph cannot price routes that become available after collecting both keys.\n\n3. **Adapt the controller horizon to nearby hazards.** Keep five turns as the default, but extend to seven or nine when predicted enemy occupancy intersects reachable paths or the agent approaches a narrow passage; add residual contact risk to the terminal value. This builds on the current controller’s perfect observed escape record and targets hazards just beyond its planning horizon without increasing computation everywhere.\n\n4. **Turn speculative stale-wall routes into explicit observation waypoints.** When a planned route relies on an old wall becoming traversable, first target a legally reachable position whose observation window covers that wall, then replan from the refreshed terrain. Preserve displacement-based positioning and current-observation reporting; this connects the existing epoch-aware memory to executable movement and could reduce stalls caused by speculative routes that the legal controller cannot follow.\n\n5. **Preserve uncertainty lost through enemy-mass pruning.** Track mass discarded by the `0.00015` cutoff and retain a bounded regional approximation over reachable hidden cells, clearing it wherever negative observations rule out occupancy. Anonymous occupancy propagation already supports successful survival; this mutation would test whether dispersed enemy hypotheses currently disappear too quickly, while keeping the three-enemy capacity constraint and avoiding invented identities."
+      }
+    ],
+    "current_recommendation_sha256": "20d531e3afd15534b4d057947e68518a8a57a96051e60c2f986616d150a07a67"
+  },
+  "prompts": [
+    {
+      "id": "eb987cf2-ad05-4457-81ce-a4e8f15c1864",
+      "parent_id": null,
+      "generation": 0,
+      "program_generation": 0,
+      "name": "initial_system_prompt",
+      "description": "Initial system prompt provided by the user.",
+      "patch_type": "init",
+      "prompt_text": "You are evolving an agent mind for a partially observable dynamic maze. The\nagent's world_model_step maintains an internal map from limited 5x5 views, and\nplanner chooses actions using that map. Improve escape and current believed-map\naccuracy. Consider spatial memory, anonymous enemy sightings, uncertainty,\npathfinding and dynamic walls. Both functions, representations and helpers may\nevolve freely inside the EVOLVE block.\n\nThe maze is 15x15, with two keys, a gating door, exit, three anonymous enemies,\nwalls toggling every25steps and a200step horizon. Nine attempted displacements\ninclude waiting; blocked moves stay and diagonal corner cutting is forbidden.\nInteraction opens an adjacent cardinal door before movement when both keys are\nheld; interaction also collects a key at the destination. Contact with an enemy\nbefore or after enemy movement is fatal. Enemies use uniform attempted moves.\n\nworld_model_step(memory,local_obs,last_action) returns memory; planner returns\n{'move':[dx,dy], 'interact':bool}. The fixed wrapper reads memory['believed_map'],\na dictionary {(x,y):cell_type} in coordinates relative to the initial agent\nposition. Other internal representations are unrestricted. Observations provide\ngrid,terrain,step,health,keys,door_open and feedback with actual displacement,\ncollected and opened. Enemy identities, hidden world and seeds are not supplied.\n\nThe original task reward is clip((.1*steps+20*keys+30*door_open+\n100*escaped-50*caught+50)/250,0,1). Model accuracy is the fraction of correct\nreported in-bounds map entries accumulated after observation and before action\noutcomes; enemy cells use code5. Episode fitness=.6*task+.4*accuracy; invalid\nexecutions score0. A population's score is its episode mean. Missing maps score0.\nCoverage and escape/death/timeout are reported separately. This is current-state\nreconstruction, not future prediction. No learned transition predictor is required.\n\nUse Python3.10 standard library,192MiB,10CPU-seconds/episode,3s/reply. Do not access\nthe environment, files, processes or network. Return the native requested patch\nor full module. Do not call tools or inspect the repository.\n",
+      "program_count": 5,
+      "correct_program_count": 5,
+      "fitness": 0.66,
+      "kind": "original supplied task prompt",
+      "program_ids": [
+        "b39d3458-c21e-4d7e-9ed8-644cdbeec45c",
+        "5dc9380c-60fd-4790-8cea-242ceb3a5415",
+        "6511d387-b125-499f-a0fb-d61dda7daf7b",
+        "2c8cd28e-b3b4-4a3c-97e2-e79aee70e9bf",
+        "12430c29-90d5-4743-89b9-c653f4ef18fb"
+      ],
+      "prompt_sha256": "34b0e4de2d0f829f5e3ae2602cf8042b62193b181cdf389df4db355f43686dca"
+    },
+    {
+      "id": "3948dd61-4d95-4c0a-8299-43edef769428",
+      "parent_id": "eb987cf2-ad05-4457-81ce-a4e8f15c1864",
+      "generation": 1,
+      "program_generation": 4,
+      "name": "separated_memory_survival_planning",
+      "description": "1. Program 1 reports only visible cells while retaining terrain and enemy forecasts separately, achieving 1.00 reported accuracy. Explicitly separate reconstruction from planning memory and omit uncertain historical cells from the reported map.\n2. Program 1 combines Dijkstra distances, two-key itineraries, and exploration scored by 5x5 information gain per travel cost. Encourage feasible mission routes and informative observation positions, with visit and wall-epoch penalties.\n3. Program 1 uses five-turn survival planning; Programs 2–3 filter first moves by collision risk. Encourage bounded receding-horizon control that models blocked enemy attempts, both contact timings, and waiting. These patterns accompanied successful escapes, although the small evaluations do not isolate their individual effects.",
+      "patch_type": "diff",
+      "prompt_text": "You are evolving an agent mind for a partially observable dynamic maze. The agent's world_model_step maintains internal memory from limited 5x5 views, and planner chooses actions using that memory. Improve escape and current believed-map accuracy. Both functions, representations and helpers may evolve freely inside the EVOLVE block.\n\nThe maze is 15x15, with two keys, a gating door, exit, three anonymous enemies, walls toggling every 25 steps and a 200-step horizon. Nine attempted displacements include waiting; blocked moves stay and diagonal corner cutting is forbidden. Interaction opens an adjacent cardinal door before movement when both keys are held; interaction also collects a key at the destination. Contact with an enemy before or after enemy movement is fatal. Enemies use uniform attempted moves.\n\nworld_model_step(memory,local_obs,last_action) returns memory; planner returns {'move':[dx,dy], 'interact':bool}. The fixed wrapper reads memory['believed_map'], a dictionary {(x,y):cell_type} in coordinates relative to the initial agent position. Other internal representations are unrestricted. Observations provide grid,terrain,step,health,keys,door_open and feedback with actual displacement, collected and opened. Enemy identities, hidden world and seeds are not supplied.\n\nUse these concrete patterns from successful agents:\n\n1. Separate accurate reporting from persistent navigation memory and future risk forecasts. Update relative position using feedback's actual displacement before integrating observations. Maintain terrain, observation timestamps, visits, collected landmarks and outside cells independently of enemy occupancy. Use the terrain observation to recover ground beneath enemies when available. A strong reporting baseline is to replace believed_map with the current observed in-bounds grid, including code5 for enemies; retain historical terrain privately for planning. Do not report forecast occupancy or stale terrain as current fact. Apply collection and door feedback to remembered landmarks. Track wall freshness by step//25, and use observed boundaries and the 15x15 size to constrain exploration.\n\n2. Route over an obstacle-aware graph using Dijkstra or equivalent shortest-path search. Check both orthogonal side cells for diagonal moves and model cardinal door opening before movement. Distinguish currently executable actions from speculative routes through terrain last seen before a wall-change boundary; penalize stale routes and replan after each observation. With two known uncollected keys, evaluate first-key distance plus a feasible second-key continuation and, when known, a door/exit continuation instead of choosing the nearest key alone. When objectives are unknown or unreachable, score reachable observation positions by new cells in their 5x5 view plus useful stale-cell refresh, divided by travel effort; discourage repeated visits and stabilize useful goals. Keep interaction enabled to support door use and key collection, including waiting on a key.\n\n3. Integrate survival into action selection. Represent anonymous enemy occupancy without inventing identities; observed empty cells eliminate occupancy hypotheses. Propagate uniform attempted moves with probability 1/9 each, sending blocked or corner-invalid attempts back to the source. Respect enemy movement rules rather than granting enemies the agent's key-based door-opening ability. Evaluate contact at the chosen destination both before and after enemy movement. Never select a currently enemy-occupied destination when a nonoccupied option exists. Prefer a bounded controller of about five turns over locally reachable legal states, including waiting, with terminal obstacle-aware goal distance and a strong collision penalty such as -lambda*log1p(-p). Execute only its first action and replan. A simpler fallback filters first actions by minimum immediate collision risk, then routes among those actions. Bound forecast support and search depth to stay within runtime limits, and balance survival against the remaining episode horizon.\n\nThe original task reward is clip((.1*steps+20*keys+30*door_open+100*escaped-50*caught+50)/250,0,1). Model accuracy is the fraction of correct reported in-bounds map entries accumulated after observation and before action outcomes; enemy cells use code5. Episode fitness=.6*task+.4*accuracy; invalid executions score0. A population's score is its episode mean. Missing maps score0. Coverage and escape/death/timeout are reported separately; coverage is diagnostic, not a reward term. This is current-state reconstruction, not future prediction. No learned transition predictor is required. Prioritize reliable task completion alongside truthful reporting; high map accuracy alone does not imply successful navigation.\n\nUse Python3.10 standard library,192MiB,10CPU-seconds/episode,3s/reply. Do not access the environment, files, processes or network. Return the native requested patch or full module. Do not call tools or inspect the repository.",
+      "program_count": 2,
+      "correct_program_count": 2,
+      "fitness": 0.75,
+      "kind": "evolved model-produced prompt",
+      "program_ids": [
+        "e11f122b-8013-4c6d-a9e3-83afec3c96cf",
+        "dc9aa247-18ee-4e8a-b7d9-c447d431849c"
+      ],
+      "prompt_sha256": "3526dbece8b2e722c4f494bb764427c3d36c0583146d01c83b604a3a4d66a284"
+    }
+  ],
+  "request_context_audits": [
+    {
+      "id": "20261009T113406698212Z-a44ce567",
+      "role": "mutation",
+      "raw_events_sha256": "99274a73fbfaa0a374a06f5f1773156106a02bd8904efcef21497e8e53c26ae6",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T113825651437Z-ff356cf1",
+      "role": "mutation",
+      "raw_events_sha256": "5337b54d744795c00cfbde8223578bfc9176ea715e74cfcb2798a54133fbb135",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114146563065Z-eadcf09d",
+      "role": "novelty",
+      "raw_events_sha256": "151e0b708bf5a37cbb61b7dad64f2cad251d01de8ed6af06b0159f3c25945f58",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114204957167Z-6826fb26",
+      "role": "mutation",
+      "raw_events_sha256": "c44b3f3f21a6b3e0558a7b318726c2de1b5b98b0676e0dd839bb47f7d7dbe44b",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114605286869Z-9025e1aa",
+      "role": "summary",
+      "raw_events_sha256": "1ba957de4a06849b0ae3fca26ead1725a451a0c4523df7afcf62a6057dcd0169",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114624855398Z-cee3d366",
+      "role": "summary",
+      "raw_events_sha256": "ca3a6ea1e4db163c417652f1b83b7fc084a5125fb0c51808fb836252b638bac2",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114640984453Z-f67ec5b2",
+      "role": "summary",
+      "raw_events_sha256": "5472e46e1bb729583516588da67dbb0e767999990580fb4db360ccb72e2c92de",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114657483443Z-c819be45",
+      "role": "summary",
+      "raw_events_sha256": "7f4bb614e818fb7fc9a0a438eed3e18a19b65fd785199d609d9572bfcc6683e0",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114715561697Z-4b4b9942",
+      "role": "mutation",
+      "raw_events_sha256": "f9c6942a1a13db1833874ce90ef0d58f3420815a19b3ac901b454782495d2597",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T114924117429Z-b2f370ed",
+      "role": "global_insight",
+      "raw_events_sha256": "0b20c65a785874fd954f4558f6db0f565b9b7fcca82c92c9764d02b450711e56",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T115015758008Z-6ca10c0a",
+      "role": "novelty",
+      "raw_events_sha256": "c5ab70a64668cce761c4a7e944be2288d1d4780992880dcd8338387b70b97be2",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T115026476544Z-57f20fc4",
+      "role": "recommendation",
+      "raw_events_sha256": "9cd5a38a81e207039e42926e3ccc601591c035d3c9478a8c0acf4448c54e914d",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T115118103777Z-f9337f9d",
+      "role": "prompt_mutation",
+      "raw_events_sha256": "8db1065ff3735901ffa7e4409d5a49af972c3235cfbcda1238de0296f30cc7a0",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T115212877325Z-0e8e7db7",
+      "role": "mutation",
+      "raw_events_sha256": "b3e51d174359946dc5db23354efbbbc3703fc81d8abf60bad199b1f34a019a70",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T120016395471Z-4efdcf55",
+      "role": "novelty",
+      "raw_events_sha256": "99fc76ab7cca2e8f5ce5dda1f5b253829dcf29ce9be5dfa918a55bb18d5dbe58",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T120033288855Z-ec894876",
+      "role": "mutation",
+      "raw_events_sha256": "18a9ad610337582939e4952a1fccb52bb2dc6562922a8142bec475fe3430e13c",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T120141276629Z-1acc2a3a",
+      "role": "novelty",
+      "raw_events_sha256": "c2e140e9a0a704953f192c4aa50c545226d66aab9c45438dab9150f61828f843",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T120159227100Z-a51abf4b",
+      "role": "mutation",
+      "raw_events_sha256": "ddc713854dffce489c72449a166ae24574d12bb8e439d7ecc674e4882743dfab",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T121022109665Z-7437783f",
+      "role": "mutation",
+      "raw_events_sha256": "13e1a590da159f458b535ae25205a22fc6b57915bc43c09d56d88cdb2d6a94cd",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T121642684233Z-a9945d47",
+      "role": "summary",
+      "raw_events_sha256": "33740d4c582d3facc0e91cbeb71efd27ce689900f5927bd22c6875af34de39cb",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T121659038363Z-77707d9d",
+      "role": "summary",
+      "raw_events_sha256": "0b6d22371887178e0fc1f9ddbb4ac8a343b6b2ae84022bcee22a48c0ad6f1765",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T121719676058Z-6e6c1339",
+      "role": "summary",
+      "raw_events_sha256": "312f9f192cbc8f9f0b3f4a710120a51097a161b4b915599968f67951c0dde7ea",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T121737937227Z-1ca545ac",
+      "role": "summary",
+      "raw_events_sha256": "95358d96026bb796d7721aae9ffb67c37b4b35cc03614ec83b0c39534f8e7626",
+      "context_validated": true
+    },
+    {
+      "id": "20261009T121758445075Z-fd53793d",
+      "role": "mutation",
+      "raw_events_sha256": "91bd0af40ac75a516c86620ddf84cc5f0e44bf26a0013cb2946d8124a061e90a",
+      "context_validated": true
+    }
+  ],
+  "input_sha256": {
+    "results/proposal-broader-study/search/full-r1/execution-resources.json": "1b4c15c56e9c0ae61b75efbb667b51eb6a51efa47c97ea03659258b41e506d7f",
+    "results/proposal-broader-study/search/full-r1/campaign-manifest.json": "161091eb77f169bd380a4dcfc9614dfdcad1d152990ce1cd45a28d6984cd56f6",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T113406698212Z-a44ce567.json": "39484e1c8bcca6493f17fa1a3d85929cf9baa1e2558cddb85abc683c5ba2feef",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T113825651437Z-ff356cf1.json": "e1bd35b3f62d1f14adba1a632ea21b06e9e421f2a9a496ee51480ff8934caa96",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114146563065Z-eadcf09d.json": "76f5bb165d662bb18e306104a0619a65c21718215f8f1e4686537e6accd281cb",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114204957167Z-6826fb26.json": "2fcca82da2f8c7d3c12fb6da346cd25735161297a792e80fcd4526bc4933c122",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114605286869Z-9025e1aa.json": "e218b3c29ecb930e3143d522f36df4a0fdc95dd18ceb9f97c693bad726c26eb4",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114624855398Z-cee3d366.json": "ab9f4cbe86de6403c6235cf001bf6de5a412fdbd9a8be7910637c04823e6ce4c",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114640984453Z-f67ec5b2.json": "2956852ad056389ded21a2ee41d457acd041ed48b29f98adc623e94ae0dda26a",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114657483443Z-c819be45.json": "94c6b7d41bf8395eba601eac31c8927638cb14f4eac722f225a567cbde815bd8",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114715561697Z-4b4b9942.json": "f7d5a90246770b3b2fabf649ff7037edde3770cd592cbecc89fce51838dc5c5e",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T114924117429Z-b2f370ed.json": "05f241f10b70a4c3574cf6cd4ceacdb7995b8a68e30b58f65a813dff8dcfe241",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115015758008Z-6ca10c0a.json": "21ef29c00900cf3d5b0cc05baf33f156371210f69840f496ff2cfb1eb74a548b",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115026476544Z-57f20fc4.json": "dd63788afc2ce320c43baf316bab8bd715a58a756b464c9d3d4e4e27e556c90b",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115118103777Z-f9337f9d.json": "2cdfa3b861c4dd13ca5917cd0ed803c4e73e1a8b83c53b88040bda388cb08729",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T115212877325Z-0e8e7db7.json": "77bb4375d3bb3c3d8ac6fe327180957fee32c724a59e5cd290ba6fd27e03e15f",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120016395471Z-4efdcf55.json": "47467cbf8b0a855c2bfbc958f3c5a24dc7ac08bb83086a4ff6bcb178b1d9f123",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120033288855Z-ec894876.json": "df379422a8e19ac260eb7b1b4d8d0160a950bf1193214c1835391ab6a1caaf5b",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120141276629Z-1acc2a3a.json": "e496d9d60da15dd588921a9a53fdf81cc03670f54a402b8d87bee119140d03ce",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T120159227100Z-a51abf4b.json": "bf66570d465889476ee2307d03a7039f5a093aa22e78934c588d15c3bfe44aee",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121022109665Z-7437783f.json": "5833512f1c9d4e200d245dbe207be04ea16a2ae68b2a0eb2f96250803fa35460",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121642684233Z-a9945d47.json": "199902d58c697ccab63e0faf6cd296fbb0f09f9be5f4ca947bf51536d887f7be",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121659038363Z-77707d9d.json": "9e051bf608128e0fd78a9fe3ee274eb1bfaccf9e128b4b67cc82d8b969f148a9",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121719676058Z-6e6c1339.json": "be7c1cf0e69e665d2dbe776eb3e3536bb9ef0a6d0ccc41478bd62acedb58a3c4",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121737937227Z-1ca545ac.json": "00939394d685d71336aaadaa28633bf8b159b296afd8c6174db550fe3511e550",
+    "results/proposal-broader-study/search/full-r1/model-calls/20261009T121758445075Z-fd53793d.json": "e64d1f402d7a5cf06299db2c8254996afa8c02e6de69736ce24550f4d90aceb7",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T113406698212Z-a44ce567.summary.json": "ef3b6e242f7b460590c867261d201d4db192b350b2319ae33cce49ae446d83ce",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T113406698212Z-a44ce567.events.jsonl": "99274a73fbfaa0a374a06f5f1773156106a02bd8904efcef21497e8e53c26ae6",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T113825651437Z-ff356cf1.summary.json": "78fcb8f0371defba3710f2c5654273623e971386d106301f2008739764aa9865",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T113825651437Z-ff356cf1.events.jsonl": "5337b54d744795c00cfbde8223578bfc9176ea715e74cfcb2798a54133fbb135",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114146563065Z-eadcf09d.summary.json": "1b1ce55eab5a6571deea08cc9782956e7ae5915a5df7305ef6c0d4a55811d25a",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114146563065Z-eadcf09d.events.jsonl": "151e0b708bf5a37cbb61b7dad64f2cad251d01de8ed6af06b0159f3c25945f58",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114204957167Z-6826fb26.summary.json": "7ba877093a5e197044900fa9d85b045c81ae0f2c5dec35b638912d5b7b946eed",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114204957167Z-6826fb26.events.jsonl": "c44b3f3f21a6b3e0558a7b318726c2de1b5b98b0676e0dd839bb47f7d7dbe44b",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114605286869Z-9025e1aa.summary.json": "e33dbd47c220f74e837890565861f6fea8e5a40dc500db6c8c2d4a08b7222dca",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114605286869Z-9025e1aa.events.jsonl": "1ba957de4a06849b0ae3fca26ead1725a451a0c4523df7afcf62a6057dcd0169",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114624855398Z-cee3d366.summary.json": "748d9dcbce64b0b73dc53a5380e73aadac84c1f0dd846494d9e3248e9e7c98f0",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114624855398Z-cee3d366.events.jsonl": "ca3a6ea1e4db163c417652f1b83b7fc084a5125fb0c51808fb836252b638bac2",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114640984453Z-f67ec5b2.summary.json": "6a1cf4569eedd4562f89b739ef8061eb45a5e8066752946acbe90f6ff16ad7ab",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114640984453Z-f67ec5b2.events.jsonl": "5472e46e1bb729583516588da67dbb0e767999990580fb4db360ccb72e2c92de",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114657483443Z-c819be45.summary.json": "5495b0cbf7b9ac606cfbde1834b03f6d3ad108a5d24e12beecb9c6d768b578de",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114657483443Z-c819be45.events.jsonl": "7f4bb614e818fb7fc9a0a438eed3e18a19b65fd785199d609d9572bfcc6683e0",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114715561697Z-4b4b9942.summary.json": "9570d3f0ccaa2fc69469ff9e6c9533fd5cf0c208b32de5176cdc259b7fe44e49",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114715561697Z-4b4b9942.events.jsonl": "f9c6942a1a13db1833874ce90ef0d58f3420815a19b3ac901b454782495d2597",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114924117429Z-b2f370ed.summary.json": "e030c8709fe43e15778f290e8b24273b27ce2c6a0c3ec7a76cb9fe8de9f1652f",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T114924117429Z-b2f370ed.events.jsonl": "0b20c65a785874fd954f4558f6db0f565b9b7fcca82c92c9764d02b450711e56",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115015758008Z-6ca10c0a.summary.json": "aad5cc80c4cd9fb2947763f06fd4a83a1884f3221ebd3a70e5f3ca234b30ba27",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115015758008Z-6ca10c0a.events.jsonl": "c5ab70a64668cce761c4a7e944be2288d1d4780992880dcd8338387b70b97be2",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115026476544Z-57f20fc4.summary.json": "518fc802fefd680c8a18950fa98c5153311f23412142f7d2fa39443afd5149a7",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115026476544Z-57f20fc4.events.jsonl": "9cd5a38a81e207039e42926e3ccc601591c035d3c9478a8c0acf4448c54e914d",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115118103777Z-f9337f9d.summary.json": "8e8bc3f48f6e3675fec57bca790906ac2756dd45e64f9658ccf7f08e537b8c00",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115118103777Z-f9337f9d.events.jsonl": "8db1065ff3735901ffa7e4409d5a49af972c3235cfbcda1238de0296f30cc7a0",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115212877325Z-0e8e7db7.summary.json": "87e1aec245d5ed9a05f5238d846a8f0899ba0aec3def83b3a894a3aea7ea417a",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T115212877325Z-0e8e7db7.events.jsonl": "b3e51d174359946dc5db23354efbbbc3703fc81d8abf60bad199b1f34a019a70",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120016395471Z-4efdcf55.summary.json": "cf2359151db35ad40d6621c33d9d1003d1c061934e1c3ae65887e48697c87b52",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120016395471Z-4efdcf55.events.jsonl": "99fc76ab7cca2e8f5ce5dda1f5b253829dcf29ce9be5dfa918a55bb18d5dbe58",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120033288855Z-ec894876.summary.json": "fd05d537efd2949d86ea5f042b25c78b9d8b873d721cd8d3e61d1edce88f8eb0",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120033288855Z-ec894876.events.jsonl": "18a9ad610337582939e4952a1fccb52bb2dc6562922a8142bec475fe3430e13c",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120141276629Z-1acc2a3a.summary.json": "7a454c89dc0ceedd584c96bbd6dd7a3d6ff1e01201c6ff2921120b16601ffeef",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120141276629Z-1acc2a3a.events.jsonl": "c2e140e9a0a704953f192c4aa50c545226d66aab9c45438dab9150f61828f843",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120159227100Z-a51abf4b.summary.json": "5ea12ae94d1785dc74e9e066b559b14eaae11e96b702992149146b8a8cdf0c71",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T120159227100Z-a51abf4b.events.jsonl": "ddc713854dffce489c72449a166ae24574d12bb8e439d7ecc674e4882743dfab",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121022109665Z-7437783f.summary.json": "592618c685da1e6260ca1a0989fc1f04a451afef8fb01f475f3de018b29c2d2c",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121022109665Z-7437783f.events.jsonl": "13e1a590da159f458b535ae25205a22fc6b57915bc43c09d56d88cdb2d6a94cd",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121642684233Z-a9945d47.summary.json": "39cc4c80c597478d27f2f4a848cc5524a744743268e51136e3885e155fdb4e83",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121642684233Z-a9945d47.events.jsonl": "33740d4c582d3facc0e91cbeb71efd27ce689900f5927bd22c6875af34de39cb",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121659038363Z-77707d9d.summary.json": "67fb75b84ff594d50d24bd91359e55065e611204354c3f491f191ee93c6636ef",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121659038363Z-77707d9d.events.jsonl": "0b6d22371887178e0fc1f9ddbb4ac8a343b6b2ae84022bcee22a48c0ad6f1765",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121719676058Z-6e6c1339.summary.json": "f9b0430e60c9d13465bd8638d7b04c10fc63bbddb05624041e8d38b871a6a082",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121719676058Z-6e6c1339.events.jsonl": "312f9f192cbc8f9f0b3f4a710120a51097a161b4b915599968f67951c0dde7ea",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121737937227Z-1ca545ac.summary.json": "58be13ac9483eeb8ac3b082bbc6d759c845965c20c06496aba0e3ebd8c1e1309",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121737937227Z-1ca545ac.events.jsonl": "95358d96026bb796d7721aae9ffb67c37b4b35cc03614ec83b0c39534f8e7626",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121758445075Z-fd53793d.summary.json": "ae963766463a6148e5908abf4203f83c8aae01dc68c884c09e5c0e2ef7ebb741",
+    "results/proposal-broader-study/search/full-r1/codex-event-audit/20261009T121758445075Z-fd53793d.events.jsonl": "91bd0af40ac75a516c86620ddf84cc5f0e44bf26a0013cb2946d8124a061e90a",
+    "results/proposal-broader-study/search/full-r1/run1-meta-state.json": "fe711cfe6a83fa14f0cadbabe694f631267df6304ad704e4b3fb8a6bff622507",
+    "results/proposal-broader-study/search/full-r1/prompts.sqlite": "c10f9ea596425354350d71423c06c2bdb9bb1343a9cc9d0436c63899f55f022a"
+  },
+  "source_sha256": {
+    "proposal/study_guidance.py": "1b2e55cbf12e0083075275b20b5eb442d2623b6b378bdd237cf95e4fe323834c",
+    "proposal/study_search_report.py": "02c094c91251e173736f16585d7934e1fb33204c8c39e633fef7dab8e30f8ce1"
+  },
+  "reproduction": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.study_guidance --campaign results/proposal-broader-study/search/full-r1 --output artifacts/proposal/broader-study/search/full-r1/guidance.json",
+  "new_episodes": 0,
+  "model_calls": 0
+}

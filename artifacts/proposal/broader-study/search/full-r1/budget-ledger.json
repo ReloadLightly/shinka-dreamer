@@ -1,0 +1,55 @@
+{
+  "blocked_reason": "All-role call cap reached",
+  "blocked_reason_sha256": "9c200a40643672a63a9d084212cda5a67c369340699c20fb6b247d2c7419fd6d",
+  "cli_lock_wait_seconds": 568.1283410949995,
+  "deadline_utc": "2026-10-09T13:33:14.277218+00:00",
+  "dollars": "Native dollar estimates are API list-price estimates, never subscription charges.",
+  "elapsed_definition": "Sum of monotonic elapsed around actual Headless requests; local embedding CPU is separate.",
+  "limits": {
+    "calls": 24,
+    "remote_elapsed_seconds": 5400.0,
+    "request_timeout_seconds": 500,
+    "role_caps": {
+      "global_insight": 24,
+      "mutation_repair": 24,
+      "novelty": 24,
+      "prompt_mutation": 24,
+      "readiness": 0,
+      "recommendation": 24,
+      "summary": 24
+    }
+  },
+  "primary_budgets": [
+    "actual_all_role_calls",
+    "provider_elapsed_seconds",
+    "deadline"
+  ],
+  "token_budget_enforced": false,
+  "token_definition": "Headless reported inputTokens (uncached) + outputTokens; cached input is separate; reasoning output is included in output.",
+  "totals": {
+    "cache_write_tokens": 0,
+    "cached_input_tokens": 291200,
+    "calls": 24,
+    "remote_elapsed_seconds": 2602.764234204,
+    "reported_total_tokens": 549984,
+    "role_groups": {
+      "global_insight": 1,
+      "mutation_repair": 9,
+      "novelty": 4,
+      "prompt_mutation": 1,
+      "recommendation": 1,
+      "summary": 8
+    },
+    "roles": {
+      "global_insight": 1,
+      "mutation": 9,
+      "novelty": 4,
+      "prompt_mutation": 1,
+      "recommendation": 1,
+      "summary": 8
+    },
+    "uncached_input_plus_output_tokens": 258784,
+    "usage_unavailable_calls": 1
+  },
+  "updated_utc": "2026-10-09T12:20:30.155169+00:00"
+}

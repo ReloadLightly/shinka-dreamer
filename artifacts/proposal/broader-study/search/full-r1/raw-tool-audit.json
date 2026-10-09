@@ -1,0 +1,465 @@
+{
+  "audit_ids_without_model_call": [],
+  "calls": [
+    {
+      "call_id": "20261009T113406698212Z-a44ce567",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 2,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 2
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "99274a73fbfaa0a374a06f5f1773156106a02bd8904efcef21497e8e53c26ae6",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T113825651437Z-ff356cf1",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "5337b54d744795c00cfbde8223578bfc9176ea715e74cfcb2798a54133fbb135",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114146563065Z-eadcf09d",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "151e0b708bf5a37cbb61b7dad64f2cad251d01de8ed6af06b0159f3c25945f58",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114204957167Z-6826fb26",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 3,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 3
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "c44b3f3f21a6b3e0558a7b318726c2de1b5b98b0676e0dd839bb47f7d7dbe44b",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114605286869Z-9025e1aa",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "1ba957de4a06849b0ae3fca26ead1725a451a0c4523df7afcf62a6057dcd0169",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114624855398Z-cee3d366",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "ca3a6ea1e4db163c417652f1b83b7fc084a5125fb0c51808fb836252b638bac2",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114640984453Z-f67ec5b2",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "5472e46e1bb729583516588da67dbb0e767999990580fb4db360ccb72e2c92de",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114657483443Z-c819be45",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "7f4bb614e818fb7fc9a0a438eed3e18a19b65fd785199d609d9572bfcc6683e0",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114715561697Z-4b4b9942",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "f9c6942a1a13db1833874ce90ef0d58f3420815a19b3ac901b454782495d2597",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T114924117429Z-b2f370ed",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "0b20c65a785874fd954f4558f6db0f565b9b7fcca82c92c9764d02b450711e56",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T115015758008Z-6ca10c0a",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "c5ab70a64668cce761c4a7e944be2288d1d4780992880dcd8338387b70b97be2",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T115026476544Z-57f20fc4",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "9cd5a38a81e207039e42926e3ccc601591c035d3c9478a8c0acf4448c54e914d",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T115118103777Z-f9337f9d",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "8db1065ff3735901ffa7e4409d5a49af972c3235cfbcda1238de0296f30cc7a0",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T115212877325Z-0e8e7db7",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 3,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 3
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "b3e51d174359946dc5db23354efbbbc3703fc81d8abf60bad199b1f34a019a70",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T120016395471Z-4efdcf55",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "99fc76ab7cca2e8f5ce5dda1f5b253829dcf29ce9be5dfa918a55bb18d5dbe58",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T120033288855Z-ec894876",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "18a9ad610337582939e4952a1fccb52bb2dc6562922a8142bec475fe3430e13c",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T120141276629Z-1acc2a3a",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "c2e140e9a0a704953f192c4aa50c545226d66aab9c45438dab9150f61828f843",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T120159227100Z-a51abf4b",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "ddc713854dffce489c72449a166ae24574d12bb8e439d7ecc674e4882743dfab",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T121022109665Z-7437783f",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "13e1a590da159f458b535ae25205a22fc6b57915bc43c09d56d88cdb2d6a94cd",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T121642684233Z-a9945d47",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "33740d4c582d3facc0e91cbeb71efd27ce689900f5927bd22c6875af34de39cb",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T121659038363Z-77707d9d",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "0b6d22371887178e0fc1f9ddbb4ac8a343b6b2ae84022bcee22a48c0ad6f1765",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T121719676058Z-6e6c1339",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "312f9f192cbc8f9f0b3f4a710120a51097a161b4b915599968f67951c0dde7ea",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T121737937227Z-1ca545ac",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "95358d96026bb796d7721aae9ffb67c37b4b35cc03614ec83b0c39534f8e7626",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    },
+    {
+      "call_id": "20261009T121758445075Z-fd53793d",
+      "delegate_returncode": 0,
+      "event_type_counts": {
+        "item.completed": 1,
+        "thread.started": 1,
+        "turn.completed": 1,
+        "turn.started": 1
+      },
+      "item_type_counts": {
+        "agent_message": 1
+      },
+      "observed_tool_event_records": 0,
+      "partial_final_lines": 0,
+      "raw_events_present": true,
+      "raw_events_sha256": "91bd0af40ac75a516c86620ddf84cc5f0e44bf26a0013cb2946d8124a061e90a",
+      "wrapper_completed_summary": true,
+      "wrapper_rejected_tool_event": false
+    }
+  ],
+  "model_call_ids_without_completed_audit": [],
+  "model_call_ids_without_raw_audit": [],
+  "observed_tool_event_records": 0,
+  "scope": "Observed event counts, not unique executed tools. Missing/incomplete raw audits cannot establish tool absence. No raw event payloads, prompts, reasoning, command arguments or outputs exported.",
+  "wrapper_rejections": 0
+}
