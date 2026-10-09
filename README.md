@@ -15,11 +15,15 @@ characterization, the unevolved seed completed 32 valid episodes and escaped in
 none;20 ended in capture and 12 timed out. Mean map accuracy was 98.31%, with 32.90%
 mean final map coverage. These results characterize the starting agent and show
 that accurate remembered cells alone do not establish successful navigation.
-The first native ShinkaEvolve descendant escaped all five search cases, increasing
-mean fitness from 0.5364 to 0.9378. Its reported-cell accuracy decreased slightly
-while coverage and task performance improved. This establishes executable program
-improvement on a small development panel; held-out performance, causal benefits
-of particular memory mechanisms and discovery reliability remain unmeasured.
+The first native ShinkaEvolve descendant escaped all five search cases. A subsequent
+paired development check of generation 2 found **32/32 escapes versus 0/32 for the
+seed**, including all 27 cases outside the five-case search panel. Mean fitness
+rose from 0.4967 to 0.9353 and final map coverage from 32.90% to 83.64%; reported-cell
+accuracy decreased slightly to 98.04%. The new 32-episode evaluation took 5.55
+seconds and used no experiment-model calls. These results establish executable
+program improvement on the exposed development panel; held-out performance,
+causal benefits of particular memory mechanisms and discovery reliability remain
+unmeasured.
 
 ## 1. Introduction
 
@@ -278,18 +282,87 @@ process CPU were 17.71 and 9.59 seconds; peak sampled combined resident memory w
 Supervising-assistant work is additional and is not converted into a weekly
 allowance percentage. Native API price estimates are not subscription charges.
 
-The run is checkpointed with workers stopped. The recommended next stage is the
-plan's bounded development comparison of the leader on the existing 32-case panel,
-with no model calls, before deciding whether more evolution is useful. It has not
-been launched. The historical assessments remain paused.
+The search is checkpointed with workers stopped. Its subsequent development
+comparison is reported below. The historical assessments remain paused.
+
+### 4.3 Paired 32-case development comparison
+
+Before execution, the [Stage 3 protocol](artifacts/proposal/stage3-development/protocol.json)
+nominated generation 2 because it led both search fitness and task score. Its
+source, evaluator and limits were frozen. We evaluated it once on cases 0–31 and
+reused the seed's saved results after verifying all seven evaluator/dependency
+source hashes. No candidate was edited, no baseline was rerun and no model was
+called. The five overlapping search cases reproduced every recorded outcome and
+score exactly. Cases 5–31 are additional **development** cases, not a fresh or
+held-out assessment; this panel was already exposed in the seed characterization.
+
+| Measurement | Saved seed | Generation 2 | Paired difference |
+|:--|--:|--:|--:|
+| Escape |0/32|32/32|+100 percentage points|
+| Capture / timeout / invalid |20 / 12 / 0|0 / 0 / 0|—|
+| Mean task $S$ |0.172325|0.905300|+0.732975|
+| Mean reconstruction $A$ |0.983149|0.980418|−0.002731|
+| Mean fitness $F$ |0.496655|0.935347|+0.438692|
+| Mean final map coverage |32.90%|83.64%|+50.74 percentage points|
+| Mean keys / opened door |0.53125 / 0 of 32|2 / 32 of 32|—|
+| Mean episode length |137.06|63.25|−73.81 transitions|
+
+Generation 2 escaped 5/5 reused search cases and 27/27 additional development
+cases. Its successful episodes lasted 25–130 transitions. The aggregate length
+difference includes seed failures and is not an escape-speed comparison between
+successful policies. The fitness gain decomposes into **+0.439785 from task reward**
+and **−0.001093 from reconstruction**. Better task performance therefore persists
+beyond the five search cases without improved reported-cell accuracy.
+
+Descriptive paired 95% intervals are **[0.4137, 0.4623]** for the fitness gain,
+**[0.6914, 0.7728]** for task score, **[−0.0075, 0.0021]** for reconstruction,
+and **[43.93, 57.18] percentage points** for coverage. These intervals quantify
+variation across the observed development cases; they do not correct selection
+bias or establish performance on unseen cases.
+
+![Paired original-proposal development effects and outcome uncertainty](artifacts/proposal/stage3-development/figures/development-effects.svg)
+
+**Figure 7. Development comparison, all 32 paired episodes.** Intervals use
+10,000 whole-episode paired bootstrap resamples, preserving the original mean of
+episode-level reconstruction ratios. The binary bootstrap degenerates when every
+observed pair has the same escape difference; it cannot establish a perfect
+population success rate. Separate nominal 95% Wilson intervals are 89.3–100% for
+generation 2 and 0–10.7% for the seed. These post hoc boundary diagnostics do not
+remove development exposure or candidate-selection bias.
+
+![Every development case, with search reuse distinguished from the additional 27 cases](artifacts/proposal/stage3-development/figures/development-cases.svg)
+
+**Figure 8. Every development case.** The five search cases and 27 additional
+development cases are identified explicitly. The comparison preserves all outcomes
+and uses the same environment case IDs. Reconstruction remains an on-policy
+current-map measurement under different actions, not a matched-experience
+prediction experiment.
+
+The new evaluation executed **32 valid episodes and 2,024 transitions**, using
+**5.55 seconds wall time and 5.45 total CPU-seconds**, including **4.45 candidate
+CPU-seconds**. No new proposals, mutation calls or auxiliary model calls ran.
+The seed's CPU usage was not measured in its initial characterization, so no
+CPU speedup is inferred. Analysis, rendering and supervising-assistant work are
+additional to these evaluation measurements. All episode data, a paired CSV,
+uncertainty estimates and rendering provenance are in the
+[Stage 3 results](artifacts/proposal/stage3-development/summary.json).
+
+Stage 3 is complete and its workers have exited. The recommended next step is
+Stage 4: compare the seed and both existing descendants on 64 disjoint
+selection-validation cases, then freeze a selected program. Under the original
+nomination rule, generation 2 leads $F$ and $S$, while generation 1 wins the
+escape-count tie by its earlier generation. This would require **192 episodes,
+zero model calls**, within the plan's 25-minute/800 CPU-second ceilings. No further
+search is needed before that check. Stage 4 awaits a separate instruction.
 
 ## 5. Discussion and limitations
 
 The seed accurately reconstructs the cells it reports, but it does not escape.
 Its greedy planner can become blocked or pursue an unsuitable remembered target.
 The initial characterization establishes room for behavioral improvement. The
-subsequent search demonstrates improvement on its five development cases, whose
-scores are kept separate from the initial 32-case panel.
+subsequent search and 32-case paired check demonstrate improved task performance
+on development cases. Search scores and broader development scores remain separate;
+the latter are never imported into the five-case native fitness database.
 
 The original accuracy term has specific limitations. An agent can obtain high
 accuracy by retaining easy or recently observed cells while covering little of
@@ -352,6 +425,25 @@ dashboard can be reopened without model calls:
 .venv/bin/python scripts/v3_webui.py \
   --campaign results/proposal-full-native-01 --port 8001
 ```
+
+Rebuild the Stage 3 paired analysis and Chromatic Fields figures from saved data,
+without running episodes or models:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.development_report
+```
+
+Reproduce the frozen generation-2 evaluation into a new directory:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python proposal/evaluate_full.py \
+  --campaign-manifest artifacts/proposal/stage3-development/protocol.json \
+  --program_path artifacts/proposal/full-native-01/programs/generation-002.py \
+  --results_dir results/proposal-stage3-reproduction \
+  --episodes 32 --seed-start 0 --record-first yes
+```
+
+These are reproduction commands, not an automatic continuation into Stage 4.
 
 ## References
 

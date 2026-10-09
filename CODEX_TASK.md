@@ -1,26 +1,32 @@
-# Checkpoint: original-proposal Stage 1 stopped; await instruction
+# Checkpoint: original-proposal Stage 3 complete; await instruction
 
-Stage 1 executed under the user's authorization and checkpointed at
-2026-10-09 03:06:08 UTC after two consecutive 240-second provider timeouts,
-as prospectively specified. Four slots were reserved: seed and two valid
-five-episode descendants, plus held slot 3 before a valid source. Slots 4–5
-were never started. Both descendants escaped 5/5 development cases; this is
-not held-out evidence. All 15 episodes were valid (1,489 transitions).
-Five actual model calls: two successful mutations, two full-rewrite timeouts,
-one novelty judgment. Unknown timeout tokens remain unknown. The two working
-programs and all measurements are preserved; no automatic continuation.
+The user's latest instruction authorized the proposed Stage 3 development check.
+It is complete: generation 2 escaped all 32 existing development cases versus
+0/32 for the saved seed. The 27 cases outside search also all escaped. Mean F
+improved by 0.438692 (descriptive paired 95% interval 0.413746–0.462317);
+reconstruction accuracy did not improve. This is exposed development evidence,
+not held-out performance or a causal test of memory/predictive learning.
 
-Search/embedding workers and this run's viewer are stopped and reaped. The
-frozen driver retains its original budget/deadline and must not be bypassed.
-Full configuration was only partially exercised: no migration, crossover,
-meta provider calls or prompt mutation occurred. Do not claim otherwise.
+Executed 32 new episodes, 2,024 transitions, 5.546 seconds evaluation wall time,
+5.451 CPU-seconds, zero experiment-model calls. All seven original evaluator
+source hashes matched before seed reuse; five search cases reproduced exactly.
+The evaluator and selected program are unchanged. Evaluation workers exited;
+no automatic continuation. README includes the paired results and two new
+Chromatic Fields figures from these data.
 
-Read README, `artifacts/proposal/full-native-01/summary.json` and
-`proposal/plan-state.json`. The recommended next action is Stage 3's bounded
-32-case development check of generation 2 with zero model calls, after explicit
-user instruction. Do not resume the historical assessments or launch Stage 2.
-Before any future evolution continuation, explicitly grant new resources and
-reconcile the held pre-source slot; the generic inherited resume cannot do that.
+Read README, `artifacts/proposal/stage3-development/summary.json` and
+`proposal/plan-state.json`. The next proposed action is Stage 4: seed and both
+existing descendants on 64 disjoint selection-validation cases (192 episodes,
+zero model calls; proposed 25-minute/800 CPU-second ceiling). Wait for the user's
+instruction, then freeze that stage before drawing its private cases. It has not
+been started. Do not resume historical assessments or the stopped mutation run.
+
+Regenerate this stage's analysis/figures without new episodes or model calls:
+`OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.development_report`.
+The Stage 1 held rewrite and native state remain preserved. Any future mutation
+continuation needs a new resource grant and recovery of that pre-source slot.
+
+## Preserved earlier task history (superseded by the checkpoint above)
 
 ---
 

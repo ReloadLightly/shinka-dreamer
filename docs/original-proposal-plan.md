@@ -1,21 +1,29 @@
 # Implementing the original Sakana proposal, step by step
 
-**Prospective plan recorded 9 October 2026; subsequent Stage 1 checkpoint below.**
+**Prospective plan recorded 9 October 2026; Stage 1 and Stage 3 checkpoints below.**
 The plan was originally commissioned as research and planning only. The user chose
-budgets **stage by stage** and subsequently authorized Stage 1. Later-stage
+budgets **stage by stage** and subsequently authorized Stage 1 and Stage 3. Later-stage
 ceilings remain proposals for review, not spending authorization. Each execution
 ends at a checkpoint and awaits a new instruction. There is no unattended sequence
 of stages.
 
 ## Execution checkpoint
 
-The user subsequently authorized Stage 1. Its invocation is now checkpointed;
+The user authorized Stage 1. Its invocation is checkpointed;
 see the [results](../README.md#42-first-native-evolutionary-block) and
 [machine state](../proposal/plan-state.json). Two valid descendants escaped all
 five development cases. The run stopped after two successive full-rewrite
-request timeouts, before reaching six completed slots. No subsequent stage is
-authorized. The proposed next action is the zero-model-call development check
-in Stage 3, rather than another mutation block.
+request timeouts, before reaching six completed slots.
+
+The separately authorized Stage 3 is also complete. Generation 2 escaped all
+32 existing development cases versus 0/32 for the saved seed. It used 32 new
+episodes, 2,024 transitions, 5.55 seconds elapsed evaluation and 5.45 CPU-seconds,
+with zero experiment-model calls. Original sources and five-case search scores
+are unchanged. See the [paired results](../README.md#43-paired-32-case-development-comparison).
+No subsequent stage is authorized. The next proposal is Stage 4 with seed,
+generation 1 and generation 2 on 64 disjoint selection-validation cases
+(192 episodes, zero model calls), within the existing 25-minute/800 CPU-second
+ceilings. Stop at its selection checkpoint; Stage 5 remains separate.
 
 ## 1. Destination and fixed scope
 
@@ -324,9 +332,11 @@ preservation or restyling must not launch experiments or delay actual mutations.
 At every execution checkpoint, commit and push completed coherent work to the
 verified origin, exclude credentials/private pools/large databases, save the exact
 invocation and resume command, and stop. Do not invent a command for features not
-implemented yet: the current launcher lacks the proposed bounded full-native
-options. Stage 1 must supply that command after the adapter changes.
+implemented yet. Stage 1 supplied the bounded full-native launcher; its saved
+failure gate/deadline prevent further dispatch without a newly authorized block.
 
-**Next action after the Stage 1 checkpoint:** await the user's instruction for
-the proposed Stage 3 development check. No further mutation or historical
-assessment is authorized. The prospective stage budgets above remain preserved.
+**Next action after the Stage 3 checkpoint:** await the user's instruction for
+Stage 4 selection-validation. No further mutation or historical assessment is
+authorized. The prospective stage budgets above remain preserved. The original
+Stage 1 launcher is now implemented; its held pre-source slot still requires
+explicit recovery before any newly authorized evolutionary continuation.

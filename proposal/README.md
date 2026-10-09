@@ -10,7 +10,12 @@ The first bounded full-native block has now executed through
 all five development cases, before two successive full-rewrite timeouts triggered
 the declared checkpoint. The six-slot ceiling was not filled. See the
 [scientific results](../README.md#42-first-native-evolutionary-block) and
-[run state](plan-state.json). Further execution awaits instruction.
+[run state](plan-state.json). Stage 3 subsequently checked generation 2 on the
+existing 32 development cases: **32 escapes versus 0 for the saved seed**, with
+zero model calls and 5.55 seconds of evaluation. See the
+[paired development results](../README.md#43-paired-32-case-development-comparison).
+Further execution awaits instruction; the next proposed stage is separate
+selection-validation of the existing descendants, not more mutations.
 
 ## Preserved design
 

@@ -1,0 +1,16 @@
+{
+  "started_utc": "2026-10-09T03:17:56.752873+00:00",
+  "ended_utc": "2026-10-09T03:18:02.298916+00:00",
+  "elapsed_seconds": 5.546054034988629,
+  "evaluator_user_cpu_seconds": 0.854551,
+  "evaluator_system_cpu_seconds": 0.144257,
+  "evaluator_cpu_seconds": 0.9988079999999999,
+  "candidate_user_cpu_seconds": 4.210691,
+  "candidate_system_cpu_seconds": 0.241947,
+  "candidate_cpu_seconds": 4.452637999999999,
+  "total_cpu_seconds": 5.451445999999999,
+  "campaign_manifest": "/home/roland/projects/shinka-dreamer/artifacts/proposal/stage3-development/protocol.json",
+  "completed": true,
+  "error": null,
+  "definition": "Monotonic wrapper elapsed; getrusage deltas for evaluator and reaped candidate children. Resource metadata does not alter fitness."
+}

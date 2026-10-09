@@ -1,0 +1,16 @@
+{
+  "started_utc": "2026-10-09T03:17:27.866136+00:00",
+  "ended_utc": "2026-10-09T03:17:27.866269+00:00",
+  "elapsed_seconds": 9.831899660639465e-05,
+  "evaluator_user_cpu_seconds": 4.39999999999989e-05,
+  "evaluator_system_cpu_seconds": 3.500000000000031e-05,
+  "evaluator_cpu_seconds": 7.899999999999921e-05,
+  "candidate_user_cpu_seconds": 0.0,
+  "candidate_system_cpu_seconds": 0.0,
+  "candidate_cpu_seconds": 0.0,
+  "total_cpu_seconds": 7.899999999999921e-05,
+  "campaign_manifest": "/home/roland/projects/shinka-dreamer/artifacts/proposal/stage3-development/protocol.json",
+  "completed": false,
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/proposal/stage3-development/protocol.json'",
+  "definition": "Monotonic wrapper elapsed; getrusage deltas for evaluator and reaped candidate children. Resource metadata does not alter fitness."
+}

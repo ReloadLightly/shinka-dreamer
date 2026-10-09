@@ -1,0 +1,31 @@
+{
+  "style": "Chromatic Field v1 \u00b7 repository presentation 2",
+  "reproduction": ".venv/bin/python -m proposal.development_report",
+  "scientific_execution": "None: saved-data analysis and rendering only.",
+  "input_sha256": {
+    "artifacts/proposal/stage3-development/protocol.json": "88839d2b2ac171e6b82e4f28cb1d9e3ead2a7cd881fa46d73aed37bf8502145d",
+    "artifacts/proposal/initial-evaluation/episodes.json": "76c6c1fa00c893cae1152f4f00bddba27b9900b71dc6a607d4ac3afbb4cea9e4",
+    "artifacts/proposal/initial-evaluation/metrics.json": "9b6b285d4e943af9f3f7d2f0a039308aa117987b4d50280b71ff70e15fad25b7",
+    "artifacts/proposal/initial-evaluation/manifest.json": "608e0799326cb22fe3ce0be17caab21e897cec537405dd20112d76e01d43ad22",
+    "artifacts/proposal/stage3-development/gen2/episodes.json": "e4aa8b57c96b1899241631d458dee563a7853cbb8a21eafbdeb1e31e4c4ae241",
+    "artifacts/proposal/stage3-development/gen2/metrics.json": "3e84b5e9f3dfa276f78ec6820119e9857c089de80d02b148e92ebe4bad923780",
+    "artifacts/proposal/stage3-development/gen2/manifest.json": "15548829ac41f7c33ebe43cc738af0c321c727bc40c01bc1549c276882c1b76b",
+    "artifacts/proposal/stage3-development/gen2/resource.json": "eb009280d7e9aad3aba217da15f52db65e290afd2e4f54f5271d9f0d729166e0"
+  },
+  "source_sha256": {
+    "proposal/development_report.py": "5a76a973e34c2fe763af0a211c93543f930fb8cf813505264b1772001f90d580",
+    "scripts/chromatic_fields.py": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+  },
+  "output_sha256": {
+    "artifacts/proposal/stage3-development/summary.json": "4cfa50a675133097d63fd7349e065d51c9fc78672bdcd757acba36fb0ab2fd48",
+    "artifacts/proposal/stage3-development/paired-episodes.csv": "7e37e6b2dc39bfe851b47e4abcd3f08cb6268cedb1b7a0219658e889142d532e",
+    "artifacts/proposal/stage3-development/captions.md": "9a484d00d85c2bb613505f9152184fed881e439295138580e6b50181d851a4a3",
+    "artifacts/proposal/stage3-development/figures/development-effects.svg": "ed6dbf6550bde2605d3692370542ab70fe48da8652a1600688bc15a4e644db75",
+    "artifacts/proposal/stage3-development/figures/development-effects.pdf": "f0497c94c3d9a5a8ae346e66611f1190ce083702a02bc454ceb2e44a76a1e676",
+    "artifacts/proposal/stage3-development/figures/development-effects.png": "bc1011c4d394468fe7343e621bf717289916b8e6d238dc7c9830e5300cbab98b",
+    "artifacts/proposal/stage3-development/figures/development-cases.svg": "0db728f678479dd1a74dd3607f8efc6af16d450f89d25b489aca291984c03a45",
+    "artifacts/proposal/stage3-development/figures/development-cases.pdf": "e3c2dd395edf37e8b558b9f15daf73014bd0d202f0ebd4bb1c11d22266c742ec",
+    "artifacts/proposal/stage3-development/figures/development-cases.png": "73d0972d1efb60474000627f106e38b575ecd3eafe27b2ea45249a96787f3fa1"
+  }
+}
