@@ -1,3 +1,20 @@
+# Current task: original proposal restored
+
+The user requested implementing the original Sakana proposal and a paper-style
+README containing only Chromatic Fields figures from that proposal's experiments.
+The active implementation is `proposal/`, evaluator
+`namazu-proposal-reconstruction-v1`: original0.6task+0.4current-map-accuracy.
+Predictive-learning requirements and full-machinery RUN1 plans below are historical,
+not prerequisites for this track. Preserve their evidence; do not resume them.
+
+This implementation step authorized local verification and an initial32-episode
+development characterization, not another mutation-model campaign. The initial
+seed ran32valid episodes/4,386transitions,0escapes,20captures,12timeouts. Native
+search is configured and prepared but unexecuted. No automatic continuation.
+The README describes actual results, limitations and reproduction commands.
+
+---
+
 # Current checkpoint: RUN 1 stopped incomplete
 
 RUN1 stopped at 2026-10-09 01:51:46 UTC after a mutation timeout with missing

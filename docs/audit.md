@@ -17,7 +17,7 @@ ShinkaEvolve supplies evolutionary program search with LLM-generated mutations. 
 | Full hidden environment is passed into candidate code; candidate returns the reported metrics | 197–203, 467–479 | Evaluator owns environment, transitions, auditing and scores; candidate receives observation/action-result data only |
 | Arbitrary displacement values can bypass the intended action space | 118–120, 341–345 | Validate integer displacements and interaction values before executing actions; define diagonal/corner rules |
 | Candidate chooses which map cells contribute to accuracy | 449–460 | Evaluator chooses targets; missing predictions receive a defined score; report coverage separately |
-| Audit after observing can reward copying rather than prediction | 399–414 | Record forecasts before corresponding future observations/outcomes; evaluate fixed horizons |
+| Audit after observing measures reconstruction, not prediction | 399–414 | This is intentional in the original proposal. Future forecasting is a separate extension, not a necessary repair |
 | Door does not physically block passage, and is unrelated to exit geometry | 287–294, 344 | Implement the prose: locked door genuinely gates the exit and keys permit opening it |
 | Dynamic-wall selection includes borders; walls may close on occupants | 271–278, 312–317 | Fixed borders and explicit occupant-closure semantics, without removing dynamic changes |
 | Random placement can create infeasible instances | 257–304 | Generate valid key→door→exit tasks under documented dynamic mechanics; distinguish feasibility from guaranteed survival |
