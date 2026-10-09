@@ -1,0 +1,33 @@
+{
+  "assessment_cases_used": 0,
+  "candidate_operations": 7251,
+  "completed_branch_transitions": 2032,
+  "controller_cpu_seconds": 6.000800003,
+  "elapsed_seconds": 72.0259903309925,
+  "finished_utc": "2026-10-09T01:08:06.840321+00:00",
+  "future_attempts": 184,
+  "invalid_policy": "Invalid branch retained with return -1.12 and failure_or_invalid=1; invalid is separately reported and never called observed collision.",
+  "invalid_unique_action_branches": 96,
+  "model_calls": 0,
+  "protocol_sha256": "e87c77283664e5c4015b40d6c23246b1143702cf690352bb059a9cd8c3cdbd2c",
+  "quota_counts": {
+    "stationary": {
+      "agreement": 4,
+      "disagreement": 4
+    },
+    "switch": {
+      "agreement": 4,
+      "disagreement": 4
+    },
+    "uniform": {
+      "agreement": 4,
+      "disagreement": 3
+    }
+  },
+  "reconstructed_transitions": 449,
+  "scope": "Selected visible encounter states on reused development experience; finite12-step first-action effect under a common learned continuation policy. Not whole-episode learning benefit or independent discovery.",
+  "status": "bounded development action-consequence diagnostic",
+  "unique_action_branches": 272,
+  "unstarted_future_attempts": [],
+  "worker_cpu_seconds": 116.748925
+}

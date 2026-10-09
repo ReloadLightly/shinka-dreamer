@@ -1,0 +1,20 @@
+{
+  "canonical_helper_sha256": "3d59ef45ef37df0ad72907f6f484115e846bb842e25590a62005c1d8f3b90eb1",
+  "continuation": "None: every plannedfutureID was attempted; original unit is closed. No failedattempt may be rerun under this protocol.",
+  "corrected_worker_sha256": "aeaf9a472d8e8dfad57298676894852eb10417bcec2a3539d8d061407d11cd7c",
+  "correction": "Canonical recursively typed values, deterministic dict/set ordering, exact finitefloat.hex; direct restored built-in value equality check. No changes to selected source, environment, law replacements or budgets.",
+  "defect": "Memory equality was guarded by pickle byte digests; equal built-in sets can differ in iteration/serialization order after copying. A byte mismatch is not a structural state mismatch.",
+  "executed_commit": "edf9c1f",
+  "executed_protocol_sha256": "e87c77283664e5c4015b40d6c23246b1143702cf690352bb059a9cd8c3cdbd2c",
+  "executed_worker_archive": "artifacts/run1/branches/executed-worker.py",
+  "executed_worker_sha256": "63bfa1b5c69d043a4e57fc10a19e24b37300994c8f31d2bdb7ec61524dd2747e",
+  "execution_finished_before_stop": "The controller completed all184planned futureattempts normally at01:08:06UTC before attempted operator termination; no process was terminated.",
+  "limits_of_diagnosis": "Actual rejected memory values were not retained. Synthetic equality checks demonstrate the validator failure mode but cannot retroactively verify rejected live states or validate their unexecuted branches.",
+  "new_candidate_executions": 0,
+  "new_model_calls": 0,
+  "observed_failure": "56 future workers rejected the first restored-memory digest;7of23 states affected, including5of11disagreement states.96 unique action branches invalid;0 retries.",
+  "recorded_utc": "2026-10-09T01:13:18.578659+00:00",
+  "scope": "Postexecution implementation correction for future separately authorized use; no branch retry or new candidate/world execution.",
+  "test_only_new_world_episodes": 0,
+  "tests": "5 targeted tests pass. New synthetic test proves equal differently inserted sets have unequal pickle bytes but equal canonical hashes; a1e-15value change is detected."
+}

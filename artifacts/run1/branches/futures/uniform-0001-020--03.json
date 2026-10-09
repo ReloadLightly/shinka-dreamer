@@ -1,0 +1,39 @@
+{
+  "actual_world_transitions": 0,
+  "branches": [
+    {
+      "collision": false,
+      "door_opened": null,
+      "error": "ValueError: Branch did not restore common learned memory",
+      "escaped": false,
+      "failure_or_invalid": true,
+      "first_action": {
+        "interact": true,
+        "move": [
+          -1,
+          -1
+        ]
+      },
+      "keys_delta": null,
+      "labels": [
+        "learned",
+        "frozen_prior",
+        "known_law"
+      ],
+      "reason": "invalid",
+      "return": -1.12,
+      "transitions": null,
+      "valid": false
+    }
+  ],
+  "candidate_operations": 21,
+  "case": 1,
+  "elapsed_seconds": 0.4298938270076178,
+  "error": "ValueError: Branch did not restore common learned memory",
+  "finish": null,
+  "regime": "uniform",
+  "replication": 3,
+  "state": "uniform-0001-020",
+  "status": "failed",
+  "stratum": "agreement"
+}

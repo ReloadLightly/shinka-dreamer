@@ -1,0 +1,71 @@
+{
+  "actual_world_transitions": 24,
+  "branches": [
+    {
+      "action_sequence_sha256": "9085815e8b8050b58004392c6260233834c6c817085d8a410ffb06bda7f5c9f3",
+      "collision": false,
+      "door_opened": false,
+      "enemy_draws": 36,
+      "error": null,
+      "escaped": false,
+      "failure_or_invalid": false,
+      "first_action": {
+        "interact": true,
+        "move": [
+          0,
+          -1
+        ]
+      },
+      "keys_delta": 0,
+      "labels": [
+        "learned"
+      ],
+      "reason": "window_complete",
+      "return": -0.12,
+      "transitions": 12,
+      "valid": true
+    },
+    {
+      "action_sequence_sha256": "8cb4ad0f2b97471b6cb2dc4c11501f03893e61bace6ea8da47c84c89eb22208c",
+      "collision": false,
+      "door_opened": false,
+      "enemy_draws": 36,
+      "error": null,
+      "escaped": false,
+      "failure_or_invalid": false,
+      "first_action": {
+        "interact": true,
+        "move": [
+          1,
+          -1
+        ]
+      },
+      "keys_delta": 0,
+      "labels": [
+        "frozen_prior",
+        "known_law"
+      ],
+      "reason": "window_complete",
+      "return": -0.12,
+      "transitions": 12,
+      "valid": true
+    }
+  ],
+  "candidate_operations": 56,
+  "case": 3,
+  "elapsed_seconds": 0.8901530419825576,
+  "error": null,
+  "finish": {
+    "cpu_seconds": 0.737559125,
+    "finished": true,
+    "frames": 56,
+    "proposal_sets": 0,
+    "restores": 2,
+    "wall_seconds": 0.7970782319898717
+  },
+  "regime": "uniform",
+  "replication": 1,
+  "state": "uniform-0003-033",
+  "status": "complete",
+  "stratum": "disagreement"
+}

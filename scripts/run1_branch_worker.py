@@ -12,10 +12,12 @@ import hashlib
 import json
 import math
 import os
-import pickle
 import random
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from run1_state_digest import state_digest
+sys.path.pop(0)
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dreamer"))
 from isolation import restrict
 sys.path.pop(0)
@@ -24,7 +26,7 @@ SOURCE_SHA256 = "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3
 
 
 def digest(value):
-    return hashlib.sha256(pickle.dumps(value, protocol=4)).hexdigest()
+    return state_digest(value)
 
 
 def main():
@@ -55,6 +57,8 @@ def main():
             if checkpoint is None:
                 raise ValueError("No observed checkpoint to restore")
             memory = copy.deepcopy(checkpoint)
+            if memory != checkpoint:
+                raise ValueError("Restored selected built-in memory values differ")
             restores += 1
             print(json.dumps({"restored": True, "memory_sha256": digest(memory)}), flush=True)
             continue

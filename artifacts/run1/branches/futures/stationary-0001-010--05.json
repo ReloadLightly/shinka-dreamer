@@ -1,0 +1,48 @@
+{
+  "actual_world_transitions": 12,
+  "branches": [
+    {
+      "action_sequence_sha256": "eeabfe243352e6a09eece90b594330cf0b437c6b1682a0e62ffdfb2d090a14b3",
+      "collision": false,
+      "door_opened": false,
+      "enemy_draws": 36,
+      "error": null,
+      "escaped": false,
+      "failure_or_invalid": false,
+      "first_action": {
+        "interact": true,
+        "move": [
+          0,
+          1
+        ]
+      },
+      "keys_delta": 0,
+      "labels": [
+        "learned",
+        "frozen_prior",
+        "known_law"
+      ],
+      "reason": "window_complete",
+      "return": -0.12,
+      "transitions": 12,
+      "valid": true
+    }
+  ],
+  "candidate_operations": 22,
+  "case": 1,
+  "elapsed_seconds": 0.6580392970063258,
+  "error": null,
+  "finish": {
+    "cpu_seconds": 0.303420134,
+    "finished": true,
+    "frames": 22,
+    "proposal_sets": 0,
+    "restores": 1,
+    "wall_seconds": 0.5698248150001746
+  },
+  "regime": "stationary",
+  "replication": 5,
+  "state": "stationary-0001-010",
+  "status": "complete",
+  "stratum": "agreement"
+}

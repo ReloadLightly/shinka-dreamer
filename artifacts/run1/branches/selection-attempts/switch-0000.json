@@ -1,0 +1,18 @@
+{
+  "candidate_operations": 37,
+  "case": 0,
+  "elapsed_seconds": 0.5165998519805726,
+  "error": null,
+  "finish": {
+    "cpu_seconds": 0.429098929,
+    "finished": true,
+    "frames": 33,
+    "proposal_sets": 2,
+    "restores": 0,
+    "wall_seconds": 0.4697876909922343
+  },
+  "regime": "switch",
+  "returned_frames": 33,
+  "selected_states": 2,
+  "status": "complete"
+}

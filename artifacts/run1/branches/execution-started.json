@@ -1,0 +1,16 @@
+{
+  "bound_files": {
+    "artifacts/campaign-v3/selection/selected.py": "aafa35fd866c353c83d0b661d79f2060d678fd2060ff50a1b10ea2f0e3ef5d3c",
+    "docs/run1-branches.md": "af9d2a76e6ecdc9e19ab7d9f041a9fc40e119e7d8f640f2fb10f87a9f0572a7e",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/world_v3.py": "571f9742b89594712847ff1c3955c698aac2c66980dc3838d4b08625b8d80950",
+    "scripts/run1_branch_worker.py": "63bfa1b5c69d043a4e57fc10a19e24b37300994c8f31d2bdb7ec61524dd2747e",
+    "scripts/run1_branches.py": "5b32e6860371b576e9beacb075a7291b86f684e41815f6076240b334ed2e6a64",
+    "tests/test_run1_branches.py": "f8642e6435fffd40fbdbd601c51c41f69b4343bb2a240aa948b6ec3198cc23bf"
+  },
+  "model_calls": 0,
+  "protocol_sha256": "e87c77283664e5c4015b40d6c23246b1143702cf690352bb059a9cd8c3cdbd2c",
+  "remaining_execution_seconds": 1385.1857040000032,
+  "started_utc": "2026-10-09T01:06:54.814296+00:00"
+}

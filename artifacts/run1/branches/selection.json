@@ -1,0 +1,1113 @@
+{
+  "attempts": [
+    {
+      "candidate_operations": 32,
+      "case": 0,
+      "elapsed_seconds": 0.3963469570153393,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.320622747,
+        "finished": true,
+        "frames": 28,
+        "proposal_sets": 2,
+        "restores": 0,
+        "wall_seconds": 0.3510807639977429
+      },
+      "regime": "uniform",
+      "returned_frames": 28,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 25,
+      "case": 1,
+      "elapsed_seconds": 0.4256928229879122,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.353773554,
+        "finished": true,
+        "frames": 21,
+        "proposal_sets": 2,
+        "restores": 0,
+        "wall_seconds": 0.38023896497907117
+      },
+      "regime": "uniform",
+      "returned_frames": 21,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 53,
+      "case": 2,
+      "elapsed_seconds": 0.7279161849874072,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.6563151,
+        "finished": true,
+        "frames": 33,
+        "proposal_sets": 10,
+        "restores": 0,
+        "wall_seconds": 0.6903778580017388
+      },
+      "regime": "uniform",
+      "returned_frames": 33,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 118,
+      "case": 3,
+      "elapsed_seconds": 1.4565063620102592,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 1.387449097,
+        "finished": true,
+        "frames": 80,
+        "proposal_sets": 19,
+        "restores": 0,
+        "wall_seconds": 1.4224854600033723
+      },
+      "regime": "uniform",
+      "returned_frames": 80,
+      "selected_states": 1,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 37,
+      "case": 0,
+      "elapsed_seconds": 0.5438540279865265,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.44946834999999996,
+        "finished": true,
+        "frames": 33,
+        "proposal_sets": 2,
+        "restores": 0,
+        "wall_seconds": 0.506479677016614
+      },
+      "regime": "stationary",
+      "returned_frames": 33,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 23,
+      "case": 1,
+      "elapsed_seconds": 0.32429402400157414,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.25565833699999996,
+        "finished": true,
+        "frames": 19,
+        "proposal_sets": 2,
+        "restores": 0,
+        "wall_seconds": 0.2774250899965409
+      },
+      "regime": "stationary",
+      "returned_frames": 19,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 65,
+      "case": 2,
+      "elapsed_seconds": 0.8383940779895056,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.746499675,
+        "finished": true,
+        "frames": 43,
+        "proposal_sets": 11,
+        "restores": 0,
+        "wall_seconds": 0.7995774860028177
+      },
+      "regime": "stationary",
+      "returned_frames": 43,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 47,
+      "case": 3,
+      "elapsed_seconds": 0.5602814299927559,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.48671580499999995,
+        "finished": true,
+        "frames": 37,
+        "proposal_sets": 5,
+        "restores": 0,
+        "wall_seconds": 0.5210994269873481
+      },
+      "regime": "stationary",
+      "returned_frames": 37,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 37,
+      "case": 0,
+      "elapsed_seconds": 0.5165998519805726,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.429098929,
+        "finished": true,
+        "frames": 33,
+        "proposal_sets": 2,
+        "restores": 0,
+        "wall_seconds": 0.4697876909922343
+      },
+      "regime": "switch",
+      "returned_frames": 33,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 23,
+      "case": 1,
+      "elapsed_seconds": 0.3288170260202605,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.254947776,
+        "finished": true,
+        "frames": 19,
+        "proposal_sets": 2,
+        "restores": 0,
+        "wall_seconds": 0.2812498779967427
+      },
+      "regime": "switch",
+      "returned_frames": 19,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 65,
+      "case": 2,
+      "elapsed_seconds": 0.9085361470060889,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.828230026,
+        "finished": true,
+        "frames": 43,
+        "proposal_sets": 11,
+        "restores": 0,
+        "wall_seconds": 0.8682677919859998
+      },
+      "regime": "switch",
+      "returned_frames": 43,
+      "selected_states": 2,
+      "status": "complete"
+    },
+    {
+      "candidate_operations": 78,
+      "case": 3,
+      "elapsed_seconds": 0.9562418239947874,
+      "error": null,
+      "finish": {
+        "cpu_seconds": 0.87600305,
+        "finished": true,
+        "frames": 60,
+        "proposal_sets": 9,
+        "restores": 0,
+        "wall_seconds": 0.9143488119880203
+      },
+      "regime": "switch",
+      "returned_frames": 60,
+      "selected_states": 2,
+      "status": "complete"
+    }
+  ],
+  "candidate_operations": 603,
+  "quota_counts": {
+    "stationary": {
+      "agreement": 4,
+      "disagreement": 4
+    },
+    "switch": {
+      "agreement": 4,
+      "disagreement": 4
+    },
+    "uniform": {
+      "agreement": 4,
+      "disagreement": 3
+    }
+  },
+  "reconstructed_transitions": 449,
+  "recording_attempts": 12,
+  "states": [
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        }
+      },
+      "case": 0,
+      "checkpoint_sha256": "5b97d6ec6b03b97d3474b64b04e8f2d82e6c1b1912272e9a1f865cc977502e44",
+      "corpus_sha256": "ae4399aea30c23299c3a05372255ea3b2ee92671d20a09a90e189a97a2b555bf",
+      "effective_learning_updates": 0.0,
+      "frame_index": 14,
+      "learning_updates": 0,
+      "observable_enemy_cells": 1,
+      "observation_step": 14,
+      "private_snapshot_sha256": "f64829d40b4565b75aeee0e66b436873bd65d91efea799d5daa3cd8ccb189490",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0000-014",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 0,
+      "checkpoint_sha256": "d146b4734cd6dc6e3e214aaf332d74f6e1bf1b2a64c9b339b245fd223c469265",
+      "corpus_sha256": "ae4399aea30c23299c3a05372255ea3b2ee92671d20a09a90e189a97a2b555bf",
+      "effective_learning_updates": 3.4015453402200055,
+      "frame_index": 27,
+      "learning_updates": 6,
+      "observable_enemy_cells": 1,
+      "observation_step": 27,
+      "private_snapshot_sha256": "474d2770e41245ec9813904964f0d903c81d470efb0b7d9531a7a7a3aea405c7",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0000-027",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 1,
+      "checkpoint_sha256": "20a149fb9459b2fb64877566663f35ccdb61ef4b69fbce4f268be2ad26a5c077",
+      "corpus_sha256": "9af17c077efc9295e8f0755063fcb03134892976cda693222f44cc3c24f6f929",
+      "effective_learning_updates": 0.22222222222222193,
+      "frame_index": 12,
+      "learning_updates": 1,
+      "observable_enemy_cells": 1,
+      "observation_step": 12,
+      "private_snapshot_sha256": "2447569f48e4109d7a0c7efea616929fb7e3620246b506f5099fc512ef04bbcb",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0001-012",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        }
+      },
+      "case": 1,
+      "checkpoint_sha256": "c1f0a598ce1e4b9737298a6601f4a202d940758812b61c16e5a87a8243cfd507",
+      "corpus_sha256": "9af17c077efc9295e8f0755063fcb03134892976cda693222f44cc3c24f6f929",
+      "effective_learning_updates": 0.4378165411997027,
+      "frame_index": 20,
+      "learning_updates": 2,
+      "observable_enemy_cells": 1,
+      "observation_step": 20,
+      "private_snapshot_sha256": "0852b4a0a84f232de55004f43a050a1c3384d7506c1ccb622756e87dd59513d7",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0001-020",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        }
+      },
+      "case": 2,
+      "checkpoint_sha256": "3f1b6d51870fe5921ec66b1515f6d1a35b4baaf8031bd8a7b1060d3c909522df",
+      "corpus_sha256": "770505efdcdc6ebaf13302638ae48f609fcb0978caff1b165323725a231c69e2",
+      "effective_learning_updates": 7.392307600887569,
+      "frame_index": 23,
+      "learning_updates": 11,
+      "observable_enemy_cells": 1,
+      "observation_step": 23,
+      "private_snapshot_sha256": "3e5c6c29b8059609fc991796c6cb5f57af023489d83e26f9904d48db08faff8c",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0002-023",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            1,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 2,
+      "checkpoint_sha256": "990aee31e2d0ddb4def75c0a876e3723d55e07434d6c5341ab55453b1a1c905b",
+      "corpus_sha256": "770505efdcdc6ebaf13302638ae48f609fcb0978caff1b165323725a231c69e2",
+      "effective_learning_updates": 10.040794367795103,
+      "frame_index": 32,
+      "learning_updates": 18,
+      "observable_enemy_cells": 1,
+      "observation_step": 32,
+      "private_snapshot_sha256": "5c423ab27b96b11b0f33627c03e7af1a3bd90040d355398002915a5d573cb9db",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0002-032",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        }
+      },
+      "case": 3,
+      "checkpoint_sha256": "e50f670161c809ad319339814687945c2915f2ab24377cb2accfcc29dc00651f",
+      "corpus_sha256": "285a05b6d61a3940712a4a34ce48da27b83121a6d35d04e995fb182f64da36cc",
+      "effective_learning_updates": 3.2644177221155903,
+      "frame_index": 33,
+      "learning_updates": 6,
+      "observable_enemy_cells": 1,
+      "observation_step": 33,
+      "private_snapshot_sha256": "0abf5d1024f7e5aae574e34d58e1a3fd6be5db7774750b9d1d83703d0bd7904e",
+      "regime": "uniform",
+      "replacement_outcome_observed": false,
+      "state": "uniform-0003-033",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        }
+      },
+      "case": 0,
+      "checkpoint_sha256": "e863465a67e1d27842fdadff205f3f2f50bab763bc2c4389d6b31cfe3ea06e64",
+      "corpus_sha256": "8bd95e569fdabddda064972ad794037a175f0510bbcbfad98e59dfbac82f531d",
+      "effective_learning_updates": 0.0,
+      "frame_index": 19,
+      "learning_updates": 0,
+      "observable_enemy_cells": 1,
+      "observation_step": 19,
+      "private_snapshot_sha256": "5b98cfface20efe4bc01e2e9e3cc864739c9a463704246b2a3eed2b371c00a3c",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0000-019",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        }
+      },
+      "case": 0,
+      "checkpoint_sha256": "6d887a52ce8dabd2b00ba4976d045fb42bf47623f9c2ab8a880ebbe28f507a19",
+      "corpus_sha256": "8bd95e569fdabddda064972ad794037a175f0510bbcbfad98e59dfbac82f531d",
+      "effective_learning_updates": 2.4171545904892024,
+      "frame_index": 32,
+      "learning_updates": 4,
+      "observable_enemy_cells": 1,
+      "observation_step": 32,
+      "private_snapshot_sha256": "db55874f402bfef05ce52290c5ce54802cc503aff7a19b40df46ba91db99d8f3",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0000-032",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 1,
+      "checkpoint_sha256": "941245acf80e7923630b18a3041b76cd7807747bf2154642dc9e471029196b4a",
+      "corpus_sha256": "0e165c6d5c6dd69178be6d5da5b8f458098436adc98589fc5f069e995dbab8a6",
+      "effective_learning_updates": 0.6686998068516823,
+      "frame_index": 10,
+      "learning_updates": 2,
+      "observable_enemy_cells": 1,
+      "observation_step": 10,
+      "private_snapshot_sha256": "b57cd9180324cafe9aa8ff21896bdb9880c8e664e7bbe04dd3592ae658267c44",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0001-010",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 1,
+      "checkpoint_sha256": "cdab7029ed90c776907332d7562c47437f3e7fa9913791c701e0625fd434df3f",
+      "corpus_sha256": "0e165c6d5c6dd69178be6d5da5b8f458098436adc98589fc5f069e995dbab8a6",
+      "effective_learning_updates": 2.888973467280355,
+      "frame_index": 18,
+      "learning_updates": 7,
+      "observable_enemy_cells": 1,
+      "observation_step": 18,
+      "private_snapshot_sha256": "bd4e34de886a631b20517485460ac84022e0b8631b96cfafa686912b7e803c2e",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0001-018",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        }
+      },
+      "case": 2,
+      "checkpoint_sha256": "63e3bf189018b528193cbffb6da2d3a885a61b27426337f1aec37f7cccf156bb",
+      "corpus_sha256": "fc81de1f3494bf5ed6d80d4cfd437adfd41a3aaf903fb9eaaef0f61ce1e516c5",
+      "effective_learning_updates": 7.060122300770008,
+      "frame_index": 14,
+      "learning_updates": 9,
+      "observable_enemy_cells": 3,
+      "observation_step": 14,
+      "private_snapshot_sha256": "e15aad43280e4a14b4c9596d56d4a25094572b7d96395698d7e72ee01e88bb26",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0002-014",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            0
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            0
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            0
+          ]
+        }
+      },
+      "case": 2,
+      "checkpoint_sha256": "e1d3dd054987f73e53c0359981af8411f2a50f77b2e87ebd425ca6afeda89eef",
+      "corpus_sha256": "fc81de1f3494bf5ed6d80d4cfd437adfd41a3aaf903fb9eaaef0f61ce1e516c5",
+      "effective_learning_updates": 21.56813916398534,
+      "frame_index": 42,
+      "learning_updates": 29,
+      "observable_enemy_cells": 2,
+      "observation_step": 42,
+      "private_snapshot_sha256": "902b4878d24b39594a69c7f30ad6ac1da786efa65949e47286e9ea37e33472f6",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0002-042",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            0
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            0
+          ]
+        }
+      },
+      "case": 3,
+      "checkpoint_sha256": "e1fde14d46b6ad65c0360c01c417dcb904f13384b5c4c1c36338eb477afb9cad",
+      "corpus_sha256": "ee3776dd51ff2e960b759d14984fabec3e22837a874d207502d8365f65fe9d2e",
+      "effective_learning_updates": 1.2470477306796777,
+      "frame_index": 25,
+      "learning_updates": 3,
+      "observable_enemy_cells": 1,
+      "observation_step": 25,
+      "private_snapshot_sha256": "dfe9a339c486ef96f9dd2e901487a11209bd894c03b11253cb02a1c8ac2a32eb",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0003-025",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            1,
+            -1
+          ]
+        }
+      },
+      "case": 3,
+      "checkpoint_sha256": "6e5b1256108f4add1f130c58983d9aefa93c258f3075caa42635c83a6706bc3f",
+      "corpus_sha256": "ee3776dd51ff2e960b759d14984fabec3e22837a874d207502d8365f65fe9d2e",
+      "effective_learning_updates": 3.0476018041616437,
+      "frame_index": 36,
+      "learning_updates": 6,
+      "observable_enemy_cells": 1,
+      "observation_step": 36,
+      "private_snapshot_sha256": "2da9ec20a44df341d6ff0ca779eeaa3436bd44d221fe6194b12c48bf4c9867e8",
+      "regime": "stationary",
+      "replacement_outcome_observed": false,
+      "state": "stationary-0003-036",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        }
+      },
+      "case": 0,
+      "checkpoint_sha256": "e863465a67e1d27842fdadff205f3f2f50bab763bc2c4389d6b31cfe3ea06e64",
+      "corpus_sha256": "e26e066f2584ecc27a82fb25a9a3818e8afe4049496e51747b78c23cbf762585",
+      "effective_learning_updates": 0.0,
+      "frame_index": 19,
+      "learning_updates": 0,
+      "observable_enemy_cells": 1,
+      "observation_step": 19,
+      "private_snapshot_sha256": "cc8929e618c253c9161a751a6ae7d9106f19038a4b66f2f7152e3d2cb1f8133b",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0000-019",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        }
+      },
+      "case": 0,
+      "checkpoint_sha256": "6d887a52ce8dabd2b00ba4976d045fb42bf47623f9c2ab8a880ebbe28f507a19",
+      "corpus_sha256": "e26e066f2584ecc27a82fb25a9a3818e8afe4049496e51747b78c23cbf762585",
+      "effective_learning_updates": 2.4171545904892024,
+      "frame_index": 32,
+      "learning_updates": 4,
+      "observable_enemy_cells": 1,
+      "observation_step": 32,
+      "private_snapshot_sha256": "1e6a54ead40457c9704d309a210af1791b5541d66bb6f972546adaff21e48adf",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0000-032",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 1,
+      "checkpoint_sha256": "941245acf80e7923630b18a3041b76cd7807747bf2154642dc9e471029196b4a",
+      "corpus_sha256": "aa243ba4ac1ca7b0cafe11006a65913aeb9f73a667041eee2425415de4fd94dd",
+      "effective_learning_updates": 0.6686998068516823,
+      "frame_index": 10,
+      "learning_updates": 2,
+      "observable_enemy_cells": 1,
+      "observation_step": 10,
+      "private_snapshot_sha256": "cae40ebf614e9bc95aeceab93a154f5e785d6c547f2209b2ab00139ea27e2647",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0001-010",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            1
+          ]
+        }
+      },
+      "case": 1,
+      "checkpoint_sha256": "cdab7029ed90c776907332d7562c47437f3e7fa9913791c701e0625fd434df3f",
+      "corpus_sha256": "aa243ba4ac1ca7b0cafe11006a65913aeb9f73a667041eee2425415de4fd94dd",
+      "effective_learning_updates": 2.888973467280355,
+      "frame_index": 18,
+      "learning_updates": 7,
+      "observable_enemy_cells": 1,
+      "observation_step": 18,
+      "private_snapshot_sha256": "b2214afecd6704ad17c460d211b412493febb613a8f490321cad42592e0d92a1",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0001-018",
+      "stratum": "agreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        }
+      },
+      "case": 2,
+      "checkpoint_sha256": "63e3bf189018b528193cbffb6da2d3a885a61b27426337f1aec37f7cccf156bb",
+      "corpus_sha256": "8fc2ab5fc1b71c6eb9fd75283d30dee8bc45f472cb7decbed9fec147f716e94f",
+      "effective_learning_updates": 7.060122300770008,
+      "frame_index": 14,
+      "learning_updates": 9,
+      "observable_enemy_cells": 3,
+      "observation_step": 14,
+      "private_snapshot_sha256": "e8f3025be8e2fa43d476d186b91725764b0c38a0feb095d36779d388011b5502",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0002-014",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            -1,
+            0
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            0
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            0
+          ]
+        }
+      },
+      "case": 2,
+      "checkpoint_sha256": "e1d3dd054987f73e53c0359981af8411f2a50f77b2e87ebd425ca6afeda89eef",
+      "corpus_sha256": "8fc2ab5fc1b71c6eb9fd75283d30dee8bc45f472cb7decbed9fec147f716e94f",
+      "effective_learning_updates": 21.56813916398534,
+      "frame_index": 42,
+      "learning_updates": 29,
+      "observable_enemy_cells": 2,
+      "observation_step": 42,
+      "private_snapshot_sha256": "374b0c6c3896f544227c449999cad9b820075080b962e1b9b3c6b045a6adf03d",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0002-042",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            0,
+            0
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            0
+          ]
+        }
+      },
+      "case": 3,
+      "checkpoint_sha256": "e1fde14d46b6ad65c0360c01c417dcb904f13384b5c4c1c36338eb477afb9cad",
+      "corpus_sha256": "bef63b856bbd9809fafd65472533149a3fd7ffdedd854217dc997888f7b02047",
+      "effective_learning_updates": 1.2470477306796777,
+      "frame_index": 25,
+      "learning_updates": 3,
+      "observable_enemy_cells": 1,
+      "observation_step": 25,
+      "private_snapshot_sha256": "c67c98787ddc921822fc01549bc5533688fce5c91e5cdc9df9719b291da79e48",
+      "regime": "switch",
+      "replacement_outcome_observed": false,
+      "state": "switch-0003-025",
+      "stratum": "disagreement"
+    },
+    {
+      "actions": {
+        "frozen_prior": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        },
+        "known_law": {
+          "interact": true,
+          "move": [
+            -1,
+            -1
+          ]
+        },
+        "learned": {
+          "interact": true,
+          "move": [
+            0,
+            -1
+          ]
+        }
+      },
+      "case": 3,
+      "checkpoint_sha256": "fcdbd393bb155b3dd29a6a8932b5a70fc61ba2fa5264b667b3bea4f58e0e3ed9",
+      "corpus_sha256": "bef63b856bbd9809fafd65472533149a3fd7ffdedd854217dc997888f7b02047",
+      "effective_learning_updates": 5.8060626050283455,
+      "frame_index": 59,
+      "learning_updates": 10,
+      "observable_enemy_cells": 1,
+      "observation_step": 59,
+      "private_snapshot_sha256": "391467744c324eb785a089c202474ef68de016a9d055bcea98f977b16d03cf11",
+      "regime": "switch",
+      "replacement_outcome_observed": true,
+      "state": "switch-0003-059",
+      "stratum": "disagreement"
+    }
+  ]
+}

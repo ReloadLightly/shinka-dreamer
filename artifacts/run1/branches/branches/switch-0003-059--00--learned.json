@@ -1,0 +1,30 @@
+{
+  "action_sequence_sha256": "5a710b13a435dd7c5f2e4ab6020fffb783158adf5ab3301c0818c01e90d9e0f6",
+  "case": 3,
+  "collision": false,
+  "door_opened": true,
+  "enemy_draws": 21,
+  "error": null,
+  "escaped": true,
+  "failure_or_invalid": false,
+  "first_action": {
+    "interact": true,
+    "move": [
+      0,
+      -1
+    ]
+  },
+  "keys_delta": 0,
+  "labels": [
+    "learned",
+    "frozen_prior"
+  ],
+  "reason": "escaped",
+  "regime": "switch",
+  "replication": 0,
+  "return": 1.18,
+  "state": "switch-0003-059",
+  "stratum": "disagreement",
+  "transitions": 7,
+  "valid": true
+}

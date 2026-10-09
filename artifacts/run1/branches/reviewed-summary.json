@@ -1,0 +1,186 @@
+{
+  "failure_cause": "56 future workers rejected a restored-memory pickle-byte digest. Equal built-in values can serialize differently because set iteration/memo representation differs; a synthetic test demonstrates this. Failed candidate states were not retained, so actual structural equality for those failed states is unverified. No failed branch is retroactively validated.",
+  "future_status": {
+    "complete": 128,
+    "failed": 56
+  },
+  "input_sha256": {
+    "executed_worker": "63bfa1b5c69d043a4e57fc10a19e24b37300994c8f31d2bdb7ec61524dd2747e",
+    "execution_finished": "69693e41abe8c23ce0668827c8e729f5d919ab70e1fd187790200211c916b6a3",
+    "protocol": "e87c77283664e5c4015b40d6c23246b1143702cf690352bb059a9cd8c3cdbd2c",
+    "selection": "8a5e5622546b2a75360a9ffb3c7ea07d087c3f3c128e58a80eb20e4730489584"
+  },
+  "interpretation": "No paired collision/escape advantage observed among the6complete disagreement states. One uniform future has one fewer collected key after the learned first action. Small selected development sample,12-step horizon and5missing disagreement states limit the finding. Agreement effects are zero by action aliasing.",
+  "new_candidate_executions": 0,
+  "new_model_calls": 0,
+  "new_world_transitions": 0,
+  "no_reruns": true,
+  "pairs": {
+    "stationary/known_law_minus_frozen_prior": {
+      "attempted_label_pairs": 64,
+      "changed_action_return_difference_mean": 0.0,
+      "changed_action_return_difference_sum": 0.0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 16,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 8,
+      "valid_label_pairs": 48
+    },
+    "stationary/known_law_minus_learned": {
+      "attempted_label_pairs": 64,
+      "changed_action_return_difference_mean": 0.0,
+      "changed_action_return_difference_sum": 0.0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 16,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 8,
+      "valid_label_pairs": 48
+    },
+    "stationary/learned_minus_frozen_prior": {
+      "attempted_label_pairs": 64,
+      "changed_action_return_difference_mean": 0.0,
+      "changed_action_return_difference_sum": 0.0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 16,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 16,
+      "valid_label_pairs": 48
+    },
+    "switch/known_law_minus_frozen_prior": {
+      "attempted_label_pairs": 64,
+      "changed_action_return_difference_mean": 0.0,
+      "changed_action_return_difference_sum": 0.0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 8,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 16,
+      "valid_label_pairs": 56
+    },
+    "switch/known_law_minus_learned": {
+      "attempted_label_pairs": 64,
+      "changed_action_return_difference_mean": 0.0,
+      "changed_action_return_difference_sum": 0.0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 8,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 16,
+      "valid_label_pairs": 56
+    },
+    "switch/learned_minus_frozen_prior": {
+      "attempted_label_pairs": 64,
+      "changed_action_return_difference_mean": 0.0,
+      "changed_action_return_difference_sum": 0.0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 8,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 16,
+      "valid_label_pairs": 56
+    },
+    "uniform/known_law_minus_frozen_prior": {
+      "attempted_label_pairs": 56,
+      "changed_action_return_difference_mean": null,
+      "changed_action_return_difference_sum": 0,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 32,
+      "left_better_return": 0,
+      "left_worse_return": 0,
+      "return_discordant": 0,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 0,
+      "valid_label_pairs": 24
+    },
+    "uniform/known_law_minus_learned": {
+      "attempted_label_pairs": 56,
+      "changed_action_return_difference_mean": 0.03125,
+      "changed_action_return_difference_sum": 0.25,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 32,
+      "left_better_return": 1,
+      "left_worse_return": 0,
+      "return_discordant": 1,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 8,
+      "valid_label_pairs": 24
+    },
+    "uniform/learned_minus_frozen_prior": {
+      "attempted_label_pairs": 56,
+      "changed_action_return_difference_mean": -0.03125,
+      "changed_action_return_difference_sum": -0.25,
+      "collision_discordant": 0,
+      "escape_discordant": 0,
+      "invalid_label_pairs": 32,
+      "left_better_return": 0,
+      "left_worse_return": 1,
+      "return_discordant": 1,
+      "scope": "Conditional on valid paired executions with different first actions; missing states are not random and are not evidence of zero effect.",
+      "valid_changed_action_pairs": 8,
+      "valid_label_pairs": 24
+    }
+  },
+  "regimes": {
+    "stationary": {
+      "complete_disagreement_states": 2,
+      "complete_states": 6,
+      "failed_state_ids": [
+        "stationary-0002-014",
+        "stationary-0003-036"
+      ],
+      "selected_disagreement_states": 4,
+      "selected_states": 8
+    },
+    "switch": {
+      "complete_disagreement_states": 3,
+      "complete_states": 7,
+      "failed_state_ids": [
+        "switch-0002-014"
+      ],
+      "selected_disagreement_states": 4,
+      "selected_states": 8
+    },
+    "uniform": {
+      "complete_disagreement_states": 1,
+      "complete_states": 3,
+      "failed_state_ids": [
+        "uniform-0001-012",
+        "uniform-0001-020",
+        "uniform-0002-023",
+        "uniform-0002-032"
+      ],
+      "selected_disagreement_states": 3,
+      "selected_states": 7
+    }
+  },
+  "status": "completed bounded run with substantial validator missingness",
+  "unique_action_branch_outcomes": {
+    "caught": 2,
+    "escaped": 16,
+    "invalid": 96,
+    "window_complete": 158
+  }
+}

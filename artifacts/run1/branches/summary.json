@@ -1,0 +1,2121 @@
+{
+  "assessment_cases_used": 0,
+  "candidate_operations": 7251,
+  "completed_branch_transitions": 2032,
+  "controller_cpu_seconds": 6.000800003,
+  "elapsed_seconds": 72.0259903309925,
+  "finished_utc": "2026-10-09T01:08:06.840321+00:00",
+  "future_attempts": 184,
+  "invalid_policy": "Invalid branch retained with return -1.12 and failure_or_invalid=1; invalid is separately reported and never called observed collision.",
+  "invalid_unique_action_branches": 96,
+  "model_calls": 0,
+  "protocol_sha256": "e87c77283664e5c4015b40d6c23246b1143702cf690352bb059a9cd8c3cdbd2c",
+  "quota_counts": {
+    "stationary": {
+      "agreement": 4,
+      "disagreement": 4
+    },
+    "switch": {
+      "agreement": 4,
+      "disagreement": 4
+    },
+    "uniform": {
+      "agreement": 4,
+      "disagreement": 3
+    }
+  },
+  "reconstructed_transitions": 449,
+  "regimes": {
+    "stationary": {
+      "paired_effects": {
+        "known_law_minus_frozen_prior/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_frozen_prior/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 8,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_frozen_prior/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 8,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 8,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        }
+      },
+      "states": [
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            }
+          },
+          "case": 0,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0000-019",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            }
+          },
+          "case": 0,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0000-032",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 1,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 2,
+              "return_mean": -0.057499999999999996
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 2,
+              "return_mean": -0.057499999999999996
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 2,
+              "return_mean": -0.057499999999999996
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0001-010",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 1,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 6,
+              "return_mean": 0.0675
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 6,
+              "return_mean": 0.0675
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 6,
+              "return_mean": 0.0675
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0001-018",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            }
+          },
+          "case": 2,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0002-014",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                0
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                0
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                0
+              ]
+            }
+          },
+          "case": 2,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0002-042",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                0
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                0
+              ]
+            }
+          },
+          "case": 3,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0003-025",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                1,
+                -1
+              ]
+            }
+          },
+          "case": 3,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "stationary-0003-036",
+          "stratum": "disagreement"
+        }
+      ]
+    },
+    "switch": {
+      "paired_effects": {
+        "known_law_minus_frozen_prior/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_frozen_prior/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 8,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_frozen_prior/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 8,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 8,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        }
+      },
+      "states": [
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            }
+          },
+          "case": 0,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0000-019",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            }
+          },
+          "case": 0,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0000-032",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 1,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0001-010",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 1,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 8,
+              "return_mean": 0.13
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 8,
+              "return_mean": 0.13
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 8,
+              "return_mean": 0.13
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0001-018",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            }
+          },
+          "case": 2,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0002-014",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                0
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                0
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                0
+              ]
+            }
+          },
+          "case": 2,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 1,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.125,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.24500000000000005
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 1,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.125,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.24500000000000005
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 1,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.125,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.24500000000000005
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0002-042",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                0
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                0
+              ]
+            }
+          },
+          "case": 3,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0003-025",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            }
+          },
+          "case": 3,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 8,
+              "escaped": 8,
+              "executed_transitions": 56,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": 1.18
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 8,
+              "escaped": 8,
+              "executed_transitions": 56,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": 1.18
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 8,
+              "escaped": 8,
+              "executed_transitions": 56,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": 1.18
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "switch-0003-059",
+          "stratum": "disagreement"
+        }
+      ]
+    },
+    "uniform": {
+      "paired_effects": {
+        "known_law_minus_frozen_prior/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_frozen_prior/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 7,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_frozen_prior/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 3,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.004464285714285714,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.01875
+          ],
+          "states": 7,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "known_law_minus_learned/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.010416666666666666,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.03125
+          ],
+          "states": 3,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/agreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": 0.0,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            0.0,
+            0.0
+          ],
+          "states": 4,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/all": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": -0.004464285714285714,
+          "precursor_recordings": 4,
+          "return_cluster_bootstrap_percentile95": [
+            -0.01875,
+            0.0
+          ],
+          "states": 7,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        },
+        "learned_minus_frozen_prior/disagreement": {
+          "mean_failure_or_invalid_effect": 0.0,
+          "mean_return_effect": -0.010416666666666666,
+          "precursor_recordings": 2,
+          "return_cluster_bootstrap_percentile95": [
+            -0.03125,
+            0.0
+          ],
+          "states": 3,
+          "uncertainty_scope": "Descriptive recording-cluster bootstrap conditional on selected encounter states; at most4 clusters/regime. Sparse/zero differences can give degenerate intervals and do not prove equivalence."
+        }
+      },
+      "states": [
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            }
+          },
+          "case": 0,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 8,
+              "return_mean": 0.13
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 8,
+              "return_mean": 0.13
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 8,
+              "return_mean": 0.13
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "uniform-0000-014",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 0,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 0,
+              "return_mean": -0.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "uniform-0000-027",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 1,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "uniform-0001-012",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            }
+          },
+          "case": 1,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "uniform-0001-020",
+          "stratum": "agreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                -1,
+                -1
+              ]
+            }
+          },
+          "case": 2,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "uniform-0002-023",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                1,
+                1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                1
+              ]
+            }
+          },
+          "case": 2,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 0,
+              "failure_or_invalid_rate": 1.0,
+              "invalid": 8,
+              "keys_gained_sum": 0,
+              "return_mean": -1.12
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            }
+          },
+          "state": "uniform-0002-032",
+          "stratum": "disagreement"
+        },
+        {
+          "actions": {
+            "frozen_prior": {
+              "interact": true,
+              "move": [
+                1,
+                -1
+              ]
+            },
+            "known_law": {
+              "interact": true,
+              "move": [
+                1,
+                -1
+              ]
+            },
+            "learned": {
+              "interact": true,
+              "move": [
+                0,
+                -1
+              ]
+            }
+          },
+          "case": 3,
+          "outcomes": {
+            "frozen_prior": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 10,
+              "return_mean": 0.1925
+            },
+            "known_law": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 10,
+              "return_mean": 0.1925
+            },
+            "learned": {
+              "attempted_futures": 8,
+              "collision": 0,
+              "doors_opened": 0,
+              "escaped": 0,
+              "executed_transitions": 96,
+              "failure_or_invalid_rate": 0.0,
+              "invalid": 0,
+              "keys_gained_sum": 9,
+              "return_mean": 0.16125
+            }
+          },
+          "paired_effects": {
+            "known_law_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": 0.0
+            },
+            "known_law_minus_learned": {
+              "failure_or_invalid": 0.0,
+              "return": 0.03125
+            },
+            "learned_minus_frozen_prior": {
+              "failure_or_invalid": 0.0,
+              "return": -0.03125
+            }
+          },
+          "state": "uniform-0003-033",
+          "stratum": "disagreement"
+        }
+      ]
+    }
+  },
+  "scope": "Selected visible encounter states on reused development experience; finite12-step first-action effect under a common learned continuation policy. Not whole-episode learning benefit or independent discovery.",
+  "status": "bounded development action-consequence diagnostic",
+  "unique_action_branches": 272,
+  "unstarted_future_attempts": [],
+  "worker_cpu_seconds": 116.748925
+}

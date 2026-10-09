@@ -1,0 +1,38 @@
+{
+  "actions": {
+    "frozen_prior": {
+      "interact": true,
+      "move": [
+        -1,
+        0
+      ]
+    },
+    "known_law": {
+      "interact": true,
+      "move": [
+        -1,
+        0
+      ]
+    },
+    "learned": {
+      "interact": true,
+      "move": [
+        0,
+        0
+      ]
+    }
+  },
+  "case": 2,
+  "checkpoint_sha256": "e1d3dd054987f73e53c0359981af8411f2a50f77b2e87ebd425ca6afeda89eef",
+  "corpus_sha256": "8fc2ab5fc1b71c6eb9fd75283d30dee8bc45f472cb7decbed9fec147f716e94f",
+  "effective_learning_updates": 21.56813916398534,
+  "frame_index": 42,
+  "learning_updates": 29,
+  "observable_enemy_cells": 2,
+  "observation_step": 42,
+  "private_snapshot_sha256": "374b0c6c3896f544227c449999cad9b820075080b962e1b9b3c6b045a6adf03d",
+  "regime": "switch",
+  "replacement_outcome_observed": false,
+  "state": "switch-0002-042",
+  "stratum": "disagreement"
+}

@@ -1,9 +1,21 @@
 import copy
+import pickle
 
 import pytest
 
 from dreamer.world_v3 import UnknownDynamicsMaze, _AttemptStream, UNIFORM
 from scripts.run1_branches import observable_encounter, branch_return, summarize
+from scripts.run1_state_digest import state_digest
+
+
+def test_structurally_equal_set_orders_have_same_canonical_not_pickle_digest():
+    first = {"enemies": set(i * 32 for i in range(3)), "state": ((1, 2), [0.0, -0.0])}
+    second = {"enemies": set(reversed([i * 32 for i in range(3)])), "state": ((1, 2), [0.0, -0.0])}
+    assert first == second
+    assert pickle.dumps(first, protocol=4) != pickle.dumps(second, protocol=4)
+    assert state_digest(first) == state_digest(second) == state_digest(copy.deepcopy(first))
+    second["state"][1][0] = 1e-15
+    assert state_digest(first) != state_digest(second)
 
 
 def observation():
