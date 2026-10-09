@@ -1,0 +1,60 @@
+{
+  "version": "original-task-study-controls-v1",
+  "selected_source": "artifacts/proposal/full-native-01/programs/generation-002.py",
+  "selected_sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+  "builder_sha256": "b2e32b517e04953c99ee4b94bcfeb24617b84087832b51dd178af26663f5714a",
+  "programs": {
+    "memory": {
+      "file": "memory.py",
+      "sha256": "8f2ea851881a495f096999c271fac35dd5527bf65d38810f1a01d2874b142d77",
+      "ancestor": "controls/v1/memory.py",
+      "ancestor_sha256": "08e696c1d28a4219b471ab9e2afa949ca6f9a74456df431cf9bac4384ac9c21e",
+      "derivation": "Exact immutable source prefix plus observation-map export and two task-interface repairs.",
+      "repairs": [
+        "Interact in place for a key underfoot.",
+        "Disallow diagonal entry into a closed door; opening requires cardinal adjacency."
+      ],
+      "mechanism": "Remembered terrain, Dijkstra pathfinding and fixed local enemy avoidance; predictive update/planning remain disabled by the ancestor."
+    },
+    "local_map_only": {
+      "file": "local_map_only.py",
+      "sha256": "27206bd7f25a242bd05c84f2d54631dfb5dac8a4abcb2a67b195d1cc32b88ee4",
+      "ancestor": "artifacts/proposal/full-native-01/programs/generation-002.py",
+      "ancestor_sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+      "derivation": "Exact selected source prefix plus updater wrapper; planner is unchanged.",
+      "removed": [
+        "Terrain, believed cells, observation ages, outside coordinates, unstable coordinates and enemy sightings outside the current 5x5 window."
+      ],
+      "retained": [
+        "Localization",
+        "inventory",
+        "visits",
+        "collected-key history",
+        "current observations",
+        "original planner"
+      ],
+      "interpretation": "Removes persistent spatial maps, not all memory. Current-map accuracy has a changed reported-cell denominator; compare coverage separately."
+    },
+    "no_future_risk": {
+      "file": "no_future_risk.py",
+      "sha256": "cd84854a9a686d6facd2403ebd970b9b7199552461d07d9443df580639cd52c0",
+      "ancestor": "artifacts/proposal/full-native-01/programs/generation-002.py",
+      "ancestor_sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+      "derivation": "AST-checked source splice replaces only the marginal next-tick enemy-distribution block with survival = {}.",
+      "removed": [
+        "Next-tick enemy probability calculation and its effective minimum-risk action restriction."
+      ],
+      "retained": [
+        "Identical updater and memory",
+        "current occupied-cell exclusion",
+        "terrain legality",
+        "objectives",
+        "route search",
+        "interaction"
+      ],
+      "interpretation": "Tests use of a hardcoded one-step enemy model, not learned predictive parameters."
+    }
+  },
+  "episodes_executed_by_builder": 0,
+  "model_calls": 0
+}

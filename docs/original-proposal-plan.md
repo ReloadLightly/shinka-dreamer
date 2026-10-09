@@ -1,6 +1,11 @@
 # Implementing the original Sakana proposal, step by step
 
 **Prospective plan recorded 9 October 2026; Stages 1, 3, 4 and 5 complete.**
+**Current instruction:** complete the broader experimental study before paper-style
+synthesis. Stage 6 below is deferred until the competent-control/mechanism panel
+and independent-search comparison are complete. The existing selected-agent
+assessment is a pilot result, not completion of that broader study.
+
 The plan was originally commissioned as research and planning only. The user chose
 budgets **stage by stage** and subsequently authorized Stages 1, 3 and 4. Later-stage
 ceilings remain proposals for review, not spending authorization. Each execution
@@ -348,10 +353,11 @@ invocation and resume command, and stop. Do not invent a command for features no
 implemented yet. Stage 1 supplied the bounded full-native launcher; its saved
 failure gate/deadline prevent further dispatch without a newly authorized block.
 
-**Next action after the recovered Stage 5 checkpoint:** await the user's instruction
-for Stage 6 paper-style synthesis from completed evidence, including a concise
-manuscript draft, with zero new episodes or experiment-model calls. No further
-mutation or historical assessment is authorized. The prospective stage budgets
-above remain preserved. The original
+**Current next action, superseding the Stage 5 handoff:** execute the broader
+original-task study requested by the user: a competent comparator and coherent
+mechanism interventions, then independent full-native searches and the seed-only
+rewrite comparison in Section 7. Freeze each experiment and its budget before
+execution. Keep Stage 6 synthesis after these experiments. Historical assessments
+remain closed. The original
 Stage 1 launcher is now implemented; its held pre-source slot still requires
 explicit recovery before any newly authorized evolutionary continuation.

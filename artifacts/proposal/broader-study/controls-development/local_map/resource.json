@@ -1,0 +1,16 @@
+{
+  "started_utc": "2026-10-09T11:13:03.629770+00:00",
+  "ended_utc": "2026-10-09T11:13:08.361283+00:00",
+  "elapsed_seconds": 4.731497039000033,
+  "evaluator_user_cpu_seconds": 0.964887,
+  "evaluator_system_cpu_seconds": 0.222854,
+  "evaluator_cpu_seconds": 1.187741,
+  "candidate_user_cpu_seconds": 3.167675,
+  "candidate_system_cpu_seconds": 0.344881,
+  "candidate_cpu_seconds": 3.512556,
+  "total_cpu_seconds": 4.700297,
+  "campaign_manifest": "/home/roland/projects/shinka-dreamer/artifacts/proposal/broader-study/controls-development/protocol.json",
+  "completed": true,
+  "error": null,
+  "definition": "Monotonic wrapper elapsed; getrusage deltas for evaluator and reaped candidate children. Resource metadata does not alter fitness."
+}

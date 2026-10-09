@@ -1,0 +1,16 @@
+{
+  "combined_score": 0.7183007257599656,
+  "public": {
+    "episodes": 32,
+    "mean_task_score": 0.5397875000000002,
+    "mean_model_accuracy": 0.9860705643999141,
+    "avg_steps": 36.96875,
+    "avg_keys": 1.5,
+    "mean_map_coverage": 0.6716666666666665,
+    "escaped": 18,
+    "caught": 14,
+    "timeout": 0,
+    "invalid": 0
+  },
+  "text_feedback": "namazu-proposal-reconstruction-v1. Original .6 task + .4 current-map accuracy. {\"episodes\": 32, \"mean_task_score\": 0.5397875000000002, \"mean_model_accuracy\": 0.9860705643999141, \"avg_steps\": 36.96875, \"avg_keys\": 1.5, \"mean_map_coverage\": 0.6716666666666665, \"escaped\": 18, \"caught\": 14, \"timeout\": 0, \"invalid\": 0}. Improve both map updating and planning. This is reconstruction after observation, not future prediction. Accuracy uses reported in-bounds map cells; coverage is diagnostic. Inspect escapes and failures separately from the weighted score."
+}

@@ -1,0 +1,131 @@
+{
+  "scope": "32 known public development cases, not held-out results; original gen2 reused; no post-outcome control changes.",
+  "new_episodes": 96,
+  "new_transitions": 8140.0,
+  "experiment_model_calls": 0,
+  "arms": {
+    "memory_pathfinder": {
+      "metrics": {
+        "combined_score": 0.9212204856020727,
+        "public": {
+          "episodes": 32,
+          "mean_task_score": 0.8812,
+          "mean_model_accuracy": 0.9812512140051816,
+          "avg_steps": 59.25,
+          "avg_keys": 2.0,
+          "mean_map_coverage": 0.7751388888888889,
+          "escaped": 31,
+          "caught": 1,
+          "timeout": 0,
+          "invalid": 0
+        },
+        "text_feedback": "namazu-proposal-reconstruction-v1. Original .6 task + .4 current-map accuracy. {\"episodes\": 32, \"mean_task_score\": 0.8812, \"mean_model_accuracy\": 0.9812512140051816, \"avg_steps\": 59.25, \"avg_keys\": 2.0, \"mean_map_coverage\": 0.7751388888888889, \"escaped\": 31, \"caught\": 1, \"timeout\": 0, \"invalid\": 0}. Improve both map updating and planning. This is reconstruction after observation, not future prediction. Accuracy uses reported in-bounds map cells; coverage is diagnostic. Inspect escapes and failures separately from the weighted score."
+      },
+      "resource": {
+        "started_utc": "2026-10-09T11:12:55.736160+00:00",
+        "ended_utc": "2026-10-09T11:13:01.569734+00:00",
+        "elapsed_seconds": 5.833444991999954,
+        "evaluator_user_cpu_seconds": 0.785547,
+        "evaluator_system_cpu_seconds": 0.09407,
+        "evaluator_cpu_seconds": 0.879617,
+        "candidate_user_cpu_seconds": 4.805627,
+        "candidate_system_cpu_seconds": 0.26991299999999996,
+        "candidate_cpu_seconds": 5.07554,
+        "total_cpu_seconds": 5.955157,
+        "campaign_manifest": "/home/roland/projects/shinka-dreamer/artifacts/proposal/broader-study/controls-development/protocol.json",
+        "completed": true,
+        "error": null,
+        "definition": "Monotonic wrapper elapsed; getrusage deltas for evaluator and reaped candidate children. Resource metadata does not alter fitness."
+      }
+    },
+    "local_map": {
+      "metrics": {
+        "combined_score": 0.8152075000000002,
+        "public": {
+          "episodes": 32,
+          "mean_task_score": 0.6920125,
+          "mean_model_accuracy": 1.0,
+          "avg_steps": 158.15625,
+          "avg_keys": 1.90625,
+          "mean_map_coverage": 0.09861111111111112,
+          "escaped": 17,
+          "caught": 0,
+          "timeout": 15,
+          "invalid": 0
+        },
+        "text_feedback": "namazu-proposal-reconstruction-v1. Original .6 task + .4 current-map accuracy. {\"episodes\": 32, \"mean_task_score\": 0.6920125, \"mean_model_accuracy\": 1.0, \"avg_steps\": 158.15625, \"avg_keys\": 1.90625, \"mean_map_coverage\": 0.09861111111111112, \"escaped\": 17, \"caught\": 0, \"timeout\": 15, \"invalid\": 0}. Improve both map updating and planning. This is reconstruction after observation, not future prediction. Accuracy uses reported in-bounds map cells; coverage is diagnostic. Inspect escapes and failures separately from the weighted score."
+      },
+      "resource": {
+        "started_utc": "2026-10-09T11:13:03.629770+00:00",
+        "ended_utc": "2026-10-09T11:13:08.361283+00:00",
+        "elapsed_seconds": 4.731497039000033,
+        "evaluator_user_cpu_seconds": 0.964887,
+        "evaluator_system_cpu_seconds": 0.222854,
+        "evaluator_cpu_seconds": 1.187741,
+        "candidate_user_cpu_seconds": 3.167675,
+        "candidate_system_cpu_seconds": 0.344881,
+        "candidate_cpu_seconds": 3.512556,
+        "total_cpu_seconds": 4.700297,
+        "campaign_manifest": "/home/roland/projects/shinka-dreamer/artifacts/proposal/broader-study/controls-development/protocol.json",
+        "completed": true,
+        "error": null,
+        "definition": "Monotonic wrapper elapsed; getrusage deltas for evaluator and reaped candidate children. Resource metadata does not alter fitness."
+      }
+    },
+    "no_risk": {
+      "metrics": {
+        "combined_score": 0.7183007257599656,
+        "public": {
+          "episodes": 32,
+          "mean_task_score": 0.5397875000000002,
+          "mean_model_accuracy": 0.9860705643999141,
+          "avg_steps": 36.96875,
+          "avg_keys": 1.5,
+          "mean_map_coverage": 0.6716666666666665,
+          "escaped": 18,
+          "caught": 14,
+          "timeout": 0,
+          "invalid": 0
+        },
+        "text_feedback": "namazu-proposal-reconstruction-v1. Original .6 task + .4 current-map accuracy. {\"episodes\": 32, \"mean_task_score\": 0.5397875000000002, \"mean_model_accuracy\": 0.9860705643999141, \"avg_steps\": 36.96875, \"avg_keys\": 1.5, \"mean_map_coverage\": 0.6716666666666665, \"escaped\": 18, \"caught\": 14, \"timeout\": 0, \"invalid\": 0}. Improve both map updating and planning. This is reconstruction after observation, not future prediction. Accuracy uses reported in-bounds map cells; coverage is diagnostic. Inspect escapes and failures separately from the weighted score."
+      },
+      "resource": {
+        "started_utc": "2026-10-09T11:13:15.357442+00:00",
+        "ended_utc": "2026-10-09T11:13:18.518602+00:00",
+        "elapsed_seconds": 3.161145139000041,
+        "evaluator_user_cpu_seconds": 0.512019,
+        "evaluator_system_cpu_seconds": 0.042894,
+        "evaluator_cpu_seconds": 0.554913,
+        "candidate_user_cpu_seconds": 2.417534,
+        "candidate_system_cpu_seconds": 0.25043299999999996,
+        "candidate_cpu_seconds": 2.667967,
+        "total_cpu_seconds": 3.22288,
+        "campaign_manifest": "/home/roland/projects/shinka-dreamer/artifacts/proposal/broader-study/controls-development/protocol.json",
+        "completed": true,
+        "error": null,
+        "definition": "Monotonic wrapper elapsed; getrusage deltas for evaluator and reaped candidate children. Resource metadata does not alter fitness."
+      }
+    },
+    "generation_2": {
+      "metrics": {
+        "combined_score": 0.9353470380936211,
+        "public": {
+          "episodes": 32,
+          "mean_task_score": 0.9053,
+          "mean_model_accuracy": 0.9804175952340531,
+          "avg_steps": 63.25,
+          "avg_keys": 2.0,
+          "mean_map_coverage": 0.8363888888888888,
+          "escaped": 32,
+          "caught": 0,
+          "timeout": 0,
+          "invalid": 0
+        },
+        "text_feedback": "namazu-proposal-reconstruction-v1. Original .6 task + .4 current-map accuracy. {\"episodes\": 32, \"mean_task_score\": 0.9053, \"mean_model_accuracy\": 0.9804175952340531, \"avg_steps\": 63.25, \"avg_keys\": 2.0, \"mean_map_coverage\": 0.8363888888888888, \"escaped\": 32, \"caught\": 0, \"timeout\": 0, \"invalid\": 0}. Improve both map updating and planning. This is reconstruction after observation, not future prediction. Accuracy uses reported in-bounds map cells; coverage is diagnostic. Inspect escapes and failures separately from the weighted score."
+      },
+      "reused_from": "artifacts/proposal/stage3-development/gen2",
+      "new_episodes": 0
+    }
+  },
+  "provenance_note": "Development protocol prose named generation_2 subdirectory; actual immutable reused path is stage3-development/gen2 as recorded here. No numerical or program change."
+}

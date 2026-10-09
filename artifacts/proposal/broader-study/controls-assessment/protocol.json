@@ -1,0 +1,124 @@
+{
+  "stage": "broader-original-study-controls-assessment-v1",
+  "created_utc": "2026-10-09T11:14:18.691657+00:00",
+  "evaluator": "namazu-proposal-reconstruction-v1",
+  "purpose": "Fresh assessment of frozen competent comparator and selected-program mechanisms; not candidate selection or search repetition.",
+  "source_sha256": {
+    "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+    "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+    "proposal/evaluate_full.py": "b3993293a55f0059e9e6dd0dfa770390fc335a9d22b0a73d5ace41ad1abf2904",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+    "proposal/panel.py": "5143fa5b073083618b2f71d8dd3ee190b28fa4099dae1e906422a4733e05e4a8",
+    "artifacts/proposal/full-native-01/programs/generation-000.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "artifacts/proposal/full-native-01/programs/generation-001.py": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6",
+    "artifacts/proposal/full-native-01/programs/generation-002.py": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+    "proposal/assess.py": "7272060f888c66229ce5b3ccce41b0b1c3e361742b59ea5fc780a5b631820aa0",
+    "proposal/study_controls.py": "b2e32b517e04953c99ee4b94bcfeb24617b84087832b51dd178af26663f5714a",
+    "proposal/study/programs/manifest.json": "7d3fd7d66e832190c7b8067cefb2fd61b6be35b2d4fd71ec03b378a8165e21c9",
+    "proposal/study/programs/memory.py": "8f2ea851881a495f096999c271fac35dd5527bf65d38810f1a01d2874b142d77",
+    "proposal/study/programs/local_map_only.py": "27206bd7f25a242bd05c84f2d54631dfb5dac8a4abcb2a67b195d1cc32b88ee4",
+    "proposal/study/programs/no_future_risk.py": "cd84854a9a686d6facd2403ebd970b9b7199552461d07d9443df580639cd52c0",
+    "proposal/control_panel.py": "e3c2ae052e952e684820956c5973c05751e6bdddd8c24f19bfc3c2a762d19788",
+    "proposal/control_report.py": "1ce7978543a25b39018caa42f8a487c19f0a82def1a991d143201a0b5c65fa6b",
+    "proposal/development_report.py": "5a76a973e34c2fe763af0a211c93543f930fb8cf813505264b1772001f90d580",
+    "scripts/chromatic_fields.py": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+  },
+  "programs": {
+    "generation_2": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-002.py",
+      "sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    },
+    "memory_pathfinder": {
+      "path": "proposal/study/programs/memory.py",
+      "sha256": "8f2ea851881a495f096999c271fac35dd5527bf65d38810f1a01d2874b142d77"
+    },
+    "local_map": {
+      "path": "proposal/study/programs/local_map_only.py",
+      "sha256": "27206bd7f25a242bd05c84f2d54631dfb5dac8a4abcb2a67b195d1cc32b88ee4"
+    },
+    "no_risk": {
+      "path": "proposal/study/programs/no_future_risk.py",
+      "sha256": "cd84854a9a686d6facd2403ebd970b9b7199552461d07d9443df580639cd52c0"
+    }
+  },
+  "case_count": 256,
+  "pool_path": "results/private/proposal-broader-controls-assessment-seeds.json",
+  "public_output": "artifacts/proposal/broader-study/controls-assessment",
+  "development": {
+    "protocol_sha256": "34f6127322bf44b7650502dd5b1667ecfc92d2f27267c2bba7622381860fb9b1",
+    "summary_sha256": "bb34ec5a066c3b7b5d27cb3e144dee73a92450a94e0b099d3462ce07e7e0c6ff",
+    "known_case_range": [
+      0,
+      31
+    ],
+    "controls_changed_after_development_outcomes": false
+  },
+  "analysis": {
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 6109256,
+    "method": "Whole paired cases, shared resampling across all4 arms and metrics; equal episode means. Invalid executions retained with F=0.",
+    "primary_family": [
+      {
+        "contrast": "generation_2 minus memory_pathfinder",
+        "endpoint": "combined_score",
+        "meaningful_difference": 0.05
+      },
+      {
+        "contrast": "generation_2 minus local_map",
+        "endpoint": "escaped",
+        "null_difference": 0
+      },
+      {
+        "contrast": "generation_2 minus no_risk",
+        "endpoint": "escaped",
+        "null_difference": 0
+      }
+    ],
+    "primary_intervals": "Bonferroni98.333333% percentile intervals across3 endpoints; approximate family coverage95%.",
+    "secondary_intervals": "Marginal95% paired bootstrap; arm outcome Wilson95%; no equivalence conclusion from a wide nonsignificant interval.",
+    "binary_primary_tests": "Exact two-sided paired binomial conditional on discordances; Bonferroni multiply p by3.",
+    "secondary": [
+      "F",
+      "S",
+      "A",
+      "coverage",
+      "escape",
+      "capture",
+      "timeout",
+      "invalid",
+      "keys",
+      "door",
+      "steps",
+      "resources"
+    ],
+    "sample_size_rationale": "Same256-pair prospective scale as original plan; no sample extension for significance. Small baseline differences may remain unresolved.",
+    "no_optional_stopping": true
+  },
+  "budget": {
+    "stage_start_utc": "2026-10-09T11:10:28Z",
+    "execution_stop_utc": "2026-10-09T11:35:28Z",
+    "checkpoint_deadline_utc": "2026-10-09T11:40:28Z",
+    "stage_elapsed_minutes": 30,
+    "reporting_reserve_minutes": 5,
+    "experiment_model_calls": 0,
+    "new_candidates": 0,
+    "episodes": 1024,
+    "transitions": 204800,
+    "total_evaluator_cpu_seconds": 2400,
+    "workers": 1,
+    "candidate_memory_mib": 192,
+    "candidate_cpu_seconds_per_episode": 10,
+    "episode_wall_seconds": 20
+  },
+  "case_separation": "Draw only after committing this protocol and scientific sources. Exclude all prior private seed pools including retired Stage5 and all integers below1000000. Identical paired cases across4 arms; ordinal public IDs only.",
+  "information_boundary": "Original restricted worker receives ordinary local observations only. No fresh assessment data enter mutation or model prompts.",
+  "control_provenance": "proposal/study/programs/manifest.json; comparator manually adapted from historical fixed-risk pathfinder; local_map retains visits/inventory/localization and is not memory-free; no_risk removes a hardcoded one-step forecast, not learned parameters.",
+  "termination": "Complete all256 cases, or report incomplete at resource boundary; no retries/redraw/silent extensions.",
+  "automatic_continuation": false,
+  "command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.control_panel --protocol artifacts/proposal/broader-study/controls-assessment/protocol.json --output results/proposal-broader-study/controls-assessment"
+}

@@ -1,4 +1,30 @@
-# Checkpoint: original-proposal Stage 5 recovered and complete
+# Active work: complete the broader original-proposal study before synthesis
+
+The latest user instruction explicitly moves paper-style synthesis **after** the
+broader experimental study. Continue the original current-map objective and maze.
+The previous Stage 6 writing step is deferred, not the next deliverable.
+
+The next experimental block adds the pre-existing competent memory/pathfinding
+control and source-specific generation-2 interventions on access to past terrain
+and next-enemy-risk planning. Develop only on the existing public 32-case panel;
+freeze sources, contrasts and analysis before drawing 256 new paired cases for
+four conditions. Zero experiment-model calls are needed for this block. Preserve
+all earlier frozen sources and retire every previous private assessment pool.
+
+The remaining study includes independent full-native searches and a controlled
+seed-only rewrite comparison (three repetitions per treatment proposed in the
+existing plan). Separate runs, call budgets, selection and fresh assessment are
+required; islands are not independent repetitions. The user's earlier preference
+was stage-by-stage budgets. A new subscription execution-budget preference has
+been requested while the zero-model controls block is implemented. Do not infer
+an unlimited subscription allocation or relaunch historical closed runs.
+
+Do not call the broader study complete on the strength of the existing two seed
+mutations, controls alone, infrastructure, test counts or a manuscript. Report
+negative findings and actual budget/failure shortfalls. Synthesis follows the
+declared experimental completion criteria.
+
+## Recovered checkpoint: original-proposal Stage 5 complete
 
 The latest user request was to resume from the last checkpoint. The committed
 checkpoint below still said Stage 4, but the working tree already contained a

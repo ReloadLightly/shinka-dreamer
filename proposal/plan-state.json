@@ -2,8 +2,8 @@
   "plan": "docs/original-proposal-plan.md",
   "research": "docs/shinkaevolve-research.md",
   "date": "2026-10-09",
-  "status": "stage5_completed_recovered_and_verified",
-  "authorization": "User requested checkpoint resumption; recovered and finished the already completed Stage5 handoff without new scientific execution.",
+  "status": "broader_study_controls_implementation",
+  "authorization": "User explicitly requested completing the broader research study before paper-style synthesis; controls implementation and experiments proceed; subscription block budget preference requested.",
   "budget_preference": "specify_stage_by_stage",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
   "base_commit": "84a692882243fa630d0b85c42d844475d8bebf1a",
@@ -83,17 +83,20 @@
     ],
     "invocation_minutes_through_report": 8.788772183333332
   },
-  "next_proposed_stage": "Stage6: paper-style synthesis and concise manuscript draft from completed evidence; zero new episodes and experiment-model calls.",
-  "next_stage_authorized": false,
+  "next_proposed_stage": "Competent comparator and source-specific mechanism assessment, followed by independent full-native and seed-only rewrite runs; synthesis last.",
+  "next_stage_authorized": true,
   "automatic_continuation": false,
   "historical_campaigns": "preserve; do not resume",
   "next_stage_budget": {
-    "stage_elapsed_minutes": 30,
     "experiment_model_calls": 0,
-    "new_candidates": 0,
-    "episodes": 0
+    "development_new_episodes": 96,
+    "assessment_episodes": 1024,
+    "assessment_case_count": 256,
+    "assessment_workers": 1,
+    "assessment_total_cpu_seconds": 2400,
+    "local_block_elapsed_minutes": 30
   },
-  "next_stage_preparation": "All Stage5 evidence is complete. Await instruction for Stage6; do not redraw or rerun the retired assessment pool.",
+  "next_stage_preparation": "Implement controls; validate on32 public development cases; freeze4programs and analysis before256 fresh paired cases. Earlier private panels retired.",
   "next_execution_command": null,
   "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
   "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment",
@@ -287,5 +290,19 @@
       "Both Stage 5 Chromatic Fields PNG renders visually inspected; README links original-proposal figures only."
     ],
     "supervising_assistant_usage": "Two bounded read-only review subagents and supervising conversation; their token/allowance use is unavailable to the evaluator and excluded from experiment-model counts."
+  },
+  "broader_study": {
+    "status": "controls_implementation",
+    "scope": "Original current-map reconstruction objective; no predictive-learning extension",
+    "subscription_block_budget": "awaiting user preference; prior stage-by-stage preference preserved",
+    "completion_requirements": [
+      "competent_comparator_and_source_specific_mechanism_assessment",
+      "reconstruction_incentive_audit",
+      "three_independent_full_native_and_three_seed_only_rewrite_runs_under_declared_budgets",
+      "separate_selection_and_fresh_shared_assessment_of_frozen_winners",
+      "uncertainty_at_case_and_search_repetition_levels",
+      "scientific_synthesis_after_experiments"
+    ],
+    "automatic_continuation": false
   }
 }

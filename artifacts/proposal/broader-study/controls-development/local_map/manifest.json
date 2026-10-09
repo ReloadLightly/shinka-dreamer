@@ -1,0 +1,16 @@
+{
+  "evaluator": "namazu-proposal-reconstruction-v1",
+  "episodes": 32,
+  "seed_start": 0,
+  "candidate_sha256": "27206bd7f25a242bd05c84f2d54631dfb5dac8a4abcb2a67b195d1cc32b88ee4",
+  "source_sha256": {
+    "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+    "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854"
+  },
+  "purpose": "Development evaluation; no held-out or evolutionary claim"
+}
