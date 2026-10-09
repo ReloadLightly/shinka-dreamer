@@ -41,10 +41,10 @@ z
     <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="157.646437" transform="rotate(-0 10.08 157.646437)">Parent inspirations</text>
    </g>
    <g id="text_5">
-    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #c93683" x="10.08" y="171.401794" transform="rotate(-0 10.08 171.401794)">pending</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="171.401794" transform="rotate(-0 10.08 171.401794)">exercised</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="184.106145" transform="rotate(-0 10.08 184.106145)">Archive contexts 0; top-k 0</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="184.106145" transform="rotate(-0 10.08 184.106145)">Archive contexts 1; top-k 0</text>
    </g>
    <g id="text_7">
     <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="207.412837" transform="rotate(-0 10.08 207.412837)">Mutation operators</text>
@@ -53,7 +53,7 @@ z
     <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="221.168194" transform="rotate(-0 10.08 221.168194)">exercised</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="233.872545" transform="rotate(-0 10.08 233.872545)">diff: 1, full: 1</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="233.872545" transform="rotate(-0 10.08 233.872545)">diff: 1, full: 1; crossover not exercised</text>
    </g>
    <g id="text_10">
     <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="257.179237" transform="rotate(-0 10.08 257.179237)">Model bandit</text>
@@ -77,16 +77,16 @@ z
     <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="356.712037" transform="rotate(-0 10.08 356.712037)">Meta recommendations</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="370.467394" transform="rotate(-0 10.08 370.467394)">calls exercised</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="370.467394" transform="rotate(-0 10.08 370.467394)">recommendations consumed</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="383.171745" transform="rotate(-0 10.08 383.171745)">5 calls; 0 contexts consumed advice</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="383.171745" transform="rotate(-0 10.08 383.171745)">5 calls; 1 contexts consumed advice</text>
    </g>
    <g id="text_19">
     <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="406.478437" transform="rotate(-0 10.08 406.478437)">Prompt coevolution</text>
    </g>
    <g id="text_20">
-    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #c93683" x="10.08" y="420.233794" transform="rotate(-0 10.08 420.233794)">pending</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="420.233794" transform="rotate(-0 10.08 420.233794)">unexercised before stop</text>
    </g>
    <g id="text_21">
     <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="432.938145" transform="rotate(-0 10.08 432.938145)">1 stored prompts; 2 program credits</text>
@@ -95,10 +95,10 @@ z
     <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="456.244837" transform="rotate(-0 10.08 456.244837)">Checkpoint / resume</text>
    </g>
    <g id="text_23">
-    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="470.000194" transform="rotate(-0 10.08 470.000194)">checkpoint available not live resumed</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #3534cf" x="10.08" y="470.000194" transform="rotate(-0 10.08 470.000194)">actually restored</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="482.704545" transform="rotate(-0 10.08 482.704545)">0 held proposals; 0 patch repair attempts</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6f6a78" x="10.08" y="482.704545" transform="rotate(-0 10.08 482.704545)">1 held slots without source; 0 remote repair calls</text>
    </g>
    <g id="text_25">
     <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="10.08" y="75.84" transform="rotate(-0 10.08 75.84)">A  Recorded mechanism use</text>
@@ -115,8 +115,8 @@ z
    </g>
    <g id="patch_3">
     <path d="M 471.582439 228.033155
-L 772.627735 228.033155
-L 772.627735 219.352465
+L 622.105087 228.033155
+L 622.105087 219.352465
 L 471.582439 219.352465
 z
 " clip-path="url(#p3bfd364695)" style="fill: #f26a37"/>
@@ -131,8 +131,8 @@ z
    </g>
    <g id="patch_5">
     <path d="M 471.582439 218.050361
-L 772.627735 218.050361
-L 772.627735 209.36967
+L 622.105087 218.050361
+L 622.105087 209.36967
 L 471.582439 209.36967
 z
 " clip-path="url(#p3bfd364695)" style="fill: #3534cf"/>
@@ -147,16 +147,16 @@ z
    </g>
    <g id="patch_7">
     <path d="M 471.582439 208.067567
-L 772.627735 208.067567
-L 772.627735 199.386876
+L 622.105087 208.067567
+L 622.105087 199.386876
 L 471.582439 199.386876
 z
 " clip-path="url(#p3bfd364695)" style="fill: #c93683"/>
    </g>
    <g id="patch_8">
     <path d="M 471.582439 164.664113
-L 772.627735 164.664113
-L 772.627735 155.983422
+L 622.105087 164.664113
+L 622.105087 155.983422
 L 471.582439 155.983422
 z
 " clip-path="url(#p3bfd364695)" style="fill: #c93683"/>
@@ -180,20 +180,30 @@ L 0 3.5
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#m9706a7be92" x="772.627735" y="239.752088" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
+       <use xlink:href="#m9706a7be92" x="622.105087" y="239.752088" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_27">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="772.627735" y="254.350525" transform="rotate(-0 772.627735 254.350525)">1</text>
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="622.105087" y="254.350525" transform="rotate(-0 622.105087 254.350525)">1</text>
      </g>
     </g>
-    <g id="text_28">
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m9706a7be92" x="772.627735" y="239.752088" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_28">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="772.627735" y="254.350525" transform="rotate(-0 772.627735 254.350525)">2</text>
+     </g>
+    </g>
+    <g id="text_29">
      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #161625" x="629.63122" y="271.788494" transform="rotate(-0 629.63122 271.788494)">Counts</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
-     <g id="line2d_3">
+     <g id="line2d_4">
       <defs>
        <path id="m04c4370693" d="M 0 0
 L -3.5 0
@@ -203,17 +213,17 @@ L -3.5 0
        <use xlink:href="#m04c4370693" x="471.582439" y="213.710016" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_29">
+     <g id="text_30">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #6f6a78" x="464.582439" y="217.509234" transform="rotate(-0 464.582439 217.509234)">gpt-6-astra</text>
      </g>
     </g>
     <g id="ytick_2">
-     <g id="line2d_4">
+     <g id="line2d_5">
       <g>
        <use xlink:href="#m04c4370693" x="471.582439" y="170.306562" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_30">
+     <g id="text_31">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #6f6a78" x="464.582439" y="174.105781" transform="rotate(-0 464.582439 174.105781)">gpt-6.1-sol</text>
      </g>
     </g>
@@ -228,11 +238,11 @@ L 471.582439 87.84
 L 787.68 239.752088
 " style="fill: none; stroke: #dcd7e0; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="text_31">
+   <g id="text_32">
     <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(471.582439 285.25969)">Checkpoint boundary: launcher_finally</text>
     <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(471.582439 294.44044)">An active call can postdate the saved UCB state.</text>
    </g>
-   <g id="text_32">
+   <g id="text_33">
     <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #161625" x="629.63122" y="75.84" transform="rotate(-0 629.63122 75.84)">B  Arm allocation and reward updates</text>
    </g>
    <g id="legend_1">
@@ -244,7 +254,7 @@ L 478.332439 95.038828
 z
 " style="fill: #f26a37"/>
     </g>
-    <g id="text_33">
+    <g id="text_34">
      <text style="font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="499.332439" y="100.288828" transform="rotate(-0 499.332439 100.288828)">Observed mutation/repair calls</text>
     </g>
     <g id="patch_12">
@@ -255,7 +265,7 @@ L 478.332439 106.047422
 z
 " style="fill: #3534cf"/>
     </g>
-    <g id="text_34">
+    <g id="text_35">
      <text style="font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="499.332439" y="111.297422" transform="rotate(-0 499.332439 111.297422)">Native submitted at checkpoint</text>
     </g>
     <g id="patch_13">
@@ -266,7 +276,7 @@ L 478.332439 117.056016
 z
 " style="fill: #c93683"/>
     </g>
-    <g id="text_35">
+    <g id="text_36">
      <text style="font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="499.332439" y="122.306016" transform="rotate(-0 499.332439 122.306016)">Native reward updates</text>
     </g>
    </g>
@@ -297,48 +307,48 @@ z
 " clip-path="url(#p77b57ad886)" style="fill: #3534cf"/>
    </g>
    <g id="matplotlib.axis_3">
-    <g id="xtick_3">
-     <g id="line2d_5">
+    <g id="xtick_4">
+     <g id="line2d_6">
       <g>
        <use xlink:href="#m9706a7be92" x="471.582439" y="502.56" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_36">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="471.582439" y="517.158437" transform="rotate(-0 471.582439 517.158437)">0</text>
-     </g>
-    </g>
-    <g id="xtick_4">
-     <g id="line2d_6">
-      <g>
-       <use xlink:href="#m9706a7be92" x="622.105087" y="502.56" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
-      </g>
-     </g>
      <g id="text_37">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="622.105087" y="517.158437" transform="rotate(-0 622.105087 517.158437)">1</text>
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="471.582439" y="517.158437" transform="rotate(-0 471.582439 517.158437)">0</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_7">
       <g>
-       <use xlink:href="#m9706a7be92" x="772.627735" y="502.56" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
+       <use xlink:href="#m9706a7be92" x="622.105087" y="502.56" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_38">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="622.105087" y="517.158437" transform="rotate(-0 622.105087 517.158437)">1</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m9706a7be92" x="772.627735" y="502.56" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_39">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #6f6a78" x="772.627735" y="517.158437" transform="rotate(-0 772.627735 517.158437)">2</text>
      </g>
     </g>
-    <g id="text_39">
+    <g id="text_40">
      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #161625" x="629.63122" y="534.596406" transform="rotate(-0 629.63122 534.596406)">Program credits</text>
     </g>
    </g>
    <g id="matplotlib.axis_4">
     <g id="ytick_3">
-     <g id="line2d_8">
+     <g id="line2d_9">
       <g>
        <use xlink:href="#m04c4370693" x="471.582439" y="445.592967" style="fill: #6f6a78; stroke: #6f6a78; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_40">
+     <g id="text_41">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #6f6a78" x="464.582439" y="449.392186" transform="rotate(-0 464.582439 449.392186)">Prompt 0 · 50e31f</text>
      </g>
     </g>
@@ -353,11 +363,11 @@ L 471.582439 350.647912
 L 787.68 502.56
 " style="fill: none; stroke: #dcd7e0; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="text_41">
+   <g id="text_42">
     <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(471.582439 548.290102)">Native prompt fitness averages correct-program percentiles.</text>
     <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(471.582439 557.248352)">Counts include failures; this is not failure-inclusive task fitness.</text>
    </g>
-   <g id="text_42">
+   <g id="text_43">
     <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #161625" x="629.63122" y="338.647912" transform="rotate(-0 629.63122 338.647912)">C  Native prompt credit</text>
    </g>
    <g id="legend_2">
@@ -369,7 +379,7 @@ L 478.782439 358.326662
 z
 " style="fill: #dcd7e0"/>
     </g>
-    <g id="text_43">
+    <g id="text_44">
      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="501.182439" y="363.926662" transform="rotate(-0 501.182439 363.926662)">All credited programs</text>
     </g>
     <g id="patch_20">
@@ -380,19 +390,19 @@ L 478.782439 370.069162
 z
 " style="fill: #3534cf"/>
     </g>
-    <g id="text_44">
+    <g id="text_45">
      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #161625" x="501.182439" y="375.669162" transform="rotate(-0 501.182439 375.669162)">Correct-program credits</text>
     </g>
    </g>
   </g>
-  <g id="text_45">
+  <g id="text_46">
    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #161625" x="372.96" y="22.2375" transform="rotate(-0 372.96 22.2375)">RUN1 native machinery · observed events, not causal attributions</text>
   </g>
-  <g id="text_46">
+  <g id="text_47">
    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(10.08 597.247031)">Readiness and native novelty fixture calls are separate from discovery; a fixture does not prove the discovery judge ran.</text>
    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(10.08 608.692781)">Local BGE embeddings truncate to 10,000 source characters and are not validated semantic code novelty.</text>
    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(10.08 620.138531)">Native UCB reward updates are shifted/scaled feedback; allocation is not a controlled comparison of model quality.</text>
-   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(10.08 631.584281)">All mechanisms are enabled together. One search cannot establish reliable discovery or isolate a mechanism’s benefit.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(10.08 631.584281)">Pending means configured but not exercised at this snapshot. One search cannot isolate a mechanism’s benefit or reliable discovery.</text>
   </g>
  </g>
  <defs>

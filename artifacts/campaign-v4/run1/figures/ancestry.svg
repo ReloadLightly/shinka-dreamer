@@ -304,9 +304,10 @@ L 484.525891 59.998601
    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #161625" x="369.408438" y="22.2375" transform="rotate(-0 369.408438 22.2375)">RUN1 source ancestry · 3 slots / 6 native rows</text>
   </g>
   <g id="text_20">
-   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 393.974381)">Open diamonds are administrative seed copies; they add neither candidate slots nor episode evaluations. Colors encode birth island.</text>
-   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 405.420131)">Circle: full/crossover proposal; square: diff; X: native-invalid slot. Node labels identify exact source slots.</text>
-   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 416.865881)">Parent, inspiration and migration links record supplied context and native actions; they do not establish causal necessity.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 382.528631)">Open diamonds are administrative seed copies; they add neither candidate slots nor episode evaluations. Colors encode birth island.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 393.974381)">Circle: full/crossover proposal; square: diff; X: native-invalid slot. Node labels identify exact source slots.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 405.420131)">Parent, inspiration and migration links record supplied context and native actions; they do not establish causal necessity.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #6f6a78" transform="translate(24.672437 416.865881)">1 admitted held slot(s) have no generated source and are absent from this source graph.</text>
   </g>
  </g>
  <defs>

@@ -7,6 +7,7 @@ All task results reuse eight development layouts across six conditions. Candidat
 - [Search progress](search-progress.svg): all candidate slots, missing/invalid execution, absolute task and proper prediction diagnostics.
 - [Resources](resources.svg): measured local CPU, reported experiment-model tokens and registered caps; no estimated price is treated as a subscription charge.
 - [Native machinery](native-machinery.svg): configured versus observed execution, bandit checkpoint counts, prompt credit. Native exponential reward sums are not mislabelled as mean rewards.
+- [Usage scopes](usage-scopes.svg): separate supervising/delegated-conversation metadata; timeout usage and unreported active work remain unknown.
 - [Ancestry](ancestry.svg): recorded parent/inspiration/migration relationships, retaining administrative seed copies.
 
 ```bash

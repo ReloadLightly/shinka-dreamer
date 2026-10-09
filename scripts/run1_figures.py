@@ -66,11 +66,11 @@ def progress(candidates,native,out,outputs):
                     ax.annotate('infrastructure', (g,score), xytext=(0,10), textcoords='offset points', ha='center', fontsize=7, color=SECONDARY)
             else:
                 ax.scatter(g,.035,transform=ax.get_xaxis_transform(),facecolor='none',edgecolor=SECONDARY,marker='o',s=45)
-                ax.annotate('pending',(g,.035),xycoords=('data','axes fraction'),xytext=(0,9),textcoords='offset points',ha='center',fontsize=8,color=SECONDARY)
+                ax.annotate('held / no source' if row.get('status','').startswith('held') else 'pending',(g,.035),xycoords=('data','axes fraction'),xytext=(0,9),textcoords='offset points',ha='center',fontsize=8,color=SECONDARY)
         if eligible:
             gx,gy=zip(*eligible);ax.step(gx,np.maximum.accumulate(gy),where='post',c=ORANGE,lw=1.5,label='Best eligible score')
         handles=[Line2D([],[],marker='o',ls='none',c=COBALT,label='Native valid'),Line2D([],[],marker='X',ls='none',c=MAGENTA,label='Native invalid'),Line2D([],[],c=ORANGE,label='Best eligible')]
-        ax.legend(handles=handles,fontsize=8,loc='lower right')
+        ax.legend(handles=handles,fontsize=8,loc='center right')
         ax.set(title='A  Every native candidate slot',xlabel='Slot (seed = 0)',ylabel='Native selection score')
         ax=axes[0,1]
         for row in candidates:
@@ -93,12 +93,14 @@ def progress(candidates,native,out,outputs):
             complete=[r for r in candidates if r.get('missing_episodes')==0 and number(r.get(key))]
             if complete:ax.plot([r['generation'] for r in complete],[r[key] for r in complete],marker=marker,linestyle='none',c=color,ms=4,label=name)
         ax.set(title='D  Proper prediction diagnostics',xlabel='Slot',ylabel='Pooled on-policy Brier loss ↓');ax.legend(fontsize=8)
-    for ax in (axes[0,0],axes[1,0],axes[1,1]):ax.xaxis.set_major_locator(MaxNLocator(integer=True));ax.grid(axis='y',alpha=.6);ax.set_axisbelow(True)
+    for ax in (axes[0,0],axes[1,0],axes[1,1]):
+        ax.xaxis.set_major_locator(MaxNLocator(integer=True));ax.grid(axis='y',alpha=.6);ax.set_axisbelow(True)
+        if candidates:ax.set_xlim(min(r['generation'] for r in candidates)-.25,max(r['generation'] for r in candidates)+.45)
     count=native.get('counts',{});n=count.get('persisted_slots',0);cap=count.get('authorized_total_slots','?')
-    fig.suptitle(f'RUN1 · {n}/{cap} native slots · reused development cases' + (f' · {len(candidates)} scientific rows' if len(candidates)!=n else ''),fontsize=16,fontweight='bold')
+    fig.suptitle(f'RUN1 · {n}/{cap} native slots · reused development cases' + (f" · {count.get('admitted_slots_including_held',len(candidates))} admitted" if len(candidates)!=n else ''),fontsize=16,fontweight='bold')
     footer(fig,'Eight layouts × six conditions per evaluated slot. Seed copies are administrative rows, not extra candidate evaluations.\n'
         'Invalid episodes retain zero task; native eligibility additionally requires every episode to validate.\n'
-        'Hatched episodes were not recorded; they are not observed algorithm failures.\n'
+        'Hatching marks unrecorded outcomes: infrastructure loss or held/unattempted slots, not observed algorithm failures.\n'
         'Forecasts use different on-policy experience. No matched learning, frozen-control or transfer assessment is established by this figure.')
     save(fig,out,'search-progress',outputs)
 
@@ -110,7 +112,7 @@ def resources(candidates,curve,native,out,outputs):
     available=[r for r in curve if number(r.get('bestsofar_task')) and number(r.get('uncached_input_plus_output_tokens'))]
     if available:
         ax.step([r['uncached_input_plus_output_tokens']/1000 for r in available],[r['bestsofar_task'] for r in available],where='post',c=COBALT,marker='o',ms=4)
-        for r in available:ax.annotate(str(r['generation']),(r['uncached_input_plus_output_tokens']/1000,r['bestsofar_task']),xytext=(4,5),textcoords='offset points',fontsize=8)
+        for r in available:ax.annotate('checkpoint' if r.get('point_kind')=='checkpoint_tail' else str(r['generation']),(r['uncached_input_plus_output_tokens']/1000,r['bestsofar_task']),xytext=(4,5),textcoords='offset points',fontsize=8)
         ax.set(title='A  Progress per reported token use',xlabel='Completed-call uncached input + output tokens (k)',ylabel='Best eligible task at evaluation completion')
     else:unavailable(ax,'A  Development progress per resource','Evaluation-aligned resource snapshots pending; no budget or reward is imputed.')
     ax=axes[0,1];gs=[r['generation'] for r in candidates]
@@ -139,10 +141,33 @@ def resources(candidates,curve,native,out,outputs):
     ax.set(yticks=range(3),yticklabels=[n for n,k in specs],xlim=(0,100),xlabel='Fraction of registered cap (%)',title='D  Shared bounded-execution budget');ax.invert_yaxis()
     fig.suptitle('RUN1 resources · completed usage and local CPU are different clocks',fontsize=16,fontweight='bold')
     footer(fig,'Readiness/novelty fixture calls consume the shared budget but no candidate slots; the readiness row remains separate from discovery.\n'
-        'Pending calls have incomplete usage. Cached tokens are reported separately; reasoning tokens are already included in output.\n'
+        f"{calls.get('completed_without_reported_usage',0)} ended call(s) lack usage: token bars are reported partial sums, not complete cost. Cached input stays separate.\n"
         'Remote per-call elapsed durations may overlap local work: do not add them to episode CPU or treat them as controller wall time.\n'
         'Native dollar values are API list-price estimates, not subscription charges. No model-price estimate is plotted as actual spending.')
     save(fig,out,'resources',outputs)
+
+
+def usage_scopes(native,supervisor,out,outputs):
+    if not supervisor:return
+    fig,axes=plt.subplots(1,2,figsize=(11.4,5.6),gridspec_kw={'wspace':.34})
+    fig.subplots_adjust(top=.78,bottom=.30,left=.22,right=.96)
+    calls=native.get('calls',{});total=supervisor.get('totals',{})
+    scopes=[('Discovery',calls.get('discovery',{})),('Readiness + fixture',calls.get('readiness_and_fixture',{})),
+            ('Supervision + delegates',{'uncached_input_plus_output_tokens':total.get('uncached_input_plus_output_tokens',0),
+             'tokens':{'cacheReadTokens':total.get('cached_input_tokens',0)}})]
+    for ax,key,title in [(axes[0],'uncached_input_plus_output_tokens','A  Uncached input + output'),(axes[1],'cached','B  Cached input')]:
+        values=[r.get('tokens',{}).get('cacheReadTokens',0) if key=='cached' else r.get(key,0) for _,r in scopes]
+        ax.barh(range(3),np.array(values)/1e6,color=[COBALT,ORANGE,MAGENTA],height=.6)
+        ax.set(yticks=range(3),yticklabels=[n for n,r in scopes] if ax is axes[0] else [],xlabel='Reported tokens (millions)',title=title)
+        ax.invert_yaxis();ax.set_xlim(0,max(values)/1e6*1.42 if max(values)>0 else 1)
+        for i,v in enumerate(values):ax.text(v/1e6+max(values)/1e6*.03,i,f'{v:,}',va='center',fontsize=9)
+    fig.suptitle('RUN1 usage scopes · experiment calls and project work kept separate',fontsize=15,fontweight='bold')
+    missing=calls.get('all',{}).get('completed_without_reported_usage',0)
+    footer(fig,f"Experiment snapshot: {native.get('snapshot_utc','unknown')[:19]} UTC; supervision: {supervisor.get('snapshot_utc','unknown')[:19]} UTC.\n"
+        f'{missing} experiment call(s) lack reported usage. Supervision covers four identified conversation sessions; experiment sessions are excluded.\n'
+        'Supervision is a metadata delta from the last pre-start report; boundary-spanning events cannot be apportioned.\n'
+        'Active-turn/unreported service work is absent. Reasoning output is included once. These values are neither allowance nor charges.')
+    save(fig,out,'usage-scopes',outputs)
 
 
 def machinery(native,prompts,out,outputs):
@@ -153,12 +178,12 @@ def machinery(native,prompts,out,outputs):
     def add(name,state,observed):status.append((name,state.replace('_',' '),observed))
     add('Native islands',m.get('islands',{}).get('status','pending'),f"{m.get('islands',{}).get('configured','?')} configured; {len(m.get('islands',{}).get('migrations',[]))} migration events")
     add('Parent inspirations',m.get('inspirations',{}).get('status','pending'),f"Archive contexts {m.get('inspirations',{}).get('contexts_archive',0)}; top-k {m.get('inspirations',{}).get('contexts_top_k',0)}")
-    op=m.get('operators',{}).get('persisted_by_type',{});add('Mutation operators','exercised' if op else 'pending',', '.join(f'{k}: {v}' for k,v in op.items()) or 'No descendant persisted yet')
+    op=m.get('operators',{}).get('persisted_by_type',{});add('Mutation operators','exercised' if op else 'pending',(', '.join(f'{k}: {v}' for k,v in op.items()) or 'No descendant persisted yet') + ('; crossover not exercised' if not op.get('cross') else ''))
     add('Model bandit',m.get('model_bandit',{}).get('status','pending'),f"{len(m.get('model_bandit',{}).get('arm_models_queried',[]))} mutation arms queried; cost coefficient 0")
     novelty=m.get('novelty',{});add('Native novelty',novelty.get('status','pending'),f"{len(novelty.get('embedding_calls',[]))} embedding calls; {len(novelty.get('decisions',[]))} gate decisions; {counts.get('novelty_rejections',0)} rejected")
     meta=m.get('meta',{});add('Meta recommendations',meta.get('status','pending'),f"{sum(meta.get('calls_by_role',{}).values())} calls; {meta.get('sampling_contexts_with_recommendation',0)} contexts consumed advice")
     prompt=m.get('prompt_coevolution',{});add('Prompt coevolution',prompt.get('status','pending'),f"{prompt.get('prompt_rows',0)} stored prompts; {prompt.get('programs_with_prompt_credit',0)} program credits")
-    add('Checkpoint / resume',m.get('resume',{}).get('status','pending'),f"{counts.get('held_proposals',0)} held proposals; {counts.get('patch_repairs',0)} patch repair attempts")
+    add('Checkpoint / resume',m.get('resume',{}).get('status','pending'),f"{counts.get('held_slots_without_generated_source',0)} held slots without source; {counts.get('actual_remote_repair_calls',0)} remote repair calls")
     for i,(name,state,observed) in enumerate(status):
         y=.97-i*.12;table_ax.text(0,y,name,weight='bold',fontsize=10,va='top')
         table_ax.text(0,y-.035,textwrap.fill(state,50),color=MAGENTA if state=='pending' else COBALT,fontsize=9,va='top')
@@ -184,7 +209,7 @@ def machinery(native,prompts,out,outputs):
     footer(fig,'Readiness and native novelty fixture calls are separate from discovery; a fixture does not prove the discovery judge ran.\n'
         'Local BGE embeddings truncate to 10,000 source characters and are not validated semantic code novelty.\n'
         'Native UCB reward updates are shifted/scaled feedback; allocation is not a controlled comparison of model quality.\n'
-        'All mechanisms are enabled together. One search cannot establish reliable discovery or isolate a mechanism’s benefit.')
+        'Pending means configured but not exercised at this snapshot. One search cannot isolate a mechanism’s benefit or reliable discovery.')
     save(fig,out,'native-machinery',outputs)
 
 
@@ -213,7 +238,8 @@ def ancestry(lineage,native,out,outputs):
     fig.suptitle(f"RUN1 source ancestry · {count.get('persisted_slots',0)} slots / {count.get('native_rows',0)} native rows",fontsize=16,fontweight='bold')
     footer(fig,'Open diamonds are administrative seed copies; they add neither candidate slots nor episode evaluations. Colors encode birth island.\n'
         'Circle: full/crossover proposal; square: diff; X: native-invalid slot. Node labels identify exact source slots.\n'
-        'Parent, inspiration and migration links record supplied context and native actions; they do not establish causal necessity.')
+        'Parent, inspiration and migration links record supplied context and native actions; they do not establish causal necessity.\n'
+        f"{count.get('held_slots_without_generated_source',0)} admitted held slot(s) have no generated source and are absent from this source graph.")
     save(fig,out,'ancestry',outputs)
 
 
@@ -221,13 +247,13 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--root',type=Path,default=ROOT/'artifacts/campaign-v4/run1');args=parser.parse_args()
     base=args.root.resolve();out=base/'figures';out.mkdir(parents=True,exist_ok=True)
     native=read(base/'native/native-report.json',{});lineage=read(base/'native/lineage.json',{});prompts=read(base/'native/prompts.json',{})
-    candidates=rows(read(base/'science/candidate-metrics.json',[]));curve=rows(read(base/'science/resource-curve.json',[]));summary=read(base/'science/summary.json',{})
+    candidates=rows(read(base/'science/candidate-metrics.json',[]));curve=rows(read(base/'science/resource-curve.json',[]));summary=read(base/'science/summary.json',{});supervisor=read(base/'supervisor-usage.json',{})
     if not native:raise ValueError('Public native report required; do not infer current execution from a configured plan')
-    apply_theme();outputs={};progress(candidates,native,out,outputs);resources(candidates,curve,native,out,outputs);machinery(native,prompts,out,outputs);ancestry(lineage,native,out,outputs)
+    apply_theme();outputs={};progress(candidates,native,out,outputs);resources(candidates,curve,native,out,outputs);machinery(native,prompts,out,outputs);ancestry(lineage,native,out,outputs);usage_scopes(native,supervisor,out,outputs)
     for p,h in INPUT_HASHES.items():
         if hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=h:raise RuntimeError('Input advanced while plotting; rerun from a stable saved snapshot: '+p)
     record={'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'theme_sha256':hashlib.sha256((ROOT/'scripts/chromatic_fields.py').read_bytes()).hexdigest(),
-        'input_sha256':INPUT_HASHES,'output_sha256':outputs,'science_snapshot_utc':summary.get('exported_utc'),'native_snapshot_utc':native.get('snapshot_utc'),
+        'input_sha256':INPUT_HASHES,'output_sha256':outputs,'science_snapshot_utc':summary.get('exported_utc'),'native_snapshot_utc':native.get('snapshot_utc'),'supervisor_snapshot_utc':supervisor.get('snapshot_utc'),
         'native_persisted_slots':native.get('counts',{}).get('persisted_slots'),'science_candidate_rows':len(candidates),
         'evidence_status':{'task':'Reused development only','prediction':'On-policy diagnostics only','matched_prediction_learning':'Not established in RUN1','frozen_control_benefit':'Not established in RUN1','transfer_assessment':'Not performed in RUN1','reliable_discovery':'Not tested by one search'},
         'new_environment_episodes':0,'new_candidate_executions':0,'new_experiment_model_calls':0,'statistical_resampling':False}
@@ -238,6 +264,7 @@ def main():
         '- [Search progress](search-progress.svg): all candidate slots, missing/invalid execution, absolute task and proper prediction diagnostics.\n'
         '- [Resources](resources.svg): measured local CPU, reported experiment-model tokens and registered caps; no estimated price is treated as a subscription charge.\n'
         '- [Native machinery](native-machinery.svg): configured versus observed execution, bandit checkpoint counts, prompt credit. Native exponential reward sums are not mislabelled as mean rewards.\n'
+        '- [Usage scopes](usage-scopes.svg): separate supervising/delegated-conversation metadata; timeout usage and unreported active work remain unknown.\n'
         '- [Ancestry](ancestry.svg): recorded parent/inspiration/migration relationships, retaining administrative seed copies.\n\n'
         '```bash\n.venv/bin/python scripts/run1_figures.py\n```\n\nThis rendering command performs no experiment, statistical resampling or model call. SVG, PDF and PNG copies are supplied.\n')
     print(json.dumps({'visual_files':len(outputs),'candidate_rows':len(candidates),'native_slots':record['native_persisted_slots'],'new_environment_episodes':0,'new_experiment_model_calls':0}))
