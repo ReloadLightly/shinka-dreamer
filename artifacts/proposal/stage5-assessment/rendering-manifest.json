@@ -1,0 +1,36 @@
+{
+  "style": "Chromatic Field v1 \u00b7 repository presentation 2",
+  "reproduction": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
+  "scientific_execution": "No candidate/model execution or private-pool access; saved public episodes only.",
+  "input_sha256": {
+    "artifacts/proposal/stage5-assessment/protocol.json": "04b86f3fb824060e747b13972ebe3a15287c1485b42f85e0c467db89632a821b",
+    "artifacts/proposal/stage5-assessment/pool-manifest.json": "6aa78eb96c63b3a9ce552e6ed2a3e4448dc6d3677360ae09277b1804f2ba4a02",
+    "artifacts/proposal/stage5-assessment/execution.json": "7d3a23186ef040e6aa01c753504574c0620468a5a34447812f47942173dae33c",
+    "artifacts/proposal/stage5-assessment/seed/episodes.json": "5e1a7db949d74e99f0ee373fdf3c540bb4841d422cfacb301266c00a0a4af793",
+    "artifacts/proposal/stage5-assessment/seed/metrics.json": "ea4b09729179a793d9c4adc1ac2de64ca2f71c2f2de4b01497de501655c01e75",
+    "artifacts/proposal/stage5-assessment/seed/resource.json": "d59990813d41bc3e89d7654e6313bcafb2e1d90f89ff1c102b0033a7491d1109",
+    "artifacts/proposal/stage5-assessment/seed/manifest.json": "cc79bfa893d0eaaefec4073ad2bd33d3c529b71293de88a0e1f5c90ea3d724f8",
+    "artifacts/proposal/stage5-assessment/generation_2/episodes.json": "0d96f9cc2f8cc8e144b6b416d43d0bd4d3666cb77a16e342d100e8f09d97d668",
+    "artifacts/proposal/stage5-assessment/generation_2/metrics.json": "001c5bb9fa69b6986834152c31baa4c1e81285b873726413606b3caee20b9aae",
+    "artifacts/proposal/stage5-assessment/generation_2/resource.json": "10f1453a4598ce3b6f64a3695d817cc12c4c70678d03066d5611bc895a4ae83e",
+    "artifacts/proposal/stage5-assessment/generation_2/manifest.json": "bcaee1ece88a31f8b1bbe85e5a345a809702ad6bafd8fdeb22f4d3226d66ccb9",
+    "artifacts/proposal/stage4-selection/assessment-freeze.json": "662dfce459750136d19f8d5dc218faed47b9367038b2f0601cb80e435475c6a7"
+  },
+  "source_sha256": {
+    "proposal/assessment_report.py": "f0ae7ed50e761949841ae9181cc8847656f0641c219e80de9fccdef18d10601b",
+    "proposal/development_report.py": "5a76a973e34c2fe763af0a211c93543f930fb8cf813505264b1772001f90d580",
+    "scripts/chromatic_fields.py": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+  },
+  "output_sha256": {
+    "artifacts/proposal/stage5-assessment/summary.json": "02b4b248ca39f0ddd83eed180e580852f45b59317115c987d91e5b0d7f2e3422",
+    "artifacts/proposal/stage5-assessment/paired-episodes.csv": "e2531d92bde2ea52f526a3f9bdc87ead30495d8dd3726d636825eddbcddc0653",
+    "artifacts/proposal/stage5-assessment/captions.md": "5fee547d0a71375713ca15b29ea07e3972dc68b33c649fb8d3a015e3e9943179",
+    "artifacts/proposal/stage5-assessment/figures/assessment-effects.svg": "72cdb6aba32ca69831977a11f6ef36229359ebe9f9b6a5a6afee7208e732db6f",
+    "artifacts/proposal/stage5-assessment/figures/assessment-effects.pdf": "220af76ffb285d65fe18abbe720385a6240cc5c564bf588fbf037d3b669a22ac",
+    "artifacts/proposal/stage5-assessment/figures/assessment-effects.png": "fb90ef13da76c9e77a03b2835dc0ceeb903dbb95eb2ab6ddea4636f0f4134fa8",
+    "artifacts/proposal/stage5-assessment/figures/assessment-cases.svg": "a8b65a1f4889c37533c3ec172a999b0432dde3ac615fa3d5b76f750df2240ee8",
+    "artifacts/proposal/stage5-assessment/figures/assessment-cases.pdf": "6d952d7ff2612c069eed80d5a197ca8c77c22c2d579fb749d9e436abe9499635",
+    "artifacts/proposal/stage5-assessment/figures/assessment-cases.png": "08e259fa43b3644867ef12ea7b5912a898c819489bb90046c769e7cbac8f45ab"
+  }
+}

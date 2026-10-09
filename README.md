@@ -1,6 +1,6 @@
 # ShinkaDreamer: Joint Evolution of Map Memory and Planning in a Partially Observed Dynamic Maze
 
-*Scientific implementation report — original-proposal track. Search results are development evidence.*
+*Scientific implementation report — original-proposal track, with a frozen-program assessment on 256 fresh paired cases.*
 
 ## Abstract
 
@@ -23,10 +23,14 @@ accuracy decreased slightly to 98.04%. On a subsequent disjoint 64-case
 selection-validation panel, both descendants escaped **61/64 cases**, versus
 **0/64 for the seed**. The prespecified fitness rule selected generation 2, but
 its advantage over generation 1 was unresolved. Its fitness gain over the seed
-was 0.4171 (descriptive paired 95% interval 0.3817–0.4476). All 192 selection
-episodes took 28.18 seconds with no experiment-model calls. Final assessment,
-causal benefits of particular memory mechanisms and discovery reliability remain
-unmeasured; the selection panel is not unbiased confirmation of its winner.
+was 0.4171 (descriptive paired 95% interval 0.3817–0.4476). A final assessment of
+the frozen generation 2 on **256 fresh paired cases** found **239/256 escapes
+(93.36%) versus 2/256 (0.78%)** for the original seed. Mean fitness improved by
+**0.4026 (paired 95% interval 0.3835–0.4201)**, almost entirely through task reward;
+the change in reported-cell accuracy was unresolved. All 512 assessment episodes
+took 64.06 seconds with no experiment-model calls. This establishes improvement
+over the original weak seed on the declared task distribution. Causal benefits
+of particular memory mechanisms and discovery reliability remain unmeasured.
 
 ## 1. Introduction
 
@@ -418,23 +422,85 @@ are additional to evaluation costs. See the
 [results and paired data](artifacts/proposal/stage4-selection/summary.json).
 
 The [assessment freeze](artifacts/proposal/stage4-selection/assessment-freeze.json)
-binds generation 2, the original seed, evaluator, paired contrasts and proposed
-256-case sample for Stage 5. The primary contrast is mean $F$ improvement;
-0.05 is specified as a meaningful difference. At 256 pairs, development and
-selection variances suggest approximate 95% half-widths of 0.009 and 0.017 for
-that contrast; these are planning estimates. Runtime projects to roughly
-**70 seconds of evaluation** for 512 episodes, within the proposed 30-minute
-stage ceiling. The assessment pool has **not been drawn**, and Stage 5 requires
-a separate instruction. All Stage 4 workers have exited.
+bound generation 2, the original seed, evaluator, paired contrasts and 256-case
+sample before Stage 5. The primary contrast is mean $F$ improvement; 0.05 was
+specified as a meaningful difference. Development and selection variances gave
+planning estimates of 0.009 and 0.017 for its 95% half-width. The frozen assessment
+is reported separately below; its results did not change the selected program.
+
+### 4.5 Fresh assessment of the frozen program
+
+The [Stage 5 protocol](artifacts/proposal/stage5-assessment/protocol.json) bound
+the earlier scientific freeze to a 30-minute execution/reporting ceiling and
+1,200 total evaluator/candidate CPU-seconds. The 256 private cases were drawn
+after the freeze, excluding all previous private pools, including Stage 4, and
+the public seed range below 1,000,000. Both unchanged programs ran on every case.
+There were no new candidates, model calls, sample-size extensions or selection
+decisions using these results. The assessment pool is now retired from future
+tuning and fresh confirmation.
+
+| Measurement | Original seed | Frozen generation 2 | Paired difference, 95% interval |
+|:--|--:|--:|--:|
+| Escape |2/256 (0.78%)|239/256 (93.36%)|+92.58 [89.06, 95.70] percentage points|
+| Capture / timeout / invalid |154 / 100 / 0|16 / 1 / 0|—|
+| Mean fitness $F$ |0.500541|0.903113|+0.402573 [0.383537, 0.420061]|
+| Mean task $S$ |0.179711|0.850380|+0.670669 [0.638845, 0.699953]|
+| Mean reconstruction $A$ |0.981785|0.982214|+0.000429 [−0.001346, 0.002210]|
+| Mean final map coverage |35.72%|79.78%|+44.05 [41.16, 46.79] percentage points|
+| Mean keys |0.53125|1.9375|+1.40625 [1.3125, 1.4961]|
+| Opened door |2/256|239/256|+92.58 [89.06, 95.70] percentage points|
+| Mean episode length |133.65|56.03|−77.63 [−86.80, −68.31] transitions|
+
+The primary fitness interval lies entirely above the prespecified meaningful
+difference of 0.05. Its gain decomposes into **+0.402401 from task reward** and
+**+0.000172 from reconstruction**. Reported-cell accuracy is similar, while the
+evolved program covers substantially more of the map. Accuracy is measured along
+each policy's own trajectory; this is not a matched-experience prediction test.
+Episode length includes captures and timeouts and is not a comparison of escape
+speed conditional on success.
+
+Generation 2 escaped on both cases where the seed escaped, and on 237 additional
+cases. Separate-arm 95% Wilson escape intervals are **89.62–95.81%** for generation 2
+and **0.21–2.80%** for the seed. All paired intervals use 10,000 whole-case bootstrap
+draws with the frozen RNG seed, sharing each draw across programs and metrics.
+Secondary intervals are unadjusted. The zero-width invalid-execution interval
+reflects no observed invalid runs, not a guarantee of population reliability.
+
+![Frozen-program assessment means and paired effects with uncertainty](artifacts/proposal/stage5-assessment/figures/assessment-effects.svg)
+
+**Figure 11. Fresh assessment effects.** All 256 pairs contribute. The orange
+tick marks the prespecified meaningful difference for the sole primary endpoint,
+$F$. Arm-level escape intervals use Wilson intervals; paired effects and other
+means use the paired bootstrap. Reconstruction preserves the equal-episode mean
+of within-episode ratios. Frozen refers to source code; ordinary map-memory
+updates remain active within episodes.
+
+![All 256 assessment cases and outcomes, including every evolved-program failure](artifacts/proposal/stage5-assessment/figures/assessment-cases.svg)
+
+**Figure 12. Every assessment case.** Generation 2 had 16 captures and one
+timeout; all remain in the analysis. Ordinal order has no temporal meaning, and
+private environment seeds are not exported. The original seed's two escapes
+are highlighted. The dashed line is the mean paired fitness gain.
+
+The complete assessment executed **512 valid episodes / 48,558 transitions** in
+**64.06 seconds wall time and 62.61 total CPU-seconds**, including controller
+overhead. Summed episode evaluator/candidate CPU was **61.33 seconds**, the quantity
+shown in Figure 12. Saved-data analysis, rendering and supervising-assistant usage
+are outside these measurements. Sources, all public episode records, paired CSV,
+uncertainty and figure provenance are in the
+[Stage 5 results](artifacts/proposal/stage5-assessment/summary.json).
+Recovery verified these previously completed results without rerunning episodes.
 
 ## 5. Discussion and limitations
 
-The seed accurately reconstructs the cells it reports, but it does not escape.
+The seed accurately reconstructs the cells it reports, but rarely escapes.
 Its greedy planner can become blocked or pursue an unsuitable remembered target.
 The initial characterization establishes room for behavioral improvement. The
 subsequent search and 32-case paired check demonstrate improved task performance
-on development cases. Search scores and broader development scores remain separate;
-the latter are never imported into the five-case native fitness database.
+on development cases. The frozen-program assessment confirms a large gain over
+the original seed on fresh cases from the same distribution. Search, development,
+selection and assessment scores remain separate; only the five-case search panel
+supplies native search fitness.
 
 The original accuracy term has specific limitations. An agent can obtain high
 accuracy by retaining easy or recently observed cells while covering little of
@@ -448,8 +514,8 @@ The first two successful descendants are direct seed mutations with no
 inspirations. Their results therefore do not establish a benefit from accumulated
 evolutionary history. Persistent memory is used by their planners, but the
 contribution of mapping versus pathfinding versus risk heuristics is not isolated.
-Independent discovery reliability, fresh final-assessment performance and a causal
-benefit of particular memory mechanisms remain unmeasured. The known uniform enemy law is
+Independent discovery reliability and a causal benefit of particular memory
+mechanisms remain unmeasured. The known uniform enemy law is
 used as a heuristic; these results do not show learned transition dynamics.
 
 The seed comparison is deliberately faithful to the original proposal, but its
@@ -541,6 +607,25 @@ That bounded invocation requires the locally preserved private pool and retains
 its original deadline; it is not a command to launch a fresh panel. The runner
 checkpoints each episode and refuses to silently retry an interrupted one.
 Public statistical reproduction needs neither the private pool nor new episodes.
+
+Rebuild the Stage 5 assessment analysis and Chromatic Fields figures using only
+the committed public records:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report
+```
+
+The exact completed Stage 5 invocation was:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess \
+  --protocol artifacts/proposal/stage5-assessment/protocol.json \
+  --output results/proposal-stage5-assessment
+```
+
+Its deadline is closed. Preserve the private pool and checkpoints; do not redraw
+or rerun the assessment. The [current checkpoint](CODEX_TASK.md) records recovery
+of the completed execution, checks and the remaining proposed synthesis stage.
 
 ## References
 

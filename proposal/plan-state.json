@@ -2,8 +2,8 @@
   "plan": "docs/original-proposal-plan.md",
   "research": "docs/shinkaevolve-research.md",
   "date": "2026-10-09",
-  "status": "stage4_completed_selected_program_frozen",
-  "authorization": "Stage 4 completed under user instruction; stop and await next instruction.",
+  "status": "stage5_completed_recovered_and_verified",
+  "authorization": "User requested checkpoint resumption; recovered and finished the already completed Stage5 handoff without new scientific execution.",
   "budget_preference": "specify_stage_by_stage",
   "evaluator_identity": "namazu-proposal-reconstruction-v1",
   "base_commit": "84a692882243fa630d0b85c42d844475d8bebf1a",
@@ -20,7 +20,10 @@
     "stage3_analysis_and_chromatic_fields_figures",
     "stage4_64_case_paired_selection_validation",
     "stage4_selected_source_and_assessment_freeze",
-    "stage4_results_and_chromatic_fields_figures"
+    "stage4_results_and_chromatic_fields_figures",
+    "stage5_256_case_paired_frozen_program_assessment",
+    "stage5_results_and_chromatic_fields_figures",
+    "stage5_saved_execution_recovery_and_independent_verification"
   ],
   "stage3": {
     "protocol": "artifacts/proposal/stage3-development/protocol.json",
@@ -80,28 +83,20 @@
     ],
     "invocation_minutes_through_report": 8.788772183333332
   },
-  "next_proposed_stage": "Stage 5: frozen generation 2 versus original seed on 256 fresh paired cases (512 episodes), zero model calls.",
+  "next_proposed_stage": "Stage6: paper-style synthesis and concise manuscript draft from completed evidence; zero new episodes and experiment-model calls.",
   "next_stage_authorized": false,
   "automatic_continuation": false,
   "historical_campaigns": "preserve; do not resume",
   "next_stage_budget": {
     "stage_elapsed_minutes": 30,
-    "reporting_reserve_minutes": 5,
     "experiment_model_calls": 0,
     "new_candidates": 0,
-    "episodes": 512,
-    "transitions": 102400,
-    "total_evaluator_cpu_seconds": 1200,
-    "workers": 1,
-    "candidate_memory_mib": 192,
-    "candidate_cpu_seconds_per_episode": 10,
-    "episode_wall_seconds": 20,
-    "expected_evaluation_wall_seconds": 68.29834233119618
+    "episodes": 0
   },
-  "next_stage_preparation": "Scientific freeze exists; do not draw Stage 5 pool until separately authorized. Bind a new execution deadline to frozen source/evaluator/analysis without retuning.",
+  "next_stage_preparation": "All Stage5 evidence is complete. Await instruction for Stage6; do not redraw or rerun the retired assessment pool.",
   "next_execution_command": null,
-  "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.selection_report",
-  "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.panel --protocol artifacts/proposal/stage4-selection/protocol.json --output results/proposal-stage4-selection",
+  "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
+  "reproduction_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment",
   "previous_stage1_checkpoint": {
     "plan": "docs/original-proposal-plan.md",
     "research": "docs/shinkaevolve-research.md",
@@ -174,7 +169,7 @@
     "development_command_after_authorization": "OPENBLAS_NUM_THREADS=1 .venv/bin/python proposal/evaluate.py --program_path artifacts/proposal/full-native-01/programs/generation-002.py --results_dir results/proposal-stage3-gen2 --episodes 32 --replay-first",
     "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.search_report --render-export"
   },
-  "reproduction_command_note": "Exact bounded Stage 4 invocation; private pool preserved locally. Deadline blocks later execution, and public report command needs no private pool.",
+  "reproduction_command_note": "Exact completed Stage5 invocation retained as provenance only. Its deadline is closed. Use the public saved-data report command for reproduction.",
   "stage4": {
     "protocol": "artifacts/proposal/stage4-selection/protocol.json",
     "results": "artifacts/proposal/stage4-selection/summary.json",
@@ -232,5 +227,65 @@
       "All 10 README images use original-proposal data and Chromatic Fields; both new plots visually inspected",
       "No research workers remaining and Stage 5 pool absent"
     ]
+  },
+  "stage5": {
+    "protocol": "artifacts/proposal/stage5-assessment/protocol.json",
+    "results": "artifacts/proposal/stage5-assessment/summary.json",
+    "recovery": "artifacts/proposal/stage5-assessment/recovery.json",
+    "assessment_freeze": "artifacts/proposal/stage4-selection/assessment-freeze.json",
+    "selected_program": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-002.py",
+      "generation": 2,
+      "sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    },
+    "budget": {
+      "stage_elapsed_minutes": 30,
+      "reporting_reserve_minutes": 5,
+      "experiment_model_calls": 0,
+      "new_candidates": 0,
+      "episodes": 512,
+      "transitions": 102400,
+      "total_evaluator_cpu_seconds": 1200,
+      "workers": 1,
+      "candidate_memory_mib": 192,
+      "candidate_cpu_seconds_per_episode": 10,
+      "episode_wall_seconds": 20,
+      "expected_evaluation_wall_seconds": 68.29834233119618,
+      "stage_start_utc": "2026-10-09T03:39:35Z",
+      "execution_stop_utc": "2026-10-09T04:04:35Z",
+      "checkpoint_deadline_utc": "2026-10-09T04:09:35Z"
+    },
+    "actual": {
+      "started_utc": "2026-10-09T03:41:12.135326+00:00",
+      "ended_utc": "2026-10-09T03:42:16.192952+00:00",
+      "invocation_elapsed_seconds": 64.05765542099834,
+      "status": "complete",
+      "episodes": 512,
+      "transitions": 48558,
+      "model_calls": 0,
+      "new_candidate_sources": 0,
+      "evaluator_cpu_seconds": 18.182333,
+      "candidate_cpu_seconds": 44.431552,
+      "total_cpu_seconds": 62.613885,
+      "definition": "Per-episode CPU covers evaluator plus reaped candidate child. Driver export/validation overhead is outside summed episode CPU."
+    },
+    "result": "Generation2 escaped239/256 versus seed2/256; paired F gain0.402573 [0.383537,0.420061]. Map-accuracy difference unresolved.",
+    "pool_status": "completed and retired from future tuning or fresh confirmation",
+    "processes": {
+      "controller": "completed; lock verified free during recovery",
+      "pending_episodes": 0,
+      "new_workers_launched_during_recovery": 0
+    },
+    "checkpoint_utc": "2026-10-09T11:01:11.021335+00:00",
+    "checks": [
+      "All 13 protocol source hashes match; assessment freeze equals committed base 558b842.",
+      "Exactly 256 complete paired cases; all 512 public rows match private checkpoints after anonymizing seed IDs and stripping resource fields.",
+      "Private assessment pool is unique and disjoint from nine prior pools (3064 prior entries); exclusion hashes match.",
+      "All original S/A/F arithmetic, means, 10000-draw shared paired bootstrap intervals, Wilson intervals and CSV values independently recomputed.",
+      "All rendering input/source/output hashes verified; public report command completed with unchanged scientific summary.",
+      "Original execution ended within its deadline and CPU ceiling; no pending attempts; controller lock is free.",
+      "Both Stage 5 Chromatic Fields PNG renders visually inspected; README links original-proposal figures only."
+    ],
+    "supervising_assistant_usage": "Two bounded read-only review subagents and supervising conversation; their token/allowance use is unavailable to the evaluator and excluded from experiment-model counts."
   }
 }

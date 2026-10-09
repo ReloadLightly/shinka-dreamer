@@ -1,0 +1,407 @@
+{
+  "scope": "Fresh held-out assessment of one previously selected and frozen program against the original seed. The programs, contrast, sample size and analysis were frozen before the pool was drawn.",
+  "estimands": "Equal episode means on 256 paired cases. A is the mean of within-episode correct/audited-cell ratios; current-map reconstruction on different policy trajectories is not prediction learning.",
+  "uncertainty": {
+    "method": "whole-episode paired percentile bootstrap",
+    "draws": 10000,
+    "rng_seed": 5109256,
+    "level": 0.95,
+    "shared_resampling": "Identical paired case draws for both arms and every metric.",
+    "escape_arm_intervals": "Prospectively specified separate-arm Wilson 95% intervals.",
+    "limitations": "Secondary intervals are unadjusted. A degenerate empirical binary bootstrap is not population certainty."
+  },
+  "arms": {
+    "seed": {
+      "episodes": 256,
+      "transitions": 34215,
+      "outcomes": {
+        "escaped": 2,
+        "caught": 154,
+        "timeout": 100,
+        "invalid": 0
+      },
+      "escape_wilson_ci95": [
+        0.002145090367681419,
+        0.028032768301535768
+      ],
+      "metrics": {
+        "combined_score": {
+          "mean": 0.5005406670722014,
+          "ci95": [
+            0.490174093746083,
+            0.5110605482278986
+          ]
+        },
+        "task": {
+          "mean": 0.1797109375,
+          "ci95": [
+            0.1623202734375,
+            0.19737421875
+          ]
+        },
+        "model_accuracy": {
+          "mean": 0.9817852614305034,
+          "ci95": [
+            0.9800488875681305,
+            0.9834678608836933
+          ]
+        },
+        "final_coverage": {
+          "mean": 0.35723958333333333,
+          "ci95": [
+            0.33668359374999995,
+            0.37829861111111107
+          ]
+        },
+        "escaped": {
+          "mean": 0.0078125,
+          "ci95": [
+            0.0,
+            0.01953125
+          ]
+        },
+        "caught": {
+          "mean": 0.6015625,
+          "ci95": [
+            0.54296875,
+            0.66015625
+          ]
+        },
+        "timeout": {
+          "mean": 0.390625,
+          "ci95": [
+            0.33203125,
+            0.44921875
+          ]
+        },
+        "invalid": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "keys": {
+          "mean": 0.53125,
+          "ci95": [
+            0.44921875,
+            0.6171875
+          ]
+        },
+        "door_open": {
+          "mean": 0.0078125,
+          "ci95": [
+            0.0,
+            0.01953125
+          ]
+        },
+        "steps": {
+          "mean": 133.65234375,
+          "ci95": [
+            125.202734375,
+            142.03134765625
+          ]
+        }
+      },
+      "resource": {
+        "elapsed_seconds": 22.48931951788836,
+        "evaluator_cpu_seconds": 9.845261999999995,
+        "candidate_cpu_seconds": 11.820424000000006,
+        "total_cpu_seconds": 21.665685999999944
+      },
+      "mean_episode_wall_seconds": 0.08719953460149554,
+      "memory_updates": "Ordinary within-episode map-memory updates remain active; frozen source is not a frozen-learning intervention."
+    },
+    "generation_2": {
+      "episodes": 256,
+      "transitions": 14343,
+      "outcomes": {
+        "escaped": 239,
+        "caught": 16,
+        "timeout": 1,
+        "invalid": 0
+      },
+      "escape_wilson_ci95": [
+        0.896237847364858,
+        0.9581292771408316
+      ],
+      "metrics": {
+        "combined_score": {
+          "mean": 0.9031134623304378,
+          "ci95": [
+            0.8877741016647305,
+            0.9170179189703689
+          ]
+        },
+        "task": {
+          "mean": 0.8503796875,
+          "ci95": [
+            0.8246410546875,
+            0.8736168749999998
+          ]
+        },
+        "model_accuracy": {
+          "mean": 0.9822141245760942,
+          "ci95": [
+            0.9814357852485192,
+            0.9829908835107942
+          ]
+        },
+        "final_coverage": {
+          "mean": 0.7977777777777778,
+          "ci95": [
+            0.7768046875,
+            0.8182821180555556
+          ]
+        },
+        "escaped": {
+          "mean": 0.93359375,
+          "ci95": [
+            0.90234375,
+            0.9609375
+          ]
+        },
+        "caught": {
+          "mean": 0.0625,
+          "ci95": [
+            0.03515625,
+            0.09375
+          ]
+        },
+        "timeout": {
+          "mean": 0.00390625,
+          "ci95": [
+            0.0,
+            0.01171875
+          ]
+        },
+        "invalid": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "keys": {
+          "mean": 1.9375,
+          "ci95": [
+            1.8984375,
+            1.97265625
+          ]
+        },
+        "door_open": {
+          "mean": 0.93359375,
+          "ci95": [
+            0.90234375,
+            0.9609375
+          ]
+        },
+        "steps": {
+          "mean": 56.02734375,
+          "ci95": [
+            52.77333984375,
+            59.40244140625
+          ]
+        }
+      },
+      "resource": {
+        "elapsed_seconds": 40.268090332188876,
+        "evaluator_cpu_seconds": 7.05408700000002,
+        "candidate_cpu_seconds": 32.611127999999994,
+        "total_cpu_seconds": 39.665214999999996
+      },
+      "mean_episode_wall_seconds": 0.15663173795326202,
+      "memory_updates": "Ordinary within-episode map-memory updates remain active; frozen source is not a frozen-learning intervention."
+    }
+  },
+  "contrast": {
+    "first": "generation_2",
+    "second": "seed",
+    "metrics": {
+      "combined_score": {
+        "difference": 0.40257279525823636,
+        "ci95": [
+          0.38353664452555475,
+          0.4200608616317314
+        ],
+        "degenerate_ci": false
+      },
+      "task": {
+        "difference": 0.6706687499999999,
+        "ci95": [
+          0.638844609375,
+          0.699953203125
+        ],
+        "degenerate_ci": false
+      },
+      "model_accuracy": {
+        "difference": 0.00042886314559102256,
+        "ci95": [
+          -0.0013456784961825119,
+          0.0022102301026675096
+        ],
+        "degenerate_ci": false
+      },
+      "final_coverage": {
+        "difference": 0.4405381944444444,
+        "ci95": [
+          0.41163151041666673,
+          0.46786501736111114
+        ],
+        "degenerate_ci": false
+      },
+      "escaped": {
+        "difference": 0.92578125,
+        "ci95": [
+          0.890625,
+          0.95703125
+        ],
+        "degenerate_ci": false
+      },
+      "caught": {
+        "difference": -0.5390625,
+        "ci95": [
+          -0.60546875,
+          -0.47265625
+        ],
+        "degenerate_ci": false
+      },
+      "timeout": {
+        "difference": -0.38671875,
+        "ci95": [
+          -0.4453125,
+          -0.3280273437500014
+        ],
+        "degenerate_ci": false
+      },
+      "invalid": {
+        "difference": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "degenerate_ci": true
+      },
+      "keys": {
+        "difference": 1.40625,
+        "ci95": [
+          1.3125,
+          1.49609375
+        ],
+        "degenerate_ci": false
+      },
+      "door_open": {
+        "difference": 0.92578125,
+        "ci95": [
+          0.890625,
+          0.95703125
+        ],
+        "degenerate_ci": false
+      },
+      "steps": {
+        "difference": -77.625,
+        "ci95": [
+          -86.80478515625,
+          -68.30849609375
+        ],
+        "degenerate_ci": false
+      }
+    },
+    "primary": {
+      "metric": "combined_score",
+      "meaningful_difference": 0.05,
+      "lower_ci_exceeds_meaningful_difference": true
+    },
+    "objective_contributions": {
+      "task_difference_times_0_6": 0.40240124999999993,
+      "accuracy_difference_times_0_4": 0.00017154525823640903,
+      "invalid_execution_correction": 1.83772268236293e-17
+    },
+    "outcome_pairs": {
+      "escaped -> escaped": 2,
+      "escaped -> caught": 0,
+      "escaped -> timeout": 0,
+      "escaped -> invalid": 0,
+      "caught -> escaped": 145,
+      "caught -> caught": 8,
+      "caught -> timeout": 1,
+      "caught -> invalid": 0,
+      "timeout -> escaped": 92,
+      "timeout -> caught": 8,
+      "timeout -> timeout": 0,
+      "timeout -> invalid": 0,
+      "invalid -> escaped": 0,
+      "invalid -> caught": 0,
+      "invalid -> timeout": 0,
+      "invalid -> invalid": 0
+    },
+    "escape_discordance": {
+      "generation_2_only": 237,
+      "seed_only": 0
+    }
+  },
+  "claim_limits": [
+    "Original seed is a weak greedy/random baseline, not a competent handcrafted pathfinder.",
+    "One selected program from one short search does not establish reliable discovery or the causal value of native search mechanisms.",
+    "No causal intervention on memory, planning or learning; no matched-experience prediction comparison."
+  ],
+  "execution": {
+    "episodes": 512,
+    "transitions": 48558,
+    "experiment_model_calls": 0,
+    "new_sources": 0,
+    "resource_by_arm": {
+      "seed": {
+        "elapsed_seconds": 22.48931951788836,
+        "evaluator_cpu_seconds": 9.845261999999995,
+        "candidate_cpu_seconds": 11.820424000000006,
+        "total_cpu_seconds": 21.665685999999944
+      },
+      "generation_2": {
+        "elapsed_seconds": 40.268090332188876,
+        "evaluator_cpu_seconds": 7.05408700000002,
+        "candidate_cpu_seconds": 32.611127999999994,
+        "total_cpu_seconds": 39.665214999999996
+      }
+    },
+    "controller": {
+      "started_utc": "2026-10-09T03:41:12.135326+00:00",
+      "ended_utc": "2026-10-09T03:42:16.192952+00:00",
+      "invocation_elapsed_seconds": 64.05765542099834,
+      "status": "complete",
+      "episodes": 512,
+      "transitions": 48558,
+      "model_calls": 0,
+      "new_candidate_sources": 0,
+      "evaluator_cpu_seconds": 18.182333,
+      "candidate_cpu_seconds": 44.431552,
+      "total_cpu_seconds": 62.613885,
+      "definition": "Per-episode CPU covers evaluator plus reaped candidate child. Driver export/validation overhead is outside summed episode CPU."
+    }
+  },
+  "identities": {
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "pool_sha256": "36a96788678db9a6a2441e5a7b6a17ce2afdc7bd87450543137f517cb6900892",
+    "source_sha256": {
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluate_full.py": "b3993293a55f0059e9e6dd0dfa770390fc335a9d22b0a73d5ace41ad1abf2904",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "proposal/panel.py": "5143fa5b073083618b2f71d8dd3ee190b28fa4099dae1e906422a4733e05e4a8",
+      "artifacts/proposal/full-native-01/programs/generation-000.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "artifacts/proposal/full-native-01/programs/generation-001.py": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6",
+      "artifacts/proposal/full-native-01/programs/generation-002.py": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+      "proposal/assess.py": "7272060f888c66229ce5b3ccce41b0b1c3e361742b59ea5fc780a5b631820aa0"
+    },
+    "candidate_sha256": {
+      "seed": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "generation_2": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    }
+  },
+  "protocol_sha256": "04b86f3fb824060e747b13972ebe3a15287c1485b42f85e0c467db89632a821b",
+  "assessment_freeze_sha256": "662dfce459750136d19f8d5dc218faed47b9367038b2f0601cb80e435475c6a7"
+}

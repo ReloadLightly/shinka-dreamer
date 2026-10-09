@@ -1,0 +1,88 @@
+{
+  "stage": "original-proposal-stage5-fresh-assessment",
+  "created_utc": "2026-10-09T03:41:07.963311+00:00",
+  "base_commit": "558b84268b4207780e552f78ee16b83578d2528e",
+  "assessment_freeze": {
+    "path": "artifacts/proposal/stage4-selection/assessment-freeze.json",
+    "sha256": "662dfce459750136d19f8d5dc218faed47b9367038b2f0601cb80e435475c6a7"
+  },
+  "evaluator": "namazu-proposal-reconstruction-v1",
+  "programs": {
+    "seed": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-000.py",
+      "generation": 0,
+      "sha256": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177"
+    },
+    "generation_2": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-002.py",
+      "generation": 2,
+      "sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    }
+  },
+  "source_sha256": {
+    "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+    "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+    "proposal/evaluate_full.py": "b3993293a55f0059e9e6dd0dfa770390fc335a9d22b0a73d5ace41ad1abf2904",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+    "proposal/panel.py": "5143fa5b073083618b2f71d8dd3ee190b28fa4099dae1e906422a4733e05e4a8",
+    "artifacts/proposal/full-native-01/programs/generation-000.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "artifacts/proposal/full-native-01/programs/generation-001.py": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6",
+    "artifacts/proposal/full-native-01/programs/generation-002.py": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe",
+    "proposal/assess.py": "7272060f888c66229ce5b3ccce41b0b1c3e361742b59ea5fc780a5b631820aa0"
+  },
+  "case_count": 256,
+  "pool_path": "results/private/proposal-stage5-assessment-seeds.json",
+  "public_output": "artifacts/proposal/stage5-assessment",
+  "purpose": "Fresh assessment; programs, contrast, analysis and sample size fixed before pool generation",
+  "analysis": {
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 5109256,
+    "method": "Resample all 256 whole paired case indices jointly for every contrast/metric. Invalid executions remain in denominators with F=0. Mean episode A, not globally pooled cell accuracy. Preserve binary discordant counts.",
+    "escape_uncertainty": "Paired episode bootstrap plus separate-arm Wilson intervals. Explicitly flag degenerate bootstrap at boundary; no claim of perfect population success.",
+    "no_optional_stopping": true,
+    "single_primary_contrast": true
+  },
+  "primary_contrast": "Equal-episode paired mean F: selected minus seed. Report 95% paired bootstrap interval; meaningful improvement specified as 0.05 F. No sample-size extension based on significance.",
+  "precision_rationale": {
+    "design": "256 pairs prospectively proposed in original staged plan before selection results; retain that sample size.",
+    "development_sd_paired_F": 0.07110363600311596,
+    "development_normal_95_halfwidth_at_256": 0.008710195410381705,
+    "selection_sd_paired_F": 0.13924289366469456,
+    "selection_normal_95_halfwidth_at_256": 0.017057254473925084,
+    "interpretation": "Planning approximations, not promised achieved precision. Selection failures increase variance relative to the 32-case development panel. Paired binary worst-case halfwidth is about0.123; no guaranteed precision for small escape-rate differences.",
+    "meaningful_F_difference": "0.05 is approximately the composite contribution of one extra collected key (0.6 * 20 / 250 = 0.048), holding other reward components and reconstruction constant."
+  },
+  "budget": {
+    "stage_elapsed_minutes": 30,
+    "reporting_reserve_minutes": 5,
+    "experiment_model_calls": 0,
+    "new_candidates": 0,
+    "episodes": 512,
+    "transitions": 102400,
+    "total_evaluator_cpu_seconds": 1200,
+    "workers": 1,
+    "candidate_memory_mib": 192,
+    "candidate_cpu_seconds_per_episode": 10,
+    "episode_wall_seconds": 20,
+    "expected_evaluation_wall_seconds": 68.29834233119618,
+    "stage_start_utc": "2026-10-09T03:39:35Z",
+    "execution_stop_utc": "2026-10-09T04:04:35Z",
+    "checkpoint_deadline_utc": "2026-10-09T04:09:35Z"
+  },
+  "case_separation": {
+    "path": "results/private/proposal-stage5-assessment-seeds.json",
+    "draw_after": "Separate user authorization and binding of an execution deadline to this frozen specification.",
+    "sampling": "Same63bit independent private draw; reject all values below1000000 and every integer from all prior private seed pools, including Stage4. Pair both arms exactly.",
+    "currently_exists": false
+  },
+  "compatibility": "Unchanged frozen panel.py performs every episode. Thin assess.py verifies the prior freeze and corrects only its legacy hardcoded selection-purpose metadata label; original label retained in runner_default_purpose. Scientific source hashes unchanged.",
+  "information_boundary": "Private seed pools and raw seed-bearing checkpoints remain ignored; public ordinal IDs only. Candidate process receives ordinary local observations and independent candidate RNG; no assessment cases enter mutation prompts.",
+  "pool_retirement": "After this assessment, cases are permanently retired from future tuning and fresh confirmation. Do not add candidates or choose a new champion using this pool.",
+  "automatic_continuation": false,
+  "checkpoint": "Stop after Stage5; Stage6 paper synthesis requires separate instruction.",
+  "command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assess --protocol artifacts/proposal/stage5-assessment/protocol.json --output results/proposal-stage5-assessment"
+}

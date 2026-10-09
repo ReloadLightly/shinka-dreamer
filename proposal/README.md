@@ -19,8 +19,13 @@ selection cases: each descendant escaped **61/64**, the seed **0/64**. Generatio
 won the declared fitness rule by an unresolved margin of 0.000854. The 192 episodes
 took 28.18 seconds with zero model calls. See the
 [selection results](../README.md#44-selection-validation-and-assessment-freeze).
-Its source and proposed Stage 5 assessment are frozen. The fresh pool has not
-been drawn; further execution awaits instruction.
+Stage 5 assessed the frozen generation 2 on 256 fresh paired cases: **239/256
+escapes versus 2/256 for the seed**, with a fitness gain of **0.402573
+[0.383537, 0.420061]**. Its 512 episodes took 64.06 seconds and 62.61 total
+CPU-seconds with zero experiment-model calls. See the
+[fresh assessment](../README.md#45-fresh-assessment-of-the-frozen-program).
+The completed execution was recovered from the working tree and verified without
+new episodes. Its pool is retired; further stages await instruction.
 
 ## Preserved design
 

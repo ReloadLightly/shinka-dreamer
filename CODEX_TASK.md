@@ -1,4 +1,46 @@
-# Checkpoint: original-proposal Stage 4 complete; await instruction
+# Checkpoint: original-proposal Stage 5 recovered and complete
+
+The latest user request was to resume from the last checkpoint. The committed
+checkpoint below still said Stage 4, but the working tree already contained a
+completed Stage 5 execution, analysis and figures. Recovery verified and finished
+that handoff without rerunning episodes, redrawing cases or making experiment-model
+calls. Do not launch Stage 5 again or extend its closed execution deadline.
+
+Frozen generation 2 escaped **239/256** fresh paired cases versus **2/256** for the
+original seed. Mean original fitness F improved by **0.402573**, paired 95% interval
+**[0.383537, 0.420061]**. Escape improved by **92.58 [89.06, 95.70] percentage points**.
+The map-accuracy change remains unresolved: **0.000429 [−0.001346, 0.002210]**.
+Almost all fitness gain came from task reward. Generation 2 had 16 captures and
+one timeout; there were no invalid executions. This confirms performance of the
+selected executable against the weak original seed, not predictive learning,
+causal benefits of particular memory mechanisms or repeatable discovery.
+
+Stage 5 previously executed 512 episodes / 48,558 transitions in 64.06 wall-seconds
+and 62.61 total CPU-seconds, ending at 2026-10-09T03:42:16Z within its original
+deadline. The 61.33 CPU-seconds in the case figure covers episode work only.
+All scientific sources and candidate hashes are unchanged. All 512 public rows
+match the private checkpoints, the pool is disjoint from all nine prior private
+pools, every saved interval reproduces, and the controller lock is free with no
+pending episodes. Private seeds/checkpoints remain ignored. The pool is retired
+from future tuning and fresh confirmation. The README now includes Stage 5 and
+its two inspected Chromatic Fields figures.
+
+Read [Stage 5 results](artifacts/proposal/stage5-assessment/summary.json),
+[recovery evidence](artifacts/proposal/stage5-assessment/recovery.json),
+[the execution protocol](artifacts/proposal/stage5-assessment/protocol.json) and
+[machine state](proposal/plan-state.json).
+
+Reproduce the public saved-data analysis and figures without private pool access,
+new episodes or experiment-model calls:
+`OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report`.
+
+The next proposed stage is Stage 6: paper-style synthesis and a concise manuscript
+draft from completed evidence, with the previously proposed 30-minute ceiling,
+zero new episodes and zero experiment-model calls. Await instruction for that
+stage. Do not restart historical assessments, the stopped mutation run or Stage 5.
+No automatic continuation is scheduled.
+
+## Previous checkpoint: original-proposal Stage 4 complete
 
 The user's latest instruction authorized Stage 4 selection-validation, now complete.
 The original seed and both unchanged descendants ran on 64 newly drawn private

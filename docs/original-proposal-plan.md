@@ -1,6 +1,6 @@
 # Implementing the original Sakana proposal, step by step
 
-**Prospective plan recorded 9 October 2026; Stage 1, 3 and 4 checkpoints below.**
+**Prospective plan recorded 9 October 2026; Stages 1, 3, 4 and 5 complete.**
 The plan was originally commissioned as research and planning only. The user chose
 budgets **stage by stage** and subsequently authorized Stages 1, 3 and 4. Later-stage
 ceilings remain proposals for review, not spending authorization. Each execution
@@ -26,8 +26,17 @@ by original F, but its advantage over generation 1 remains unresolved. The 192
 episodes used 28.18 seconds elapsed and 27.62 total CPU-seconds, with zero model
 calls. See [selection results](../README.md#44-selection-validation-and-assessment-freeze)
 and the [assessment freeze](../artifacts/proposal/stage4-selection/assessment-freeze.json).
-No subsequent stage is authorized. Stage 5's proposed 256 fresh pairs remain
-undrawn; the next step is its separately authorized evaluation and report.
+Stage 5 execution was also complete in the working tree when work resumed; its
+handoff had been interrupted before updating this plan. The recovered assessment
+contains all 256 fresh pairs: generation 2 escaped 239/256 and the seed 2/256.
+The primary paired fitness gain is 0.402573 [0.383537, 0.420061]. The 512 episodes
+used 64.06 wall-seconds and 62.61 total CPU-seconds, with zero experiment-model
+calls. Source hashes, all public/private episode pairs, pool separation and saved
+analysis were verified during recovery without new episodes. See the
+[assessment results](../README.md#45-fresh-assessment-of-the-frozen-program) and
+[recovery record](../artifacts/proposal/stage5-assessment/recovery.json).
+The assessment pool is retired. Stage 6 remains the next proposed stage; no
+further experiment or automatic continuation is authorized by this checkpoint.
 
 ## 1. Destination and fixed scope
 
@@ -339,8 +348,9 @@ invocation and resume command, and stop. Do not invent a command for features no
 implemented yet. Stage 1 supplied the bounded full-native launcher; its saved
 failure gate/deadline prevent further dispatch without a newly authorized block.
 
-**Next action after the Stage 4 checkpoint:** await the user's instruction for
-Stage 5 fresh assessment of frozen generation 2 versus the original seed. No further
+**Next action after the recovered Stage 5 checkpoint:** await the user's instruction
+for Stage 6 paper-style synthesis from completed evidence, including a concise
+manuscript draft, with zero new episodes or experiment-model calls. No further
 mutation or historical assessment is authorized. The prospective stage budgets
 above remain preserved. The original
 Stage 1 launcher is now implemented; its held pre-source slot still requires

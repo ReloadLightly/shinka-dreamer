@@ -1,0 +1,41 @@
+{
+  "status": "completed_execution_recovered_and_verified_without_rerun",
+  "recovery_utc": "2026-10-09T11:01:11.021335+00:00",
+  "request": "can we resume work from the last checkpoint for this project?",
+  "discovery": "Committed checkpoint was Stage4; untracked Stage5 driver, protocol, 512 episode records, summary and figures already existed. No original execution provenance was rewritten.",
+  "base_commit": "558b84268b4207780e552f78ee16b83578d2528e",
+  "original_execution": {
+    "started_utc": "2026-10-09T03:41:12.135326+00:00",
+    "ended_utc": "2026-10-09T03:42:16.192952+00:00",
+    "invocation_elapsed_seconds": 64.05765542099834,
+    "status": "complete",
+    "episodes": 512,
+    "transitions": 48558,
+    "model_calls": 0,
+    "new_candidate_sources": 0,
+    "evaluator_cpu_seconds": 18.182333,
+    "candidate_cpu_seconds": 44.431552,
+    "total_cpu_seconds": 62.613885,
+    "definition": "Per-episode CPU covers evaluator plus reaped candidate child. Driver export/validation overhead is outside summed episode CPU."
+  },
+  "recovery_new_episodes": 0,
+  "recovery_experiment_model_calls": 0,
+  "recovery_new_candidate_sources": 0,
+  "recovery_pool_draws": 0,
+  "protocol_sha256": "04b86f3fb824060e747b13972ebe3a15287c1485b42f85e0c467db89632a821b",
+  "assessment_freeze_sha256": "662dfce459750136d19f8d5dc218faed47b9367038b2f0601cb80e435475c6a7",
+  "summary_sha256": "02b4b248ca39f0ddd83eed180e580852f45b59317115c987d91e5b0d7f2e3422",
+  "checks": [
+    "All 13 protocol source hashes match; assessment freeze equals committed base 558b842.",
+    "Exactly 256 complete paired cases; all 512 public rows match private checkpoints after anonymizing seed IDs and stripping resource fields.",
+    "Private assessment pool is unique and disjoint from nine prior pools (3064 prior entries); exclusion hashes match.",
+    "All original S/A/F arithmetic, means, 10000-draw shared paired bootstrap intervals, Wilson intervals and CSV values independently recomputed.",
+    "All rendering input/source/output hashes verified; public report command completed with unchanged scientific summary.",
+    "Original execution ended within its deadline and CPU ceiling; no pending attempts; controller lock is free.",
+    "Both Stage 5 Chromatic Fields PNG renders visually inspected; README links original-proposal figures only."
+  ],
+  "saved_data_report_command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.assessment_report",
+  "supervising_assistant_usage": "Two bounded read-only review subagents and supervising conversation; their token/allowance use is unavailable to the evaluator and excluded from experiment-model counts.",
+  "next_proposed_stage": "Stage6 paper-style synthesis from completed evidence; no new experiments.",
+  "automatic_continuation": false
+}
