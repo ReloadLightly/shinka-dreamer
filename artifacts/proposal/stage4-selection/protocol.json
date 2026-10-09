@@ -1,0 +1,80 @@
+{
+  "stage": "original-proposal-stage4-selection",
+  "created_utc": "2026-10-09T03:27:46.685362+00:00",
+  "base_commit": "84a692882243fa630d0b85c42d844475d8bebf1a",
+  "question": "Which existing descendant should be frozen for a fresh original-task assessment?",
+  "evaluator": "namazu-proposal-reconstruction-v1",
+  "programs": {
+    "seed": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-000.py",
+      "generation": 0
+    },
+    "generation_1": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-001.py",
+      "generation": 1
+    },
+    "generation_2": {
+      "path": "artifacts/proposal/full-native-01/programs/generation-002.py",
+      "generation": 2
+    }
+  },
+  "case_count": 64,
+  "pool_path": "results/private/proposal-stage4-selection-seeds.json",
+  "public_output": "artifacts/proposal/stage4-selection",
+  "nomination": "Best F and S on five search cases: generation 2. Best escape count ties at 5/5; earlier generation selects generation 1. Deduplicate, add seed control.",
+  "selection": "Among descendants, highest equal-episode mean original F; ties higher mean S then earlier generation. Seed is a control, not selectable. Invalid episodes retain zero F in denominator. No selection until all 64 cases per arm finish.",
+  "source_sha256": {
+    "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+    "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+    "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+    "proposal/evaluate_full.py": "b3993293a55f0059e9e6dd0dfa770390fc335a9d22b0a73d5ace41ad1abf2904",
+    "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+    "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+    "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+    "proposal/panel.py": "5143fa5b073083618b2f71d8dd3ee190b28fa4099dae1e906422a4733e05e4a8",
+    "artifacts/proposal/full-native-01/programs/generation-000.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+    "artifacts/proposal/full-native-01/programs/generation-001.py": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6",
+    "artifacts/proposal/full-native-01/programs/generation-002.py": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+  },
+  "pool_design": {
+    "sampling": "64 unique secrets.randbits(63), reject integer seeds below 1000000 and every integer in all results/private/**/*seed*.json pools. Generate only after this protocol is written. Pair all three arms on exact same world seeds.",
+    "private_boundary": "Seed pool and raw seed-bearing episodes remain ignored under results/. Public case IDs are ordinal indices only. No search or mutation context sees this selection panel.",
+    "randomness": "Existing independent tagged layout/enemy streams and fixed independent candidate RNG unchanged. No scientific environment changes.",
+    "replays": "None added; retain per-step audit timelines and all episode outcomes. Existing development replays remain available."
+  },
+  "budget": {
+    "stage_start_utc": "2026-10-09T03:24:39Z",
+    "execution_stop_utc": "2026-10-09T03:44:39Z",
+    "checkpoint_deadline_utc": "2026-10-09T03:49:39Z",
+    "stage_elapsed_minutes": 25,
+    "reporting_reserve_minutes": 5,
+    "experiment_model_calls": 0,
+    "new_candidates": 0,
+    "new_episodes": 192,
+    "transitions": 38400,
+    "total_evaluator_cpu_seconds": 800,
+    "workers": 1,
+    "candidate_memory_mib": 192,
+    "candidate_cpu_seconds_per_episode": 10,
+    "episode_wall_seconds": 20,
+    "controller_memory_expected_mib": 128
+  },
+  "expected_throughput": "Stage 3 measured 32 generation-2 episodes in 5.55 wall/5.45 total CPU seconds. This 192-episode panel is expected to take under one minute at that rate; no new benchmark run.",
+  "analysis": {
+    "estimands": "Equal episode means of F,S,A and coverage; outcomes, keys, door and episode length separately. A is each episode correct/audited-cell ratio averaged equally, not pooled across episodes.",
+    "contrasts": [
+      "generation_1 minus seed",
+      "generation_2 minus seed",
+      "generation_2 minus generation_1"
+    ],
+    "uncertainty": "10000 paired whole-case percentile bootstrap draws shared across all arms and metrics, seed 410964. Arm escape proportions also receive nominal95% Wilson intervals prospectively. Degenerate paired binary bootstrap intervals explicitly flagged. No p-value stopping.",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 410964,
+    "limits": "Selection-validation outcomes are selection-biased for the chosen winner; no fresh final assessment, independent-discovery reliability, matched-experience prediction or causal memory effect.",
+    "computation": "Record per-arm elapsed and candidate/evaluator CPU, every invalid, no model calls. Count interrupted attempts, do not automatically rerun them."
+  },
+  "checkpoint": "Freeze selected source/evaluator, seed control, Stage5 contrasts and proposed256case sample before final-assessment cases are generated. Do not generate or execute Stage5 in this invocation.",
+  "automatic_continuation": false,
+  "command": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.panel --protocol artifacts/proposal/stage4-selection/protocol.json --output results/proposal-stage4-selection"
+}

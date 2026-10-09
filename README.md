@@ -19,11 +19,14 @@ The first native ShinkaEvolve descendant escaped all five search cases. A subseq
 paired development check of generation 2 found **32/32 escapes versus 0/32 for the
 seed**, including all 27 cases outside the five-case search panel. Mean fitness
 rose from 0.4967 to 0.9353 and final map coverage from 32.90% to 83.64%; reported-cell
-accuracy decreased slightly to 98.04%. The new 32-episode evaluation took 5.55
-seconds and used no experiment-model calls. These results establish executable
-program improvement on the exposed development panel; held-out performance,
+accuracy decreased slightly to 98.04%. On a subsequent disjoint 64-case
+selection-validation panel, both descendants escaped **61/64 cases**, versus
+**0/64 for the seed**. The prespecified fitness rule selected generation 2, but
+its advantage over generation 1 was unresolved. Its fitness gain over the seed
+was 0.4171 (descriptive paired 95% interval 0.3817–0.4476). All 192 selection
+episodes took 28.18 seconds with no experiment-model calls. Final assessment,
 causal benefits of particular memory mechanisms and discovery reliability remain
-unmeasured.
+unmeasured; the selection panel is not unbiased confirmation of its winner.
 
 ## 1. Introduction
 
@@ -347,13 +350,82 @@ additional to these evaluation measurements. All episode data, a paired CSV,
 uncertainty estimates and rendering provenance are in the
 [Stage 3 results](artifacts/proposal/stage3-development/summary.json).
 
-Stage 3 is complete and its workers have exited. The recommended next step is
-Stage 4: compare the seed and both existing descendants on 64 disjoint
-selection-validation cases, then freeze a selected program. Under the original
-nomination rule, generation 2 leads $F$ and $S$, while generation 1 wins the
-escape-count tie by its earlier generation. This would require **192 episodes,
-zero model calls**, within the plan's 25-minute/800 CPU-second ceilings. No further
-search is needed before that check. Stage 4 awaits a separate instruction.
+Stage 3 is complete. The separately authorized selection-validation step follows.
+
+### 4.4 Selection-validation and assessment freeze
+
+The [Stage 4 protocol](artifacts/proposal/stage4-selection/protocol.json) fixed
+the three sources and selection rule before generating 64 private cases. The
+nomination rule retained generation 2 for best search $F$ and $S$, and generation 1
+through the earlier-generation tie-break on escape count. All programs used the
+same new cases and unchanged evaluator. Pool generation excluded every saved
+private seed pool and the public seed range below 1,000,000. Public results use
+ordinal IDs; private seeds remain outside Git. No source was edited or tuned on
+this panel, and its scores were not imported into the search database.
+
+| Measurement | Original seed | Generation 1 | Generation 2, selected |
+|:--|--:|--:|--:|
+| Escape |0/64|61/64|61/64|
+| Capture / timeout / invalid |37 / 27 / 0|3 / 0 / 0|3 / 0 / 0|
+| Mean task $S$ |0.173006|0.867581|0.868744|
+| Mean reconstruction $A$ |0.982144|0.980801|0.981192|
+| Mean fitness $F$ |0.496662|0.912869|0.913723|
+| Mean final map coverage |35.67%|85.15%|83.77%|
+| Mean keys |0.46875|1.96875|1.953125|
+| Opened door |0/64|61/64|61/64|
+| Mean episode length |127.83|59.58|65.61|
+| Evaluator + candidate CPU-seconds |5.146|10.632|11.535|
+
+The rule selects the descendant with the highest mean original $F$, then $S$,
+then earlier generation. **Generation 2 is selected**, with a paired fitness gain
+of **0.417061 [0.381668, 0.447600]** over the seed. Its escape difference is
+**95.31 [89.06, 100.00] percentage points**; both descendants have nominal
+Wilson escape intervals of **87.10–98.39%**. These descriptive intervals use
+10,000 whole-case paired bootstrap draws, with separate-arm Wilson intervals for
+escape. They do not remove bias from selecting the winner on this panel.
+
+Generation 2's advantage over generation 1 is only
+**0.000854 [−0.036302, 0.037922]** in $F$, with zero observed escape-rate difference
+and a paired interval of **[−7.81, 7.81] percentage points**. Superiority is
+unresolved. The original positive step reward matters again: generation 2 takes
+6.03 more steps per episode on average, contributing +0.001448 to the fitness
+difference, while collecting slightly fewer keys contributes −0.000750.
+Reconstruction contributes +0.000156. Selection under the requested objective
+does not establish better navigation efficiency.
+
+![Selection outcomes, objective components and all paired contrasts](artifacts/proposal/stage4-selection/figures/selection-effects.svg)
+
+**Figure 9. Selection-validation comparison.** All 64 cases contribute to each
+arm. Shared bootstrap case indices preserve pairing across all programs and
+metrics; reconstruction retains its mean of within-episode ratios. The selected
+source is frozen, but this panel remains selection data, not final assessment.
+
+![Every selection case, including the six distinct descendant captures](artifacts/proposal/stage4-selection/figures/selection-cases.svg)
+
+**Figure 10. Individual cases and failures.** Generation 1 was captured on
+ordinals 11, 25 and 63; generation 2 on 7, 50 and 62. Neither failed on the other's
+three capture cases. All failures remain visible and in score denominators. The
+earlier 32/32 development result therefore does not imply universal escape.
+
+Execution completed **192 valid episodes / 16,193 transitions** in **28.18 seconds**,
+using **27.62 total CPU-seconds**, including **21.14 candidate CPU-seconds**. The
+per-arm table excludes a small amount of controller/export CPU included in that
+total. There were **zero experiment-model calls, new proposals or candidate
+edits**; no additional Shinka mechanism was exercised in this evaluation stage.
+Each episode retained the 192 MiB/10 candidate CPU-second limits and had a
+declared 20-second wall guard. Analysis, rendering and supervising-assistant use
+are additional to evaluation costs. See the
+[results and paired data](artifacts/proposal/stage4-selection/summary.json).
+
+The [assessment freeze](artifacts/proposal/stage4-selection/assessment-freeze.json)
+binds generation 2, the original seed, evaluator, paired contrasts and proposed
+256-case sample for Stage 5. The primary contrast is mean $F$ improvement;
+0.05 is specified as a meaningful difference. At 256 pairs, development and
+selection variances suggest approximate 95% half-widths of 0.009 and 0.017 for
+that contrast; these are planning estimates. Runtime projects to roughly
+**70 seconds of evaluation** for 512 episodes, within the proposed 30-minute
+stage ceiling. The assessment pool has **not been drawn**, and Stage 5 requires
+a separate instruction. All Stage 4 workers have exited.
 
 ## 5. Discussion and limitations
 
@@ -376,9 +448,15 @@ The first two successful descendants are direct seed mutations with no
 inspirations. Their results therefore do not establish a benefit from accumulated
 evolutionary history. Persistent memory is used by their planners, but the
 contribution of mapping versus pathfinding versus risk heuristics is not isolated.
-Independent discovery reliability, held-out performance and a causal benefit of
-particular memory mechanisms remain unmeasured. The known uniform enemy law is
+Independent discovery reliability, fresh final-assessment performance and a causal
+benefit of particular memory mechanisms remain unmeasured. The known uniform enemy law is
 used as a heuristic; these results do not show learned transition dynamics.
+
+The seed comparison is deliberately faithful to the original proposal, but its
+greedy/random planner is a weak control. These experiments do not establish
+superiority over a competent manually engineered maze planner. The selection
+results also provide no clear basis for preferring one successful descendant's
+behavior over the other's, despite the required scalar ranking.
 
 ## 6. Reproduction
 
@@ -443,7 +521,26 @@ OPENBLAS_NUM_THREADS=1 .venv/bin/python proposal/evaluate_full.py \
   --episodes 32 --seed-start 0 --record-first yes
 ```
 
-These are reproduction commands, not an automatic continuation into Stage 4.
+These are reproduction commands, not automatic authorization for another stage.
+
+Rebuild the Stage 4 analysis and figures from committed ordinal episode data:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.selection_report
+```
+
+The exact Stage 4 execution command was:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.panel \
+  --protocol artifacts/proposal/stage4-selection/protocol.json \
+  --output results/proposal-stage4-selection
+```
+
+That bounded invocation requires the locally preserved private pool and retains
+its original deadline; it is not a command to launch a fresh panel. The runner
+checkpoints each episode and refuses to silently retry an interrupted one.
+Public statistical reproduction needs neither the private pool nor new episodes.
 
 ## References
 

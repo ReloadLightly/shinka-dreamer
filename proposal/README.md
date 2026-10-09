@@ -14,8 +14,13 @@ the declared checkpoint. The six-slot ceiling was not filled. See the
 existing 32 development cases: **32 escapes versus 0 for the saved seed**, with
 zero model calls and 5.55 seconds of evaluation. See the
 [paired development results](../README.md#43-paired-32-case-development-comparison).
-Further execution awaits instruction; the next proposed stage is separate
-selection-validation of the existing descendants, not more mutations.
+Stage 4 then compared the seed and both descendants on 64 disjoint private
+selection cases: each descendant escaped **61/64**, the seed **0/64**. Generation 2
+won the declared fitness rule by an unresolved margin of 0.000854. The 192 episodes
+took 28.18 seconds with zero model calls. See the
+[selection results](../README.md#44-selection-validation-and-assessment-freeze).
+Its source and proposed Stage 5 assessment are frozen. The fresh pool has not
+been drawn; further execution awaits instruction.
 
 ## Preserved design
 

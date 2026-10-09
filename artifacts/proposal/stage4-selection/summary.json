@@ -1,0 +1,741 @@
+{
+  "scope": "Selection-validation panel, disjoint from search and development. This panel selects the descendant; its selected result is selection-biased and is not final assessment.",
+  "estimands": "Equal episode means on 64 paired cases. Accuracy is the mean of within-episode correct/audited-cell ratios on each policy trajectory; it is current-map reconstruction, not prediction.",
+  "selection_rule": "Highest mean combined F among generation 1 and generation 2, then mean task S, then earlier generation. The original seed is a reference, not an eligible descendant.",
+  "uncertainty": {
+    "method": "whole-episode paired percentile bootstrap",
+    "draws": 10000,
+    "rng_seed": 410964,
+    "level": 0.95,
+    "shared_resampling": "All arms, metrics and pairwise contrasts use identical case draws.",
+    "escape_arm_intervals": "Prospectively specified separate-arm 95% Wilson intervals.",
+    "limitations": "Descriptive, unadjusted intervals do not remove selection bias. Constant binary observations give degenerate paired percentile intervals, not certainty."
+  },
+  "arms": {
+    "seed": {
+      "episodes": 64,
+      "transitions": 8181,
+      "outcomes": {
+        "escaped": 0,
+        "caught": 37,
+        "timeout": 27,
+        "invalid": 0
+      },
+      "escape_wilson_ci95": [
+        0.0,
+        0.05662405979280534
+      ],
+      "metrics": {
+        "combined_score": {
+          "mean": 0.4966615375555698,
+          "ci95": [
+            0.47894687280425513,
+            0.5142266068073303
+          ]
+        },
+        "task": {
+          "mean": 0.17300625000000003,
+          "ci95": [
+            0.14252390625000003,
+            0.20332562499999984
+          ]
+        },
+        "model_accuracy": {
+          "mean": 0.9821444688889245,
+          "ci95": [
+            0.9784497936765321,
+            0.9856579660866207
+          ]
+        },
+        "final_coverage": {
+          "mean": 0.35673611111111114,
+          "ci95": [
+            0.31499826388888885,
+            0.3982638888888889
+          ]
+        },
+        "escaped": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "caught": {
+          "mean": 0.578125,
+          "ci95": [
+            0.453125,
+            0.703125
+          ]
+        },
+        "timeout": {
+          "mean": 0.421875,
+          "ci95": [
+            0.296875,
+            0.546875
+          ]
+        },
+        "invalid": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "keys": {
+          "mean": 0.46875,
+          "ci95": [
+            0.3125,
+            0.625
+          ]
+        },
+        "door_open": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "steps": {
+          "mean": 127.828125,
+          "ci95": [
+            109.233984375,
+            145.59375
+          ]
+        }
+      },
+      "resource": {
+        "elapsed_seconds": 5.3623390139546245,
+        "evaluator_cpu_seconds": 2.3142260000000014,
+        "candidate_cpu_seconds": 2.832001999999992,
+        "total_cpu_seconds": 5.146227999999997
+      }
+    },
+    "generation_1": {
+      "episodes": 64,
+      "transitions": 3813,
+      "outcomes": {
+        "escaped": 61,
+        "caught": 3,
+        "timeout": 0,
+        "invalid": 0
+      },
+      "escape_wilson_ci95": [
+        0.8710034625990631,
+        0.983930983213707
+      ],
+      "metrics": {
+        "combined_score": {
+          "mean": 0.9128692515493879,
+          "ci95": [
+            0.8841221780452161,
+            0.9345756208607487
+          ]
+        },
+        "task": {
+          "mean": 0.86758125,
+          "ci95": [
+            0.8199934374999998,
+            0.9037126562499999
+          ]
+        },
+        "model_accuracy": {
+          "mean": 0.9808012538734697,
+          "ci95": [
+            0.979434471896093,
+            0.9822934512010317
+          ]
+        },
+        "final_coverage": {
+          "mean": 0.8514583333333333,
+          "ci95": [
+            0.8159722222222219,
+            0.8833350694444443
+          ]
+        },
+        "escaped": {
+          "mean": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ]
+        },
+        "caught": {
+          "mean": 0.046875,
+          "ci95": [
+            0.0,
+            0.109375
+          ]
+        },
+        "timeout": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "invalid": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "keys": {
+          "mean": 1.96875,
+          "ci95": [
+            1.921875,
+            2.0
+          ]
+        },
+        "door_open": {
+          "mean": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ]
+        },
+        "steps": {
+          "mean": 59.578125,
+          "ci95": [
+            54.483984375,
+            64.78125
+          ]
+        }
+      },
+      "resource": {
+        "elapsed_seconds": 10.791204739944078,
+        "evaluator_cpu_seconds": 1.8365400000000034,
+        "candidate_cpu_seconds": 8.795119,
+        "total_cpu_seconds": 10.631658999999988
+      }
+    },
+    "generation_2": {
+      "episodes": 64,
+      "transitions": 4199,
+      "outcomes": {
+        "escaped": 61,
+        "caught": 3,
+        "timeout": 0,
+        "invalid": 0
+      },
+      "escape_wilson_ci95": [
+        0.8710034625990631,
+        0.983930983213707
+      ],
+      "metrics": {
+        "combined_score": {
+          "mean": 0.9137229956696231,
+          "ci95": [
+            0.8852312903285843,
+            0.9360980882650533
+          ]
+        },
+        "task": {
+          "mean": 0.8687437499999999,
+          "ci95": [
+            0.8213110937500001,
+            0.9063440625000001
+          ]
+        },
+        "model_accuracy": {
+          "mean": 0.9811918641740578,
+          "ci95": [
+            0.9796760676158428,
+            0.9826751341815665
+          ]
+        },
+        "final_coverage": {
+          "mean": 0.8377083333333334,
+          "ci95": [
+            0.7956944444444445,
+            0.8759756944444443
+          ]
+        },
+        "escaped": {
+          "mean": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ]
+        },
+        "caught": {
+          "mean": 0.046875,
+          "ci95": [
+            0.0,
+            0.109375
+          ]
+        },
+        "timeout": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "invalid": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "keys": {
+          "mean": 1.953125,
+          "ci95": [
+            1.875,
+            2.0
+          ]
+        },
+        "door_open": {
+          "mean": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ]
+        },
+        "steps": {
+          "mean": 65.609375,
+          "ci95": [
+            58.5,
+            73.28203124999999
+          ]
+        }
+      },
+      "resource": {
+        "elapsed_seconds": 11.71224656884442,
+        "evaluator_cpu_seconds": 2.0255390000000046,
+        "candidate_cpu_seconds": 9.509264000000009,
+        "total_cpu_seconds": 11.53480300000001
+      }
+    }
+  },
+  "pairwise": {
+    "generation_1_minus_seed": {
+      "first": "generation_1",
+      "second": "seed",
+      "metrics": {
+        "combined_score": {
+          "difference": 0.41620771399381806,
+          "ci95": [
+            0.38511523283509347,
+            0.4436076790495732
+          ],
+          "degenerate_ci": false
+        },
+        "task": {
+          "difference": 0.6945749999999999,
+          "ci95": [
+            0.6427053124999998,
+            0.7406012499999994
+          ],
+          "degenerate_ci": false
+        },
+        "model_accuracy": {
+          "difference": -0.0013432150154547434,
+          "ci95": [
+            -0.004949808403003788,
+            0.0023626193940339763
+          ],
+          "degenerate_ci": false
+        },
+        "final_coverage": {
+          "difference": 0.4947222222222222,
+          "ci95": [
+            0.43979166666666625,
+            0.5478472222222217
+          ],
+          "degenerate_ci": false
+        },
+        "escaped": {
+          "difference": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ],
+          "degenerate_ci": false
+        },
+        "caught": {
+          "difference": -0.53125,
+          "ci95": [
+            -0.65625,
+            -0.40625
+          ],
+          "degenerate_ci": false
+        },
+        "timeout": {
+          "difference": -0.421875,
+          "ci95": [
+            -0.546875,
+            -0.296875
+          ],
+          "degenerate_ci": false
+        },
+        "invalid": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate_ci": true
+        },
+        "keys": {
+          "difference": 1.5,
+          "ci95": [
+            1.328125,
+            1.65625
+          ],
+          "degenerate_ci": false
+        },
+        "door_open": {
+          "difference": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ],
+          "degenerate_ci": false
+        },
+        "steps": {
+          "difference": -68.25,
+          "ci95": [
+            -85.484765625,
+            -50.34375
+          ],
+          "degenerate_ci": false
+        }
+      },
+      "objective_contributions": {
+        "task_difference_times_0_6": 0.416745,
+        "accuracy_difference_times_0_4": -0.0005372860061818974,
+        "note": "Contributions sum to F difference only when neither arm has invalid executions."
+      },
+      "outcome_pairs": {
+        "escaped -> escaped": 0,
+        "escaped -> caught": 0,
+        "escaped -> timeout": 0,
+        "escaped -> invalid": 0,
+        "caught -> escaped": 35,
+        "caught -> caught": 2,
+        "caught -> timeout": 0,
+        "caught -> invalid": 0,
+        "timeout -> escaped": 26,
+        "timeout -> caught": 1,
+        "timeout -> timeout": 0,
+        "timeout -> invalid": 0,
+        "invalid -> escaped": 0,
+        "invalid -> caught": 0,
+        "invalid -> timeout": 0,
+        "invalid -> invalid": 0
+      }
+    },
+    "generation_2_minus_seed": {
+      "first": "generation_2",
+      "second": "seed",
+      "metrics": {
+        "combined_score": {
+          "difference": 0.4170614581140533,
+          "ci95": [
+            0.38166823256070626,
+            0.4475996882920076
+          ],
+          "degenerate_ci": false
+        },
+        "task": {
+          "difference": 0.6957375,
+          "ci95": [
+            0.6353984375,
+            0.7473576562500004
+          ],
+          "degenerate_ci": false
+        },
+        "model_accuracy": {
+          "difference": -0.000952604714866646,
+          "ci95": [
+            -0.004821122157825025,
+            0.003016345592144387
+          ],
+          "degenerate_ci": false
+        },
+        "final_coverage": {
+          "difference": 0.4809722222222222,
+          "ci95": [
+            0.4238888888888888,
+            0.5347934027777779
+          ],
+          "degenerate_ci": false
+        },
+        "escaped": {
+          "difference": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ],
+          "degenerate_ci": false
+        },
+        "caught": {
+          "difference": -0.53125,
+          "ci95": [
+            -0.671875,
+            -0.390625
+          ],
+          "degenerate_ci": false
+        },
+        "timeout": {
+          "difference": -0.421875,
+          "ci95": [
+            -0.546875,
+            -0.296875
+          ],
+          "degenerate_ci": false
+        },
+        "invalid": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate_ci": true
+        },
+        "keys": {
+          "difference": 1.484375,
+          "ci95": [
+            1.3125,
+            1.65625
+          ],
+          "degenerate_ci": false
+        },
+        "door_open": {
+          "difference": 0.953125,
+          "ci95": [
+            0.890625,
+            1.0
+          ],
+          "degenerate_ci": false
+        },
+        "steps": {
+          "difference": -62.21875,
+          "ci95": [
+            -80.469140625,
+            -43.390625
+          ],
+          "degenerate_ci": false
+        }
+      },
+      "objective_contributions": {
+        "task_difference_times_0_6": 0.4174425,
+        "accuracy_difference_times_0_4": -0.0003810418859466584,
+        "note": "Contributions sum to F difference only when neither arm has invalid executions."
+      },
+      "outcome_pairs": {
+        "escaped -> escaped": 0,
+        "escaped -> caught": 0,
+        "escaped -> timeout": 0,
+        "escaped -> invalid": 0,
+        "caught -> escaped": 37,
+        "caught -> caught": 0,
+        "caught -> timeout": 0,
+        "caught -> invalid": 0,
+        "timeout -> escaped": 24,
+        "timeout -> caught": 3,
+        "timeout -> timeout": 0,
+        "timeout -> invalid": 0,
+        "invalid -> escaped": 0,
+        "invalid -> caught": 0,
+        "invalid -> timeout": 0,
+        "invalid -> invalid": 0
+      }
+    },
+    "generation_2_minus_generation_1": {
+      "first": "generation_2",
+      "second": "generation_1",
+      "metrics": {
+        "combined_score": {
+          "difference": 0.0008537441202352419,
+          "ci95": [
+            -0.03630171367299057,
+            0.03792236983894778
+          ],
+          "degenerate_ci": false
+        },
+        "task": {
+          "difference": 0.0011625000000000055,
+          "ci95": [
+            -0.0609128124999997,
+            0.06321312500000054
+          ],
+          "degenerate_ci": false
+        },
+        "model_accuracy": {
+          "difference": 0.0003906103005880974,
+          "ci95": [
+            -0.0011270479589333472,
+            0.00187066518176269
+          ],
+          "degenerate_ci": false
+        },
+        "final_coverage": {
+          "difference": -0.013750000000000002,
+          "ci95": [
+            -0.06083506944444419,
+            0.032503472222222045
+          ],
+          "degenerate_ci": false
+        },
+        "escaped": {
+          "difference": 0.0,
+          "ci95": [
+            -0.078125,
+            0.078125
+          ],
+          "degenerate_ci": false
+        },
+        "caught": {
+          "difference": 0.0,
+          "ci95": [
+            -0.078125,
+            0.078125
+          ],
+          "degenerate_ci": false
+        },
+        "timeout": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate_ci": true
+        },
+        "invalid": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate_ci": true
+        },
+        "keys": {
+          "difference": -0.015625,
+          "ci95": [
+            -0.109375,
+            0.0625
+          ],
+          "degenerate_ci": false
+        },
+        "door_open": {
+          "difference": 0.0,
+          "ci95": [
+            -0.078125,
+            0.078125
+          ],
+          "degenerate_ci": false
+        },
+        "steps": {
+          "difference": 6.03125,
+          "ci95": [
+            -2.2191406249999996,
+            14.765625
+          ],
+          "degenerate_ci": false
+        }
+      },
+      "objective_contributions": {
+        "task_difference_times_0_6": 0.0006975000000000033,
+        "accuracy_difference_times_0_4": 0.00015624412023523896,
+        "note": "Contributions sum to F difference only when neither arm has invalid executions."
+      },
+      "outcome_pairs": {
+        "escaped -> escaped": 58,
+        "escaped -> caught": 3,
+        "escaped -> timeout": 0,
+        "escaped -> invalid": 0,
+        "caught -> escaped": 3,
+        "caught -> caught": 0,
+        "caught -> timeout": 0,
+        "caught -> invalid": 0,
+        "timeout -> escaped": 0,
+        "timeout -> caught": 0,
+        "timeout -> timeout": 0,
+        "timeout -> invalid": 0,
+        "invalid -> escaped": 0,
+        "invalid -> caught": 0,
+        "invalid -> timeout": 0,
+        "invalid -> invalid": 0
+      }
+    }
+  },
+  "selection_ranking": [
+    "generation_2",
+    "generation_1"
+  ],
+  "selected_arm": "generation_2",
+  "selected_generation": 2,
+  "execution": {
+    "episodes": 192,
+    "transitions": 16193,
+    "experiment_model_calls": 0,
+    "new_sources": 0,
+    "resource_by_arm": {
+      "seed": {
+        "elapsed_seconds": 5.3623390139546245,
+        "evaluator_cpu_seconds": 2.3142260000000014,
+        "candidate_cpu_seconds": 2.832001999999992,
+        "total_cpu_seconds": 5.146227999999997
+      },
+      "generation_1": {
+        "elapsed_seconds": 10.791204739944078,
+        "evaluator_cpu_seconds": 1.8365400000000034,
+        "candidate_cpu_seconds": 8.795119,
+        "total_cpu_seconds": 10.631658999999988
+      },
+      "generation_2": {
+        "elapsed_seconds": 11.71224656884442,
+        "evaluator_cpu_seconds": 2.0255390000000046,
+        "candidate_cpu_seconds": 9.509264000000009,
+        "total_cpu_seconds": 11.53480300000001
+      }
+    },
+    "controller": {
+      "started_utc": "2026-10-09T03:27:53.780981+00:00",
+      "ended_utc": "2026-10-09T03:28:21.958950+00:00",
+      "invocation_elapsed_seconds": 28.17799862998072,
+      "status": "complete",
+      "episodes": 192,
+      "transitions": 16193,
+      "model_calls": 0,
+      "new_candidate_sources": 0,
+      "evaluator_cpu_seconds": 6.488224000000001,
+      "candidate_cpu_seconds": 21.136385,
+      "total_cpu_seconds": 27.624609000000003,
+      "definition": "Per-episode CPU covers evaluator plus reaped candidate child. Driver export/validation overhead is outside summed episode CPU."
+    }
+  },
+  "identities": {
+    "evaluator": "namazu-proposal-reconstruction-v1",
+    "pool_sha256": "f5e7c7ceb863354108b69da1b629653d56f315c50499edb03221b68c2dcb7aa2",
+    "source_sha256": {
+      "proposal/initial.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "proposal/worker.py": "af792865104c9c0cee7aa32fe9ef71d741fef1cf0e3685d5487de88480e44301",
+      "proposal/evaluation.py": "c132da0d52f9210fd5d67aa9c429011ffd0cb2f44ea1709c74d8a5ebfb2c9442",
+      "proposal/evaluate.py": "683c207f5d73febd4c8e8d9998642aeb6a5037cacb61d3780960d5ce31517aa0",
+      "proposal/evaluate_full.py": "b3993293a55f0059e9e6dd0dfa770390fc335a9d22b0a73d5ace41ad1abf2904",
+      "dreamer/world.py": "86f1ac911a18c21f0d9fce9c5e172f6988e281d1d18924629c109a631de17290",
+      "dreamer/evaluation.py": "9f3a85812e15f33ad5d57585c26e9f6e49848543e734aad1cb1e84d8f0351cae",
+      "dreamer/isolation.py": "8109ca9e8a6d843516fbd50b34894f017d011e70e292ac025b68e8b34915c854",
+      "proposal/panel.py": "5143fa5b073083618b2f71d8dd3ee190b28fa4099dae1e906422a4733e05e4a8",
+      "artifacts/proposal/full-native-01/programs/generation-000.py": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "artifacts/proposal/full-native-01/programs/generation-001.py": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6",
+      "artifacts/proposal/full-native-01/programs/generation-002.py": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    },
+    "candidate_sha256": {
+      "seed": "baf6ae96e24585f14977bb37e9d5291f978ecfd5caa7f40a516cd12949b0b177",
+      "generation_1": "6082d25abb51c70b7e5ce5d95b3e356a9186257be3b6850050ecb1f9638a59e6",
+      "generation_2": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+    }
+  },
+  "protocol_sha256": "cca3e08cee09c2c269d3d628bbc1493854ac58efc88d5688c35c3d606b30e2b3",
+  "selected_program": {
+    "path": "artifacts/proposal/full-native-01/programs/generation-002.py",
+    "generation": 2,
+    "sha256": "6062d5e728cf9a1fd38a73fbdcea3fa9d9183a046ee0155cd2709fb1481043fe"
+  }
+}

@@ -1,30 +1,33 @@
-# Checkpoint: original-proposal Stage 3 complete; await instruction
+# Checkpoint: original-proposal Stage 4 complete; await instruction
 
-The user's latest instruction authorized the proposed Stage 3 development check.
-It is complete: generation 2 escaped all 32 existing development cases versus
-0/32 for the saved seed. The 27 cases outside search also all escaped. Mean F
-improved by 0.438692 (descriptive paired 95% interval 0.413746–0.462317);
-reconstruction accuracy did not improve. This is exposed development evidence,
-not held-out performance or a causal test of memory/predictive learning.
+The user's latest instruction authorized Stage 4 selection-validation, now complete.
+The original seed and both unchanged descendants ran on 64 newly drawn private
+paired cases. Each descendant escaped 61/64; the seed escaped 0/64. Generation 2
+won the prespecified original-F rule, but its advantage over generation 1 is
+0.000854 with a descriptive paired 95% interval of −0.036302 to 0.037922.
+Its gain over the seed is 0.417061 [0.381668, 0.447600]. This panel selects the winner;
+it is not unbiased final assessment or causal evidence about memory/prediction.
 
-Executed 32 new episodes, 2,024 transitions, 5.546 seconds evaluation wall time,
-5.451 CPU-seconds, zero experiment-model calls. All seven original evaluator
-source hashes matched before seed reuse; five search cases reproduced exactly.
-The evaluator and selected program are unchanged. Evaluation workers exited;
-no automatic continuation. README includes the paired results and two new
-Chromatic Fields figures from these data.
+Executed 192 valid episodes, 16,193 transitions, 28.18 seconds wall and 27.62 CPU-seconds;
+zero experiment-model calls or candidate edits. The unchanged original evaluator
+and candidate hashes are frozen. Private seeds and episode checkpoints stay in
+ignored results/; public episode IDs are ordinal indices. Workers exited and no
+continuation is scheduled. README includes all failures and two new Chromatic
+Fields figures. Native search state and previous evidence remain unchanged.
 
-Read README, `artifacts/proposal/stage3-development/summary.json` and
-`proposal/plan-state.json`. The next proposed action is Stage 4: seed and both
-existing descendants on 64 disjoint selection-validation cases (192 episodes,
-zero model calls; proposed 25-minute/800 CPU-second ceiling). Wait for the user's
-instruction, then freeze that stage before drawing its private cases. It has not
-been started. Do not resume historical assessments or the stopped mutation run.
+Read README, `artifacts/proposal/stage4-selection/summary.json`,
+`artifacts/proposal/stage4-selection/assessment-freeze.json` and
+`proposal/plan-state.json`. The next proposed step is Stage 5: frozen generation 2
+versus original seed on 256 fresh paired cases (512 episodes, zero model calls;
+proposed 30-minute/1,200 CPU-second ceiling). Estimated evaluation time is about 70s.
+The scientific comparison, analysis and sample size are frozen, but the fresh pool
+has not been drawn. Wait for user instruction, bind a new execution deadline,
+then generate cases disjoint from all private pools including Stage 4. Do not
+resume historical assessments or the stopped mutation run.
 
-Regenerate this stage's analysis/figures without new episodes or model calls:
-`OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.development_report`.
-The Stage 1 held rewrite and native state remain preserved. Any future mutation
-continuation needs a new resource grant and recovery of that pre-source slot.
+Regenerate this stage's analysis/figures without episodes or model calls:
+`OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.selection_report`.
+The exact Stage 4 invocation is in protocol.json; its deadline must not be bypassed.
 
 ## Preserved earlier task history (superseded by the checkpoint above)
 

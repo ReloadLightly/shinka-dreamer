@@ -236,6 +236,11 @@
       "status": "active-themed",
       "purpose": "Saved original-proposal evidence; separate rendering manifest",
       "sha256": "dbd89cb12ab497e0d50dd0bb7b4c3f0f3e446dd7afc34309e72bb51845b7c80f"
+    },
+    "proposal/selection_report.py": {
+      "status": "active-themed",
+      "purpose": "Saved original-proposal selection-validation evidence; no scientific execution",
+      "sha256": "27ea384c4ef170cdaa8d849cddbee8df6e0957ac0c06341cf662df75fe6dab52"
     }
   },
   "unclassified_renderers": [],
@@ -362,6 +367,18 @@
           "sha256": "d41ada1fcd2f0346baae0a0df118455185ba5d1795d6c07941962748edfb03dc"
         }
       ]
+    },
+    {
+      "manifest": "artifacts/proposal/stage4-selection/rendering-manifest.json",
+      "manifest_sha256": "b899ec1bad4933740b8876ffd9cce285db867355b4c4194c3ddf08230a56162b",
+      "outputs": {
+        "artifacts/proposal/stage4-selection/figures/selection-effects.svg": "9b91c346da469e4e38b0b0b91fccc38fb521826bbd4bfa6818504ee1f88bbc40",
+        "artifacts/proposal/stage4-selection/figures/selection-effects.pdf": "9e4ea279668b0c0fe6430cf55b290e5d33c4c414dc3b13790073fbf9585518f1",
+        "artifacts/proposal/stage4-selection/figures/selection-effects.png": "f9121f38226b55fbb152877a65db5ec35f18e3c38307122696db7fe78b1322ac",
+        "artifacts/proposal/stage4-selection/figures/selection-cases.svg": "e73ad8f07aa1931443db96c3bddcb0b9c61b6e170fbf8ec339090edeb90eba05",
+        "artifacts/proposal/stage4-selection/figures/selection-cases.pdf": "095153041e8425e2520c27ec331edbeccd51a8d0dd52a2ecd864df62922013ed",
+        "artifacts/proposal/stage4-selection/figures/selection-cases.png": "01c7e2c36a148eee7fb459f27b88c93145fb01e50eda4143a9c5473fe4518649"
+      }
     }
   ],
   "frozen_presentation_sha256": {
@@ -408,10 +425,10 @@
     "path_sha256_map_sha256": "0eb8217d0895f599527ba916b454bc760a50e32d841ba8de8b1c2d5f601826bb"
   },
   "readme_visual_check": {
-    "figures": 8,
+    "figures": 10,
     "all_original_proposal_data": true,
     "all_chromatic_fields": true,
-    "new_stage3_figures_inspected": 2,
+    "new_stage4_figures_inspected": 2,
     "remaining_readme_migration": []
   }
 }

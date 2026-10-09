@@ -1,8 +1,8 @@
 # Implementing the original Sakana proposal, step by step
 
-**Prospective plan recorded 9 October 2026; Stage 1 and Stage 3 checkpoints below.**
+**Prospective plan recorded 9 October 2026; Stage 1, 3 and 4 checkpoints below.**
 The plan was originally commissioned as research and planning only. The user chose
-budgets **stage by stage** and subsequently authorized Stage 1 and Stage 3. Later-stage
+budgets **stage by stage** and subsequently authorized Stages 1, 3 and 4. Later-stage
 ceilings remain proposals for review, not spending authorization. Each execution
 ends at a checkpoint and awaits a new instruction. There is no unattended sequence
 of stages.
@@ -20,10 +20,14 @@ The separately authorized Stage 3 is also complete. Generation 2 escaped all
 episodes, 2,024 transitions, 5.55 seconds elapsed evaluation and 5.45 CPU-seconds,
 with zero experiment-model calls. Original sources and five-case search scores
 are unchanged. See the [paired results](../README.md#43-paired-32-case-development-comparison).
-No subsequent stage is authorized. The next proposal is Stage 4 with seed,
-generation 1 and generation 2 on 64 disjoint selection-validation cases
-(192 episodes, zero model calls), within the existing 25-minute/800 CPU-second
-ceilings. Stop at its selection checkpoint; Stage 5 remains separate.
+The separately authorized Stage 4 is now complete too: on 64 disjoint private
+cases, both descendants escaped 61/64 and the seed 0/64. Generation 2 was selected
+by original F, but its advantage over generation 1 remains unresolved. The 192
+episodes used 28.18 seconds elapsed and 27.62 total CPU-seconds, with zero model
+calls. See [selection results](../README.md#44-selection-validation-and-assessment-freeze)
+and the [assessment freeze](../artifacts/proposal/stage4-selection/assessment-freeze.json).
+No subsequent stage is authorized. Stage 5's proposed 256 fresh pairs remain
+undrawn; the next step is its separately authorized evaluation and report.
 
 ## 1. Destination and fixed scope
 
@@ -335,8 +339,9 @@ invocation and resume command, and stop. Do not invent a command for features no
 implemented yet. Stage 1 supplied the bounded full-native launcher; its saved
 failure gate/deadline prevent further dispatch without a newly authorized block.
 
-**Next action after the Stage 3 checkpoint:** await the user's instruction for
-Stage 4 selection-validation. No further mutation or historical assessment is
-authorized. The prospective stage budgets above remain preserved. The original
+**Next action after the Stage 4 checkpoint:** await the user's instruction for
+Stage 5 fresh assessment of frozen generation 2 versus the original seed. No further
+mutation or historical assessment is authorized. The prospective stage budgets
+above remain preserved. The original
 Stage 1 launcher is now implemented; its held pre-source slot still requires
 explicit recovery before any newly authorized evolutionary continuation.

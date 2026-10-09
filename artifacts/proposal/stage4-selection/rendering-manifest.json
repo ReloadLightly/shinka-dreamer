@@ -1,0 +1,36 @@
+{
+  "style": "Chromatic Field v1 \u00b7 repository presentation 2",
+  "reproduction": "OPENBLAS_NUM_THREADS=1 .venv/bin/python -m proposal.selection_report",
+  "scientific_execution": "None: saved public episode analysis and rendering only.",
+  "input_sha256": {
+    "artifacts/proposal/stage4-selection/protocol.json": "cca3e08cee09c2c269d3d628bbc1493854ac58efc88d5688c35c3d606b30e2b3",
+    "artifacts/proposal/stage4-selection/pool-manifest.json": "05937344d3be0eede79d3cb0b5b0977403b21eae4833d7be96e1323227020f95",
+    "artifacts/proposal/stage4-selection/execution.json": "04c7163fa49c817a06cedb1926f40d8b2e88163658a07ca16cb9ae0081062877",
+    "artifacts/proposal/stage4-selection/seed/episodes.json": "d5393757ddd5806d7dd01ee446e017efb19c1057c0766fef241b4d76bcd5e6c7",
+    "artifacts/proposal/stage4-selection/seed/resource.json": "5c206d7c4458c8772a2dcd0a858a455117e798d9ce0eba82f0e351fc9cc5a9b0",
+    "artifacts/proposal/stage4-selection/seed/manifest.json": "2d573b38b3171d51e5f4eea73300be2555bb5896a8d0806b9cb8899f361e9fbd",
+    "artifacts/proposal/stage4-selection/generation_1/episodes.json": "929ff1ac5cd6afd8de768b0fa02dd3ec962f74401dc7f57f5238a6e76cecb9e7",
+    "artifacts/proposal/stage4-selection/generation_1/resource.json": "da2c8d1499d4dc25eb37c050529b633f1d2c69cd7498cd26961ef775fac67326",
+    "artifacts/proposal/stage4-selection/generation_1/manifest.json": "4b47c4551d96aa754ad3b2000639837dbaffd6089dd8a210bd0f656ea77e97c9",
+    "artifacts/proposal/stage4-selection/generation_2/episodes.json": "fb712bdd53b5011e398feeb40be652c4f94448113e2bb8ccc2acfb90adc3f554",
+    "artifacts/proposal/stage4-selection/generation_2/resource.json": "49dc2abc03c72fdcebfae230d471ea111102e971aebd50891d8c91d6fe3d3510",
+    "artifacts/proposal/stage4-selection/generation_2/manifest.json": "afb39252f895e7434dc5f5709a7342b0f9b258551c68f84e522d2cea43231cde"
+  },
+  "source_sha256": {
+    "proposal/selection_report.py": "27ea384c4ef170cdaa8d849cddbee8df6e0957ac0c06341cf662df75fe6dab52",
+    "proposal/development_report.py": "5a76a973e34c2fe763af0a211c93543f930fb8cf813505264b1772001f90d580",
+    "scripts/chromatic_fields.py": "4ba2e50bc93b92aea3616fb3a0bdc5cb1a9c93e65f327e86b42069556504c10e",
+    "scripts/visual_theme.py": "e0b6fc1203b9ca28d4f198e5ba9fa98eb089fc22f22dee4862bcd3f21dd83bb0"
+  },
+  "output_sha256": {
+    "artifacts/proposal/stage4-selection/summary.json": "8ec301ec8f037ed6ff688a53bae6a36a40c75c7543086721cfae5bcf192f7adb",
+    "artifacts/proposal/stage4-selection/paired-episodes.csv": "d1711f2901266afc8e311847cf2d67182d7c0fd255053dd52e77df3b891d92a1",
+    "artifacts/proposal/stage4-selection/captions.md": "3487223d7ee31b4571cc923024af50df2a66a7c0364f2f5395cd6a21a366e59b",
+    "artifacts/proposal/stage4-selection/figures/selection-effects.svg": "9b91c346da469e4e38b0b0b91fccc38fb521826bbd4bfa6818504ee1f88bbc40",
+    "artifacts/proposal/stage4-selection/figures/selection-effects.pdf": "9e4ea279668b0c0fe6430cf55b290e5d33c4c414dc3b13790073fbf9585518f1",
+    "artifacts/proposal/stage4-selection/figures/selection-effects.png": "f9121f38226b55fbb152877a65db5ec35f18e3c38307122696db7fe78b1322ac",
+    "artifacts/proposal/stage4-selection/figures/selection-cases.svg": "e73ad8f07aa1931443db96c3bddcb0b9c61b6e170fbf8ec339090edeb90eba05",
+    "artifacts/proposal/stage4-selection/figures/selection-cases.pdf": "095153041e8425e2520c27ec331edbeccd51a8d0dd52a2ecd864df62922013ed",
+    "artifacts/proposal/stage4-selection/figures/selection-cases.png": "01c7e2c36a148eee7fb459f27b88c93145fb01e50eda4143a9c5473fe4518649"
+  }
+}
